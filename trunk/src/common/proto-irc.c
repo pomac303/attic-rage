@@ -170,15 +170,17 @@ irc_user_whois (server *serv, char *nicks)
 static void
 irc_message (server *serv, char *channel, char *text)
 {
-	/* XXX: For Isomer
-	session *sess = NULL;
-	
-	if (is_channel(serv, channel))
-			sess = find_channel(serv, channel);
-	if (sess && sess->me->op && isupport(serv, "CPRIVMSG"))
-		tcp_sendf (serv, "CPRIVMSG %s %s :%s\r\n", channel, channel, text);
+	/* Make sure it's not a channel then check if the front session
+	 * has whats needed for cmsg */
+	if (!is_channel(serv, channel) && serv->front_session->me->op 
+			&& find_name(serv->front_session, channel)
+			&& isupport(serv, "CPRIVMSG"))
+	{
+		fprintf(stderr, "+++ CPRIVMSG +++\n");
+		tcp_sendf (serv, "CPRIVMSG %s %s :%s\r\n", channel, 
+				serv->front_session->channel, text);
+	}
 	else
-	*/
 		tcp_sendf (serv, "PRIVMSG %s :%s\r\n", channel, text);
 }
 
@@ -191,15 +193,17 @@ irc_action (server *serv, char *channel, char *act)
 static void
 irc_notice (server *serv, char *channel, char *text)
 {
-	/* XXX: For Isomer
-	session *sess = NULL;
-
-	if (is_channel(serv, channel))
-		sess = find_channel(serv, channel);
-	if (sess && sess->me->op && isupport(serv, "CNOTICE"))
-		tcp_sendf (serv, "CNOTICE %s %s :%s\r\n", channel, channel, text);
+	/* Make sure it's not a channel then check if the front session
+	 * has whats needed for cnotice */
+	if (!is_channel(serv, channel) && serv->front_session->me->op 
+			&& find_name(serv->front_session, channel)
+			&& isupport(serv, "CNOTICE"))
+	{
+		fprintf(stderr, "+++ CNOTICE +++\n");
+		tcp_sendf (serv, "CNOTICE %s %s :%s\r\n", channel, 
+				serv->front_session->channel, text);
+	}
 	else
-	*/
 		tcp_sendf (serv, "NOTICE %s :%s\r\n", channel, text);
 }
 
