@@ -1712,7 +1712,8 @@ sound_beep (session *sess)
 static char *
 sound_find_command (void)
 {
-	static const char *progs[] = {"esdplay", "soxplay", NULL};
+	/* some sensible unix players. You're bound to have one of them */
+	static const char *progs[] = {"aplay", "esdplay", "soxplay", "artsplay", NULL};
 	char *cmd;
 	int i = 0;
 
@@ -1779,7 +1780,10 @@ sound_play (const char *file)
 		{
 			if (cmd)
 			{
-				snprintf (buf, sizeof (buf), "%s %s", cmd, file_fs);
+				if (strchr (file_fs, ' '))
+					snprintf (buf, sizeof (buf), "%s \"%s\"", cmd, file_fs);
+				else
+					snprintf (buf, sizeof (buf), "%s %s", cmd, file_fs);
 				buf[sizeof (buf) - 1] = '\0';
 				xchat_exec (buf);
 			}
