@@ -276,11 +276,11 @@ irc_init (rage_session *sess)
 #endif
 
 	if (prefs.notify_timeout)
-		notify_tag = fe_timeout_add (prefs.notify_timeout * 1000,
-											  notify_checklist, 0);
+		notify_tag = g_timeout_add (prefs.notify_timeout * 1000, 
+				(GSourceFunc)notify_checklist, 0);
 
-	fe_timeout_add (prefs.away_timeout * 1000, away_check, 0);
-	fe_timeout_add (500, xchat_misc_checks, 0);
+	g_timeout_add (prefs.away_timeout * 1000, (GSourceFunc)away_check, 0);
+	g_timeout_add (500, (GSourceFunc)xchat_misc_checks, 0);
 
 	if (connect_url != NULL)
 	{
@@ -1062,7 +1062,7 @@ xchat_exec (char *cmd)
 	if (pid != -1)
 	/* zombie avoiding system. Don't ask! it has to be like this to work
       with zvt (which overrides the default handler) */
-		fe_timeout_add (1000, child_handler, GINT_TO_POINTER (pid));
+		g_timeout_add (1000, (GSourceFunc)child_handler, GINT_TO_POINTER (pid));
 }
 
 int
@@ -1114,7 +1114,6 @@ void fe_ignore_update(int a) {}
 void fe_set_title(rage_session *a) {}
 void fe_set_nonchannel(rage_session *a,int b) {}
 void fe_clear_channel(rage_session *a) {}
-void fe_timeout_remove(int a) {}
 void fe_set_topic(rage_session *a,char *b) {}
 void fe_set_hilight(rage_session *a) {}
 void fe_set_nick(struct server *a,char *b) {}
@@ -1126,7 +1125,6 @@ int fe_is_banwindow(rage_session *a) { return 0; }
 void fe_update_channel_limit(rage_session *a) {}
 void fe_update_mode_buttons(rage_session *a,char b,char c) {}
 void fe_update_channel_key(rage_session *a) {}
-int fe_timeout_add(int a,void *b,void *c) { return 0; }
 void fe_notify_update(char *a) {}
 void fe_buttons_update(rage_session *a) {}
 void fe_dlgbuttons_update(rage_session *a) {}

@@ -54,7 +54,7 @@ clear_channel (rage_session *sess)
 
 	if (sess->mode_timeout_tag)
 	{
-		fe_timeout_remove (sess->mode_timeout_tag);
+		g_source_remove (sess->mode_timeout_tag);
 		sess->mode_timeout_tag = 0;
 	}
 

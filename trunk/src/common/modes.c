@@ -246,7 +246,8 @@ record_chan_mode (rage_session *sess)/*, char sign, char mode, char *arg)*/
 		We need to find out the new modes for the titlebar, but let's not
 		flood ourselves off when someone decides to change 100 modes/min. */
 	if (!sess->mode_timeout_tag)
-		sess->mode_timeout_tag = fe_timeout_add (15000, mode_timeout_cb, sess);
+		sess->mode_timeout_tag = g_timeout_add (15000, 
+				(GSourceFunc)mode_timeout_cb, sess);
 }
 
 static char *

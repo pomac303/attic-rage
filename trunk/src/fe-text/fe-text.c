@@ -311,47 +311,6 @@ fe_print_text (rage_session *sess, char *text)
 	free (newtext);
 }
 
-void
-fe_timeout_remove (int tag)
-{
-	timerevent *te;
-	GSList *list;
-
-	list = tmr_list;
-	while (list)
-	{
-		te = (timerevent *) list->data;
-		if (te->tag == tag)
-		{
-			tmr_list = g_slist_remove (tmr_list, te);
-			free (te);
-			return;
-		}
-		list = list->next;
-	}
-}
-
-int
-fe_timeout_add (int interval, void *callback, void *userdata)
-{
-	struct timeval now;
-	timerevent *te = malloc (sizeof (timerevent));
-
-	tmr_list_count++;				  /* this overflows at 2.2Billion, who cares!! */
-
-	te->tag = tmr_list_count;
-	te->interval = interval;
-	te->callback = callback;
-	te->userdata = userdata;
-
-	gettimeofday (&now, NULL);
-	te->next_call = now.tv_sec * 1000 + (now.tv_usec / 1000) + te->interval;
-
-	tmr_list = g_slist_prepend (tmr_list, te);
-
-	return te->tag;
-}
-
 int
 fe_args (int argc, char *argv[])
 {
@@ -490,7 +449,7 @@ fe_main (void)
 				/* if the callback returns 0, it must be removed */
 				if (te->callback (te->userdata) == 0)
 				{
-					fe_timeout_remove (te->tag);
+					g_source_remove (te->tag);
 				} else
 				{
 					te->next_call = now.tv_sec * 1000 + (now.tv_usec / 1000) + te->interval;

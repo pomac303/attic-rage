@@ -571,7 +571,7 @@ plugin_timeout_cb (rage_hook *hook)
 
 	if (ret == 0)
 	{
-		hook->tag = 0;	/* avoid fe_timeout_remove, returning 0 is enough! */
+		hook->tag = 0;	/* avoid g_source_remove, returning 0 is enough! */
 		rage_unhook (hook->pl, hook);
 	}
 
@@ -643,7 +643,8 @@ plugin_add_hook (rage_plugin *pl, int type, int pri, const char *name,
 	plugin_insert_hook (hook);
 
 	if (type == HOOK_TIMER)
-		hook->tag = fe_timeout_add (timeout, plugin_timeout_cb, hook);
+		hook->tag = g_timeout_add (timeout, 
+				(GSourceFunc)plugin_timeout_cb, hook);
 
 	return hook;
 }
@@ -708,7 +709,7 @@ rage_unhook (rage_plugin *ph, rage_hook *hook)
 		return NULL;
 
 	if (hook->type == HOOK_TIMER && hook->tag != 0)
-		fe_timeout_remove (hook->tag);
+		g_source_remove (hook->tag);
 
 	if (hook->type == HOOK_FD)
 		net_input_remove (hook->tag);
