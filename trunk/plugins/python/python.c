@@ -1894,7 +1894,6 @@ Command_Py(int parc, char *word[], void *userdata)
 	int ok = 0;
 	char *p;
 	int i;
-	char debug_buf[512];
 
 	p=word[1];
 	while(*p && *p!=' ')p++;
@@ -1907,17 +1906,13 @@ Command_Py(int parc, char *word[], void *userdata)
 	cmd[i]='\0';
 	while(*p && *p==' ')p++;
 
-	snprintf(debug_buf,sizeof(debug_buf),"[%s] <- [%s][%s][%s]",
-		cmd,word[0],word[1],word[2]);
-	xchat_print(ph,debug_buf);
-
 	if (strcasecmp(cmd, "LIST") == 0) {
 		ok = 1;
 		Command_PyList();
 	} else if (strcasecmp(cmd, "EXEC") == 0) {
 		if (p) {
 			ok = 1;
-			IInterp_Exec(p); /* FIXME */
+			IInterp_Exec(p); 
 		}
 	} else if (strcasecmp(cmd, "LOAD") == 0) {
 		if (p) {

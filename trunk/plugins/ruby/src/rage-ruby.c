@@ -1,15 +1,15 @@
 /* --------------------------------------------------------------------------
- * rage-ruby.c -- glue code between Ruby interpreter and XChat plugin API
+ * rage-ruby.c -- glue code between Ruby interpreter and Rage plugin API
  * Copyright (C) 2003 Jamis Buck (jgb3@email.byu.edu)
  * --------------------------------------------------------------------------
- * This file is part of the XChat-Ruby plugin.
+ * This file is part of the Rage-Ruby plugin.
  * 
- * The  XChat-Ruby  plugin  is  free software; you can redistribute it and/or
+ * The  Rage-Ruby  plugin  is  free software; you can redistribute it and/or
  * modify  it  under the terms of the GNU General Public License as published
  * by  the  Free  Software  Foundation;  either  version 2 of the License, or
  * (at your option) any later version.
  * 
- * The  XChat-Ruby  plugin is distributed in the hope that it will be useful,
+ * The  Rage-Ruby  plugin is distributed in the hope that it will be useful,
  * but   WITHOUT   ANY   WARRANTY;  without  even  the  implied  warranty  of
  * MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.   See  the  GNU
  * General Public License for more details.
@@ -18,7 +18,7 @@
  * along  with  the  XChat-Ruby  plugin;  if  not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * --------------------------------------------------------------------------
- * This is the glue code between the Ruby interpreter and the XChat plugin
+ * This is the glue code between the Ruby interpreter and the Rage plugin
  * API.
  *
  * Author: Jamis Buck (jgb3@email.byu.edu)
@@ -33,7 +33,7 @@
 #include "rage-ruby-plugin.h"  /* this is the ruby code as a #define */
 
 
-/* ``global'' variables (global to the XChat-Ruby plugin) {{{ */
+/* ``global'' variables (global to the Rage-Ruby plugin) {{{ */
 
 static xchat_plugin *static_plugin_handle = NULL;
 static xchat_plugin *ph = NULL;

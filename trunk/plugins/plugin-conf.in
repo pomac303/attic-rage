@@ -7,12 +7,12 @@ AM_DISABLE_STATIC
 AM_PROG_LIBTOOL
 
 AC_ARG_WITH(plugin-includes,
-[  --with-plugin-includes  directory containing xchat-plugin.h],         
+[  --with-plugin-includes  directory containing rage-plugin.h],         
 	PLUGIN_INCLUDES=$enableval)
 
 AC_SUBST(PLUGIN_INCLUDES)
 
-xchatlibdir=${libdir}/xchat
+xchatlibdir=${libdir}/rage
 AC_SUBST(xchatlibdir)
 
 AC_OUTPUT(
