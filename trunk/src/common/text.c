@@ -1046,6 +1046,13 @@ static char *pevt_discon_help[] = {
 	N_("Error"),
 };
 
+static char *pevt_rpong_help[] = {
+	N_("Source Server"),
+	N_("Destination Server"),
+	N_("Ping time"),
+	N_("Client time diff"),
+};
+
 #include "textevents.h"
 
 static void

@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdarg.h>
+#include <time.h>
 
 #include "xchat.h"
 
@@ -941,7 +942,6 @@ irc_server(session *sess, int parc, char *parv[])
 			char *kicked = parv[3];
 			char *reason = parv[4];
 			if (*kicked) {
-				/* TODO: p_cmp? */
 				if (!strcmp(kicked, sess->server->nick))
 					inbound_ukick(sess->server,
 							parv[2],nick,reason);
@@ -964,13 +964,20 @@ irc_server(session *sess, int parc, char *parv[])
 			tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
 			break;
 		case M_RPONG:
+		{
+			time_t tp;
+			char *line[5];
 			/* XXX: needs a text event */
 			/* parv[0] == source server
 			 * parv[3] == dest server
 			 * parv[4] == miliseconds
 			 * parv[5] == user added time, ie from client.
 			 */
+			tp = time(NULL);
+			snprintf(line, 5, "%li",  tp - atoi(parv[5]));
+			EMIT_SIGNAL(XP_TE_RPONG, sess, parv[0], parv[3], parv[4], line, 0);
 			break;
+		}
 		case M_ERROR:
 			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,
 					NULL, NULL, 0);

@@ -402,5 +402,8 @@ N_("%C0%B%171Invite%187%B$tInviting $1 to channel $2.%O")},
 N_("<$1>$t$2%O")},
 
 {"Your Nick Changing", pevt_uchangenick_help, 2, 
-N_("%C0%B%171Nick%187%B$tYou are now known as $2")},
+N_("%C0%B%171Nick%187%B$tYou are now known as $2%O")},
+
+{"RPong Message", pevt_rpong_help, 4, 
+N_("%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O")},
 };
