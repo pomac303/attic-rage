@@ -1,0 +1,15 @@
+XChat-Ruby Plugin
+-----------------
+
+v1.1: 8 Aug 2003
+  - Fixed bugs that caused priorities to not be respected, and caused hooks
+    with the same name to conflict (the older hook was being removed).  Hook
+    return codes should now be understood correctly as well.
+  - Made the internal ruby code more 1.8-compliant.  This should have zero
+    effect if you only have 1.6.x installed, though.
+
+v1.0.1: 9 June 2003
+  Very minor modifications in order to support compilation under Win32.
+
+v1.0: 9 June 2003
+  Initial release.
