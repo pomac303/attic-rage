@@ -18,33 +18,7 @@
 
 /* IRC RFC1459(+commonly used extensions) protocol implementation */
 
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-
-#include "xchat.h"
-
-#ifdef WIN32
-#include "inet.h"	/* for gethostname() */
-#endif
-
-#include "ctcp.h"
-#include "fe.h"
-#include "ignore.h"
-#include "inbound.h"
-#include "modes.h"
-#include "notify.h"
-#include "numeric.h"
-#include "plugin.h"
-#include "server.h"
-#include "text.h"
-#include "outbound.h"
-#include "util.h"
-#include "xchatc.h"
-
+#include "rage.h"
 
 static void
 irc_login (server *serv, char *user, char *realname)

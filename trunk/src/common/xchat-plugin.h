@@ -2,8 +2,6 @@
 #ifndef XCHAT_PLUGIN_H
 #define XCHAT_PLUGIN_H
 
-#include <time.h>
-
 #define XCHAT_IFACE_MAJOR	1
 #define XCHAT_IFACE_MINOR	9
 #define XCHAT_IFACE_MICRO	11

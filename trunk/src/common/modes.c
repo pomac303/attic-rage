@@ -16,20 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "xchat.h"
-#include "xchatc.h"
-#include "modes.h"
-#include "server.h"
-#include "text.h"
-#include "fe.h"
-#include "dict.h"
-#ifdef HAVE_STRINGS_H
-#include <strings.h>
-#endif
+#include "rage.h"
 
 typedef struct
 {
@@ -600,6 +587,15 @@ isupport(server * serv, char *value)
 }
 
 /* handle the 005 numeric */
+
+
+/* hack added here by bart: 04/09/2004 */
+#ifdef WIN32
+int strcasecmp(const char *s1, const char *s2)
+{
+	return strcmpi(s1, s2);
+}
+#endif
 
 void
 inbound_005 (server * serv, int parc, char *parv[])

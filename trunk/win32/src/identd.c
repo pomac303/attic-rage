@@ -1,11 +1,11 @@
 /* simple identd server for xchat under win32 */
 
+#include "../../src/common/rage.h"
 
 static int identd_is_running = FALSE;
 
 
-static int
-identd (char *username)
+int identd (char *username)
 {
 	int sok, read_sok, len;
 	char *p;
@@ -75,8 +75,7 @@ identd (char *username)
 	return 0;
 }
 
-static void
-identd_start (char *username)
+void identd_start (char *username)
 {
 	DWORD tid;
 
