@@ -190,7 +190,7 @@ tcp_send_data (server *serv, queued_msg *msg)
 					msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_CMESSAGE:
-			snprintf(tmp, sizeof(tmp)-1, "CMESSAGE %s %s :%s%s", msg->target,
+			snprintf(tmp, sizeof(tmp)-1, "CPRIVMSG %s %s :%s%s", msg->target,
 					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_CNOTICE:
