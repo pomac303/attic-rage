@@ -702,6 +702,7 @@ static char defaultconf_commands[] =
 	"NAME VER\n"			"CMD ctcp %2 VERSION\n\n"\
 	"NAME VERSION\n"		"CMD ctcp %2 VERSION\n\n"\
 	"NAME WALLOPS\n"		"CMD quote WALLOPS :&2\n\n"\
+	"NAME WALLUSERS\n"		"CMD quote WALLUSERS :&2\n\n"\
 	"NAME WII\n"			"CMD quote WHOIS %2 %2\n\n";
 
 #ifdef WIN32
