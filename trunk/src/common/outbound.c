@@ -2127,32 +2127,24 @@ cmd_mode (struct session *sess, char *cmd, char *buf)
 {
 	char *dest;
 	char *mode;
-	char nick[1024];
-	char *tmp;
 
 	split_cmd(&buf);
 	dest = split_cmd(&buf);
 	skip_white(&buf);
 	mode = buf;
 
-	strncpy(nick,mode,sizeof(nick));
-	nick[sizeof(nick)-1]='\0';
-	tmp=nick;
-	split_opt(&tmp);
-
-
 	/* +channel channels are dying, let those servers whine about modes.
 	 * return info about current channel if available and no info is given 
 	 * */
 
-	if ((*dest == '+') // no channel?
-	  ||(*dest == '\0')   // no argument?
-	  || (!is_channel(sess->server, dest) // not a channel?
-           && !(sess->server->p_cmp(sess->server->nick, nick) == 0)))
+	if ((*dest == '+') || (*dest == '-') /* first input is a mode, assume current channel. */
+	  ||(*dest == '\0')   /* no argument, get channel information. */
+	  || (!is_channel(sess->server, dest) /* not a channel */
+           && !(sess->server->p_cmp(sess->server->nick, dest) == 0)))
 	{
 		if(sess->channel[0] == '\0')
 			return FALSE;
-		sess->server->p_mode (sess->server, sess->channel, mode);
+		sess->server->p_mode (sess->server, sess->channel, dest);
 	}	
 	else
 		sess->server->p_mode (sess->server, dest, mode);
@@ -2721,26 +2713,29 @@ cmd_servchan (struct session *sess, char *cmd, char *buf)
 static int
 cmd_topic (struct session *sess, char *cmd, char *buf)
 {
-	int parc;
-	char *parv[MAX_TOKENS];
-	char *tmp;
+	char *p;
 
-	tmp=strdup(buf);
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	if (parv[1][0] && is_channel (sess->server, parv[1])) {
-		split_cmd(&buf); // skip the command
-		split_cmd(&buf); // skip the channel
-		skip_white(&buf);
-		sess->server->p_topic (sess->server, parv[1], buf);
-	}
-	else {
-		split_cmd(&buf); // skip the command
-		skip_white(&buf);
+	/* Is there a space in the sentence?
+	 * if there is lets add a seperator.
+	 */
+	if((p = strchr(buf, ' ')))
+		*p++ = 0;
+
+	/* Now, is the first word of the seperated
+	 * sentence a channel? =)
+	 */
+	if (p && is_channel (sess->server, buf))
+		sess->server->p_topic (sess->server, buf, p);
+	else 
+	{
+		/* Replace the missing space if removed */
+		if (p)
+			*--p = ' ';
 		sess->server->p_topic (sess->server, sess->channel, buf);
 	}
 
-	free(tmp);
 	return TRUE;
 }
 

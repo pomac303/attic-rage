@@ -1591,7 +1591,8 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 	int port, pasvid = 0;
 	unsigned long size, addr;
 
-	switch(MAKE4(type[0],type[1],type[2],type[3]))
+	switch(MAKE4(toupper(type[0]),toupper(type[1]),
+				toupper(type[2]),toupper(type[3])))
 	{
 		case M_CHAT:
 		{
