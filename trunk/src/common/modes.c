@@ -590,78 +590,102 @@ inbound_005 (server * serv, int parc, char *parv[])
 	w = 3;
 	while (w < parc && *parv[w])
 	{
-		if (strncmp (parv[w], "MODES=", 6) == 0)
+		switch (parv[w][0])
 		{
-			serv->modes_per_line = atoi (parv[w] + 6);
-		} else if (strncmp (parv[w], "CHANTYPES=", 10) == 0)
-		{
-			free (serv->chantypes);
-			serv->chantypes = strdup (parv[w] + 10);
-		} else if (strncmp (parv[w], "CHANMODES=", 10) == 0)
-		{
-			free (serv->chanmodes);
-			serv->chanmodes = strdup (parv[w] + 10);
-		} else if (strncmp (parv[w], "PREFIX=", 7) == 0)
-		{
-			pre = strchr (parv[w] + 7, ')');
-			if (pre)
-			{
-				pre[0] = 0;			  /* NULL out the ')' */
-				free (serv->nick_prefixes);
-				free (serv->nick_modes);
-				serv->nick_prefixes = strdup (pre + 1);
-				serv->nick_modes = strdup (parv[w] + 8);
-			} else
-			{
-				/* bad! some ircds don't give us the modes. */
-				/* in this case, we use it only to strip /NAMES */
-				serv->bad_prefix = TRUE;
-				if (serv->bad_nick_prefixes)
-					free (serv->bad_nick_prefixes);
-				serv->bad_nick_prefixes = strdup (parv[w] + 7);
-			}
-		} else if (strncmp (parv[w], "WATCH=", 6) == 0)
-		{
-			serv->supports_watch = TRUE;
-		} else if (strncmp (parv[w], "NETWORK=", 8) == 0)
-		{
-/*			if (serv->networkname)
-				free (serv->networkname);
-			serv->networkname = strdup (parv[w] + 8);*/
-
-			if (serv->server_session->type == SESS_SERVER)
-			{
-				safe_strcpy (serv->server_session->channel, parv[w] + 8, CHANLEN);
-				fe_set_channel (serv->server_session);
-			}
-
-		} else if (strncmp (parv[w], "CASEMAPPING=", 12) == 0)
-		{
-			if (strcmp (parv[w] + 12, "ascii") == 0)	/* bahamut */
-				serv->p_cmp = (void *)strcasecmp;
-		} else if (strncmp (parv[w], "CHARSET=", 8) == 0)
-		{
-			if (strcasecmp (parv[w] + 8, "UTF-8") == 0)
-			{
-				if (serv->encoding)
-					free (serv->encoding);
-				serv->encoding = strdup ("UTF-8");
-			}
-		} else if (strcmp (parv[w], "NAMESX") == 0)
-		{
-									/* 12345678901234567 */
-			tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
-		} else if (strcmp (parv[w], "WHOX") == 0)
-		{
-			serv->have_whox = TRUE;
-		} else if (strcmp (parv[w], "CAPAB") == 0)
-		{
-			serv->have_capab = TRUE;
-									/* 12345678901234567890 */
-			tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
-			/* now wait for numeric 290 */	
+			case 'C':
+				if(parv[w][1] == 'A')
+				{
+					if (strcmp (parv[w], "CAPAB") == 0)
+					{
+						serv->have_capab = TRUE;
+						tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
+						/* now wait for numeric 290 */
+					}	
+					if (strncmp (parv[w], "CASEMAPPING=", 12) == 0)
+					{
+						if (strcmp (parv[w] + 12, "ascii") == 0)        /* bahamut */
+							serv->p_cmp = (void *)strcasecmp;
+					}
+				} else
+				{
+					if (strncmp (parv[w], "CHANMODES=", 10) == 0)
+					{
+						free (serv->chanmodes);
+						serv->chanmodes = strdup (parv[w] + 10);
+					}
+					if (strncmp (parv[w], "CHANTYPES=", 10) == 0)
+					{
+						free (serv->chantypes);
+						serv->chantypes = strdup (parv[w] + 10);
+					}
+					if (strncmp (parv[w], "CHARSET=", 8) == 0)
+					{
+						if (strcasecmp (parv[w] + 8, "UTF-8") == 0)
+						{
+							if (serv->encoding)
+								free (serv->encoding);
+							serv->encoding = strdup ("UTF-8");
+						}
+					}
+				}
+				break;
+			case 'M':
+				if (strncmp (parv[w], "MODES=", 6) == 0)
+				{
+					serv->modes_per_line = atoi (parv[w] + 6);
+				}
+				break;
+			case 'N':
+				if (strcmp (parv[w], "NAMESX") == 0)
+				{
+					tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
+				}
+				else if (strncmp (parv[w], "NETWORK=", 8) == 0)
+				{
+					/* if (serv->networkname)
+						free (serv->networkname);
+					serv->networkname = strdup (parv[w] + 8);*/
+					
+					if (serv->server_session->type == SESS_SERVER)
+					{
+						safe_strcpy (serv->server_session->channel, parv[w] + 8, CHANLEN);
+						fe_set_channel (serv->server_session);
+					}
+				}
+				break;
+			case 'P':
+				if (strncmp (parv[w], "PREFIX=", 7) == 0)
+				{
+					pre = strchr (parv[w] + 7, ')');
+					if (pre)
+					{
+						pre[0] = 0;                       /* NULL out the ')' */
+						free (serv->nick_prefixes);
+						free (serv->nick_modes);
+						serv->nick_prefixes = strdup (pre + 1);
+						serv->nick_modes = strdup (parv[w] + 8);
+					} else
+					{
+						/* bad! some ircds don't give us the modes. */
+						/* in this case, we use it only to strip /NAMES */
+						serv->bad_prefix = TRUE;
+						if (serv->bad_nick_prefixes)
+							free (serv->bad_nick_prefixes);
+						serv->bad_nick_prefixes = strdup (parv[w] + 7);
+					}
+				}
+				break;
+			case 'W':
+				if (strncmp (parv[w], "WATCH=", 6) == 0)
+				{
+					serv->supports_watch = TRUE;
+				}
+				else if (strcmp (parv[w], "WHOX") == 0)
+				{
+					serv->have_whox = TRUE;
+				}
+				break;
 		}
-
 		w++;
 	}
 }
