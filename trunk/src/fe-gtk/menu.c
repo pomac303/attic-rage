@@ -1198,7 +1198,7 @@ menu_saveexit (GtkWidget *wid, gpointer none)
 static void
 menu_docs (GtkWidget *wid, gpointer none)
 {
-	goto_url ("http://xchat.org/docs/");
+	goto_url ("http://www.rage-irc.com"); /* FIXME: docs not yet avail */
 }
 
 /*static void

@@ -844,6 +844,18 @@ pevt_gen_help
 %C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O
 1
 
+Netsplit Over
+XP_TE_NS_OVER
+pevt_gen_help
+%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O
+0
+
+Netsplit Join
+XP_TE_NS_JOIN
+pevt_gen_help
+%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0
+2
+
 Stacked Join
 XP_TE_MJOIN
 pevt_gen_help

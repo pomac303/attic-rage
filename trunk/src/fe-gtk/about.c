@@ -92,6 +92,7 @@ menu_about (GtkWidget * wid, gpointer sess)
 				"%s\n"
 				"<b>Charset</b>: %s <b>Renderer</b>: %s\n"
 				"<b>Compiled</b>: "__DATE__"\n\n"
+				"<small>\302\251 2004-2005 Rage IRC-Team, http://www.rage-irc.com</small>\n"
 				"<small>\302\251 1998-2004 Peter \305\275elezn\303\275 &lt;zed@xchat.org></small>",
 					rage_svn_version,
 					_("A multiplatform IRC Client"),

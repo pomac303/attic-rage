@@ -680,8 +680,10 @@ handle_mjoin(rage_session *sess)
 	else
 	{
 		tmp = g_queue_pop_head(sess->stack_join);
-		EMIT_SIGNAL (XP_TE_JOIN, sess, tmp->nick, sess->channel, tmp->hostname, 
-				NULL, 0);
+		/* We might not have added anything due to netsplits */
+		if (tmp)
+			EMIT_SIGNAL (sess->server->split_timer ? XP_TE_NS_JOIN : XP_TE_JOIN, sess,
+					tmp->nick, sess->channel, tmp->hostname, NULL, 0);
 	}
 	g_queue_free(sess->stack_join);
 	sess->stack_join = NULL;
@@ -822,19 +824,24 @@ handle_netsplit(server *serv)
 	char buf[2048], *tmp;
 	int len;
 
-	while(!g_queue_is_empty(serv->split_queue))
+	if (g_queue_is_empty(serv->split_queue))
+		EMIT_SIGNAL (XP_TE_NS_OVER, serv->front_session, NULL, NULL, NULL, NULL, 0);
+	else
 	{
-		len = 0;
-		
-		while ((tmp = g_queue_pop_head(serv->split_queue)) && 
-				len <= (sizeof(buf) - (NICKLEN +3)))
+		while(!g_queue_is_empty(serv->split_queue))
 		{
-			len += sprintf (buf + len, "%s", tmp);
-			if (!g_queue_is_empty(serv->split_queue))
-				len += sprintf (buf + len, ", ");
-			g_free(tmp);
+			len = 0;
+		
+			while ((tmp = g_queue_pop_head(serv->split_queue)) && 
+					len <= (sizeof(buf) - (NICKLEN +3)))
+			{
+				len += sprintf (buf + len, "%s", tmp);
+				if (!g_queue_is_empty(serv->split_queue))
+					len += sprintf (buf + len, ", ");
+				g_free(tmp);
+			}
+			EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
 		}
-		EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
 	}
 	g_queue_free(serv->split_queue);
 	serv->split_queue = NULL;

@@ -425,6 +425,12 @@ N_("%C0%B%171Netsplit%187%B$tNetsplit detected between servers $1 and $2.%O")},
 {"Netsplit Users Gone", pevt_gen_help, 1, 
 N_("%C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O")},
 
+{"Netsplit Over", pevt_gen_help, 0, 
+N_("%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O")},
+
+{"Netsplit Join", pevt_gen_help, 2, 
+N_("%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0")},
+
 {"Stacked Join", pevt_gen_help, 2, 
 N_("%B-->%B$tStacked join, new users on $1 is: $2%O")},
 };
