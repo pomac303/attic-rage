@@ -94,8 +94,8 @@ ctcp_handle (session *sess, char *to, char *nick, char *ip,
 			case C_VERSION:
 				if (!prefs.hidever)
 				{
-					snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION" %s",
-							get_cpu_str ());
+					snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION"-%s %s",
+							rage_svn_version, get_cpu_str ());
 					serv->p_nctcp (serv, nick, outbuf);
 				}
 				break;

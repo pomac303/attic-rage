@@ -89,13 +89,14 @@ fe_args (int argc, char *argv[])
 	{
 		if (!strcasecmp (argv[1], "-v") || !strcasecmp (argv[1], "--version"))
 		{
-			printf (PACKAGE" "VERSION"\n");
+			printf (PACKAGE" "VERSION"-%s\n", rage_svn_version);
 			return 0;
 		}
 		if (!strcasecmp (argv[1], "-h") || !strcasecmp (argv[1], "--help"))
 		{
-			printf (PACKAGE" "VERSION"\n"
-					"Usage: %s [OPTIONS]... [URL]\n\n", argv[0]);
+			printf (PACKAGE" "VERSION"-%s\n"
+					"Usage: %s [OPTIONS]... [URL]\n\n", rage_svn_version,
+					argv[0]);
 			printf ("%s:\n"
 					"  -d,  --cfgdir %-11s %s\n"
 					"  -a,  --no-auto            %s\n"

@@ -23,7 +23,7 @@
 void
 menu_about (GtkWidget * wid, gpointer sess)
 {
-	char buf[512];
+	char buf[512], vbuf[512];
 	const gchar *author[] = { "Peter Zelezny <zed@xchat.org>", 0 };
 
 	(snprintf) (buf, sizeof (buf),
@@ -37,8 +37,9 @@ menu_about (GtkWidget * wid, gpointer sess)
 #else
 				666, get_cpu_str());
 #endif
+	(snprintf) (vbuf, sizeof (vbuf), VERSION"-%s", rage_svn_version);
 
-	gtk_widget_show (gnome_about_new ("Rage", VERSION,
+	gtk_widget_show (gnome_about_new ("Rage", vbuf,
 							"(C) 1998-2004 Peter Zelezny", author, buf, 0));
 }
 
@@ -86,12 +87,13 @@ menu_about (GtkWidget * wid, gpointer sess)
 	gtk_container_add (GTK_CONTAINER (vbox), label);
 	g_get_charset (&locale);
 	(snprintf) (buf, sizeof (buf),
-				"<span size=\"x-large\"><b>Rage "VERSION"</b></span>\n\n"
+				"<span size=\"x-large\"><b>Rage "VERSION"-%s</b></span>\n\n"
 				"%s\n\n"
 				"%s\n"
 				"<b>Charset</b>: %s <b>Renderer</b>: %s\n"
 				"<b>Compiled</b>: "__DATE__"\n\n"
 				"<small>\302\251 1998-2004 Peter \305\275elezn\303\275 &lt;zed@xchat.org></small>",
+					rage_svn_version,
 					_("A multiplatform IRC Client"),
 					get_cpu_str(),
 					locale,

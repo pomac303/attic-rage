@@ -3376,7 +3376,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 					utf[19] = 0;
 					break;
 				case 'v':
-					utf = VERSION; break;
+					snprintf (buf, sizeof (buf), VERSION"-%s", rage_svn_version);
+					utf = buf;
 					break;
 				case 'y':
 					now = time (0);

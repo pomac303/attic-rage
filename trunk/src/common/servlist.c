@@ -1009,7 +1009,7 @@ servlist_save (void)
 	if (first)
 		chmod (buf, 0600);
 #endif
-	fprintf (fp, "v="VERSION"\n\n");
+	fprintf (fp, "v="VERSION"-%s\n\n", rage_svn_version);
 
 	list = network_list;
 	while (list)

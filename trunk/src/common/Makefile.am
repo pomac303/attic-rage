@@ -6,6 +6,8 @@ noinst_LIBRARIES = libragecommon.a
 
 INCLUDES = $(COMMON_CFLAGS)
 
+BUILT_SOURCES = rage-version.c
+
 EXTRA_DIST = makefile.msc \
 	cfgfiles.h \
 	ctcp.h \
@@ -47,10 +49,25 @@ if USE_OPENSSL
 ssl_c = ssl.c
 endif
 
+.PHONY: checkversion
+checkversion:
+	@SVN_VERSION=`svn info $(top_srcdir) | grep "^Revision: " | cut -d" " -f2 2>/dev/null`; \
+	[ "z$$SVN_VERSION" != "z" ] || exit 0; \
+	TMPFILE=`mktemp rage-version.c.XXXXXX` || exit 1; \
+	echo "const char rage_svn_version[] = \"$$SVN_VERSION\";" >> $$TMPFILE; \
+	if diff -q rage-version.c $$TMPFILE >/dev/null 2>&1; then \
+		rm $$TMPFILE; \
+	else \
+		rm -f rage-version.c; \
+		mv $$TMPFILE rage-version.c; \
+	fi
+
+rage-version.c: checkversion
+
 libragecommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
 	inbound.c modes.c network.c notify.c dict-splay.c parse.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c $(ssl_c) \
-	text.c tree.c url.c userlist.c util.c rage.c
+	text.c tree.c url.c userlist.c util.c rage.c rage-version.c
 
 textevents.h: textevents
 textenums.h: textevents

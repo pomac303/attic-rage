@@ -398,7 +398,7 @@ fe_args (int argc, char *argv[])
 	{
 		if (!strcasecmp (argv[1], "--version") || !strcasecmp (argv[1], "-v"))
 		{
-			puts (VERSION);
+			printf (VERSION"-%s\n", rage_svn_version);
 			return 0;
 		}
 	}

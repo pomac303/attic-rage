@@ -133,6 +133,8 @@
 	#error No 64-bit stuff defined for your platform
 #endif
 
+extern char rage_svn_version[];
+
 /* XXX: configure */
 #define NDEBUG
 

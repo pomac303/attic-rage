@@ -271,28 +271,29 @@ fe_set_title (session *sess)
 	switch (type)
 	{
 	case SESS_DIALOG:
-		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s %s @ %s",
-					 _("Dialog with"), sess->channel, sess->server->servername);
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]: %s %s @ %s",
+					 _("Dialog with"), rage_svn_version, sess->channel, sess->server->servername);
 		break;
 	case SESS_SERVER:
-		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s @ %s",
-					 sess->server->nick, sess->server->servername);
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]: %s @ %s",
+					 rage_svn_version, sess->server->nick, sess->server->servername);
 		break;
 	case SESS_CHANNEL:
 		snprintf (tbuf, sizeof (tbuf),
-					 "Rage ["VERSION"]: %s @ %s / %s (%s)",
-					 sess->server->nick, sess->server->servername,
+					 "Rage ["VERSION"-%s]: %s @ %s / %s (%s)",
+					 rage_svn_version, sess->server->nick, sess->server->servername,
 					 sess->channel, sess->current_modes ? sess->current_modes : "");
 		break;
 	case SESS_NOTICES:
 	case SESS_SNOTICES:
-		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s @ %s (notices)",
-					 sess->server->nick, sess->server->servername);
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]: %s @ %s (notices)",
+					 rage_svn_version, sess->server->nick, sess->server->servername);
 		break;
 	default:
 	def:
-		gtk_window_set_title (GTK_WINDOW (sess->gui->window), "Rage ["VERSION"]");
-		return;
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]",
+					 rage_svn_version);
+      break;
 	}
 
 	gtk_window_set_title (GTK_WINDOW (sess->gui->window), tbuf);
@@ -2153,15 +2154,18 @@ mg_create_menu (session_gui *gui, GtkWidget *box, int away_state)
 static void
 mg_create_topwindow (session *sess)
 {
+	char version[512];
 	GtkWidget *win;
 	GtkWidget *vbox;
 	GtkWidget *vvbox;
 
+	snprintf (version, sizeof(version), "Rage ["VERSION"-%s]",
+				 rage_svn_version);
 	if (sess->type == SESS_DIALOG)
-		win = gtkutil_window_new ("Rage ["VERSION"]", NULL,
+		win = gtkutil_window_new (version, NULL,
 										  prefs.dialog_width, prefs.dialog_height, 0);
 	else
-		win = gtkutil_window_new ("Rage ["VERSION"]", NULL,
+		win = gtkutil_window_new (version, NULL,
 										  prefs.mainwindow_width,
 										  prefs.mainwindow_height, 0);
 	sess->gui->window = win;
@@ -2290,12 +2294,15 @@ mg_tabwindow_de_cb (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 static void
 mg_create_tabwindow (session *sess)
 {
+	char version[512];
 	GtkWidget *win;
 	GtkWidget *vbox;
 	GtkWidget *table;
 	GtkWidget *book;
 
-	win = gtkutil_window_new ("Rage ["VERSION"]", NULL, prefs.mainwindow_width,
+	snprintf (version, sizeof(version), "Rage ["VERSION"-%s]",
+				 rage_svn_version);
+	win = gtkutil_window_new (version, NULL, prefs.mainwindow_width,
 									  prefs.mainwindow_height, 0);
 	sess->gui->window = win;
 	gtk_window_move (GTK_WINDOW (win), prefs.mainwindow_left,
