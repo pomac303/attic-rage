@@ -320,12 +320,15 @@ irc_split(server *serv,char *buf,int *parc,char *parv[])
 {
 	*parc=0;
 	/* See if this starts with a server */
-	if (*buf!=':')
-		parv[(*parc)++]=serv->servername;
-	else if (!*buf)
-		return; /* Empty string?! */
-	else
-		buf++; /* Skip the initial : */
+	if (serv) /* makes the code more generic */
+	{
+		if (*buf!=':')
+			parv[(*parc)++]=serv->servername;
+		else if (!*buf)
+			return; /* Empty string?! */
+		else
+			buf++; /* Skip the initial : */
+	}
 
 	while (*parc<MAX_TOKENS) {
 		/* Skip whitespace */

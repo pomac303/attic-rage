@@ -3347,7 +3347,7 @@ handle_command (session *sess, char *cmd, int check_spch)
 
 	/* split the text into words and word_eol */
 	//process_data_init (pdibuf, cmd, word, word_eol, TRUE);
-	irc_split(sess->server,cmd,&parc,parv);
+	irc_split(NULL,cmd,&parc,parv);
 
 	if (check_spch && prefs.perc_color)
 		check_special_chars (cmd, prefs.perc_ascii);
