@@ -1833,7 +1833,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=rage
- VERSION=1.0.0.svn-136
+ VERSION=1.0.0.svn-138
 
 
 cat >>confdefs.h <<_ACEOF

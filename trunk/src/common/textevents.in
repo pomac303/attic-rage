@@ -445,7 +445,7 @@ pevt_generic_channel_help
 Invited
 XP_TE_INVITED
 pevt_invited_help
-event_text=%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O
+%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O
 3
 
 Join
