@@ -330,7 +330,7 @@ N_("%C0%B%171Connect%187%B$tLooking up host \"$1\"...%O")},
 N_("%C0%B%171Server%187%B$t[$2] $1%O")},
 
 {"Server Text", pevt_servertext_help, 3, 
-N_("%C0%B%171$3%187%B$t$1%O")},
+N_("%C0%B%171Server%187%B$t$1%O")},
 
 {"Stop Connection", pevt_sconnect_help, 1, 
 N_("%C0%B%171Connect%187%B$tStopped previous connection attempt (pid=$1)%O")},

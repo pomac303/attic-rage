@@ -429,6 +429,14 @@ irc_numeric(session *sess, int parc, char *parv[])
 					NULL,
 					0);
 			return;
+		case RPL_WHOISCHANNELS: /* 319 */
+			EMIT_SIGNAL (XP_TE_WHOIS2, 
+					sess->server->server_session,
+					parv[3], parv[4], 
+					NULL, 
+					NULL, 
+					0);
+			return;
 		case RPL_ENDOFWHO: /* 315 */
 		{
 			session *who_sess;
@@ -495,7 +503,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 			}
 			return;
 		}
-		
 		case RPL_WHOISOPERATOR: /* 313 */
 		case 320: /* Is an identified user */
 			EMIT_SIGNAL(XP_TE_WHOIS_ID, 
