@@ -108,6 +108,9 @@
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}"
+			Name="common"/>
 		<AssemblyReference
 			RelativePath="mscorlib.dll"/>
 		<AssemblyReference
