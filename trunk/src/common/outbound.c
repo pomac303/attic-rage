@@ -1085,9 +1085,12 @@ mkickops_cb (struct User *user, multidata *data)
 	return TRUE;
 }
 
-/* XXX What is the syntax of this command? 
+/* 
  * Usage: MKICK, Mass kicks everyone except you in the current channel (needs chanop)
  * Pretty lame actually....
+ *
+ * usage:
+ *  /mkick reason
  */
 static int
 cmd_mkick (struct session *sess, char *cmd, char *buf)
