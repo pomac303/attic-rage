@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-23 00:13+0200\n"
+"POT-Creation-Date: 2004-11-09 12:45+0100\n"
 "PO-Revision-Date: 2004-08-14 12:42+0200\n"
 "Last-Translator: Ernest Adrogué Calveras <eadrogue@gmx.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -620,15 +620,15 @@ msgstr ""
 msgid "No such command.\n"
 msgstr "No existeix tal ordre.\n"
 
-#: src/common/outbound.c:3602
+#: src/common/outbound.c:3603
 msgid "Bad arguments for user command.\n"
 msgstr "Els arguments per a l'ordre d'usuari no són vàlids.\n"
 
-#: src/common/outbound.c:3764
+#: src/common/outbound.c:3765
 msgid "Too many recursive usercommands, aborting."
 msgstr "Massa ordres d'usuari recursives, s'avorta."
 
-#: src/common/outbound.c:3819
+#: src/common/outbound.c:3820
 msgid "Unknown Command. Try /help\n"
 msgstr "Ordre desconeguda. Proveu /help\n"
 
@@ -1313,511 +1313,511 @@ msgstr "%C18*%O%C18$t$1 $2%O"
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** ACABANT D'ACCEDIR A %s\n"
 
-#: src/common/text.c:313
+#: src/common/text.c:309
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** COMENÇANT A ACCEDIR A %s\n"
 
-#: src/common/text.c:332
-#, c-format
+#: src/common/text.c:328
+#, fuzzy, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
-"  permissions on %s/xchatlogs"
+"  permissions on %s/logs"
 msgstr ""
 "* No s'ha(n) pogut obrir el(s) fitxer(s) de registre amb permís\n"
 "  d'escriptura. Reviseu els permisos de %s/xchatlogs"
 
-#: src/common/text.c:549
+#: src/common/text.c:545
 msgid "Left message"
 msgstr "Missatge esquerra"
 
-#: src/common/text.c:550
+#: src/common/text.c:546
 msgid "Right message"
 msgstr "Missatge dret"
 
-#: src/common/text.c:554
+#: src/common/text.c:550
 msgid "The nick of the joining person"
 msgstr "Sobrenom de la persona que entra"
 
-#: src/common/text.c:555
+#: src/common/text.c:551
 msgid "The channel being joined"
 msgstr "Canal al qual s'entra"
 
-#: src/common/text.c:556 src/common/text.c:601 src/common/text.c:658
+#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
 msgid "The host of the person"
 msgstr "Màquina de la persona"
 
-#: src/common/text.c:560 src/common/text.c:565 src/common/text.c:572
-#: src/common/text.c:639 src/common/text.c:764 src/common/text.c:771
-#: src/common/text.c:776 src/common/text.c:781 src/common/text.c:786
-#: src/common/text.c:792 src/common/text.c:797 src/common/text.c:801
-#: src/common/text.c:806 src/common/text.c:812 src/common/text.c:858
-#: src/common/text.c:867 src/common/text.c:872 src/common/text.c:877
-#: src/common/text.c:886 src/common/text.c:897 src/common/text.c:904
-#: src/common/text.c:910 src/common/text.c:915 src/common/text.c:920
-#: src/common/text.c:927 src/common/text.c:933 src/common/text.c:939
-#: src/common/text.c:944 src/common/text.c:949 src/common/text.c:953
-#: src/common/text.c:959 src/common/text.c:967 src/common/text.c:1001
-#: src/common/text.c:1006
+#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
+#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
+#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
+#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
+#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
+#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
+#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
+#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
+#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
+#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
+#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
+#: src/common/text.c:1002
 msgid "Nickname"
 msgstr "Sobrenom"
 
-#: src/common/text.c:561
+#: src/common/text.c:557
 msgid "The action"
 msgstr "Acció"
 
-#: src/common/text.c:566
+#: src/common/text.c:562
 msgid "The text"
 msgstr "Text"
 
-#: src/common/text.c:567
+#: src/common/text.c:563
 msgid "Mode char"
 msgstr "Caràcter de mode"
 
-#: src/common/text.c:568 src/common/text.c:641
+#: src/common/text.c:564 src/common/text.c:637
 msgid "Identified text"
 msgstr "Text identificat"
 
-#: src/common/text.c:573 src/common/text.c:629 src/common/text.c:635
-#: src/common/text.c:640
+#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
+#: src/common/text.c:636
 msgid "The message"
 msgstr "Missatge"
 
-#: src/common/text.c:577 src/common/text.c:645
+#: src/common/text.c:573 src/common/text.c:641
 msgid "Old nickname"
 msgstr "Sobrenom vell"
 
-#: src/common/text.c:578 src/common/text.c:646
+#: src/common/text.c:574 src/common/text.c:642
 msgid "New nickname"
 msgstr "Sobrenom nou"
 
-#: src/common/text.c:582
+#: src/common/text.c:578
 msgid "Nick of person who changed the topic"
 msgstr "Sobrenom de la persona que ha canviat el tema"
 
-#: src/common/text.c:583 src/common/text.c:589 src/common/text.c:1041
+#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
 #: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Tema"
 
-#: src/common/text.c:584 src/common/text.c:588 src/common/text.c:1021
-#: src/common/text.c:1039 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
+#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
 #: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Canal"
 
-#: src/common/text.c:593 src/common/text.c:652
+#: src/common/text.c:589 src/common/text.c:648
 msgid "The nickname of the kicker"
 msgstr "Sobrenom de qui l'ha fet fora"
 
-#: src/common/text.c:594 src/common/text.c:650
+#: src/common/text.c:590 src/common/text.c:646
 msgid "The person being kicked"
 msgstr "Persona expulsada"
 
-#: src/common/text.c:595 src/common/text.c:602 src/common/text.c:606
-#: src/common/text.c:611 src/common/text.c:651 src/common/text.c:659
+#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
+#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
 msgid "The channel"
 msgstr "Canal"
 
-#: src/common/text.c:596 src/common/text.c:653 src/common/text.c:660
+#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
 msgid "The reason"
 msgstr "Motiu"
 
-#: src/common/text.c:600 src/common/text.c:657
+#: src/common/text.c:596 src/common/text.c:653
 msgid "The nick of the person leaving"
 msgstr "Sobrenom de la persona que surt"
 
-#: src/common/text.c:607 src/common/text.c:613
+#: src/common/text.c:603 src/common/text.c:609
 msgid "The time"
 msgstr "Hora"
 
-#: src/common/text.c:612
+#: src/common/text.c:608
 msgid "The creator"
 msgstr "Creador"
 
-#: src/common/text.c:617
+#: src/common/text.c:613
 msgid "Nick"
 msgstr "Sobrenom"
 
-#: src/common/text.c:618 src/common/text.c:873
+#: src/common/text.c:614 src/common/text.c:869
 msgid "Reason"
 msgstr "Motiu"
 
-#: src/common/text.c:619 src/common/text.c:766 src/common/text.c:848
+#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
 msgid "Host"
 msgstr "Màquina"
 
-#: src/common/text.c:623 src/common/text.c:628 src/common/text.c:633
+#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
 msgid "Who it's from"
 msgstr "De qui prové"
 
-#: src/common/text.c:624
+#: src/common/text.c:620
 msgid "The time in x.x format (see below)"
 msgstr "Hora en format x.x (vegeu més avall)"
 
-#: src/common/text.c:634 src/common/text.c:676
+#: src/common/text.c:630 src/common/text.c:672
 msgid "The Channel it's going to"
 msgstr "Canal de destinació"
 
-#: src/common/text.c:664
+#: src/common/text.c:660
 msgid "The sound"
 msgstr "So"
 
-#: src/common/text.c:665 src/common/text.c:670 src/common/text.c:675
+#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
 msgid "The nick of the person"
 msgstr "Sobrenom de la persona"
 
-#: src/common/text.c:669 src/common/text.c:674
+#: src/common/text.c:665 src/common/text.c:670
 msgid "The CTCP event"
 msgstr "Esdeveniment CTCP"
 
-#: src/common/text.c:680
+#: src/common/text.c:676
 msgid "The nick of the person who set the key"
 msgstr "Sobrenom de la persona que estableix la contrasenya"
 
-#: src/common/text.c:681
+#: src/common/text.c:677
 msgid "The key"
 msgstr "Contrasenya"
 
-#: src/common/text.c:685
+#: src/common/text.c:681
 msgid "The nick of the person who set the limit"
 msgstr "El sobrenom de la persona que estableix el límit"
 
-#: src/common/text.c:686
+#: src/common/text.c:682
 msgid "The limit"
 msgstr "Límit"
 
-#: src/common/text.c:690
+#: src/common/text.c:686
 msgid "The nick of the person who did the op'ing"
 msgstr "Sobrenom de la persona que dóna l'estatus d'operador"
 
-#: src/common/text.c:691
+#: src/common/text.c:687
 msgid "The nick of the person who has been op'ed"
 msgstr "Sobrenom de la persona a qui s'ha fet operador"
 
-#: src/common/text.c:695
+#: src/common/text.c:691
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Sobrenom de la persona a qui s'ha fet semi-operador"
 
-#: src/common/text.c:696
+#: src/common/text.c:692
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Sobrenom de la persona que dóna l'estatus de semi-operador"
 
-#: src/common/text.c:700
+#: src/common/text.c:696
 msgid "The nick of the person who did the voice'ing"
 msgstr "Sobrenom de la persona que dóna l'estatus de veu"
 
-#: src/common/text.c:701
+#: src/common/text.c:697
 msgid "The nick of the person who has been voice'ed"
 msgstr "Sobrenom de la persona a qui s'ha donat veu"
 
-#: src/common/text.c:705
+#: src/common/text.c:701
 msgid "The nick of the person who did the banning"
 msgstr "Sobrenom de la persona que dóna l'estatus de bandejat"
 
-#: src/common/text.c:706 src/common/text.c:733
+#: src/common/text.c:702 src/common/text.c:729
 msgid "The ban mask"
 msgstr "Màscara d'usuaris bandejats"
 
-#: src/common/text.c:710
+#: src/common/text.c:706
 msgid "The nick who removed the key"
 msgstr "Sobrenom de qui ha eliminat la contrasenya"
 
-#: src/common/text.c:714
+#: src/common/text.c:710
 msgid "The nick who removed the limit"
 msgstr "Sobrenom de qui ha eliminat el límit"
 
-#: src/common/text.c:718
+#: src/common/text.c:714
 msgid "The nick of the person of did the deop'ing"
 msgstr "Sobrenom de la persona que ha tret l'estatus d'operador"
 
-#: src/common/text.c:719
+#: src/common/text.c:715
 msgid "The nick of the person who has been deop'ed"
 msgstr "Sobrenom de la persona a qui s'ha tret l'estatus d'operador"
 
-#: src/common/text.c:722
+#: src/common/text.c:718
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Sobrenom de la persona que ha tret l'estatus de semi-operador"
 
-#: src/common/text.c:723
+#: src/common/text.c:719
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Sobrenom de la persona a qui s'ha tret l'estatus de semi-operador"
 
-#: src/common/text.c:727
+#: src/common/text.c:723
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Sobrenom de la persona que ha tret l'estatus de veu"
 
-#: src/common/text.c:728
+#: src/common/text.c:724
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Sobrenom de la persona a qui s'ha tret l'estatus de veu"
 
-#: src/common/text.c:732
+#: src/common/text.c:728
 msgid "The nick of the person of did the unban'ing"
 msgstr "Sobrenom de la persona que ha tret l'estatus de bandejat"
 
-#: src/common/text.c:737
+#: src/common/text.c:733
 msgid "The nick of the person who did the exempt"
 msgstr "Sobrenom de la persona que dóna l'estatus d'exempt"
 
-#: src/common/text.c:738 src/common/text.c:743
+#: src/common/text.c:734 src/common/text.c:739
 msgid "The exempt mask"
 msgstr "Màscara d'usuaris als quals es dóna l'estatus d'exempt"
 
-#: src/common/text.c:742
+#: src/common/text.c:738
 msgid "The nick of the person removed the exempt"
 msgstr "Sobrenom de la persona a qui s'ha eliminat la exempció"
 
-#: src/common/text.c:747
+#: src/common/text.c:743
 msgid "The nick of the person who did the invite"
 msgstr "Sobrenom de la persona que dóna l'estatus de convidat"
 
-#: src/common/text.c:748 src/common/text.c:753
+#: src/common/text.c:744 src/common/text.c:749
 msgid "The invite mask"
 msgstr "Màscara de convidats"
 
-#: src/common/text.c:752
+#: src/common/text.c:748
 msgid "The nick of the person removed the invite"
 msgstr "Sobrenom de la persona que ha tret l'estatus de convidat"
 
-#: src/common/text.c:757
+#: src/common/text.c:753
 msgid "The nick of the person setting the mode"
 msgstr "Sobrenom de la persona que estableix el mode"
 
-#: src/common/text.c:758
+#: src/common/text.c:754
 msgid "The mode's sign (+/-)"
 msgstr "Senyal del mode (+/-)"
 
-#: src/common/text.c:759
+#: src/common/text.c:755
 msgid "The mode letter"
 msgstr "Lletra del mode"
 
-#: src/common/text.c:760
+#: src/common/text.c:756
 msgid "The channel it's being set on"
 msgstr "Canal al qual s'estableix"
 
-#: src/common/text.c:765
+#: src/common/text.c:761
 msgid "Username"
 msgstr "Nom d'usuari"
 
-#: src/common/text.c:767
+#: src/common/text.c:763
 msgid "Full name"
 msgstr "Nom complet"
 
-#: src/common/text.c:772
+#: src/common/text.c:768
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr "Membre del canal/\"és un operador IRC\""
 
-#: src/common/text.c:777
+#: src/common/text.c:773
 msgid "Server Information"
 msgstr "Informació del servidor"
 
-#: src/common/text.c:782 src/common/text.c:787
+#: src/common/text.c:778 src/common/text.c:783
 msgid "Idle time"
 msgstr "Temps inactiu"
 
-#: src/common/text.c:788
+#: src/common/text.c:784
 msgid "Signon time"
 msgstr "Temps d'accés"
 
-#: src/common/text.c:793
+#: src/common/text.c:789
 msgid "Away reason"
 msgstr "Motiu de l'absència"
 
-#: src/common/text.c:802 src/common/text.c:807 src/common/text.c:815
-#: src/common/text.c:993
+#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
+#: src/common/text.c:989
 msgid "Message"
 msgstr "Missatge"
 
-#: src/common/text.c:808
+#: src/common/text.c:804
 msgid "Account"
 msgstr "Compte"
 
-#: src/common/text.c:813
+#: src/common/text.c:809
 msgid "Real user@host"
 msgstr "usuari@màquina real"
 
-#: src/common/text.c:814
+#: src/common/text.c:810
 msgid "Real IP"
 msgstr "IP real"
 
-#: src/common/text.c:819 src/common/text.c:828 src/common/text.c:834
-#: src/common/text.c:1016
+#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
+#: src/common/text.c:1012
 msgid "Channel Name"
 msgstr "Nom del canal"
 
-#: src/common/text.c:823 src/common/text.c:979 src/fe-gtk/textgui.c:312
+#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Text"
 
-#: src/common/text.c:824 src/common/text.c:830 src/common/text.c:1017
+#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
 msgid "Server Name"
 msgstr "Nom del servidor"
 
-#: src/common/text.c:829
+#: src/common/text.c:825
 msgid "Nick of person who invited you"
 msgstr "Sobrenom de la persona que us ha convidat"
 
-#: src/common/text.c:835 src/common/text.c:1040 src/fe-gtk/chanlist.c:570
+#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Usuaris"
 
-#: src/common/text.c:839
+#: src/common/text.c:835
 msgid "Nickname in use"
 msgstr "Sobrenom en ús"
 
-#: src/common/text.c:840
+#: src/common/text.c:836
 msgid "Nick being tried"
 msgstr "Provant el sobrenom escollit"
 
-#: src/common/text.c:844 src/common/text.c:880 src/common/text.c:891
-#: src/common/text.c:898 src/common/text.c:911 src/common/text.c:928
-#: src/common/text.c:1028 src/common/util.c:132
+#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
+#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
+#: src/common/text.c:1024 src/common/util.c:132
 msgid "Error"
 msgstr "Error"
 
-#: src/common/text.c:849 src/common/text.c:983
+#: src/common/text.c:845 src/common/text.c:979
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:850 src/common/text.c:879
+#: src/common/text.c:846 src/common/text.c:875
 msgid "Port"
 msgstr "Port"
 
-#: src/common/text.c:854
+#: src/common/text.c:850
 msgid "PID"
 msgstr "PID"
 
-#: src/common/text.c:862
+#: src/common/text.c:858
 msgid "Channel name"
 msgstr "Nom del canal"
 
-#: src/common/text.c:863 src/common/text.c:868
+#: src/common/text.c:859 src/common/text.c:864
 msgid "Modes string"
 msgstr "Cadena de modes"
 
-#: src/common/text.c:878 src/common/text.c:916 src/common/text.c:921
-#: src/common/text.c:962
+#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
+#: src/common/text.c:958
 msgid "IP address"
 msgstr "Adreça IP"
 
-#: src/common/text.c:884 src/common/text.c:909
+#: src/common/text.c:880 src/common/text.c:905
 msgid "DCC Type"
 msgstr "Tipus de DCC"
 
-#: src/common/text.c:885 src/common/text.c:890 src/common/text.c:895
-#: src/common/text.c:902 src/common/text.c:922 src/common/text.c:926
-#: src/common/text.c:932 src/common/text.c:938 src/common/text.c:945
-#: src/common/text.c:954 src/common/text.c:960
+#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
+#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
+#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
+#: src/common/text.c:950 src/common/text.c:956
 msgid "Filename"
 msgstr "Nom del fitxer"
 
-#: src/common/text.c:896 src/common/text.c:903
+#: src/common/text.c:892 src/common/text.c:899
 msgid "Destination filename"
 msgstr "Nom del fitxer de destí"
 
-#: src/common/text.c:905 src/common/text.c:934
+#: src/common/text.c:901 src/common/text.c:930
 msgid "CPS"
 msgstr "CPS"
 
-#: src/common/text.c:940
+#: src/common/text.c:936
 msgid "Pathname"
 msgstr "Ubicació"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
+#: src/common/text.c:951 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
 msgid "Position"
 msgstr "Posició"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
+#: src/common/text.c:957 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
 msgid "Size"
 msgstr "Mida"
 
-#: src/common/text.c:966
+#: src/common/text.c:962
 msgid "DCC String"
 msgstr "Cadena DCC"
 
-#: src/common/text.c:971
+#: src/common/text.c:967
 msgid "Number of notify items"
 msgstr "Nombre d'ítems notificats"
 
-#: src/common/text.c:975
+#: src/common/text.c:971
 msgid "Servername"
 msgstr "Nom del servidor"
 
-#: src/common/text.c:987
+#: src/common/text.c:983
 msgid "Old Filename"
 msgstr "Nom del fitxer vell"
 
-#: src/common/text.c:988
+#: src/common/text.c:984
 msgid "New Filename"
 msgstr "Nom del fitxer nou"
 
-#: src/common/text.c:992
+#: src/common/text.c:988
 msgid "Receiver"
 msgstr "Receptor"
 
-#: src/common/text.c:997
+#: src/common/text.c:993
 msgid "Hostmask"
 msgstr "Màscara de la màquina"
 
-#: src/common/text.c:1002
+#: src/common/text.c:998
 msgid "Hostname"
 msgstr "Nom de la màquina"
 
-#: src/common/text.c:1007
+#: src/common/text.c:1003
 msgid "The Packet"
 msgstr "Paquet"
 
-#: src/common/text.c:1011
+#: src/common/text.c:1007
 msgid "Seconds"
 msgstr "Segons"
 
-#: src/common/text.c:1015
+#: src/common/text.c:1011
 msgid "Nick of person who have been invited"
 msgstr "Sobrenom de la persona que ha estat convidada"
 
-#: src/common/text.c:1022
+#: src/common/text.c:1018
 msgid "Banmask"
 msgstr "Màscara d'usuaris bandejats"
 
-#: src/common/text.c:1023
+#: src/common/text.c:1019
 msgid "Who set the ban"
 msgstr "Qui ha establert el bandejament"
 
-#: src/common/text.c:1024
+#: src/common/text.c:1020
 msgid "Ban time"
 msgstr "Duració del bandejament"
 
-#: src/common/text.c:1032
+#: src/common/text.c:1028
 #, fuzzy
 msgid "Source Server"
 msgstr "Servidor intermedi:"
 
-#: src/common/text.c:1033
+#: src/common/text.c:1029
 #, fuzzy
 msgid "Destination Server"
 msgstr "Nom del fitxer de destí"
 
-#: src/common/text.c:1034
+#: src/common/text.c:1030
 #, fuzzy
 msgid "Ping time"
 msgstr "Duració del bandejament"
 
-#: src/common/text.c:1035
+#: src/common/text.c:1031
 #, fuzzy
 msgid "Client time diff"
 msgstr "Informació del client"
 
-#: src/common/text.c:1045
+#: src/common/text.c:1041
 #, fuzzy
 msgid "the message"
 msgstr "Missatge"
 
-#: src/common/text.c:1049
+#: src/common/text.c:1045
 #, fuzzy
 msgid "the hostmask"
 msgstr "Màscara de la màquina"
 
-#: src/common/text.c:1086
+#: src/common/text.c:1082
 #, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1826,7 +1826,7 @@ msgstr ""
 "Error en analitzar l'esdeveniment %s.\n"
 "Es carrega el predeterminat."
 
-#: src/common/text.c:1797
+#: src/common/text.c:1793
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -2894,228 +2894,228 @@ msgid "Unknown"
 msgstr "Desconegut"
 
 # ESTIC AQUÍ
-#: src/common/rage.c:895
+#: src/common/rage.c:900
 msgid "Direct client-to-client"
 msgstr "Directe client-a-client"
 
-#: src/common/rage.c:896
+#: src/common/rage.c:901
 msgid "Send File"
 msgstr "Envia fitxer"
 
-#: src/common/rage.c:897
+#: src/common/rage.c:902
 msgid "Offer Chat"
 msgstr "Ofereix un xat"
 
-#: src/common/rage.c:898
+#: src/common/rage.c:903
 msgid "Abort Chat"
 msgstr "Avorta el xat"
 
-#: src/common/rage.c:899 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:904 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versió"
 
-#: src/common/rage.c:900
+#: src/common/rage.c:905
 msgid "Userinfo"
 msgstr "Informació de l'usuari"
 
-#: src/common/rage.c:901
+#: src/common/rage.c:906
 msgid "Clientinfo"
 msgstr "Informació del client"
 
-#: src/common/rage.c:902 src/common/rage.c:936 src/common/rage.c:987
+#: src/common/rage.c:907 src/common/rage.c:941 src/common/rage.c:992
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/rage.c:903
+#: src/common/rage.c:908
 msgid "Time"
 msgstr "Hora"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:909
 msgid "Finger"
 msgstr "Finger"
 
-#: src/common/rage.c:905
+#: src/common/rage.c:910
 msgid "Oper"
 msgstr "Operador"
 
-#: src/common/rage.c:906
+#: src/common/rage.c:911
 msgid "Kill this user"
 msgstr "Mata aquest usuari"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:912
 msgid "Mode"
 msgstr "Mode"
 
-#: src/common/rage.c:908
+#: src/common/rage.c:913
 msgid "Give Ops"
 msgstr "Dóna estatus d'op"
 
-#: src/common/rage.c:909
+#: src/common/rage.c:914
 msgid "Take Ops"
 msgstr "Treu op"
 
-#: src/common/rage.c:910
+#: src/common/rage.c:915
 msgid "Give Half-Ops"
 msgstr "Dóna estatus de semi-op"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:916
 msgid "Take Half-Ops"
 msgstr "Treu estatus de semi-op"
 
-#: src/common/rage.c:912
+#: src/common/rage.c:917
 msgid "Give Voice"
 msgstr "Dóna estatus de veu"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:918
 msgid "Take Voice"
 msgstr "Treu estatus de veu"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:919
 msgid "Ignore"
 msgstr "Ignora"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:920
 msgid "Ignore User"
 msgstr "Ignora l'usuari"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:921
 msgid "UnIgnore User"
 msgstr "Deixa d'ignorar l'usuari"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:922
 msgid "Kick/Ban"
 msgstr "Fés fora/Bandeja"
 
-#: src/common/rage.c:918 src/common/rage.c:970
+#: src/common/rage.c:923 src/common/rage.c:975
 msgid "Kick"
 msgstr "Fés fora"
 
-#: src/common/rage.c:919 src/common/rage.c:920 src/common/rage.c:921
-#: src/common/rage.c:922 src/common/rage.c:923 src/common/rage.c:969
+#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
+#: src/common/rage.c:927 src/common/rage.c:928 src/common/rage.c:974
 msgid "Ban"
 msgstr "Bandeja"
 
-#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
-#: src/common/rage.c:927
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:931
+#: src/common/rage.c:932
 msgid "KickBan"
 msgstr "Fés fora i bandeja"
 
-#: src/common/rage.c:928 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
+#: src/common/rage.c:933 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "Informació"
 
-#: src/common/rage.c:929
+#: src/common/rage.c:934
 msgid "Who"
 msgstr "Qui"
 
-#: src/common/rage.c:930 src/common/rage.c:983
+#: src/common/rage.c:935 src/common/rage.c:988
 msgid "WhoIs"
 msgstr "WhoIs (Qui és?)"
 
-#: src/common/rage.c:931
+#: src/common/rage.c:936
 msgid "DNS Lookup"
 msgstr "Consulta DNS"
 
-#: src/common/rage.c:932
+#: src/common/rage.c:937
 msgid "Trace"
 msgstr "Traça"
 
-#: src/common/rage.c:933
+#: src/common/rage.c:938
 msgid "UserHost"
 msgstr "UsuariMàquina"
 
-#: src/common/rage.c:934
+#: src/common/rage.c:939
 msgid "External"
 msgstr "Extern"
 
-#: src/common/rage.c:935
+#: src/common/rage.c:940
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/rage.c:937
+#: src/common/rage.c:942
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/rage.c:938
+#: src/common/rage.c:943
 msgid "Open Dialog Window"
 msgstr "Obre una finestra de diàleg"
 
-#: src/common/rage.c:950
+#: src/common/rage.c:955
 msgid "Disconnect"
 msgstr "Desconnecta"
 
-#: src/common/rage.c:951
+#: src/common/rage.c:956
 msgid "Reconnect"
 msgstr "Torna a connectar"
 
-#: src/common/rage.c:952
+#: src/common/rage.c:957
 msgid "Leave Channel"
 msgstr "Deixa el canal"
 
-#: src/common/rage.c:953
+#: src/common/rage.c:958
 msgid "Join Channel..."
 msgstr "Entra al canal..."
 
-#: src/common/rage.c:954
+#: src/common/rage.c:959
 msgid "Enter Channel to Join:"
 msgstr "Introduïu el canal on entrar:"
 
-#: src/common/rage.c:955
+#: src/common/rage.c:960
 msgid "Server Links"
 msgstr "Enllaços del servidor"
 
-#: src/common/rage.c:956
+#: src/common/rage.c:961
 msgid "Ping Server"
 msgstr "Ping al servidor"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:962
 msgid "Hide Version"
 msgstr "Oculta la versió"
 
-#: src/common/rage.c:967
+#: src/common/rage.c:972
 msgid "Op"
 msgstr "Op"
 
-#: src/common/rage.c:968
+#: src/common/rage.c:973
 msgid "DeOp"
 msgstr "DeOp"
 
-#: src/common/rage.c:971
+#: src/common/rage.c:976
 msgid "bye"
 msgstr "adéu"
 
-#: src/common/rage.c:972
+#: src/common/rage.c:977
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Introduïu el motiu per a fer fora a %s:"
 
-#: src/common/rage.c:973
+#: src/common/rage.c:978
 msgid "Sendfile"
 msgstr "Envia fitxer"
 
-#: src/common/rage.c:974
+#: src/common/rage.c:979
 msgid "Dialog"
 msgstr "Diàleg"
 
-#: src/common/rage.c:984
+#: src/common/rage.c:989
 msgid "Send"
 msgstr "Envia"
 
-#: src/common/rage.c:985
+#: src/common/rage.c:990
 msgid "Chat"
 msgstr "Xat"
 
-#: src/common/rage.c:986 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:991 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Neteja"
 
-#: src/fe-gtk/about.c:73
+#: src/fe-gtk/about.c:74
 #, fuzzy
 msgid "About Rage"
 msgstr "Quant a X-Chat"
 
-#: src/fe-gtk/about.c:95
+#: src/fe-gtk/about.c:97
 msgid "A multiplatform IRC Client"
 msgstr "Un client d'IRC multiplataforma"
 
@@ -3381,31 +3381,31 @@ msgstr "Ordena"
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/fe-gtk/fe-gtk.c:106
+#: src/fe-gtk/fe-gtk.c:107
 msgid "Options"
 msgstr "Opcions"
 
-#: src/fe-gtk/fe-gtk.c:107
+#: src/fe-gtk/fe-gtk.c:108
 msgid "DIRECTORY"
 msgstr "DIRECTORI"
 
-#: src/fe-gtk/fe-gtk.c:108
+#: src/fe-gtk/fe-gtk.c:109
 msgid "use a different config dir"
 msgstr "useu un directori de configuració diferent"
 
-#: src/fe-gtk/fe-gtk.c:109
+#: src/fe-gtk/fe-gtk.c:110
 msgid "don't auto connect"
 msgstr "no connectar automàticament"
 
-#: src/fe-gtk/fe-gtk.c:110
+#: src/fe-gtk/fe-gtk.c:111
 msgid "don't auto load any plugins"
 msgstr "no carregar automàticament cap connector"
 
-#: src/fe-gtk/fe-gtk.c:111
+#: src/fe-gtk/fe-gtk.c:112
 msgid "show version information"
 msgstr "mostra informació de la versió"
 
-#: src/fe-gtk/fe-gtk.c:196
+#: src/fe-gtk/fe-gtk.c:197
 #, c-format
 msgid ""
 "Failed to open font:\n"
@@ -3416,11 +3416,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:556
+#: src/fe-gtk/fe-gtk.c:557
 msgid "Search buffer is empty.\n"
 msgstr "El buffer està buit.\n"
 
-#: src/fe-gtk/fe-gtk.c:633
+#: src/fe-gtk/fe-gtk.c:634
 #, c-format
 msgid "%d bytes"
 msgstr "%d octets"
@@ -3543,9 +3543,9 @@ msgstr "Hi ha hagut un error en carregar la configuració dels vincles de tecla"
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
-#: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2443
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:863 src/fe-gtk/maingui.c:879
+#: src/fe-gtk/maingui.c:1022 src/fe-gtk/maingui.c:1075
+#: src/fe-gtk/maingui.c:2450
 msgid "<none>"
 msgstr "<res>"
 
@@ -3651,7 +3651,7 @@ msgstr "No s'ha pogut llegir aquest fitxer"
 msgid "That mask already exists."
 msgstr "Aquesta màscara ja existeix."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1533
 msgid "Private"
 msgstr "Privat"
 
@@ -3716,89 +3716,89 @@ msgstr "Afegeix"
 msgid "Dialog with"
 msgstr "Conversa amb"
 
-#: src/fe-gtk/maingui.c:531
+#: src/fe-gtk/maingui.c:532
 #, c-format
 msgid "Topic for %s is: %s"
 msgstr "El tema per a %s és: %s"
 
-#: src/fe-gtk/maingui.c:535
+#: src/fe-gtk/maingui.c:536
 msgid "No topic is set"
 msgstr "No hi ha cap tema establert"
 
-#: src/fe-gtk/maingui.c:931
+#: src/fe-gtk/maingui.c:932
 msgid "No other tabs open, quit xchat?"
 msgstr "No hi han més pestanyes obertes, voleu sortir de l'X-Chat?"
 
-#: src/fe-gtk/maingui.c:977
+#: src/fe-gtk/maingui.c:978
 msgid "Insert color code"
 msgstr "Inseriu el codi del color"
 
-#: src/fe-gtk/maingui.c:1026
+#: src/fe-gtk/maingui.c:1027
 msgid "Beep on message"
 msgstr "Pita en rebre un missatge"
 
-#: src/fe-gtk/maingui.c:1029
+#: src/fe-gtk/maingui.c:1030
 msgid "Show join/part messages"
 msgstr "Mostra els missatges d'entrada i de sortida"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Color paste"
 msgstr "Enganxa el color"
 
-#: src/fe-gtk/maingui.c:1041
+#: src/fe-gtk/maingui.c:1042
 msgid "Go to"
 msgstr "Vés a"
 
-#: src/fe-gtk/maingui.c:1054 src/fe-gtk/menu.c:1230
+#: src/fe-gtk/maingui.c:1055 src/fe-gtk/menu.c:1230
 msgid "Close Tab"
 msgstr "Tanca la pestanya"
 
-#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1383
+#: src/fe-gtk/maingui.c:1058 src/fe-gtk/menu.c:1383
 msgid "Detach Tab"
 msgstr "Separa la pestanya"
 
-#: src/fe-gtk/maingui.c:1248
+#: src/fe-gtk/maingui.c:1249
 msgid "Some file transfers still active, quit xchat?"
 msgstr ""
 "Encara hi ha transferències de fitxers actives, voleu sortir de l'X-Chat?"
 
-#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
+#: src/fe-gtk/maingui.c:1400 src/fe-gtk/maingui.c:1506
 msgid "User limit must be a number!\n"
 msgstr "El límit d'usuaris ha de ser un número!\n"
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1529
 msgid "Topic Protection"
 msgstr "Protecció del tema"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1530
 msgid "No outside messages"
 msgstr "Bloqueja els missatges exteriors"
 
-#: src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/maingui.c:1531
 msgid "Secret"
 msgstr "Secret"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1532
 msgid "Invite Only"
 msgstr "Només convidats"
 
-#: src/fe-gtk/maingui.c:1533
+#: src/fe-gtk/maingui.c:1534
 msgid "Moderated"
 msgstr "Moderat"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1535
 msgid "Ban List"
 msgstr "Llista d'usuaris bandejats"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "Keyword"
 msgstr "Contrasenya"
 
-#: src/fe-gtk/maingui.c:1548
+#: src/fe-gtk/maingui.c:1549
 msgid "User Limit"
 msgstr "Límit d'usuaris"
 
-#: src/fe-gtk/maingui.c:1723
+#: src/fe-gtk/maingui.c:1724
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3810,20 +3810,20 @@ msgstr ""
 "Potser esteu utilitzant un gestor de finestres\n"
 "no compatible que no està soportat.\n"
 
-#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
-#: src/fe-gtk/maingui.c:2664
+#: src/fe-gtk/maingui.c:1884 src/fe-gtk/maingui.c:1895
+#: src/fe-gtk/maingui.c:2671
 msgid "Attach/Detach this tab"
 msgstr "Afegeix/Separa aquesta pestanya"
 
-#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+#: src/fe-gtk/maingui.c:1893 src/fe-gtk/maingui.c:2669
 msgid "Close this tab/window"
 msgstr "Tanca aquesta pestanya/finestra"
 
-#: src/fe-gtk/maingui.c:1919
+#: src/fe-gtk/maingui.c:1920
 msgid "Show/Hide userlist"
 msgstr "Mostra/Oculta la llista d'usuaris"
 
-#: src/fe-gtk/maingui.c:1957
+#: src/fe-gtk/maingui.c:1958
 msgid "Enter new nickname:"
 msgstr "Introduïu el nou sobrenom:"
 

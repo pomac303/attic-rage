@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-23 00:13+0200\n"
+"POT-Creation-Date: 2004-11-09 12:45+0100\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -576,15 +576,15 @@ msgstr ""
 msgid "No such command.\n"
 msgstr "Komentoa ei ole.\n"
 
-#: src/common/outbound.c:3602
+#: src/common/outbound.c:3603
 msgid "Bad arguments for user command.\n"
 msgstr "Virheelliset argumentit käyttäjäkomennolle.\n"
 
-#: src/common/outbound.c:3764
+#: src/common/outbound.c:3765
 msgid "Too many recursive usercommands, aborting."
 msgstr "Liian monta rekursiivista käyttäjäkomentoa, keskeytetään."
 
-#: src/common/outbound.c:3819
+#: src/common/outbound.c:3820
 msgid "Unknown Command. Try /help\n"
 msgstr "Tuntematon komento. Kokeile komentoa /help\n"
 
@@ -1282,512 +1282,512 @@ msgstr "%C13*%O$t$1%O $2%O"
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** LOKIKIRJOITUS LOPPUU %s\n"
 
-#: src/common/text.c:313
+#: src/common/text.c:309
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** LOKIKIRJOITUS ALKAA %s\n"
 
-#: src/common/text.c:332
-#, c-format
+#: src/common/text.c:328
+#, fuzzy, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
-"  permissions on %s/xchatlogs"
+"  permissions on %s/logs"
 msgstr ""
 "* Lokitiedosto(j)a ei voi avata kirjoitusta varten.\n"
 "  Tarkista oikeudet hakemistossa %s/xchatlogs"
 
-#: src/common/text.c:549
+#: src/common/text.c:545
 msgid "Left message"
 msgstr "Vasen viesti"
 
-#: src/common/text.c:550
+#: src/common/text.c:546
 msgid "Right message"
 msgstr "Oikea viesti"
 
-#: src/common/text.c:554
+#: src/common/text.c:550
 msgid "The nick of the joining person"
 msgstr "Liittyvän henkilön kutsumanimi"
 
-#: src/common/text.c:555
+#: src/common/text.c:551
 msgid "The channel being joined"
 msgstr "Kanava, jolle liitytään"
 
-#: src/common/text.c:556 src/common/text.c:601 src/common/text.c:658
+#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
 msgid "The host of the person"
 msgstr "Henkilön isäntänimi"
 
-#: src/common/text.c:560 src/common/text.c:565 src/common/text.c:572
-#: src/common/text.c:639 src/common/text.c:764 src/common/text.c:771
-#: src/common/text.c:776 src/common/text.c:781 src/common/text.c:786
-#: src/common/text.c:792 src/common/text.c:797 src/common/text.c:801
-#: src/common/text.c:806 src/common/text.c:812 src/common/text.c:858
-#: src/common/text.c:867 src/common/text.c:872 src/common/text.c:877
-#: src/common/text.c:886 src/common/text.c:897 src/common/text.c:904
-#: src/common/text.c:910 src/common/text.c:915 src/common/text.c:920
-#: src/common/text.c:927 src/common/text.c:933 src/common/text.c:939
-#: src/common/text.c:944 src/common/text.c:949 src/common/text.c:953
-#: src/common/text.c:959 src/common/text.c:967 src/common/text.c:1001
-#: src/common/text.c:1006
+#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
+#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
+#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
+#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
+#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
+#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
+#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
+#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
+#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
+#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
+#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
+#: src/common/text.c:1002
 msgid "Nickname"
 msgstr "Kutsumanimi"
 
-#: src/common/text.c:561
+#: src/common/text.c:557
 msgid "The action"
 msgstr "Toiminto"
 
-#: src/common/text.c:566
+#: src/common/text.c:562
 msgid "The text"
 msgstr "Teksti"
 
-#: src/common/text.c:567
+#: src/common/text.c:563
 msgid "Mode char"
 msgstr "Tilamerkki"
 
-#: src/common/text.c:568 src/common/text.c:641
+#: src/common/text.c:564 src/common/text.c:637
 #, fuzzy
 msgid "Identified text"
 msgstr "Tekstimuotoinen"
 
-#: src/common/text.c:573 src/common/text.c:629 src/common/text.c:635
-#: src/common/text.c:640
+#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
+#: src/common/text.c:636
 msgid "The message"
 msgstr "Viesti"
 
-#: src/common/text.c:577 src/common/text.c:645
+#: src/common/text.c:573 src/common/text.c:641
 msgid "Old nickname"
 msgstr "Vanha kutsumanimi"
 
-#: src/common/text.c:578 src/common/text.c:646
+#: src/common/text.c:574 src/common/text.c:642
 msgid "New nickname"
 msgstr "Uusi kutsumanimi"
 
-#: src/common/text.c:582
+#: src/common/text.c:578
 msgid "Nick of person who changed the topic"
 msgstr "Aihetta muuttaneen henkilön kutsumanimi"
 
-#: src/common/text.c:583 src/common/text.c:589 src/common/text.c:1041
+#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
 #: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Aihe"
 
-#: src/common/text.c:584 src/common/text.c:588 src/common/text.c:1021
-#: src/common/text.c:1039 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
+#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
 #: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Kanava"
 
-#: src/common/text.c:593 src/common/text.c:652
+#: src/common/text.c:589 src/common/text.c:648
 msgid "The nickname of the kicker"
 msgstr "Potkaisijan kutsumanimi"
 
-#: src/common/text.c:594 src/common/text.c:650
+#: src/common/text.c:590 src/common/text.c:646
 msgid "The person being kicked"
 msgstr "Potkaistava henkilö"
 
-#: src/common/text.c:595 src/common/text.c:602 src/common/text.c:606
-#: src/common/text.c:611 src/common/text.c:651 src/common/text.c:659
+#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
+#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
 msgid "The channel"
 msgstr "Kanava"
 
-#: src/common/text.c:596 src/common/text.c:653 src/common/text.c:660
+#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
 msgid "The reason"
 msgstr "Syy"
 
-#: src/common/text.c:600 src/common/text.c:657
+#: src/common/text.c:596 src/common/text.c:653
 msgid "The nick of the person leaving"
 msgstr "Poistuvan henkilön kutsumanimi"
 
-#: src/common/text.c:607 src/common/text.c:613
+#: src/common/text.c:603 src/common/text.c:609
 msgid "The time"
 msgstr "Aika"
 
-#: src/common/text.c:612
+#: src/common/text.c:608
 msgid "The creator"
 msgstr "Luoja"
 
-#: src/common/text.c:617
+#: src/common/text.c:613
 msgid "Nick"
 msgstr "Kutsumanimi"
 
-#: src/common/text.c:618 src/common/text.c:873
+#: src/common/text.c:614 src/common/text.c:869
 msgid "Reason"
 msgstr "Syy"
 
-#: src/common/text.c:619 src/common/text.c:766 src/common/text.c:848
+#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
 msgid "Host"
 msgstr "Isäntä"
 
-#: src/common/text.c:623 src/common/text.c:628 src/common/text.c:633
+#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
 msgid "Who it's from"
 msgstr "Keneltä se on"
 
-#: src/common/text.c:624
+#: src/common/text.c:620
 msgid "The time in x.x format (see below)"
 msgstr "Aika x.x-muodossa (katso alta)"
 
-#: src/common/text.c:634 src/common/text.c:676
+#: src/common/text.c:630 src/common/text.c:672
 msgid "The Channel it's going to"
 msgstr "Kanava, jolle se on menossa"
 
-#: src/common/text.c:664
+#: src/common/text.c:660
 msgid "The sound"
 msgstr "Ääni"
 
-#: src/common/text.c:665 src/common/text.c:670 src/common/text.c:675
+#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
 msgid "The nick of the person"
 msgstr "Henkilön kutsumanimi"
 
-#: src/common/text.c:669 src/common/text.c:674
+#: src/common/text.c:665 src/common/text.c:670
 msgid "The CTCP event"
 msgstr "CTCP-tapahtuma"
 
-#: src/common/text.c:680
+#: src/common/text.c:676
 msgid "The nick of the person who set the key"
 msgstr "Tunnussanan asettaneen henkilön kutsumanimi"
 
-#: src/common/text.c:681
+#: src/common/text.c:677
 msgid "The key"
 msgstr "Tunnussana"
 
-#: src/common/text.c:685
+#: src/common/text.c:681
 msgid "The nick of the person who set the limit"
 msgstr "Rajan asettaneen henkilön kutsumanimi"
 
-#: src/common/text.c:686
+#: src/common/text.c:682
 msgid "The limit"
 msgstr "Raja"
 
-#: src/common/text.c:690
+#: src/common/text.c:686
 msgid "The nick of the person who did the op'ing"
 msgstr "Opit antaneen henkilön kutsumanimi"
 
-#: src/common/text.c:691
+#: src/common/text.c:687
 msgid "The nick of the person who has been op'ed"
 msgstr "Opit saaneen henkilön kutsumanimi"
 
-#: src/common/text.c:695
+#: src/common/text.c:691
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Puoliopit saaneen henkilön kutsumanimi"
 
-#: src/common/text.c:696
+#: src/common/text.c:692
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Puoliopit antaneen henkilön kutsumanimi"
 
-#: src/common/text.c:700
+#: src/common/text.c:696
 msgid "The nick of the person who did the voice'ing"
 msgstr "Puheoikeuden antaneen henkilön kutsumanimi"
 
-#: src/common/text.c:701
+#: src/common/text.c:697
 msgid "The nick of the person who has been voice'ed"
 msgstr "Puheoikeuden saaneen henkilön kutsumanimi"
 
-#: src/common/text.c:705
+#: src/common/text.c:701
 msgid "The nick of the person who did the banning"
 msgstr "Bannin asettajan kutsumanimi"
 
-#: src/common/text.c:706 src/common/text.c:733
+#: src/common/text.c:702 src/common/text.c:729
 msgid "The ban mask"
 msgstr "Bannipeite"
 
-#: src/common/text.c:710
+#: src/common/text.c:706
 msgid "The nick who removed the key"
 msgstr "Tunnussanan poistajan kutsumanimi"
 
-#: src/common/text.c:714
+#: src/common/text.c:710
 msgid "The nick who removed the limit"
 msgstr "Rajan poistajan kutsumanimi"
 
-#: src/common/text.c:718
+#: src/common/text.c:714
 msgid "The nick of the person of did the deop'ing"
 msgstr "Opit poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:719
+#: src/common/text.c:715
 msgid "The nick of the person who has been deop'ed"
 msgstr "Opit menettäneen henkilön kutsumanimi"
 
-#: src/common/text.c:722
+#: src/common/text.c:718
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Puoliopit menettäneen henkilön kutsumanimi"
 
-#: src/common/text.c:723
+#: src/common/text.c:719
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Puoliopit poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:727
+#: src/common/text.c:723
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Puheoikeuden poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:728
+#: src/common/text.c:724
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Puheoikeuden menettäneen henkilön kutsumanimi"
 
-#: src/common/text.c:732
+#: src/common/text.c:728
 msgid "The nick of the person of did the unban'ing"
 msgstr "Bannin poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:737
+#: src/common/text.c:733
 msgid "The nick of the person who did the exempt"
 msgstr "Erivapauden asettaneen henkilön kutsumanimi"
 
-#: src/common/text.c:738 src/common/text.c:743
+#: src/common/text.c:734 src/common/text.c:739
 msgid "The exempt mask"
 msgstr "Erivapauspeite"
 
-#: src/common/text.c:742
+#: src/common/text.c:738
 msgid "The nick of the person removed the exempt"
 msgstr "Erivapauden poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:747
+#: src/common/text.c:743
 msgid "The nick of the person who did the invite"
 msgstr "Kutsun esittäneen henkilön kutsumanimi"
 
-#: src/common/text.c:748 src/common/text.c:753
+#: src/common/text.c:744 src/common/text.c:749
 msgid "The invite mask"
 msgstr "Kutsupeite"
 
-#: src/common/text.c:752
+#: src/common/text.c:748
 msgid "The nick of the person removed the invite"
 msgstr "Kutsun poistaneen henkilön kutsumanimi"
 
-#: src/common/text.c:757
+#: src/common/text.c:753
 msgid "The nick of the person setting the mode"
 msgstr "Tilan asettaneen henkilön kutsumanimi"
 
-#: src/common/text.c:758
+#: src/common/text.c:754
 msgid "The mode's sign (+/-)"
 msgstr "Tilan etumerkki (+/-)"
 
-#: src/common/text.c:759
+#: src/common/text.c:755
 msgid "The mode letter"
 msgstr "Tilakirjain"
 
-#: src/common/text.c:760
+#: src/common/text.c:756
 msgid "The channel it's being set on"
 msgstr "Kanava, jolle se asetetaan"
 
-#: src/common/text.c:765
+#: src/common/text.c:761
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: src/common/text.c:767
+#: src/common/text.c:763
 msgid "Full name"
 msgstr "Koko nimi"
 
-#: src/common/text.c:772
+#: src/common/text.c:768
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr "Kanavan jäsenyys/\"on IRC-operaattori\""
 
-#: src/common/text.c:777
+#: src/common/text.c:773
 msgid "Server Information"
 msgstr "Palvelintiedot"
 
-#: src/common/text.c:782 src/common/text.c:787
+#: src/common/text.c:778 src/common/text.c:783
 msgid "Idle time"
 msgstr "Joutenoloaika"
 
-#: src/common/text.c:788
+#: src/common/text.c:784
 msgid "Signon time"
 msgstr "Kirjautumisaika"
 
-#: src/common/text.c:793
+#: src/common/text.c:789
 msgid "Away reason"
 msgstr "Poissaolon syy"
 
-#: src/common/text.c:802 src/common/text.c:807 src/common/text.c:815
-#: src/common/text.c:993
+#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
+#: src/common/text.c:989
 msgid "Message"
 msgstr "Viesti"
 
-#: src/common/text.c:808
+#: src/common/text.c:804
 msgid "Account"
 msgstr "Tunnus"
 
-#: src/common/text.c:813
+#: src/common/text.c:809
 msgid "Real user@host"
 msgstr "Todellinen käyttäjä@isäntä"
 
-#: src/common/text.c:814
+#: src/common/text.c:810
 msgid "Real IP"
 msgstr "Todellinen IP"
 
-#: src/common/text.c:819 src/common/text.c:828 src/common/text.c:834
-#: src/common/text.c:1016
+#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
+#: src/common/text.c:1012
 msgid "Channel Name"
 msgstr "Kanavanimi"
 
-#: src/common/text.c:823 src/common/text.c:979 src/fe-gtk/textgui.c:312
+#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Teksti"
 
-#: src/common/text.c:824 src/common/text.c:830 src/common/text.c:1017
+#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
 msgid "Server Name"
 msgstr "Palvelinnimi"
 
-#: src/common/text.c:829
+#: src/common/text.c:825
 msgid "Nick of person who invited you"
 msgstr "Sinut kutsuneen henkilön nimi"
 
-#: src/common/text.c:835 src/common/text.c:1040 src/fe-gtk/chanlist.c:570
+#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Käyttäjät"
 
-#: src/common/text.c:839
+#: src/common/text.c:835
 msgid "Nickname in use"
 msgstr "Kutsumanimi on käytössä"
 
-#: src/common/text.c:840
+#: src/common/text.c:836
 msgid "Nick being tried"
 msgstr "Kokeiltava kutsumanimi"
 
-#: src/common/text.c:844 src/common/text.c:880 src/common/text.c:891
-#: src/common/text.c:898 src/common/text.c:911 src/common/text.c:928
-#: src/common/text.c:1028 src/common/util.c:132
+#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
+#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
+#: src/common/text.c:1024 src/common/util.c:132
 msgid "Error"
 msgstr "Virhe"
 
-#: src/common/text.c:849 src/common/text.c:983
+#: src/common/text.c:845 src/common/text.c:979
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:850 src/common/text.c:879
+#: src/common/text.c:846 src/common/text.c:875
 msgid "Port"
 msgstr "Portti"
 
-#: src/common/text.c:854
+#: src/common/text.c:850
 msgid "PID"
 msgstr "PID"
 
-#: src/common/text.c:862
+#: src/common/text.c:858
 msgid "Channel name"
 msgstr "Kanavanimi"
 
-#: src/common/text.c:863 src/common/text.c:868
+#: src/common/text.c:859 src/common/text.c:864
 msgid "Modes string"
 msgstr "Tilamerkkijono"
 
-#: src/common/text.c:878 src/common/text.c:916 src/common/text.c:921
-#: src/common/text.c:962
+#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
+#: src/common/text.c:958
 msgid "IP address"
 msgstr "IP-osoite"
 
-#: src/common/text.c:884 src/common/text.c:909
+#: src/common/text.c:880 src/common/text.c:905
 msgid "DCC Type"
 msgstr "DCC-tyyppi"
 
-#: src/common/text.c:885 src/common/text.c:890 src/common/text.c:895
-#: src/common/text.c:902 src/common/text.c:922 src/common/text.c:926
-#: src/common/text.c:932 src/common/text.c:938 src/common/text.c:945
-#: src/common/text.c:954 src/common/text.c:960
+#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
+#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
+#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
+#: src/common/text.c:950 src/common/text.c:956
 msgid "Filename"
 msgstr "Tiedostonimi"
 
-#: src/common/text.c:896 src/common/text.c:903
+#: src/common/text.c:892 src/common/text.c:899
 msgid "Destination filename"
 msgstr "Kohdetiedostonimi"
 
-#: src/common/text.c:905 src/common/text.c:934
+#: src/common/text.c:901 src/common/text.c:930
 msgid "CPS"
 msgstr "kt/s"
 
-#: src/common/text.c:940
+#: src/common/text.c:936
 msgid "Pathname"
 msgstr "Polku"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
+#: src/common/text.c:951 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
 msgid "Position"
 msgstr "Sijainti"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
+#: src/common/text.c:957 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
 msgid "Size"
 msgstr "Koko"
 
-#: src/common/text.c:966
+#: src/common/text.c:962
 msgid "DCC String"
 msgstr "DCC-merkkijono"
 
-#: src/common/text.c:971
+#: src/common/text.c:967
 msgid "Number of notify items"
 msgstr "Ilmoitusmerkintöjen määrä"
 
-#: src/common/text.c:975
+#: src/common/text.c:971
 msgid "Servername"
 msgstr "Palvelinnimi"
 
-#: src/common/text.c:987
+#: src/common/text.c:983
 msgid "Old Filename"
 msgstr "Vanha tiedostonimi"
 
-#: src/common/text.c:988
+#: src/common/text.c:984
 msgid "New Filename"
 msgstr "Uusi tiedostonimi"
 
-#: src/common/text.c:992
+#: src/common/text.c:988
 msgid "Receiver"
 msgstr "Vastaanottaja"
 
-#: src/common/text.c:997
+#: src/common/text.c:993
 msgid "Hostmask"
 msgstr "Isännän peite"
 
-#: src/common/text.c:1002
+#: src/common/text.c:998
 msgid "Hostname"
 msgstr "Isäntänimi"
 
-#: src/common/text.c:1007
+#: src/common/text.c:1003
 msgid "The Packet"
 msgstr "Paketti"
 
-#: src/common/text.c:1011
+#: src/common/text.c:1007
 msgid "Seconds"
 msgstr "Sekuntia"
 
-#: src/common/text.c:1015
+#: src/common/text.c:1011
 msgid "Nick of person who have been invited"
 msgstr "Kutsutun henkilön kutsumanimi"
 
-#: src/common/text.c:1022
+#: src/common/text.c:1018
 msgid "Banmask"
 msgstr "Bannipeite"
 
-#: src/common/text.c:1023
+#: src/common/text.c:1019
 msgid "Who set the ban"
 msgstr "Kuka asetti bannin"
 
-#: src/common/text.c:1024
+#: src/common/text.c:1020
 msgid "Ban time"
 msgstr "Bannausaika"
 
-#: src/common/text.c:1032
+#: src/common/text.c:1028
 #, fuzzy
 msgid "Source Server"
 msgstr "Välipalvelin"
 
-#: src/common/text.c:1033
+#: src/common/text.c:1029
 #, fuzzy
 msgid "Destination Server"
 msgstr "Kohdetiedostonimi"
 
-#: src/common/text.c:1034
+#: src/common/text.c:1030
 #, fuzzy
 msgid "Ping time"
 msgstr "Bannausaika"
 
-#: src/common/text.c:1035
+#: src/common/text.c:1031
 #, fuzzy
 msgid "Client time diff"
 msgstr "Asiakasohjelmatiedot"
 
-#: src/common/text.c:1045
+#: src/common/text.c:1041
 #, fuzzy
 msgid "the message"
 msgstr "Viesti"
 
-#: src/common/text.c:1049
+#: src/common/text.c:1045
 #, fuzzy
 msgid "the hostmask"
 msgstr "Isännän peite"
 
-#: src/common/text.c:1086
+#: src/common/text.c:1082
 #, fuzzy, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1796,7 +1796,7 @@ msgstr ""
 "Virhe tapahtuman %s jäsentämisessä.\n"
 "Ladataan oletus"
 
-#: src/common/text.c:1797
+#: src/common/text.c:1793
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -2866,230 +2866,230 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: src/common/rage.c:895
+#: src/common/rage.c:900
 msgid "Direct client-to-client"
 msgstr "Suora vertaisyhteys"
 
-#: src/common/rage.c:896
+#: src/common/rage.c:901
 msgid "Send File"
 msgstr "Lähetä tiedosto"
 
-#: src/common/rage.c:897
+#: src/common/rage.c:902
 msgid "Offer Chat"
 msgstr "Tarjoa keskustelua"
 
-#: src/common/rage.c:898
+#: src/common/rage.c:903
 msgid "Abort Chat"
 msgstr "Keskeytä keskustelu"
 
-#: src/common/rage.c:899 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:904 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versio"
 
-#: src/common/rage.c:900
+#: src/common/rage.c:905
 msgid "Userinfo"
 msgstr "Käyttäjätiedot"
 
-#: src/common/rage.c:901
+#: src/common/rage.c:906
 msgid "Clientinfo"
 msgstr "Asiakasohjelmatiedot"
 
-#: src/common/rage.c:902 src/common/rage.c:936 src/common/rage.c:987
+#: src/common/rage.c:907 src/common/rage.c:941 src/common/rage.c:992
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/rage.c:903
+#: src/common/rage.c:908
 msgid "Time"
 msgstr "Aika"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:909
 msgid "Finger"
 msgstr "Tunnustelu"
 
-#: src/common/rage.c:905
+#: src/common/rage.c:910
 msgid "Oper"
 msgstr "Operaattori"
 
-#: src/common/rage.c:906
+#: src/common/rage.c:911
 msgid "Kill this user"
 msgstr "Tapa tämä käyttäjä"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:912
 msgid "Mode"
 msgstr "Tila"
 
-#: src/common/rage.c:908
+#: src/common/rage.c:913
 msgid "Give Ops"
 msgstr "Anna opit"
 
-#: src/common/rage.c:909
+#: src/common/rage.c:914
 msgid "Take Ops"
 msgstr "Poista opit"
 
-#: src/common/rage.c:910
+#: src/common/rage.c:915
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Anna opit"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:916
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Poista opit"
 
-#: src/common/rage.c:912
+#: src/common/rage.c:917
 msgid "Give Voice"
 msgstr "Anna puheoikeus"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:918
 msgid "Take Voice"
 msgstr "Poista puheoikeus"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:919
 msgid "Ignore"
 msgstr "Jätä huomiotta"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:920
 msgid "Ignore User"
 msgstr "Jätä käyttäjä huomiotta"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:921
 msgid "UnIgnore User"
 msgstr "Huomioi käyttäjä jälleen"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:922
 msgid "Kick/Ban"
 msgstr "Potkaise/Bannaa"
 
-#: src/common/rage.c:918 src/common/rage.c:970
+#: src/common/rage.c:923 src/common/rage.c:975
 msgid "Kick"
 msgstr "Potkaise"
 
-#: src/common/rage.c:919 src/common/rage.c:920 src/common/rage.c:921
-#: src/common/rage.c:922 src/common/rage.c:923 src/common/rage.c:969
+#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
+#: src/common/rage.c:927 src/common/rage.c:928 src/common/rage.c:974
 msgid "Ban"
 msgstr "Bannaa"
 
-#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
-#: src/common/rage.c:927
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:931
+#: src/common/rage.c:932
 msgid "KickBan"
 msgstr "Potkaise ja bannaa"
 
-#: src/common/rage.c:928 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
+#: src/common/rage.c:933 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "Tiedot"
 
-#: src/common/rage.c:929
+#: src/common/rage.c:934
 msgid "Who"
 msgstr "Kuka"
 
-#: src/common/rage.c:930 src/common/rage.c:983
+#: src/common/rage.c:935 src/common/rage.c:988
 msgid "WhoIs"
 msgstr "KukaOn"
 
-#: src/common/rage.c:931
+#: src/common/rage.c:936
 msgid "DNS Lookup"
 msgstr "DNS-haku"
 
-#: src/common/rage.c:932
+#: src/common/rage.c:937
 msgid "Trace"
 msgstr "Jäljitä"
 
-#: src/common/rage.c:933
+#: src/common/rage.c:938
 msgid "UserHost"
 msgstr "KäyttäjäIsäntä"
 
-#: src/common/rage.c:934
+#: src/common/rage.c:939
 msgid "External"
 msgstr "Ulkoiset"
 
-#: src/common/rage.c:935
+#: src/common/rage.c:940
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/rage.c:937
+#: src/common/rage.c:942
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/rage.c:938
+#: src/common/rage.c:943
 msgid "Open Dialog Window"
 msgstr "Avaa keskusteluikkuna"
 
-#: src/common/rage.c:950
+#: src/common/rage.c:955
 msgid "Disconnect"
 msgstr "Katkaise yhteys"
 
-#: src/common/rage.c:951
+#: src/common/rage.c:956
 msgid "Reconnect"
 msgstr "Yhdistä uudelleen"
 
-#: src/common/rage.c:952
+#: src/common/rage.c:957
 msgid "Leave Channel"
 msgstr "Poistu kanavalta"
 
-#: src/common/rage.c:953
+#: src/common/rage.c:958
 msgid "Join Channel..."
 msgstr "Liity kanavalle..."
 
-#: src/common/rage.c:954
+#: src/common/rage.c:959
 msgid "Enter Channel to Join:"
 msgstr "Anna liityttävän kanavan nimi:"
 
-#: src/common/rage.c:955
+#: src/common/rage.c:960
 msgid "Server Links"
 msgstr "Palvelinlinkit"
 
-#: src/common/rage.c:956
+#: src/common/rage.c:961
 msgid "Ping Server"
 msgstr "Pingaa palvelinta"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:962
 msgid "Hide Version"
 msgstr "Piilota versionumero"
 
-#: src/common/rage.c:967
+#: src/common/rage.c:972
 msgid "Op"
 msgstr "Oppaa"
 
-#: src/common/rage.c:968
+#: src/common/rage.c:973
 msgid "DeOp"
 msgstr "DeOppaa"
 
-#: src/common/rage.c:971
+#: src/common/rage.c:976
 msgid "bye"
 msgstr "heihei"
 
-#: src/common/rage.c:972
+#: src/common/rage.c:977
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Anna syy miksi %s potkaistaan:"
 
-#: src/common/rage.c:973
+#: src/common/rage.c:978
 msgid "Sendfile"
 msgstr "Lähetä"
 
-#: src/common/rage.c:974
+#: src/common/rage.c:979
 msgid "Dialog"
 msgstr "Keskustele"
 
-#: src/common/rage.c:984
+#: src/common/rage.c:989
 msgid "Send"
 msgstr "Lähetä"
 
-#: src/common/rage.c:985
+#: src/common/rage.c:990
 msgid "Chat"
 msgstr "Keskustelu"
 
-#: src/common/rage.c:986 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:991 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Tyhjennä"
 
-#: src/fe-gtk/about.c:73
+#: src/fe-gtk/about.c:74
 #, fuzzy
 msgid "About Rage"
 msgstr "Tietoja X-Chatista"
 
-#: src/fe-gtk/about.c:95
+#: src/fe-gtk/about.c:97
 msgid "A multiplatform IRC Client"
 msgstr "Usealla alustalla toimiva IRC-asiakasohjelma"
 
@@ -3353,31 +3353,31 @@ msgstr "Lajittele"
 msgid "Help"
 msgstr "Ohje"
 
-#: src/fe-gtk/fe-gtk.c:106
+#: src/fe-gtk/fe-gtk.c:107
 msgid "Options"
 msgstr "Asetukset"
 
-#: src/fe-gtk/fe-gtk.c:107
+#: src/fe-gtk/fe-gtk.c:108
 msgid "DIRECTORY"
 msgstr "HAKEMISTO"
 
-#: src/fe-gtk/fe-gtk.c:108
+#: src/fe-gtk/fe-gtk.c:109
 msgid "use a different config dir"
 msgstr "käytä muuta asetushakemistoa"
 
-#: src/fe-gtk/fe-gtk.c:109
+#: src/fe-gtk/fe-gtk.c:110
 msgid "don't auto connect"
 msgstr "älä yhdistä automaattisesti"
 
-#: src/fe-gtk/fe-gtk.c:110
+#: src/fe-gtk/fe-gtk.c:111
 msgid "don't auto load any plugins"
 msgstr "älä lataa mitään liitännäisiä automaattisesti"
 
-#: src/fe-gtk/fe-gtk.c:111
+#: src/fe-gtk/fe-gtk.c:112
 msgid "show version information"
 msgstr "näytä versiotiedot"
 
-#: src/fe-gtk/fe-gtk.c:196
+#: src/fe-gtk/fe-gtk.c:197
 #, c-format
 msgid ""
 "Failed to open font:\n"
@@ -3388,11 +3388,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:556
+#: src/fe-gtk/fe-gtk.c:557
 msgid "Search buffer is empty.\n"
 msgstr "Hakupuskuri on tyhjä.\n"
 
-#: src/fe-gtk/fe-gtk.c:633
+#: src/fe-gtk/fe-gtk.c:634
 #, c-format
 msgid "%d bytes"
 msgstr "%d tavua"
@@ -3514,9 +3514,9 @@ msgstr "Virhe ladattaessa näppäinsidonta-asetuksia"
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
-#: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2443
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:863 src/fe-gtk/maingui.c:879
+#: src/fe-gtk/maingui.c:1022 src/fe-gtk/maingui.c:1075
+#: src/fe-gtk/maingui.c:2450
 msgid "<none>"
 msgstr "<ei mitään>"
 
@@ -3617,7 +3617,7 @@ msgstr "Antamaasi tiedostoa ei voi lukea."
 msgid "That mask already exists."
 msgstr "Kyseinen peite on jo olemassa."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1533
 msgid "Private"
 msgstr "Yksityiset"
 
@@ -3682,88 +3682,88 @@ msgstr "Lisää uusi"
 msgid "Dialog with"
 msgstr "Keskustelijana"
 
-#: src/fe-gtk/maingui.c:531
+#: src/fe-gtk/maingui.c:532
 #, c-format
 msgid "Topic for %s is: %s"
 msgstr "Kanavan %s aihe on: %s"
 
-#: src/fe-gtk/maingui.c:535
+#: src/fe-gtk/maingui.c:536
 msgid "No topic is set"
 msgstr "Aihetta ei ole asetettu"
 
-#: src/fe-gtk/maingui.c:931
+#: src/fe-gtk/maingui.c:932
 msgid "No other tabs open, quit xchat?"
 msgstr "Muita välilehtiä ei ole auki. Lopetetaanko XChat?"
 
-#: src/fe-gtk/maingui.c:977
+#: src/fe-gtk/maingui.c:978
 msgid "Insert color code"
 msgstr "Lisää värikoodi"
 
-#: src/fe-gtk/maingui.c:1026
+#: src/fe-gtk/maingui.c:1027
 msgid "Beep on message"
 msgstr "Anna äänimerkki viestin saapuessa"
 
-#: src/fe-gtk/maingui.c:1029
+#: src/fe-gtk/maingui.c:1030
 msgid "Show join/part messages"
 msgstr "Näytä liittymis/poistumisviestit"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Color paste"
 msgstr "Liitä väritysten kanssa"
 
-#: src/fe-gtk/maingui.c:1041
+#: src/fe-gtk/maingui.c:1042
 msgid "Go to"
 msgstr "Siirry"
 
-#: src/fe-gtk/maingui.c:1054 src/fe-gtk/menu.c:1230
+#: src/fe-gtk/maingui.c:1055 src/fe-gtk/menu.c:1230
 msgid "Close Tab"
 msgstr "Sulje välilehti"
 
-#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1383
+#: src/fe-gtk/maingui.c:1058 src/fe-gtk/menu.c:1383
 msgid "Detach Tab"
 msgstr "Irrota välilehti"
 
-#: src/fe-gtk/maingui.c:1248
+#: src/fe-gtk/maingui.c:1249
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Jotkut tiedostonsiirrot ovat vielä aktiivisia. Lopetetaanko X-Chat?"
 
-#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
+#: src/fe-gtk/maingui.c:1400 src/fe-gtk/maingui.c:1506
 msgid "User limit must be a number!\n"
 msgstr "Käyttäjärajan tulee olla numero!\n"
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1529
 msgid "Topic Protection"
 msgstr "Aiheensuojaus"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1530
 msgid "No outside messages"
 msgstr "Ei ulkopuolisia viestejä"
 
-#: src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/maingui.c:1531
 msgid "Secret"
 msgstr "Salainen"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1532
 msgid "Invite Only"
 msgstr "Vain kutsutuille"
 
-#: src/fe-gtk/maingui.c:1533
+#: src/fe-gtk/maingui.c:1534
 msgid "Moderated"
 msgstr "Moderoitu"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1535
 msgid "Ban List"
 msgstr "Banniluettelo"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "Keyword"
 msgstr "Tunnussana"
 
-#: src/fe-gtk/maingui.c:1548
+#: src/fe-gtk/maingui.c:1549
 msgid "User Limit"
 msgstr "Käyttäjäraja"
 
-#: src/fe-gtk/maingui.c:1723
+#: src/fe-gtk/maingui.c:1724
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3775,20 +3775,20 @@ msgstr ""
 "Ikkunointiohjelma on ehkä epäyhteensopiva,\n"
 "eikä sitä tällä hetkellä tueta.\n"
 
-#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
-#: src/fe-gtk/maingui.c:2664
+#: src/fe-gtk/maingui.c:1884 src/fe-gtk/maingui.c:1895
+#: src/fe-gtk/maingui.c:2671
 msgid "Attach/Detach this tab"
 msgstr "Liitä/irrota tämä välilehti"
 
-#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+#: src/fe-gtk/maingui.c:1893 src/fe-gtk/maingui.c:2669
 msgid "Close this tab/window"
 msgstr "Sulje tämä välilehti/ikkuna"
 
-#: src/fe-gtk/maingui.c:1919
+#: src/fe-gtk/maingui.c:1920
 msgid "Show/Hide userlist"
 msgstr "Näytä/piilota käyttäjäluettelo"
 
-#: src/fe-gtk/maingui.c:1957
+#: src/fe-gtk/maingui.c:1958
 msgid "Enter new nickname:"
 msgstr "Anna uusi kutsumanimi:"
 

@@ -1290,7 +1290,7 @@ static int
 key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 							struct session *sess)
 {
-	char buf[2048];
+	char buf[500];
 	int pos = 0, ret = 0;
 
 	/* force the IM Context to reset */
@@ -1299,7 +1299,7 @@ key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 	
 	ret = tab_comp(sess, GTK_ENTRY (t)->text, buf, sizeof(buf), &pos, d1 && d1[0]); 
 
-	if (buf[0] != 0)
+	if (ret == 2 && buf[0] != 0)
 	{
 		gtk_entry_set_text (GTK_ENTRY (t), buf);
 		gtk_editable_set_position (GTK_EDITABLE (t), 
