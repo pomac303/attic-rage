@@ -634,10 +634,10 @@ AC_SUBST(PY_CFLAGS)
 AC_SUBST(PY_LIBS)
 AC_SUBST(TCL_LIBS)
 AC_SUBST(TCL_CFLAGS)
-xchatlibdir=${libdir}/rage
-xchatsharedir=${datadir}/rage
-AC_SUBST(xchatlibdir)
-AC_SUBST(xchatsharedir)
+ragelibdir=${libdir}/rage
+ragesharedir=${datadir}/rage
+AC_SUBST(ragelibdir)
+AC_SUBST(ragesharedir)
 
 PLUGIN_INCLUDES='-I$(top_srcdir)/plugins'
 AC_SUBST(PLUGIN_INCLUDES)

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <glib.h>
 #include "rage.h"
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 
 #ifdef WIN32
 #define strcasecmp stricmp

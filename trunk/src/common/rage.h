@@ -86,9 +86,8 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 /* don't forget to link with debug.c */
 #endif
 
-/* TODO: Include xchat.h. Note this will disappear soon! */
 #include "dict.h"
-#include "xchat.h"
+#include "rage_data.h"
 
 /* Include Internet compatibility stuff */
 #define WANTSOCKET
@@ -98,13 +97,13 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 
 /* Include common includes */
 /* Bletch! */
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 #include "cfgfiles.h"
 #include "proto-irc.h"
 #include "util.h"
 #include "fe.h"
 #include "text.h"
-#include "xchatc.h"
+#include "ragec.h"
 #include "modes.h"
 #include "outbound.h"
 #include "ignore.h"
@@ -128,7 +127,7 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 #include <openssl/ssl.h>		  /* SSL_() */
 #include <openssl/err.h>		  /* ERR_() */
 #include "ssl.h"
-extern SSL_CTX *ctx;				  /* xchat.c */
+extern SSL_CTX *ctx;				  /* rage.c */
 /* local variables */
 #endif
 

@@ -253,7 +253,7 @@ extern GdkPixmap *dialogwin_pix;
 #include "palette.h"
 #include "pixmaps.h"
 #include "plugingui.h"
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 #include "rawlog.h"
 #include "search.h"
 #include "tabs.h"

@@ -2,7 +2,7 @@
 
 CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 
-noinst_LIBRARIES = libxchatcommon.a
+noinst_LIBRARIES = libragecommon.a
 
 INCLUDES = $(COMMON_CFLAGS)
 
@@ -39,18 +39,18 @@ EXTRA_DIST = makefile.msc \
 	userlist.h \
 	util.h \
 	rage.h \
-	xchat.h \
-	xchatc.h \
-	xchat-plugin.h
+	rage_data.h \
+	ragec.h \
+	rage-plugin.h
 
 if USE_OPENSSL
 ssl_c = ssl.c
 endif
 
-libxchatcommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
+libragecommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
 	inbound.c modes.c network.c notify.c dict-splay.c parse.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c $(ssl_c) \
-	text.c tree.c url.c userlist.c util.c xchat.c
+	text.c tree.c url.c userlist.c util.c rage.c
 
 textevents.h: textevents
 textenums.h: textevents
@@ -58,5 +58,5 @@ textenums.h: textevents
 textevents: make-te textevents.in
 	./make-te < textevents.in > textevents.h 2> textenums.h
 
-plugin.o: $(srcdir)/plugin.c $(srcdir)/xchat-plugin.h $(srcdir)/cfgfiles.h
-	$(COMPILE) -DXCHATLIBDIR=\"$(xchatlibdir)\" -c $(srcdir)/plugin.c
+plugin.o: $(srcdir)/plugin.c $(srcdir)/rage-plugin.h $(srcdir)/cfgfiles.h
+	$(COMPILE) -DXCHATLIBDIR=\"$(ragelibdir)\" -c $(srcdir)/plugin.c

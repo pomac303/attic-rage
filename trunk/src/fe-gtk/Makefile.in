@@ -68,7 +68,7 @@ am_rage_OBJECTS = about.$(OBJEXT) ascii.$(OBJEXT) banlist.$(OBJEXT) \
 	userlistgui.$(OBJEXT) xtext.$(OBJEXT)
 rage_OBJECTS = $(am_rage_OBJECTS)
 am__DEPENDENCIES_1 =
-rage_DEPENDENCIES = ../common/libxchatcommon.a $(am__DEPENDENCIES_1)
+rage_DEPENDENCIES = ../common/libragecommon.a $(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -262,19 +262,19 @@ pkgconfigpath = @pkgconfigpath@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 pythonpath = @pythonpath@
+ragelibdir = @ragelibdir@
+ragesharedir = @ragesharedir@
 sbindir = @sbindir@
 sedpath = @sedpath@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 unamepath = @unamepath@
-xchatlibdir = @xchatlibdir@
-xchatsharedir = @xchatsharedir@
 localedir = $(datadir)/locale
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \
 	-I ../common/
 
-rage_LDADD = ../common/libxchatcommon.a $(GUI_LIBS)
+rage_LDADD = ../common/libragecommon.a $(GUI_LIBS)
 EXTRA_DIST = makefile.msc \
 	about.h ascii.h banlist.h chanlist.h editlist.h fe-gtk.h fkeys.h \
 	gtkutil.h maingui.h menu.h mmx_cmod.S mmx_cmod.h notifygui.h palette.h \
@@ -599,7 +599,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-info-am
 
 
 pixmaps.o: $(srcdir)/pixmaps.c
-	$(COMPILE) -DXCHATSHAREDIR=\"$(xchatsharedir)\" -c $(srcdir)/pixmaps.c
+	$(COMPILE) -DXCHATSHAREDIR=\"$(ragesharedir)\" -c $(srcdir)/pixmaps.c
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

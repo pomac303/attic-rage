@@ -14,7 +14,7 @@
 
 @SET_MAKE@
 
-SOURCES = $(libxchatcommon_a_SOURCES)
+SOURCES = $(libragecommon_a_SOURCES)
 
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
@@ -48,23 +48,23 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
-libxchatcommon_a_AR = $(AR) $(ARFLAGS)
-libxchatcommon_a_LIBADD =
-am__libxchatcommon_a_SOURCES_DIST = cfgfiles.c ctcp.c dcc.c history.c \
+libragecommon_a_AR = $(AR) $(ARFLAGS)
+libragecommon_a_LIBADD =
+am__libragecommon_a_SOURCES_DIST = cfgfiles.c ctcp.c dcc.c history.c \
 	ignore.c inbound.c modes.c network.c notify.c dict-splay.c \
 	parse.c outbound.c plugin.c plugin-timer.c proto-irc.c \
 	server.c servlist.c ssl.c text.c tree.c url.c userlist.c \
-	util.c xchat.c
+	util.c rage.c
 @USE_OPENSSL_TRUE@am__objects_1 = ssl.$(OBJEXT)
-am_libxchatcommon_a_OBJECTS = cfgfiles.$(OBJEXT) ctcp.$(OBJEXT) \
+am_libragecommon_a_OBJECTS = cfgfiles.$(OBJEXT) ctcp.$(OBJEXT) \
 	dcc.$(OBJEXT) history.$(OBJEXT) ignore.$(OBJEXT) \
 	inbound.$(OBJEXT) modes.$(OBJEXT) network.$(OBJEXT) \
 	notify.$(OBJEXT) dict-splay.$(OBJEXT) parse.$(OBJEXT) \
 	outbound.$(OBJEXT) plugin.$(OBJEXT) plugin-timer.$(OBJEXT) \
 	proto-irc.$(OBJEXT) server.$(OBJEXT) servlist.$(OBJEXT) \
 	$(am__objects_1) text.$(OBJEXT) tree.$(OBJEXT) url.$(OBJEXT) \
-	userlist.$(OBJEXT) util.$(OBJEXT) xchat.$(OBJEXT)
-libxchatcommon_a_OBJECTS = $(am_libxchatcommon_a_OBJECTS)
+	userlist.$(OBJEXT) util.$(OBJEXT) rage.$(OBJEXT)
+libragecommon_a_OBJECTS = $(am_libragecommon_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -75,11 +75,11 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/network.Po ./$(DEPDIR)/notify.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/outbound.Po ./$(DEPDIR)/parse.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/plugin-timer.Po ./$(DEPDIR)/plugin.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/proto-irc.Po ./$(DEPDIR)/server.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/servlist.Po ./$(DEPDIR)/ssl.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/text.Po ./$(DEPDIR)/tree.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/url.Po ./$(DEPDIR)/userlist.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/util.Po ./$(DEPDIR)/xchat.Po
+@AMDEP_TRUE@	./$(DEPDIR)/proto-irc.Po ./$(DEPDIR)/rage.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/server.Po ./$(DEPDIR)/servlist.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/ssl.Po ./$(DEPDIR)/text.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/tree.Po ./$(DEPDIR)/url.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/userlist.Po ./$(DEPDIR)/util.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
@@ -88,8 +88,8 @@ LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libxchatcommon_a_SOURCES)
-DIST_SOURCES = $(am__libxchatcommon_a_SOURCES_DIST)
+SOURCES = $(libragecommon_a_SOURCES)
+DIST_SOURCES = $(am__libragecommon_a_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -254,15 +254,15 @@ pkgconfigpath = @pkgconfigpath@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 pythonpath = @pythonpath@
+ragelibdir = @ragelibdir@
+ragesharedir = @ragesharedir@
 sbindir = @sbindir@
 sedpath = @sedpath@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 unamepath = @unamepath@
-xchatlibdir = @xchatlibdir@
-xchatsharedir = @xchatsharedir@
-noinst_LIBRARIES = libxchatcommon.a
+noinst_LIBRARIES = libragecommon.a
 INCLUDES = $(COMMON_CFLAGS)
 EXTRA_DIST = makefile.msc \
 	cfgfiles.h \
@@ -297,15 +297,15 @@ EXTRA_DIST = makefile.msc \
 	userlist.h \
 	util.h \
 	rage.h \
-	xchat.h \
-	xchatc.h \
-	xchat-plugin.h
+	rage_data.h \
+	ragec.h \
+	rage-plugin.h
 
 @USE_OPENSSL_TRUE@ssl_c = ssl.c
-libxchatcommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
+libragecommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
 	inbound.c modes.c network.c notify.c dict-splay.c parse.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c $(ssl_c) \
-	text.c tree.c url.c userlist.c util.c xchat.c
+	text.c tree.c url.c userlist.c util.c rage.c
 
 all: all-am
 
@@ -343,10 +343,10 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-libxchatcommon.a: $(libxchatcommon_a_OBJECTS) $(libxchatcommon_a_DEPENDENCIES) 
-	-rm -f libxchatcommon.a
-	$(libxchatcommon_a_AR) libxchatcommon.a $(libxchatcommon_a_OBJECTS) $(libxchatcommon_a_LIBADD)
-	$(RANLIB) libxchatcommon.a
+libragecommon.a: $(libragecommon_a_OBJECTS) $(libragecommon_a_DEPENDENCIES) 
+	-rm -f libragecommon.a
+	$(libragecommon_a_AR) libragecommon.a $(libragecommon_a_OBJECTS) $(libragecommon_a_LIBADD)
+	$(RANLIB) libragecommon.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -369,6 +369,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin-timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/proto-irc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rage.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/servlist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ssl.Po@am__quote@
@@ -377,7 +378,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/url.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/userlist.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xchat.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -586,8 +586,8 @@ textenums.h: textevents
 textevents: make-te textevents.in
 	./make-te < textevents.in > textevents.h 2> textenums.h
 
-plugin.o: $(srcdir)/plugin.c $(srcdir)/xchat-plugin.h $(srcdir)/cfgfiles.h
-	$(COMPILE) -DXCHATLIBDIR=\"$(xchatlibdir)\" -c $(srcdir)/plugin.c
+plugin.o: $(srcdir)/plugin.c $(srcdir)/rage-plugin.h $(srcdir)/cfgfiles.h
+	$(COMPILE) -DXCHATLIBDIR=\"$(ragelibdir)\" -c $(srcdir)/plugin.c
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

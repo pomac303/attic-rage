@@ -212,14 +212,14 @@ pkgconfigpath = @pkgconfigpath@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 pythonpath = @pythonpath@
+ragelibdir = @ragelibdir@
+ragesharedir = @ragesharedir@
 sbindir = @sbindir@
 sedpath = @sedpath@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 unamepath = @unamepath@
-xchatlibdir = @xchatlibdir@
-xchatsharedir = @xchatsharedir@
 LIST = aboutpng $(srcdir)/about.png \
 			bookpng $(srcdir)/book.png \
 			hoppng $(srcdir)/hop.png \

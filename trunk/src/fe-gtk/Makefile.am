@@ -7,7 +7,7 @@ bin_PROGRAMS = rage
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \
 	-I ../common/
 
-rage_LDADD = ../common/libxchatcommon.a $(GUI_LIBS)
+rage_LDADD = ../common/libragecommon.a $(GUI_LIBS)
 
 EXTRA_DIST = makefile.msc \
 	about.h ascii.h banlist.h chanlist.h editlist.h fe-gtk.h fkeys.h \
@@ -30,4 +30,4 @@ rage_SOURCES = about.c ascii.c banlist.c chanlist.c dccgui.c editlist.c \
 	urlgrab.c userlistgui.c xtext.c
 
 pixmaps.o: $(srcdir)/pixmaps.c
-	$(COMPILE) -DXCHATSHAREDIR=\"$(xchatsharedir)\" -c $(srcdir)/pixmaps.c
+	$(COMPILE) -DXCHATSHAREDIR=\"$(ragesharedir)\" -c $(srcdir)/pixmaps.c

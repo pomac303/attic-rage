@@ -19,7 +19,7 @@
 #define PLUGIN_C 
 #include "fe-gtk.h"
 #include "plugin.h"
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 
 /* model for the plugin treeview */
 enum
