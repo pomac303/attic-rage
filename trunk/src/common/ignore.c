@@ -320,7 +320,7 @@ flood_check (char *nick, char *host, server *serv, rage_session *sess, int what)
 			snprintf (real_ip, sizeof (real_ip), "*!*%s", tmp);
 			/* Clean the queue and add the ignore first to avoid
 			 * stating the ignore several times. */
-			queue_remove_target(serv, nick, 2);
+			queue_remove_replies(serv, nick);
 			ignore_add (real_ip, IG_CTCP);
 
 			snprintf (buf, sizeof (buf),

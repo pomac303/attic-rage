@@ -135,7 +135,7 @@ irc_invite (server *serv, char *channel, char *nick)
 static void
 irc_mode (server *serv, char *target, char *mode)
 {
-	send_commandf (serv, target, "MODE %s %s", target, mode);
+	send_mode(serv, target, mode);
 }
 
 /* find channel info when joined */
@@ -270,10 +270,9 @@ irc_ping (server *serv, char *to, char *timestring)
 static int
 irc_raw (server *serv, char *raw)
 {
-	/* FIXME: should most likley split lines */
 	if (*raw)
 	{
-		send_commandf (serv, NULL, "%s", raw);
+		send_command (serv, NULL, raw);
 		return TRUE;
 	}
 	return FALSE;

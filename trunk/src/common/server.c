@@ -18,19 +18,6 @@
 
 #include "rage.h"
 
-enum {
-	QUEUE_COMMAND, QUEUE_MESSAGE, QUEUE_REPLY, QUEUE_NOTICE,
-	QUEUE_CMESSAGE, QUEUE_CNOTICE
-};
-
-typedef struct queued_msg {
-	char *msg;
-	char *target;
-	char *args;
-	int type;
-	int utf8;
-} queued_msg;
-
 static void auto_reconnect (server *serv, int send_quit, int err);
 static void server_disconnect (rage_session * sess, int sendquit, int err);
 static int server_cleanup (server * serv);
@@ -38,8 +25,6 @@ static void server_connect (server *serv, char *hostname, int port, int no_login
 #ifdef USE_OPENSSL
 static rage_session *g_sess = NULL;
 #endif
-
-struct it_check_data { char *old_target; char *new_target; };
 
 /* Iterator used to change the target for all data that should go to
  * the old target */
@@ -62,15 +47,13 @@ queue_target_change(server *serv, char *old_target, char *new_target)
 	struct it_check_data it = {old_target, new_target};
 	int i;
 	
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < NR_OF_QUEUES; i++)
 	{
 		if (!g_queue_is_empty(serv->out_queue[i])) /* ->length > 0) */
 			g_queue_foreach(serv->out_queue[i], 
 					queue_rename_target_it, &it);
 	}
 }
-
-struct it_remove_data {	GQueue *queue; char *target; };
 
 /* Iterator used to remove all data to a specific target */
 static void
@@ -95,7 +78,7 @@ queue_remove_target(server *serv, char *target, int queue)
 				queue_remove_target_it, &it);
 	else
 	{	
-		for (i = 0; i < 3; i++)
+		for (i = 0; i < NR_OF_QUEUES; i++)
 		{
 			if (!g_queue_is_empty(serv->out_queue[i]))
 			{
@@ -125,7 +108,7 @@ queue_clean(server *serv)
 {
 	int i;
 	
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < NR_OF_QUEUES; i++)
 	{
 		if (!g_queue_is_empty(serv->out_queue[i]))
 			g_queue_foreach(serv->out_queue[i],
@@ -140,11 +123,9 @@ queue_kill(server *serv)
 	
 	queue_clean(serv);
 	
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < NR_OF_QUEUES; i++)
 		g_queue_free(serv->out_queue[i]);
 }
-
-struct it_count_data {char *target; int count; };
 
 void
 queue_count_it(gpointer data, gpointer user_data)
@@ -165,6 +146,90 @@ queue_count(server *serv, char *target, int queue)
 		g_queue_foreach(serv->out_queue[queue],
 				queue_count_it, &it);
 	return it.count;
+}
+
+inline static int
+get_mode_len(char *modes)
+{
+	int i;
+	
+	for (i = 0; *modes; modes++)
+	{
+		switch (*modes)
+		{
+			case ' ':
+				return i;
+			case '+':
+			case '-':
+				break;
+			default:
+				i++;
+		}
+	}
+	return i;
+}
+				
+
+
+void
+queue_mode_it (gpointer data, gpointer user_data)
+{
+	struct it_mode_data *it = (struct it_mode_data *)user_data;
+	queued_msg *msg = (queued_msg *)data;
+
+	if (msg->type == QUEUE_MODE && it->msg)
+	{
+		if (strcasecmp(msg->target, it->target) == 0 &&
+				get_mode_len(msg->msg) <= (it->max - it->len))
+		{
+			char *new_args, *new_msg;
+
+			new_msg = g_malloc(strlen(msg->msg) + strlen(it->msg) + 1);
+			sprintf(new_msg, "%s%s", msg->msg, it->msg);
+
+			g_free(msg->msg);
+			g_free(it->msg);
+
+			msg->msg = new_msg;
+			it->msg = NULL;
+
+			/* If both are NULL, no need to work further */
+			if (it->args == NULL && msg->args == NULL)
+				return;
+			else if (msg->args == NULL)	/* Nothing in msg, get data from it */
+				new_args = it->args;
+			else if (it->args == NULL)	/* Nothing in it, get data from msg */
+				new_args = msg->args;
+			else				/* Both avail, merge */
+			{
+				new_args = g_malloc(strlen(msg->args) + strlen(it->args) +2);
+				sprintf(new_args, "%s %s", msg->args, it->args);
+
+				g_free(msg->args);
+				g_free(it->args);
+			}
+			msg->args = new_args;
+		}	
+	}
+}
+
+void
+queue_mode (server *serv, queued_msg *msg)
+{
+	struct it_mode_data it = { msg->target, msg->msg, msg->args, 
+		get_mode_len(msg->msg), atoi(get_isupport(serv, "MODES")) };
+	
+	if (!g_queue_is_empty(serv->out_queue[QUEUE_COMMAND]))
+		g_queue_foreach(serv->out_queue[QUEUE_COMMAND], 
+				(GFunc)queue_mode_it, &it);
+
+	if (it.msg)
+		g_queue_push_tail(serv->out_queue[QUEUE_COMMAND], msg);
+	else
+	{
+		g_free(msg->target);
+		g_free(msg);
+	}
 }
 
 /* actually send to the socket. This might do a character translation or
@@ -196,6 +261,16 @@ tcp_send_data (server *serv, queued_msg *msg)
 		case QUEUE_CNOTICE:
 			snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s\r\n", msg->target,
 					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+			break;
+		case QUEUE_MODE:
+		{
+			if (msg->args)
+				snprintf(tmp, sizeof(tmp)-1, "MODE %s %s %s\r\n", msg->target, 
+						msg->msg, msg->args);
+			else
+				snprintf(tmp, sizeof(tmp)-1, "MODE %s %s\r\n", msg->target, msg->msg);
+			break;
+		}
 	}
 	/* free data that isn't used anymore */
 	g_free (msg->target);
@@ -220,7 +295,7 @@ inline void
 set_queue_len(server *serv)
 {
 	int i, value = 0;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < NR_OF_QUEUES; i++)
 		value += serv->out_queue[i]->length;
 	serv->sendq_len = value;
 	fe_set_throttle (serv);
@@ -294,7 +369,7 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	}
 	
 	if (strcasecmp(serv->encoding, "UTF-8") != 0 &&
-			strcasecmp(serv->encoding, "UTF8"))
+			strcasecmp(serv->encoding, "UTF8") != 0)
 		line = g_convert(buf, len, serv->encoding, "UTF-8", 
 				NULL, &written, NULL);
 
@@ -311,13 +386,20 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 
 	if (serv->queue_timer || throttle)
 	{
-		if (type == QUEUE_COMMAND)
-			g_queue_push_tail(serv->out_queue[QUEUE_COMMAND], msg);
-		else if (type == QUEUE_REPLY)
-			g_queue_push_tail(serv->out_queue[QUEUE_REPLY], msg);
-		else
-			g_queue_push_tail(serv->out_queue[QUEUE_MESSAGE], msg);
-
+		switch (type)
+		{
+			case QUEUE_COMMAND:
+				g_queue_push_tail(serv->out_queue[QUEUE_COMMAND], msg);
+				break;
+			case QUEUE_REPLY:
+				g_queue_push_tail(serv->out_queue[QUEUE_REPLY], msg);
+				break;
+			case QUEUE_MODE:
+				queue_mode(serv, msg);
+				break;
+			default:
+				g_queue_push_tail(serv->out_queue[QUEUE_MESSAGE], msg);
+		}
 		if (!serv->queue_timer)
 			serv->queue_timer = g_timeout_add(2000, (GSourceFunc)tcp_send_queue, serv);
 	}
@@ -343,6 +425,17 @@ inline void send_cnotice(server *serv, char *target, char *channel, char *buf)
 
 inline void send_reply(server *serv, char *target, char *buf)
 { tcp_queue_data (serv, QUEUE_REPLY, target, NULL, buf); }
+
+inline void send_mode(server *serv, char *target, char *mode)
+{
+	char *args = NULL;
+	if (is_channel(serv, target))
+	{
+		if ((args = strchr(mode, ' ')))
+			*args++ = 0;
+	}	
+	tcp_queue_data (serv, QUEUE_MODE, target, args, mode);
+}
 
 void
 send_commandf(server *serv, char *target, char *fmt, ...)
