@@ -1038,7 +1038,7 @@ static char *pevt_chanlist_help[] = {
 	N_("Topic"),
 };
 
-static char *pevt_who_help[] = {
+static char *pevt_gen_help[] = {
 	N_("the message"),
 };
 

@@ -957,7 +957,8 @@ irc_server(session *sess, int parc, char *parv[])
 				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
 						parv[0], parv[1], NULL, 0);
 			else
-				PrintTextf(sess, "GARBAGE\t%s\n", line);
+				EMIT_SIGNAL(XP_TE_GARBAGE, sess, line,
+						NULL, NULL, NULL, 0);
 		}
 	}
 }
