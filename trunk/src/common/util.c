@@ -1557,21 +1557,26 @@ tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, 
 					}
 					PrintText (sess, buf);
 					buf[0] = 0;
-						
-					if (prefix_len)
-						g_utf8_strncpy (buf, text, prefix_len);
-					strncat (buf, result, buf_size - prefix_len);
-					cursor_pos = strlen (buf);
-					g_free(result);
-#if !GLIB_CHECK_VERSION(2,4,0)
-					g_utf8_validate (buf, -1, (const gchar **)&result);
-					(*result) = 0;
-#endif
-					if (postfix)
+					
+					if (strlen(result) > elen)
 					{
-						strcat (buf, " ");
-						strncat (buf, postfix, buf_size - cursor_pos -1);
+						if (prefix_len)
+							g_utf8_strncpy (buf, text, prefix_len);
+						strncat (buf, result, buf_size - prefix_len);
+						cursor_pos = strlen (buf);
+						g_free(result);
+#if !GLIB_CHECK_VERSION(2,4,0)
+						g_utf8_validate (buf, -1, (const gchar **)&result);
+						(*result) = 0;
+#endif
+						if (postfix)
+						{
+							strcat (buf, " ");
+							strncat (buf, postfix, buf_size - cursor_pos -1);
+						}
 					}
+					else
+						g_free(result);
 
 					*pos = cursor_pos;
 					g_completion_free(gcomp);

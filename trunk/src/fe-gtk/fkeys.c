@@ -1290,7 +1290,7 @@ key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 							struct session *sess)
 {
 	char buf[2048];
-	int pos, ret;
+	int pos = 0, ret = 0;
 
 	/* force the IM Context to reset */
 	gtk_editable_set_editable (GTK_EDITABLE (t), FALSE);
@@ -1298,9 +1298,12 @@ key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 	
 	ret = tab_comp(sess, GTK_ENTRY (t)->text, buf, sizeof(buf), &pos, d1 && d1[0]); 
 
-	gtk_entry_set_text (GTK_ENTRY (t), buf);
-	gtk_editable_set_position (GTK_EDITABLE (t), 
-			g_utf8_pointer_to_offset(buf, buf + pos));
+	if (buf[0] != 0)
+	{
+		gtk_entry_set_text (GTK_ENTRY (t), buf);
+		gtk_editable_set_position (GTK_EDITABLE (t), 
+				g_utf8_pointer_to_offset(buf, buf + pos));
+	}
 	return ret;
 }
 #undef COMP_BUF
