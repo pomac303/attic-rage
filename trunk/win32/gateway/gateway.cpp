@@ -3,6 +3,7 @@
 #pragma once
 
 using namespace System;
+using namespace rage::gui;
 
 namespace rage
 {
@@ -84,6 +85,11 @@ namespace rage
 			void test()
 			{
 				int i; i = 0;
+			}
+
+			void fe_message(char *msg, int wait)
+			{
+				rage::gui::Utility::ShowMsg(msg);
 			}
 		};
 	}

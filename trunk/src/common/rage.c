@@ -1093,3 +1093,74 @@ main (int argc, char *argv[])
 	return 0;
 }
 #endif
+
+
+#ifdef WIN32
+// Temporary shit (just so I can get common to link)
+void fe_message(char *a, int b) {}
+void xchat_exec(char *a) {}
+void fe_dcc_update(struct DCC *a) {}
+void fe_dcc_remove(struct DCC *a) {}
+void fe_input_remove(int a) {}
+int fe_input_add(int a,int b,void *c,void *d) { return 0; }
+void fe_dcc_add(struct DCC *a) {}
+int fe_dcc_open_send_win(int a) { return 0; }
+int plugin_emit_print(struct session *a,int b,char **c) { return 0; }
+int fe_dcc_open_chat_win(int a) { return 0; }
+int fe_dcc_open_recv_win(int a) { return 0; }
+void fe_confirm(char const *a,void (*b)(void *),void (*c)(void *),void *d) {}
+void fe_ignore_update(int a) {}
+void fe_set_title(struct session *a) {}
+void fe_set_nonchannel(struct session *a,int b) {}
+void fe_clear_channel(struct session *a) {}
+void fe_timeout_remove(int a) {}
+void fe_set_topic(struct session *a,char *b) {}
+void fe_set_hilight(struct session *a) {}
+void fe_set_nick(struct server *a,char *b) {}
+void fe_set_channel(struct session *a) {}
+void fe_set_lag(struct server *a,int b) {}
+void fe_set_away(struct server *a) {}
+void fe_add_ban_list(struct session *a,char *b,char *c,char *d) {}
+int fe_is_banwindow(struct session *a) { return 0; }
+void fe_update_channel_limit(struct session *a) {}
+void fe_update_mode_buttons(struct session *a,char b,char c) {}
+void fe_update_channel_key(struct session *a) {}
+int fe_timeout_add(int a,void *b,void *c) { return 0; }
+void fe_notify_update(char *a) {}
+void fe_buttons_update(struct session *a) {}
+void fe_dlgbuttons_update(struct session *a) {}
+void fe_text_clear(struct session *a) {}
+void fe_close_window(struct session *a) {}
+void fe_dcc_send_filereq(struct session *a,char *b,int c,int d) {}
+void fe_get_int(char *a,int b,void *c,void *d) {}
+void fe_get_str(char *a,char *b,void *c,void *d) {}
+void fe_ctrl_gui(struct session *a,int b,int c) {}
+int plugin_show_help(struct session *a,char *b) { return 0; }
+void xchat_exit(void) {}
+void fe_lastlog(struct session *a ,struct session *b,char *c) {}
+int plugin_emit_command(struct session *a,char *b,char *c) { return 0; }
+int plugin_emit_server(struct session *a,char *b,int c,char **d) { return 0; }
+void fe_ban_list_end(struct session *a) {}
+void fe_chan_list_end(struct server *a) {}
+void fe_add_chan_list(struct server *a,char *b,char *c,char *d) {}
+int fe_is_chanwindow(struct server *a) { return 0; }
+void fe_add_rawlog(struct server *a,char *b,int c,int d) {}
+void fe_set_throttle(struct server *a) {}
+void fe_progressbar_end(struct server *a) {}
+void fe_progressbar_start(struct session *a) {}
+void fe_print_text(struct session *b,char *a) {}
+void fe_beep(void) {}
+void fe_url_add(char const *a) {}
+void fe_userlist_rehash(struct session *a,struct User *b) {}
+void fe_userlist_numbers(struct session *a) {}
+void fe_userlist_clear(struct session *a) {}
+void fe_userlist_move(struct session *a,struct User *b,int c) {}
+int fe_userlist_remove(struct session *a,struct User *b) { return 0; }
+void fe_userlist_insert(struct session *a,struct User *b,int c,int d) {}
+struct _GList *plugin_command_list(struct _GList *a) { return ((struct _GList *)0); }
+int plugin_emit_dummy_print(struct session *a,char *b) { return 0; }
+void fe_new_window(struct session *a,int c) {}
+void fe_new_server(struct server *a) {}
+void fe_session_callback(struct session *a) {}
+void fe_server_callback(struct server *a) {}
+#endif

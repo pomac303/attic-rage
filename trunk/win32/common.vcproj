@@ -166,6 +166,9 @@
 				RelativePath="..\src\common\proto-irc.c">
 			</File>
 			<File
+				RelativePath="..\src\common\rage.c">
+			</File>
+			<File
 				RelativePath="..\src\common\server.c">
 			</File>
 			<File
@@ -185,9 +188,6 @@
 			</File>
 			<File
 				RelativePath="..\src\common\util.c">
-			</File>
-			<File
-				RelativePath="..\src\common\xchat.c">
 			</File>
 		</Filter>
 		<Filter
@@ -249,6 +249,12 @@
 				RelativePath="..\src\common\rage.h">
 			</File>
 			<File
+				RelativePath="..\src\common\rage_data.h">
+			</File>
+			<File
+				RelativePath="..\src\common\ragec.h">
+			</File>
+			<File
 				RelativePath="..\src\common\server.h">
 			</File>
 			<File
@@ -277,12 +283,6 @@
 			</File>
 			<File
 				RelativePath="..\src\common\util.h">
-			</File>
-			<File
-				RelativePath="..\src\common\xchat.h">
-			</File>
-			<File
-				RelativePath="..\src\common\xchatc.h">
 			</File>
 		</Filter>
 		<Filter

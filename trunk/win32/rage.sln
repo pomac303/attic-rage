@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rage-dotnet", "rage-dotnet\
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gui", "gui\gui.csproj", "{86F9786F-5572-448F-9DD4-AF6681156F0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gui", "gui\gui.csproj", "{44ED257E-30C5-4350-AF18-78550BF7DC03}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -33,10 +33,10 @@ Global
 		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Debug.Build.0 = Debug|.NET
 		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Release.ActiveCfg = Release|.NET
 		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Release.Build.0 = Release|.NET
-		{86F9786F-5572-448F-9DD4-AF6681156F0C}.Debug.ActiveCfg = Debug|.NET
-		{86F9786F-5572-448F-9DD4-AF6681156F0C}.Debug.Build.0 = Debug|.NET
-		{86F9786F-5572-448F-9DD4-AF6681156F0C}.Release.ActiveCfg = Release|.NET
-		{86F9786F-5572-448F-9DD4-AF6681156F0C}.Release.Build.0 = Release|.NET
+		{44ED257E-30C5-4350-AF18-78550BF7DC03}.Debug.ActiveCfg = Debug|.NET
+		{44ED257E-30C5-4350-AF18-78550BF7DC03}.Debug.Build.0 = Debug|.NET
+		{44ED257E-30C5-4350-AF18-78550BF7DC03}.Release.ActiveCfg = Release|.NET
+		{44ED257E-30C5-4350-AF18-78550BF7DC03}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

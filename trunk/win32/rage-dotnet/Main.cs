@@ -1,4 +1,5 @@
 using System;
+//using rage;
 
 namespace rage
 {
@@ -9,7 +10,7 @@ namespace rage
 	{
 		static public void Main()
 		{
-			System.Windows.Forms.MessageBox.Show("This is the beginnings of Rage!");
+			gui.Utility.ShowMsg("This is the beginnings of Rage!");
 		}
 	}
 }

@@ -111,6 +111,9 @@
 		<ProjectReference
 			ReferencedProjectIdentifier="{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}"
 			Name="common"/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{44ED257E-30C5-4350-AF18-78550BF7DC03}"
+			Name="gui"/>
 		<AssemblyReference
 			RelativePath="mscorlib.dll"/>
 		<AssemblyReference
