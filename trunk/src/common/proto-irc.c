@@ -364,9 +364,7 @@ static void
 irc_numeric(session *sess, int parc, char *parv[])
 {
 	char line[512];
-	char *lp;
 	session *tmp = NULL;
-	int i=0;
 
 	switch(atoi(parv[1])) {
 		case RPL_WELCOME:  /* 001 */
@@ -732,14 +730,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 		tmp = sess->server->server_session;
 	}
 
-	lp=line;
-	*lp='\0';
-	for(i=3;i<parc && lp<(line+sizeof(line));i++) {
-		lp+=snprintf(lp,(gulong)sizeof(line)-(lp-line),"%s ",parv[i]);
-	}
-
-	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, line, 
-			parv[0], parv[1], NULL, 0);
+	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, paste_parv(line, sizeof(line), 
+				3, parc, parv), parv[0], parv[1], NULL, 0);
 }
 
 static void 
@@ -945,14 +937,8 @@ irc_server(session *sess, int parc, char *parv[])
 		default:
 		{
 			char line[512];
-			int i=0;
-			char *lp;
-			lp=line;
-			*lp='\0';
-			for(i=3;i<parc && lp<(line+sizeof(line));i++) {
-				lp+=snprintf(lp,(gulong)sizeof(line)-(lp-line),
-						"%s ",parv[i]);
-			}
+			paste_parv(line, sizeof(line), 3, parc, parv);
+
 			if (is_server)
 				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
 						parv[0], parv[1], NULL, 0);
