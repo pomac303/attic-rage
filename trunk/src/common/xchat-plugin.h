@@ -2,6 +2,8 @@
 #ifndef XCHAT_PLUGIN_H
 #define XCHAT_PLUGIN_H
 
+#ifdef USE_PLUGIN
+
 #define XCHAT_IFACE_MAJOR	1
 #define XCHAT_IFACE_MINOR	9
 #define XCHAT_IFACE_MICRO	11
@@ -316,5 +318,9 @@ xchat_send_modes (xchat_plugin *ph,
 
 #ifdef __cplusplus
 }
+#endif
+
+#include "plugin-timer.h"
+
 #endif
 #endif

@@ -47,6 +47,7 @@
 // include specifics directly to windows
 #define strcasecmp stricmp
 #define strncasecmp strnicmp
+#define strtoull strtoul
 
 // make sure server.c can find the identd hack
 void identd_start (char *username);

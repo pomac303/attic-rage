@@ -1,20 +1,37 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common.vcproj", "{33C98B68-860F-4583-8028-C2E4DEEC1D50}"
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common.vcproj", "{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gateway", "gateway\gateway.vcproj", "{716F7297-324D-412E-9158-CC421BD2AF70}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rage-dotnet", "rage-dotnet\rage-dotnet.csproj", "{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33C98B68-860F-4583-8028-C2E4DEEC1D50}.Debug|Win32.ActiveCfg = Debug|Win32
-		{33C98B68-860F-4583-8028-C2E4DEEC1D50}.Debug|Win32.Build.0 = Debug|Win32
-		{33C98B68-860F-4583-8028-C2E4DEEC1D50}.Release|Win32.ActiveCfg = Release|Win32
-		{33C98B68-860F-4583-8028-C2E4DEEC1D50}.Release|Win32.Build.0 = Release|Win32
+	GlobalSection(ProjectConfiguration) = postSolution
+		{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}.Debug.ActiveCfg = Debug|Win32
+		{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}.Debug.Build.0 = Debug|Win32
+		{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}.Release.ActiveCfg = Release|Win32
+		{10DA205B-4A52-4DC5-AC29-8D87DEB1F430}.Release.Build.0 = Release|Win32
+		{716F7297-324D-412E-9158-CC421BD2AF70}.Debug.ActiveCfg = Debug|Win32
+		{716F7297-324D-412E-9158-CC421BD2AF70}.Debug.Build.0 = Debug|Win32
+		{716F7297-324D-412E-9158-CC421BD2AF70}.Release.ActiveCfg = Release|Win32
+		{716F7297-324D-412E-9158-CC421BD2AF70}.Release.Build.0 = Release|Win32
+		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Debug.ActiveCfg = Debug|.NET
+		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Debug.Build.0 = Debug|.NET
+		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Release.ActiveCfg = Release|.NET
+		{6FA80E6D-EDB8-4E24-89D5-71F633BC5FA9}.Release.Build.0 = Release|.NET
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
 	EndGlobalSection
 EndGlobal

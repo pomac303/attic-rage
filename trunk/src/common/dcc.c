@@ -1214,7 +1214,7 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 				dcc->starttime = dcc->offertime = time (0);
 				dcc->serv = sess->server;
 				dcc->dccstat = STAT_QUEUED;
-				dcc->size = st.st_size;
+				dcc->size = (off_t)st.st_size;
 				dcc->type = TYPE_SEND;
 				dcc->fp = open (file_fs, OFLAGS | O_RDONLY);
 				if (dcc->fp != -1)
@@ -1508,8 +1508,8 @@ is_resumable (struct DCC *dcc)
 		{
 			if (st.st_size < dcc->size)
 			{
-				dcc->resumable = st.st_size;
-				dcc->pos = st.st_size;
+				dcc->resumable = (off_t)st.st_size;
+				dcc->pos = (off_t)st.st_size;
 			}
 			else
 				dcc->resume_error = 2;

@@ -1334,7 +1334,7 @@ display_event (char *i, session *sess, int numargs, char **args)
 				/* if no alignment, or text is wider than field
 				 * then just display the field (fast path)
 				 */
-				if (align == 0 || len >= abs(align)) {
+				if (align == 0 || len >= (unsigned)abs(align)) {
 					memcpy (&o[oi], ar, len);
 					oi += len;
 				} else {

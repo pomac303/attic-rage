@@ -199,7 +199,7 @@ tree_insert (tree *t, void *key)
 	{
 		int new_size = t->array_size + ARRAY_GROW;
 
-		t->array = realloc(t->array, sizeof (void *) * new_size);
+		t->array = realloc((void *)t->array, sizeof (void *) * new_size);
 		t->array_size = new_size;
 	}
 

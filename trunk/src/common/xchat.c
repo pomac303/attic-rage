@@ -32,7 +32,6 @@
 #endif
 
 #include "rage.h"
-#include "plugin-timer.h"
 
 #ifdef USE_OPENSSL
 #if 0
@@ -147,7 +146,7 @@ lag_check (void)
 	unsigned long tim;
 	char tbuf[128];
 	time_t now = time (0);
-	int lag;
+	unsigned int lag;
 
 	tim = make_ping_time ();
 
@@ -273,8 +272,8 @@ irc_init (session *sess)
 #ifdef USE_PLUGIN
 	if (!skip_plugins)
 		plugin_auto_load (sess);	/* autoload ~/.xchat *.so */
-#endif
 	plugin_add (sess, NULL, NULL, timer_plugin_init, NULL, NULL, FALSE);
+#endif
 
 	if (prefs.notify_timeout)
 		notify_tag = fe_timeout_add (prefs.notify_timeout * 1000,
@@ -664,6 +663,11 @@ find_away_message (struct server *serv, char *nick)
 	return 0;
 }
 
+#ifndef WIN32
+
+/* XXX: Bart: None of this is used for the .NET version. Please sort this out for Linux! */
+/* (removed Win32 stuff that was used in X-Chat) */
+
 #define XTERM "gnome-terminal -x "
 
 static char defaultconf_ctcp[] =
@@ -705,10 +709,6 @@ static char defaultconf_commands[] =
 	"NAME WALLUSERS\n"		"CMD quote WALLUSERS :&1\n\n"\
 	"NAME WII\n"			"CMD quote WHOIS %1 %1\n\n";
 
-#ifdef WIN32
-static char defaultconf_urlhandlers[] =
-	"NAME Connect as IRC server\n"		"CMD newserver %s\n\n";
-#else
 static char defaultconf_urlhandlers[] =
 	"NAME SUB\n"								"CMD Epiphany...\n\n"\
 		"NAME Open\n"							"CMD !epiphany '%s'\n\n"\
@@ -756,7 +756,6 @@ static char defaultconf_urlhandlers[] =
 		"NAME Ping\n"							"CMD !"XTERM"ping -c 4 %s\n\n"\
 	"NAME ENDSUB\n"							"CMD \n\n"\
 	"NAME Connect as IRC server\n"		"CMD newserver %s\n\n";
-#endif
 
 #ifdef USE_SIGACTION
 /* Close and open log files on SIGUSR1. Usefull for log rotating */
@@ -803,20 +802,6 @@ xchat_init (void)
 	char buf[3068];
 	const char *cs = NULL;
 
-#ifdef WIN32
-	WSADATA wsadata;
-
-#ifdef USE_IPV6
-	if (WSAStartup(0x0202, &wsadata) != 0)
-	{
-		MessageBox (NULL, "Cannot find winsock 2.2+", "Error", MB_OK);
-		exit (0);
-	}
-#else
-	WSAStartup(0x0101, &wsadata);
-#endif	/* !USE_IPV6 */
-#endif	/* !WIN32 */
-
 #ifdef USE_SIGACTION
 	struct sigaction act;
 
@@ -837,10 +822,8 @@ xchat_init (void)
 	sigemptyset (&act.sa_mask);
 	sigaction (SIGUSR2, &act, NULL);
 #else
-#ifndef WIN32
 	/* good enough for these old systems */
 	signal (SIGPIPE, SIG_IGN);
-#endif
 #endif
 
 	if (g_get_charset (&cs))
@@ -1063,8 +1046,6 @@ xchat_exit (void)
 	fe_exit ();
 }
 
-#ifndef WIN32
-
 static int
 child_handler (gpointer userdata)
 {
@@ -1075,20 +1056,14 @@ child_handler (gpointer userdata)
 	return 1;						  /* keep the timeout handler */
 }
 
-#endif
-
 void
 xchat_exec (char *cmd)
 {
-#ifdef WIN32
-	util_exec (cmd);
-#else
 	int pid = util_exec (cmd);
 	if (pid != -1)
 	/* zombie avoiding system. Don't ask! it has to be like this to work
       with zvt (which overrides the default handler) */
 		fe_timeout_add (1000, child_handler, GINT_TO_POINTER (pid));
-#endif
 }
 
 int
@@ -1119,9 +1094,6 @@ main (int argc, char *argv[])
 	xchat_mem_list ();
 #endif
 
-#ifdef WIN32
-	WSACleanup ();
-#endif
-
 	return 0;
 }
+#endif
