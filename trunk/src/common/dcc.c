@@ -24,6 +24,8 @@
 
 #include "rage.h"
 
+typedef unsigned long long llu_t; /* for use with %llu format specifiers */
+
 static char *dcctypes[] = { "SEND", "RECV", "CHAT", "CHAT" };
 
 struct dccstat_info dccstat[] = {
@@ -437,7 +439,7 @@ dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 	}
 
 	/* we really need valid UTF-8 now */
-	conv = text_validate (&line, (int *)&len);
+	conv = text_validate (&line, &len);
 
 	sess = find_dialog (dcc->serv, dcc->nick);
 	if (!sess)
@@ -830,9 +832,13 @@ dcc_connect (struct DCC *dcc)
 		/* possible problems with filenames containing spaces? */
 		if (dcc->type == TYPE_RECV)
 			snprintf (tbuf, sizeof (tbuf), strchr (dcc->file, ' ') ?
-					"DCC SEND \"%s\" %lu %d %lli %d" :
-					"DCC SEND %s %lu %d %lli %d", dcc->file,
-					dcc->addr, dcc->port, dcc->size, dcc->pasvid);
+					"DCC SEND \"%s\" %llu %d %llu %d" :
+					"DCC SEND %s %llu %d %llu %d", 
+					dcc->file,
+					(llu_t)dcc->addr, 
+					dcc->port,
+					(llu_t)dcc->size,
+					dcc->pasvid);
 		else
 			snprintf (tbuf, sizeof (tbuf), "DCC CHAT chat %lu %d %d",
 				dcc->addr, dcc->port, dcc->pasvid);
@@ -1253,17 +1259,17 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 						{
 							dcc->pasvid = new_id();
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %lli %d" :
-									"DCC SEND %s %lu %d %lli %d",
+									"DCC SEND \"%s\" %lu %d %llu %d" :
+									"DCC SEND %s %lu %d %llu %d",
 									file_part (dcc->file), 199ul,
-									0, dcc->size, dcc->pasvid);
+									0, (llu_t) dcc->size, dcc->pasvid);
 						} else
 						{
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %lli" :
-									"DCC SEND %s %lu %d %lli",
+									"DCC SEND \"%s\" %lu %d %llu" :
+									"DCC SEND %s %lu %d %llu",
 									file_part (dcc->file), dcc->addr,
-									dcc->port, dcc->size);
+									dcc->port, (llu_t) dcc->size);
 						}
 						sess->server->p_ctcp (sess->server, to, outbuf);
 
@@ -1565,9 +1571,9 @@ dcc_resume (struct DCC *dcc)
 	{
 		/* filename contains spaces? Quote them! */
 		snprintf (tbuf, sizeof (tbuf) - 10, strchr (dcc->file, ' ') ?
-					  "DCC RESUME \"%s\" %d %lli" :
-					  "DCC RESUME %s %d %lli",
-					  dcc->file, dcc->port, dcc->resumable);
+					  "DCC RESUME \"%s\" %d %llu" :
+					  "DCC RESUME %s %d %llu",
+					  dcc->file, dcc->port, (llu_t)dcc->resumable);
 
 		if (dcc->pasvid)
  			sprintf (tbuf + strlen (tbuf), " %d", dcc->pasvid);
@@ -1708,18 +1714,21 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 					/* Checking if dcc is passive and if filename contains spaces */
 					if (dcc->pasvid)
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %lli %d" :
-								"DCC ACCEPT %s %d %lli %d",
-								file_part (dcc->file), port, dcc->resumable, dcc->pasvid);
+								"DCC ACCEPT \"%s\" %d %llu %d" :
+								"DCC ACCEPT %s %d %llu %d",
+								file_part (dcc->file), port, 
+								(llu_t)dcc->resumable,
+								dcc->pasvid);
 					else
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %lli" :
-								"DCC ACCEPT %s %d %lli",
-								file_part (dcc->file), port, dcc->resumable);
+								"DCC ACCEPT \"%s\" %d %llu" :
+								"DCC ACCEPT %s %d %llu",
+								file_part (dcc->file), port, 
+								(llu_t)dcc->resumable);
 
 					dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
 				}
-				sprintf (tbuf, "%lli", dcc->pos);
+				sprintf (tbuf, "%llu", (llu_t) dcc->pos);
 				EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
 								 file_part (dcc->file), tbuf, NULL, 0);
 			}
@@ -1849,7 +1858,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 				} else
 					fe_dcc_add (dcc);
 			}
-			sprintf (tbuf, "%lli", size);
+			sprintf (tbuf, "%llu", (llu_t)size);
 			len = strlen(tbuf) + 1;
 			snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 			EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,

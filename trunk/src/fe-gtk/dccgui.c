@@ -28,16 +28,18 @@
 #define MEGABYTE (KILOBYTE * 1024)
 #define GIGABYTE (MEGABYTE * 1024)
 
+typedef unsigned long long llu_t;
+
 static void proper_unit (off_t size, char *buf, int buf_len)
 {
 	if (size <= KILOBYTE)
-		snprintf (buf, buf_len, "%lliB", size);
+		snprintf (buf, buf_len, "%lluB", (llu_t)size);
 	else if (size > KILOBYTE && size <= MEGABYTE)
-		snprintf (buf, buf_len, "%llikB", size / KILOBYTE);
+		snprintf (buf, buf_len, "%llukB", (llu_t)size / KILOBYTE);
 	else if (size > MEGABYTE && size <= GIGABYTE)
-		snprintf (buf, buf_len, "%.2fMB", (float)(size / MEGABYTE));
+		snprintf (buf, buf_len, "%.2fMB", (double)(size / MEGABYTE));
 	else
-		 snprintf (buf, buf_len, "%.2fGB", (float)(size / GIGABYTE));
+		 snprintf (buf, buf_len, "%.2fGB", (double)(size / GIGABYTE));
 }
 
 /*** UNIT PATCH ***/
@@ -328,9 +330,10 @@ dcc_info (struct DCC *dcc)
 				 "   Max CPS: %d\n"),
 				 dcc->file,
 				 dcc->nick,
-				 dcc->size,
+				 (llu_t)dcc->size,
 				 dcc->port,
-				 net_ip (dcc->addr), ctime (&dcc->starttime),
+				 net_ip (dcc->addr), 
+				 ctime (&dcc->starttime),
 				 dcc->maxcps);
 	gtkutil_simpledialog (tbuf);
 }

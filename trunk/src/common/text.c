@@ -395,7 +395,7 @@ log_write (session *sess, char *text)
 }
 
 char *
-text_validate (char **text, int *len)
+text_validate (char **text, size_t *len)
 {
 	char *utf;
 	gsize utf_len;
@@ -456,7 +456,7 @@ PrintText (session *sess, char *text)
 		conv = NULL;
 	} else
 	{
-		int len = -1;
+		size_t len = -1;
 		conv = text_validate ((char **)&text, &len);
 	}
 

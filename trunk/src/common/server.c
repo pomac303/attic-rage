@@ -214,7 +214,7 @@ close_socket (int sok)
 /* handle 1 line of text received from the server */
 
 static void
-server_inline (server *serv, char *line, int len)
+server_inline (server *serv, char *line, size_t len)
 {
 	char *utf_line_allocated = NULL;
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.2pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-15 02:34+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2003-04-20 19:51+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -64,7 +64,7 @@ msgstr "Dibatalkan"
 msgid "Cannot access %s\n"
 msgstr "Tak dapat mengakses %s\n"
 
-#: src/common/dcc.c:1885
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "Tiada DCC aktif\n"
 
@@ -108,11 +108,11 @@ msgstr "Tiada saluran disertai. Cuba /join #<saluran>\n"
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr "Tidak disambung. Cuba /server <hos [<liang>]>\n"
 
-#: src/common/outbound.c:1400
+#: src/common/outbound.c:1446
 msgid "I need /bin/sh to run!\n"
 msgstr "Saya perlukan /bin/sh untuk dilaksanakan!\n"
 
-#: src/common/outbound.c:1669
+#: src/common/outbound.c:1716
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -124,7 +124,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1704
+#: src/common/outbound.c:1749
 msgid ""
 "\n"
 "\n"
@@ -136,7 +136,7 @@ msgstr ""
 "Taip /HELP <arahan> untuk lebih maklumat, atau /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1705
+#: src/common/outbound.c:1750
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -146,36 +146,36 @@ msgstr ""
 "\n"
 " "
 
-#: src/common/outbound.c:1813
+#: src/common/outbound.c:1846
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Hujah tidak diketahui '%s' diabaikan."
 
-#: src/common/outbound.c:2755
+#: src/common/outbound.c:2789
 msgid "No such plugin found.\n"
 msgstr "Tiada plugin dijumpai.\n"
 
-#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Plugin ini enggan dinyahmuatkan.\n"
 
-#: src/common/outbound.c:3020
+#: src/common/outbound.c:3054
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nama> <aksi>, tambah butang dibawah senarai-pengguna"
 
-#: src/common/outbound.c:3022
+#: src/common/outbound.c:3056
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <arahan>, hantar arahan ke semua saluran yang anda sertai"
 
-#: src/common/outbound.c:3024
+#: src/common/outbound.c:3058
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <arahan>, hantar arahan ke semua pelkayan yang anda masuk"
 
-#: src/common/outbound.c:3025
+#: src/common/outbound.c:3059
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<alasan>], menetapkan anda away"
 
-#: src/common/outbound.c:3027
+#: src/common/outbound.c:3061
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -183,30 +183,30 @@ msgid ""
 msgstr ""
 
 # libgnomeui/gnome-app-helper.c:253
-#: src/common/outbound.c:3029
+#: src/common/outbound.c:3063
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Kosongkan teks tetingkap semasa"
 
 # libgnomeui/gnome-app-helper.c:253
-#: src/common/outbound.c:3030
+#: src/common/outbound.c:3064
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Tutup tetingkap/tab semasa"
 
-#: src/common/outbound.c:3032
+#: src/common/outbound.c:3066
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kod>, cari kod negara , eg: my = malaysia"
 
-#: src/common/outbound.c:3034
+#: src/common/outbound.c:3068
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
 msgstr ""
 
-#: src/common/outbound.c:3036
+#: src/common/outbound.c:3070
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr ""
 
-#: src/common/outbound.c:3038
+#: src/common/outbound.c:3072
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -217,77 +217,77 @@ msgid ""
 "         /dcc close send johnsmith file.tar.gz"
 msgstr ""
 
-#: src/common/outbound.c:3047
+#: src/common/outbound.c:3081
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3049
+#: src/common/outbound.c:3083
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr ""
 
-#: src/common/outbound.c:3051
+#: src/common/outbound.c:3085
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3053
+#: src/common/outbound.c:3087
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3088
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Putus daripada pelayan"
 
-#: src/common/outbound.c:3055
+#: src/common/outbound.c:3089
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr ""
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3090
 msgid "ECHO <text>, Prints text locally"
 msgstr ""
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3093
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
 msgstr ""
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3095
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr ""
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3098
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
 msgstr ""
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3100
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr ""
 
-#: src/common/outbound.c:3067
+#: src/common/outbound.c:3101
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr ""
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3105
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr ""
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3107
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 
-#: src/common/outbound.c:3079
+#: src/common/outbound.c:3113
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3115
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -296,212 +296,212 @@ msgid ""
 "    options - NOSAVE, QUIET"
 msgstr ""
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3121
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3122
 msgid "JOIN <channel>, joins the channel"
 msgstr ""
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3124
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3126
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3129
 msgid "LAGCHECK, forces a new lag check"
 msgstr ""
 
-#: src/common/outbound.c:3097
+#: src/common/outbound.c:3131
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr ""
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3133
 msgid "LOAD <file>, loads a plugin or script"
 msgstr ""
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3135
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3137
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3139
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
 msgstr ""
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3141
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3110
+#: src/common/outbound.c:3144
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3145
 msgid "MSG <nick> <message>, sends a private message"
 msgstr ""
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3147
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, Senaraikan gelaran pada saluran semasa"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3149
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr ""
 
-#: src/common/outbound.c:3116
+#: src/common/outbound.c:3150
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr ""
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3151
 msgid "NICK <nickname>, sets your nick"
 msgstr ""
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3153
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
 msgstr ""
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3155
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3157
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3159
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3161
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr ""
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3163
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3165
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr ""
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3167
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr ""
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3170
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
 "reconnect to all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3173
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
 "all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3175
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3176
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3178
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <teks>, hantar teks ke objek pada tetingkap semasa"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3181
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3184
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3189
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
 msgstr ""
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3192
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
 msgstr ""
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3194
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr ""
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3197
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3199
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3200
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr ""
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3201
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr ""
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3204
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3206
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr ""
 
-#: src/common/outbound.c:3174
+#: src/common/outbound.c:3208
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "ALLCHAN <arahan>, hantar arahan ke semua saluran yang anda sertai"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3210
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr ""
 
-#: src/common/outbound.c:3221
+#: src/common/outbound.c:3255
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Penggunaan: %s\n"
 
-#: src/common/outbound.c:3226
+#: src/common/outbound.c:3260
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -509,19 +509,19 @@ msgstr ""
 "\n"
 "Tiada bantuan yang ada bagi larahan itu.\n"
 
-#: src/common/outbound.c:3232
+#: src/common/outbound.c:3266
 msgid "No such command.\n"
 msgstr "Tiada arahan sebegitu.\n"
 
-#: src/common/outbound.c:3595
+#: src/common/outbound.c:3625
 msgid "Bad arguments for user command.\n"
 msgstr "Hujah teruk ke arahan pengguna\n"
 
-#: src/common/outbound.c:3759
+#: src/common/outbound.c:3787
 msgid "Too many recursive usercommands, aborting."
 msgstr "Terlalu banyak arahanpengguna rekursif, dibatalkan."
 
-#: src/common/outbound.c:3816
+#: src/common/outbound.c:3845
 msgid "Unknown Command. Try /help\n"
 msgstr "Arahan tidak diketahui. Cuba /help\n"
 
@@ -1153,12 +1153,7 @@ msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:417
 #, fuzzy
-msgid "%C0%B%171Garbage%187%B$t$1%O"
-msgstr "%C13*%O$t$1 $2%O"
-
-#: src/common/textevents.h:420
-#, fuzzy
-msgid "%C0%B%171Silence%187%B$t$1%O"
+msgid "%C0%B&171Garbage%187%B$t$1%O"
 msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/text.c:195
@@ -1679,19 +1674,14 @@ msgstr "Klien keluar"
 msgid "the message"
 msgstr "Mesej"
 
-#: src/common/text.c:1049
-#, fuzzy
-msgid "the hostmask"
-msgstr "Hosmask"
-
-#: src/common/text.c:1086
+#: src/common/text.c:1082
 #, fuzzy, c-format
 msgid ""
 "Error parsing event %s.\n"
 "Loading default."
 msgstr "Ralat menetapkan kekunci %s kembali ke default: %s\n"
 
-#: src/common/text.c:1793
+#: src/common/text.c:1789
 #, fuzzy, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -2772,233 +2762,233 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Entah"
 
-#: src/common/rage.c:902
+#: src/common/xchat.c:899
 msgid "Direct client-to-client"
 msgstr ""
 
-#: src/common/rage.c:903
+#: src/common/xchat.c:900
 #, fuzzy
 msgid "Send File"
 msgstr "Kirim fail kepada %s"
 
-#: src/common/rage.c:904
+#: src/common/xchat.c:901
 msgid "Offer Chat"
 msgstr ""
 
-#: src/common/rage.c:905
+#: src/common/xchat.c:902
 #, fuzzy
 msgid "Abort Chat"
 msgstr "Perihal X-Chat"
 
-#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
+#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versi"
 
 # libgnomeui/gnome-scores.c:99
-#: src/common/rage.c:907
+#: src/common/xchat.c:904
 #, fuzzy
 msgid "Userinfo"
 msgstr "Pengguna"
 
-#: src/common/rage.c:908
+#: src/common/xchat.c:905
 msgid "Clientinfo"
 msgstr ""
 
-#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
+#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/rage.c:910
+#: src/common/xchat.c:907
 msgid "Time"
 msgstr "Masa"
 
-#: src/common/rage.c:911
+#: src/common/xchat.c:908
 #, fuzzy
 msgid "Finger"
 msgstr "Niger"
 
-#: src/common/rage.c:912
+#: src/common/xchat.c:909
 #, fuzzy
 msgid "Oper"
 msgstr "Buka"
 
-#: src/common/rage.c:913
+#: src/common/xchat.c:910
 msgid "Kill this user"
 msgstr ""
 
-#: src/common/rage.c:914
+#: src/common/xchat.c:911
 msgid "Mode"
 msgstr "Mod"
 
-#: src/common/rage.c:915
+#: src/common/xchat.c:912
 msgid "Give Ops"
 msgstr "Beri Ops"
 
-#: src/common/rage.c:916
+#: src/common/xchat.c:913
 msgid "Take Ops"
 msgstr "Ambil Ops"
 
-#: src/common/rage.c:917
+#: src/common/xchat.c:914
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Beri Ops"
 
-#: src/common/rage.c:918
+#: src/common/xchat.c:915
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Ambil Ops"
 
-#: src/common/rage.c:919
+#: src/common/xchat.c:916
 msgid "Give Voice"
 msgstr ""
 
-#: src/common/rage.c:920
+#: src/common/xchat.c:917
 msgid "Take Voice"
 msgstr ""
 
-#: src/common/rage.c:921
+#: src/common/xchat.c:918
 msgid "Ignore"
 msgstr "Abai"
 
-#: src/common/rage.c:922
+#: src/common/xchat.c:919
 msgid "Ignore User"
 msgstr "Abaikan Pengguna"
 
-#: src/common/rage.c:923
+#: src/common/xchat.c:920
 msgid "UnIgnore User"
 msgstr "Nyah-abai Pengguna"
 
-#: src/common/rage.c:924
+#: src/common/xchat.c:921
 msgid "Kick/Ban"
 msgstr "Tendang/Ban"
 
-#: src/common/rage.c:925 src/common/rage.c:977
+#: src/common/xchat.c:922 src/common/xchat.c:974
 msgid "Kick"
 msgstr "Tendang"
 
-#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
-#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
+#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
+#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
 #, fuzzy
 msgid "Ban"
 msgstr "Bhutan"
 
-#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
-#: src/common/rage.c:934
+#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
+#: src/common/xchat.c:931
 msgid "KickBan"
 msgstr ""
 
-#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Maklumat"
 
-#: src/common/rage.c:936
+#: src/common/xchat.c:933
 msgid "Who"
 msgstr "Siapa"
 
-#: src/common/rage.c:937 src/common/rage.c:990
+#: src/common/xchat.c:934 src/common/xchat.c:987
 msgid "WhoIs"
 msgstr ""
 
-#: src/common/rage.c:938
+#: src/common/xchat.c:935
 msgid "DNS Lookup"
 msgstr "Carian DNS"
 
-#: src/common/rage.c:939
+#: src/common/xchat.c:936
 msgid "Trace"
 msgstr "Surih"
 
-#: src/common/rage.c:940
+#: src/common/xchat.c:937
 msgid "UserHost"
 msgstr "HosPengguna"
 
-#: src/common/rage.c:941
+#: src/common/xchat.c:938
 msgid "External"
 msgstr "Luaran"
 
-#: src/common/rage.c:942
+#: src/common/xchat.c:939
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/rage.c:944
+#: src/common/xchat.c:941
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/rage.c:945
+#: src/common/xchat.c:942
 msgid "Open Dialog Window"
 msgstr "Buka Tetingkap Dialog"
 
-#: src/common/rage.c:957
+#: src/common/xchat.c:954
 msgid "Disconnect"
 msgstr "Putus"
 
-#: src/common/rage.c:958
+#: src/common/xchat.c:955
 msgid "Reconnect"
 msgstr "UlangSambung"
 
-#: src/common/rage.c:959
+#: src/common/xchat.c:956
 #, fuzzy
 msgid "Leave Channel"
 msgstr "Saluran"
 
-#: src/common/rage.c:960
+#: src/common/xchat.c:957
 msgid "Join Channel..."
 msgstr "Sertai Saluran..."
 
-#: src/common/rage.c:961
+#: src/common/xchat.c:958
 #, fuzzy
 msgid "Enter Channel to Join:"
 msgstr "Saluran ini akan"
 
-#: src/common/rage.c:962
+#: src/common/xchat.c:959
 msgid "Server Links"
 msgstr "Pautan Pelayan"
 
-#: src/common/rage.c:963
+#: src/common/xchat.c:960
 msgid "Ping Server"
 msgstr "Ping Pelayan"
 
-#: src/common/rage.c:964
+#: src/common/xchat.c:961
 msgid "Hide Version"
 msgstr "Sorok Versi"
 
-#: src/common/rage.c:974
+#: src/common/xchat.c:971
 msgid "Op"
 msgstr "Op"
 
-#: src/common/rage.c:975
+#: src/common/xchat.c:972
 msgid "DeOp"
 msgstr ""
 
-#: src/common/rage.c:978
+#: src/common/xchat.c:975
 msgid "bye"
 msgstr ""
 
-#: src/common/rage.c:979
+#: src/common/xchat.c:976
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Masukkan alasan untuk tendang %s:"
 
-#: src/common/rage.c:980
+#: src/common/xchat.c:977
 #, fuzzy
 msgid "Sendfile"
 msgstr "Fail bunyi: "
 
-#: src/common/rage.c:981
+#: src/common/xchat.c:978
 msgid "Dialog"
 msgstr "Dialog"
 
-#: src/common/rage.c:991
+#: src/common/xchat.c:988
 #, fuzzy
 msgid "Send"
 msgstr "Hantar"
 
-#: src/common/rage.c:992
+#: src/common/xchat.c:989
 #, fuzzy
 msgid "Chat"
 msgstr "Chad"
 
-#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
-#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
+#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
+#: src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Kosongkan"
 
@@ -3229,43 +3219,43 @@ msgstr "*BARU*"
 msgid "EDIT ME"
 msgstr "EDIT SAYA"
 
-#: src/fe-gtk/editlist.c:281 src/fe-gtk/plugingui.c:49
+#: src/fe-gtk/editlist.c:277 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "Nama"
 
-#: src/fe-gtk/editlist.c:282
+#: src/fe-gtk/editlist.c:278
 msgid "Command"
 msgstr "Arahan"
 
-#: src/fe-gtk/editlist.c:318
+#: src/fe-gtk/editlist.c:314
 msgid "Move Up"
 msgstr "Naik Atas"
 
-#: src/fe-gtk/editlist.c:322
+#: src/fe-gtk/editlist.c:318
 msgid "Move Dn"
 msgstr "Turun Bawah"
 
-#: src/fe-gtk/editlist.c:330
+#: src/fe-gtk/editlist.c:326
 msgid "Cancel"
 msgstr "Batal"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:330 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Simpan"
 
-#: src/fe-gtk/editlist.c:342
+#: src/fe-gtk/editlist.c:338
 msgid "Add New"
 msgstr "Tambah Baru"
 
-#: src/fe-gtk/editlist.c:346 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
 msgid "Delete"
 msgstr "Padam"
 
-#: src/fe-gtk/editlist.c:354
+#: src/fe-gtk/editlist.c:350
 msgid "Sort"
 msgstr "Isih"
 
-#: src/fe-gtk/editlist.c:358
+#: src/fe-gtk/editlist.c:354
 msgid "Help"
 msgstr "Bantuan"
 
@@ -3409,7 +3399,7 @@ msgstr "Terdapat ralat memuatkan konfigurasi ikatan kekunci"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2443
+#: src/fe-gtk/maingui.c:2454
 msgid "<none>"
 msgstr "<tiada>"
 
@@ -3506,7 +3496,7 @@ msgstr "Tidak dapat menulis ke fail itu."
 msgid "Cannot read that file."
 msgstr "Tidak dapat membaca fail itu."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
 msgid "That mask already exists."
 msgstr ""
 
@@ -3535,43 +3525,48 @@ msgstr "Jemput"
 msgid "Unignore"
 msgstr "Nyah-abai"
 
-#: src/fe-gtk/ignoregui.c:277
+#: src/fe-gtk/ignoregui.c:270
 msgid "Enter mask to ignore:"
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:317
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "Dalam Senarai Abaikan"
 
-#: src/fe-gtk/ignoregui.c:331
+#: src/fe-gtk/ignoregui.c:324
 msgid "Ignore Stats:"
 msgstr "Abaikan Stat:"
 
-#: src/fe-gtk/ignoregui.c:339
+#: src/fe-gtk/ignoregui.c:332
 msgid "Channel:"
 msgstr "Saluran:"
 
-#: src/fe-gtk/ignoregui.c:340
+#: src/fe-gtk/ignoregui.c:333
 #, fuzzy
 msgid "Private:"
 msgstr "Pemacu Jaz"
 
-#: src/fe-gtk/ignoregui.c:341
+#: src/fe-gtk/ignoregui.c:334
 msgid "Notice:"
 msgstr "Notis:"
 
-#: src/fe-gtk/ignoregui.c:342
+#: src/fe-gtk/ignoregui.c:335
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:343
+#: src/fe-gtk/ignoregui.c:336
 msgid "Invite:"
 msgstr "Jemput:"
 
-#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Tambah"
+#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Baru"
+
+#: src/fe-gtk/ignoregui.c:351
+#, fuzzy
+msgid "Delete All"
+msgstr "Padam"
 
 #: src/fe-gtk/maingui.c:275
 #, fuzzy
@@ -3667,7 +3662,21 @@ msgstr "katakunci"
 msgid "User Limit"
 msgstr "Had Pengguna"
 
-#: src/fe-gtk/maingui.c:1723
+#: src/fe-gtk/maingui.c:1564
+#, fuzzy
+msgid "Close this tab/window"
+msgstr "Tutup tetingkap ini"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1662
+#, fuzzy
+msgid "Show/Hide userlist"
+msgstr "Sorok/Papar Opsyen"
+
+#: src/fe-gtk/maingui.c:1775
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3675,22 +3684,7 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
-#: src/fe-gtk/maingui.c:2664
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
-#, fuzzy
-msgid "Close this tab/window"
-msgstr "Tutup tetingkap ini"
-
-#: src/fe-gtk/maingui.c:1919
-#, fuzzy
-msgid "Show/Hide userlist"
-msgstr "Sorok/Papar Opsyen"
-
-#: src/fe-gtk/maingui.c:1957
+#: src/fe-gtk/maingui.c:1968
 #, fuzzy
 msgid "Enter new nickname:"
 msgstr "Gelaran baru"
@@ -3897,10 +3891,6 @@ msgstr ""
 #: src/fe-gtk/menu.c:1205
 msgid "Server List..."
 msgstr "Senarai Pelayan..."
-
-#: src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Baru"
 
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
@@ -4151,6 +4141,10 @@ msgstr "Masukkan nama gelaran untuk ditambah:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Senarai Makluman"
+
+#: src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Tambah"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5333,8 +5327,12 @@ msgid "%d ops, %d total"
 msgstr ""
 
 #, fuzzy
-#~ msgid "Delete All"
-#~ msgstr "Padam"
+#~ msgid "%C0%B%171Silence%187%B$t$1%O"
+#~ msgstr "%C13*%O$t$1 $2%O"
+
+#, fuzzy
+#~ msgid "the hostmask"
+#~ msgstr "Hosmask"
 
 #, fuzzy
 #~ msgid "%C22*%O$t$1 added to notify list."

@@ -31,7 +31,7 @@ int pevent_load (char *filename);
 void pevent_make_pntevts (void);
 void text_emit (int index, session *sess, char *a, char *b, char *c, char *d);
 int text_emit_by_name (char *name, session *sess, char *a, char *b, char *c, char *d);
-char *text_validate (char **text, int *len);
+char *text_validate (char **text, size_t *len);
 int get_stamp_str (char *fmt, time_t tim, char **ret);
 
 void sound_play (const char *file);
