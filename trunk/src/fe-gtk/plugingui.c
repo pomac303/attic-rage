@@ -71,16 +71,16 @@ plugingui_close (GtkWidget * wid, gpointer a)
 	plugin_window = NULL;
 }
 
-extern GSList *plugin_list;
+extern dict_t plugin_list;
 
 void
 fe_pluginlist_update (void)
 {
 	rage_plugin *pl;
-	GSList *list;
 	GtkTreeView *view;
 	GtkListStore *store;
 	GtkTreeIter iter;
+	dict_iterator_t it;
 
 	if (!plugin_window)
 		return;
@@ -89,19 +89,17 @@ fe_pluginlist_update (void)
 	store = GTK_LIST_STORE (gtk_tree_view_get_model (view));
 	gtk_list_store_clear (store);
 
-	list = plugin_list;
-	while (list)
+	for (it = dict_first(plugin_list); it; it=iter_next(it))
 	{
-		pl = list->data;
+		pl = iter_data(it);
 		if (pl->version[0] != 0)
 		{
 			gtk_list_store_append (store, &iter);
 			gtk_list_store_set (store, &iter, NAME_COLUMN, pl->name,
-			                    VERSION_COLUMN, pl->version,
-			                    FILE_COLUMN, file_part (pl->filename),
-			                    DESC_COLUMN, pl->desc, -1);
+					VERSION_COLUMN, pl->version,
+					FILE_COLUMN, file_part (pl->filename),
+					DESC_COLUMN, pl->desc, -1);
 		}
-		list = list->next;
 	}
 }
 
