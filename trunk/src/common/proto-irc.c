@@ -481,7 +481,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			EMIT_SIGNAL(XP_TE_WHOIS1, 
 					sess->server->server_session,
 					parv[3], parv[4], parv[5],
-					parv[6], 0);
+					parv[7], 0);
 			return;
 		case RPL_WHOISIDLE: /* 317 */
 		{
@@ -632,10 +632,18 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_WHOREPLY: /* 352 */
 		{	
 			unsigned int away = 0;
+			char *tmp;
 			session *who_sess = find_channel(sess->server, parv[3]);
 			/* TODO: eww */
 			if (*parv[8] == 'G')
 				away = 1;
+
+			if ((tmp = strchr(parv[9], ' ')))
+			{
+				tmp++;
+				parv[9] = tmp;
+			}
+			parv[9] = strip_color(parv[9]);
 
 			inbound_user_info(sess,parv[3],parv[4], parv[5], 
 					parv[6], parv[7], parv[9], away);
