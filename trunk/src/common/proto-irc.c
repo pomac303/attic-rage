@@ -170,15 +170,13 @@ irc_user_whois (server *serv, char *nicks)
 static void
 irc_message (server *serv, char *channel, char *text)
 {
+	char targetchan[CHANLEN];
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cmsg */
-	if (!is_channel(serv, channel) && serv->front_session->me 
-			&& serv->front_session->me->op
-			&& isupport(serv, "CPRIVMSG")
-			&& find_name(serv->front_session, channel))
+	if (isupport(serv, "CPRIVMSG") && find_ctarget(serv, targetchan, channel))
 	{
 		tcp_sendf (serv, "CPRIVMSG %s %s :%s\r\n", channel, 
-				serv->front_session->channel, text);
+				targetchan, text);
 	}
 	else
 		tcp_sendf (serv, "PRIVMSG %s :%s\r\n", channel, text);
@@ -193,15 +191,13 @@ irc_action (server *serv, char *channel, char *act)
 static void
 irc_notice (server *serv, char *channel, char *text)
 {
+	char targetchan[CHANLEN];
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cnotice */
-	if (!is_channel(serv, channel) && serv->front_session->me->op
-			&& serv->front_session->me->op
-			&& isupport(serv, "CNOTICE")
-			&& find_name(serv->front_session, channel))
+	if (isupport(serv, "CNOTICE") && find_ctarget(serv, targetchan, channel))
 	{
 		tcp_sendf (serv, "CNOTICE %s %s :%s\r\n", channel, 
-				serv->front_session->channel, text);
+				targetchan, text);
 	}
 	else
 		tcp_sendf (serv, "NOTICE %s :%s\r\n", channel, text);

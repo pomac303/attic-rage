@@ -203,6 +203,27 @@ find_name_global (struct server *serv, char *name)
 	return 0;
 }
 
+int
+find_ctarget (struct server *serv, char *channel, char *name)
+{
+	session *sess;
+	GSList *list = sess_list;
+	while (list)
+	{
+		sess = (session *) list->data;
+		if (sess->server == serv && sess->me && sess->me->op)
+		{
+			if (find_name(sess, name))
+			{
+				strncpy(channel, sess->channel, CHANLEN);
+				return 1;
+			}
+		}
+		list = list->next;
+	}
+	return 0;
+}
+
 static void
 update_counts (session *sess, struct User *user, char prefix,
 					int level, int offset)

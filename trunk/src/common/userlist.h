@@ -37,5 +37,6 @@ void update_all_of (char *name);
 GSList *userlist_flat_list (session *sess);
 GList *userlist_double_list (session *sess);
 void userlist_rehash (session *sess);
+int find_ctarget (struct server *serv, char *channel, char *name);
 
 #endif
