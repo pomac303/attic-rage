@@ -433,29 +433,28 @@ irc_numeric(session *sess, int parc, char *parv[])
 		{
 			session *who_sess;
 			who_sess = find_channel(sess->server,parv[3]);
+
 			if (who_sess)
 			{
 				if (!who_sess->doing_who)
-				{
 					EMIT_SIGNAL(XP_TE_SERVTEXT,
 						sess->server->server_session,
 							parv[parc-1], parv[0],
 							parv[1], NULL,
 							0);
-					who_sess->doing_who = FALSE;
-				} else
-				{
-					if (!sess->server->doing_dns)
-						EMIT_SIGNAL (XP_TE_SERVTEXT,
-						sess->server->server_session,
-								parv[parc-1], 
-								parv[0],
-								parv[1],NULL,
-								0);
-					sess->server->doing_dns = FALSE;
-				}
-				return;
+				who_sess->doing_who = FALSE;
+			} else
+			{
+				if (!sess->server->doing_dns)
+					EMIT_SIGNAL (XP_TE_SERVTEXT,
+					sess->server->server_session,
+							parv[parc-1], 
+							parv[0],
+							parv[1],NULL,
+							0);
+				sess->server->doing_dns = FALSE;
 			}
+			return;
 		}
 		case RPL_WHOISUSER:   /* 311 */
 			sess->server->inside_whois = 1;
@@ -607,10 +606,14 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* try to show only user initiated whos */
 
 			if (!who_sess || !who_sess->doing_who)
+			{
+				/* XXX: broken, dosn't spill the beans. 
+				 * ie, only minimal info gets through. */
 				EMIT_SIGNAL(XP_TE_SERVTEXT, 
 						sess->server->server_session, 
 						parv[parc-1], parv[0], 
 						parv[1], NULL, 0);
+			}
 			
 			return;
 		}
