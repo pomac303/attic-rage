@@ -286,19 +286,25 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	gchar *line = NULL;
 	int throttle, len = strlen(buf);
 
-	if (!prefs.utf8_locale)
+	if (serv->encoding == NULL)
 	{
-		if (serv->encoding == NULL)
-			g_get_charset((const char **)&serv->encoding);
-			
-		line = g_convert(buf, len, serv->encoding, "UTF-8", NULL, &written, NULL);
+		const char *encoding;
+		g_get_charset(&encoding);
+		serv->encoding = g_strdup (encoding);
 	}
+	
+	if (strcasecmp(serv->encoding, "UTF-8") != 0 &&
+			strcasecmp(serv->encoding, "UTF8"))
+		line = g_convert(buf, len, serv->encoding, "UTF-8", 
+				NULL, &written, NULL);
 
 	msg->msg = line ? line : g_strdup(buf);
 	msg->target = target ? g_strdup(target) : NULL;
 	msg->args = args ? g_strdup(args) : NULL;
 	msg->type = type;
-	msg->utf8 = line ? 0 : 1; /* If line is non null, the data got converted */
+	/* If line is non null and the default locale is not utf8, 
+	 * then the data got converted */
+	msg->utf8 = line ? 0 : 1;
 
 	/* Calc on each line to know when to stop throttling... */
 	throttle = queue_throttle(serv);
