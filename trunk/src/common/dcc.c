@@ -45,6 +45,14 @@ static gboolean dcc_send_data (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc);
 
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+#define htonll(x)	bswap_64(x)
+#define ntohll(x)	bswap_64(x)
+#else
+#define htonll(x)	(x)
+#define ntohll(x)	(x)
+#endif
+
 static int new_id(void)
 {
 	static int id = 1;
@@ -585,13 +593,9 @@ dcc_calc_average_cps (struct DCC *dcc)
 static void
 dcc_send_ack (struct DCC *dcc)
 {
-	guint64 pos;
-	/* send in 32-bit big endian */
-#if __BYTE_ORDER == __LITTLE_ENDIAN
-	pos = bswap_64(dcc->pos);
-#else
-	pos = pos;
-#endif
+	gint64 pos;
+	/* send in 64-bit big endian */
+	pos = htonll(dcc->pos);
 	send (dcc->sok, (char *) &pos, 4, 0);
 }
 
@@ -945,7 +949,7 @@ dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	if (len < 4)
 		return TRUE;
 	recv (sok, (char *) &ack, 4, 0);
-	dcc->ack = ntohl (ack);
+	dcc->ack = ntohll (ack);
 
 	/* fix for BitchX */
 	if (dcc->ack < dcc->resumable)
