@@ -317,10 +317,17 @@ new_session (server *serv, char *from, int type, int focus)
 void
 set_server_defaults (server *serv)
 {
-	if (serv->chantypes)
-		free (serv->chantypes);
-	if (serv->chanmodes)
-		free (serv->chanmodes);
+	if (serv->isupport)
+		dict_delete(serv->isupport);
+	serv->isupport = dict_new();
+
+	dict_set_free_keys(serv->isupport, g_free);
+	dict_set_free_data(serv->isupport, g_free);
+
+	/* setup some defaults */
+	dict_insert(serv->isupport, g_strdup("CHANMODES"), g_strdup("b,k,l,imnpst"));
+	dict_insert(serv->isupport, g_strdup("CHANTYPES"), g_strdup("#&")); 
+	
 	if (serv->nick_prefixes)
 		free (serv->nick_prefixes);
 	if (serv->nick_modes)
@@ -331,8 +338,6 @@ set_server_defaults (server *serv)
 		serv->encoding = NULL;
 	}*/
 
-	serv->chantypes = strdup ("#&!+");
-	serv->chanmodes = strdup ("beI,k,l");
 	serv->nick_prefixes = strdup ("@%+");
 	serv->nick_modes = strdup ("ohv");
 
@@ -480,8 +485,6 @@ kill_server_callback (server * serv)
 
 	free (serv->nick_modes);
 	free (serv->nick_prefixes);
-	free (serv->chanmodes);
-	free (serv->chantypes);
 	if (serv->bad_nick_prefixes)
 		free (serv->bad_nick_prefixes);
 	if (serv->last_away_reason)

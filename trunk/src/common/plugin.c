@@ -1152,8 +1152,9 @@ xchat_list_str (xchat_plugin *ph, xchat_list *xlist, const char *name)
 		{
 		case 0x2c0b7d03: /* channel */
 			return ((session *)data)->channel;
-		case 0x577e0867: /* chantypes */
-			return ((session *)data)->server->chantypes;
+		/* XXX: needs isupport */
+//		case 0x577e0867: /* chantypes */
+//			return ((session *)data)->server->chantypes;
 		case 0x38b735af: /* context */
 			return data;	/* this is a session * */
 		case 0x6de15a2e: /* network */

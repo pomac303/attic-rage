@@ -392,8 +392,6 @@ typedef struct server
 	int pos;								/* current position in linebuf */
 	int nickcount;
 
-	char *chantypes;					/* for 005 numeric - free me */
-	char *chanmodes;					/* for 005 numeric - free me */
 	char *nick_prefixes;				/* e.g. "*@%+" */
 	char *nick_modes;					/* e.g. "aohv" */
 	char *bad_nick_prefixes;		/* for ircd that doesn't give the modes */

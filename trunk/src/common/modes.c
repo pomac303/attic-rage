@@ -103,7 +103,10 @@ send_channel_modes (session *sess, char *word[], int wpos, int end,
 int
 is_channel (server * serv, char *chan)
 {
-	if (strchr (serv->chantypes, chan[0]))
+	char *ct = get_isupport(serv, "CHANTYPES");
+	if (!ct)
+		return 0;
+	if (strchr(ct, chan[0]))
 		return 1;
 	return 0;
 }
@@ -407,7 +410,7 @@ mode_has_arg (server * serv, char sign, char mode)
 		return 1;
 
 	/* see what numeric 005 CHANMODES=xxx said */
-	cm = serv->chanmodes;
+	cm = get_isupport(serv, "CHANMODES");
 	type = 0;
 	while (*cm)
 	{
@@ -633,17 +636,6 @@ run_005 (server * serv)
 			serv->p_cmp = (void *)strcasecmp;
 	}
 	
-	if((pre = get_isupport(serv, "CHANMODES")))
-	{
-		free (serv->chanmodes);
-		serv->chanmodes = strdup(pre);
-	}
-	
-	if((pre = get_isupport(serv, "CHANTYPES")))
-	{
-		free (serv->chantypes);
-		serv->chantypes = strdup(pre);
-	}
 	
 	if((pre = get_isupport(serv, "CHARSET")))
 	{

@@ -369,12 +369,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 	switch(atoi(parv[1])) {
 		case RPL_WELCOME:  /* 001 */
 			inbound_login_start(sess,parv[2],parv[0]);
-			if (sess->server->isupport)
-				dict_delete(sess->server->isupport);
-			sess->server->isupport = dict_new();
-
-			dict_set_free_keys(sess->server->isupport, g_free);
-			dict_set_free_data(sess->server->isupport, g_free);
 			/* PTnet code not ported */
 			break;
 		case RPL_MYINFO: /* 004 */
@@ -560,7 +554,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_CHANNELMODEIS: /* 324 */
 		{
 			char *chmode;
-			size_t chlen;
 			sess = find_channel(sess->server,parv[3]);
 			if (!sess)
 				sess = sess->server->server_session;
@@ -572,28 +565,12 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* TODO: use 005 to figure out which buttons to 
 			 *       draw
 			 */
-			if ((chmode = get_isupport(sess->server, "CHANMODES")))
+			chmode = get_isupport(sess->server, "CHANMODES");
+			while(*chmode)
 			{
-				chlen = strlen(chmode);
-				while(chlen > -1)
-				{
-					if(chmode[chlen] != ',')
-						fe_update_mode_buttons(sess,
-								chmode[chlen--], '-');
-					else
-						chlen--;
-				}
-			}
-			else 
-			{
-				fe_update_mode_buttons(sess,'t','-');
-				fe_update_mode_buttons(sess,'n','-');
-				fe_update_mode_buttons(sess,'s','-');
-				fe_update_mode_buttons(sess,'i','-');
-				fe_update_mode_buttons(sess,'p','-');
-				fe_update_mode_buttons(sess,'m','-');
-				fe_update_mode_buttons(sess,'l','-');
-				fe_update_mode_buttons(sess,'k','-');
+				if(*chmode != ',')
+					fe_update_mode_buttons(sess, *chmode, '-');
+				chmode++;
 			}
 			handle_mode(sess->server, parc, parv, "", TRUE); 
 			return;
