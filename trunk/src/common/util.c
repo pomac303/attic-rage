@@ -1620,3 +1620,33 @@ tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *
 	return 2;
 }
 
+/*
+ * © 2001-2004 by David Gerber <zapek@morphos.net>
+ * All Rights Reserved
+ *
+ * This routine was donated to rage
+ * and released under GPL.
+ *
+ * Perverted by Ian Kumlien <pomac@vapor.com>
+ */
+
+void
+capacity_format_size(char *s, unsigned long size, guint64 n)
+{
+	if (n < 1024 * 10)
+		snprintf(s, size, "%llu bytes", n);
+	else if (n < 1024 * 1024)
+		snprintf(s, size, "%llu.%llu KB", n / 1024, n % 1024 * 10 / 1024);
+	else if (n < 1024 * 1024 * 1024)
+		snprintf(s, size, "%llu.%llu MB", n / (1024 * 1024), n %
+				(1024 * 1024) * 10 / (1024 * 1024));
+	else if (n < (guint64)1024 * 1024 * 1024 * 1024)
+		snprintf(s, size, "%llu.%llu GB", n / (1024 * 1024 * 1024), n %
+				(1024 * 1024 * 1024) * 10 / (1024 * 1024 * 1024));
+	else
+		snprintf(s, size, "%llu.%llu TB", n /
+				((guint64)1024 * 1024 * 1024 * 1024), n %
+				((guint64)1024 * 1024 * 1024 * 1024)  * 10 /
+				((guint64)1024 * 1024 * 1024 * 1024));
+}
+

@@ -52,4 +52,6 @@ int gen_parm_throttle(int *level, int *weight, int *leak, int *limit, time_t *ts
 int tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta);
 void tab_clean(void);
 
+void capacity_format_size(char *s, unsigned long size, guint64 n);
+
 #endif

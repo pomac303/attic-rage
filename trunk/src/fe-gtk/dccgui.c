@@ -22,26 +22,6 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #endif
 
-/*** UNIT PATCH ***/
-
-#define KILOBYTE 1024
-#define MEGABYTE (KILOBYTE * 1024)
-#define GIGABYTE (MEGABYTE * 1024)
-
-static void proper_unit (guint64 size, char *buf, int buf_len)
-{
-	if (size <= KILOBYTE)
-		snprintf (buf, buf_len, "%lluB", (guint64)size);
-	else if (size > KILOBYTE && size <= MEGABYTE)
-		snprintf (buf, buf_len, "%llukB", (guint64)size / KILOBYTE);
-	else if (size > MEGABYTE && size <= GIGABYTE)
-		snprintf (buf, buf_len, "%.2fMB", (double)(size / MEGABYTE));
-	else
-		 snprintf (buf, buf_len, "%.2fGB", (double)(size / GIGABYTE));
-}
-
-/*** UNIT PATCH ***/
-
 struct dccwindow
 {
 	GtkWidget *window;
@@ -114,8 +94,8 @@ dcc_prepare_row_chat (struct DCC *dcc, char *col[])
 	col[4] = ctime (&dcc->starttime);
 	col[4][strlen (col[4]) - 1] = 0;	/* remove the \n */
 
-	proper_unit (dcc->pos, pos, sizeof (pos));
-	proper_unit (dcc->size, siz, sizeof (siz));
+	capacity_format_size(pos, sizeof(pos), dcc->pos);
+	capacity_format_size(siz, sizeof(siz), dcc->size);
 }
 
 static void
@@ -137,10 +117,10 @@ dcc_prepare_row_send (struct DCC *dcc, char *col[])
 
 	/* percentage ack'ed */
 	per = (float) ((dcc->ack * 100.00) / dcc->size);
-	proper_unit (dcc->size, size, sizeof (size));
-	proper_unit (dcc->pos, pos, sizeof (pos));
-	snprintf (kbs, sizeof (kbs), "%.1f", ((float)dcc->cps) / 1024);
-	proper_unit (dcc->ack, ack, sizeof (ack));
+	capacity_format_size(size, sizeof(size), dcc->size);
+	capacity_format_size(pos, sizeof(pos), dcc->pos);
+	capacity_format_size(ack, sizeof(ack), dcc->ack);
+	snprintf (kbs, sizeof (kbs), "%.1f", ((float)dcc->cps) / 1024);	
 	snprintf (perc, sizeof (perc), "%.0f%%", per);
 	if (dcc->cps != 0)
 	{
@@ -175,11 +155,11 @@ dcc_prepare_row_recv (struct DCC *dcc, char *col[])
 	else
 		col[8] = "";
 #endif
-	proper_unit (dcc->size, size, sizeof (size));
+	capacity_format_size(size, sizeof(size), dcc->size);
 	if (dcc->dccstat == STAT_QUEUED)
-		proper_unit (dcc->resumable, pos, sizeof (pos));
+		capacity_format_size(pos, sizeof(pos), dcc->resumable);
 	else
-		proper_unit (dcc->pos, pos, sizeof (pos));
+		capacity_format_size(pos, sizeof(pos), dcc->pos);
 	snprintf (kbs, sizeof (kbs), "%.1f", ((float)dcc->cps) / 1024);
 	/* percentage recv'ed */
 	per = (float) ((dcc->pos * 100.00) / dcc->size);

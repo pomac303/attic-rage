@@ -1913,6 +1913,7 @@ handle_dcc (rage_session *sess, char *nick, char *ctcp_data)
 void
 dcc_show_list (rage_session *sess)
 {
+	char pos[16], size[16];
 	int i = 0;
 	struct DCC *dcc;
 	GSList *list = dcc_list;
@@ -1922,10 +1923,12 @@ dcc_show_list (rage_session *sess)
 	{
 		dcc = (struct DCC *) list->data;
 		i++;
-		PrintTextf (sess, " %s  %-10.10s %-7.7s %-7lli %-7lli %s\n",
+		capacity_format_size(size, sizeof(size), dcc->size);
+		capacity_format_size(pos, sizeof(pos), dcc->pos);
+		PrintTextf (sess, " %s  %-10.10s %-7.7s %-7s %-7s %s\n",
 					 dcctypes[dcc->type], dcc->nick,
-					 _(dccstat[dcc->dccstat].name), dcc->size, dcc->pos,
-					 file_part (dcc->file));
+					 _(dccstat[dcc->dccstat].name), 
+					 size, pos, file_part (dcc->file));
 		list = list->next;
 	}
 	if (!i)
