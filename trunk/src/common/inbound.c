@@ -514,7 +514,6 @@ inbound_ujoin (server *serv, char *chan, char *nick, char *ip)
 		log_open (sess);
 
 	sess->waitchannel[0] = 0;
-	sess->ignore_date = TRUE;
 	sess->ignore_mode = TRUE;
 	sess->ignore_names = TRUE;
 	sess->end_of_names = FALSE;
