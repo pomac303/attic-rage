@@ -883,7 +883,7 @@ cmd_set (struct session *sess, char *cmd, char *buf)
 	}
 
 	var = parv[idx];
-	val = parv[idx];
+	val = parv[idx +1];
 
 	if (!*var)
 	{

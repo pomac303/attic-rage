@@ -441,9 +441,8 @@ handle_mode (server * serv, int parc, char *parv[],
 				 char *nick, int numeric_324)
 {
 	session *sess;
-	char *chan;
-	char *modes;
-	char *argstr;
+	char buf[200]; /* FIXME: Is this large enough? */
+	char *chan, *modes, *argstr;
 	char sign;
 	int arg;
 	int num_args;
@@ -474,17 +473,20 @@ handle_mode (server * serv, int parc, char *parv[],
 		using_front_tab = TRUE;
 	}
 
-	/* XXX: BROKEN: Need to paste word_eol together */
 	if (prefs.raw_modes && !numeric_324)
-		EMIT_SIGNAL (XP_TE_RAWMODES, sess, nick, parv[offset], 
-				parv[offset+1], parv[offset+2], parv[offset+3]);
+	{
+		buf[0] = 0;
+		paste_parv(buf, sizeof(buf), offset, parc, parv);
+		EMIT_SIGNAL (XP_TE_RAWMODES, sess, nick, buf, 0, 0, 0);
+	}
 
 	if (numeric_324 && !using_front_tab)
 	{
 		if (sess->current_modes)
 			free (sess->current_modes);
-		/* XXX: BROKEN: Needs to paste word_eol together */
-		sess->current_modes = strdup (parv[offset+1]);
+		buf[0] = 0;
+		paste_parv(buf, sizeof(buf), offset+1, parc, parv);
+		sess->current_modes = strdup (buf);
 		fe_set_title (sess);
 	}
 

@@ -558,6 +558,9 @@ irc_numeric(session *sess, int parc, char *parv[])
 			return;
 
 		case RPL_CHANNELMODEIS: /* 324 */
+		{
+			char *chmode;
+			size_t chlen;
 			sess = find_channel(sess->server,parv[3]);
 			if (!sess)
 				sess = sess->server->server_session;
@@ -569,17 +572,32 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* TODO: use 005 to figure out which buttons to 
 			 *       draw
 			 */
-			fe_update_mode_buttons(sess,'t','-');
-			fe_update_mode_buttons(sess,'n','-');
-			fe_update_mode_buttons(sess,'s','-');
-			fe_update_mode_buttons(sess,'i','-');
-			fe_update_mode_buttons(sess,'p','-');
-			fe_update_mode_buttons(sess,'m','-');
-			fe_update_mode_buttons(sess,'l','-');
-			fe_update_mode_buttons(sess,'k','-');
+			if ((chmode = get_isupport(sess->server, "CHANMODES")))
+			{
+				chlen = strlen(chmode);
+				while(chlen > -1)
+				{
+					if(chmode[chlen] != ',')
+						fe_update_mode_buttons(sess,
+								chmode[chlen--], '-');
+					else
+						chlen--;
+				}
+			}
+			else 
+			{
+				fe_update_mode_buttons(sess,'t','-');
+				fe_update_mode_buttons(sess,'n','-');
+				fe_update_mode_buttons(sess,'s','-');
+				fe_update_mode_buttons(sess,'i','-');
+				fe_update_mode_buttons(sess,'p','-');
+				fe_update_mode_buttons(sess,'m','-');
+				fe_update_mode_buttons(sess,'l','-');
+				fe_update_mode_buttons(sess,'k','-');
+			}
 			handle_mode(sess->server, parc, parv, "", TRUE); 
 			return;
-
+		}
 		case RPL_CREATIONTIME: /* 329 */
 			sess = find_channel(sess->server,parv[3]);
 			if (sess)
@@ -873,18 +891,20 @@ irc_server(session *sess, int parc, char *parv[])
 				if (text[0] == '\001' && text[len-1]=='\001') 
 				{
 					int parc2;
+					char msg[512]; /* String max len is 512, this is a part of a string */
 					text[len-1]=0;
-					text++;
+					parv[3]++;
 					if (strncasecmp(text,"ACTION",6)!=0)
 						flood_check(nick,ip,
 								sess->server,
 								sess,0);
+					strcpy(msg, parv[3]);
 					/* DCC is handled in ctcp_handle aswell.
 					 * Note that the -1 in these 2 lines is essential since
 					 * the splitter starts at element 1. */
 					split_cmd_parv_n(parv[3], &parc2, parv + parc - 1, MAX_TOKENS - parc);
 					parc += parc2 -1;
-					ctcp_handle(sess, to, nick, text, parc, parv);
+					ctcp_handle(sess, to, nick, msg, parc, parv);
 				} else
 				{
 					if (is_channel(sess->server,to))
