@@ -261,6 +261,12 @@ editlist_gui_moveup (GtkWidget * igad)
 static void
 editlist_gui_close (void)
 {
+	if (strcmp(editlist_file, "ctcpreply.conf") == 0 ||
+			strcmp(editlist_file, "commands.conf") == 0)
+		g_slist_free(editlist_list);
+
+	editlist_list = NULL;
+
 	editlist_gui_window = 0;
 }
 
@@ -285,7 +291,6 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 		editlist_list = list;
 	else if (dict)
 	{
-		editlist_list = NULL;
 		for (it=dict_first(dict); it; it=iter_next(it))
 			editlist_list = g_slist_prepend(editlist_list, iter_data(it));
 		editlist_list = g_slist_reverse(editlist_list);
