@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.2pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-08 23:30+0200\n"
+"POT-Creation-Date: 2004-10-09 02:42+0200\n"
 "PO-Revision-Date: 2003-04-20 19:51+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -14,20 +14,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/common/cfgfiles.c:337
+#: src/common/cfgfiles.c:406
 msgid "Cannot create ~/.xchat2"
 msgstr "Tak dapat mencipta ~/.xchat2"
 
-#: src/common/cfgfiles.c:657
+#: src/common/cfgfiles.c:726
 msgid "I'm busy"
 msgstr "Saya sibuk"
 
-#: src/common/cfgfiles.c:658
+#: src/common/cfgfiles.c:727
 #, fuzzy
 msgid "Leaving"
 msgstr "Latvia"
 
-#: src/common/cfgfiles.c:704
+#: src/common/cfgfiles.c:773
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"

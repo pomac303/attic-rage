@@ -19,6 +19,7 @@ void load_config (void);
 int save_config (void);
 void list_free (GSList ** list);
 void list_loadconf (char *file, GSList ** list, char *defaultconf);
+void splay_loadconf (char *file, dict_t *dict, char *defaultconf);
 int list_delentry (GSList ** list, char *name);
 void list_addentry (GSList ** list, char *cmd, char *name);
 int cmd_set (session *sess, char *cmd, char *buf);

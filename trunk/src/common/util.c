@@ -1340,23 +1340,6 @@ chanlist_double_list (GSList *inlist)
 	return list;
 }
 
-/* handle commands */
-static int
-double_cmd_cb (struct popup *pop, GList **list)
-{
-	*list = g_list_prepend(*list, pop->name);
-	return TRUE;
-}
-
-/* convert a slist -> list. */
-static GList *
-cmdlist_double_list (GSList *inlist)
-{
-	GList *list = NULL;
-	g_slist_foreach (inlist, (GFunc)double_cmd_cb, &list);
-	return list;
-}
-
 static char *
 gcomp_nick_func (char *data)
 {
@@ -1472,7 +1455,6 @@ tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, 
 			gcomp = g_completion_new (NULL);
 			if (is_cmd)
 			{
-				tmp_list = cmdlist_double_list (command_list);
 				tmp_list = get_command_list(tmp_list);
 				tmp_list = plugin_command_list(tmp_list);
 			}

@@ -26,6 +26,29 @@
 #define DEF_FONT "Monospace 9"
 
 void
+splay_addentry (dict_t *dict, char *cmd, char *name)
+{
+	struct popup *pop;
+	size_t cmd_len = 1, name_len;
+	
+	if (cmd)
+		cmd_len = strlen (cmd) + 1;
+	name_len = strlen (name) + 1;
+
+	pop = malloc (sizeof (struct popup) + cmd_len + name_len);
+	pop->name = (char *) pop + sizeof (struct popup);
+	pop->cmd = pop->name + name_len;
+
+	memcpy (pop->name, name, name_len);
+	if (cmd)
+		memcpy (pop->cmd, cmd, cmd_len);
+	else
+		pop->cmd[0] = 0;
+
+	dict_insert(*dict, pop->name, pop);
+}
+
+void
 list_addentry (GSList ** list, char *cmd, char *name)
 {
 	struct popup *pop;
@@ -46,6 +69,39 @@ list_addentry (GSList ** list, char *cmd, char *name)
 		pop->cmd[0] = 0;
 
 	*list = g_slist_append (*list, pop);
+}
+
+static void
+splay_load_from_data(dict_t *dict, char *ibuf, size_t size)
+{
+	char cmd[384];
+	char name[128];
+	char *buf;
+	int pnt = 0;
+	
+	cmd[0] = 0;
+	name[0] = 0;
+
+	while (buf_get_line (ibuf, &buf, &pnt, (int)size))
+	{
+		if (*buf != '#')
+		{
+			if (!strncasecmp (buf, "NAME ", 5))
+			{
+				safe_strcpy (name, buf + 5, sizeof (name));
+			}
+			else if (!strncasecmp (buf, "CMD ", 4))
+			{
+				safe_strcpy (cmd, buf + 4, sizeof (cmd));
+				if (*name)
+				{
+					splay_addentry (dict, cmd, name);
+					cmd[0] = 0;
+					name[0] = 0;
+				}
+			}
+		}
+	}
 }
 
 /* read it in from a buffer to our linked list */
@@ -81,6 +137,46 @@ list_load_from_data (GSList ** list, char *ibuf, size_t size)
 			}
 		}
 	}
+}
+
+void
+splay_loadconf (char *file, dict_t *dict, char *defaultconf)
+{
+	char filebuf[256];
+	char *ibuf;
+	int fh;
+	struct stat st;
+
+	if(*dict)
+	{
+		dict_delete(*dict);
+		*dict = NULL;
+	}
+
+	if(!*dict)
+		*dict = dict_new();
+
+	snprintf (filebuf, sizeof (filebuf), "%s/%s", get_xdir_fs (), file);
+	fh = open (filebuf, O_RDONLY | OFLAGS);
+	if (fh == -1)
+	{
+		if (defaultconf)
+			splay_load_from_data (dict, defaultconf, strlen (defaultconf));
+		return;
+	}
+	if (fstat (fh, &st) != 0)
+	{
+		perror ("fstat");
+		abort ();
+	}
+	
+	ibuf = malloc ((int)st.st_size);
+	read (fh, ibuf, (int)st.st_size);
+	close (fh);
+	
+	splay_load_from_data (dict, ibuf, (int)st.st_size);
+	
+	free (ibuf);
 }
 
 void

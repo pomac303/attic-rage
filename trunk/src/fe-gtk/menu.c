@@ -731,7 +731,7 @@ menu_settings (GtkWidget * wid, gpointer none)
 static void
 menu_usermenu (void)
 {
-	editlist_gui_open (usermenu_list, _("Rage: User menu"), "usermenu",
+	editlist_gui_open (usermenu_list, NULL, _("Rage: User menu"), "usermenu",
 							 "usermenu.conf", 0);
 }
 
@@ -1059,28 +1059,28 @@ menu_pluginlist (void)
 static void
 menu_usercommands (void)
 {
-	editlist_gui_open (command_list, _("Rage: User Defined Commands"),
+	editlist_gui_open (NULL, command_list, _("Rage: User Defined Commands"),
 							 "commands", "commands.conf", usercommands_help);
 }
 
 static void
 menu_ulpopup (void)
 {
-	editlist_gui_open (popup_list, _("Rage: Userlist Popup menu"), "popup",
+	editlist_gui_open (popup_list, NULL, _("Rage: Userlist Popup menu"), "popup",
 							 "popup.conf", ulbutton_help);
 }
 
 static void
 menu_rpopup (void)
 {
-	editlist_gui_open (replace_list, _("Rage: Replace"), "replace",
+	editlist_gui_open (replace_list, NULL, _("Rage: Replace"), "replace",
 							 "replace.conf", 0);
 }
 
 static void
 menu_urlhandlers (void)
 {
-	editlist_gui_open (urlhandler_list, _("Rage: URL Handlers"), "urlhandlers",
+	editlist_gui_open (urlhandler_list, NULL, _("Rage: URL Handlers"), "urlhandlers",
 							 "urlhandlers.conf", url_help);
 }
 
@@ -1099,21 +1099,21 @@ menu_keypopup (void)
 static void
 menu_ulbuttons (void)
 {
-	editlist_gui_open (button_list, _("Rage: Userlist buttons"), "buttons",
+	editlist_gui_open (button_list, NULL, _("Rage: Userlist buttons"), "buttons",
 							 "buttons.conf", ulbutton_help);
 }
 
 static void
 menu_dlgbuttons (void)
 {
-	editlist_gui_open (dlgbutton_list, _("Rage: Dialog buttons"), "dlgbuttons",
+	editlist_gui_open (dlgbutton_list, NULL, _("Rage: Dialog buttons"), "dlgbuttons",
 							 "dlgbuttons.conf", dlgbutton_help);
 }
 
 static void
 menu_ctcpguiopen (void)
 {
-	editlist_gui_open (ctcp_list, _("Rage: CTCP Replies"), "ctcpreply",
+	editlist_gui_open (NULL, ctcp_list, _("Rage: CTCP Replies"), "ctcpreply",
 							 "ctcpreply.conf", ctcp_help);
 }
 

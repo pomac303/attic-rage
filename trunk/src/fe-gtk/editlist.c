@@ -158,17 +158,14 @@ editlist_gui_save (GtkWidget * igad)
 		gtk_widget_destroy (editlist_gui_window);
 		if (editlist_list == replace_list)
 		{
-			list_free (&replace_list);
 			list_loadconf (editlist_file, &replace_list, 0);
 		} else if (editlist_list == popup_list)
 		{
-			list_free (&popup_list);
 			list_loadconf (editlist_file, &popup_list, 0);
 		} else if (editlist_list == button_list)
 		{
 			GSList *list = sess_list;
 			struct session *sess;
-			list_free (&button_list);
 			list_loadconf (editlist_file, &button_list, 0);
 			while (list)
 			{
@@ -180,7 +177,6 @@ editlist_gui_save (GtkWidget * igad)
 		{
 			GSList *list = sess_list;
 			struct session *sess;
-			list_free (&dlgbutton_list);
 			list_loadconf (editlist_file, &dlgbutton_list, 0);
 			while (list)
 			{
@@ -188,24 +184,22 @@ editlist_gui_save (GtkWidget * igad)
 				fe_dlgbuttons_update (sess);
 				list = list->next;
 			}
-		} else if (editlist_list == ctcp_list)
+		} else if (strcmp(editlist_file, "ctcpreply.conf") == 0)
 		{
-			list_free (&ctcp_list);
-			list_loadconf (editlist_file, &ctcp_list, 0);
-		} else if (editlist_list == command_list)
+			splay_loadconf (editlist_file, &ctcp_list, 0);
+		} else if (strcmp(editlist_file, "commands.conf") == 0)
 		{
-			list_free (&command_list);
-			list_loadconf (editlist_file, &command_list, 0);
+			splay_loadconf (editlist_file, &command_list, 0);
 		} else if (editlist_list == usermenu_list)
 		{
-			list_free (&usermenu_list);
 			list_loadconf (editlist_file, &usermenu_list, 0);
 			usermenu_update ();
 		} else
 		{
-			list_free (&urlhandler_list);
 			list_loadconf (editlist_file, &urlhandler_list, 0);
 		}
+		/* free old data */
+		list_free (&editlist_list);
 	}
 }
 
@@ -273,11 +267,12 @@ editlist_gui_close (void)
 }
 
 void
-editlist_gui_open (GSList * list, char *title, char *wmclass, char *file,
+editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char *file,
 						 char *help)
 {
 	gchar *titles[2];
 	GtkWidget *vbox, *hbox, *button;
+	dict_iterator_t it;
 
 	titles[0] = _("Name");
 	titles[1] = _("Command");
@@ -288,7 +283,16 @@ editlist_gui_open (GSList * list, char *title, char *wmclass, char *file,
 		return;
 	}
 
-	editlist_list = list;
+	if (list)
+		editlist_list = list;
+	else if (dict)
+	{
+		for (it=dict_first(ctcp_list); it; it=iter_next(it))
+			editlist_list = g_slist_prepend(editlist_list, iter_data(it));
+		editlist_list = g_slist_reverse(editlist_list);
+	}
+	else
+		return;
 	editlist_file = file;
 	editlist_help = help;
 

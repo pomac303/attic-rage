@@ -1709,7 +1709,6 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 	} else
 	{
 		struct popup *pop;
-		GSList *list = command_list;
 		dict_iterator_t it;
 		command *cmd;
 		char *buf = malloc (4096);
@@ -1750,9 +1749,9 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 				  _("\n\nType /HELP <command> for more information, or /HELP -l\n\n"));
 		strcat (buf, _("User defined commands:\n\n  "));
 		t = 1;
-		while (list)
+		for (it = dict_first(command_list); it; it=iter_next(it))
 		{
-			pop = (struct popup *) list->data;
+			pop = (struct popup *) iter_data(it);
 			strcat (buf, pop->name);
 			t++;
 			if (t == 6)
@@ -1769,7 +1768,6 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 						strcat (buf, " ");
 				}
 			}
-			list = list->next;
 		}
 		strcat (buf, "\n");
 		PrintText (sess, buf);
@@ -3044,10 +3042,10 @@ GList *
 get_command_list(GList *list)
 {
 	dict_iterator_t it;
-	for (it=dict_first(rage_cmd_list); it; it=iter_next(it))
-	{
+	for (it=dict_first(command_list); it; it=iter_next(it))
 		list = g_list_prepend (list, (char *)iter_key(it));
-	}
+	for (it=dict_first(rage_cmd_list); it; it=iter_next(it))
+		list = g_list_prepend (list, (char *)iter_key(it));
 	return list;
 }
 
@@ -3229,8 +3227,14 @@ static command *
 find_internal_command (char *name)
 {
 	int present;
-	/* the "-1" is to skip the NULL terminator */
 	return dict_find(rage_cmd_list, name, &present);
+}
+
+static struct popup *
+find_user_command (char *name)
+{
+	int present;
+	return dict_find(command_list, name, &present);
 }
 
 static void
@@ -3772,7 +3776,6 @@ handle_command (session *sess, char *cmd, int check_spch)
 {
 	struct popup *pop;
 	int user_cmd = FALSE;
-	GSList *list;
 	static int command_level = 0;
 	command *int_cmd;
 	int ret = TRUE;
@@ -3803,16 +3806,10 @@ handle_command (session *sess, char *cmd, int check_spch)
 		goto xit;
 
 	/* first see if it's a userCommand */
-	list = command_list;
-	while (list)
+	if ((pop = find_user_command(command)))
 	{
-		pop = (struct popup *) list->data;
-		if (!strcasecmp (pop->name, command))
-		{
-			user_command (sess, pop->cmd, cmd);
-			user_cmd = TRUE;
-		}
-		list = list->next;
+		user_command (sess, pop->cmd, cmd);
+		user_cmd = TRUE;
 	}
 
 	if (user_cmd)

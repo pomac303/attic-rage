@@ -43,8 +43,8 @@
 GSList *popup_list = 0;
 GSList *button_list = 0;
 GSList *dlgbutton_list = 0;
-GSList *command_list = 0;
-GSList *ctcp_list = 0;
+dict_t command_list = 0;
+dict_t ctcp_list = 0;
 GSList *replace_list = 0;
 GSList *sess_list = 0;
 GSList *serv_list = 0;
@@ -992,8 +992,8 @@ xchat_init (void)
 	list_loadconf ("dlgbuttons.conf", &dlgbutton_list, buf);
 
 	list_loadconf ("tabmenu.conf", &tabmenu_list, NULL);
-	list_loadconf ("ctcpreply.conf", &ctcp_list, defaultconf_ctcp);
-	list_loadconf ("commands.conf", &command_list, defaultconf_commands);
+	splay_loadconf ("ctcpreply.conf", &ctcp_list, defaultconf_ctcp);
+	splay_loadconf ("commands.conf", &command_list, defaultconf_commands);
 	list_loadconf ("replace.conf", &replace_list, defaultconf_replace);
 	list_loadconf ("urlhandlers.conf", &urlhandler_list,
 						defaultconf_urlhandlers);

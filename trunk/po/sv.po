@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-08 23:30+0200\n"
+"POT-Creation-Date: 2004-10-09 02:42+0200\n"
 "PO-Revision-Date: 2004-03-18 23:41+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -16,19 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/common/cfgfiles.c:337
+#: src/common/cfgfiles.c:406
 msgid "Cannot create ~/.xchat2"
 msgstr "Kan inte skapa ~/.xchat2"
 
-#: src/common/cfgfiles.c:657
+#: src/common/cfgfiles.c:726
 msgid "I'm busy"
 msgstr "Jag är upptagen"
 
-#: src/common/cfgfiles.c:658
+#: src/common/cfgfiles.c:727
 msgid "Leaving"
 msgstr "Lämnar"
 
-#: src/common/cfgfiles.c:704
+#: src/common/cfgfiles.c:773
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"
