@@ -294,7 +294,10 @@ dnl ** PYTHON ***********************************************************
 dnl *********************************************************************
 
 if test "$python" = yes; then
-        AC_PATH_PROG(pythonpath, python2)
+        AC_PATH_PROG(pythonpath, python2.3)
+        if test "_$pythonpath" = _ ; then
+                AC_PATH_PROG(pythonpath, python2)
+        fi
         if test "_$pythonpath" = _ ; then
                 AC_PATH_PROG(pythonpath, python)
         fi
