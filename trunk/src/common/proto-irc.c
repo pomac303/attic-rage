@@ -814,21 +814,22 @@ irc_server(session *sess, int parc, char *parv[])
 		{
 			int id = FALSE; /* identified */
 
-			char *text = parv[3];
+			char *text;
 
 			if (is_server) {
 				inbound_notice(sess->server, parv[2],
-						nick, text, ip, is_server, id);
+						nick, parv[3], ip, is_server, id);
 			} else {
 				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
 				{
-					if (*text == '+')
+					if (*parv[3] == '+')
 					{
 						id=TRUE;
 						parv[3]++;
-					} else if (*text == '-')
+					} else if (*parv[3] == '-')
 						parv[3]++;
 				}
+				text = parv[3];
 
 				if (!ignore_check(parv[0], IG_NOTI))
 					inbound_notice(sess->server, parv[2], 
@@ -855,16 +856,17 @@ irc_server(session *sess, int parc, char *parv[])
 			int id = FALSE; /* identified */
 			if (*to)
 			{
-				char *text=parv[3];
+				char *text;
 				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
 				{
-					if (*text == '+')
+					if (*parv[3] == '+')
 					{
 						id = TRUE;
 						parv[3]++;
-					} else if (*text == '-')
+					} else if (*parv[3] == '-')
 						parv[3]++;
 				}
+				text = parv[3];
 				len = strlen(text);
 
 				/* TODO: Not good enough */
