@@ -490,6 +490,8 @@ kill_server_callback (server * serv)
 
 	fe_server_callback (serv);
 
+	queue_kill(serv);
+
 	free (serv);
 
 	notify_cleanup ();

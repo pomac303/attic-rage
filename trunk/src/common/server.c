@@ -26,7 +26,7 @@ enum {
 typedef struct queued_msg {
 	char *msg;
 	char *target;
-	char *channel;
+	char *args;
 	int type;
 	int utf8;
 } queued_msg;
@@ -115,7 +115,7 @@ queue_clean_it(gpointer data, gpointer user_data)
 
 	g_queue_remove(q, data);
 	g_free(msg->target);
-	g_free(msg->channel);
+	g_free(msg->args);
 	g_free(msg->msg);
 	g_free(msg);
 }
@@ -131,6 +131,17 @@ queue_clean(server *serv)
 			g_queue_foreach(serv->out_queue[i],
 					queue_clean_it, serv->out_queue[i]);
 	}
+}
+
+void
+queue_kill(server *serv)
+{
+	int i;
+	
+	queue_clean(serv);
+	
+	for (i = 0; i < 3; i++)
+		g_queue_free(serv->out_queue[i]);
 }
 
 struct it_count_data {char *target; int count; };
@@ -180,16 +191,16 @@ tcp_send_data (server *serv, queued_msg *msg)
 			break;
 		case QUEUE_CMESSAGE:
 			snprintf(tmp, sizeof(tmp)-1, "CMESSAGE %s %s :%s%s", msg->target,
-					msg->channel, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_CNOTICE:
 			snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s", msg->target,
-					msg->channel, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 	}
 	/* free data that isn't used anymore */
-	g_free (msg->msg);
 	g_free (msg->target);
-	g_free (msg->channel);
+	g_free (msg->args);
+	g_free (msg->msg);
 	g_free (msg);
 
 	len = strlen(tmp);
@@ -268,7 +279,7 @@ queue_throttle(server *serv)
 }
 
 void
-tcp_queue_data (server *serv, int type, char *target, char *channel, char *buf)
+tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 {
 	queued_msg *msg = g_malloc(sizeof(queued_msg));
 	gsize written, len = g_utf8_strlen(buf, 520);
@@ -285,7 +296,7 @@ tcp_queue_data (server *serv, int type, char *target, char *channel, char *buf)
 
 	msg->msg = line ? line : g_strdup(buf);
 	msg->target = target ? g_strdup(target) : NULL;
-	msg->channel = channel ? g_strdup(channel) : NULL;
+	msg->args = args ? g_strdup(args) : NULL;
 	msg->type = type;
 	msg->utf8 = line ? 0 : 1; /* If line is non null, the data got converted */
 
