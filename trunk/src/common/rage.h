@@ -99,6 +99,12 @@
 #include <sys/time.h>
 #endif
 
+/* OS X */
+/* TODO: Let the configure script handle this */
+#if defined(__APPLE__) && defined(__MACH__)
+#include <sys/sysctl.h>
+#endif
+
 /* Require glib */
 #include <glib/gslist.h>
 #include <glib/glist.h>
@@ -125,6 +131,15 @@
 	#else
 	#define htonll(x)	(x)
 	#define ntohll(x)	(x)
+	#endif
+#elif defined(__APPLE__) && defined(__MACH__)
+	#if __BYTE_ORDER == __BIG_ENDIAN
+	#define ntohll(x)	(x)
+	#define htonll(x)	(x)
+	#else
+	/* Can't hurt */
+	#define ntohll(x) (((int64_t)(ntohl((int)((x << 32) >> 32))) << 32) | (unsigned int)ntohl(((int)(x >> 32))))
+	#define htonll(x) ntohll(x)
 	#endif
 #elif defined(WIN32)
 	#define ntohll(x) (((__int64)(ntohl((int)((x << 32) >> 32))) << 32) | (unsigned int)ntohl(((int)(x >> 32))))
