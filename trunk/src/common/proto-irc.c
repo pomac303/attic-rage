@@ -20,6 +20,9 @@
 
 #include "rage.h"
 
+dict_t rage_numerics_list = NULL;
+dict_t rage_servermsgs_list = NULL;
+
 static void
 irc_login (server *serv, char *user, char *realname)
 {
@@ -351,615 +354,874 @@ irc_split(server *serv,char *buf,int *parc,char *parv[])
 	return;
 }
 
-/* 
- * parv[0] = sender prefix
- * parv[1] = numeric
- * parv[2] = destination
- * parv[3...] = args
- */
-static void
-irc_numeric(rage_session *sess, int parc, char *parv[])
+/* for numerics only */
+#define PARSE_FUNC(FUNC) static int FUNC(rage_session *sess, int parc, char *parv[])
+
+PARSE_FUNC(numeric_welcome)
 {
-	char line[512];
-	rage_session *tmp = NULL;
-	server *serv = sess->server;
+	inbound_login_start(sess,parv[2],parv[0]);
+	/* PTnet code not ported */
+	return 0;
+}
 
-	switch(atoi(parv[1])) {
-		case RPL_WELCOME:  /* 001 */
-			inbound_login_start(sess,parv[2],parv[0]);
-			/* PTnet code not ported */
-			break;
-		case RPL_MYINFO: /* 004 */
-			/* Don't bother trying to guess features,
-			 * rely on RPL_ISUPPORT
-			 */
-			break;
-		case RPL_ISUPPORT: /* 005 */
-			inbound_005(sess->server,parc,parv);
-			break;
-		case 271: /* RPL_SILENCE ? */
-			EMIT_SIGNAL(XP_TE_SILENCE, sess->server->server_session, 
-					parv[3], NULL, NULL, NULL, 0);
-			return;
-		case 290: /* CAPAB reply */
-		{
-			int i;
-			
-			for (i = 3; i < parc; i++)
-				dict_capab_insert(sess->server->isupport, parv[i]);
-			break;
-		}
-		case RPL_AWAY: /* 301 */
-			inbound_away(sess->server,parv[3],parv[4]);
-			return;
-		case RPL_USERHOST: /* 302 */
-			/* Bletch this sucks */
-			if (sess->server->skip_next_userhost)
-			{
-				char *eq = strchr(parv[3],'=');
-				if (eq)
-				{
-					*eq='\0';
-					if (!sess->server->p_cmp(parv[3],sess->server->nick)) {
-						char *at = strrchr(eq+1,'@');
-						if (at)
-							inbound_foundip(sess,at+1);
-					}
-				}
-				sess->server->skip_next_userhost=FALSE;
-				return; /* Hide this */
-			}
-			break;
-		case RPL_ISON:   /* 305 */
-			notify_markonline(sess->server,parv);
-			return;
-		case RPL_UNAWAY: /* 306 */
-			inbound_uback(sess->server);
-			break;
-		case RPL_NOWAWAY: /* 306 */
-			inbound_uaway(sess->server);
-			break;
-		case RPL_WHOISSERVER: /* 312 */
-			EMIT_SIGNAL(XP_TE_WHOIS3, 
-					sess->server->server_session,
-					parv[3],parv[4],
-					NULL,
-					NULL,
-					0);
-			return;
-		case RPL_WHOISCHANNELS: /* 319 */
-			EMIT_SIGNAL (XP_TE_WHOIS2, 
-					sess->server->server_session,
-					parv[3], parv[4], 
-					NULL, 
-					NULL, 
-					0);
-			return;
-		case RPL_ENDOFWHO: /* 315 */
-		{
-			rage_session *who_sess;
-			who_sess = find_channel(sess->server,parv[3]);
+PARSE_FUNC(numeric_myinfo)
+{
+	/* Don't bother trying to guess features,
+	 * rely on RPL_ISUPPORT */
+	return 0;
+}
 
-			if (who_sess)
-			{
-				if (!who_sess->doing_who)
-					EMIT_SIGNAL(XP_TE_WHO, 
-							sess->server->server_session,
-							paste_parv(line, sizeof(line),
-								3, parc, parv),
-							NULL, NULL, NULL, 0);
-				who_sess->doing_who = FALSE;
-			} else
-			{
-				if (!sess->server->doing_dns)
-					EMIT_SIGNAL (XP_TE_WHO, 
-							sess->server->server_session,
-							paste_parv(line, sizeof(line),
-								3, parc, parv), 
-							NULL, NULL, NULL, 0);
-				sess->server->doing_dns = FALSE;
-			}
-			return;
-		}
-		case RPL_WHOISUSER:   /* 311 */
-			sess->server->inside_whois = 1;
-			/* FALL THRU */
-		case RPL_WHOWASUSER:
-			inbound_user_info_start(sess,parv[3]);
-			EMIT_SIGNAL(XP_TE_WHOIS1, 
-					sess->server->server_session,
-					parv[3], parv[4], parv[5],
-					parv[7], 0);
-			return;
-		case RPL_WHOISIDLE: /* 317 */
-		{
-			time_t timestamp = (time_t) atol(parv[5]);
-			long idle = atol(parv[4]);
-			char outbuf[64];
-			char *tim;
-			/* TODO: Add days support */
-			snprintf(outbuf, sizeof(outbuf),
-						"%02ld:%02ld:%02ld",
-						idle/3600,
-						(idle/60) % 60,
-						idle % 60);
-			if (timestamp == 0)
-				EMIT_SIGNAL(XP_TE_WHOIS4, 
-						sess->server->server_session,
-						parv[3], outbuf, NULL,
-						NULL, 0);
-			else 
-			{
-				tim = ctime(&timestamp);
-				tim[19] = '\0'; /* Get rid of the nasty \n */
+PARSE_FUNC(numeric_isupport)
+{
+	inbound_005(sess->server,parc,parv);
+	return 0;
+}
 
-				EMIT_SIGNAL (XP_TE_WHOIS4T, 
-						sess->server->server_session,
-						parv[3], outbuf, tim,
-						NULL, 0);
-			}
-			return;
-		}
-		case RPL_WHOISOPERATOR: /* 313 */
-		case 320: /* Is an identified user */
-			EMIT_SIGNAL(XP_TE_WHOIS_ID, 
-					sess->server->server_session,
-					parv[3],parv[4], NULL, NULL, 0);
-			return;
-			
-		case RPL_ENDOFWHOIS: /* 318 */
-			sess->server->inside_whois = 0;
-			EMIT_SIGNAL (XP_TE_WHOIS6, 
-					sess->server->server_session,
-					parv[3],NULL,
-					NULL,NULL,0);
-			return;
+PARSE_FUNC(numeric_silence)
+{
+	EMIT_SIGNAL(XP_TE_SILENCE, sess->server->server_session, 
+			parv[3], NULL, NULL, NULL, 0);
+	return 1;
+}
 
-		case RPL_LISTSTART: /* 321 */
-			if (!fe_is_chanwindow(sess->server)) 
-				EMIT_SIGNAL (XP_TE_CHANLISTHEAD,
-						sess->server->server_session,
-						NULL,NULL,
-						NULL,NULL,
-						0);
-			return;
+PARSE_FUNC(numeric_capab)
+{
+	int i;
 
-		case RPL_LIST: /* 322 */
-			if (fe_is_chanwindow (sess->server))
-				fe_add_chan_list(sess->server,
-						parv[3],parv[4],
-						parv[5]);
-			else
-				EMIT_SIGNAL(XP_TE_CHANLIST, 
-						sess->server->server_session,
-						parv[3], parv[4],
-						parv[5], NULL, 0);
-			return;
-		case RPL_LISTEND: /* 323 */
-			if (!fe_is_chanwindow(sess->server))
-				EMIT_SIGNAL(XP_TE_SERVTEXT, 
-						sess->server->server_session, 
-						parv[parc-1],
-						parv[0], parv[1], NULL, 0);
-			else
-				fe_chan_list_end(sess->server);
-			return;
+	for (i = 3; i < parc; i++)
+		dict_capab_insert(sess->server->isupport, parv[i]);
+	return 0;
+}
 
-		case RPL_CHANNELMODEIS: /* 324 */
-		{
-			char *chmode;
-			sess = find_channel(sess->server,parv[3]);
-			if (!sess)
-				sess = serv->server_session;
-			if (sess->ignore_mode)
-				sess->ignore_mode = FALSE;
-			else
-				EMIT_SIGNAL(XP_TE_CHANMODES, sess, parv[3],
-						parv[4], NULL, NULL, 0);
-			/* TODO: use 005 to figure out which buttons to 
-			 *       draw
-			 */
-			chmode = get_isupport(sess->server, "CHANMODES");
-			while(*chmode)
-			{
-				if(*chmode != ',')
-					fe_update_mode_buttons(sess, *chmode, '-');
-				chmode++;
-			}
-			handle_mode(sess->server, parc, parv, "", TRUE); 
-			return;
-		}
-		case RPL_CREATIONTIME: /* 329 */
-			sess = find_channel(sess->server,parv[3]);
-			if (sess)
-			{
-				if (sess->ignore_date)
-					sess->ignore_date = FALSE;
-				else
-					channel_date(sess,parv[3],parv[4]);
-			}
-			return;
-		case RPL_WHOISACCOUNT: /* 330 */
-			EMIT_SIGNAL(XP_TE_WHOIS_AUTH, 
-					sess->server->server_session,
-					parv[3],parv[5], parv[4], NULL, 0);
-			return;
-		case RPL_TOPIC: /* 332 */
-			inbound_topic(sess->server, parv[3], parv[4]);
-			return;
-		case RPL_TOPICWHOTIME:
-			inbound_topictime(sess->server,
-					parv[3],parv[4],atol(parv[5]));
-			return;
-		case RPL_WHOISACTUALLY: /* 338 */
-			EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, 
-					sess->server->server_session, parv[3],
-					parv[4], parv[5], parv[6], 0);
-			return;
-		case RPL_INVITING: /* 341 */
-			EMIT_SIGNAL (XP_TE_UINVITE, sess, parv[3], parv[4],
-					sess->server->servername, NULL, 0);
-			return;
-		case RPL_WHOREPLY: /* 352 */
-		{	
-			unsigned int away = 0;
-			char *tmp;
-			rage_session *who_sess = find_channel(sess->server, parv[3]);
-			/* TODO: eww */
-			if (*parv[8] == 'G')
-				away = 1;
+PARSE_FUNC(numeric_away)
+{
+	inbound_away(sess->server,parv[3],parv[4]);
+	return 1;
+}
 
-			if ((tmp = strchr(parv[9], ' ')))
-			{
-				tmp++;
-				parv[9] = tmp;
-			}
-			parv[9] = strip_color(parv[9]);
-
-			inbound_user_info(sess,parv[3],parv[4], parv[5], 
-					parv[6], parv[7], parv[9], away);
-			/* try to show only user initiated whos */
-
-			if (!who_sess || !who_sess->doing_who)
-				EMIT_SIGNAL(XP_TE_WHO, 
-						sess->server->server_session, 
-						paste_parv(line, sizeof(line),
-							3, parc, parv), 
-						NULL, NULL, NULL, 0);
-			return;
-		}
-
-		case RPL_WHOSPCRPL: /* 354 */
-			if (strcmp(parv[3],"152") == 0)
-			{
-				int away = 0;
-				rage_session *who_sess = find_channel(sess->server, parv[4]);
-
-				/* TODO: eew */
-				if (*parv[6] == 'G')
-					away = 1;
-
-				inbound_user_info(sess, parv[4], 0, 0, 0, 
-						parv[6], 0, away);
-
-				if (!who_sess || !who_sess->doing_who)
-					break;
-				return;
-			}
-			else
-				break;
-
-		case RPL_NAMREPLY: /* 353 */
-			inbound_nameslist (sess->server, parv[4],
-					parv[5]);
-			return;
-
-		case RPL_ENDOFNAMES: /* 366 */
-			if (!inbound_nameslist_end(sess->server, parv[3]))
-				break;
-			return;
-
-		case RPL_BANLIST: /* 367 */
-			inbound_banlist (sess, atol(parv[6]), parv[3], parv[4],
-					parv[5]);
-			return;
-
-		case RPL_ENDOFBANLIST: /* 368 */
-			sess = find_channel (sess->server, parv[3]);
-			if (!sess)
-				sess = serv->front_session;
-
-			if (!fe_is_banwindow(sess))
-				return;
-
-			fe_ban_list_end(sess);
-			break;
-
-		case RPL_MOTD: /* 372 */
-		case RPL_MOTDSTART: /* 375 */
-			if (!prefs.skipmotd || sess->server->motd_skipped)
-				EMIT_SIGNAL(XP_TE_MOTD, 
-						sess->server->server_session,
-						parv[parc-1], NULL, 
-						NULL, NULL, 0);
-			return;
-
-		case RPL_ENDOFMOTD: /* 376 */
-		case ERR_NOMOTD: /* 422 */
-			run_005(sess->server);
-			inbound_login_end(sess,parv[parc-1]);
-			return;
-
-		case ERR_NICKNAMEINUSE:
-			if (sess->server->end_of_motd)
-				break;
-			inbound_next_nick(sess, parv[3]);
-			return;
-
-		case ERR_BANNICKCHANGE:
-			if (sess->server->end_of_motd || is_channel (sess->server, parv[3]))
-				break;
-			inbound_next_nick(sess, parv[3]);
-			break;
-
-		case ERR_CHANNELISFULL: /* 471 */
-			EMIT_SIGNAL(XP_TE_USERLIMIT, sess, parv[3], NULL, NULL,
-					NULL, 0);
-			break;
-
-		case ERR_INVITEONLYCHAN: /* 473 */
-			EMIT_SIGNAL(XP_TE_INVITE, sess, parv[3], NULL, NULL,
-					NULL, );
-			return;
-
-		case ERR_BANNEDFROMCHAN: /* 474 */
-			EMIT_SIGNAL(XP_TE_BANNED, sess, parv[3], NULL, NULL,
-					NULL, 0);
-			return;
-		case ERR_BADCHANNELKEY: /* 475 */
-			EMIT_SIGNAL(XP_TE_KEYWORD, sess, parv[3], NULL, NULL,
-					NULL, 0);
-			return;
-
-		case 601: /* Log off */
-			notify_set_offline(sess->server,parv[3], FALSE);
-			return;
-		case 605: /* Nowoff */
-			notify_set_offline(sess->server,parv[3], TRUE);
-			return;
-		case 600: /* logon */
-		case 604: /* newon */
-			notify_set_online( sess->server,parv[3]);
-			return;
-	};
-	/* TODO: Generate a signal based on the numeric, which gets rid of
-	 *       a huge number of cases above, and lets people script things
-	 *       far more easily.
-	 *
-	 * For the time being, the numeric is now in an extra parameter,
-	 * which at least helps the cause.
-	 */
-	if (is_channel (sess->server, parv[2]))
+PARSE_FUNC(numeric_userhost)
+{
+	/* Bletch this sucks */
+	if (sess->server->skip_next_userhost)
 	{
-		tmp = find_channel(sess->server,parv[2]);
-		if (!tmp)
-			tmp = sess->server->server_session;
-	} else {
-		tmp = sess->server->server_session;
+		char *eq = strchr(parv[3],'=');
+		if (eq)
+		{
+			*eq='\0';
+			if (!sess->server->p_cmp(parv[3],sess->server->nick))
+			{
+				char *at = strrchr(eq+1,'@');
+				if (at)
+					inbound_foundip(sess,at+1);
+			}
+		}
+		sess->server->skip_next_userhost=FALSE;
+		return 1; /* Hide this */
+	}
+	return 0;
+}
+
+PARSE_FUNC(numeric_ison)
+{
+	notify_markonline(sess->server,parv);
+	return 1;
+}
+
+PARSE_FUNC(numeric_unaway)
+{
+	inbound_uback(sess->server);
+	return 0;
+}
+
+PARSE_FUNC(numeric_nowaway)
+{
+	inbound_uaway(sess->server);
+	return 0;
+}
+
+PARSE_FUNC(numeric_whoisserver)
+{
+	EMIT_SIGNAL(XP_TE_WHOIS3, 
+			sess->server->server_session,
+			parv[3],parv[4],
+			NULL,
+			NULL,
+			0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoischannels)
+{
+	EMIT_SIGNAL (XP_TE_WHOIS2, 
+			sess->server->server_session,
+			parv[3], parv[4], 
+			NULL, 
+			NULL, 
+			0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_endofwho)
+{
+	rage_session *who_sess;
+	char line[512];
+
+	who_sess = find_channel(sess->server,parv[3]);
+
+	if (who_sess)
+	{
+		if (!who_sess->doing_who)
+			EMIT_SIGNAL(XP_TE_WHO, 
+					sess->server->server_session,
+					paste_parv(line, sizeof(line),
+						3, parc, parv),
+					NULL, NULL, NULL, 0);
+		who_sess->doing_who = FALSE;
+	} else
+	{
+		if (!sess->server->doing_dns)
+			EMIT_SIGNAL (XP_TE_WHO, 
+					sess->server->server_session,
+					paste_parv(line, sizeof(line),
+						3, parc, parv), 
+					NULL, NULL, NULL, 0);
+		sess->server->doing_dns = FALSE;
+	}
+	return 1;
+}
+
+PARSE_FUNC(numeric_whowasuser)
+{
+	inbound_user_info_start(sess,parv[3]);
+	EMIT_SIGNAL(XP_TE_WHOIS1, 
+			sess->server->server_session,
+			parv[3], parv[4], parv[5],
+			parv[7], 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoisuser)
+{
+	sess->server->inside_whois = 1;
+	return numeric_whowasuser(sess, parc, parv);
+}
+
+PARSE_FUNC(numeric_whoisidle)
+{
+	time_t timestamp = (time_t) atol(parv[5]);
+	long idle = atol(parv[4]);
+	char outbuf[64];
+	char *tim;
+	
+	/* TODO: Add days support */
+	snprintf(outbuf, sizeof(outbuf),
+				"%02ld:%02ld:%02ld",
+				idle/3600,
+				(idle/60) % 60,
+				idle % 60);
+	if (timestamp == 0)
+		EMIT_SIGNAL(XP_TE_WHOIS4, 
+				sess->server->server_session,
+				parv[3], outbuf, NULL,
+				NULL, 0);
+	else 
+	{
+		tim = ctime(&timestamp);
+		tim[19] = '\0'; /* Get rid of the nasty \n */
+
+		EMIT_SIGNAL (XP_TE_WHOIS4T, 
+				sess->server->server_session,
+				parv[3], outbuf, tim,
+				NULL, 0);
+	}
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoisoperator)
+{
+	EMIT_SIGNAL(XP_TE_WHOIS_ID, 
+			sess->server->server_session,
+			parv[3],parv[4], NULL, NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_endofwhois)
+{
+	sess->server->inside_whois = 0;
+	EMIT_SIGNAL (XP_TE_WHOIS6, 
+			sess->server->server_session,
+			parv[3],NULL,
+			NULL,NULL,0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_liststart)
+{
+	if (!fe_is_chanwindow(sess->server)) 
+		EMIT_SIGNAL (XP_TE_CHANLISTHEAD,
+				sess->server->server_session,
+				NULL,NULL,
+				NULL,NULL,
+				0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_list)
+{
+	if (fe_is_chanwindow (sess->server))
+		fe_add_chan_list(sess->server,
+				parv[3],parv[4],
+				parv[5]);
+	else
+		EMIT_SIGNAL(XP_TE_CHANLIST, 
+				sess->server->server_session,
+				parv[3], parv[4],
+				parv[5], NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_listend)
+{
+	if (!fe_is_chanwindow(sess->server))
+		EMIT_SIGNAL(XP_TE_SERVTEXT, 
+				sess->server->server_session, 
+				parv[parc-1],
+				parv[0], parv[1], NULL, 0);
+	else
+		fe_chan_list_end(sess->server);
+	return 1;
+}
+
+PARSE_FUNC(numeric_channelmodeis)
+{
+	char *chmode;
+	server *serv = sess->server;
+	
+	sess = find_channel(sess->server,parv[3]);
+	if (!sess)
+		sess = serv->server_session;
+	if (sess->ignore_mode)
+		sess->ignore_mode = FALSE;
+	else
+		EMIT_SIGNAL(XP_TE_CHANMODES, sess, parv[3],
+				parv[4], NULL, NULL, 0);
+	/* TODO: use 005 to figure out which buttons to 
+	 *       draw
+	 */
+	chmode = get_isupport(sess->server, "CHANMODES");
+	while(*chmode)
+	{
+		if(*chmode != ',')
+			fe_update_mode_buttons(sess, *chmode, '-');
+		chmode++;
+	}
+	handle_mode(sess->server, parc, parv, "", TRUE); 
+	return 1;
+}
+
+PARSE_FUNC(numeric_creationtime)
+{
+	sess = find_channel(sess->server,parv[3]);
+	if (sess)
+	{
+		if (sess->ignore_date)
+			sess->ignore_date = FALSE;
+		else
+			channel_date(sess,parv[3],parv[4]);
+	}
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoisaccount)
+{
+	EMIT_SIGNAL(XP_TE_WHOIS_AUTH, 
+			sess->server->server_session,
+			parv[3],parv[5], parv[4], NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_topic)
+{
+	inbound_topic(sess->server, parv[3], parv[4]);
+	return 1;
+}
+
+PARSE_FUNC(numeric_topicwhotime)
+{
+	inbound_topictime(sess->server,
+			parv[3],parv[4],atol(parv[5]));
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoisactually)
+{
+	EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, 
+			sess->server->server_session, parv[3],
+			parv[4], parv[5], parv[6], 0);
+	return 1;
+}
+PARSE_FUNC(numeric_inviting)
+{
+	EMIT_SIGNAL (XP_TE_UINVITE, sess, parv[3], parv[4],
+			sess->server->servername, NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_whoreply)
+{
+	unsigned int away = 0;
+	char line[512];
+	char *tmp;
+	rage_session *who_sess = find_channel(sess->server, parv[3]);
+	
+	/* TODO: eww */
+	if (*parv[8] == 'G')
+		away = 1;
+
+	if ((tmp = strchr(parv[9], ' ')))
+	{
+		tmp++;
+		parv[9] = tmp;
 	}
 
-	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, paste_parv(line, sizeof(line), 
-				3, parc, parv), parv[0], parv[1], NULL, 0);
+	parv[9] = strip_color(parv[9]);
+
+	inbound_user_info(sess,parv[3],parv[4], parv[5], 
+			parv[6], parv[7], parv[9], away);
+	
+	/* try to show only user initiated whos */
+
+	if (!who_sess || !who_sess->doing_who)
+		EMIT_SIGNAL(XP_TE_WHO, 
+				sess->server->server_session, 
+				paste_parv(line, sizeof(line),
+					3, parc, parv), 
+				NULL, NULL, NULL, 0);
+	return 1;
 }
+
+PARSE_FUNC(numeric_whospcrpl)
+{
+	if (strcmp(parv[3],"152") == 0)
+	{
+		int away = 0;
+		rage_session *who_sess = find_channel(sess->server, parv[4]);
+
+		/* TODO: eew */
+		if (*parv[6] == 'G')
+			away = 1;
+
+		inbound_user_info(sess, parv[4], 0, 0, 0, 
+				parv[6], 0, away);
+
+		if (!who_sess || !who_sess->doing_who)
+			return 0;
+		return 1;
+	}
+	else
+		return 0;
+}
+
+PARSE_FUNC(numeric_namreply)
+{
+	inbound_nameslist (sess->server, parv[4],
+			parv[5]);
+	return 1;
+}
+
+PARSE_FUNC(numeric_endofnames)
+{
+	if (!inbound_nameslist_end(sess->server, parv[3]))
+		return 0;
+	return 1;
+}
+
+PARSE_FUNC(numeric_banlist)
+{
+	inbound_banlist (sess, atol(parv[6]), parv[3], parv[4],
+			parv[5]);
+	return 1;
+}
+
+PARSE_FUNC(numeric_endofbanlist)
+{
+	server *serv = sess->server;
+
+	sess = find_channel (sess->server, parv[3]);
+	if (!sess)
+		sess = serv->front_session;
+
+	if (!fe_is_banwindow(sess))
+		return 1;
+
+	fe_ban_list_end(sess);
+	return 0;
+}
+
+PARSE_FUNC(numeric_motd)
+{
+	if (!prefs.skipmotd || sess->server->motd_skipped)
+		EMIT_SIGNAL(XP_TE_MOTD, 
+				sess->server->server_session,
+				parv[parc-1], NULL, 
+				NULL, NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_endofmotd)
+{
+	run_005(sess->server);
+	inbound_login_end(sess,parv[parc-1]);
+	return 1;
+}
+
+PARSE_FUNC(numeric_nicknameinuse)
+{
+	if (sess->server->end_of_motd)
+		return 0;
+	inbound_next_nick(sess, parv[3]);
+	return 1;
+}
+
+PARSE_FUNC(numeric_bannickchange)
+{
+	if (sess->server->end_of_motd || is_channel (sess->server, parv[3]))
+		return 0;
+	inbound_next_nick(sess, parv[3]);
+	return 0; /* XXX: shouldn't this be 1? */
+}
+
+PARSE_FUNC(numeric_channelisfull)
+{
+	EMIT_SIGNAL(XP_TE_USERLIMIT, sess, parv[3], NULL, NULL,
+			NULL, 0);
+	return 0;
+}
+
+PARSE_FUNC(numeric_inviteonlychan)
+{
+	EMIT_SIGNAL(XP_TE_INVITE, sess, parv[3], NULL, NULL,
+			NULL, );
+	return 1;
+}
+
+PARSE_FUNC(numeric_bannedfromchan)
+{
+	EMIT_SIGNAL(XP_TE_BANNED, sess, parv[3], NULL, NULL,
+			NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_badchannelkey)
+{
+	EMIT_SIGNAL(XP_TE_KEYWORD, sess, parv[3], NULL, NULL,
+			NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(numeric_6XX_logoff)
+{
+	notify_set_offline(sess->server,parv[3], FALSE);
+	return 1;
+}
+
+PARSE_FUNC(numeric_6XX_nowoff)
+{
+	notify_set_offline(sess->server,parv[3], TRUE);
+	return 1;
+}
+
+PARSE_FUNC(numeric_6XX_logon)
+{
+	notify_set_online( sess->server,parv[3]);
+	return 1;
+}
+
+#undef PARSE_FUNC /* for numerics only */
+
+static ircparser_numeric irc_numerics[] = {
+	{RPL_WELCOME, numeric_welcome},			/* 001 */
+	{RPL_MYINFO, numeric_myinfo},			/* 004 */
+	{RPL_ISUPPORT, numeric_isupport},		/* 005 */
+	{271, numeric_silence},				/* RPL_SILENCE ? */
+	{290, numeric_capab},				/* RPL_CAPAB */
+	{RPL_AWAY, numeric_away},			/* 301 */
+	{RPL_USERHOST, numeric_userhost},		/* 302 */
+	{RPL_ISON, numeric_ison},			/* 303 */
+	{RPL_UNAWAY, numeric_unaway},			/* 305 */
+	{RPL_NOWAWAY, numeric_nowaway},			/* 306 */
+	{RPL_WHOISSERVER, numeric_whoisserver},		/* 312 */
+	{RPL_WHOISCHANNELS, numeric_whoischannels}, 	/* 319 */
+	{RPL_ENDOFWHO, numeric_endofwho}, 		/* 315 */
+	{RPL_WHOISUSER, numeric_whoisuser},		/* 311 */
+	{RPL_WHOWASUSER, numeric_whowasuser},		/* 314 */
+	{RPL_WHOISIDLE, numeric_whoisidle},		/* 317 */
+	{RPL_WHOISOPERATOR, numeric_whoisoperator}, 	/* 313 */
+	{320, numeric_whoisoperator},			/* RPL_LOGEDINAS ? */
+	{RPL_ENDOFWHOIS, numeric_endofwhois},		/* 318 */
+	{RPL_LISTSTART, numeric_liststart},		/* 321 */
+	{RPL_LIST, numeric_list},			/* 322 */
+	{RPL_LISTEND, numeric_listend},			/* 323 */
+	{RPL_CHANNELMODEIS, numeric_channelmodeis}, 	/* 324 */
+	{RPL_CREATIONTIME, numeric_creationtime},	/* 329 */
+	{RPL_WHOISACCOUNT, numeric_whoisaccount},	/* 330 */
+	{RPL_TOPIC, numeric_topic},			/* 332 */
+	{RPL_TOPICWHOTIME, numeric_topicwhotime},	/* 333 */
+	{RPL_WHOISACTUALLY, numeric_whoisactually}, 	/* 338 */
+	{RPL_INVITING, numeric_inviting},		/* 341 */
+	{RPL_WHOREPLY, numeric_whoreply},		/* 352 */
+	{RPL_WHOSPCRPL, numeric_whospcrpl},		/* 354, WHOX */
+	{RPL_NAMREPLY, numeric_namreply},		/* 353 */
+	{RPL_ENDOFNAMES, numeric_endofnames},		/* 366 */
+	{RPL_BANLIST, numeric_banlist},			/* 367 */
+	{RPL_ENDOFBANLIST, numeric_endofbanlist},	/* 368 */
+	{RPL_MOTD, numeric_motd},			/* 372 */
+	{RPL_MOTDSTART, numeric_motd},			/* 375 */
+	{RPL_ENDOFMOTD, numeric_endofmotd}, 		/* 376 */
+	{ERR_NOMOTD, numeric_endofmotd},		/* 422 */
+	{ERR_NICKNAMEINUSE, numeric_nicknameinuse},	/* 433 */
+	{ERR_BANNICKCHANGE, numeric_bannickchange},	/* 437 */
+	{ERR_CHANNELISFULL, numeric_channelisfull},	/* 471 */
+	{ERR_INVITEONLYCHAN, numeric_inviteonlychan},	/* 473 */
+	{ERR_BANNEDFROMCHAN, numeric_bannedfromchan},	/* 474 */
+	{ERR_BADCHANNELKEY, numeric_badchannelkey},	/* 475 */
+	{601, numeric_6XX_logoff},			/* Log off */
+	{605, numeric_6XX_nowoff},			/* Now off */
+	{600, numeric_6XX_logon},			/* Log on */
+	{604, numeric_6XX_logon},			/* New on */
+};
 
 /* The fields are: level, weight, leak, limit and timestamp */
 static throttle_t throttle_inv_data = { 0, 30, 10, 60, 0 }; /* max 3 invites during 10 seconds. */
 #define throttle_invite gen_throttle(&throttle_inv_data)
 
-static void 
-irc_server(rage_session *sess, int parc, char *parv[])
+/* servermsg only */
+#define PARSE_FUNC(FUNC) static int FUNC(rage_session *sess, int parc, \
+		char *parv[], char *ip, char *nick, int is_server)
+
+PARSE_FUNC(servermsg_invite)
 {
-	char *ex = strchr(parv[0],'!');
-	int is_server;
-	char nick[64]; 
-	char ip[64];
-	if (!ex) /* Hmm, server message */
+	if (throttle_invite || ignore_check(parv[0], IG_INVI))
+		return 1;
+	/* TODO: Ratelimit invites to avoid floods */
+	EMIT_SIGNAL(XP_TE_INVITED, sess, parv[3], nick,
+			sess->server->servername, NULL, 0);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_join)
+{
+	char *chan = parv[2];
+
+	if (!sess->server->p_cmp(nick,sess->server->nick))
+		inbound_ujoin(sess->server,chan,nick,ip);
+	else
+		inbound_join(sess->server,chan,nick,ip);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_mode)
+{
+	handle_mode (sess->server, parc,parv, nick, FALSE);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_nick)
+{
+	inbound_newnick(sess->server,nick,parv[2],FALSE);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_notice)
+{
+	int id = FALSE; /* identified */
+
+	char *text;
+
+	if (is_server)
+		inbound_notice(sess->server, parv[2],
+				nick, parv[3], ip, is_server, id);
+	else
 	{
-		safe_strcpy(ip, parv[0], sizeof(ip));
-		safe_strcpy(nick, parv[0], sizeof(nick));
-		is_server = 1;
-	} else 
-	{
-		safe_strcpy(ip, ex+1, sizeof(ip));
-		*ex='\0';
-		safe_strcpy(nick,parv[0],sizeof(nick));
-		*ex='!'; /* restore */
-		is_server = 0;
-	}
-
-	switch(MAKE4UPPER(parv[1][0],parv[1][1],parv[1][2],parv[1][3])) {
-		case M_INVITE:
-			if (throttle_invite || ignore_check(parv[0], IG_INVI))
-				return;
-			/* TODO: Ratelimit invites to avoid floods */
-			EMIT_SIGNAL(XP_TE_INVITED, sess, parv[3], nick,
-					sess->server->servername, NULL, 0);
-			return;
-
-		case M_JOIN:
+		if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
 		{
-			char *chan = parv[2];
-
-			if (!sess->server->p_cmp(nick,sess->server->nick))
-				inbound_ujoin(sess->server,chan,nick,ip);
-			else
-				inbound_join(sess->server,chan,nick,ip);
-			return;
-		}
-
-		case M_MODE:
-		{
-			handle_mode (sess->server, parc,parv, nick, FALSE);
-			return;
-		}
-
-		case M_NICK:
-			inbound_newnick(sess->server,nick,parv[2],FALSE);
-			return;
-
-		case M_NOTICE:
-		{
-			int id = FALSE; /* identified */
-
-			char *text;
-
-			if (is_server) {
-				inbound_notice(sess->server, parv[2],
-						nick, parv[3], ip, is_server, id);
-			} else {
-				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
-				{
-					if (*parv[3] == '+')
-					{
-						id=TRUE;
-						parv[3]++;
-					} else if (*parv[3] == '-')
-						parv[3]++;
-				}
-				text = parv[3];
-
-				if (!ignore_check(parv[0], IG_NOTI))
-					inbound_notice(sess->server, parv[2], 
-							nick, text, ip, is_server, id);
-			}
-			return;
-		}
-		case M_PART:
-		{
-			char *chan = parv[2];
-			char *reason = parv[3];
-
-			/* If your nick matches exactly, then you parted */
-			if (!strcmp(nick,sess->server->nick))
-				inbound_upart(sess->server, chan, ip, reason);
-			else
-				inbound_part(sess->server, chan, nick, ip, reason);
-			return;
-		}
-		case M_PRIVMSG:
-		{
-			char *to = parv[2];
-			size_t len;
-			int id = FALSE; /* identified */
-			if (*to)
+			if (*parv[3] == '+')
 			{
-				char *text;
-				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
-				{
-					if (*parv[3] == '+')
-					{
-						id = TRUE;
-						parv[3]++;
-					} else if (*parv[3] == '-')
-						parv[3]++;
-				}
-				text = parv[3];
-				len = strlen(text);
+				id=TRUE;
+				parv[3]++;
+			} 
+			else if (*parv[3] == '-')
+				parv[3]++;
+		}
+		text = parv[3];
 
-				/* TODO: Not good enough */
-				if (text[0] == '\001' && text[len-1]=='\001') 
-				{
-					text[len-1]=0;
-					parv[3]++;
-					/* DCC is handled in ctcp_handle aswell. */
-					ctcp_handle(sess, to, nick, ip, parv[3], parc, parv);
-				} else
-				{
-					if (is_channel(sess->server,to))
-					{
-						if (ignore_check(parv[0],IG_CHAN))
-							return;
-						inbound_chanmsg(sess->server, 
-								NULL, 
-								to,
-								nick, 
-								parv[parc-1],
-								FALSE, 
-								id);
-					} else
-					{
-						if (ignore_check(parv[0], IG_PRIV))
-							return;
-						inbound_privmsg(sess->server, 
-								nick, ip,
-								parv[parc-1], 
-								id);
-					}
-				}
-			}
-			break;
-		}
-		case M_PONG:
-			inbound_ping_reply (sess->server->server_session, parv[3], parv[2]);
-			return;
-		case M_QUIT:
-			inbound_quit(sess->server, nick, ip, parv[2]);
-			return;
-		case M_TOPIC:
-			inbound_topicnew(sess->server,nick,parv[2],parv[3]);
-			return;
-		case M_KICK:
-		{
-			char *kicked = parv[3];
-			char *reason = parv[4];
-			if (*kicked) {
-				if (!strcmp(kicked, sess->server->nick))
-					inbound_ukick(sess->server,
-							parv[2],nick,reason);
-				else
-					inbound_kick(sess->server,
-							parv[2],kicked,
-							nick,reason);
-			}
-			break;
-		}
-		case M_KILL:
-			EMIT_SIGNAL(XP_TE_KILL, sess, nick, parv[4], 
-					NULL, NULL, 0);
-			break;
-		case M_WALL:
-			EMIT_SIGNAL(XP_TE_WALLOPS, sess, nick, parv[parc-1], 
-					NULL, NULL, 0);
-			break;
-		case M_PING:
-			tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
-			break;
-		case M_RPONG:
-		{
-			time_t tp;
-			char line[5];
-			/* parv[0] == source server
-			 * parv[3] == dest server
-			 * parv[4] == miliseconds
-			 * parv[5] == user added time, ie from client.
-			 */
-			tp = time(NULL);
-			snprintf (line, sizeof (line), "%li",  tp - atoi(parv[5]));
-			EMIT_SIGNAL(XP_TE_RPONG, sess, parv[0], parv[3], parv[4], line, 0);
-			break;
-		}
-		case M_ERROR:
-			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,
-					NULL, NULL, 0);
-			break;
-		case M_SILENCE:
-			EMIT_SIGNAL(XP_TE_SILENCE, sess, parv[2], NULL, 
-					NULL, NULL, 0);
-			break;
-		default:
-		{
-			char line[512];
+		if (!ignore_check(parv[0], IG_NOTI))
+			inbound_notice(sess->server, parv[2], 
+					nick, text, ip, is_server, id);
+	}
+	return 1;
+}
 
+PARSE_FUNC(servermsg_part)
+{
+	char *chan = parv[2];
+	char *reason = parv[3];
+
+	/* If your nick matches exactly, then you parted */
+	if (!strcmp(nick,sess->server->nick))
+		inbound_upart(sess->server, chan, ip, reason);
+	else
+		inbound_part(sess->server, chan, nick, ip, reason);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_privmsg)
+{
+	char *to = parv[2];
+	size_t len;
+	int id = FALSE; /* identified */
+	if (*to)
+	{
+		char *text;
+		if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
+		{
+			if (*parv[3] == '+')
+			{
+				id = TRUE;
+				parv[3]++;
+			} 
+			else if (*parv[3] == '-')
+				parv[3]++;
+		}
+		text = parv[3];
+		len = strlen(text);
+
+		/* TODO: Not good enough */
+		if (text[0] == '\001' && text[len-1]=='\001') 
+		{
+			text[len-1]=0;
+			parv[3]++;
+			/* DCC is handled in ctcp_handle aswell. */
+			ctcp_handle(sess, to, nick, ip, parv[3], parc, parv);
+		} else
+		{
+			if (is_channel(sess->server,to))
+			{
+				if (ignore_check(parv[0],IG_CHAN))
+					return 1;
+				inbound_chanmsg(sess->server, 
+						NULL, to, nick, 
+						parv[parc-1],
+						FALSE, id);
+			} else
+			{
+				if (ignore_check(parv[0], IG_PRIV))
+					return 1;
+				inbound_privmsg(sess->server, 
+						nick, ip,
+						parv[parc-1], 
+						id);
+			}
+		}
+	}
+	return 0;
+}
+
+PARSE_FUNC(servermsg_pong)
+{
+	inbound_ping_reply (sess->server->server_session, parv[3], parv[2]);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_quit)
+{
+	inbound_quit(sess->server, nick, ip, parv[2]);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_topic)
+{
+	inbound_topicnew(sess->server,nick,parv[2],parv[3]);
+	return 1;
+}
+
+PARSE_FUNC(servermsg_kick)
+{
+	char *kicked = parv[3];
+	char *reason = parv[4];
+	if (*kicked)
+	{
+		if (!strcmp(kicked, sess->server->nick))
+			inbound_ukick(sess->server, parv[2],nick,reason);
+		else
+			inbound_kick(sess->server, parv[2],kicked, nick,reason);
+	}
+	return 0;
+}
+
+PARSE_FUNC(servermsg_kill)
+{
+	EMIT_SIGNAL(XP_TE_KILL, sess, nick, parv[4], 
+			NULL, NULL, 0);
+	return 0;
+}
+
+PARSE_FUNC(servermsg_wallops)
+{
+	EMIT_SIGNAL(XP_TE_WALLOPS, sess, nick, parv[parc-1], 
+			NULL, NULL, 0);
+	return 0;
+}
+
+PARSE_FUNC(servermsg_ping)
+{
+	tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
+	return 0;
+}
+
+PARSE_FUNC(servermsg_rpong)
+{
+	time_t tp;
+	char line[5];
+	/* parv[0] == source server
+	 * parv[3] == dest server
+	 * parv[4] == miliseconds
+	 * parv[5] == user added time, ie from client.
+	 */
+	tp = time(NULL);
+	snprintf (line, sizeof (line), "%li",  tp - atoi(parv[5]));
+	EMIT_SIGNAL(XP_TE_RPONG, sess, parv[0], parv[3], parv[4], line, 0);
+	return 0;
+}
+
+PARSE_FUNC(servermsg_error)
+{
+	EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,
+			NULL, NULL, 0);
+	return 0;
+}
+
+PARSE_FUNC(servermsg_silence)
+{
+	EMIT_SIGNAL(XP_TE_SILENCE, sess, parv[2], NULL, 
+			NULL, NULL, 0);
+	return 0;
+}
+
+#undef PARSE_FUNC /* servermsg only */
+
+static struct ircparser_server irc_servermsgs[] = {
+	{"INVITE", servermsg_invite},
+	{"JOIN", servermsg_join},
+	{"MODE", servermsg_mode},
+	{"NICK", servermsg_nick},
+	{"NOTICE", servermsg_notice},
+	{"PART", servermsg_part},
+	{"PRIVMSG", servermsg_privmsg},
+	{"PONG", servermsg_pong},
+	{"QUIT", servermsg_quit},
+	{"TOPIC", servermsg_topic},
+	{"KICK", servermsg_kick},
+	{"KILL", servermsg_kill},
+	{"WALLOPS", servermsg_wallops},
+	{"PING", servermsg_ping},
+	{"RPONG", servermsg_rpong},
+	{"ERROR", servermsg_error},
+	{"SILENCE", servermsg_silence},
+};
+
+void
+setup_parser(void)
+{
+	int i;
+	int nbr_elem = sizeof(irc_numerics) / sizeof(ircparser_numeric);
+
+	rage_numerics_list = dict_numeric_new();
+	rage_servermsgs_list = dict_new();
+
+	for (i = 0; i < nbr_elem; i++)
+		dict_numeric_insert(rage_numerics_list,
+				&irc_numerics[i].numeric, &irc_numerics[i]);
+
+	nbr_elem = sizeof(irc_servermsgs) / sizeof(ircparser_server);
+
+	for (i = 0; i < nbr_elem; i++)
+		dict_cmd_insert(rage_servermsgs_list,
+				irc_servermsgs[i].name, &irc_servermsgs[i]);
+}
+
+static void
+irc_inline (server *serv, char *buf, int len)
+{
+	rage_session *sess, *tmp;
+	char *parv[MAX_TOKENS];
+	int parc, found;
+	char line[512];
+
+	/* Split everything up into parc/parv */
+	irc_split(serv,buf,&parc,parv);
+
+	sess = serv->front_session;
+
+	/* grab the server */
+	if(plugin_emit_server (sess, parv[1], parc, parv))
+		return;
+
+	/* parv[0] = sender prefix
+	 * parv[1] = numeric
+	 * parv[2] = destination
+	 * parv[3...] = args */
+	if(parc>1 && (parv[1][0]>='0' && parv[1][0]<='9'))
+	{
+		int numeric;
+		ircparser_numeric *parse;
+		
+		numeric = atoi(parv[1]);
+		parse = dict_numeric_find(rage_numerics_list, &numeric, &found);
+		if (found)
+			found = parse->callback(sess, parc, parv);
+
+		if (!found)
+		{
+			if (is_channel (sess->server, parv[2]))
+			{
+				tmp = find_channel(sess->server,parv[2]);
+				if (!tmp)
+					tmp = sess->server->server_session;
+			} 
+			else
+				tmp = sess->server->server_session;
+			EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, paste_parv(line, sizeof(line),
+						3, parc, parv), parv[0], parv[1], NULL, 0);
+		}
+	}
+	else
+	{
+		char *ex = strchr(parv[0],'!');
+		int is_server;
+		char nick[64];
+		char ip[64];
+		ircparser_server *parse;
+		
+		if (!ex) /* Hmm, server message */
+		{
+			safe_strcpy(ip, parv[0], sizeof(ip));
+			safe_strcpy(nick, parv[0], sizeof(nick));
+			is_server = 1;
+		} else
+		{
+			safe_strcpy(ip, ex+1, sizeof(ip));
+			*ex='\0';
+			safe_strcpy(nick,parv[0],sizeof(nick));
+			*ex='!'; /* restore */
+			is_server = 0;
+		}
+		
+		parse = dict_find(rage_servermsgs_list, parv[1], &found);
+		if (found)
+			found = parse->callback(sess, parc, parv, ip, nick, is_server);
+		else
+		{
 			if (is_server)
 			{
 				paste_parv(line, sizeof(line), 3, parc, parv);
@@ -973,30 +1235,7 @@ irc_server(rage_session *sess, int parc, char *parv[])
 						NULL, NULL, NULL, 0);
 			}
 		}
-	}
-}
-
-static void
-irc_inline (server *serv, char *buf, int len)
-{
-	rage_session *sess;
-	char *parv[MAX_TOKENS];
-	int parc;
-
-	/* Split everything up into parc/parv */
-	irc_split(serv,buf,&parc,parv);
-
-	sess = serv->front_session;
-
-	/* grab the server */
-	if(plugin_emit_server (sess, parv[1], parc, parv))
-		return;
-
-	if(parc>1 && (parv[1][0]>='0' && parv[1][0]<='9'))
-		irc_numeric(sess, parc, parv);
-	else
-		irc_server(sess, parc, parv);
-
+	}	
 	return;
 }
 

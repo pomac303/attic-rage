@@ -17,16 +17,32 @@ struct rage_dict_data {
 	void *value;
 };
 
+struct rage_numeric_data {
+	int *numeric;
+	void *value;
+};
+
 int
 dict_cmp(const void *a, const void *b)
 {
 	return strcasecmp(*(const char **)a, *(const char **)b);
 }
 
+int dict_numeric_cmp(const void *a, const void *b)
+{
+	return **(const int **)b - **(const int **)a;
+}
+
 struct set *
 dict_new(void)
 {
 	return set_alloc((set_compare_f *)&dict_cmp, NULL);
+}
+
+struct set *
+dict_numeric_new(void)
+{
+	return set_alloc((set_compare_f *)&dict_numeric_cmp, NULL);
 }
 
 /* dict_005_insert, 005 data, the data is written directly
@@ -120,6 +136,29 @@ dict_cmd_insert(struct set *set, char *key, char *value)
 	}
 }
 
+/* dict_numeric_insert, insert data with two pointers,
+ * noting needs to be freed */
+void
+dict_numeric_insert(struct set *set, int *numeric, char *value)
+{
+	struct rage_numeric_data *data;
+	struct set_node *node;
+
+	data = set_find(set, &numeric);
+
+	/* XXX: should we support numeric redefinition ? */
+	if (data) 
+		return;
+
+	/* create a new node */
+	node = set_node_alloc(sizeof(*data));
+	data = set_node_data(node);
+	data->numeric = numeric;
+	data->value = value;
+	
+	set_insert(set, node);
+}
+
 /* dict_find, find the data, return the value and
  * set found according to state */
 void *
@@ -135,6 +174,23 @@ dict_find(struct set *set, char *key, int *found)
 	else
 	{
 		/* make sure that found is cleared */
+		*found = 0;
+		return NULL;
+	}
+}
+
+void *
+dict_numeric_find(struct set *set, int *numeric, int *found)
+{
+	struct rage_numeric_data *data = set_find(set, &numeric);
+
+	if (data)
+	{
+		*found = 1;
+		return data->value;
+	}
+	else
+	{
 		*found = 0;
 		return NULL;
 	}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.1.1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-05 18:47+1300\n"
+"POT-Creation-Date: 2004-12-18 16:48+0100\n"
 "PO-Revision-Date: 2004-08-14 23:51+0200\n"
 "Last-Translator: Vaidrius Petrauskas <vaidrius@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -2869,218 +2869,218 @@ msgstr "Zimbabvė"
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: src/common/rage.c:901
+#: src/common/rage.c:899
 msgid "Direct client-to-client"
 msgstr "DCC"
 
-#: src/common/rage.c:902
+#: src/common/rage.c:900
 msgid "Send File"
 msgstr "Siųsti bylą"
 
-#: src/common/rage.c:903
+#: src/common/rage.c:901
 msgid "Offer Chat"
 msgstr "Siūlyti pokalbį"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:902
 msgid "Abort Chat"
 msgstr "Nutraukti pokalbį"
 
-#: src/common/rage.c:905 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:903 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versija"
 
-#: src/common/rage.c:906
+#: src/common/rage.c:904
 msgid "Userinfo"
 msgstr "Apie naudotoją"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:905
 msgid "Clientinfo"
 msgstr "Apie klientą"
 
-#: src/common/rage.c:908 src/common/rage.c:942 src/common/rage.c:993
+#: src/common/rage.c:906 src/common/rage.c:940 src/common/rage.c:991
 msgid "Ping"
 msgstr "„Ping“"
 
-#: src/common/rage.c:909
+#: src/common/rage.c:907
 msgid "Time"
 msgstr "Laikas"
 
-#: src/common/rage.c:910
+#: src/common/rage.c:908
 msgid "Finger"
 msgstr "„Finger“"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:909
 msgid "Oper"
 msgstr "IRC opams"
 
-#: src/common/rage.c:912
+#: src/common/rage.c:910
 msgid "Kill this user"
 msgstr "Nužudyti naudotoją"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:911
 msgid "Mode"
 msgstr "Režimai"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:912
 msgid "Give Ops"
 msgstr "Suteikti operatoriaus statusą"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:913
 msgid "Take Ops"
 msgstr "Pašalinti operatoriaus statusą"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:914
 msgid "Give Half-Ops"
 msgstr "Suteikti halfopo statusą"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:915
 msgid "Take Half-Ops"
 msgstr "Pašalinti halfopo statusą"
 
-#: src/common/rage.c:918
+#: src/common/rage.c:916
 msgid "Give Voice"
 msgstr "Suteikti balsą"
 
-#: src/common/rage.c:919
+#: src/common/rage.c:917
 msgid "Take Voice"
 msgstr "Pašalinti balsą"
 
-#: src/common/rage.c:920
+#: src/common/rage.c:918
 msgid "Ignore"
 msgstr "Ignoruoti"
 
-#: src/common/rage.c:921
+#: src/common/rage.c:919
 msgid "Ignore User"
 msgstr "Ignoruoti naudotoją"
 
-#: src/common/rage.c:922
+#: src/common/rage.c:920
 msgid "UnIgnore User"
 msgstr "Nebeignoruoti"
 
-#: src/common/rage.c:923
+#: src/common/rage.c:921
 msgid "Kick/Ban"
 msgstr "Išspirti/uždrausti"
 
-#: src/common/rage.c:924 src/common/rage.c:976
+#: src/common/rage.c:922 src/common/rage.c:974
 msgid "Kick"
 msgstr "Išspirti"
 
-#: src/common/rage.c:925 src/common/rage.c:926 src/common/rage.c:927
-#: src/common/rage.c:928 src/common/rage.c:929 src/common/rage.c:975
+#: src/common/rage.c:923 src/common/rage.c:924 src/common/rage.c:925
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:973
 msgid "Ban"
 msgstr "Uždrausti"
 
-#: src/common/rage.c:930 src/common/rage.c:931 src/common/rage.c:932
-#: src/common/rage.c:933
+#: src/common/rage.c:928 src/common/rage.c:929 src/common/rage.c:930
+#: src/common/rage.c:931
 msgid "KickBan"
 msgstr "Išspirti ir uždrausti"
 
-#: src/common/rage.c:934 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
+#: src/common/rage.c:932 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "Informacija"
 
-#: src/common/rage.c:935
+#: src/common/rage.c:933
 msgid "Who"
 msgstr "„Who“"
 
-#: src/common/rage.c:936 src/common/rage.c:989
+#: src/common/rage.c:934 src/common/rage.c:987
 msgid "WhoIs"
 msgstr "„WhoIs“"
 
-#: src/common/rage.c:937
+#: src/common/rage.c:935
 msgid "DNS Lookup"
 msgstr "DNS paieška"
 
-#: src/common/rage.c:938
+#: src/common/rage.c:936
 msgid "Trace"
 msgstr "„Trace“"
 
-#: src/common/rage.c:939
+#: src/common/rage.c:937
 msgid "UserHost"
 msgstr "„UserHost“"
 
-#: src/common/rage.c:940
+#: src/common/rage.c:938
 msgid "External"
 msgstr "Išorinės komandos"
 
-#: src/common/rage.c:941
+#: src/common/rage.c:939
 msgid "Traceroute"
 msgstr "„Traceroute“"
 
-#: src/common/rage.c:943
+#: src/common/rage.c:941
 msgid "Telnet"
 msgstr "„Telnet“"
 
-#: src/common/rage.c:944
+#: src/common/rage.c:942
 msgid "Open Dialog Window"
 msgstr "Atverti dialogo langą"
 
-#: src/common/rage.c:956
+#: src/common/rage.c:954
 msgid "Disconnect"
 msgstr "Atsijungti"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:955
 msgid "Reconnect"
 msgstr "Prisijungti iš naujo"
 
-#: src/common/rage.c:958
+#: src/common/rage.c:956
 msgid "Leave Channel"
 msgstr "Palikti kanalą"
 
-#: src/common/rage.c:959
+#: src/common/rage.c:957
 msgid "Join Channel..."
 msgstr "Įeiti į kanalą"
 
-#: src/common/rage.c:960
+#: src/common/rage.c:958
 msgid "Enter Channel to Join:"
 msgstr "Įveskite kanalo pavadinimą:"
 
-#: src/common/rage.c:961
+#: src/common/rage.c:959
 msgid "Server Links"
 msgstr "Serverio ryšiai"
 
-#: src/common/rage.c:962
+#: src/common/rage.c:960
 msgid "Ping Server"
 msgstr "Pinginti serverį"
 
-#: src/common/rage.c:963
+#: src/common/rage.c:961
 msgid "Hide Version"
 msgstr "Slėpti versiją"
 
-#: src/common/rage.c:973
+#: src/common/rage.c:971
 msgid "Op"
 msgstr "Duoti opą"
 
-#: src/common/rage.c:974
+#: src/common/rage.c:972
 msgid "DeOp"
 msgstr "Pašalinti opą"
 
-#: src/common/rage.c:977
+#: src/common/rage.c:975
 msgid "bye"
 msgstr "iki"
 
-#: src/common/rage.c:978
+#: src/common/rage.c:976
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Įveskite išspyrimo priežastį „%s“:"
 
-#: src/common/rage.c:979
+#: src/common/rage.c:977
 msgid "Sendfile"
 msgstr "Siųsti bylą"
 
-#: src/common/rage.c:980
+#: src/common/rage.c:978
 msgid "Dialog"
 msgstr "Dialogas"
 
-#: src/common/rage.c:990
+#: src/common/rage.c:988
 msgid "Send"
 msgstr "Siųsti"
 
-#: src/common/rage.c:991
+#: src/common/rage.c:989
 msgid "Chat"
 msgstr "Pokalbis"
 
-#: src/common/rage.c:992 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Išvalyti"

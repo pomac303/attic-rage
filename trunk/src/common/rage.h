@@ -18,26 +18,6 @@
 #define MAKE4UPPER(ch0, ch1, ch2, ch3)  (guint32)(toupper(ch0) | (toupper(ch1) << 8) | \
 		(toupper(ch2) << 16) | (toupper(ch3) << 24))
 
-/* For ircd parsing */
-#define M_PRIVMSG       MAKE4('P','R','I','V')
-#define M_NOTICE        MAKE4('N','O','T','I')
-#define M_JOIN          MAKE4('J','O','I','N')
-#define M_PART          MAKE4('P','A','R','T')
-#define M_QUIT          MAKE4('Q','U','I','T')
-#define M_KICK          MAKE4('K','I','C','K')
-#define M_QUIT          MAKE4('Q','U','I','T')
-#define M_KILL          MAKE4('K','I','L','L')
-#define M_NICK          MAKE4('N','I','C','K')
-#define M_MODE          MAKE4('M','O','D','E')
-#define M_TOPIC         MAKE4('T','O','P','I')
-#define M_ERROR         MAKE4('E','R','R','O')
-#define M_WALL          MAKE4('W','A','L','L')
-#define M_PING          MAKE4('P','I','N','G')
-#define M_PONG          MAKE4('P','O','N','G')
-#define M_RPONG         MAKE4('R','P','O','N')
-#define M_INVITE        MAKE4('I','N','V','I')
-#define M_SILENCE	MAKE4('S','I','L','E')
-
 /* For ctcp parsing */
 #define C_VERSION	MAKE4('V','E','R','S')
 #define C_ACTION	MAKE4('A','C','T','I')

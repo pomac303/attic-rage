@@ -22,12 +22,15 @@ void* iter_data(struct set_node *node);
 char * iter_key(struct set_node *node);
 
 dict_t dict_new(void);
+dict_t dict_numeric_new(void);
 
 void dict_005_insert(dict_t dict, const char *key, void *data);
 void dict_cmd_insert(dict_t dict, const char *key, void *data);
 void dict_capab_insert(dict_t dict, const char *key);
+void dict_numeric_insert(dict_t dict, const int *numeric, void *data);
 #define dict_size(DICT) ((SET)->count)
 void* dict_find(dict_t dict, const char *key, int *present);
+void* dict_numeric_find(dict_t dict, const int *numeric, int *present);
 #define dict_remove(DICT, KEY) set_remove(DICT, KEY, 0)
 #define dict_delete(SET) (set_clear(SET))
 

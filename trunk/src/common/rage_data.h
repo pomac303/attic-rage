@@ -451,6 +451,23 @@ typedef struct command
 	char *help;
 } command;
 
+typedef int (*ircparser_numeric_callback) (rage_session *sess, int parc, char *parv[]);
+
+typedef struct ircparser_numeric
+{
+	int numeric;
+	ircparser_numeric_callback callback;
+} ircparser_numeric;
+
+typedef int (*ircparser_server_callback) 
+	(rage_session *sess, int parc, char *parv[], char *ip, char *nick, int is_server);
+
+typedef struct ircparser_server
+{
+	char *name;
+	ircparser_server_callback callback;
+} ircparser_server;
+
 struct away_msg
 {
 	struct server *server;

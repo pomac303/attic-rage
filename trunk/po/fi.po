@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-05 18:47+1300\n"
+"POT-Creation-Date: 2004-12-18 16:48+0100\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -2871,220 +2871,220 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: src/common/rage.c:901
+#: src/common/rage.c:899
 msgid "Direct client-to-client"
 msgstr "Suora vertaisyhteys"
 
-#: src/common/rage.c:902
+#: src/common/rage.c:900
 msgid "Send File"
 msgstr "Lähetä tiedosto"
 
-#: src/common/rage.c:903
+#: src/common/rage.c:901
 msgid "Offer Chat"
 msgstr "Tarjoa keskustelua"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:902
 msgid "Abort Chat"
 msgstr "Keskeytä keskustelu"
 
-#: src/common/rage.c:905 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:903 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versio"
 
-#: src/common/rage.c:906
+#: src/common/rage.c:904
 msgid "Userinfo"
 msgstr "Käyttäjätiedot"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:905
 msgid "Clientinfo"
 msgstr "Asiakasohjelmatiedot"
 
-#: src/common/rage.c:908 src/common/rage.c:942 src/common/rage.c:993
+#: src/common/rage.c:906 src/common/rage.c:940 src/common/rage.c:991
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/rage.c:909
+#: src/common/rage.c:907
 msgid "Time"
 msgstr "Aika"
 
-#: src/common/rage.c:910
+#: src/common/rage.c:908
 msgid "Finger"
 msgstr "Tunnustelu"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:909
 msgid "Oper"
 msgstr "Operaattori"
 
-#: src/common/rage.c:912
+#: src/common/rage.c:910
 msgid "Kill this user"
 msgstr "Tapa tämä käyttäjä"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:911
 msgid "Mode"
 msgstr "Tila"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:912
 msgid "Give Ops"
 msgstr "Anna opit"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:913
 msgid "Take Ops"
 msgstr "Poista opit"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:914
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Anna opit"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:915
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Poista opit"
 
-#: src/common/rage.c:918
+#: src/common/rage.c:916
 msgid "Give Voice"
 msgstr "Anna puheoikeus"
 
-#: src/common/rage.c:919
+#: src/common/rage.c:917
 msgid "Take Voice"
 msgstr "Poista puheoikeus"
 
-#: src/common/rage.c:920
+#: src/common/rage.c:918
 msgid "Ignore"
 msgstr "Jätä huomiotta"
 
-#: src/common/rage.c:921
+#: src/common/rage.c:919
 msgid "Ignore User"
 msgstr "Jätä käyttäjä huomiotta"
 
-#: src/common/rage.c:922
+#: src/common/rage.c:920
 msgid "UnIgnore User"
 msgstr "Huomioi käyttäjä jälleen"
 
-#: src/common/rage.c:923
+#: src/common/rage.c:921
 msgid "Kick/Ban"
 msgstr "Potkaise/Bannaa"
 
-#: src/common/rage.c:924 src/common/rage.c:976
+#: src/common/rage.c:922 src/common/rage.c:974
 msgid "Kick"
 msgstr "Potkaise"
 
-#: src/common/rage.c:925 src/common/rage.c:926 src/common/rage.c:927
-#: src/common/rage.c:928 src/common/rage.c:929 src/common/rage.c:975
+#: src/common/rage.c:923 src/common/rage.c:924 src/common/rage.c:925
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:973
 msgid "Ban"
 msgstr "Bannaa"
 
-#: src/common/rage.c:930 src/common/rage.c:931 src/common/rage.c:932
-#: src/common/rage.c:933
+#: src/common/rage.c:928 src/common/rage.c:929 src/common/rage.c:930
+#: src/common/rage.c:931
 msgid "KickBan"
 msgstr "Potkaise ja bannaa"
 
-#: src/common/rage.c:934 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
+#: src/common/rage.c:932 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "Tiedot"
 
-#: src/common/rage.c:935
+#: src/common/rage.c:933
 msgid "Who"
 msgstr "Kuka"
 
-#: src/common/rage.c:936 src/common/rage.c:989
+#: src/common/rage.c:934 src/common/rage.c:987
 msgid "WhoIs"
 msgstr "KukaOn"
 
-#: src/common/rage.c:937
+#: src/common/rage.c:935
 msgid "DNS Lookup"
 msgstr "DNS-haku"
 
-#: src/common/rage.c:938
+#: src/common/rage.c:936
 msgid "Trace"
 msgstr "Jäljitä"
 
-#: src/common/rage.c:939
+#: src/common/rage.c:937
 msgid "UserHost"
 msgstr "KäyttäjäIsäntä"
 
-#: src/common/rage.c:940
+#: src/common/rage.c:938
 msgid "External"
 msgstr "Ulkoiset"
 
-#: src/common/rage.c:941
+#: src/common/rage.c:939
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/rage.c:943
+#: src/common/rage.c:941
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/rage.c:944
+#: src/common/rage.c:942
 msgid "Open Dialog Window"
 msgstr "Avaa keskusteluikkuna"
 
-#: src/common/rage.c:956
+#: src/common/rage.c:954
 msgid "Disconnect"
 msgstr "Katkaise yhteys"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:955
 msgid "Reconnect"
 msgstr "Yhdistä uudelleen"
 
-#: src/common/rage.c:958
+#: src/common/rage.c:956
 msgid "Leave Channel"
 msgstr "Poistu kanavalta"
 
-#: src/common/rage.c:959
+#: src/common/rage.c:957
 msgid "Join Channel..."
 msgstr "Liity kanavalle..."
 
-#: src/common/rage.c:960
+#: src/common/rage.c:958
 msgid "Enter Channel to Join:"
 msgstr "Anna liityttävän kanavan nimi:"
 
-#: src/common/rage.c:961
+#: src/common/rage.c:959
 msgid "Server Links"
 msgstr "Palvelinlinkit"
 
-#: src/common/rage.c:962
+#: src/common/rage.c:960
 msgid "Ping Server"
 msgstr "Pingaa palvelinta"
 
-#: src/common/rage.c:963
+#: src/common/rage.c:961
 msgid "Hide Version"
 msgstr "Piilota versionumero"
 
-#: src/common/rage.c:973
+#: src/common/rage.c:971
 msgid "Op"
 msgstr "Oppaa"
 
-#: src/common/rage.c:974
+#: src/common/rage.c:972
 msgid "DeOp"
 msgstr "DeOppaa"
 
-#: src/common/rage.c:977
+#: src/common/rage.c:975
 msgid "bye"
 msgstr "heihei"
 
-#: src/common/rage.c:978
+#: src/common/rage.c:976
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Anna syy miksi %s potkaistaan:"
 
-#: src/common/rage.c:979
+#: src/common/rage.c:977
 msgid "Sendfile"
 msgstr "Lähetä"
 
-#: src/common/rage.c:980
+#: src/common/rage.c:978
 msgid "Dialog"
 msgstr "Keskustele"
 
-#: src/common/rage.c:990
+#: src/common/rage.c:988
 msgid "Send"
 msgstr "Lähetä"
 
-#: src/common/rage.c:991
+#: src/common/rage.c:989
 msgid "Chat"
 msgstr "Keskustelu"
 
-#: src/common/rage.c:992 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Tyhjennä"
