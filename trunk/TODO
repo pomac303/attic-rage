@@ -1,0 +1,9 @@
+- Move more of the fe-* code to common.
+
+- Generalized fe-api, make the fe-* codesize minimal.
+  (add ncurses, win32 ui)
+
+- Ability to connect to a existing session.
+
+- General cleanups.
+
