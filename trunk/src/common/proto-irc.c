@@ -870,14 +870,20 @@ irc_server(session *sess, int parc, char *parv[])
 				/* TODO: Not good enough */
 				if (text[0] == '\001' && text[len-1]=='\001') 
 				{
+					int parc2;
 					text[len-1]=0;
 					text++;
 					if (strncasecmp(text,"ACTION",6)!=0)
 						flood_check(nick,ip,
 								sess->server,
 								sess,0);
-					if (strncasecmp(text,"DCC ",4) == 0)
-					{ } 
+					/* DCC is handled in ctcp_handle aswell.
+					 * Note that the -1 in these 2 lines is essential since
+					 * the splitter starts at element 1. Also, fixing this 
+					 * pripperly is left as a excersise to Isomer. =)
+					 * FIXME: Isomer */
+					split_cmd_parv(parv[3], &parc2, parv + parc - 1);
+					parc += parc2 -1;
 					ctcp_handle(sess, to, nick, text, parc, parv);
 				} else
 				{

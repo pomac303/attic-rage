@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib.h>
+#include "rage.h"
 #include "xchat-plugin.h"
 
 #ifdef WIN32
