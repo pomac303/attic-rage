@@ -208,7 +208,9 @@ localedir = $(datadir)/locale
 
 bin_PROGRAMS = xchat
 
-INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\"
+INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \
+	-I ../common/
+
 
 xchat_LDADD = ../common/libxchatcommon.a $(GUI_LIBS)
 
@@ -257,7 +259,7 @@ xchat_OBJECTS = $(am_xchat_OBJECTS)
 xchat_DEPENDENCIES = ../common/libxchatcommon.a
 xchat_LDFLAGS =
 
-DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir) -I../common
+DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/about.Po ./$(DEPDIR)/ascii.Po \
