@@ -137,11 +137,14 @@ fe_new_window (struct session *sess, int focus)
 static int
 timecat (char *buf)
 {
-	char stampbuf[64];
+	char *stamp;
+        size_t len;
 
-	get_stamp_str (time (0), stampbuf, sizeof (stampbuf));
-	strcat (buf, stampbuf);
-	return strlen (stampbuf);
+	get_stamp_str (prefs.stamp_format, time (0), &stamp);
+	strcat (buf, stamp);
+        len = strlen (stamp);
+        g_free (stamp);
+	return len;
 }
 
 /*                       0  1  2  3  4  5  6  7   8   9   10 11  12  13  14 15 */
