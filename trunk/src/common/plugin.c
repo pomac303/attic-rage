@@ -947,10 +947,10 @@ rage_get_info (rage_plugin *ph, const char *id)
 			}
 			return NULL;
 
-		case 0xdd9b1abd:	/* ragedir */
+		case 0x39e75a20:	/* ragedir */
 			return get_xdir_utf8 ();
 
-		case 0xe33f6c4a:	/* ragedirfs */
+		case 0x5d795eed:	/* ragedirfs */
 			return get_xdir_fs ();
 	}
 
