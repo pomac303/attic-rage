@@ -32,7 +32,7 @@
 
 #undef PACKAGE
 #include "../../config.h"	/* for #define OLD_PERL */
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 
 
 static xchat_plugin *ph; /* plugin handle */
@@ -229,7 +229,7 @@ timer_cb (void *userdata)
 }
 
 static int
-server_cb (char *word[], char *word_eol[], void *userdata)
+server_cb (int parc, char *parv[], void *userdata)
 {
 	HookData *data = (HookData *)userdata;
 	int retVal = 0;
@@ -237,7 +237,6 @@ server_cb (char *word[], char *word_eol[], void *userdata)
 
 	/* these must be initialized after SAVETMPS */
 	AV* wd = NULL;
-	AV* wd_eol = NULL;
 
 	dSP;
 	ENTER;
@@ -245,27 +244,18 @@ server_cb (char *word[], char *word_eol[], void *userdata)
 	
 	wd = newAV ();
 	sv_2mortal ((SV*)wd);
-	wd_eol = newAV ();
-	sv_2mortal ((SV*)wd_eol);
 
 	for (count = 1;
-	(count < 32) && (word[count] != NULL) && (word[count][0] != 0);
+	(count < parc) && (parv[count] != NULL) && (parv[count][0] != 0);
 	count++) {
-	  av_push (wd, newSVpv (word[count], 0));
+	  av_push (wd, newSVpv (parv[count], 0));
 	}
 
-	for (count = 1;
-	(count < 32) && (word_eol[count] != NULL) && (word_eol[count][0] != 0);
-	count++)
-	{
-		av_push (wd_eol, newSVpv (word_eol[count], 0));
-	}
 	
 /* 	xchat_printf (ph, */
 /* 			"Recieved %d words in server callback", av_len (wd)); */
 	PUSHMARK (SP);
 	XPUSHs (newRV_noinc ((SV*) wd));
-	XPUSHs (newRV_noinc ((SV*) wd_eol));
 	XPUSHs (data->userdata);
 	PUTBACK;
 
@@ -300,7 +290,7 @@ server_cb (char *word[], char *word_eol[], void *userdata)
 }
 
 static int
-command_cb (char* word[], char* word_eol[], void *userdata)
+command_cb (int parc, char* parv[], void *userdata)
 {
 	HookData *data = (HookData *)userdata;
 	int retVal = 0;
@@ -308,7 +298,6 @@ command_cb (char* word[], char* word_eol[], void *userdata)
 
 	/* these must be initialized after SAVETMPS */
 	AV* wd = NULL;
-	AV* wd_eol = NULL;
 
 	dSP;
 	ENTER;
@@ -316,28 +305,20 @@ command_cb (char* word[], char* word_eol[], void *userdata)
 	
 	wd = newAV ();
 	sv_2mortal ((SV*)wd);
-	wd_eol = newAV ();
-	sv_2mortal ((SV*)wd_eol);
 
 	for (count = 1;
-		  (count < 32) && (word[count] != NULL) && (word[count][0] != 0);
+		  (count < parc) 
+		   && (parv[count] != NULL) 
+		   && (parv[count][0] != 0);
 		  count++) {
-	  av_push (wd, newSVpv (word[count], 0));
+	  av_push (wd, newSVpv (parv[count], 0));
 	}
 
-	for (count = 1;
-	(count < 32) && (word_eol[count] != NULL) && 
-		(word_eol[count][0] != 0);
-	count++)
-	{
-		av_push (wd_eol, newSVpv (word_eol[count], 0));
-	}
 	
 /* 	xchat_printf (ph, "Recieved %d words in command callback", */
 /* 			av_len (wd)); */
 	PUSHMARK (SP);
 	XPUSHs (newRV_noinc ((SV*)wd));
-	XPUSHs (newRV_noinc ((SV*)wd_eol));
 	XPUSHs (data->userdata);
 	PUTBACK;
 
@@ -372,7 +353,7 @@ command_cb (char* word[], char* word_eol[], void *userdata)
 }
 
 static int
-print_cb (char *word[], void *userdata)
+print_cb (int parc, char *parv[], void *userdata)
 {
 
 	HookData *data = (HookData *)userdata;
@@ -390,10 +371,10 @@ print_cb (char *word[], void *userdata)
 	sv_2mortal ((SV*)wd);
 
 	for (count = 1;
-	(count < 32) && (word[count] != NULL) && (word[count][0] != 0);
+	(count < parc) && (parv[count] != NULL) && (parv[count][0] != 0);
 	count++)
 	{
-		av_push (wd, newSVpv (word[count], 0));
+		av_push (wd, newSVpv (parv[count], 0));
 	}
 	
 /* 	xchat_printf (ph, "Recieved %d words in print callback", av_len (wd)); */
