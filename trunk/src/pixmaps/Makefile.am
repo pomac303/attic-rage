@@ -7,7 +7,7 @@ LIST =	aboutpng $(srcdir)/about.png \
 			purplepng $(srcdir)/purple.png \
 			redpng $(srcdir)/red.png \
 			voicepng $(srcdir)/voice.png \
-			xchatpng $(srcdir)/../../xchat.png
+			xchatpng $(srcdir)/../../rage.png
 
 PNGS = about.png book.png hop.png op.png purple.png red.png voice.png
 noinst_HEADERS = inline_pngs.h

@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+if [ -d /usr/share/doc/rage -a ! -L /usr/share/doc/rage ]; then
+  rm -rf /usr/share/doc/rage
+  ln -sf rage-common /usr/share/doc/rage
+fi
+
+#DEBHELPER#

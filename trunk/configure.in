@@ -634,8 +634,8 @@ AC_SUBST(PY_CFLAGS)
 AC_SUBST(PY_LIBS)
 AC_SUBST(TCL_LIBS)
 AC_SUBST(TCL_CFLAGS)
-xchatlibdir=${libdir}/xchat
-xchatsharedir=${datadir}/xchat
+xchatlibdir=${libdir}/rage
+xchatsharedir=${datadir}/rage
 AC_SUBST(xchatlibdir)
 AC_SUBST(xchatsharedir)
 

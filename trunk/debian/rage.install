@@ -1,0 +1,3 @@
+debian/tmp/usr/share/applications/rage.desktop ../rage/usr/share/applications
+debian/tmp/usr/share/pixmaps/rage.png
+debian/tmp/usr/bin/rage ../rage/usr/rage

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=XChat IRC
+Name=Rage IRC
 Comment[de]=IRC-Client
 Comment[es]=Aplicación de IRC
 Comment[fi]=IRC-sovellus
@@ -12,8 +12,8 @@ Comment[sl]=Odjemalec IRC
 Comment[sv]=IRC-klient
 Comment[ro]=Client de IRC
 Comment=IRC Client
-Exec=xchat
-Icon=xchat.png
+Exec=rage
+Icon=rage.png
 Terminal=false
 Type=Application
 Categories=Application;Network;

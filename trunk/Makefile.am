@@ -4,11 +4,11 @@ CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 SUBDIRS = po intl src plugins
 
-EXTRA_DIST = autogen.sh HACKING INSTALL.w32 faq.html xchat.png \
-		xchat.desktop xchat.spec config.h.w32 xchat.ico
+EXTRA_DIST = autogen.sh HACKING INSTALL.w32 faq.html rage.png \
+		rage.desktop rage.spec config.h.w32 rage.ico
 
-icon_DATA = xchat.png
+icon_DATA = rage.png
 icondir = $(datadir)/pixmaps
 
-util_DATA = xchat.desktop
+util_DATA = rage.desktop
 utildir = $(datadir)/applications
