@@ -777,7 +777,7 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 
 		if((p = strchr(reason, '.')))
 		{
-			for (p++; *p; p++)
+			for (; *p; p++)
 			{
 				if (*p == '.')
 					tld = 0;
@@ -786,10 +786,9 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 			}
 			if ((tld > 1) && (tld < 5))
 			{
-				tld = 0;
-				if ((p = strchr(seperator, '.')))
+				if ((p = strchr(seperator +1, '.')))
 				{
-					for (p++; *p; p++)
+					for (; *p; p++)
 					{
 						if (*p == ' ')
 						{
