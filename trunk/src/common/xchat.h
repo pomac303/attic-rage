@@ -438,7 +438,6 @@ typedef struct server
 	int reconnect_away:1;		/* whether to reconnect in is_away state */
 	int dont_use_proxy:1;		/* to proxy or not to proxy */
 	int bad_prefix:1;				/* gave us a bad PREFIX= 005 number */
-	unsigned int have_idmsg:1;              /* freenode's IDENTIFY-MSG */
 	int use_who:1;				/* whether to use WHO command to get dcc_ip */
 #ifdef USE_OPENSSL
 	int use_ssl:1;					  /* is server SSL capable? */

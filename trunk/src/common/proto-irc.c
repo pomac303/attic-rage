@@ -388,16 +388,15 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case 290: /* CAPAB reply */
 		{
 			int i;
+			char *tmp = NULL;
 			
-			/* initalize variables */
-			sess->server->have_idmsg = FALSE;
-
 			for (i = 2; i < parc; i++)
 			{
-				if (strcmp(parv[2], "IDENTIFY-MSG"))
+				tmp = g_malloc(strlen(parv[i]) + 7);
+				if (tmp != NULL)
 				{
-					sess->server->have_idmsg = TRUE;
-					break;
+					sprintf(tmp, "CAPAB-%s", parv[i]);
+					dict_insert(sess->server->isupport, tmp, NULL);
 				}
 			}
 			break;
@@ -822,7 +821,7 @@ irc_server(session *sess, int parc, char *parv[])
 						sess->server->servername,
 						NULL, NULL, 0);
 			} else {
-				if (sess->server->have_idmsg)
+				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
 				{
 					if (*text == '+')
 					{
@@ -858,7 +857,7 @@ irc_server(session *sess, int parc, char *parv[])
 			if (*to)
 			{
 				char *text=parv[3];
-				if (sess->server->have_idmsg)
+				if (isupport(sess->server, "CAPAB-IDENTIFY-MSG"))
 				{
 					if (*text == '+')
 					{
