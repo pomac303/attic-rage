@@ -91,7 +91,7 @@ dcc_calc_cps (struct DCC *dcc)
 	double timediff, startdiff;
 	int glob_throttle_bit, wasthrottled;
 	int *cpssum, glob_limit;
-	unsigned int pos, posdiff;
+	off_t pos, posdiff;
 
 	g_get_current_time (&now);
 
@@ -130,7 +130,7 @@ dcc_calc_cps (struct DCC *dcc)
 		posdiff = pos - dcc->lastcpspos;
 		oldcps = dcc->cps;
 		dcc->cps = (int)((double) posdiff / timediff) * (int)(timediff / startdiff)
-			+ (int)((double)dcc->cps * (int)(1.0 - (int)(timediff / startdiff)));
+			+ (int)(dcc->cps * (int)(1.0 - (int)(timediff / startdiff)));
 
 		*cpssum += dcc->cps - oldcps;
 	}
@@ -595,8 +595,15 @@ dcc_send_ack (struct DCC *dcc)
 {
 	gint64 pos;
 	/* send in 64-bit big endian */
-	pos = htonll(dcc->pos);
-	send (dcc->sok, (char *) &pos, 4, 0);
+	if (dcc->size > 4294967295U)
+	{
+		pos = htonll(dcc->pos);
+		send (dcc->sok, (char *) &pos, sizeof(pos), 0);
+	} else
+	{
+		pos = htonl(dcc->pos);
+		send (dcc->sok, (char *) &pos, 4, 0);
+	}
 }
 
 static gboolean
@@ -928,7 +935,7 @@ static gboolean
 dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 {
 	int len;
-	guint32 ack;
+	off_t ack;
 	char buf[16];
 	int sok = dcc->sok;
 
@@ -948,8 +955,16 @@ dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	}
 	if (len < 4)
 		return TRUE;
-	recv (sok, (char *) &ack, 4, 0);
-	dcc->ack = ntohll (ack);
+	/* if file is larger than 4 gig, assume that the ack is 64 bit */
+	if(dcc->size > 4294967295U)
+	{
+		recv (sok, (char *) &ack, sizeof(ack), 0);
+		dcc->ack = ntohll (ack);
+	} else
+	{
+		recv (sok, (char *) &ack, 4, 0);
+		dcc->ack = ntohl (ack);
+	}
 
 	/* fix for BitchX */
 	if (dcc->ack < dcc->resumable)

@@ -33,7 +33,7 @@ struct DCC
 	int resume_errno;
 
 	GTimeVal lastcpstv, firstcpstv;
-	unsigned int lastcpspos;
+	off_t lastcpspos;
 	int maxcps;
 
 	off_t size;

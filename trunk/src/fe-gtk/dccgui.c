@@ -35,9 +35,9 @@ static void proper_unit (off_t size, char *buf, int buf_len)
 	else if (size > KILOBYTE && size <= MEGABYTE)
 		snprintf (buf, buf_len, "%llikB", size / KILOBYTE);
 	else if (size > MEGABYTE && size <= GIGABYTE)
-		snprintf (buf, buf_len, "%.2fMB", (float)size / MEGABYTE);
+		snprintf (buf, buf_len, "%.2fMB", (float)(size / MEGABYTE));
 	else
-		 snprintf (buf, buf_len, "%.2fGB", (float)size / GIGABYTE);
+		 snprintf (buf, buf_len, "%.2fGB", (float)(size / GIGABYTE));
 }
 
 /*** UNIT PATCH ***/
@@ -122,7 +122,7 @@ static void
 dcc_prepare_row_send (struct DCC *dcc, char *col[])
 {
 	static char pos[16], size[16], kbs[14], ack[16], perc[14], eta[14];
-	int to_go;
+	off_t to_go;
 	float per;
 
 	col[0] = _(dccstat[dcc->dccstat].name);
@@ -146,7 +146,9 @@ dcc_prepare_row_send (struct DCC *dcc, char *col[])
 	{
 		to_go = (dcc->size - dcc->ack) / dcc->cps;
 		snprintf (eta, sizeof (eta), "%.2d:%.2d:%.2d",
-					 to_go / 3600, (to_go / 60) % 60, to_go % 60);
+					 (int)(to_go / 3600), 
+					 (int)((to_go / 60) % 60), 
+					 (int)(to_go % 60));
 	} else
 		strcpy (eta, "--:--:--");
 }
@@ -156,7 +158,7 @@ dcc_prepare_row_recv (struct DCC *dcc, char *col[])
 {
 	static char size[16], pos[16], kbs[16], perc[14], eta[16];
 	float per;
-	int to_go;
+	off_t to_go;
 
 	col[0] = _(dccstat[dcc->dccstat].name);
 	col[1] = dcc->file;
@@ -185,7 +187,9 @@ dcc_prepare_row_recv (struct DCC *dcc, char *col[])
 	{
 		to_go = (dcc->size - dcc->pos) / dcc->cps;
 		snprintf (eta, sizeof (eta), "%.2d:%.2d:%.2d",
-					 to_go / 3600, (to_go / 60) % 60, to_go % 60);
+					 (int)(to_go / 3600), 
+					 (int)((to_go / 60) % 60), 
+					 (int)(to_go % 60));
 	} else
 		strcpy (eta, "--:--:--");
 }
