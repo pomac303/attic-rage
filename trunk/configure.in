@@ -111,10 +111,6 @@ AC_ARG_ENABLE(perl_old,
 [  --disable-perl_old      no backwards compatibility for perl plugin],
         perl_old=$enableval, perl_old=yes)
 
-AC_ARG_ENABLE(tcl,
-[  --enable-tcl[=PATH]       directory with Tcl config file: tclConfig.sh],
-        tcl=$enableval, tcl=yes)
-
 AC_ARG_ENABLE(ruby,
 [  --disable-ruby        don't build the ruby plugin],
         ruby=$enableval, ruby=yes)
@@ -336,31 +332,6 @@ if test "$python" = yes; then
                         python=no
                 fi
         fi
-fi
-
-dnl *********************************************************************
-dnl ** TCL **************************************************************
-dnl *********************************************************************
-
-AC_MSG_CHECKING(for location of tclConfig.sh)
-dirs="$tcl /lib /usr/lib /usr/tcl/lib /usr/local/lib /usr/local/tcl-8.4/lib /usr/local/tcl/lib /opt/lib"
-found=0
-if test "$tcl" != "no"; then
-	tcl=no
-	for try in $dirs; do
-		if test -f $try/tclConfig.sh; then
-			found=1
-			. $try/tclConfig.sh
-			TCL_LIBS="$TCL_LIB_SPEC $TCL_LIBS"
-			TCL_CFLAGS="-I${TCL_PREFIX}/include $TCL_INCLUDE_SPEC"
-			tcl=yes
-			AC_MSG_RESULT($try/tclConfig.sh)
-			break
-		fi
-	done
-	if test "$found" -eq 0 ; then
-		AC_MSG_RESULT([tclConfig.sh not found - use the --enable-tcl option])
-	fi
 fi
 
 dnl *********************************************************************

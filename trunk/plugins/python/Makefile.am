@@ -2,7 +2,7 @@ CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 EXTRA_DIST = makefile.msc
 
-libdir = $(xchatlibdir)/plugins
+libdir = $(ragelibdir)/plugins
 
 lib_LTLIBRARIES = python.la
 python_la_SOURCES = python.c

@@ -2,7 +2,7 @@ CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 EXTRA_DIST=ignore.pl sample_script.pl xchat2-perldocs.html xchat2-perl.html makefile.msc
 
-libdir = $(xchatlibdir)/plugins
+libdir = $(ragelibdir)/plugins
 
 lib_LTLIBRARIES = perl.la
 perl_la_SOURCES = perl.c
