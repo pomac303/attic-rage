@@ -385,9 +385,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_ISUPPORT: /* 005 */
 			inbound_005(sess->server,parc,parv);
 			break;
-		case 290: /* CAPAB reply */
-			/* shrug? rely on ISUPPORT again */
-			break;
 		case RPL_AWAY: /* 301 */
 			inbound_away(sess->server,parv[3],parv[4]);
 			break;

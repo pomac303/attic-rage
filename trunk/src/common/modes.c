@@ -625,9 +625,6 @@ run_005 (server * serv)
 {
 	char *pre;
 
-	if((isupport(serv, "CAPAB"))) /* wait for numeric 290 */
-		tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
-	
 	if((pre = get_isupport(serv, "CASEMAPPING")))
 	{
 		if (strcmp (pre, "ascii") == 0)
