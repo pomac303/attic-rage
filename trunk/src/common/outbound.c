@@ -1373,14 +1373,7 @@ cmd_exec (struct session *sess, char *cmd, char *buf)
 
 	if (buf[0] == '-')
 	{
-		char *opt = split_opt(&buf);
-
-		skip_white(&buf);
-
-		if (!opt)
-			return FALSE;
-
-		switch(opt[1])
+		switch(buf[1])
 		{
 			case 0:
 				return FALSE;
@@ -1391,7 +1384,9 @@ cmd_exec (struct session *sess, char *cmd, char *buf)
 				tochannel = TRUE;
 				break;
 		}
-	}					
+		split_cmd(&buf); /* skip the options */
+		skip_white(&buf);
+	}
 
 	if (shell)
 	{
@@ -1440,9 +1435,8 @@ cmd_exec (struct session *sess, char *cmd, char *buf)
 		dup2 (fds[1], 0);
 		/* Now we call /bin/sh to run our cmd ; made it more friendly -DC1 */
 		if (shell)
-		{
 			execl ("/bin/sh", "sh", "-c", buf, 0);
-		} else
+		else
 		{
 			char **argv;
 			int argc;

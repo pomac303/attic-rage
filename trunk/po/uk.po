@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-22 22:40+0200\n"
+"POT-Creation-Date: 2004-10-23 00:13+0200\n"
 "PO-Revision-Date: 2004-04-06 12:00+2000\n"
 "Last-Translator: Maxim V. Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
@@ -109,11 +109,11 @@ msgstr "Не зайшли на канал. Спробуйте /join #<канал
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr "Немає з'єднання. Спробуйте /server <вузол> [<порт>]\n"
 
-#: src/common/outbound.c:1400
+#: src/common/outbound.c:1395
 msgid "I need /bin/sh to run!\n"
 msgstr "Для запуску необхідна програма /bin/sh !\n"
 
-#: src/common/outbound.c:1669
+#: src/common/outbound.c:1663
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -125,7 +125,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1704
+#: src/common/outbound.c:1698
 msgid ""
 "\n"
 "\n"
@@ -137,7 +137,7 @@ msgstr ""
 "Напишіть /HELP <команда> щоб отримати докладнішу інформацію, або /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1705
+#: src/common/outbound.c:1699
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -147,37 +147,37 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1813
+#: src/common/outbound.c:1807
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Невідомий аргумент '%s' проігноровано."
 
-#: src/common/outbound.c:2761
+#: src/common/outbound.c:2755
 msgid "No such plugin found.\n"
 msgstr "На знайдено такого модуля.\n"
 
-#: src/common/outbound.c:2766 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Не вдається вивантажити модуль.\n"
 
-#: src/common/outbound.c:3026
+#: src/common/outbound.c:3020
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <ім'я> <дія>, додає кнопку над списком користувачів"
 
-#: src/common/outbound.c:3028
+#: src/common/outbound.c:3022
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr ""
 "ALLCHAN <команда>, надсилає команду до всіх каналів, з якими ви з'єднані"
 
-#: src/common/outbound.c:3030
+#: src/common/outbound.c:3024
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <cmd>, надсилає команду до всіх серверів, з якими ви з'єднані"
 
-#: src/common/outbound.c:3031
+#: src/common/outbound.c:3025
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<підстава>], встановлює ваш стан як \"відсутній\""
 
-#: src/common/outbound.c:3033
+#: src/common/outbound.c:3027
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -187,19 +187,19 @@ msgstr ""
 "вказаній масці. Якщо користувачі вже з'єднані з каналом, вони не будуть "
 "відключені (для цього потрібно бути оператором каналу)"
 
-#: src/common/outbound.c:3035
+#: src/common/outbound.c:3029
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, очищує поточне текстове вікно"
 
-#: src/common/outbound.c:3036
+#: src/common/outbound.c:3030
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, закриває поточне вікно/вкладку"
 
-#: src/common/outbound.c:3038
+#: src/common/outbound.c:3032
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <код>, знаходить код країни, наприклад: au = australia"
 
-#: src/common/outbound.c:3040
+#: src/common/outbound.c:3034
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <прізвисько> <повідомлення>, надсилає повідомлення CTCP до користувача "
 "з вказаним ім'ям, звичайними повідомленнями є VERSION та USERINFO"
 
-#: src/common/outbound.c:3042
+#: src/common/outbound.c:3036
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, вийти з поточного каналу та одразу з'єднатись знову"
 
-#: src/common/outbound.c:3044
+#: src/common/outbound.c:3038
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -229,7 +229,7 @@ msgstr ""
 "DCC CLOSE <тип> <прізвисько> <файл>        приклад:\n"
 "         /dcc close send johnsmith file.tar.gz"
 
-#: src/common/outbound.c:3053
+#: src/common/outbound.c:3047
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -237,11 +237,11 @@ msgstr ""
 "DEHOP <прізвисько>, скасувати стан напівоператор каналу (chanhalf-op) у "
 "особи на поточному каналі (потребує прав адміністратора каналу)"
 
-#: src/common/outbound.c:3055
+#: src/common/outbound.c:3049
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <ім'я>, видаляє кнопку зі списку користувачів"
 
-#: src/common/outbound.c:3057
+#: src/common/outbound.c:3051
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -249,7 +249,7 @@ msgstr ""
 "DEOP <прізвисько>, скасовує права оператора (chanop) у вказаної особи на "
 "поточному каналі (потребує прав адміністратора каналу)"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3053
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -257,19 +257,19 @@ msgstr ""
 "DEVOICE <прізвисько>, скасовує право голосу у вказаної особи на поточному "
 "каналі (потребує прав адміністратора каналу)"
 
-#: src/common/outbound.c:3060
+#: src/common/outbound.c:3054
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, від'єднатись від сервера"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3055
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <прізвисько|вузол|ip>, знайти IP адрес користувача"
 
-#: src/common/outbound.c:3062
+#: src/common/outbound.c:3056
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <текст>, вивести текст на локальній машині"
 
-#: src/common/outbound.c:3065
+#: src/common/outbound.c:3059
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -278,11 +278,11 @@ msgstr ""
 "буде надіслано до поточного каналу, інакше він буде виведений в поточному "
 "вікні"
 
-#: src/common/outbound.c:3067
+#: src/common/outbound.c:3061
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, надсилає процесу сигнал SIGCONT"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3064
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -290,29 +290,29 @@ msgstr ""
 "EXECKILL [-9], перериває виконання процесу в поточному сеансу. Якщо задано "
 "параметр -9 процес буде припинено за допомогою SIGKILL"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3066
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, надсилає процесу сигнал SIGSTOP"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3067
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, надсилає дані в стандартний ввід процесу"
 
-#: src/common/outbound.c:3077
+#: src/common/outbound.c:3071
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, скидає поточну чергу відправлення на поточному сервері"
 
-#: src/common/outbound.c:3079
+#: src/common/outbound.c:3073
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr "GATE <вузол> [<порт>], під'єднується через проксі, типовий порт 23"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3079
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <прізвисько>, надає стан напівоператора (chanhalf-op) вказаній особі "
 "(потребує прав оператора)"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3081
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -326,7 +326,7 @@ msgstr ""
 "                PRIV, CHAN, NOTI, CTCP, INVI, ALL\n"
 "    параметри - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3093
+#: src/common/outbound.c:3087
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -334,17 +334,17 @@ msgstr ""
 "INVITE <прізвисько> [<канал>], запрошує когось до каналу, типово до "
 "поточного каналу (потребує прав оператора каналу)"
 
-#: src/common/outbound.c:3094
+#: src/common/outbound.c:3088
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <канал>, під'єднатися до вказаного каналу"
 
-#: src/common/outbound.c:3096
+#: src/common/outbound.c:3090
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <прізвисько>, вилучити особу з поточного каналу (потребує прав "
 "оператора)"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3092
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -352,32 +352,32 @@ msgstr ""
 "KICKBAN <прізвисько>, забороняє а потім вилучає особу з поточного каналу "
 "(потребує прав оператора каналу)"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3095
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, виконує перевірку перевірку сигналу"
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3097
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <рядок>, шукає рядок в буфері"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3099
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <файл>, завантажує модуль або сценарій"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3101
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, скасовує стан напівоператора з усіх користувачів в поточному каналі "
 "(потребує прав оператора)"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3103
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, скасовує стан оператора з усіх користувачів каналу (потребує прав "
 "оператора)"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3105
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -385,39 +385,39 @@ msgstr ""
 "ME <дія>, надсилає подію до поточного каналу (події пишеться від третьої "
 "особи,наприклад /me стрибає)"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3107
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, вилучає усіх окрім вас з поточного каналу (потребує прав оператора)"
 
-#: src/common/outbound.c:3116
+#: src/common/outbound.c:3110
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, встановлює всім користувачам поточного каналу права оператора "
 "(потребує прав оператора)"
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3111
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <прізвисько> <повідомлення>, надсилає особисте повідомлення"
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3113
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, виводить список усіх користувачів поточного каналу"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3115
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <прізвисько> <повідомлення>, надсилає CTCP повідомлення"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3116
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <ім'я вузла> [<порт>]"
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3117
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <прізвисько>, змінює ваше прізвисько"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3119
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -425,42 +425,42 @@ msgstr ""
 "NOTICE <прізвисько/канал> <повідомлення>, надсилає сповіщення. Сповіщення - "
 "це тип повідомлень, на які слід автоматично реагувати"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3121
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<прізвисько>], виводить ваш список сповіщень або додає до нього "
 "когось"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3123
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <прізвисько>, надає вказаній особі статус оператора каналу (потребує прав "
 "оператора)"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3125
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<канал>] [<привід>], вийти з каналу, типово - з поточного каналу"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3127
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <прізвисько | канал>, CTCP пінгує особу або канал"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3129
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 "QUERY <прізвисько>, відкриває нове вікно приватних повідомлень до вказаної "
 "особи"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3131
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<підстава>], від'єднання від поточного серверу"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3133
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <текст>, надсилає текст в необробленій формі до серверу"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3136
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -470,7 +470,7 @@ msgstr ""
 "як/RECONNECT ,щоб переприєднатися до поточного серверу або /RECONNECT ALL ,"
 "щоб переприєднатися до усіх відкритих серверів"
 
-#: src/common/outbound.c:3145
+#: src/common/outbound.c:3139
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -480,7 +480,7 @@ msgstr ""
 "як/RECONNECT ,щоб переприєднатися до поточного серверу або /RECONNECT ALL ,"
 "переприєднатися до усіх відкритих серверів"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3141
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -488,27 +488,27 @@ msgstr ""
 "RECV <текст>, надсилає дані в необробленому форматі до xchat, як відправлені "
 "з irc сервера"
 
-#: src/common/outbound.c:3148
+#: src/common/outbound.c:3142
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3144
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <текст>, надсилає текст до об'єкту в поточному вікні"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3147
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <вузол> <порт> <канал>, встановити з'єднання з сервером та "
 "під'єднатись до каналу"
 
-#: src/common/outbound.c:3156
+#: src/common/outbound.c:3150
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <вузол> <порт> <канал>, встановити з'єднання з сервером та "
 "під'єднатись до каналу"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3155
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -516,50 +516,50 @@ msgstr ""
 "SERVCHAN <вузол> <порт> <канал>, встановлює з'єднання сервером.  Типовий "
 "порт для звичайних з'єднань 6667 та  9999 для ssl з'єднань"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3158
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
 msgstr ""
 "SERVER <вузол> [<порт>] [<пароль>], з'єднує з сервером, типовий порт 6667"
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3160
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <змінна> [<значення>]"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3163
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<тема>], встановлює тему, якщо вона вказана. У іншому випадку "
 "відображає поточну тему"
 
-#: src/common/outbound.c:3171
+#: src/common/outbound.c:3165
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 "UNBAN <маска> [<маска>...], скасовує заборону доступу до каналу всім, хто "
 "відповідає масці."
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3166
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr ""
 "UNIGNORE <маска> [QUIET] - скасовує ігнорування повідомлень з певної маски"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3167
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <ім'я>, вивантажує модуль або сценарій"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3170
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <прізвисько>, надає право голосу особі (потребує прав оператора каналу)"
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3172
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <повідомлення>, надсилає повідомлення до всіх каналів"
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3174
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
@@ -567,7 +567,7 @@ msgstr ""
 "WALLCHOP <повідомлення>, надсилає повідомлення до усіх операторів на "
 "поточному каналі"
 
-#: src/common/outbound.c:3182
+#: src/common/outbound.c:3176
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -576,12 +576,12 @@ msgstr ""
 "WALLCHOP <повідомлення>, надсилає повідомлення до усіх операторів на "
 "поточному каналі"
 
-#: src/common/outbound.c:3227
+#: src/common/outbound.c:3221
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Використання: %s\n"
 
-#: src/common/outbound.c:3232
+#: src/common/outbound.c:3226
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -589,19 +589,19 @@ msgstr ""
 "\n"
 "Немає довідки для цієї команди.\n"
 
-#: src/common/outbound.c:3238
+#: src/common/outbound.c:3232
 msgid "No such command.\n"
 msgstr "Такої команди не існує.\n"
 
-#: src/common/outbound.c:3608
+#: src/common/outbound.c:3602
 msgid "Bad arguments for user command.\n"
 msgstr "Неправильні аргументи команди користувача.\n"
 
-#: src/common/outbound.c:3770
+#: src/common/outbound.c:3764
 msgid "Too many recursive usercommands, aborting."
 msgstr "Надто багато рекурсивних команд користувача, зупиняємо."
 
-#: src/common/outbound.c:3825
+#: src/common/outbound.c:3819
 msgid "Unknown Command. Try /help\n"
 msgstr "Невідома команда. Спробуйте /help\n"
 
