@@ -344,7 +344,7 @@ print_cb (int parc, char *parv[], void *userdata)
 
 	HookData *data = (HookData *)userdata;
 	int retVal = 0;
-	int count = 0;
+	STRLEN count = 0;
 
 	/* must be initialized after SAVETMPS */
 	AV* wd = NULL;
@@ -968,7 +968,7 @@ compat_execute_perl (char *function, char *args)
 {
 	char *perl_args[2];
 	int ret_value = 1;
-	long count;
+	STRLEN count;
 	SV *sv;
 
 	dSP;
