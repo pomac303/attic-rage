@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.1.1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2004-08-14 23:51+0200\n"
 "Last-Translator: Vaidrius Petrauskas <vaidrius@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -625,7 +625,7 @@ msgstr ""
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr "Ar čia tikrai SSL šifravimą palaikantis serveris ir jo jungtis?\n"
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -634,7 +634,7 @@ msgstr ""
 "Nepavyko nustatyti serverio adreso pagal vardą: %s\n"
 "Patikrinkite savo IP nustatymus!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Jungimasis per tarpinį serverį nepavyko.\n"
 
@@ -643,7 +643,7 @@ msgstr "Jungimasis per tarpinį serverį nepavyko.\n"
 msgid "Cycling to next server in %s...\n"
 msgstr "Bandomas kitas tinklo „%s“ serveris...\n"
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3398,11 +3398,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Paieškos buferis tuščias.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr "%d baitų"

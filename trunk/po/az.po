@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.7pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2004-03-12 22:22+0200\n"
 "Last-Translator: Metin Amiroff <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <translation-team-az@lists.sourceforge.net>\n"
@@ -534,7 +534,7 @@ msgstr ""
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr ""
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -543,7 +543,7 @@ msgstr ""
 "%s qovşaq adı tapıla bilmir\n"
 "IP qurğularınızı yoxlayın!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Vəkil traversalı bacarılmadı.\n"
 
@@ -552,7 +552,7 @@ msgstr "Vəkil traversalı bacarılmadı.\n"
 msgid "Cycling to next server in %s...\n"
 msgstr "%s üstündəki növbəti vericiyə keçilir...\n"
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3248,11 +3248,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Axtarış bufferi boşdur.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr "%d bayt"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2002-12-26 03:36+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -601,7 +601,7 @@ msgstr "Nav xchat_plugin_init simbola; vai tas patiesi ir xchat iespraudnis?"
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr ""
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -610,7 +610,7 @@ msgstr ""
 "Nevaru atšķetināt hostdatora vārdu %s\n"
 "Pārbauiet savus IP Uzstādījumus!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Starpservera šķērsošana neizdevās.\n"
 
@@ -619,7 +619,7 @@ msgstr "Starpservera šķērsošana neizdevās.\n"
 msgid "Cycling to next server in %s...\n"
 msgstr ""
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3328,11 +3328,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Meklēšanas buferis ir tukšs.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr ""

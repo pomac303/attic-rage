@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: X-Chat 1.9.8\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2003-01-14 03:00GMT+2\n"
 "Last-Translator: Dokianakis Theofanis <madf@hellug.gr>\n"
 "Language-Team: Greek <EL@li.org>\n"
@@ -604,7 +604,7 @@ msgstr "Όχι σύμβολο xchat_plugin_init· σίγουρα είναι άρθρωμα xchat;"
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr ""
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -613,7 +613,7 @@ msgstr ""
 "Αδυναμία εύρεσης του ονόματος διακομιστή %s\n"
 "Ελέγξτε τις ρυθμίσεις IP σας!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Απέτυχε η διάβαση από το proxy\n"
 
@@ -622,7 +622,7 @@ msgstr "Απέτυχε η διάβαση από το proxy\n"
 msgid "Cycling to next server in %s...\n"
 msgstr ""
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3321,11 +3321,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Η μνήμη έυρεσης είναι άδεια.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr ""

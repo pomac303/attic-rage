@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2004-08-10 07:37 +0900\n"
 "Last-Translator: Michael Kim <lavnrose@e.sarang.net>\n"
 "Language-Team: Korean <translation-team-ko@lists.sourceforge.net>\n"
@@ -600,7 +600,7 @@ msgstr "xchat_plugin_init 기호가 없음; 정말 xchat의 추가기능 입니�
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr "정말 SSL이 사용가능한 서버와 포트 입니까?\n"
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -609,7 +609,7 @@ msgstr ""
 "호스트명 %s 를(을) 해석 할 수 없습니다.\n"
 "당신의 IP 설정을 확인 하십시오.!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Proxy 연결 실패.\n"
 
@@ -618,7 +618,7 @@ msgstr "Proxy 연결 실패.\n"
 msgid "Cycling to next server in %s...\n"
 msgstr "%s 의 다음 서버로 진행....\n"
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3363,11 +3363,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "검색할 기억공간이 비어 있습니다.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr "%d 바이트"

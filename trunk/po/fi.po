@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-18 16:48+0100\n"
+"POT-Creation-Date: 2004-12-20 05:26+0100\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -602,7 +602,7 @@ msgstr ""
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr "Onko tämä varmasti SSL:ää tukeva palvelin ja portti?\n"
 
-#: src/common/server.c:896
+#: src/common/server.c:897
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -611,7 +611,7 @@ msgstr ""
 "Isäntänimen %s selvitys ei onnistu\n"
 "Tarkista IP-asetukset!\n"
 
-#: src/common/server.c:901
+#: src/common/server.c:902
 msgid "Proxy traversal failed.\n"
 msgstr "Välipalvelimen kauttakulku epäonnistui.\n"
 
@@ -620,7 +620,7 @@ msgstr "Välipalvelimen kauttakulku epäonnistui.\n"
 msgid "Cycling to next server in %s...\n"
 msgstr "Siirrytään seuraavalle %s-verkon palvelimelle...\n"
 
-#: src/common/servlist.c:1038
+#: src/common/servlist.c:1039
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -3402,11 +3402,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:582
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Hakupuskuri on tyhjä.\n"
 
-#: src/fe-gtk/fe-gtk.c:659
+#: src/fe-gtk/fe-gtk.c:607
 #, c-format
 msgid "%d bytes"
 msgstr "%d tavua"
