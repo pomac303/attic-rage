@@ -2091,12 +2091,13 @@ static int
 cmd_mode (struct session *sess, char *cmd, char *buf)
 {
 	char *dest;
-	char *mode;
+	char *ch;
 
 	split_cmd(&buf);
-	dest = split_cmd(&buf);
-	skip_white(&buf);
-	mode = buf;
+	dest = buf;
+	
+	if((ch = strchr(dest, ' ')))
+		*ch = '\0';
 
 	/* +channel channels are dying, let those servers whine about modes.
 	 * return info about current channel if available and no info is given 
@@ -2109,10 +2110,15 @@ cmd_mode (struct session *sess, char *cmd, char *buf)
 	{
 		if(sess->channel[0] == '\0')
 			return FALSE;
+		
+		/* the mode might have a target */
+		if (ch)
+			*ch = ' ';
+
 		sess->server->p_mode (sess->server, sess->channel, dest);
 	}	
 	else
-		sess->server->p_mode (sess->server, dest, mode);
+		sess->server->p_mode (sess->server, dest, ++ch);
 	return TRUE;
 }
 
@@ -3277,13 +3283,13 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 				 char *a, char *c, char *d, char *h, char *n,
 				 char *s)
 {
-	int num;
-	char buf[32];
+	int num, eol;
 	time_t now;
 	struct tm *tm_ptr;
 	char *utf;
 	gsize utf_len;
 	char *orig = dest;
+	char buf[60];
 
 	destlen--;
 
@@ -3291,6 +3297,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 	{
 		if (src[0] == '%' || src[0] == '&')
 		{
+			eol = src[0] == '&' ? 1 : 0;
+
 			if (isdigit (src[1]))
 			{
 				if (isdigit (src[2]) && isdigit (src[3]))
@@ -3319,12 +3327,17 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 				{
 					if (parv)
 					{
+						char tbuf[512];
+						
 						src++;
-						num = src[0] - '0';	/* ascii to decimal */
+						num = src[0] - '0';     /* ascii to decimal */
 						if (*parv[num] == 0)
 							return 0;
 
-						utf = parv[num];
+						if (eol)
+							utf = paste_parv(tbuf, sizeof(tbuf), num, parc, parv);
+						else
+							utf = parv[num];
 
 						/* avoid recusive usercommand overflow */
 						if ((dest - orig) + strlen (utf) >= (unsigned)destlen)
