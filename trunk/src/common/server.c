@@ -403,7 +403,7 @@ server_connected (server * serv)
 	serv->ping_recv = time (0);
 	serv->connected = TRUE;
 	set_nonblocking (serv->sok);
-	serv->iotag = fe_input_add (serv->sok, FIA_READ|FIA_EX, server_read, serv);
+	serv->iotag = net_input_add (serv->sok, FIA_READ|FIA_EX, server_read, serv);
 	if (!serv->no_login)
 	{
 		EMIT_SIGNAL (XP_TE_CONNECTED, serv->server_session, NULL, NULL, NULL,
@@ -448,7 +448,7 @@ server_stopconnecting (server * serv)
 {
 	if (serv->iotag)
 	{
-		fe_input_remove (serv->iotag);
+		net_input_remove (serv->iotag);
 		serv->iotag = 0;
 	}
 
@@ -920,7 +920,7 @@ server_cleanup (server * serv)
 
 	if (serv->iotag)
 	{
-		fe_input_remove (serv->iotag);
+		net_input_remove (serv->iotag);
 		serv->iotag = 0;
 	}
 
@@ -1500,7 +1500,7 @@ server_connect (server *serv, char *hostname, int port, int no_login)
 #endif
 	serv->childpid = pid;
 	serv->iotag =
-		fe_input_add (serv->childread, FIA_READ|FIA_FD, server_read_child, serv);
+		net_input_add (serv->childread, FIA_READ|FIA_FD, server_read_child, serv);
 }
 
 void server_fill_her_up (server *serv)

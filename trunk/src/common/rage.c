@@ -506,7 +506,7 @@ exec_notify_kill (rage_session * sess)
 		sess->running_exec = NULL;
 		kill (re->childpid, SIGKILL);
 		waitpid (re->childpid, NULL, WNOHANG);
-		fe_input_remove (re->iotag);
+		net_input_remove (re->iotag);
 		close (re->myfd);
 		if (re->linebuf)
 			free(re->linebuf);
@@ -1013,10 +1013,9 @@ xchat_init (void)
 			if (prefs.slist_skip || connect_url)
 				/* we'll have to open one. */
 				new_ircwindow (NULL, NULL, SESS_SERVER, 0);
-		} else
-		{
-			fe_idle_add (xchat_auto_connect, NULL);
 		}
+		else
+			g_idle_add (xchat_auto_connect, NULL);
 	} else
 	{
 		if (prefs.slist_skip)
@@ -1105,8 +1104,6 @@ void fe_message(char *a, int b) {}
 void xchat_exec(char *a) {}
 void fe_dcc_update(struct DCC *a) {}
 void fe_dcc_remove(struct DCC *a) {}
-void fe_input_remove(int a) {}
-int fe_input_add(int a,int b,void *c,void *d) { return 0; }
 void fe_dcc_add(struct DCC *a) {}
 int fe_dcc_open_send_win(int a) { return 0; }
 int plugin_emit_print(rage_session *a,int b,char **c) { return 0; }

@@ -18,6 +18,8 @@
 
 typedef struct netstore_ netstore;
 
+void net_input_remove(int tag);
+int net_input_add(int sok, int flags, void *func, void *data);
 netstore *net_store_new (void);
 void net_store_destroy (netstore *ns);
 int net_connect (netstore *ns, int sok4, int sok6, int *sok_return);

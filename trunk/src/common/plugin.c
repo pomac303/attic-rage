@@ -711,7 +711,7 @@ rage_unhook (rage_plugin *ph, rage_hook *hook)
 		fe_timeout_remove (hook->tag);
 
 	if (hook->type == HOOK_FD)
-		fe_input_remove (hook->tag);
+		net_input_remove (hook->tag);
 
 	hook->type = HOOK_DELETED;	/* expunge later */
 
@@ -761,7 +761,7 @@ rage_hook_fd (rage_plugin *ph, int fd, int flags,
 	hook = plugin_add_hook (ph, HOOK_FD, 0, 0, 0, callb, 0, userdata);
 	hook->pri = fd;
 	/* plugin hook_fd flags correspond exactly to FIA_* flags (fe.h) */
-	hook->tag = fe_input_add (fd, flags, plugin_fd_cb, hook);
+	hook->tag = net_input_add (fd, flags, plugin_fd_cb, hook);
 
 	return hook;
 }

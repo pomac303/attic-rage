@@ -254,13 +254,13 @@ dcc_close (struct DCC *dcc, int dccstat, int destroy)
 {
 	if (dcc->wiotag)
 	{
-		fe_input_remove (dcc->wiotag);
+		net_input_remove (dcc->wiotag);
 		dcc->wiotag = 0;
 	}
 
 	if (dcc->iotag)
 	{
-		fe_input_remove (dcc->iotag);
+		net_input_remove (dcc->iotag);
 		dcc->iotag = 0;
 	}
 
@@ -508,13 +508,13 @@ dcc_read_chat (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	{
 		if (dcc->throttled)
 		{
-			fe_input_remove (dcc->iotag);
+			net_input_remove (dcc->iotag);
 			dcc->iotag = 0;
 			return FALSE;
 		}
 
 		if (!dcc->iotag)
-			dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
+			dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
 
 		len = recv (dcc->sok, lbuf, sizeof (lbuf) - 2, 0);
 		if (len < 1)
@@ -660,13 +660,13 @@ dcc_read (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 			if (need_ack)
 				dcc_send_ack (dcc);
 			
-			fe_input_remove (dcc->iotag);
+			net_input_remove (dcc->iotag);
 			dcc->iotag = 0;
 			return FALSE;
 		}
 
 		if (!dcc->iotag)
-			dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
+			dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
 
 		n = recv (dcc->sok, buf, sizeof (buf), 0);
 		if (n < 1)
@@ -725,7 +725,7 @@ dcc_connect_finished (GIOChannel *source, GIOCondition condition, struct DCC *dc
 
 	if (dcc->iotag)
 	{
-		fe_input_remove (dcc->iotag);
+		net_input_remove (dcc->iotag);
 		dcc->iotag = 0;
 	}
 
@@ -779,7 +779,7 @@ dcc_connect_finished (GIOChannel *source, GIOCondition condition, struct DCC *dc
 	switch (dcc->type)
 	{
 	case TYPE_RECV:
-		dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
+		dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read, dcc);
 		EMIT_SIGNAL (XP_TE_DCCCONRECV, dcc->serv->front_session,
 						 dcc->nick, host, dcc->file, NULL, 0);
 		break;
@@ -787,14 +787,14 @@ dcc_connect_finished (GIOChannel *source, GIOCondition condition, struct DCC *dc
 		/* passive send */
 		dcc->fastsend = prefs.fastdccsend;
 		if (dcc->fastsend)
-			dcc->wiotag = fe_input_add (dcc->sok, FIA_WRITE, dcc_send_data, dcc);
-		dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_ack, dcc);
+			dcc->wiotag = net_input_add (dcc->sok, FIA_WRITE, dcc_send_data, dcc);
+		dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_ack, dcc);
 		dcc_send_data (NULL, 0, (gpointer)dcc);
 		EMIT_SIGNAL (XP_TE_DCCCONSEND, dcc->serv->front_session,
 						 dcc->nick, host, dcc->file, NULL, 0);
 		break;
 	case TYPE_CHATRECV:
-		dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_chat, dcc);
+		dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_chat, dcc);
 		dcc->dccchat = malloc (sizeof (struct dcc_chat));
 		dcc->dccchat->pos = 0;
 		EMIT_SIGNAL (XP_TE_DCCCONCHAT, dcc->serv->front_session,
@@ -853,7 +853,7 @@ dcc_connect (struct DCC *dcc)
 			fe_dcc_update (dcc);
 			return;
 		}
-		dcc->iotag = fe_input_add (dcc->sok, FIA_WRITE|FIA_EX, dcc_connect_finished, dcc);
+		dcc->iotag = net_input_add (dcc->sok, FIA_WRITE|FIA_EX, dcc_connect_finished, dcc);
 	}
 	
 	fe_dcc_update (dcc);
@@ -873,7 +873,7 @@ dcc_send_data (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 
 	if (dcc->throttled)
 	{
-		fe_input_remove (dcc->wiotag);
+		net_input_remove (dcc->wiotag);
 		dcc->wiotag = 0;
 		return FALSE;
 	}
@@ -884,7 +884,7 @@ dcc_send_data (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 			return TRUE;
 	}
 	else if (!dcc->wiotag)
-		dcc->wiotag = fe_input_add (sok, FIA_WRITE, dcc_send_data, dcc);
+		dcc->wiotag = net_input_add (sok, FIA_WRITE, dcc_send_data, dcc);
 
 	buf = malloc (prefs.dcc_blocksize);
 	if (!buf)
@@ -918,7 +918,7 @@ abortit:
 		/* it's all sent now, so remove the WRITE/SEND handler */
 		if (dcc->wiotag)
 		{
-			fe_input_remove (dcc->wiotag);
+			net_input_remove (dcc->wiotag);
 			dcc->wiotag = 0;
 		}
 	}
@@ -996,7 +996,7 @@ dcc_accept (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 
 	len = sizeof (CAddr);
 	sok = (int)accept (dcc->sok, (struct sockaddr *) &CAddr, &len);
-	fe_input_remove (dcc->iotag);
+	net_input_remove (dcc->iotag);
 	dcc->iotag = 0;
 	closesocket (dcc->sok);
 	if (sok < 0)
@@ -1022,8 +1022,8 @@ dcc_accept (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	{
 	case TYPE_SEND:
 		if (dcc->fastsend)
-			dcc->wiotag = fe_input_add (sok, FIA_WRITE, dcc_send_data, dcc);
-		dcc->iotag = fe_input_add (sok, FIA_READ|FIA_EX, dcc_read_ack, dcc);
+			dcc->wiotag = net_input_add (sok, FIA_WRITE, dcc_send_data, dcc);
+		dcc->iotag = net_input_add (sok, FIA_READ|FIA_EX, dcc_read_ack, dcc);
 		dcc_send_data (NULL, 0, (gpointer)dcc);
 		EMIT_SIGNAL (XP_TE_DCCCONSEND, dcc->serv->front_session,
 						 dcc->nick, host, dcc->file, NULL, 0);
@@ -1037,7 +1037,7 @@ dcc_accept (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 			handle_command (dcc->serv->server_session, cmd, FALSE);
 			free (cmd);
 		}
-		dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_chat, dcc);
+		dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_read_chat, dcc);
 		dcc->dccchat = malloc (sizeof (struct dcc_chat));
 		dcc->dccchat->pos = 0;
 		EMIT_SIGNAL (XP_TE_DCCCONCHAT, dcc->serv->front_session,
@@ -1149,7 +1149,7 @@ dcc_listen_init (struct DCC *dcc, rage_session *sess)
 	listen (dcc->sok, 1);
 	set_blocking (dcc->sok);
 
-	dcc->iotag = fe_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_accept, dcc);
+	dcc->iotag = net_input_add (dcc->sok, FIA_READ|FIA_EX, dcc_accept, dcc);
 
 	return TRUE;
 }

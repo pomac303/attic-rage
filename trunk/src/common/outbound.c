@@ -1057,7 +1057,7 @@ exec_check_process (rage_session *sess)
 	if (val == -1 || val > 0)
 	{
 		close (sess->running_exec->myfd);
-		fe_input_remove (sess->running_exec->iotag);
+		net_input_remove (sess->running_exec->iotag);
 		free (sess->running_exec);
 		sess->running_exec = NULL;
 	}
@@ -1314,7 +1314,7 @@ exec_data (GIOChannel *source, GIOCondition condition, struct nbexec *s)
 		free(buf);
 		waitpid (s->childpid, NULL, 0);
 		s->sess->running_exec = NULL;
-		fe_input_remove (s->iotag);
+		net_input_remove (s->iotag);
 		close (sok);
 		free (s);
 		return TRUE;
@@ -1462,7 +1462,7 @@ cmd_exec (rage_session *sess, char *cmd, char *buf)
 		/* Parent path */
 		close(fds[1]);
 		s->childpid = pid;
-		s->iotag = fe_input_add (s->myfd, FIA_READ|FIA_EX, exec_data, s);
+		s->iotag = net_input_add (s->myfd, FIA_READ|FIA_EX, exec_data, s);
 		sess->running_exec = s;
 		return TRUE;
 	}

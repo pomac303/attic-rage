@@ -352,45 +352,6 @@ fe_timeout_add (int interval, void *callback, void *userdata)
 	return te->tag;
 }
 
-void
-fe_input_remove (int tag)
-{
-	socketevent *se;
-	GSList *list;
-
-	list = se_list;
-	while (list)
-	{
-		se = (socketevent *) list->data;
-		if (se->tag == tag)
-		{
-			se_list = g_slist_remove (se_list, se);
-			free (se);
-			return;
-		}
-		list = list->next;
-	}
-}
-
-int
-fe_input_add (int sok, int flags, void *func, void *data)
-{
-	socketevent *se = malloc (sizeof (socketevent));
-
-	se_list_count++;				  /* this overflows at 2.2Billion, who cares!! */
-
-	se->tag = se_list_count;
-	se->sok = sok;
-	se->rread = flags & FIA_READ;
-	se->wwrite = flags & FIA_WRITE;
-	se->eexcept = flags & FIA_EX;
-	se->callback = func;
-	se->userdata = data;
-	se_list = g_slist_prepend (se_list, se);
-
-	return se->tag;
-}
-
 int
 fe_args (int argc, char *argv[])
 {
@@ -784,10 +745,6 @@ fe_get_str (char *prompt, char *def, void *callback, void *ud)
 }
 void
 fe_get_int (char *prompt, int def, void *callback, void *ud)
-{
-}
-void
-fe_idle_add (void *func, void *data)
 {
 }
 void

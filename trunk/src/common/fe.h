@@ -19,9 +19,6 @@ void fe_message (char *msg, int wait);
 #define FIA_WRITE 2
 #define FIA_EX 4
 #define FIA_FD 8
-int fe_input_add (int sok, int flags, void *func, void *data);
-void fe_input_remove (int tag);
-void fe_idle_add (void *func, void *data);
 void fe_set_topic (rage_session *sess, char *topic);
 void fe_set_hilight (rage_session *sess);
 void fe_set_tab_color (rage_session *sess, int col, int flash);
