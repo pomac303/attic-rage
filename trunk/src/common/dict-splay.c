@@ -14,6 +14,9 @@
  * GNU General Public License for more details.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "dict.h"
 
 /*
@@ -79,11 +82,11 @@ dict_splay(struct dict_node *node, const char *key)
     l = r = &N;
 
     while (1) {
-	int res = irccasecmp(key, node->key);
+	int res = strcasecmp(key, node->key);
 	if (!res) break;
 	if (res < 0) {
 	    if (!node->l) break;
-	    res = irccasecmp(key, node->l->key);
+	    res = strcasecmp(key, node->l->key);
 	    if (res < 0) {
 		y = node->l;
 		node->l = y->r;
@@ -96,7 +99,7 @@ dict_splay(struct dict_node *node, const char *key)
 	    node = node->l;
 	} else { /* res > 0 */
 	    if (!node->r) break;
-	    res = irccasecmp(key, node->r->key);
+	    res = strcasecmp(key, node->r->key);
 	    if (res > 0) {
 		y = node->r;
 		node->r = y->l;
@@ -146,7 +149,7 @@ dict_insert(dict_t dict, const char *key, void *data)
     if (dict->root) {
 	int res;
 	dict->root = dict_splay(dict->root, key);
-	res = irccasecmp(key, dict->root->key);
+	res = strcasecmp(key, dict->root->key);
 	if (res < 0) {
             /* insert just "before" current root */
 	    new_node->l = dict->root->l;
@@ -206,7 +209,7 @@ dict_remove2(dict_t dict, const char *key, int no_dispose)
     if (!dict->root)
         return 0;
     dict->root = dict_splay(dict->root, key);
-    if (irccasecmp(key, dict->root->key))
+    if (strcasecmp(key, dict->root->key))
         return 0;
 
     if (!dict->root->l) {
@@ -245,7 +248,7 @@ dict_find(dict_t dict, const char *key, int *found)
 	return NULL;
     }
     dict->root = dict_splay(dict->root, key);
-    was_found = !irccasecmp(key, dict->root->key);
+    was_found = !strcasecmp(key, dict->root->key);
     if (found)
         *found = was_found;
     return was_found ? dict->root->data : NULL;
@@ -282,14 +285,14 @@ dict_sanity_check_node(struct dict_node *node, struct dict_sanity_struct *dss)
     }
     if (node->l) {
         if (dict_sanity_check_node(node->l, dss)) return 1;
-        if (irccasecmp(node->l->key, node->key) >= 0) {
+        if (strcasecmp(node->l->key, node->key) >= 0) {
             snprintf(dss->error, sizeof(dss->error), "Node %p's left child's key '%s' >= its key '%s'", node, node->l->key, node->key);
             return 1;
         }
     }
     if (node->r) {
         if (dict_sanity_check_node(node->r, dss)) return 1;
-        if (irccasecmp(node->key, node->r->key) >= 0) {
+        if (strcasecmp(node->key, node->r->key) >= 0) {
             snprintf(dss->error, sizeof(dss->error), "Node %p's right child's key '%s' <= its key '%s'", node, node->r->key, node->key);
             return 1;
         }

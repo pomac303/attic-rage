@@ -54,6 +54,7 @@
 #include "server.h"
 #include "tree.h"
 #include "outbound.h"
+#include "dict.h"
 
 
 #ifdef USE_DEBUG
@@ -64,6 +65,7 @@ static int cmd_server (session *sess, char *cmd, char *buf);
 static void help (session *sess, char *helpcmd, int quiet);
 static void handle_say (session *sess, char *text, int check_spch);
 
+static dict_t rage_cmd_list;
 
 static void
 notj_msg (struct session *sess)
@@ -1828,7 +1830,7 @@ cmd_gui (struct session *sess, char *cmd, char *buf)
 static int
 cmd_help (struct session *sess, char *cmd, char *buf)
 {
-	int i = 0, longfmt = 0;
+	int longfmt = 0;
 	char *helpcmd = "";
 	int parc;
 	char *parv[MAX_TOKENS];
@@ -1848,42 +1850,42 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 	{
 		struct popup *pop;
 		GSList *list = command_list;
+		dict_iterator_t it;
+		struct commands *cmd;
 		char *buf = malloc (4096);
 		int t = 1, j;
 		strcpy (buf, _("\nCommands Available:\n\n  "));
 		if (longfmt)
 		{
-			while (1)
+			for (it = dict_first(rage_cmd_list); it; it=iter_next(it))
 			{
-				if (!xc_cmds[i].name)
-					break;
-				if (!xc_cmds[i].help || *xc_cmds[i].help == '\0')
-					snprintf (buf, 4096, "   \0034%s\003 :\n", xc_cmds[i].name);
+				cmd = (struct commands *)iter_data(it);
+
+				if(!cmd->help || *cmd->help == '\0')
+					snprintf (buf, 4096, "   \0034%s\003 :\n", cmd->name);
 				else
-					snprintf (buf, 4096, "   \0034%s\003 : %s\n", xc_cmds[i].name,
-								 _(xc_cmds[i].help));
+					snprintf (buf, 4096, "   \0034%s\003 : %s\n", cmd->name,
+							 _(cmd->help));
 				PrintText (sess, buf);
-				i++;
 			}
 			buf[0] = 0;
 		} else
 		{
-			while (1)
+			for (it = dict_first(rage_cmd_list); it; it=iter_next(it))
 			{
-				if (!xc_cmds[i].name)
-					break;
-				strcat (buf, xc_cmds[i].name);
+				cmd = (struct commands *)iter_data(it);
+				strcat (buf, cmd->name);
 				t++;
 				if (t == 6)
 				{
 					t = 1;
 					strcat (buf, "\n  ");
 				} else
-					for (j = 0; j < (10 - strlen (xc_cmds[i].name)); j++)
+					for (j = 0; j < (10 - strlen (cmd->name)); j++)
 						strcat (buf, " ");
-				i++;
 			}
 		}
+		 
 		strcat (buf,
 				  _("\n\nType /HELP <command> for more information, or /HELP -l\n\n"));
 		strcat (buf, _("User defined commands:\n\n  "));
@@ -3071,171 +3073,284 @@ cmd_voice (struct session *sess, char *cmd, char *buf)
 	}
 }
 
-/* *MUST* be kept perfectly sorted for the bsearch to work */
-const struct commands xc_cmds[] = {
-	{"ADDBUTTON", cmd_addbutton, 0, 0,
-	 N_("ADDBUTTON <name> <action>, adds a button under the user-list")},
-	{"ALLCHAN", cmd_allchannels, 0, 0,
-	 N_("ALLCHAN <cmd>, sends a command to all channels you're in")},
-	{"ALLSERV", cmd_allservers, 0, 0,
-	 N_("ALLSERV <cmd>, sends a command to all servers you're in")},
-	{"AWAY", cmd_away, 1, 0, N_("AWAY [<reason>], sets you away")},
-	{"BAN", cmd_ban, 1, 1,
-	 N_("BAN <mask> [<bantype>], bans everyone matching the mask from the current channel. If they are already on the channel this doesn't kick them (needs chanop)")},
-	{"CHARSET", cmd_charset, 0, 0, 0},
-	{"CLEAR", cmd_clear, 0, 0, N_("CLEAR, Clears the current text window")},
-	{"CLOSE", cmd_close, 0, 0, N_("CLOSE, Closes the current window/tab")},
+static void
+add_command(struct commands *cmd)
+{
+	dict_insert(rage_cmd_list, cmd->name, cmd);
+}
 
-	{"COUNTRY", cmd_country, 0, 0,
-	 N_("COUNTRY <code>, finds a country code, eg: au = australia")},
-	{"CTCP", cmd_ctcp, 1, 0,
-	 N_("CTCP <nick> <message>, send the CTCP message to nick, common messages are VERSION and USERINFO")},
-	{"CYCLE", cmd_cycle, 1, 1,
-	 N_("CYCLE, parts current channel and immediately rejoins")},
-	{"DCC", cmd_dcc, 0, 0,
+int
+add_plugin_command(struct commands *cmd)
+{
+	int found;
+
+	dict_find(rage_cmd_list, cmd->name, &found);
+	if (!found)
+		dict_insert(rage_cmd_list, cmd->name, cmd);
+	return !found;
+}
+
+static void
+del_command(char *cmd)
+{
+	dict_remove(rage_cmd_list, cmd);
+}
+
+GList *
+get_command_list(GList *list)
+{
+	dict_iterator_t it;
+	for (it=dict_first(rage_cmd_list); it; it=iter_next(it))
+	{
+		list = g_list_prepend (list, (char *)iter_key(it));
+	}
+	return list;
+}
+
+static struct commands splay_addbutton = {"ADDBUTTON", cmd_addbutton, 0, 0,
+	N_("ADDBUTTON <name> <action>, adds a button under the user-list")};
+static struct commands splay_allchan = {"ALLCHAN", cmd_allchannels, 0, 0,
+	 N_("ALLCHAN <cmd>, sends a command to all channels you're in")};
+static struct commands splay_allserv = {"ALLSERV", cmd_allservers, 0, 0,
+	 N_("ALLSERV <cmd>, sends a command to all servers you're in")};
+static struct commands splay_away = {"AWAY", cmd_away, 1, 0, N_("AWAY [<reason>], sets you away")};
+static struct commands splay_ban = {"BAN", cmd_ban, 1, 1,
+	 N_("BAN <mask> [<bantype>], bans everyone matching the mask from the current channel. If they are already on the channel this doesn't kick them (needs chanop)")};
+static struct commands splay_charset = {"CHARSET", cmd_charset, 0, 0, 0};
+static struct commands splay_clear = {"CLEAR", cmd_clear, 0, 0, N_("CLEAR, Clears the current text window")};
+static struct commands splay_close = {"CLOSE", cmd_close, 0, 0, N_("CLOSE, Closes the current window/tab")};
+static struct commands splay_country = {"COUNTRY", cmd_country, 0, 0,
+	 N_("COUNTRY <code>, finds a country code, eg: au = australia")};
+static struct commands splay_ctcp = {"CTCP", cmd_ctcp, 1, 0,
+	 N_("CTCP <nick> <message>, send the CTCP message to nick, common messages are VERSION and USERINFO")};
+static struct commands splay_cycle = {"CYCLE", cmd_cycle, 1, 1,
+	N_("CYCLE, parts current channel and immediately rejoins")};
+static struct commands splay_dcc = {"DCC", cmd_dcc, 0, 0,
 	 N_("\n"
 	 "DCC GET <nick>                     - accept an offered file\n"
 	 "DCC SEND [-maxcps=#] <nick> [file] - send a file to someone\n"
 	 "DCC LIST                           - show DCC list\n"
 	 "DCC CHAT <nick>                    - offer DCC CHAT to someone\n"
 	 "DCC CLOSE <type> <nick> <file>         example:\n"
-	 "         /dcc close send johnsmith file.tar.gz")},
-	{"DEBUG", cmd_debug, 0, 0, 0},
-
-	{"DEHOP", cmd_dehop, 1, 1,
-	 N_("DEHOP <nick>, removes chanhalf-op status from the nick on the current channel (needs chanop)")},
-	{"DELBUTTON", cmd_delbutton, 0, 0,
-	 N_("DELBUTTON <name>, deletes a button from under the user-list")},
-	{"DEOP", cmd_deop, 1, 1,
-	 N_("DEOP <nick>, removes chanop status from the nick on the current channel (needs chanop)")},
-	{"DEVOICE", cmd_devoice, 1, 1,
-	 N_("DEVOICE <nick>, removes voice status from the nick on the current channel (needs chanop)")},
-	{"DISCON", cmd_discon, 0, 0, N_("DISCON, Disconnects from server")},
-	{"DNS", cmd_dns, 0, 0, N_("DNS <nick|host|ip>, Finds a users IP number")},
-	{"ECHO", cmd_echo, 0, 0, N_("ECHO <text>, Prints text locally")},
+	 "         /dcc close send johnsmith file.tar.gz")};
+static struct commands splay_debug = {"DEBUG", cmd_debug, 0, 0, 0};
+static struct commands splay_dehop = {"DEHOP", cmd_dehop, 1, 1,
+	 N_("DEHOP <nick>, removes chanhalf-op status from the nick on the current channel (needs chanop)")};
+static struct commands splay_delbutton = {"DELBUTTON", cmd_delbutton, 0, 0,
+	 N_("DELBUTTON <name>, deletes a button from under the user-list")};
+static struct commands splay_deop = {"DEOP", cmd_deop, 1, 1,
+	 N_("DEOP <nick>, removes chanop status from the nick on the current channel (needs chanop)")};
+static struct commands splay_devoice = {"DEVOICE", cmd_devoice, 1, 1,
+	 N_("DEVOICE <nick>, removes voice status from the nick on the current channel (needs chanop)")};
+static struct commands splay_discon = {"DISCON", cmd_discon, 0, 0, N_("DISCON, Disconnects from server")};
+static struct commands splay_dns = {"HOST", cmd_dns, 0, 0, N_("DNS <nick|host|ip>, Finds a users IP number")};
+static struct commands splay_echo = {"ECHO", cmd_echo, 0, 0, N_("ECHO <text>, Prints text locally")};
 #ifndef WIN32
-	{"EXEC", cmd_exec, 0, 0,
-	 N_("EXEC [-o] <command>, runs the command. If -o flag is used then output is sent to current channel, else is printed to current text box")},
+static struct commands splay_exec = {"EXEC", cmd_exec, 0, 0,
+	 N_("EXEC [-o] <command>, runs the command. If -o flag is used then output is sent to current channel, else is printed to current text box")};
 #ifndef __EMX__
-	{"EXECCONT", cmd_execc, 0, 0, N_("EXECCONT, sends the process SIGCONT")},
+static struct commands splay_execcont = {"EXECCONT", cmd_execc, 0, 0, N_("EXECCONT, sends the process SIGCONT")};
 #endif
-	{"EXECKILL", cmd_execk, 0, 0,
-	 N_("EXECKILL [-9], kills a running exec in the current session. If -9 is given the process is SIGKILL'ed")},
+static struct commands splay_execkill = {"EXECKILL", cmd_execk, 0, 0,
+	 N_("EXECKILL [-9], kills a running exec in the current session. If -9 is given the process is SIGKILL'ed")};
 #ifndef __EMX__
-	{"EXECSTOP", cmd_execs, 0, 0, N_("EXECSTOP, sends the process SIGSTOP")},
-	{"EXECWRITE", cmd_execw, 0, 0, N_("EXECWRITE, sends data to the processes stdin")},
-#endif
-#endif
-	{"FLUSHQ", cmd_flushq, 0, 0,
-	 N_("FLUSHQ, flushes the current server's send queue")},
-	{"GATE", cmd_gate, 0, 0,
-	 N_("GATE <host> [<port>], proxies through a host, port defaults to 23")},
-	{"GETINT", cmd_getint, 0, 0, "GETINT <default> <command> <prompt>"},
-	{"GETSTR", cmd_getstr, 0, 0, "GETSTR <default> <command> <prompt>"},
-	{"GUI", cmd_gui, 0, 0, "GUI [SHOW|HIDE|FOCUS|FLASH|ICONIFY|COLOR <n>]"},
-	{"HELP", cmd_help, 0, 0, 0},
-	{"HOP", cmd_hop, 1, 1,
-	 N_("HOP <nick>, gives chanhalf-op status to the nick (needs chanop)")},
-	{"IGNORE", cmd_ignore, 0, 0,
+static struct commands splay_execstop = {"EXECSTOP", cmd_execs, 0, 0, N_("EXECSTOP, sends the process SIGSTOP")};
+static struct commands splay_execwrite = {"EXECWRITE", cmd_execw, 0, 0, N_("EXECWRITE, sends data to the processes stdin")};
+#endif /* __EMX__ */
+#endif /* WIN32 */
+static struct commands splay_flushq = {"FLUSHQ", cmd_flushq, 0, 0,
+	 N_("FLUSHQ, flushes the current server's send queue")};
+static struct commands splay_gate = {"GATE", cmd_gate, 0, 0,
+	N_("GATE <host> [<port>], proxies through a host, port defaults to 23")};
+static struct commands splay_getint = {"GETINT", cmd_getint, 0, 0, "GETINT <default> <command> <prompt>"};
+static struct commands splay_getstr = {"GETSTR", cmd_getstr, 0, 0, "GETSTR <default> <command> <prompt>"};
+static struct commands splay_gui = {"GUI", cmd_gui, 0, 0, "GUI [SHOW|HIDE|FOCUS|FLASH|ICONIFY|COLOR <n>]"};
+static struct commands splay_help = {"HELP", cmd_help, 0, 0, 0};
+static struct commands splay_hop = {"HOP", cmd_hop, 1, 1,
+	 N_("HOP <nick>, gives chanhalf-op status to the nick (needs chanop)")};
+static struct commands splay_ignore = {"IGNORE", cmd_ignore, 0, 0,
 	 N_("IGNORE <mask> <types..> <options..>\n"
 	 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
 	 "    types - types of data to ignore, one or all of:\n"
 	 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
-	 "    options - NOSAVE, QUIET")},
-
-	{"INVITE", cmd_invite, 1, 0,
-	 N_("INVITE <nick> [<channel>], invites someone to a channel, by default the current channel (needs chanop)")},
-	{"JOIN", cmd_join, 1, 0, N_("JOIN <channel>, joins the channel")},
-	{"KICK", cmd_kick, 1, 1,
-	 N_("KICK <nick>, kicks the nick from the current channel (needs chanop)")},
-	{"KICKBAN", cmd_kickban, 1, 1,
-	 N_("KICKBAN <nick>, bans then kicks the nick from the current channel (needs chanop)")},
-	{"KILLALL", cmd_killall, 0, 0, "KILLALL, immediately exit"},
-	{"LAGCHECK", cmd_lagcheck, 0, 0,
-	 N_("LAGCHECK, forces a new lag check")},
-	{"LASTLOG", cmd_lastlog, 0, 0,
-	 N_("LASTLOG <string>, searches for a string in the buffer")},
-	{"LIST", cmd_list, 1, 0, 0},
-	{"LOAD", cmd_load, 0, 0, N_("LOAD <file>, loads a plugin or script")},
-
-	{"MDEHOP", cmd_mdehop, 1, 1,
-	 N_("MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)")},
-	{"MDEOP", cmd_mdeop, 1, 1,
-	 N_("MDEOP, Mass deop's all chanops in the current channel (needs chanop)")},
-	{"ME", cmd_me, 0, 0,
-	 N_("ME <action>, sends the action to the current channel (actions are written in the 3rd person, like /me jumps)")},
-	{"MKICK", cmd_mkick, 1, 1,
-	 N_("MKICK, Mass kicks everyone except you in the current channel (needs chanop)")},
-	{"MODE", cmd_mode, 1, 0, 0},
-	{"MOP", cmd_mop, 1, 1,
-	 N_("MOP, Mass op's all users in the current channel (needs chanop)")},
-	{"MSG", cmd_msg, 0, 0, N_("MSG <nick> <message>, sends a private message")},
-
-	{"NAMES", cmd_names, 1, 0,
-	 N_("NAMES, Lists the nicks on the current channel")},
-	{"NCTCP", cmd_nctcp, 1, 0,
-	 N_("NCTCP <nick> <message>, Sends a CTCP notice")},
-	{"NEWSERVER", cmd_newserver, 0, 0, N_("NEWSERVER <hostname> [<port>]")},
-	{"NICK", cmd_nick, 0, 0, N_("NICK <nickname>, sets your nick")},
-
-	{"NOTICE", cmd_notice, 1, 0,
-	 N_("NOTICE <nick/channel> <message>, sends a notice. Notices are a type of message that should be auto reacted to")},
-	{"NOTIFY", cmd_notify, 0, 0,
-	 N_("NOTIFY [<nick>], lists your notify list or adds someone to it")},
-	{"OP", cmd_op, 1, 1,
-	 N_("OP <nick>, gives chanop status to the nick (needs chanop)")},
-	{"PART", cmd_part, 1, 1,
-	 N_("PART [<channel>] [<reason>], leaves the channel, by default the current one")},
-	{"PING", cmd_ping, 1, 0,
-	 N_("PING <nick | channel>, CTCP pings nick or channel")},
-	{"QUERY", cmd_query, 0, 0,
-	 N_("QUERY <nick>, opens up a new privmsg window to someone")},
-	{"QUIT", cmd_quit, 0, 0,
-	 N_("QUIT [<reason>], disconnects from the current server")},
-	{"QUOTE", cmd_quote, 1, 0,
-	 N_("QUOTE <text>, sends the text in raw form to the server")},
+	 "    options - NOSAVE, QUIET")};
+static struct commands splay_invite = {"INVITE", cmd_invite, 1, 0,
+	 N_("INVITE <nick> [<channel>], invites someone to a channel, by default the current channel (needs chanop)")};
+static struct commands splay_join = {"JOIN", cmd_join, 1, 0, N_("JOIN <channel>, joins the channel")};
+static struct commands splay_kick = {"KICK", cmd_kick, 1, 1,
+	 N_("KICK <nick>, kicks the nick from the current channel (needs chanop)")};
+static struct commands splay_kickban = {"KICKBAN", cmd_kickban, 1, 1,
+	 N_("KICKBAN <nick>, bans then kicks the nick from the current channel (needs chanop)")};
+static struct commands splay_killall = {"KILLALL", cmd_killall, 0, 0, "KILLALL, immediately exit"};
+static struct commands splay_lagcheck = {"LAGCHECK", cmd_lagcheck, 0, 0,
+	 N_("LAGCHECK, forces a new lag check")};
+static struct commands splay_lastlog = {"LASTLOG", cmd_lastlog, 0, 0,
+	 N_("LASTLOG <string>, searches for a string in the buffer")};
+static struct commands splay_list = {"LIST", cmd_list, 1, 0, 0};
+static struct commands splay_load = {"LOAD", cmd_load, 0, 0, N_("LOAD <file>, loads a plugin or script")};
+static struct commands splay_mdehop = {"MDEHOP", cmd_mdehop, 1, 1,
+	 N_("MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)")};
+static struct commands splay_mdeop = {"MDEOP", cmd_mdeop, 1, 1,
+	 N_("MDEOP, Mass deop's all chanops in the current channel (needs chanop)")};
+static struct commands splay_me = {"ME", cmd_me, 0, 0,
+	 N_("ME <action>, sends the action to the current channel (actions are written in the 3rd person, like /me jumps)")};
+static struct commands splay_mkick = {"MKICK", cmd_mkick, 1, 1,
+	 N_("MKICK, Mass kicks everyone except you in the current channel (needs chanop)")};
+static struct commands splay_mode = {"MODE", cmd_mode, 1, 0, 0};
+static struct commands splay_mop = {"MOP", cmd_mop, 1, 1,
+	 N_("MOP, Mass op's all users in the current channel (needs chanop)")};
+static struct commands splay_msg = {"MSG", cmd_msg, 0, 0, N_("MSG <nick> <message>, sends a private message")};
+static struct commands splay_names = {"NAMES", cmd_names, 1, 0,
+	 N_("NAMES, Lists the nicks on the current channel")};
+static struct commands splay_nctcp = {"NCTCP", cmd_nctcp, 1, 0,
+	 N_("NCTCP <nick> <message>, Sends a CTCP notice")};
+static struct commands splay_newserver = {"NEWSERVER", cmd_newserver, 0, 0, N_("NEWSERVER <hostname> [<port>]")};
+static struct commands splay_nick = {"NICK", cmd_nick, 0, 0, N_("NICK <nickname>, sets your nick")};
+static struct commands splay_notice = {"NOTICE", cmd_notice, 1, 0,
+	 N_("NOTICE <nick/channel> <message>, sends a notice. Notices are a type of message that should be auto reacted to")};
+static struct commands splay_notify = {"NOTIFY", cmd_notify, 0, 0,
+	 N_("NOTIFY [<nick>], lists your notify list or adds someone to it")};
+static struct commands splay_op = {"OP", cmd_op, 1, 1,
+	 N_("OP <nick>, gives chanop status to the nick (needs chanop)")};
+static struct commands splay_part = {"PART", cmd_part, 1, 1,
+	 N_("PART [<channel>] [<reason>], leaves the channel, by default the current one")};
+static struct commands splay_ping = {"PING", cmd_ping, 1, 0,
+	 N_("PING <nick | channel>, CTCP pings nick or channel")};
+static struct commands splay_query = {"QUERY", cmd_query, 0, 0,
+	 N_("QUERY <nick>, opens up a new privmsg window to someone")};
+static struct commands splay_quit = {"QUIT", cmd_quit, 0, 0,
+	 N_("QUIT [<reason>], disconnects from the current server")};
+static struct commands splay_quote = {"QUOTE", cmd_quote, 1, 0,
+	 N_("QUOTE <text>, sends the text in raw form to the server")};
 #ifdef USE_OPENSSL
-	{"RECONNECT", cmd_reconnect, 0, 0,
-	 N_("RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")}, 
+static struct commands splay_reconnect = {"RECONNECT", cmd_reconnect, 0, 0,
+	 N_("RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")};
 #else 
-	{"RECONNECT", cmd_reconnect, 0, 0,
-	 N_("RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")},
+static struct commands splay_reconnect = {"RECONNECT", cmd_reconnect, 0, 0,
+	 N_("RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")};
 #endif
-	{"RECV", cmd_recv, 1, 0, N_("RECV <text>, send raw data to xchat, as if it was received from the irc server")},
+static struct commands splay_recv = {"RECV", cmd_recv, 1, 0, N_("RECV <text>, send raw data to xchat, as if it was received from the irc server")};
+static struct commands splay_say = {"SAY", cmd_say, 0, 0,
+	 N_("SAY <text>, sends the text to the object in the current window")};
+#ifdef USE_OPENSSL
+static struct commands splay_servchan = {"SERVCHAN", cmd_servchan, 0, 0,
+	 N_("SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel")};
+#else
+static struct commands splay_servchan = {"SERVCHAN", cmd_servchan, 0, 0,
+	 N_("SERVCHAN <host> <port> <channel>, connects and joins a channel")};
+#endif
 
-	{"SAY", cmd_say, 0, 0,
-	 N_("SAY <text>, sends the text to the object in the current window")},
 #ifdef USE_OPENSSL
-	{"SERVCHAN", cmd_servchan, 0, 0,
-	 N_("SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel")},
+static struct commands splay_server = {"SERVER", cmd_server, 0, 0,
+	 N_("SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the default port is 6667 for normal connections, and 9999 for ssl connections")};
 #else
-	{"SERVCHAN", cmd_servchan, 0, 0,
-	 N_("SERVCHAN <host> <port> <channel>, connects and joins a channel")},
+static struct commands splay_server = {"SERVER", cmd_server, 0, 0,
+	 N_("SERVER <host> [<port>] [<password>], connects to a server, the default port is 6667")};
 #endif
-#ifdef USE_OPENSSL
-	{"SERVER", cmd_server, 0, 0,
-	 N_("SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the default port is 6667 for normal connections, and 9999 for ssl connections")},
-#else
-	{"SERVER", cmd_server, 0, 0,
-	 N_("SERVER <host> [<port>] [<password>], connects to a server, the default port is 6667")},
+static struct commands splay_set = {"SET", cmd_set, 0, 0, N_("SET [-quiet] <variable> [<value>]")};
+static struct commands splay_settab = {"SETTAB", cmd_settab, 0, 0, 0};
+static struct commands splay_topic = {"TOPIC", cmd_topic, 1, 1,
+	 N_("TOPIC [<topic>], sets the topic if one is given, else shows the current topic")};
+static struct commands splay_unban = {"UNBAN", cmd_unban, 1, 1,
+	 N_("UNBAN <mask> [<mask>...], unbans the specified masks.")};
+static struct commands splay_unignore = {"UNIGNORE", cmd_unignore, 0, 0, N_("UNIGNORE <mask> [QUIET]")};
+static struct commands splay_unload = {"UNLOAD", cmd_unload, 0, 0, N_("UNLOAD <name>, unloads a plugin or script")};
+static struct commands splay_userlist = {"USERLIST", cmd_userlist, 1, 1, 0};
+static struct commands splay_voice = {"VOICE", cmd_voice, 1, 1,
+	 N_("VOICE <nick>, gives voice status to someone (needs chanop)")};
+static struct commands splay_wallchan = {"WALLCHAN", cmd_wallchan, 1, 1,
+	 N_("WALLCHAN <message>, writes the message to all channels")};
+static struct commands splay_wallchop = {"WALLCHOP", cmd_wallchop, 1, 1,
+	 N_("WALLCHOP <message>, sends the message to all chanops on the current channel")};
+
+void
+setup_commands(void)
+{
+	rage_cmd_list = dict_new();
+
+	add_command(&splay_addbutton);
+	add_command(&splay_allchan);
+	add_command(&splay_allserv);
+	add_command(&splay_away); 
+	add_command(&splay_ban);
+	add_command(&splay_charset);
+	add_command(&splay_clear);
+	add_command(&splay_close);
+	add_command(&splay_country);
+	add_command(&splay_ctcp);
+	add_command(&splay_cycle);
+	add_command(&splay_dcc);
+	add_command(&splay_debug);
+	add_command(&splay_dehop);
+	add_command(&splay_delbutton);
+	add_command(&splay_deop);
+	add_command(&splay_devoice);
+	add_command(&splay_discon);
+	add_command(&splay_dns);
+	add_command(&splay_echo);
+#ifndef WIN32
+	add_command(&splay_exec);
+#ifndef __EMX__
+	add_command(&splay_execcont);
 #endif
-	{"SET", cmd_set, 0, 0, N_("SET [-quiet] <variable> [<value>]")},
-	{"SETTAB", cmd_settab, 0, 0, 0},
-	{"TOPIC", cmd_topic, 1, 1,
-	 N_("TOPIC [<topic>], sets the topic if one is given, else shows the current topic")},
-	{"UNBAN", cmd_unban, 1, 1,
-	 N_("UNBAN <mask> [<mask>...], unbans the specified masks.")},
-	{"UNIGNORE", cmd_unignore, 0, 0, N_("UNIGNORE <mask> [QUIET]")},
-	{"UNLOAD", cmd_unload, 0, 0, N_("UNLOAD <name>, unloads a plugin or script")},
-	{"USERLIST", cmd_userlist, 1, 1, 0},
-	{"VOICE", cmd_voice, 1, 1,
-	 N_("VOICE <nick>, gives voice status to someone (needs chanop)")},
-	{"WALLCHAN", cmd_wallchan, 1, 1,
-	 N_("WALLCHAN <message>, writes the message to all channels")},
-	{"WALLCHOP", cmd_wallchop, 1, 1,
-	 N_("WALLCHOP <message>, sends the message to all chanops on the current channel")},
-	{0, 0, 0, 0, 0}
-};
+	add_command(&splay_execkill);
+#ifndef __EMX__
+	add_command(&splay_execstop);
+	add_command(&splay_execwrite);
+#endif /* __EMX__ */
+#endif /* WIN32 */
+	add_command(&splay_flushq);
+	add_command(&splay_gate);
+	add_command(&splay_getint);
+	add_command(&splay_getstr);
+	add_command(&splay_gui);
+	add_command(&splay_help);
+	add_command(&splay_hop);
+	add_command(&splay_ignore);
+	add_command(&splay_invite);
+	add_command(&splay_join);
+	add_command(&splay_kick);
+	add_command(&splay_kickban);
+	add_command(&splay_killall);
+	add_command(&splay_lagcheck);
+	add_command(&splay_lastlog);
+	add_command(&splay_list);
+	add_command(&splay_load);
+	add_command(&splay_mdehop);
+	add_command(&splay_mdeop);
+	add_command(&splay_me);
+	add_command(&splay_mkick);
+	add_command(&splay_mode);
+	add_command(&splay_mop);
+	add_command(&splay_msg);
+	add_command(&splay_names);
+	add_command(&splay_nctcp);
+	add_command(&splay_newserver);
+	add_command(&splay_nick);
+	add_command(&splay_notice);
+	add_command(&splay_notify);
+	add_command(&splay_op);
+	add_command(&splay_part);
+	add_command(&splay_ping);
+	add_command(&splay_query);
+	add_command(&splay_quit);
+	add_command(&splay_quote);
+	add_command(&splay_reconnect);
+	add_command(&splay_recv);
+	add_command(&splay_say);
+	add_command(&splay_servchan);
+	add_command(&splay_server);
+	add_command(&splay_set);
+	add_command(&splay_settab);
+	add_command(&splay_topic);
+	add_command(&splay_unban);
+	add_command(&splay_unignore);
+	add_command(&splay_unload);
+	add_command(&splay_userlist);
+	add_command(&splay_voice);
+	add_command(&splay_wallchan);
+	add_command(&splay_wallchop);
+}
 
 
 static int
@@ -3247,9 +3362,12 @@ command_compare (const void *a, const void *b)
 static struct commands *
 find_internal_command (char *name)
 {
+	int present;
 	/* the "-1" is to skip the NULL terminator */
-	return bsearch (name, xc_cmds, (sizeof (xc_cmds) /
-				sizeof (xc_cmds[0])) - 1, sizeof (xc_cmds[0]), command_compare);
+	/* XXX fix me, needs conversion to the new format */
+	return dict_find(rage_cmd_list, name, &present);
+//	return bsearch (name, xc_cmds, (sizeof (xc_cmds) /
+//				sizeof (xc_cmds[0])) - 1, sizeof (xc_cmds[0]), command_compare);
 }
 
 static void

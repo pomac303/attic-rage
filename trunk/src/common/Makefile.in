@@ -223,6 +223,7 @@ EXTRA_DIST = makefile.msc \
 	modes.h \
 	network.h \
 	notify.h \
+	dict.h \
 	outbound.h \
 	plugin.h \
 	plugin-timer.h \
@@ -247,7 +248,7 @@ EXTRA_DIST = makefile.msc \
 @USE_OPENSSL_TRUE@ssl_c = ssl.c
 
 libxchatcommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
-	inbound.c modes.c network.c notify.c outbound.c \
+	inbound.c modes.c network.c notify.c dict-splay.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c $(ssl_c) \
 	text.c tree.c url.c userlist.c util.c xchat.c
 
@@ -261,14 +262,14 @@ LIBRARIES = $(noinst_LIBRARIES)
 libxchatcommon_a_AR = $(AR) cru
 libxchatcommon_a_LIBADD =
 am__libxchatcommon_a_SOURCES_DIST = cfgfiles.c ctcp.c dcc.c history.c \
-	ignore.c inbound.c modes.c network.c notify.c outbound.c \
+	ignore.c inbound.c modes.c network.c notify.c dict-splay.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c ssl.c \
 	text.c tree.c url.c userlist.c util.c xchat.c
 @USE_OPENSSL_TRUE@am__objects_1 = ssl.$(OBJEXT)
 am_libxchatcommon_a_OBJECTS = cfgfiles.$(OBJEXT) ctcp.$(OBJEXT) \
 	dcc.$(OBJEXT) history.$(OBJEXT) ignore.$(OBJEXT) \
 	inbound.$(OBJEXT) modes.$(OBJEXT) network.$(OBJEXT) \
-	notify.$(OBJEXT) outbound.$(OBJEXT) plugin.$(OBJEXT) \
+	notify.$(OBJEXT) dict-splay.$(OBJEXT) outbound.$(OBJEXT) plugin.$(OBJEXT) \
 	plugin-timer.$(OBJEXT) proto-irc.$(OBJEXT) server.$(OBJEXT) \
 	servlist.$(OBJEXT) $(am__objects_1) text.$(OBJEXT) \
 	tree.$(OBJEXT) url.$(OBJEXT) userlist.$(OBJEXT) util.$(OBJEXT) \

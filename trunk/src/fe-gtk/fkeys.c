@@ -1389,7 +1389,7 @@ static int
 key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 							struct session *sess)
 {
-	int len = 0, elen = 0, i = 0, cursor_pos, ent_start = 0, comp = 0, found = 0,
+	int len = 0, elen = 0, cursor_pos, ent_start = 0, comp = 0, found = 0,
 	    prefix_len, skip_len = 0, is_nick, is_cmd = 0;
 	char buf[COMP_BUF], ent[CHANLEN], *postfix = NULL, *result, *ch;
 	GList *list = NULL, *tmp_list = NULL;
@@ -1482,10 +1482,7 @@ key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 			if (is_cmd)
 			{
 				tmp_list = cmdlist_double_list (command_list);
-				for(i = 0; xc_cmds[i].name != NULL ; i++)
-				{
-					tmp_list = g_list_prepend (tmp_list, xc_cmds[i].name);
-				}
+				tmp_list = get_command_list(tmp_list);
 				tmp_list = plugin_command_list(tmp_list);
 			}
 			else
