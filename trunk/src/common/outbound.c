@@ -2982,7 +2982,6 @@ cmd_wallchops (struct session *sess, char *cmd, char *buf)
 	if (!(*buf))
 		return FALSE;
 
-	/* XXX: Local notice needed aswell */
 	if (isupport(sess->server, "WALLCHOPS"))
 	{
 		sprintf(sent,"WALLCHOPS %s :[@%s] %s",
@@ -2990,6 +2989,8 @@ cmd_wallchops (struct session *sess, char *cmd, char *buf)
 				sess->channel,
 				buf);
 		sess->server->p_raw (sess->server, sent);
+		sprintf(sent,"[@%s] %s", sess->channel,	buf);
+		EMIT_SIGNAL (XP_TE_NOTICE, sess, sess->me->nick, sent, NULL, NULL, 0);
 		return TRUE;
 	} else 
 	{
@@ -3025,10 +3026,13 @@ cmd_wallvoices (struct session *sess, char *cmd, char *buf)
 
 	if (isupport(sess->server, "WALLVOICES"))
 	{
-		sprintf(sent,"WALLCHOPS %s :[@%s] %s",
+		sprintf(sent,"WALLVOICES %s :[+@%s] %s",
 				sess->channel,
 				sess->channel,
 				buf);
+		sess->server->p_raw (sess->server, sent);
+		sprintf(sent,"[+@%s] %s", sess->channel, buf);
+		EMIT_SIGNAL (XP_TE_NOTICE, sess, sess->me->nick, sent, NULL, NULL, 0);
 		return TRUE;
 	} else
 	{
