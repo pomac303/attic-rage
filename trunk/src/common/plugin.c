@@ -52,7 +52,6 @@ struct _rage_list
 	struct notify_per_server *notifyps;	/* notify_per_server * */
 };
 
-
 enum
 {
 	LIST_CHANNELS,
@@ -106,6 +105,7 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 	GSList *list, *next;
 	rage_hook *hook;
 	rage_deinit_func *deinit_func;
+	dict_iterator_t it;
 	int i;
 
 	/* fake plugin added by rage_plugingui_add() */
@@ -120,8 +120,8 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 			return FALSE;
 	}
 
-	/* remove all of this plugin's hooks */
-	for (i = 0; i < HOOK_DELETED; i++);
+	/* remove all of this plugins hooks */
+	for (i = 0; i < HOOK_DELETED; i++)
 	{
 		list = hook_list[i];
 		while (list)
@@ -144,11 +144,16 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 #endif
 
 xit:
+	/* Non optimal since some functions has already walked the
+	 * by now, but it's the most generic implementation */
+	for (it=dict_first(plugin_list); it; it=iter_next(it))
+	{
+		if (pl == iter_data(it))
+			set_remove(plugin_list, iter_data(it), 0);
+	}
 	if (pl->filename)
 		free ((char *)pl->filename);
 	free (pl);
-
-	dict_remove(plugin_list, pl->name);
 
 #ifdef USE_PLUGIN
 	fe_pluginlist_update ();
@@ -159,8 +164,8 @@ xit:
 
 static rage_plugin *
 plugin_list_add (rage_context *ctx, char *filename, const char *name,
-					  const char *desc, const char *version, void *handle,
-					  void *deinit_func, int fake)
+		const char *desc, const char *version, void *handle,
+		void *deinit_func, int fake)
 {
 	rage_plugin *pl;
 
@@ -282,7 +287,8 @@ plugin_kill (char *name, int by_filename)
 		pl = iter_data(it);
 		/* static-plugins (plugin-timer.c) have a NULL filename */
 		if ((by_filename && pl->filename && strcasecmp (name, pl->filename) == 0) ||
-				(by_filename && pl->filename && strcasecmp (name, file_part (pl->filename)) == 0) ||
+				(by_filename && pl->filename && 
+				 strcasecmp (name, file_part (pl->filename)) == 0) ||
 				(!by_filename && strcasecmp (name, pl->name) == 0))
 		{
 			/* statically linked plugins have a NULL filename */
@@ -360,9 +366,8 @@ plugin_load (rage_session *sess, char *filename, char *arg)
 
 	/* load the plugin */
 	if (filepart &&
-		 /* xsys draws in libgtk-1.2, causing crashes, so force RTLD_LOCAL */
-		 (strstr (filepart, "local") || strncmp (filepart, "libxsys-1", 9) == 0)
-		)
+			/* xsys draws in libgtk-1.2, causing crashes, so force RTLD_LOCAL */
+			(strstr (filepart, "local") || strncmp (filepart, "libxsys-1", 9) == 0))
 		handle = dlopen (filename, RTLD_NOW);
 	else
 		handle = dlopen (filename, RTLD_GLOBAL | RTLD_NOW);
@@ -473,15 +478,18 @@ plugin_hook_run (rage_session *sess, char *name, int parc, char *parv[], int typ
 		/* run the plugin's callback function */
 		switch (type)
 		{
-		case HOOK_COMMAND:
-			ret = ((rage_cmd_cb *)hook->callback) (parc, parv, hook->userdata);
-			break;
-		case HOOK_SERVER:
-			ret = ((rage_serv_cb *)hook->callback) (parc, parv, hook->userdata);
-			break;
-		default: /*case HOOK_PRINT:*/
-			ret = ((rage_print_cb *)hook->callback) (parc, parv, hook->userdata);
-			break;
+			case HOOK_COMMAND:
+				ret = ((rage_cmd_cb *)hook->callback) (parc, parv, hook->userdata);
+				break;
+			case HOOK_SERVER:
+				ret = ((rage_serv_cb *)hook->callback) (parc, parv, hook->userdata);
+				break;
+			case HOOK_PRINT:
+				ret = ((rage_print_cb *)hook->callback) (parc, parv, hook->userdata);
+				break;
+			default:
+				ret = 0;
+				break;
 		}
 
 		if ((ret & RAGE_EAT_RAGE) && (ret & RAGE_EAT_PLUGIN))
@@ -499,18 +507,6 @@ plugin_hook_run (rage_session *sess, char *name, int parc, char *parv[], int typ
 
 xit:
 	/* really remove deleted hooks now */
-	list = hook_list[type];
-	while (list)
-	{
-		hook = list->data;
-		next = list->next;
-		if (hook->type == HOOK_DELETED)
-		{
-			hook_list[type] = g_slist_remove (hook_list[type], hook);
-			free (hook);
-		}
-		list = next;
-	}
 
 	return eat;
 }
@@ -704,24 +700,35 @@ plugin_show_help (rage_session *sess, char *cmd)
 void *
 rage_unhook (rage_plugin *ph, rage_hook *hook)
 {
-	/* perl.c trips this */
-	if (hook->type == HOOK_DELETED || !g_slist_find (hook_list[hook->type], hook))
+	char *data;
+
+	if (!g_slist_find (hook_list[hook->type], hook))
 		return NULL;
 
-	if (hook->type == HOOK_TIMER && hook->tag != 0)
-		g_source_remove (hook->tag);
-
-	if (hook->type == HOOK_FD)
-		net_input_remove (hook->tag);
-
-	hook->type = HOOK_DELETED;	/* expunge later */
+	switch(hook->type)
+	{
+		case HOOK_DELETED:
+			return NULL;
+		case HOOK_TIMER:
+		case HOOK_FD:
+			if (hook->tag != 0)
+				g_source_remove (hook->tag);
+		case HOOK_SERVER:
+		case HOOK_PRINT:
+		case HOOK_COMMAND:
+			hook_list[hook->type] = g_slist_remove(hook_list[hook->type], hook);
+			break;
+	}
 
 	if (hook->name)
 		free (hook->name);	/* NULL for timers & fds */
 	if (hook->help_text)
 		free (hook->help_text);	/* NULL for non-commands */
 
-	return hook->userdata;
+	data = hook->userdata;
+	free(hook);
+
+	return data;
 }
 
 rage_hook *
@@ -902,54 +909,54 @@ rage_get_info (rage_plugin *ph, const char *id)
 
 	switch (str_hash (id))
 	{
-	case 0x2de2ee: /* away */
-		if (sess->server->is_away)
-			return sess->server->last_away_reason;
-		return NULL;
-
-  	case 0x2c0b7d03: /* channel */
-		return sess->channel;
-
-	case 0x30f5a8: /* host */
-		return sess->server->hostname;
-
-	case 0x1c0e99c1: /* inputbox */
-		return fe_get_inputbox_contents (sess);
-
-	case 0x325acab5:	/* libdirfs */
-		return RAGELIBDIR;
-
-	case 0x6de15a2e:	/* network */
-		return get_network (sess, FALSE);
-
-	case 0x339763: /* nick */
-		return sess->server->nick;
-
-	case 0xca022f43: /* server */
-		if (!sess->server->connected)
+		case 0x2de2ee: /* away */
+			if (sess->server->is_away)
+				return sess->server->last_away_reason;
 			return NULL;
-		return sess->server->servername;
 
-	case 0x696cd2f: /* topic */
-		return sess->topic;
+	  	case 0x2c0b7d03: /* channel */
+			return sess->channel;
 
-	case 0x14f51cd8: /* version */
-		return VERSION;
+		case 0x30f5a8: /* host */
+			return sess->server->hostname;
 
-	case 0x6d3431b5: /* win_status */
-		switch (fe_gui_info (sess, 0))	/* check window status */
-		{
-		case 0: return "normal";
-		case 1: return "active";
-		case 2: return "hidden";
-		}
-		return NULL;
+		case 0x1c0e99c1: /* inputbox */
+			return fe_get_inputbox_contents (sess);
 
-	case 0xdd9b1abd:	/* ragedir */
-		return get_xdir_utf8 ();
+		case 0x325acab5:	/* libdirfs */
+			return RAGELIBDIR;
 
-	case 0xe33f6c4a:	/* ragedirfs */
-		return get_xdir_fs ();
+		case 0x6de15a2e:	/* network */
+			return get_network (sess, FALSE);
+
+		case 0x339763: /* nick */
+			return sess->server->nick;
+
+		case 0xca022f43: /* server */
+			if (!sess->server->connected)
+				return NULL;
+			return sess->server->servername;
+
+		case 0x696cd2f: /* topic */
+			return sess->topic;
+
+		case 0x14f51cd8: /* version */
+			return VERSION;
+
+		case 0x6d3431b5: /* win_status */
+			switch (fe_gui_info (sess, 0))	/* check window status */
+			{
+				case 0: return "normal";
+				case 1: return "active";
+				case 2: return "hidden";
+			}
+			return NULL;
+
+		case 0xdd9b1abd:	/* ragedir */
+			return get_xdir_utf8 ();
+
+		case 0xe33f6c4a:	/* ragedirfs */
+			return get_xdir_fs ();
 	}
 
 	return NULL;
@@ -966,21 +973,21 @@ rage_get_prefs (rage_plugin *ph, const char *name, const char **string, int *int
 		{
 			switch (vars[i].type)
 			{
-			case TYPE_STR:
-				*string = ((char *) &prefs + vars[i].offset);
-				return 1;
+				case TYPE_STR:
+					*string = ((char *) &prefs + vars[i].offset);
+					return 1;
 
-			case TYPE_INT:
-				*integer = *((int *) &prefs + vars[i].offset);
-				return 2;
+				case TYPE_INT:
+					*integer = *((int *) &prefs + vars[i].offset);
+					return 2;
 
-			default:
-			/*case TYPE_BOOL:*/
-				if (*((int *) &prefs + vars[i].offset))
-					*integer = 1;
-				else
-					*integer = 0;
-				return 3;
+				default:
+				/*case TYPE_BOOL:*/
+					if (*((int *) &prefs + vars[i].offset))
+						*integer = 1;
+					else
+						*integer = 0;
+					return 3;
 			}
 		}
 		i++;
@@ -1000,38 +1007,38 @@ rage_list_get (rage_plugin *ph, const char *name)
 
 	switch (str_hash (name))
 	{
-	case 0x556423d0: /* channels */
-		list->type = LIST_CHANNELS;
-		list->next = sess_list;
-		break;
-
-	case 0x183c4:	/* dcc */
-		list->type = LIST_DCC;
-		list->next = dcc_list;
-		break;
-
-	case 0xb90bfdd2:	/* ignore */
-		list->type = LIST_IGNORE;
-		list->next = ignore_list;
-		break;
-
-	case 0xc2079749:	/* notify */
-		list->type = LIST_NOTIFY;
-		list->next = notify_list;
-		list->head = (void *)ph->context;	/* reuse this pointer */
-		break;
-
-	case 0x6a68e08: /* users */
-		if (is_session (ph->context))
-		{
-			list->type = LIST_USERS;
-			list->head = list->next = userlist_flat_list (ph->context);
+		case 0x556423d0: /* channels */
+			list->type = LIST_CHANNELS;
+			list->next = sess_list;
 			break;
-		}	/* fall through */
 
-	default:
-		free (list);
-		return NULL;
+		case 0x183c4:	/* dcc */
+			list->type = LIST_DCC;
+			list->next = dcc_list;
+			break;
+
+		case 0xb90bfdd2:	/* ignore */
+			list->type = LIST_IGNORE;
+			list->next = ignore_list;
+			break;
+
+		case 0xc2079749:	/* notify */
+			list->type = LIST_NOTIFY;
+			list->next = notify_list;
+			list->head = (void *)ph->context;	/* reuse this pointer */
+			break;
+
+		case 0x6a68e08: /* users */
+			if (is_session (ph->context))
+			{
+				list->type = LIST_USERS;
+				list->head = list->next = userlist_flat_list (ph->context);
+				break;
+			}	/* fall through */
+
+		default:
+			free (list);
+			return NULL;
 	}
 
 	return list;
@@ -1059,7 +1066,7 @@ rage_list_next (rage_plugin *ph, rage_list *xlist)
 	if (xlist->type == LIST_NOTIFY)
 	{
 		xlist->notifyps = notify_find_server_entry (xlist->pos->data,
-													((rage_session *)xlist->head)->server);
+				((rage_session *)xlist->head)->server);
 		if (!xlist->notifyps)
 			return 0;
 	}
@@ -1072,13 +1079,13 @@ rage_list_fields (rage_plugin *ph, const char *name)
 {
 	static const char *dcc_fields[] =
 	{
-		"iaddress32","icps",		"sdestfile","sfile",		"snick",	"iport",
-		"ipos",		"iresume",	"isize",		"istatus", 	"itype",		NULL
+		"iaddress32",	"icps",		"sdestfile",	"sfile",	"snick",	"iport",
+		"ipos",		"iresume",	"isize",	"istatus", 	"itype",	NULL
 	};
 	static const char *channels_fields[] =
 	{
-		"schannel",	"schantypes", "pcontext", "iflags", "iid", "imaxmodes",
-		"snetwork", "snickmodes", "snickprefixes", "sserver", "itype", "iusers",
+		"schannel",	"schantypes", 	"pcontext",	"iflags",	"iid",	"imaxmodes",
+		"snetwork", 	"snickmodes", 	"snickprefixes","sserver",	"itype","iusers",
 		NULL
 	};
 	static const char *ignore_fields[] =
@@ -1100,18 +1107,18 @@ rage_list_fields (rage_plugin *ph, const char *name)
 
 	switch (str_hash (name))
 	{
-	case 0x556423d0:	/* channels */
-		return channels_fields;
-	case 0x183c4:		/* dcc */
-		return dcc_fields;
-	case 0xb90bfdd2:	/* ignore */
-		return ignore_fields;
-	case 0xc2079749:	/* notify */
-		return notify_fields;
-	case 0x6a68e08:	/* users */
-		return users_fields;
-	case 0x6236395:	/* lists */
-		return list_of_lists;
+		case 0x556423d0:	/* channels */
+			return channels_fields;
+		case 0x183c4:		/* dcc */
+			return dcc_fields;
+		case 0xb90bfdd2:	/* ignore */
+			return ignore_fields;
+		case 0xc2079749:	/* notify */
+			return notify_fields;
+		case 0x6a68e08:	/* users */
+			return users_fields;
+		case 0x6236395:	/* lists */
+			return list_of_lists;
 	}
 
 	return NULL;
@@ -1125,17 +1132,17 @@ rage_list_time (rage_plugin *ph, rage_list *xlist, const char *name)
 
 	switch (xlist->type)
 	{
-	case LIST_NOTIFY:
-		if (!xlist->notifyps)
-			return (time_t) -1;
+		case LIST_NOTIFY:
+			if (!xlist->notifyps)
+				return (time_t) -1;
 		switch (hash)
 		{
-		case 0x1ad6f:	/* off */
-			return xlist->notifyps->lastoff;
-		case 0xddf:	/* on */
-			return xlist->notifyps->laston;
-		case 0x35ce7b:	/* seen */
-			return xlist->notifyps->lastseen;
+			case 0x1ad6f:	/* off */
+				return xlist->notifyps->lastoff;
+			case 0xddf:	/* on */
+				return xlist->notifyps->laston;
+			case 0x35ce7b:	/* seen */
+				return xlist->notifyps->lastseen;
 		}
 	}
 
@@ -1150,70 +1157,71 @@ rage_list_str (rage_plugin *ph, rage_list *xlist, const char *name)
 
 	switch (xlist->type)
 	{
-	case LIST_CHANNELS:
-		switch (hash)
-		{
-		case 0x2c0b7d03: /* channel */
-			return ((rage_session *)data)->channel;
-		case 0x577e0867: /* chantypes */
-			return get_isupport(ph->context->server, "CHANTYPES");
-		case 0x38b735af: /* context */
-			return data;	/* this is a rage_session * */
-		case 0x6de15a2e: /* network */
-			return get_network ((rage_session *)data, FALSE);
-		case 0x8455e723: /* nickprefixes */
-			return get_isupport(ph->context->server, "PREFIX");
-		case 0x829689ad: /* nickmodes */
-		{
-			char *str = strchr(get_isupport(ph->context->server, "PREFIX"), ')');
-			if(str)
-				*str++;
-			return str ? str : "";
-		}
-		case 0xca022f43: /* server */
-			return ((rage_session *)data)->server->servername;
-		}
-		break;
+		case LIST_CHANNELS:
+			switch (hash)
+			{
+				case 0x2c0b7d03: /* channel */
+					return ((rage_session *)data)->channel;
+				case 0x577e0867: /* chantypes */
+					return get_isupport(ph->context->server, "CHANTYPES");
+				case 0x38b735af: /* context */
+					return data;	/* this is a rage_session * */
+				case 0x6de15a2e: /* network */
+					return get_network ((rage_session *)data, FALSE);
+				case 0x8455e723: /* nickprefixes */
+					return get_isupport(ph->context->server, "PREFIX");
+				case 0x829689ad: /* nickmodes */
+				{
+					char *str = strchr(get_isupport(ph->context->server, 
+								"PREFIX"), ')');
+					if(str)
+						*str++;
+					return str ? str : "";
+				}
+				case 0xca022f43: /* server */
+					return ((rage_session *)data)->server->servername;
+			}
+			break;
 
-	case LIST_DCC:
-		switch (hash)
-		{
-		case 0x3d9ad31e:	/* destfile */
-			return ((struct DCC *)data)->destfile;
-		case 0x2ff57c:	/* file */
-			return ((struct DCC *)data)->file;
-		case 0x339763: /* nick */
-			return ((struct DCC *)data)->nick;
-		}
-		break;
+		case LIST_DCC:
+			switch (hash)
+			{
+				case 0x3d9ad31e:	/* destfile */
+					return ((struct DCC *)data)->destfile;
+				case 0x2ff57c:	/* file */
+					return ((struct DCC *)data)->file;
+				case 0x339763: /* nick */
+					return ((struct DCC *)data)->nick;
+			}
+			break;
 
-	case LIST_IGNORE:
-		switch (hash)
-		{
-		case 0x3306ec:	/* mask */
-			return ((struct ignore *)data)->mask;
-		}
-		break;
+		case LIST_IGNORE:
+			switch (hash)
+			{
+				case 0x3306ec:	/* mask */
+					return ((struct ignore *)data)->mask;
+			}
+			break;
 
-	case LIST_NOTIFY:
-		switch (hash)
-		{
-		case 0x339763: /* nick */
-			return ((struct notify *)data)->name;
-		}
-		break;
+		case LIST_NOTIFY:
+			switch (hash)
+			{
+				case 0x339763: /* nick */
+					return ((struct notify *)data)->name;
+			}
+			break;
 
-	case LIST_USERS:
-		switch (hash)
-		{
-		case 0x339763: /* nick */
-			return ((struct User *)data)->nick;
-		case 0x30f5a8: /* host */
-			return ((struct User *)data)->hostname;
-		case 0xc594b292: /* prefix */
-			return ((struct User *)data)->prefix;
-		}
-		break;
+		case LIST_USERS:
+			switch (hash)
+			{
+				case 0x339763: /* nick */
+					return ((struct User *)data)->nick;
+				case 0x30f5a8: /* host */
+					return ((struct User *)data)->hostname;
+				case 0xc594b292: /* prefix */
+					return ((struct User *)data)->prefix;
+			}
+			break;
 	}
 
 	return NULL;
@@ -1228,77 +1236,77 @@ rage_list_int (rage_plugin *ph, rage_list *xlist, const char *name)
 
 	switch (xlist->type)
 	{
-	case LIST_DCC:
-		switch (hash)
-		{
-		case 0x34207553: /* address32 */
-			return ((struct DCC *)data)->addr;
-		case 0x181a6: /* cps */
-			return ((struct DCC *)data)->cps;
-		case 0x349881: /* port */
-			return ((struct DCC *)data)->port;
-		case 0x1b254: /* pos */
-			return ((struct DCC *)data)->pos;
-		case 0xc84dc82d: /* resume */
-			return ((struct DCC *)data)->resumable;
-		case 0x35e001: /* size */
-			return ((struct DCC *)data)->size;
-		case 0xcacdcff2: /* status */
-			return ((struct DCC *)data)->dccstat;
-		case 0x368f3a: /* type */
-			return ((struct DCC *)data)->type;
-		}
-		break;
+		case LIST_DCC:
+			switch (hash)
+			{
+				case 0x34207553: /* address32 */
+					return ((struct DCC *)data)->addr;
+				case 0x181a6: /* cps */
+					return ((struct DCC *)data)->cps;
+				case 0x349881: /* port */
+					return ((struct DCC *)data)->port;
+				case 0x1b254: /* pos */
+					return ((struct DCC *)data)->pos;
+				case 0xc84dc82d: /* resume */
+					return ((struct DCC *)data)->resumable;
+				case 0x35e001: /* size */
+					return ((struct DCC *)data)->size;
+				case 0xcacdcff2: /* status */
+					return ((struct DCC *)data)->dccstat;
+				case 0x368f3a: /* type */
+					return ((struct DCC *)data)->type;
+			}
+			break;
 
-	case LIST_IGNORE:
-		switch (hash)
-		{
-		case 0x5cfee87:	/* flags */
-			return ((struct ignore *)data)->type;
-		}
-		break;
+		case LIST_IGNORE:
+			switch (hash)
+			{
+				case 0x5cfee87:	/* flags */
+					return ((struct ignore *)data)->type;
+			}	
+			break;
 
-	case LIST_CHANNELS:
-		switch (hash)
-		{
-		case 0xd1b:	/* id */
-			return ((rage_session *)data)->server->id;
-		case 0x5cfee87:	/* flags */
-			tmp = isupport(ph->context->server, "WHOX");  /* bit 4 */
-			tmp <<= 1;
-			tmp |= ((rage_session *)data)->server->end_of_motd;/* 3 */
-			tmp <<= 1;
-			tmp |= ((rage_session *)data)->server->is_away;    /* 2 */
-			tmp <<= 1;
-			tmp |= ((rage_session *)data)->server->connecting; /* 1 */ 
-			tmp <<= 1;
-			tmp |= ((rage_session *)data)->server->connected;  /* 0 */
-			return tmp;
-		case 0x1916144c: /* maxmodes */
-			return atoi(get_isupport(ph->context->server, "MODES"));
-		case 0x368f3a:	/* type */
-			return ((rage_session *)data)->type;
-		case 0x6a68e08: /* users */
-			return ((rage_session *)data)->total;
-		}
-		break;
+		case LIST_CHANNELS:
+			switch (hash)
+			{
+				case 0xd1b:	/* id */
+					return ((rage_session *)data)->server->id;
+				case 0x5cfee87:	/* flags */
+					tmp = isupport(ph->context->server, "WHOX");  /* bit 4 */
+					tmp <<= 1;
+					tmp |= ((rage_session *)data)->server->end_of_motd;/* 3 */
+					tmp <<= 1;
+					tmp |= ((rage_session *)data)->server->is_away;    /* 2 */
+					tmp <<= 1;
+					tmp |= ((rage_session *)data)->server->connecting; /* 1 */ 
+					tmp <<= 1;
+					tmp |= ((rage_session *)data)->server->connected;  /* 0 */
+					return tmp;
+				case 0x1916144c: /* maxmodes */
+					return atoi(get_isupport(ph->context->server, "MODES"));
+				case 0x368f3a:	/* type */
+					return ((rage_session *)data)->type;
+				case 0x6a68e08: /* users */
+					return ((rage_session *)data)->total;
+			}
+			break;
 
-	case LIST_NOTIFY:
-		if (!xlist->notifyps)
-			return -1;
-		switch (hash)
-		{
-		case 0x5cfee87: /* flags */
-			return xlist->notifyps->ison;
-		}
+		case LIST_NOTIFY:
+			if (!xlist->notifyps)
+				return -1;
+			switch (hash)
+			{
+				case 0x5cfee87: /* flags */
+					return xlist->notifyps->ison;
+			}
 
-	case LIST_USERS:
-		switch (hash)
-		{
-		case 0x2de2ee:	/* away */
-			return ((struct User *)data)->away;
-		}
-		break;
+		case LIST_USERS:
+			switch (hash)
+			{
+				case 0x2de2ee:	/* away */
+					return ((struct User *)data)->away;
+			}
+			break;
 
 	}
 
@@ -1307,8 +1315,8 @@ rage_list_int (rage_plugin *ph, rage_list *xlist, const char *name)
 
 void *
 rage_plugingui_add (rage_plugin *ph, const char *filename,
-							const char *name, const char *desc,
-							const char *version, char *reserved)
+		const char *name, const char *desc,
+		const char *version, char *reserved)
 {
 #ifdef USE_PLUGIN
 	ph = plugin_list_add (NULL, strdup (filename), name, desc, version, NULL,
@@ -1367,3 +1375,4 @@ rage_send_modes (rage_plugin *ph, const char **targets, int ntargets,
 {
 	send_channel_modes (ph->context, (char **)targets, 0, ntargets, sign, mode);
 }
+

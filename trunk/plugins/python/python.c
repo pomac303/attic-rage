@@ -307,13 +307,16 @@ Util_BuildList(int parc, char *parv[])
 	PyObject *list;
 	int i;
 	list = PyList_New(parc);
-	if (list == NULL) {
+	if (list == NULL)
+	{
                 PyErr_Print();
 		return NULL;
 	}
-	for (i = 0; i != parc; i++) {
+	for (i = 0; i != parc; i++)
+	{
 		PyObject *o = PyString_FromString(parv[i]);
-		if (o == NULL) {
+		if (o == NULL)
+		{
 			Py_DECREF(list);
 			PyErr_Print();
 			return NULL;
@@ -334,15 +337,13 @@ Util_Autoload(void)
 		return;
 	/* we need local filesystem encoding for chdir, opendir etc */
 	dir_name = rage_get_info(ph, "ragedirfs");
-	/* fallback for pre-2.0.9 rage */
-	if (!dir_name)
-		dir_name = rage_get_info(ph, "ragedir");
 	if (chdir(dir_name) != 0)
 		return;
 	dir = opendir(".");
 	if (dir == NULL)
 		return;
-	while ((ent = readdir(dir))) {
+	while ((ent = readdir(dir)))
+	{
 		int len = strlen(ent->d_name);
 		if (len > 3 && strcmp(".py", ent->d_name+len-3) == 0)
 			Command_PyLoad(ent->d_name);
@@ -357,7 +358,8 @@ Util_Expand(char *filename)
 	char *expanded;
 
 	/* Check if this is an absolute path. */
-	if (g_path_is_absolute(filename)) {
+	if (g_path_is_absolute(filename)) 
+	{
 		if (g_file_test(filename, G_FILE_TEST_EXISTS))
 			return g_strdup(filename);
 		else
@@ -365,12 +367,14 @@ Util_Expand(char *filename)
 	}
 
 	/* Check if it starts with ~/ and expand the home if positive. */
-	if (*filename == '~' && *(filename+1) == '/') {
+	if (*filename == '~' && *(filename+1) == '/')
+	{
 		expanded = g_build_filename(g_get_home_dir(),
 					    filename+2, NULL);
 		if (g_file_test(expanded, G_FILE_TEST_EXISTS))
 			return expanded;
-		else {
+		else
+		{
 			g_free(expanded);
 			return NULL;
 		}
@@ -421,7 +425,8 @@ Callback_Command(int parc,char *parv[], void *userdata)
 	BEGIN_PLUGIN(hook->plugin);
 
 	word_list = Util_BuildList(parc,parv);
-	if (word_list == NULL) {
+	if (word_list == NULL)
+	{
 		END_PLUGIN(hook->plugin);
 		return 0;
 	}
@@ -429,15 +434,18 @@ Callback_Command(int parc,char *parv[], void *userdata)
 				       hook->userdata);
 	Py_DECREF(word_list);
 
-	if (retobj == Py_None) {
+	if (retobj == Py_None)
+	{
 		ret = RAGE_EAT_NONE;
 		Py_DECREF(retobj);
-	} else if (retobj) {
+	}
+	else if (retobj)
+	{
 		ret = PyInt_AsLong(retobj);
 		Py_DECREF(retobj);
-	} else {
-		PyErr_Print();
 	}
+	else
+		PyErr_Print();
 
 	END_PLUGIN(hook->plugin);
 
@@ -457,7 +465,8 @@ Callback_Print(int parc, char *parv[], void *userdata)
 	BEGIN_PLUGIN(hook->plugin);
 
 	word_list = Util_BuildList(parc,parv);
-	if (word_list == NULL) {
+	if (word_list == NULL)
+	{
 		END_PLUGIN(hook->plugin);
 		return 0;
 	}
@@ -466,15 +475,18 @@ Callback_Print(int parc, char *parv[], void *userdata)
 				       hook->userdata);
 	Py_DECREF(word_list);
 
-	if (retobj == Py_None) {
+	if (retobj == Py_None)
+	{
 		ret = RAGE_EAT_NONE;
 		Py_DECREF(retobj);
-	} else if (retobj) {
+	}
+	else if (retobj)
+	{
 		ret = PyInt_AsLong(retobj);
 		Py_DECREF(retobj);
-	} else {
-		PyErr_Print();
 	}
+	else
+		PyErr_Print();
 
 	END_PLUGIN(hook->plugin);
 
@@ -495,12 +507,13 @@ Callback_Timer(void *userdata)
 
 	retobj = PyObject_CallFunction(hook->callback, "(O)", hook->userdata);
 
-	if (retobj) {
+	if (retobj)
+	{
 		ret = PyObject_IsTrue(retobj);
 		Py_DECREF(retobj);
-	} else {
-		PyErr_Print();
 	}
+	else
+		PyErr_Print();
 
 	/* Returning 0 for this callback unhooks itself. */
 	if (ret == 0)
@@ -558,18 +571,22 @@ RageOut_write(PyObject *self, PyObject *args)
 	char *data, *pos;
 	if (!PyArg_ParseTuple(args, "s#:write", &data, &data_size))
 		return NULL;
-	if (!data_size) {
+	if (!data_size)
+	{
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
 	BEGIN_RAGE_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
-	if (((RageOutObject *)self)->softspace) {
+	if (((RageOutObject *)self)->softspace)
+	{
 		add_space = 1;
 		((RageOutObject *)self)->softspace = 0;
-	} else {
+	} 
+	else
 		add_space = 0;
-	}
-	if (rageout_buffer_size-rageout_buffer_pos < data_size+add_space) {
+	
+	if (rageout_buffer_size-rageout_buffer_pos < data_size+add_space)
+	{
 		char *new_buffer;
 		/* This buffer grows whenever needed, and does not
 		 * shrink. If we ever implement unloading of the
@@ -577,7 +594,8 @@ RageOut_write(PyObject *self, PyObject *args)
 		 * this buffer as well. */
 		rageout_buffer_size += data_size*2+16;
 		new_buffer = g_realloc(rageout_buffer, rageout_buffer_size);
-		if (new_buffer == NULL) {
+		if (new_buffer == NULL)
+		{
 			rage_print(ph, "Not enough memory to print");
 			/* The system is out of resources. Let's help. */
 			g_free(rageout_buffer);
@@ -594,31 +612,35 @@ RageOut_write(PyObject *self, PyObject *args)
 	memcpy(rageout_buffer+rageout_buffer_pos, data, data_size);
 	print_limit = new_buffer_pos = rageout_buffer_pos+data_size;
 	pos = rageout_buffer+print_limit;
-	if (add_space && *(pos-1) != '\n') {
+	if (add_space && *(pos-1) != '\n')
+	{
 		*pos = ' ';
 		*(pos+1) = 0;
 		new_buffer_pos++;
 	}
-	while (*pos != '\n' && print_limit > rageout_buffer_pos) {
+	while (*pos != '\n' && print_limit > rageout_buffer_pos)
+	{
 		pos--;
 		print_limit--;
 	}
-	if (*pos == '\n') {
+	if (*pos == '\n')
+	{
 		/* Crop it, inserting the string limiter there. */
 		*pos = 0;
 		rage_print(ph, rageout_buffer);
-		if (print_limit < new_buffer_pos) {
+		if (print_limit < new_buffer_pos)
+		{
 			/* There's still data to be printed. */
 			print_limit += 1; /* Include the limiter. */
 			rageout_buffer_pos = new_buffer_pos-print_limit;
 			memmove(rageout_buffer, rageout_buffer+print_limit,
 				rageout_buffer_pos);
-		} else {
+		} 
+		else
 			rageout_buffer_pos = 0;
-		}
-	} else {
+	} 
+	else
 		rageout_buffer_pos = new_buffer_pos;
-	}
 
 exit:
 	END_RAGE_CALLS();
@@ -761,7 +783,8 @@ Context_get_info(ContextObject *self, PyObject *args)
 	rage_set_context(ph, self->context);
 	info = rage_get_info(ph, name);
 	END_RAGE_CALLS();
-	if (info == NULL) {
+	if (info == NULL)
+	{
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
@@ -953,21 +976,27 @@ ListItem_New(const char *listname)
 
 #define GET_MODULE_DATA(x, force) \
 	o = PyObject_GetAttrString(m, "__module_" #x "__"); \
-	if (o == NULL) { \
-		if (force) { \
+	if (o == NULL)\
+	{ \
+		if (force) \
+		{ \
 			rage_print(ph, "Module has no __module_" #x "__ " \
 					"defined"); \
 			goto error; \
 		} \
 		plugin->x = g_strdup(""); \
-	} else {\
-		if (!PyString_Check(o)) { \
+	} \
+	else \
+	{ \
+		if (!PyString_Check(o)) \
+		{ \
 			rage_print(ph, "Variable __module_" #x "__ " \
 					"must be a string"); \
 			goto error; \
 		} \
 		plugin->x = g_strdup(PyString_AsString(o)); \
-		if (plugin->x == NULL) { \
+		if (plugin->x == NULL) \
+		{ \
 			rage_print(ph, "Not enough memory to allocate " #x); \
 			goto error; \
 		} \
@@ -980,10 +1009,12 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 	PyObject *m, *o;
 	char *argv[] = {"<rage>", 0};
 
-	if (filename) {
+	if (filename)
+	{
 		char *old_filename = filename;
 		filename = Util_Expand(filename);
-		if (filename == NULL) {
+		if (filename == NULL)
+		{
 			rage_printf(ph, "File not found: %s", old_filename);
 			return NULL;
 		}
@@ -991,7 +1022,8 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 
 	/* Allocate plugin structure. */
 	plugin = PyObject_New(PluginObject, &Plugin_Type);
-	if (plugin == NULL) {
+	if (plugin == NULL)
+	{
 		rage_print(ph, "Can't create plugin object");
 		goto error;
 	}
@@ -1006,7 +1038,8 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 	/* Start a new interpreter environment for this plugin. */
 	PyEval_AcquireLock();
 	plugin->tstate = Py_NewInterpreter();
-	if (plugin->tstate == NULL) {
+	if (plugin->tstate == NULL)
+	{
 		rage_print(ph, "Can't create interpreter state");
 		goto error;
 	}
@@ -1022,7 +1055,8 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 
 	/* Add rage module to the environment. */
 	m = Py_InitModule("rage", rage_methods);
-	if (m == NULL) {
+	if (m == NULL)
+	{
 		rage_print(ph, "Can't create rage module");
 		goto error;
 	}
@@ -1038,13 +1072,15 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 	PyModule_AddIntConstant(m, "PRI_LOWEST", RAGE_PRI_LOWEST);
 
 	o = Py_BuildValue("(ii)", VERSION_MAJOR, VERSION_MINOR);
-	if (o == NULL) {
+	if (o == NULL)
+	{
 		rage_print(ph, "Can't create version tuple");
 		goto error;
 	}
 	PyObject_SetAttrString(m, "__version__", o);
 
-	if (filename) {
+	if (filename)
+	{
 		FILE *fp;
 
 		plugin->filename = filename;
@@ -1054,14 +1090,16 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 
 		/* Open the plugin file. */
 		fp = fopen(plugin->filename, "r");
-		if (fp == NULL) {
+		if (fp == NULL)
+		{
 			rage_printf(ph, "Can't open file %s: %s\n",
 				     filename, strerror(errno));
 			goto error;
 		}
 
 		/* Run the plugin. */
-		if (PyRun_SimpleFile(fp, plugin->filename) != 0) {
+		if (PyRun_SimpleFile(fp, plugin->filename) != 0)
+		{
 			rage_printf(ph, "Error loading module %s\n",
 				     plugin->filename);
 			fclose(fp);
@@ -1071,7 +1109,8 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 
 		m = PyDict_GetItemString(PyImport_GetModuleDict(),
 					 "__main__");
-		if (m == NULL) {
+		if (m == NULL)
+		{
 			rage_print(ph, "Can't get __main__ module");
 			goto error;
 		}
@@ -1091,7 +1130,8 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 error:
 	g_free(filename);
 
-	if (plugin) {
+	if (plugin)
+	{
 		if (plugin->tstate)
 			Py_EndInterpreter(plugin->tstate);
 		Py_DECREF(plugin);
@@ -1118,7 +1158,8 @@ Plugin_ByString(char *str)
 	PluginObject *plugin;
 	char *basename;
 	list = plugin_list;
-	while (list != NULL) {
+	while (list != NULL)
+	{
 		plugin = (PluginObject *) list->data;
 		basename = g_path_get_basename(plugin->filename);
 		if (basename == NULL)
@@ -1140,7 +1181,8 @@ Plugin_AddHook(int type, PyObject *plugin, PyObject *callback,
 	       PyObject *userdata, void *data)
 {
 	Hook *hook = (Hook *) g_malloc(sizeof(Hook));
-	if (hook == NULL) {
+	if (hook == NULL)
+	{
 		PyErr_NoMemory();
 		return NULL;
 	}
@@ -1163,9 +1205,11 @@ Plugin_RemoveHook(PyObject *plugin, Hook *hook)
 	GSList *list;
 	/* Is this really a hook of the running plugin? */
 	list = g_slist_find(Plugin_GetHooks(plugin), hook);
-	if (list) {
+	if (list)
+	{
 		/* Ok, unhook it. */
-		if (hook->type == HOOK_RAGE) {
+		if (hook->type == HOOK_RAGE)
+		{
 			/* This is an rage hook. Unregister it. */
 			BEGIN_RAGE_CALLS(NONE);
 			rage_unhook(ph, (rage_hook*)hook->data);
@@ -1184,9 +1228,11 @@ static void
 Plugin_RemoveAllHooks(PyObject *plugin)
 {
 	GSList *list = Plugin_GetHooks(plugin);
-	while (list) {
+	while (list)
+	{
 		Hook *hook = (Hook *) list->data;
-		if (hook->type == HOOK_RAGE) {
+		if (hook->type == HOOK_RAGE)
+		{
 			/* This is an rage hook. Unregister it. */
 			BEGIN_RAGE_CALLS(NONE);
 			rage_unhook(ph, (rage_hook*)hook->data);
@@ -1205,15 +1251,18 @@ Plugin_Delete(PyObject *plugin)
 {
 	PyThreadState *tstate = ((PluginObject*)plugin)->tstate;
 	GSList *list = Plugin_GetHooks(plugin);
-	while (list) {
+	while (list)
+	{
 		Hook *hook = (Hook *) list->data;
-		if (hook->type == HOOK_UNLOAD) {
+		if (hook->type == HOOK_UNLOAD) 
+		{
 			PyObject *retobj;
 			retobj = PyObject_CallFunction(hook->callback, "(O)",
 						       hook->userdata);
-			if (retobj) {
+			if (retobj)
 				Py_DECREF(retobj);
-			} else {
+			else 
+			{
 				PyErr_Print();
 				PyErr_Clear();
 			}
@@ -1340,7 +1389,8 @@ Module_rage_get_info(PyObject *self, PyObject *args)
 	BEGIN_RAGE_CALLS(RESTORE_CONTEXT);
 	info = rage_get_info(ph, name);
 	END_RAGE_CALLS();
-	if (info == NULL) {
+	if (info == NULL) 
+	{
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
@@ -1358,9 +1408,10 @@ Module_rage_get_prefs(PyObject *self, PyObject *args)
 	if (!PyArg_ParseTuple(args, "s:get_prefs", &name))
 		return NULL;
 	BEGIN_RAGE_CALLS(NONE);
-	type = rage_get_prefs(ph, name, (const char **)&info, &type);
+	type = rage_get_prefs(ph, name, &info, &type);
 	END_RAGE_CALLS();
-	switch (type) {
+	switch (type)
+	{
 		case 0:
 			Py_INCREF(Py_None);
 			res = Py_None;
@@ -1391,7 +1442,8 @@ Module_rage_get_context(PyObject *self, PyObject *args)
 	if (plugin == NULL)
 		return NULL;
 	ctxobj = Context_FromContext(Plugin_GetContext(plugin));
-	if (ctxobj == NULL) {
+	if (ctxobj == NULL)
+	{
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
@@ -1409,7 +1461,8 @@ Module_rage_find_context(PyObject *self, PyObject *args, PyObject *kwargs)
 					 kwlist, &server, &channel))
 		return NULL;
 	ctxobj = Context_FromServerAndChannel(server, channel);
-	if (ctxobj == NULL) {
+	if (ctxobj == NULL)
+	{
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
@@ -1437,7 +1490,8 @@ Module_rage_hook_command(PyObject *self, PyObject *args, PyObject *kwargs)
 	plugin = Plugin_GetCurrent();
 	if (plugin == NULL)
 		return NULL;
-	if (!PyCallable_Check(callback)) {
+	if (!PyCallable_Check(callback))
+	{
 		PyErr_SetString(PyExc_TypeError, "callback is not callable");
 		return NULL;
 	}
@@ -1473,7 +1527,8 @@ Module_rage_hook_server(PyObject *self, PyObject *args, PyObject *kwargs)
 	plugin = Plugin_GetCurrent();
 	if (plugin == NULL)
 		return NULL;
-	if (!PyCallable_Check(callback)) {
+	if (!PyCallable_Check(callback))
+	{
 		PyErr_SetString(PyExc_TypeError, "callback is not callable");
 		return NULL;
 	}
@@ -1509,7 +1564,8 @@ Module_rage_hook_print(PyObject *self, PyObject *args, PyObject *kwargs)
 	plugin = Plugin_GetCurrent();
 	if (plugin == NULL)
 		return NULL;
-	if (!PyCallable_Check(callback)) {
+	if (!PyCallable_Check(callback))
+	{
 		PyErr_SetString(PyExc_TypeError, "callback is not callable");
 		return NULL;
 	}
@@ -1545,7 +1601,8 @@ Module_rage_hook_timer(PyObject *self, PyObject *args, PyObject *kwargs)
 	plugin = Plugin_GetCurrent();
 	if (plugin == NULL)
 		return NULL;
-	if (!PyCallable_Check(callback)) {
+	if (!PyCallable_Check(callback))
+	{
 		PyErr_SetString(PyExc_TypeError, "callback is not callable");
 		return NULL;
 	}
@@ -1578,7 +1635,8 @@ Module_rage_hook_unload(PyObject *self, PyObject *args, PyObject *kwargs)
 	plugin = Plugin_GetCurrent();
 	if (plugin == NULL)
 		return NULL;
-	if (!PyCallable_Check(callback)) {
+	if (!PyCallable_Check(callback))
+	{
 		PyErr_SetString(PyExc_TypeError, "callback is not callable");
 		return NULL;
 	}
@@ -1619,14 +1677,17 @@ Module_rage_get_list(PyObject *self, PyObject *args)
 	/* This function is thread safe, and returns statically
 	 * allocated data. */
 	fields = rage_list_fields(ph, "lists");
-	for (i = 0; fields[i]; i++) {
-		if (strcmp(fields[i], name) == 0) {
+	for (i = 0; fields[i]; i++)
+	{
+		if (strcmp(fields[i], name) == 0)
+		{
 			/* Use the static allocated one. */
 			name = fields[i];
 			break;
 		}
 	}
-	if (fields[i] == NULL) {
+	if (fields[i] == NULL)
+	{
 		PyErr_SetString(PyExc_KeyError, "list not available");
 		return NULL;
 	}
@@ -1638,35 +1699,40 @@ Module_rage_get_list(PyObject *self, PyObject *args)
 	if (list == NULL)
 		goto error;
 	fields = rage_list_fields(ph, (char*)name);
-	while (rage_list_next(ph, list)) {
+	while (rage_list_next(ph, list))
+	{
 		PyObject *o = ListItem_New(name);
-		if (o == NULL || PyList_Append(l, o) == -1) {
+		if (o == NULL || PyList_Append(l, o) == -1)
+		{
 			Py_XDECREF(o);
 			goto error;
 		}
 		Py_DECREF(o); /* l is holding a reference */
-		for (i = 0; fields[i]; i++) {
+		for (i = 0; fields[i]; i++)
+		{
 			const char *fld = fields[i]+1;
 			PyObject *attr = NULL;
 			const char *sattr;
 			int iattr;
-			switch(fields[i][0]) {
-			case 's':
-				sattr = rage_list_str(ph, list, (char*)fld);
-				attr = PyString_FromString(sattr?sattr:"");
-				break;
-			case 'i':
-				iattr = rage_list_int(ph, list, (char*)fld);
-				attr = PyInt_FromLong((long)iattr);
-				break;
-			case 'p':
-				sattr = rage_list_str(ph, list, (char*)fld);
-				if (strcmp(fld, "context") == 0) {
-					attr = Context_FromContext(
-						(rage_context*)sattr);
+			switch(fields[i][0])
+			{
+				case 's':
+					sattr = rage_list_str(ph, list, (char*)fld);
+					attr = PyString_FromString(sattr?sattr:"");
 					break;
-				}
-				continue;
+				case 'i':
+					iattr = rage_list_int(ph, list, (char*)fld);
+					attr = PyInt_FromLong((long)iattr);
+					break;
+				case 'p':
+					sattr = rage_list_str(ph, list, (char*)fld);
+					if (strcmp(fld, "context") == 0)
+					{
+						attr = Context_FromContext(
+							(rage_context*)sattr);
+						break;
+					}
+					continue;
 			}
 			if (attr == NULL)
 				goto error;
@@ -1698,9 +1764,11 @@ Module_rage_get_lists(PyObject *self, PyObject *args)
 	l = PyList_New(0);
 	if (l == NULL)
 		return NULL;
-	for (i = 0; fields[i]; i++) {
+	for (i = 0; fields[i]; i++)
+	{
 		o = PyString_FromString(fields[i]);
-		if (o == NULL || PyList_Append(l, o) == -1) {
+		if (o == NULL || PyList_Append(l, o) == -1)
+		{
 			Py_DECREF(l);
 			Py_XDECREF(o);
 			return NULL;
@@ -1769,14 +1837,16 @@ IInterp_Exec(char *command)
 	BEGIN_PLUGIN(interp_plugin);
 
         m = PyImport_AddModule("__main__");
-        if (m == NULL) {
+        if (m == NULL)
+	{
 		rage_print(ph, "Can't get __main__ module");
 		goto fail;
 	}
         d = PyModule_GetDict(m);
 	len = strlen(command);
 	buffer = (char *) g_malloc(len+2);
-	if (buffer == NULL) {
+	if (buffer == NULL)
+	{
 		rage_print(ph, "Not enough memory for command buffer");
 		goto fail;
 	}
@@ -1785,7 +1855,8 @@ IInterp_Exec(char *command)
 	buffer[len+1] = 0;
         o = PyRun_StringFlags(buffer, Py_single_input, d, d, NULL);
 	g_free(buffer);
-        if (o == NULL) {
+        if (o == NULL)
+	{
                 PyErr_Print();
 		goto fail;
         }
@@ -1804,7 +1875,8 @@ IInterp_Cmd(int parc, char *parv[], void *userdata)
 {
 	char *channel = (char *) rage_get_info(ph, "channel");
 	g_return_val_if_fail(channel != NULL, 0);
-	if (channel[0] == '>' && strcmp(channel, ">>python<<") == 0) {
+	if (channel[0] == '>' && strcmp(channel, ">>python<<") == 0)
+	{
 		rage_printf(ph, ">>> %s\n", parv[1]);
 		IInterp_Exec(parv[1]);
 		return 1;
@@ -1821,13 +1893,15 @@ Command_PyList(void)
 {
 	GSList *list;
 	list = plugin_list;
-	if (list == NULL) {
+	if (list == NULL)
 		rage_print(ph, "No python modules loaded");
-	} else {
+	else 
+	{
 		rage_print(ph,
 		   "Name         Version  Filename             Description\n"
 		   "----         -------  --------             -----------\n");
-		while (list != NULL) {
+		while (list != NULL)
+		{
 			PluginObject *plg = (PluginObject *) list->data;
 			char *basename = g_path_get_basename(plg->filename);
 			rage_printf(ph, "%-12s %-8s %-20s %-10s\n",
@@ -1859,9 +1933,10 @@ static void
 Command_PyUnload(char *name)
 {
 	PluginObject *plugin = Plugin_ByString(name);
-	if (!plugin) {
+	if (!plugin)
 		rage_print(ph, "Can't find a python plugin with that name");
-	} else {
+	else 
+	{
 		BEGIN_PLUGIN(plugin);
 		Plugin_Delete((PyObject*)plugin);
 		END_PLUGIN(plugin);
@@ -1873,9 +1948,10 @@ static void
 Command_PyReload(char *name)
 {
 	PluginObject *plugin = Plugin_ByString(name);
-	if (!plugin) {
+	if (!plugin)
 		rage_print(ph, "Can't find a python plugin with that name");
-	} else {
+	else
+	{
 		char *filename = strdup(plugin->filename);
 		Command_PyUnload(filename);
 		Command_PyLoad(filename);
@@ -1901,40 +1977,55 @@ Command_Py(int parc, char *word[], void *userdata)
 	while(*p && *p!=' ')p++;
 	i=0;
 	while(*p && *p==' ')p++;
-	while(*p && *p!=' ' && i<sizeof(cmd)-1) {
+	while(*p && *p!=' ' && i<sizeof(cmd)-1)
+	{
 		cmd[i++]=*p;
 		p++;
 	}
 	cmd[i]='\0';
 	while(*p && *p==' ')p++;
 
-	if (strcasecmp(cmd, "LIST") == 0) {
+	/* XXX: should be redone */
+	if (strcasecmp(cmd, "LIST") == 0)
+	{
 		ok = 1;
 		Command_PyList();
-	} else if (strcasecmp(cmd, "EXEC") == 0) {
+	} 
+	else if (strcasecmp(cmd, "EXEC") == 0)
+	{
 		if (p) {
 			ok = 1;
 			IInterp_Exec(p); 
 		}
-	} else if (strcasecmp(cmd, "LOAD") == 0) {
+	} 
+	else if (strcasecmp(cmd, "LOAD") == 0)
+	{
 		if (p) {
 			ok = 1;
 			Command_PyLoad(p);
 		}
-	} else if (strcasecmp(cmd, "UNLOAD") == 0) {
+	}
+	else if (strcasecmp(cmd, "UNLOAD") == 0)
+	{
 		if (p) {
 			ok = 1;
 			Command_PyUnload(p);
 		}
-	} else if (strcasecmp(cmd, "RELOAD") == 0) {
+	}
+	else if (strcasecmp(cmd, "RELOAD") == 0)
+	{
 		if (p) {
 			ok = 1;
 			Command_PyReload(p);
 		}
-	} else if (strcasecmp(cmd, "CONSOLE") == 0) {
+	}
+	else if (strcasecmp(cmd, "CONSOLE") == 0)
+	{
 		ok = 1;
 		rage_command(ph, "QUERY >>python<<");
-	} else if (strcasecmp(cmd, "ABOUT") == 0) {
+	}
+	else if (strcasecmp(cmd, "ABOUT") == 0)
+	{
 		ok = 1;
 		Command_PyAbout();
 	}
@@ -1947,7 +2038,8 @@ static int
 Command_Load(int parc, char *word[], void *userdata)
 {
 	int len = strlen(word[2]);
-	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {
+	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0)
+	{
 		Command_PyLoad(word[2]);
 		return RAGE_EAT_RAGE;
 	}
@@ -1958,7 +2050,8 @@ static int
 Command_Unload(int parc, char *word[], void *userdata)
 {
 	int len = strlen(word[2]);
-	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {
+	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0)
+	{
 		Command_PyUnload(word[2]);
 		return RAGE_EAT_RAGE;
 	}
@@ -1986,7 +2079,8 @@ rage_plugin_init(rage_plugin *plugin_handle,
 	ph = plugin_handle;
 
 	/* Block double initalization. */
-	if (initialized != 0) {
+	if (initialized != 0)
+	{
 		rage_print(ph, "Python interface already loaded");
 		/* deinit is called even when init fails, so keep track
 		 * of a reinit failure. */
@@ -2009,7 +2103,8 @@ rage_plugin_init(rage_plugin *plugin_handle,
 	RageOut_Type.ob_type = &PyType_Type;
 
 	rageout = RageOut_New();
-	if (rageout == NULL) {
+	if (rageout == NULL)
+	{
 		rage_print(ph, "Can't allocate rageout object");
 		return 0;
 	}
@@ -2017,7 +2112,8 @@ rage_plugin_init(rage_plugin *plugin_handle,
 #ifdef WITH_THREAD
 	PyEval_InitThreads();
 	rage_lock = PyThread_allocate_lock();
-	if (rage_lock == NULL) {
+	if (rage_lock == NULL)
+	{
 		rage_print(ph, "Can't allocate rage lock");
 		Py_DECREF(rageout);
 		rageout = NULL;
@@ -2028,7 +2124,8 @@ rage_plugin_init(rage_plugin *plugin_handle,
 	main_tstate = PyEval_SaveThread();
 
 	interp_plugin = Plugin_New(NULL, Module_rage_methods, rageout);
-	if (interp_plugin == NULL) {
+	if (interp_plugin == NULL)
+	{
 		rage_print(ph, "Plugin_New() failed.\n");
 #ifdef WITH_THREAD
 		PyThread_free_lock(rage_lock);
@@ -2060,13 +2157,15 @@ rage_plugin_deinit(void)
 
 	/* A reinitialization was tried. Just give up and live the
 	 * environment as is. We are still alive. */
-	if (reinit_tried) {
+	if (reinit_tried)
+	{
 		reinit_tried--;
 		return 1;
 	}
 
 	list = plugin_list;
-	while (list != NULL) {
+	while (list != NULL)
+	{
 		PyObject *plugin = (PyObject *) list->data;
 		BEGIN_PLUGIN(plugin);
 		Plugin_Delete(plugin);
@@ -2082,20 +2181,23 @@ rage_plugin_deinit(void)
 	rageout_buffer_size = 0;
 	rageout_buffer_pos = 0;
 
-	if (interp_plugin) {
+	if (interp_plugin)
+	{
 		Py_DECREF(interp_plugin);
 		interp_plugin = NULL;
 	}
 
 	/* Switch back to the main thread state. */
-	if (main_tstate) {
+	if (main_tstate)
+	{
 		PyThreadState_Swap(main_tstate);
 		main_tstate = NULL;
 	}
 	Py_Finalize();
 
 #ifdef WITH_THREAD
-	if (thread_timer != NULL) {
+	if (thread_timer != NULL)
+	{
 		rage_unhook(ph, thread_timer);
 		thread_timer = NULL;
 	}

@@ -49,7 +49,7 @@ static DWORD
 child (char *str)
 {
 	MessageBoxA (0, str, "Perl DLL Error",
-					 MB_OK|MB_ICONHAND|MB_SETFOREGROUND|MB_TASKMODAL);
+			MB_OK|MB_ICONHAND|MB_SETFOREGROUND|MB_TASKMODAL);
 	return 0;
 }
 
@@ -59,7 +59,7 @@ thread_mbox (char *str)
 	DWORD tid;
 
 	CloseHandle (CreateThread (NULL, 0, (LPTHREAD_START_ROUTINE) child,
-					 str, 0, &tid));
+			str, 0, &tid));
 }
 
 #endif
@@ -138,7 +138,6 @@ extern void boot_DynaLoader (pTHX_ CV* cv);
 static int
 execute_perl( SV *function, char *args)
 {
-
 	int count, ret_value = 1;
 	SV *sv;
 
@@ -154,15 +153,16 @@ execute_perl( SV *function, char *args)
 	SPAGAIN;
 
 	sv = GvSV(gv_fetchpv("@", TRUE, SVt_PV));
-	if (SvTRUE(sv)) {
-/* 		rage_printf(ph, "Perl error: %s\n", SvPV(sv, count)); */
-	  POPs; /* remove undef from the top of the stack */
-	} else if (count != 1) {
-		rage_printf(ph, "Perl error: expected 1 value from %s, "
-						 "got: %d\n", function, count);
-	} else {
-		ret_value = POPi;
+	if (SvTRUE(sv))
+	{
+ 		rage_printf(ph, "Perl error: %s\n", SvPV(sv, count));
+		POPs; /* remove undef from the top of the stack */
 	}
+	else if (count != 1)
+		rage_printf(ph, "Perl error: expected 1 value from %s, "
+				"got: %d\n", function, count);
+	else
+		ret_value = POPi;
 
 	PUTBACK;
 	FREETMPS;
@@ -207,20 +207,15 @@ timer_cb (void *userdata)
 			retVal = POPi;
 			if (retVal == 0)
 			{
-				/* if 0 is return the timer is going to get
-				   unhooked
-				*/
-				hook_list = g_slist_remove (hook_list,
-								data->hook);
+				/* if 0 is return the timer is going to get unhooked */
+				hook_list = g_slist_remove (hook_list, data->hook);
 				SvREFCNT_dec (data->callback);
 
-				if (data->userdata) {
-				  SvREFCNT_dec (data->userdata);
-				}
+				if (data->userdata)
+					SvREFCNT_dec (data->userdata);
 				free (data);
 			}
 		}
-
 	}
 	
 	PUTBACK;
@@ -247,12 +242,8 @@ server_cb (int parc, char *parv[], void *userdata)
 	wd = newAV ();
 	sv_2mortal ((SV*)wd);
 
-	for (count = 1;
-	(count < parc) && (parv[count] != NULL) && (parv[count][0] != 0);
-	count++) {
-	  av_push (wd, newSVpv (parv[count], 0));
-	}
-
+	for (count = 1; (count < parc) && (parv[count] != NULL) && (parv[count][0] != 0); count++)
+		av_push (wd, newSVpv (parv[count], 0));
 	
 /* 	rage_printf (ph, */
 /* 			"Recieved %d words in server callback", av_len (wd)); */
@@ -278,9 +269,7 @@ server_cb (int parc, char *parv[], void *userdata)
 			retVal = RAGE_EAT_NONE;
 		}
 		else
-		{
 			retVal = POPi;
-		}
 
 	}
 	
@@ -308,14 +297,11 @@ command_cb (int parc, char* parv[], void *userdata)
 	wd = newAV ();
 	sv_2mortal ((SV*)wd);
 
-	for (count = 1;
-		  (count < parc) 
-		   && (parv[count] != NULL) 
-		   && (parv[count][0] != 0);
-		  count++) {
-	  av_push (wd, newSVpv (parv[count], 0));
-	}
-
+	for (count = 1; (count < parc) 
+			&& (parv[count] != NULL) 
+			&& (parv[count][0] != 0);
+			count++)
+		av_push (wd, newSVpv (parv[count], 0));
 	
 /* 	rage_printf (ph, "Recieved %d words in command callback", */
 /* 			av_len (wd)); */
@@ -341,10 +327,7 @@ command_cb (int parc, char* parv[], void *userdata)
 			retVal = RAGE_EAT_NONE;
 		}
 		else
-		{
 			retVal = POPi;
-		}
-
 	}
 	
 	PUTBACK;
@@ -372,12 +355,8 @@ print_cb (int parc, char *parv[], void *userdata)
 	wd = newAV ();
 	sv_2mortal ((SV*)wd);
 
-	for (count = 1;
-	(count < parc) && (parv[count] != NULL) && (parv[count][0] != 0);
-	count++)
-	{
+	for (count = 1; (count < parc) && (parv[count] != NULL) && (parv[count][0] != 0); count++)
 		av_push (wd, newSVpv (parv[count], 0));
-	}
 	
 /* 	rage_printf (ph, "Recieved %d words in print callback", av_len (wd)); */
 	PUSHMARK (SP);
@@ -402,10 +381,7 @@ print_cb (int parc, char *parv[], void *userdata)
 			retVal = RAGE_EAT_NONE;
 		}
 		else
-		{
 			retVal = POPi;
-		}
-
 	}
 	
 	PUTBACK;
@@ -428,10 +404,11 @@ static XS (XS_Rage_register)
 	SV *callback;
 	PerlScript *scp;
 	dXSARGS;
-	if (items < 2 || items > 4) {
+	if (items < 2 || items > 4)
 		rage_printf (ph,
-		"Usage: Rage::register(scriptname, version, [desc,[shutdowncallback]])");
-	} else {
+				"Usage: Rage::register(scriptname, version, [desc,[shutdowncallback]])");
+	else
+	{
 		name = SvPV_nolen (ST (0));
 		ver = SvPV_nolen (ST (1));
 		desc = NULL;
@@ -439,18 +416,18 @@ static XS (XS_Rage_register)
 
 		switch(items)
 		{
-		case 3:
-			desc = SvPV_nolen (ST (2));
-			break;
-		case 4:
-			desc = SvPV_nolen (ST (2));
-			callback = ST (3);
-			break;
+			case 3:
+				desc = SvPV_nolen (ST (2));
+				break;
+			case 4:
+				desc = SvPV_nolen (ST (2));
+				callback = ST (3);
+				break;
 		}
 	  
-		if(desc == NULL ) {
+		if(desc == NULL )
 			desc = "";
-		}
+		
 		scp = malloc (sizeof (PerlScript));
 		scp->name = strdup (name);
 		scp->version = strdup (ver);
@@ -460,8 +437,8 @@ static XS (XS_Rage_register)
 		SvREFCNT_inc (scp->shutdowncallback);
 		/* FIXME: no filename */
 		scp->gui_entry = rage_plugingui_add (ph, scp->name, scp->name,
-															scp->desc, scp->version, NULL);
-	  
+				scp->desc, scp->version, NULL);
+		
 		perl_list = g_slist_prepend (perl_list, scp);
 	  
 		XSRETURN_EMPTY;
@@ -472,13 +449,13 @@ static XS (XS_Rage_register)
 /* Rage::print(output) */
 static XS (XS_Rage_print)
 {
-  
 	char *text = NULL;
 
 	dXSARGS;
-	if (items != 1 ) {
+	if (items != 1 )
 		rage_print (ph, "Usage: Rage::_print(text)");
-	} else {
+	else
+	{
 		text = SvPV_nolen (ST (0));
 		rage_print (ph, text);
 	}
@@ -492,69 +469,70 @@ static XS (XS_Rage_emit_print)
 	int count;
 
 	dXSARGS;
-	if (items < 1) {
+	if (items < 1)
 		rage_print (ph, "Usage: Rage::emit_print(event_name, ...)");
-	} else {
+	else
+	{
 		event_name = (char *)SvPV_nolen (ST (0));
 		RETVAL = 0;
 		
 		/* we need to figure out the number of defined values passed in */
-		for( count = 0; count < items; count++ ) {
-		  if (!SvOK (ST (count) )) {
-			 break;
-		  }
+		for( count = 0; count < items; count++ )
+		{
+		  	if (!SvOK (ST (count) ))
+			 	break;
 		}
 
 		/*		switch  (items) {*/
-		switch (count) {
-		case 1:
-			RETVAL = rage_emit_print (ph, event_name, NULL);
-			break;
-		case 2:
-			RETVAL = rage_emit_print (ph, event_name,
-							SvPV_nolen (ST (1)),
-							NULL);
-			break;
-		case 3:
-			RETVAL = rage_emit_print (ph, event_name,
-							SvPV_nolen (ST (1)), 
-							SvPV_nolen (ST (2)),
-							NULL);
-			break;
-		case 4:
-	       		RETVAL = rage_emit_print (ph, event_name,
-						  SvPV_nolen (ST (1)), 
-						  SvPV_nolen (ST (2)),
-						  SvPV_nolen (ST (3)),
-						  NULL);
-		       break;
-		case 5:
-			RETVAL = rage_emit_print (ph, event_name,
-						  SvPV_nolen (ST (1)), 
-						  SvPV_nolen (ST (2)),
-						  SvPV_nolen (ST (3)),
-						  SvPV_nolen (ST (4)),
-						  NULL);
-			break;
-
+		switch (count)
+		{
+			case 1:
+				RETVAL = rage_emit_print (ph, event_name, NULL);
+				break;
+			case 2:
+				RETVAL = rage_emit_print (ph, event_name,
+						SvPV_nolen (ST (1)),
+						NULL);
+				break;
+			case 3:
+				RETVAL = rage_emit_print (ph, event_name,
+						SvPV_nolen (ST (1)), 
+						SvPV_nolen (ST (2)),
+						NULL);
+				break;
+			case 4:
+	       			RETVAL = rage_emit_print (ph, event_name,
+						SvPV_nolen (ST (1)), 
+						SvPV_nolen (ST (2)),
+						SvPV_nolen (ST (3)),
+						NULL);
+		       		break;
+			case 5:
+				RETVAL = rage_emit_print (ph, event_name,
+						SvPV_nolen (ST (1)), 
+						SvPV_nolen (ST (2)),
+						SvPV_nolen (ST (3)),
+						SvPV_nolen (ST (4)),
+						NULL);
+				break;
 		}
 
 		XSRETURN_IV(RETVAL);
-    }
+	}
 }
 static XS (XS_Rage_get_info)
 {
 	dXSARGS;
-	if (items != 1) {
+	if (items != 1)
 	  rage_print (ph, "Usage: Rage::get_info(id)");
-	} else {
+	else
+	{
 		SV *	id = ST (0);
 		const char *	RETVAL;
 	  
 		RETVAL = rage_get_info (ph, SvPV_nolen (id));
-		if (RETVAL == NULL) {
+		if (RETVAL == NULL)
 		      XSRETURN_UNDEF;
-		}
 		XSRETURN_PV (RETVAL);
 	}
 }
@@ -564,28 +542,27 @@ static XS (XS_Rage_get_prefs)
 	const char *str;
 	int integer;
 	dXSARGS;
-	if(items != 1) {
+	if(items != 1)
 		rage_print (ph, "Usage: Rage::get_prefs(name)");
-	} else {
-	  
-	  
+	else
+	{  
 		switch (rage_get_prefs
-				(ph, SvPV_nolen (ST (0)), &str, &integer)) {
-		case 0:
-			XSRETURN_UNDEF;
-			break;
-		case 1:
-			XSRETURN_PV(str);
-			break;
-		case 2:
-			XSRETURN_IV(integer);
-			break;
-		case 3:
-			if (integer) {
-				XSRETURN_YES;
-			} else {
-				XSRETURN_NO;
-			}
+				(ph, SvPV_nolen (ST (0)), &str, &integer))
+		{
+			case 0:
+				XSRETURN_UNDEF;
+				break;
+			case 1:
+				XSRETURN_PV(str);
+				break;
+			case 2:
+				XSRETURN_IV(integer);
+				break;
+			case 3:
+				if (integer)
+					XSRETURN_YES;
+				else
+					XSRETURN_NO;
 		}
 	}
 }
@@ -593,7 +570,6 @@ static XS (XS_Rage_get_prefs)
 /* Rage::_hook_server(name, priority, callback, [userdata]) */
 static XS (XS_Rage_hook_server)
 {
-
 	SV *	name;
 	int	pri;
 	SV *	callback;
@@ -603,19 +579,19 @@ static XS (XS_Rage_hook_server)
 
 	dXSARGS;
 
-	if (items != 4) {
+	if (items != 4)
 		rage_print (ph,
 				"Usage: Rage::_hook_server(name, priority, callback, userdata)");
-	} else {
+	else
+	{
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
 		callback = ST (2);
 		userdata = ST (3);
 		data = NULL;
 		data = malloc (sizeof (HookData));
-		if (data == NULL) {
+		if (data == NULL)
 			XSRETURN_UNDEF;
-		}
 		
 		data->name = sv_mortalcopy (name);
 		SvREFCNT_inc (data->name);
@@ -624,7 +600,7 @@ static XS (XS_Rage_hook_server)
 		data->userdata = sv_mortalcopy (userdata);
 		SvREFCNT_inc (data->userdata);
 		RETVAL = rage_hook_server (ph, SvPV_nolen (name), pri,
-						server_cb, data);
+				server_cb, data);
 		hook_list = g_slist_append (hook_list, RETVAL);
 
 		XSRETURN_IV(PTR2UV(RETVAL));
@@ -644,9 +620,10 @@ static XS(XS_Rage_hook_command)
 	
 	dXSARGS;
 	
-	if (items != 5) {
+	if (items != 5)
 		rage_print (ph, "Usage: Rage::_hook_command(name, priority, callback, help_text, userdata)");
-	} else {
+	else
+	{
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
 		callback = ST (2);
@@ -655,9 +632,8 @@ static XS(XS_Rage_hook_command)
 		data = NULL;
 
 		data = malloc (sizeof (HookData));
-		if (data == NULL) {
+		if (data == NULL)
 			XSRETURN_UNDEF;
-		}
 
 		data->name = sv_mortalcopy (name);
 		SvREFCNT_inc (data->name);
@@ -677,7 +653,6 @@ static XS(XS_Rage_hook_command)
 /* Rage::_hook_print(name, priority, callback, [userdata]) */
 static XS (XS_Rage_hook_print)
 {
-
 	SV *	name;
 	int	pri;
 	SV *	callback;
@@ -685,10 +660,11 @@ static XS (XS_Rage_hook_print)
 	rage_hook *	RETVAL;
 	HookData *data;
 	dXSARGS;
-	if (items != 4) {
+	if (items != 4)
 		rage_print (ph,
 				"Usage: Rage::_hook_print(name, priority, callback, userdata)");
-	} else {
+	else
+	{
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
 		callback = ST (2);
@@ -697,9 +673,7 @@ static XS (XS_Rage_hook_print)
 
 		data = malloc (sizeof (HookData));
 		if (data == NULL)
-		{
 			XSRETURN_UNDEF;
-		}
 
 		data->name = sv_mortalcopy (name);
 		SvREFCNT_inc (data->name);
@@ -726,19 +700,19 @@ static XS (XS_Rage_hook_timer)
 
 	dXSARGS;
 
-	if (items != 3) {
+	if (items != 3)
 		rage_print (ph,
-		"Usage: Rage::_hook_timer(timeout, callback, userdata)");
-	} else {
+				"Usage: Rage::_hook_timer(timeout, callback, userdata)");
+	else
+	{
 		timeout = (int)SvIV(ST (0));
 		callback = ST (1);
 		data = NULL;
 		userdata = ST (2);
 		data = malloc (sizeof (HookData));
 
-		if (data == NULL) {
+		if (data == NULL)
 			XSRETURN_UNDEF;
-		}
 
 		data->name = NULL;
 		data->callback = sv_mortalcopy (callback);
@@ -759,31 +733,31 @@ static XS(XS_Rage_unhook)
 	HookData *userdata;
 	int retCount = 0;
 	dXSARGS;
-	if (items != 1) {
+	if (items != 1)
 		rage_print (ph, "Usage: Rage::unhook(hook)");
-	} else {
-	  if(looks_like_number(ST (0))) {
-		 hook = INT2PTR(rage_hook *,SvIV(ST (0)));
+	else
+	{
+		if(looks_like_number(ST (0))) {
+			hook = INT2PTR(rage_hook *,SvIV(ST (0)));
 		 
-		 if(g_slist_find( hook_list, hook ) != NULL ) {
-			userdata = (HookData*)rage_unhook (ph, hook);
-			hook_list = g_slist_remove (hook_list, hook);
-			if (userdata->name) {
-			  SvREFCNT_dec (userdata->name);
-			}
-			if (userdata->callback) {
-			  SvREFCNT_dec (userdata->callback);
-			}
-			if (userdata->userdata) {
-			  XPUSHs(sv_mortalcopy (userdata->userdata));
-			  SvREFCNT_dec (userdata->userdata);
-			  retCount = 1;
-			}
-			free (userdata);
-			XSRETURN(retCount);
-		 }
-	  }
-	  XSRETURN_EMPTY;
+			if(g_slist_find( hook_list, hook ) != NULL ) {
+				userdata = (HookData*)rage_unhook (ph, hook);
+				hook_list = g_slist_remove (hook_list, hook);
+				if (userdata->name)
+			  		SvREFCNT_dec (userdata->name);
+				if (userdata->callback)
+			  		SvREFCNT_dec (userdata->callback);
+				if (userdata->userdata)
+				{
+			  		XPUSHs(sv_mortalcopy (userdata->userdata));
+			  		SvREFCNT_dec (userdata->userdata);
+			  		retCount = 1;
+				}
+				free (userdata);
+				XSRETURN(retCount);
+		 	}
+	  	}
+		XSRETURN_EMPTY;
 	}
 }
 
@@ -793,12 +767,12 @@ static XS (XS_Rage_command)
 	char *cmd = NULL;
 
 	dXSARGS;
-	if (items != 1 ) {
+	if (items != 1 )
 		rage_print (ph, "Usage: Rage::_command(command)");
-	} else {
+	else
+	{
 		cmd = SvPV_nolen (ST (0));
 		rage_command (ph, cmd);
-
 	}
 	XSRETURN_EMPTY;
 }
@@ -814,68 +788,68 @@ static XS (XS_Rage_find_context)
 		rage_print (ph, "Usage: Rage::find_context ([channel, [server]])");
 	{
 
-	switch (items)
-	{
-	case 0: /* no server name and no channel name */
-		/* nothing to do, server and chan are already NULL */
-		break;
-	case 1: /* channel name only */
-		/* change channel value only if it is true or 0*/
-		/* otherwise leave it as null */
-		if (SvTRUE (ST (0)) || SvNIOK (ST (0))) {
-			chan = SvPV_nolen (ST (0));
-/* 			rage_printf( ph, "XSUB - find_context( %s, NULL )", chan ); */
-		} /* else { rage_print( ph, "XSUB - find_context( NULL, NULL )" ); } */
-		/* chan is already NULL */
-		break;
-	case 2: /* server and channel */
-		/* change channel value only if it is true or 0 */
-		/* otherwise leave it as NULL */
-		if (SvTRUE (ST (0)) || SvNIOK (ST (0)) ) {
-			chan = SvPV_nolen (ST (0));
-/* 			rage_printf( ph, "XSUB - find_context( %s, NULL )", SvPV_nolen(ST(0) )); */
-		} /* else { rage_print( ph, "XSUB - 2 arg NULL chan" ); } */
-		/* change server value only if it is true or 0 */
-		/* otherwise leave it as NULL */
-		if (SvTRUE (ST (1)) || SvNIOK (ST (1)) ){
-			server = SvPV_nolen (ST (1));
-/* 			rage_printf( ph, "XSUB - find_context( NULL, %s )", SvPV_nolen(ST(1) )); */
-		}/*  else { rage_print( ph, "XSUB - 2 arg NULL server" ); } */
+		switch (items)
+		{
+			case 0: /* no server name and no channel name */
+				/* nothing to do, server and chan are already NULL */
+				break;
+			case 1: /* channel name only */
+				/* change channel value only if it is true or 0*/
+				/* otherwise leave it as null */
+				if (SvTRUE (ST (0)) || SvNIOK (ST (0))) {
+					chan = SvPV_nolen (ST (0));
+/* 					rage_printf( ph, "XSUB - find_context( %s, NULL )", chan ); */
+				} /* else { rage_print( ph, "XSUB - find_context( NULL, NULL )" ); } */
+				/* chan is already NULL */
+				break;
+			case 2: /* server and channel */
+				/* change channel value only if it is true or 0 */
+				/* otherwise leave it as NULL */
+				if (SvTRUE (ST (0)) || SvNIOK (ST (0)) ) {
+					chan = SvPV_nolen (ST (0));
+/* 					rage_printf( ph, "XSUB - find_context( %s, NULL )", SvPV_nolen(ST(0) )); */
+				} /* else { rage_print( ph, "XSUB - 2 arg NULL chan" ); } */
+				/* change server value only if it is true or 0 */
+				/* otherwise leave it as NULL */
+				if (SvTRUE (ST (1)) || SvNIOK (ST (1)) ){
+					server = SvPV_nolen (ST (1));
+/* 					rage_printf( ph, "XSUB - find_context( NULL, %s )", SvPV_nolen(ST(1) )); */
+				}/*  else { rage_print( ph, "XSUB - 2 arg NULL server" ); } */
 
-		break;
-	}
+				break;
+		}
 
-	RETVAL = rage_find_context (ph, server, chan);
-	if (RETVAL != NULL)
-	{
-/*  		rage_print (ph, "XSUB - context found"); */
-		XSRETURN_IV(PTR2UV(RETVAL));
-	}
-	else
-	{
- /* 		rage_print (ph, "XSUB - context not found"); */
-		XSRETURN_UNDEF;
-	}
+		RETVAL = rage_find_context (ph, server, chan);
+		if (RETVAL != NULL)
+		{
+/*  			rage_print (ph, "XSUB - context found"); */
+			XSRETURN_IV(PTR2UV(RETVAL));
+		}
+		else
+		{
+ /* 			rage_print (ph, "XSUB - context not found"); */
+			XSRETURN_UNDEF;
+		}
 	}
 }
 
 static XS (XS_Rage_get_context)
 {
 	dXSARGS;
-	if (items != 0) {
+	if (items != 0)
 		rage_print (ph, "Usage: Rage::get_context()");
-	} else {
+	else
 		XSRETURN_IV(PTR2UV(rage_get_context (ph)));
-	}
 }
 
 static XS (XS_Rage_set_context)
 {
 	rage_context *ctx;
 	dXSARGS;
-	if (items != 1) {
+	if (items != 1)
 		rage_print (ph, "Usage: Rage::set_context(ctx)");
-	} else {
+	else
+	{
 		ctx = INT2PTR(rage_context *,SvIV(ST (0)));
 		XSRETURN_IV((IV)rage_set_context (ph, ctx));
 	}
@@ -884,9 +858,10 @@ static XS (XS_Rage_set_context)
 static XS (XS_Rage_nickcmp)
 {
 	dXSARGS;
-	if (items != 2) {
+	if (items != 2)
 		rage_print (ph, "Usage: Rage::nickcmp(s1, s2)");
-	} else {
+	else
+	{
 		XSRETURN_IV((IV)rage_nickcmp (ph, SvPV_nolen (ST (0)),
 					 SvPV_nolen (ST (1))));
 	}
@@ -904,87 +879,85 @@ static XS (XS_Rage_get_list)
 	U32 context;
 	dXSARGS;
 
-	if (items != 1) {
+	if (items != 1)
 		rage_print (ph, "Usage: Rage::get_list(name)");
-	} else {
+	else
+	{
 		SP -= items;  /*remove the argument list from the stack*/
-
 		name = ST (0);
-	
 		list = rage_list_get (ph, SvPV_nolen (name));
-	  
-		if (list == NULL) {
+		if (list == NULL)
 			XSRETURN_EMPTY;
-		}
 		
 		context = GIMME_V;
 
 		if( context == G_SCALAR ) {
-		  while (rage_list_next (ph, list)) {
-			 count++;
-		  }
-		  rage_list_free (ph, list);
-		  XSRETURN_IV((IV)count);
+			while (rage_list_next (ph, list))
+				count++;
+		  	rage_list_free (ph, list);
+		  	XSRETURN_IV((IV)count);
 		}
 	  
 		fields = rage_list_fields (ph, SvPV_nolen (name));
-		while (rage_list_next (ph, list)) {
+		while (rage_list_next (ph, list))
+		{
 			i = 0;
 			hash = newHV ();
 			sv_2mortal ((SV*) hash);
-			while (fields[i] != NULL) {
-				switch (fields[i][0]) {
-				case 's':
-					field = rage_list_str (ph, list, fields[i]+1);
-					if (field != NULL)
-					{
-						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
+			while (fields[i] != NULL)
+			{
+				switch (fields[i][0])
+				{
+					case 's':
+						field = rage_list_str (ph, list, fields[i]+1);
+						if (field != NULL)
+						{
+							hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 										newSVpvn (field, strlen (field)), 0);
-/* 					rage_printf (ph, */
-/* 						"string: %s - %d - %s",  */
-/* 						fields[i]+1, */
-/* 						strlen(fields[i]+1), */
-/* 						field, strlen(field) */
-/* 							); */
-					} else {
+/* 							rage_printf (ph, */
+/* 								"string: %s - %d - %s",  */
+/* 								fields[i]+1, */
+/* 								strlen(fields[i]+1), */
+/* 								field, strlen(field) */
+/* 								); */
+						} 
+						else 
+						{
+							hv_store (hash, fields[i]+1, strlen (fields[i]+1),
+										&PL_sv_undef, 0);
+/* 							rage_printf (ph, */
+/* 								"string: %s - %d - undef",  */
+/* 								fields[i]+1, */
+/* 								strlen(fields[i]+1) */
+/* 								); */
+						}
+						break;
+					case 'p':
+/* 						rage_printf (ph, "pointer: %s", fields[i]+1); */
 						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
-									&PL_sv_undef, 0);
-/* 					rage_printf (ph, */
-/* 						"string: %s - %d - undef",  */
-/* 							fields[i]+1, */
-/* 							strlen(fields[i]+1) */
-/* 							); */
-					}
-					break;
-				case 'p':
-/* 				rage_printf (ph, "pointer: %s", fields[i]+1); */
-					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 								newSVuv(PTR2UV ( rage_list_str (ph, list,
-																				fields[i]+1)
-									)), 0);
-					break;
-				case 'i': 
-					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
+											fields[i]+1))), 0);
+						break;
+					case 'i': 
+						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 								newSVuv (rage_list_int (ph, list, fields[i]+1)), 0);
-/* 				rage_printf (ph, "int: %s - %d",fields[i]+1, */
-/* 				       rage_list_int (ph, list, fields[i]+1) */
-/* 						); */
-					break;
-				case 't':
-					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
+/* 						rage_printf (ph, "int: %s - %d",fields[i]+1, */
+/* 						       rage_list_int (ph, list, fields[i]+1) */
+/* 							); */
+						break;
+					case 't':
+						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 								newSVnv(rage_list_time(ph,list,fields[i]+1)), 0);
-					break;
+						break;
 				}
 				i++;
+			}
+	       		XPUSHs(newRV_noinc ((SV*)hash));
 		}
-	       
-		XPUSHs(newRV_noinc ((SV*)hash));
-		
-	}
-	rage_list_free (ph, list);
+		rage_list_free (ph, list);
 
-	PUTBACK;
-	return;
+		PUTBACK;
+		return;
 	}
 }
 
@@ -1006,15 +979,18 @@ compat_execute_perl (char *function, char *args)
 	SPAGAIN;
 
 	sv = GvSV(gv_fetchpv("@", TRUE, SVt_PV));
-	if (SvTRUE(sv)) {
+	if (SvTRUE(sv))
+	{
 		rage_printf(ph, "Perl error: %s\n", SvPV(sv, count));
 		POPs;
-	} else if (count != 1) {
+	}
+	else if (count != 1)
+	{
 		rage_printf(ph, "Perl error: expected 1 value from %s, "
 						 "got: %d\n", function, count);
-	} else {
-		ret_value = POPi;
 	}
+	else
+		ret_value = POPi;
 
 	PUTBACK;
 	FREETMPS;
@@ -1054,18 +1030,13 @@ perl_print_cb (char *word[], void *perl_callback)
 	ENTER;
 	SAVETMPS;
 
-	arg = g_strdup_printf ("%s %s %s %s", word[1], word[2], word[3],
-								word[4]);
+	arg = g_strdup_printf ("%s %s %s %s", word[1], word[2], word[3], word[4]);
 
 	PUSHMARK( SP );
 	XPUSHs( sv_2mortal( newSVpv( arg, strlen(arg) ) ) );
 
-	for( count = 1;
-	(count < 32) && (word[count] != NULL) && (word[count][0] != 0);
-	count++ )
-	{
+	for( count = 1; (count < 32) && (word[count] != NULL) && (word[count][0] != 0); count++ )
 		XPUSHs( sv_2mortal( newSVpv( word[count], 0 ) ) );
-	}
 	PUTBACK;
 
 	count = call_pv( (char*)perl_callback, G_EVAL | G_KEEPERR );
@@ -1078,17 +1049,17 @@ perl_print_cb (char *word[], void *perl_callback)
 		SvPV_nolen(ERRSV) );
 		POPs;
 		retVal = RAGE_EAT_NONE;
-	} else
+	}
+	else
 	{
 		if (count != 1)
 		{
 			rage_print (ph,
 				"Print handler should only return 1 value.");
 			retVal = RAGE_EAT_RAGE;
-		} else
-		{
-			retVal = POPi;
 		}
+		else
+			retVal = POPi;
 	}
 
 	g_free(arg);
@@ -1113,11 +1084,14 @@ static XS (XS_IRC_register)
 	PerlScript *scp;
 	dXSARGS;
 	
-	if (items != 4) {
+	if (items != 4)
+	{
 	     rage_print (ph,
-	"Usage: IRC::register(scriptname, version, shutdowncallback, desc)");
+			     "Usage: IRC::register(scriptname, version, shutdowncallback, desc)");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		name = SvPV_nolen (ST (0));
 		ver = SvPV_nolen (ST (1));
 		callback = ST (2);
@@ -1131,8 +1105,8 @@ static XS (XS_IRC_register)
 		SvREFCNT_inc( scp->shutdowncallback );
 		/* FIXME: no filename */
 		scp->gui_entry = rage_plugingui_add (ph, scp->name,
-							scp->name, scp->desc,
-							  scp->version, NULL);
+				scp->name, scp->desc,
+				scp->version, NULL);
 
 		perl_list = g_slist_prepend (perl_list, scp);
 
@@ -1201,20 +1175,24 @@ static XS (XS_IRC_get_info)
 	dXSARGS;
 
 	i = SvIV (ST (0));
-	if( items != 1 ) {
+	if( items != 1 )
+	{
 		rage_print (ph, "Usage: IRC::get_info(id)");
 		XSRETURN_EMPTY;
-	} else {
-		if (i < 9 && i >= 0 && i != 5) {
+	}
+	else
+	{
+		if (i < 9 && i >= 0 && i != 5)
 			ret = (char *)rage_get_info (ph, ids[i]);
-		} else {
-			switch (i) {
+		else
+		{
+			switch (i)
+			{
 				case 5:
-					if (rage_get_info (ph, "away")) {
+					if (rage_get_info (ph, "away"))
 						XST_mIV (0, 1);
-					} else {
+					else
 						XST_mIV (0, 0);
-					}
 					XSRETURN (1);
 
 				default:
@@ -1222,11 +1200,10 @@ static XS (XS_IRC_get_info)
 			}
 		}
 
-		if (ret) {
+		if (ret)
 			XST_mPV (0, ret);
-		} else {
+		else
 			XST_mPV (0, "");	/* emulate 1.8.x behaviour */
-		}
 		XSRETURN (1);
 	}
 }
@@ -1239,26 +1216,27 @@ static XS (XS_IRC_get_prefs)
 	int integer;
 	dXSARGS;
 
-	if( items != 1 ) {
+	if( items != 1 )
+	{
 		rage_print (ph, "Usage: IRC::get_prefs(name)");
 		XSRETURN_EMPTY;
 	}
 	switch (rage_get_prefs (ph, SvPV_nolen (ST (0)), &str, &integer))
 	{
-	case 0:
-		XST_mPV (0, "Unknown variable");
-		break;
-	case 1:
-		XST_mPV (0, str);
-		break;
-	case 2:
-		XST_mIV (0, integer);
-		break;
-	case 3:
-		if (integer)
-			XST_mYES (0);
-		else
-			XST_mNO (0);
+		case 0:
+			XST_mPV (0, "Unknown variable");
+			break;
+		case 1:
+			XST_mPV (0, str);
+			break;
+		case 2:
+			XST_mIV (0, integer);
+			break;
+		case 3:
+			if (integer)
+				XST_mYES (0);
+			else
+				XST_mNO (0);
 	}
 
 	XSRETURN (1);
@@ -1273,15 +1251,15 @@ static XS (XS_IRC_add_message_handler)
 	void *hook;
 	dXSARGS;
 
-	if( items != 2 ) {
+	if( items != 2 )
 		rage_print (ph,
 			"Usage: IRC::add_message_handler(message,callback)");
-	} else {
+	else
+	{
 		tmp = strdup (SvPV_nolen (ST (1)));
 		name = SvPV_nolen (ST (0));
-		if (strcasecmp (name, "inbound") == 0) {
+		if (strcasecmp (name, "inbound") == 0)
 			name = "RAW LINE";
-		}
 		hook = rage_hook_server (ph, name, RAGE_PRI_NORM, (rage_serv_cb *)&perl_server_cb, tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
@@ -1298,10 +1276,11 @@ static XS (XS_IRC_add_command_handler)
 	void *hook;
 	dXSARGS;
 
-	if( items != 2 ) {
+	if( items != 2 )
 		rage_print (ph,
 			"Usage: IRC::add_command_handler(command,callback)");
-	} else {
+	else
+	{
 		tmp = strdup (SvPV_nolen (ST (1)));
 
 		/* use perl_server_cb when it's a "" hook, so that it gives
@@ -1324,10 +1303,11 @@ static XS (XS_IRC_add_print_handler)
 	void *hook;
 	dXSARGS;
 
-	if( items != 2 ) {
+	if( items != 2 )
 		rage_print (ph,
 			"Usage: IRC::add_print_handler(event,callback)");
-	} else {
+	else
+	{
 		tmp = strdup (SvPV_nolen (ST (1)));
 
 		hook = rage_hook_print (ph, SvPV_nolen (ST (0)),
@@ -1344,10 +1324,11 @@ static XS (XS_IRC_add_timeout_handler)
 	void *hook;
 	dXSARGS;
 
-	if( items != 2 ) {
+	if( items != 2 )
 		rage_print (ph,
 			"Usage: IRC::add_timeout_handler(interval,callback)");
-	} else {
+	else
+	{
 		hook = rage_hook_timer (ph, SvIV (ST (0)), perl_timer_cb,
 						strdup (SvPV_nolen (ST (1))));
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
@@ -1361,11 +1342,10 @@ static XS (XS_IRC_send_raw)
 {
 	dXSARGS;
 	
-	if( items != 1 ) {
+	if( items != 1 )
 		rage_print (ph, "Usage: IRC::send_raw(message)");
-	} else {
+	else
 		rage_commandf (ph, "quote %s", SvPV_nolen (ST (0)));
-	}
 	XSRETURN_EMPTY;
 }
 
@@ -1377,18 +1357,21 @@ static XS (XS_IRC_channel_list)
 	
 	dXSARGS;
 	
-	if( items != 0 ) {
+	if( items != 0 )
+	{
 		rage_print (ph, "Usage: IRC::channel_list()");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		list = rage_list_get (ph, "channels");
-		if (list) {
-			while (rage_list_next (ph, list)) {
-				XST_mPV (i, rage_list_str
-							(ph, list, "channel"));
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
+				XST_mPV (i, rage_list_str(ph, list, "channel"));
 				i++;
-				XST_mPV (i, rage_list_str
-							(ph, list, "server"));
+				XST_mPV (i, rage_list_str(ph, list, "server"));
 				i++;
 				rage_set_context (ph,
 					(rage_context *) rage_list_str (ph, list, "context"));
@@ -1400,7 +1383,6 @@ static XS (XS_IRC_channel_list)
 		}
 
 		rage_set_context (ph, old);
-
 		XSRETURN (i);
 	}
 }
@@ -1411,15 +1393,19 @@ static XS (XS_IRC_server_list)
 	rage_list *list;
 	dXSARGS;
 
-	if( items != 0 ) {
+	if( items != 0 )
+	{
 		rage_print (ph, "Usage: IRC::server_list()");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		list = rage_list_get (ph, "channels");
-		if (list) {
-			while (rage_list_next (ph, list)) {
-				XST_mPV (i, rage_list_str
-							(ph, list, "server"));
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
+				XST_mPV (i, rage_list_str (ph, list, "server"));
 				i++;
 			}
 
@@ -1437,13 +1423,18 @@ static XS (XS_IRC_ignore_list)
 	
 	dXSARGS;
 
-	if( items != 0 ) {
+	if( items != 0 )
+	{
 		rage_print (ph, "Usage: IRC::ignore_list()");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else 
+	{
 		list = rage_list_get (ph, "ignore");
-		if (list) {
-			while (rage_list_next (ph, list)) {
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
 			/* Make sure there is room on the stack */
 				EXTEND(SP, i + 10);
 
@@ -1539,18 +1530,22 @@ static XS (XS_IRC_user_info)
 	const char *find_nick;
 	const char *host, *prefix;
 
-	if( items > 1 ) {
+	if( items > 1 )
+	{
 		rage_print (ph, "Usage: IRC::user_info([nick])");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		find_nick = SvPV_nolen (ST (0));
-		if (find_nick[0] == 0) {
+		if (find_nick[0] == 0)
 			find_nick = rage_get_info (ph, "nick");
-		}
 
 		list = rage_list_get (ph, "users");
-		if (list) {
-			while (rage_list_next (ph, list)) {
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
 				nick = rage_list_str (ph, list, "nick");
 
 				if (rage_nickcmp (ph, 
@@ -1560,9 +1555,9 @@ static XS (XS_IRC_user_info)
 					i++;
 					host = rage_list_str (ph, list,
 								"host");
-					if (!host) {
+					if (!host)
 						host = "FETCHING";
-					}
+					
 					XST_mPV (i, host);
 					i++;
 
@@ -1579,10 +1574,8 @@ static XS (XS_IRC_user_info)
 					XSRETURN (4);
 				}
 			}
-
 			rage_list_free (ph, list);
 		}
-		
 		XSRETURN (0);
 	}
 }
@@ -1633,29 +1626,33 @@ static XS (XS_IRC_user_list)
 	rage_list *list;
 	rage_context *ctx, *old = rage_get_context (ph);
 
-	if( items > 2 ) {
+	if( items > 2 )
+	{
 		rage_print (ph, "Usage: IRC::user_list(channel,server)");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		ctx = rage_find_context (ph, SvPV_nolen (ST (1)),
 							SvPV_nolen (ST (0)));
-		if (!ctx) {
+		if (!ctx)
 			XSRETURN (0);
-		}
+		
 		rage_set_context (ph, ctx);
 
 		list = rage_list_get (ph, "users");
-		if (list) {
-			while (rage_list_next (ph, list)) {
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
 				/* Make sure there is room on the stack */
 				EXTEND(SP, i + 9);
 
 				XST_mPV (i, rage_list_str (ph, list, "nick"));
 				i++;
 				host = rage_list_str (ph, list, "host");
-				if (!host) {
+				if (!host)
 					host = "FETCHING";
-				}
 				XST_mPV (i, host);
 				i++;
 
@@ -1668,10 +1665,8 @@ static XS (XS_IRC_user_list)
 				XST_mPV (i, ":");
 				i++;
 			}
-
 			rage_list_free (ph, list);
 		}
-
 		rage_set_context (ph, old);
 
 		XSRETURN (i);
@@ -1686,13 +1681,18 @@ static XS (XS_IRC_dcc_list)
 	int type;
 
 	dXSARGS;
-	if( items != 0 ) {
+	if( items != 0 )
+	{
 		rage_print (ph, "Usage: IRC::dcc_list()");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		list = rage_list_get (ph, "dcc");
-		if (list) {
-			while (rage_list_next (ph, list)) {
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
 				/* Make sure there is room on the stack */
 				EXTEND (SP, i + 11);
 
@@ -1700,9 +1700,8 @@ static XS (XS_IRC_dcc_list)
 				i++;
 
 				file = rage_list_str (ph, list, "file");
-				if (!file) {
+				if (!file)
 					file = "";
-				}
 
 				XST_mPV (i, file);
 				i++;
@@ -1716,13 +1715,12 @@ static XS (XS_IRC_dcc_list)
 				XST_mIV (i, rage_list_int (ph, list, "size"));
 				i++;
 				type = rage_list_int (ph, list, "type");
-				if (type == 0) {
+				if (type == 0)
 					XST_mIV (i, rage_list_int
 							(ph, list, "pos"));
-				} else {
+				else
 					XST_mIV (i, rage_list_int
 							(ph, list, "resume"));
-				}
 
 				i++;
 				XST_mIV (i, rage_list_int
@@ -1750,16 +1748,18 @@ static XS (XS_IRC_command)
 	char *cmd;
 	dXSARGS;
 
-	if( items != 1 ) {
+	if( items != 1 )
 		rage_print (ph, "Usage: IRC::command(command)");
-	} else {
+	else
+	{
 		cmd = SvPV_nolen (ST (0));
-		if (cmd[0] == '/') {
+		if (cmd[0] == '/')
+		{
 			/* skip the forward slash */
 			rage_command (ph, cmd + 1);
-		} else {
-			rage_commandf (ph, "say %s", cmd);
 		}
+		else
+			rage_commandf (ph, "say %s", cmd);
 	}
 	XSRETURN_EMPTY;
 }
@@ -1772,23 +1772,29 @@ static XS (XS_IRC_command_with_server)
 
 	dXSARGS;
 
-	if( items != 2 ) {
+	if( items != 2 )
+	{
 		rage_print (ph,
 			"Usage: IRC::command_with_server(command,server)");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		cmd = SvPV_nolen (ST (0));
 		old_ctx = rage_get_context (ph);
 		ctx = rage_find_context (ph, SvPV_nolen (ST (1)), NULL);
-		if (ctx) {
+		if (ctx)
+		{
 			rage_set_context (ph, ctx);
 
-			if (cmd[0] == '/') {
+			if (cmd[0] == '/')
+			{
 				/* skip the forward slash */
 				rage_command (ph, cmd + 1);
-			} else {
-				rage_commandf (ph, "say %s", cmd);
 			}
+			else
+				rage_commandf (ph, "say %s", cmd);
+			
 			rage_set_context (ph, old_ctx);
 			XSRETURN_YES;
 		}
@@ -1853,29 +1859,34 @@ static XS (XS_IRC_user_list_short)
 
 	dXSARGS;
 	
-	if( items != 2 ) {
+	if( items != 2 )
+	{
 		rage_print (ph,
 			"Usage: IRC::user_list_short(channel,server)");
 		XSRETURN_EMPTY;
-	} else {
+	}
+	else
+	{
 		ctx = rage_find_context (ph, SvPV_nolen (ST (1)), SvPV_nolen (ST (0)));
-		if (!ctx) {
+		if (!ctx)
 			XSRETURN (0);
-		}
+		
 		rage_set_context (ph, ctx);
 
 		list = rage_list_get (ph, "users");
-		if (list) {
-			while (rage_list_next (ph, list)) {
+		if (list)
+		{
+			while (rage_list_next (ph, list))
+			{
 				/* Make sure there is room on the stack */
 				EXTEND(SP, i + 5);
 
 				XST_mPV (i, rage_list_str (ph, list, "nick"));
 				i++;
 				host = rage_list_str (ph, list, "host");
-				if (!host) {
+				if (!host)
 					host = "FETCHING";
-				}
+				
 				XST_mPV (i, host);
 				i++;
 			}
@@ -1894,23 +1905,25 @@ static XS (XS_IRC_perl_script_list)
 	int i = 0;
 	GSList *handler;
 	dXSARGS;
-	if (items != 0) {
+	if (items != 0)
 		rage_print (ph, "Usage: IRC::perl_script_list()");
-	} else {
-	  handler = perl_list;
-	  while (handler) {
-	    PerlScript *scp = handler->data;
+	else
+	{
+		handler = perl_list;
+		while (handler)
+		{
+			PerlScript *scp = handler->data;
 	    
-	    /* Make sure there is room on the stack */
-	    EXTEND(SP, i + 5);
-	    
-	    XST_mPV (i, scp->name);
-	    i++;
-	    XST_mPV (i, scp->version);
-	    i++;
-	    handler = handler->next;
-	  }
-	  XSRETURN(i);
+			/* Make sure there is room on the stack */
+			EXTEND(SP, i + 5);
+			
+			XST_mPV (i, scp->name);
+			i++;
+			XST_mPV (i, scp->version);
+			i++;
+			handler = handler->next;
+		}
+		XSRETURN(i);
 	}
 }
 #endif
@@ -1973,9 +1986,8 @@ xs_init (pTHX)
 	newXS ("IRC::perl_script_list", XS_IRC_perl_script_list, "IRC");
 #endif
 	stash = get_hv ("Rage::", TRUE);
-	if(stash == NULL ) {
+	if(stash == NULL )
 	  exit(1);
-	}
 
 	newCONSTSUB (stash, "PRI_HIGHEST", newSViv (RAGE_PRI_HIGHEST));
 	newCONSTSUB (stash, "PRI_HIGH", newSViv (RAGE_PRI_HIGH));
@@ -2352,13 +2364,10 @@ perl_load_file (char *script_name)
 	}
 #endif
 
-	if (my_perl == NULL) {
+	if (my_perl == NULL)
 		perl_init ();
-	}
 
-	return execute_perl (sv_2mortal (newSVpv ("Rage::Embed::load", 0)),
-								  script_name);
-	
+	return execute_perl (sv_2mortal (newSVpv ("Rage::Embed::load", 0)), script_name);
 }
 
 /* checks for "~" in a file and expands */
@@ -2390,9 +2399,8 @@ perl_end (void)
 		scp = perl_list->data;
 		perl_list = g_slist_remove (perl_list, scp);
 
-		if (SvTRUE (scp->shutdowncallback)) {
+		if (SvTRUE (scp->shutdowncallback))
 			execute_perl (scp->shutdowncallback, "");
-		}
 		rage_plugingui_remove (ph, scp->gui_entry);
 		free (scp->name);
 		free (scp->version);
@@ -2411,10 +2419,8 @@ perl_end (void)
 	while (hook_list)
 	{
 		tmp = rage_unhook (ph, hook_list->data);
-		if (tmp) {
+		if (tmp)
 			free (tmp);
-
-		}
 		hook_list = g_slist_remove (hook_list, hook_list->data);
 	}
 
@@ -2490,11 +2496,11 @@ perl_command_load (char *word[], char *word_eol[], void *userdata)
 		file = expand_homedir (word[2]);
 		switch (perl_load_file (file))
 		{
-		case 1:
-			rage_print (ph, "Error compiling script\n");
-			break;
-		case 2:
-			rage_print (ph, "Error Loading file\n");
+			case 1:
+				rage_print (ph, "Error compiling script\n");
+				break;
+			case 2:
+				rage_print (ph, "Error Loading file\n");
 		}
 		free (file);
 		return RAGE_EAT_RAGE;

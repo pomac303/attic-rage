@@ -196,6 +196,15 @@ dict_numeric_find(struct set *set, int *numeric, int *found)
 	}
 }
 
+void
+dict_remove(struct set *set, char *key)
+{
+	void *data = set_find(set, &key);
+
+	if (data)
+		set_remove(set, data, 0);
+}	
+
 /* iter_key gets the key data from the node */
 char *
 iter_key(struct set_node *node)

@@ -31,7 +31,7 @@ void dict_numeric_insert(dict_t dict, const int *numeric, void *data);
 #define dict_size(DICT) ((SET)->count)
 void* dict_find(dict_t dict, const char *key, int *present);
 void* dict_numeric_find(dict_t dict, const int *numeric, int *present);
-#define dict_remove(DICT, KEY) set_remove(DICT, KEY, 0)
+void dict_remove(dict_t dict, char *key);
 #define dict_delete(SET) (set_clear(SET))
 
 #endif /* !defined(DICT_H) */

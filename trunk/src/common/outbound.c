@@ -1671,7 +1671,7 @@ cmd_help (rage_session *sess, char *cmd, char *buf)
 					snprintf (buf, 4096, "   \0034%s\003 :\n", cmd->name);
 				else
 					snprintf (buf, 4096, "   \0034%s\003 : %s\n", cmd->name,
-							 _(cmd->help));
+							_(cmd->help));
 				PrintText (sess, buf);
 			}
 			buf[0] = 0;
@@ -2785,12 +2785,12 @@ cmd_unload (rage_session *sess, char *cmd, char *buf)
 
 	switch (plugin_kill (buf, by_file))
 	{
-	case 0:
+		case 0:
 			PrintText (sess, _("No such plugin found.\n"));
 			break;
-	case 1:
+		case 1:
 			return TRUE;
-	case 2:
+		case 2:
 			PrintText (sess, _("That plugin is refusing to unload.\n"));
 			break;
 	}
@@ -3021,23 +3021,6 @@ cmd_voice (rage_session *sess, char *cmd, char *buf)
 	}
 }
 
-static void
-add_command(command *cmd)
-{
-	dict_cmd_insert(rage_cmd_list, cmd->name, cmd);
-}
-
-int
-add_plugin_command(command *cmd)
-{
-	int found;
-
-	dict_find(rage_cmd_list, cmd->name, &found);
-	if (!found)
-		dict_cmd_insert(rage_cmd_list, cmd->name, cmd);
-	return !found;
-}
-
 GList *
 get_command_list(GList *list)
 {
@@ -3221,7 +3204,7 @@ setup_commands(void)
 	rage_cmd_list = dict_new();
 
 	for (i = 0; i < nbr_commands; i++)
-		add_command(&commands[i]);
+		dict_cmd_insert(rage_cmd_list, commands[i].name, &commands[i]);
 }
 
 
@@ -3229,6 +3212,7 @@ static command *
 find_internal_command (char *name)
 {
 	int present;
+	
 	return dict_find(rage_cmd_list, name, &present);
 }
 
