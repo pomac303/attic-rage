@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.1.1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-09 04:39+0200\n"
+"POT-Creation-Date: 2004-10-10 03:54+0200\n"
 "PO-Revision-Date: 2004-08-14 23:51+0200\n"
 "Last-Translator: Vaidrius Petrauskas <vaidrius@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -4354,86 +4354,86 @@ msgstr "Rasti"
 msgid "Close"
 msgstr "Užverti"
 
-#: src/fe-gtk/servlistgui.c:125 src/fe-gtk/servlistgui.c:224
+#: src/fe-gtk/servlistgui.c:122 src/fe-gtk/servlistgui.c:221
 msgid "New Network"
 msgstr "Naujas tinklas"
 
-#: src/fe-gtk/servlistgui.c:503
+#: src/fe-gtk/servlistgui.c:525
 #, c-format
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "Tikrai pašalinti tinklą „%s“ su visais jam priklausančiais serveriais?"
 
-#: src/fe-gtk/servlistgui.c:990
+#: src/fe-gtk/servlistgui.c:1012
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: „%s“ keitimas"
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1031
 #, c-format
 msgid "Servers for %s"
 msgstr "„%s“ serveriai"
 
-#: src/fe-gtk/servlistgui.c:1020
+#: src/fe-gtk/servlistgui.c:1042
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1021
+#: src/fe-gtk/servlistgui.c:1043
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1023
+#: src/fe-gtk/servlistgui.c:1045
 msgid "Your Details"
 msgstr "Jūsų duomenys"
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1051
 msgid "Use global user information"
 msgstr "Naudoti bendrus naudotojo duomenis"
 
-#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
+#: src/fe-gtk/servlistgui.c:1054 src/fe-gtk/servlistgui.c:1302
 msgid "_Nick name:"
 msgstr "Slapyvardis:"
 
-#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
+#: src/fe-gtk/servlistgui.c:1058 src/fe-gtk/servlistgui.c:1323
 msgid "_User name:"
 msgstr "Na_udotojo vardas:"
 
-#: src/fe-gtk/servlistgui.c:1040
+#: src/fe-gtk/servlistgui.c:1062
 msgid "Real na_me:"
 msgstr "Tikrasis _vardas:"
 
-#: src/fe-gtk/servlistgui.c:1043
+#: src/fe-gtk/servlistgui.c:1065
 msgid "Connecting"
 msgstr "Jungiamasi"
 
-#: src/fe-gtk/servlistgui.c:1049
+#: src/fe-gtk/servlistgui.c:1071
 msgid "Auto connect to this network at startup"
 msgstr "Automatiškai prisijungti paleidžiant"
 
-#: src/fe-gtk/servlistgui.c:1051
+#: src/fe-gtk/servlistgui.c:1073
 msgid "Use a proxy server"
 msgstr "Naudoti tarpinį serverį"
 
-#: src/fe-gtk/servlistgui.c:1053
+#: src/fe-gtk/servlistgui.c:1075
 msgid "Use SSL for all the servers on this network"
 msgstr "Naudoti SSL visiems serveriams šiame tinkle"
 
-#: src/fe-gtk/servlistgui.c:1058
+#: src/fe-gtk/servlistgui.c:1080
 msgid "Accept invalid SSL certificate"
 msgstr "Priimti klaidingą SSL sertifikatą"
 
-#: src/fe-gtk/servlistgui.c:1064
+#: src/fe-gtk/servlistgui.c:1086
 msgid "C_hannels to join:"
 msgstr "Į_eiti į kanalus:"
 
-#: src/fe-gtk/servlistgui.c:1066
+#: src/fe-gtk/servlistgui.c:1088
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr "Automatiškai įeitimi kanalai, atskirti kableliais, bet be tarpų!"
 
-#: src/fe-gtk/servlistgui.c:1069
+#: src/fe-gtk/servlistgui.c:1091
 msgid "Connect command:"
 msgstr "Prisijungimo komanda:"
 
-#: src/fe-gtk/servlistgui.c:1071
+#: src/fe-gtk/servlistgui.c:1093
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
@@ -4443,70 +4443,70 @@ msgstr ""
 "įrašykite LOAD -e <byla>, kur <byla> yra tekstinė byla, kurioje surašytos "
 "įvykdytinos komandos."
 
-#: src/fe-gtk/servlistgui.c:1074
+#: src/fe-gtk/servlistgui.c:1096
 msgid "Nickserv password:"
 msgstr "„Nickserv“ slaptažodis:"
 
-#: src/fe-gtk/servlistgui.c:1079
+#: src/fe-gtk/servlistgui.c:1101
 msgid "Server password:"
 msgstr "Serverio slaptažodis:"
 
-#: src/fe-gtk/servlistgui.c:1081
+#: src/fe-gtk/servlistgui.c:1103
 msgid "Password for the server, if in doubt, leave blank."
 msgstr "Serverio slaptažodis. Jei neaišku, palikti tuščią."
 
-#: src/fe-gtk/servlistgui.c:1084
+#: src/fe-gtk/servlistgui.c:1106
 msgid "Character set:"
 msgstr "Koduotė:"
 
-#: src/fe-gtk/servlistgui.c:1171
+#: src/fe-gtk/servlistgui.c:1193
 msgid "_Edit"
 msgstr "K_eisti"
 
-#: src/fe-gtk/servlistgui.c:1254
+#: src/fe-gtk/servlistgui.c:1276
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: serverių sąrašas"
 
-#: src/fe-gtk/servlistgui.c:1270
+#: src/fe-gtk/servlistgui.c:1292
 #, fuzzy
 msgid "User Information"
 msgstr "Serverio informacija"
 
-#: src/fe-gtk/servlistgui.c:1287
+#: src/fe-gtk/servlistgui.c:1309
 msgid "Second choice:"
 msgstr "Antras pasirinkimas:"
 
-#: src/fe-gtk/servlistgui.c:1294
+#: src/fe-gtk/servlistgui.c:1316
 msgid "Third choice:"
 msgstr "Trečias pasirinkimas"
 
-#: src/fe-gtk/servlistgui.c:1308
+#: src/fe-gtk/servlistgui.c:1330
 msgid "Rea_l name:"
 msgstr "Tik_rasis vardas:"
 
-#: src/fe-gtk/servlistgui.c:1354
+#: src/fe-gtk/servlistgui.c:1376
 #, fuzzy
 msgid "Networks"
 msgstr "Tinklas"
 
-#: src/fe-gtk/servlistgui.c:1395
+#: src/fe-gtk/servlistgui.c:1417
 msgid "Skip server list on startup"
 msgstr "Paleidus serverių sąrašo nerodyti"
 
-#: src/fe-gtk/servlistgui.c:1440
+#: src/fe-gtk/servlistgui.c:1462
 msgid "_Edit..."
 msgstr "K_eisti..."
 
-#: src/fe-gtk/servlistgui.c:1447
+#: src/fe-gtk/servlistgui.c:1469
 msgid "_Sort"
 msgstr "Rūši_uoti"
 
-#: src/fe-gtk/servlistgui.c:1463
+#: src/fe-gtk/servlistgui.c:1485
 msgid "C_onnect"
 msgstr "J_ungtis"
 
-#: src/fe-gtk/servlistgui.c:1472
+#: src/fe-gtk/servlistgui.c:1494
 msgid "Connect in new tab"
 msgstr "Jungtis naujoje kortelėje"
 

@@ -384,6 +384,7 @@ servlist_move_network (ircnet *net, int delta)
 	}
 }
 
+/*
 static gboolean
 servlist_net_keypress_cb (GtkWidget *wid, GdkEventKey *evt, gpointer userdata)
 {
@@ -415,6 +416,7 @@ servlist_serv_keypress_cb (GtkWidget *wid, GdkEventKey *evt, gpointer userdata)
 	}
 	return FALSE;
 }
+*/
 
 static gint
 servlist_compare (ircnet *net1, ircnet *net2)
@@ -503,8 +505,6 @@ servlist_edit_cb (GtkWidget *but, gpointer none)
 							"changed", G_CALLBACK (servlist_server_row_cb), NULL);
 	g_signal_connect (G_OBJECT (edit_win), "delete_event",
 						 	G_CALLBACK (servlist_editwin_delete_cb), 0);
-	g_signal_connect (G_OBJECT (edit_tree), "key_press_event",
-			G_CALLBACK (servlist_serv_keypress_cb), 0);
 	gtk_widget_show (edit_win);
 }
 
@@ -1537,8 +1537,5 @@ fe_serverlist_open (session *sess)
 							"changed", G_CALLBACK (servlist_network_row_cb), NULL);
 	g_signal_connect (G_OBJECT (networks_tree), "key_press_event",
 							G_CALLBACK (servlist_key_cb), networks_tree);
-	g_signal_connect (G_OBJECT (networks_tree), "key_press_event",
-			G_CALLBACK (servlist_net_keypress_cb), 0);
-
 	gtk_widget_show (serverlist_win);
 }

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-09 04:39+0200\n"
+"POT-Creation-Date: 2004-10-10 03:54+0200\n"
 "PO-Revision-Date: 2004-06-14 12:21+0400\n"
 "Last-Translator: Peter Astakhov <astakhovp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4360,172 +4360,172 @@ msgstr "Поиск"
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/fe-gtk/servlistgui.c:125 src/fe-gtk/servlistgui.c:224
+#: src/fe-gtk/servlistgui.c:122 src/fe-gtk/servlistgui.c:221
 msgid "New Network"
 msgstr "Новая сеть"
 
-#: src/fe-gtk/servlistgui.c:503
+#: src/fe-gtk/servlistgui.c:525
 #, c-format
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "Удалить сеть \"%s\" и все ее сервера?"
 
-#: src/fe-gtk/servlistgui.c:990
+#: src/fe-gtk/servlistgui.c:1012
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: Список банов (%s)"
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1031
 #, fuzzy, c-format
 msgid "Servers for %s"
 msgstr "Сервер: %s"
 
-#: src/fe-gtk/servlistgui.c:1020
+#: src/fe-gtk/servlistgui.c:1042
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1021
+#: src/fe-gtk/servlistgui.c:1043
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1023
+#: src/fe-gtk/servlistgui.c:1045
 msgid "Your Details"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1051
 #, fuzzy
 msgid "Use global user information"
 msgstr "Использовать глобальные установки пользователя:"
 
-#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
+#: src/fe-gtk/servlistgui.c:1054 src/fe-gtk/servlistgui.c:1302
 #, fuzzy
 msgid "_Nick name:"
 msgstr "Ник:"
 
-#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
+#: src/fe-gtk/servlistgui.c:1058 src/fe-gtk/servlistgui.c:1323
 #, fuzzy
 msgid "_User name:"
 msgstr "Имя пользователя:"
 
-#: src/fe-gtk/servlistgui.c:1040
+#: src/fe-gtk/servlistgui.c:1062
 #, fuzzy
 msgid "Real na_me:"
 msgstr "Настоящее имя:"
 
-#: src/fe-gtk/servlistgui.c:1043
+#: src/fe-gtk/servlistgui.c:1065
 #, fuzzy
 msgid "Connecting"
 msgstr "Соединение"
 
-#: src/fe-gtk/servlistgui.c:1049
+#: src/fe-gtk/servlistgui.c:1071
 #, fuzzy
 msgid "Auto connect to this network at startup"
 msgstr "Авто Соединение при запуске"
 
-#: src/fe-gtk/servlistgui.c:1051
+#: src/fe-gtk/servlistgui.c:1073
 msgid "Use a proxy server"
 msgstr "Использовать прокси"
 
-#: src/fe-gtk/servlistgui.c:1053
+#: src/fe-gtk/servlistgui.c:1075
 msgid "Use SSL for all the servers on this network"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1058
+#: src/fe-gtk/servlistgui.c:1080
 #, fuzzy
 msgid "Accept invalid SSL certificate"
 msgstr "Разрешать плохие сертификаты."
 
-#: src/fe-gtk/servlistgui.c:1064
+#: src/fe-gtk/servlistgui.c:1086
 #, fuzzy
 msgid "C_hannels to join:"
 msgstr "Введите канал для входа:"
 
-#: src/fe-gtk/servlistgui.c:1066
+#: src/fe-gtk/servlistgui.c:1088
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr "Каналы для подключения, разделенные запятыми, но не пробелами!"
 
-#: src/fe-gtk/servlistgui.c:1069
+#: src/fe-gtk/servlistgui.c:1091
 #, fuzzy
 msgid "Connect command:"
 msgstr "Команда для соединения:"
 
-#: src/fe-gtk/servlistgui.c:1071
+#: src/fe-gtk/servlistgui.c:1093
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
 "to execute."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1074
+#: src/fe-gtk/servlistgui.c:1096
 #, fuzzy
 msgid "Nickserv password:"
 msgstr "Пароль сервера:"
 
-#: src/fe-gtk/servlistgui.c:1079
+#: src/fe-gtk/servlistgui.c:1101
 #, fuzzy
 msgid "Server password:"
 msgstr "Пароль сервера:"
 
-#: src/fe-gtk/servlistgui.c:1081
+#: src/fe-gtk/servlistgui.c:1103
 msgid "Password for the server, if in doubt, leave blank."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1084
+#: src/fe-gtk/servlistgui.c:1106
 #, fuzzy
 msgid "Character set:"
 msgstr "Кодировка:"
 
-#: src/fe-gtk/servlistgui.c:1171
+#: src/fe-gtk/servlistgui.c:1193
 msgid "_Edit"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1254
+#: src/fe-gtk/servlistgui.c:1276
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: Список серверов"
 
-#: src/fe-gtk/servlistgui.c:1270
+#: src/fe-gtk/servlistgui.c:1292
 #, fuzzy
 msgid "User Information"
 msgstr "Информация о сервере"
 
-#: src/fe-gtk/servlistgui.c:1287
+#: src/fe-gtk/servlistgui.c:1309
 #, fuzzy
 msgid "Second choice:"
 msgstr "Звуковой файл:"
 
-#: src/fe-gtk/servlistgui.c:1294
+#: src/fe-gtk/servlistgui.c:1316
 msgid "Third choice:"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1308
+#: src/fe-gtk/servlistgui.c:1330
 #, fuzzy
 msgid "Rea_l name:"
 msgstr "Настоящее имя:"
 
-#: src/fe-gtk/servlistgui.c:1354
+#: src/fe-gtk/servlistgui.c:1376
 msgid "Networks"
 msgstr "Сети"
 
-#: src/fe-gtk/servlistgui.c:1395
+#: src/fe-gtk/servlistgui.c:1417
 #, fuzzy
 msgid "Skip server list on startup"
 msgstr "Не показывать список серверов при запуске"
 
-#: src/fe-gtk/servlistgui.c:1440
+#: src/fe-gtk/servlistgui.c:1462
 #, fuzzy
 msgid "_Edit..."
 msgstr "Загрузить..."
 
-#: src/fe-gtk/servlistgui.c:1447
+#: src/fe-gtk/servlistgui.c:1469
 #, fuzzy
 msgid "_Sort"
 msgstr "Сортировать"
 
-#: src/fe-gtk/servlistgui.c:1463
+#: src/fe-gtk/servlistgui.c:1485
 msgid "C_onnect"
 msgstr "Подключить"
 
-#: src/fe-gtk/servlistgui.c:1472
+#: src/fe-gtk/servlistgui.c:1494
 #, fuzzy
 msgid "Connect in new tab"
 msgstr "Подключиться в новой вкладке"
