@@ -358,8 +358,8 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 {
 	queued_msg *msg = g_malloc(sizeof(queued_msg));
 	gsize written;
-	gchar *line = NULL;
-	int throttle, len = strlen(buf);
+	gchar *line = NULL, *t_utf8 = NULL, *a_utf8 = NULL;
+	int throttle;
 
 	if (serv->encoding == NULL)
 	{
@@ -370,12 +370,18 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	
 	if (strcasecmp(serv->encoding, "UTF-8") != 0 &&
 			strcasecmp(serv->encoding, "UTF8") != 0)
-		line = g_convert(buf, len, serv->encoding, "UTF-8", 
+	{
+		line = g_convert(buf, strlen(buf), serv->encoding, "UTF-8", 
 				NULL, &written, NULL);
+		t_utf8 = g_convert(target, strlen(target), serv->encoding, "UTF-8",
+				NULL, &written, NULL);
+		a_utf8 = g_convert(args, strlen(args), serv->encoding, "UTF-8",
+				NULL, &written, NULL);
+	}
 
 	msg->msg = line ? line : g_strdup(buf);
-	msg->target = target ? g_strdup(target) : NULL;
-	msg->args = args ? g_strdup(args) : NULL;
+	msg->target = t_utf8 ? t_utf8 : (target ? g_strdup(target) : NULL);
+	msg->args = a_utf8 ? a_utf8 : (args ? g_strdup(args) : NULL);
 	msg->type = type;
 	/* If line is non null and the default locale is not utf8, 
 	 * then the data got converted */
@@ -401,7 +407,8 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 				g_queue_push_tail(serv->out_queue[QUEUE_MESSAGE], msg);
 		}
 		if (!serv->queue_timer)
-			serv->queue_timer = g_timeout_add(2000, (GSourceFunc)tcp_send_queue, serv);
+			serv->queue_timer = g_timeout_add(2000, 
+					(GSourceFunc)tcp_send_queue, serv);
 	}
 	else
 		tcp_send_data(serv, msg);
