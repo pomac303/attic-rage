@@ -1,0 +1,27 @@
+The Rage irc client features a 'hack' in the dcc code, it is a basic
+extension of the common old dcc protocol but it can also send files
+that need 64 bit support from the filesystem.
+
+It does this by checking the size of the file, if it is larger than
+MAX_INT (ie, unsigned long int) then it goes over to the 64 bit mode.
+Note: this includes acks, and they should all be in bigendian order.
+
+People implementing this on other platforms that has file size 
+limitations should do this by opening a new file when the old one
+has reached the maximum size. There should in my opinion be no
+header in the file and the information changed is the filename 
+which is changed to indicate the part of the file.
+This makes the user able to merge the file on a later date with
+any binary merging program that might be available.
+
+Programmers of current dcc implementations should also check this
+for their current code since some platforms has a filesize limit
+of 2gb, while dcc's limit is at 4gb.
+
+PS. I saw this as the natural progression for dcc, so do not 
+flame me about it... If there will ever be a new official 
+standard then lets follow that instead, currently, this is my
+little hack, support it if you want to.
+DS.
+
+/Ian Kumlien <pomac-do-not-spam-me-vapor.com>
