@@ -11,6 +11,7 @@
 #define XCHAT_H
 
 #include "history.h"
+#include "dict.h"
 
 #ifndef HAVE_SNPRINTF
 #define snprintf g_snprintf
@@ -432,6 +433,7 @@ typedef struct server
 	time_t away_time;					/* when we were marked away */
 
 	char *encoding;					/* NULL for system */
+	dict_t isupport;
 
 	int motd_skipped:1;
 	unsigned int connected:1;
@@ -446,11 +448,8 @@ typedef struct server
 	unsigned int is_away:1;
 	int reconnect_away:1;		/* whether to reconnect in is_away state */
 	int dont_use_proxy:1;		/* to proxy or not to proxy */
-	int supports_watch:1;		/* supports the WATCH command */
 	int bad_prefix:1;				/* gave us a bad PREFIX= 005 number */
-	unsigned int have_whox:1;	/* have undernet's WHOX features */
-	unsigned int have_capab:1;	/* supports CAPAB (005 tells us) */
-	unsigned int have_idmsg:1;	/* freenode's IDENTIFY-MSG */
+	unsigned int have_idmsg:1;              /* freenode's IDENTIFY-MSG */
 	int use_who:1;				/* whether to use WHO command to get dcc_ip */
 #ifdef USE_OPENSSL
 	int use_ssl:1;					  /* is server SSL capable? */

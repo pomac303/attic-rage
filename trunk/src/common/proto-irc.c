@@ -170,7 +170,7 @@ irc_userhost (server *serv, char *nick)
 static void
 irc_away_status (server *serv, char *channel)
 {
-	if (serv->have_whox)
+	if (isupport(serv, "WHOX"))
 		tcp_sendf (serv, "WHO %s %%ctnf,152\r\n", channel);
 	else
 		tcp_sendf (serv, "WHO %s\r\n", channel);

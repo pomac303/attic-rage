@@ -588,6 +588,7 @@ load_config (void)
 	prefs.away_track = 1;
 	prefs.timestamp_logs = 1;
 	prefs.truncchans = 20;
+	prefs.windows_as_tabs =1;
 	prefs.autoresume = 1;
 	prefs.show_away_once = 1;
 	prefs.indent_nicks = 1;

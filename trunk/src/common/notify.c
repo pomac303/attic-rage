@@ -228,7 +228,7 @@ notify_watch_all (char *nick, int add)
 	while (list)
 	{
 		serv = list->data;
-		if (serv->connected && serv->end_of_motd && serv->supports_watch)
+		if (serv->connected && serv->end_of_motd && isupport(serv, "WATCH"))
 			notify_watch (serv, nick, add);
 		list = list->next;
 	}
@@ -372,7 +372,7 @@ notify_checklist (void)
 		while (list)
 		{
 			serv = (struct server *) list->data;
-			if (serv->connected && serv->end_of_motd && !serv->supports_watch)
+			if (serv->connected && serv->end_of_motd && !isupport(serv, "WATCH"))
 				serv->p_raw (serv, outbuf);
 			list = list->next;
 		}

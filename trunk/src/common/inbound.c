@@ -1248,7 +1248,7 @@ inbound_login_end (session *sess, char *text)
 		}
 
 		check_willjoin_channels (serv);
-		if (serv->supports_watch)
+		if (isupport(serv, "WATCH"))
 			notify_send_watches (serv);
 		serv->end_of_motd = TRUE;
 	}

@@ -352,7 +352,6 @@ set_server_defaults (server *serv)
 	serv->nickcount = 1;
 	serv->end_of_motd = FALSE;
 	serv->is_away = FALSE;
-	serv->supports_watch = FALSE;
 	serv->bad_prefix = FALSE;
 	serv->use_who = TRUE;
 }
