@@ -333,6 +333,7 @@ key_load_defaults (void)
 #define defcfg \
 		"C\nPrior\nChange Page\nD1:-1\nD2:Relative\n\n"\
 		"C\nNext\nChange Page\nD1:1\nD2:Relative\n\n"\
+		"A\n0\nChange Page\nD1:10\nD2!\n\n"\
 		"A\n9\nChange Page\nD1:9\nD2!\n\n"\
 		"A\n8\nChange Page\nD1:8\nD2!\n\n"\
 		"A\n7\nChange Page\nD1:7\nD2!\n\n"\
