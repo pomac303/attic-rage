@@ -29,6 +29,7 @@
 #11 - Profile code and look for obvious bottlenecks.
 
 #12 - 005 needs to be a map<005name,value>
+  005 is now a splay db.
 
 #13 - once 005 update is done, add support for WALLCHOPS, WALLVOICES, CPRIVMSG,
   CNOTICE.
