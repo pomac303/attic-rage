@@ -199,7 +199,8 @@ tab_group_resize (GtkWidget *group, GtkAllocation *allocation, gpointer user_dat
 	{
 		adj = gtk_viewport_get_vadjustment (GTK_VIEWPORT (inner->parent));
 		gdk_window_get_geometry (inner->parent->window, 0, 0, 0, &viewport_size, 0);
-	} else
+	} 
+	else
 	{
 		adj = gtk_viewport_get_hadjustment (GTK_VIEWPORT (inner->parent));
 		gdk_window_get_geometry (inner->parent->window, 0, 0, &viewport_size, 0, 0);
@@ -209,7 +210,8 @@ tab_group_resize (GtkWidget *group, GtkAllocation *allocation, gpointer user_dat
 	{
 		gtk_widget_hide (g_object_get_data (G_OBJECT (group), "b1"));
 		gtk_widget_hide (g_object_get_data (G_OBJECT (group), "b2"));
-	} else
+	}
+	else
 	{
 		gtk_widget_show (g_object_get_data (G_OBJECT (group), "b1"));
 		gtk_widget_show (g_object_get_data (G_OBJECT (group), "b2"));
@@ -347,8 +349,7 @@ tab_group_new (void *callback, void *compare, gboolean vertical, gboolean sorted
 
 static int
 tab_group_for_each_tab (GtkWidget *group,
-								int (*callback) (GtkWidget *tab, int num, int usernum),
-								int usernum)
+		int (*callback) (GtkWidget *tab, int num, int usernum), int usernum)
 {
 	GList *tabs;
 	GList *boxes;
@@ -620,7 +621,8 @@ tab_add_real (GtkWidget *group, GtkWidget *tab, void *family)
 		/* vertical */
 		box = gtk_vbox_new (FALSE, 0);
 		sep = gtk_hseparator_new ();
-	} else
+	}
+	else
 	{
 		/* horiz */
 		box = gtk_hbox_new (FALSE, 0);
@@ -749,7 +751,7 @@ tab_group_add (GtkWidget *group, char *name, void *family, void *userdata,
 		gtk_drag_source_set (but, GDK_BUTTON1_MASK, targets, 1, GDK_ACTION_MOVE);
 		gtk_drag_dest_set (but, GTK_DEST_DEFAULT_ALL, targets, 1, GDK_ACTION_MOVE);
 		g_signal_connect (G_OBJECT (but), "drag-end",
-								G_CALLBACK (tab_drag_end), delink_cb);
+				G_CALLBACK (tab_drag_end), delink_cb);
 	}
 
 	return but;
@@ -779,8 +781,10 @@ tab_rename (GtkWidget *tab, char *name, int trunc_len)
 	{
 		gtk_button_set_label (GTK_BUTTON (tab), new_name);
 		free (new_name);
-	} else
+	}
+	else
 		gtk_button_set_label (GTK_BUTTON (tab), name);
+
 	gtk_widget_queue_resize (tab->parent->parent->parent);
 
 	if (attr)
@@ -884,12 +888,11 @@ tab_group_set_orientation (GtkWidget *group, gboolean vertical)
 		return group;
 
 	new_group = tab_group_new (g_object_get_data (G_OBJECT (group), "c"),
-										g_object_get_data (G_OBJECT (group), "o"),
-										vertical,
-						/* sort: boolean */
-						GPOINTER_TO_INT (g_object_get_data (G_OBJECT (group), "s")));
+			g_object_get_data (G_OBJECT (group), "o"),
+			vertical, /* sort: boolean */
+			GPOINTER_TO_INT (g_object_get_data (G_OBJECT (group), "s")));
 	g_object_set_data (G_OBJECT (new_group), "foc",
-						g_object_get_data (G_OBJECT (group), "foc"));
+			g_object_get_data (G_OBJECT (group), "foc"));
 	box = g_object_get_data (G_OBJECT (group), "i");
 	boxes = GTK_BOX (box)->children;
 	while (boxes)
@@ -921,7 +924,8 @@ tab_group_set_orientation (GtkWidget *group, gboolean vertical)
 				tab_add_real (new_group, child, family);
 				gtk_widget_unref (child);
 				children = GTK_BOX (family_box)->children;
-			} else
+			}
+			else
 				children = children->next;
 		}
 

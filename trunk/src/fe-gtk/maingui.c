@@ -320,9 +320,9 @@ mg_configure_cb (GtkWidget *wid, GdkEventConfigure *event, rage_session *sess)
 			{
 				sess = current_sess;
 				gtk_window_get_position (GTK_WINDOW (wid), &prefs.mainwindow_left,
-												 &prefs.mainwindow_top);
+						&prefs.mainwindow_top);
 				gtk_window_get_size (GTK_WINDOW (wid), &prefs.mainwindow_width,
-											&prefs.mainwindow_height);
+						&prefs.mainwindow_height);
 			}
 		}
 	}
@@ -332,9 +332,9 @@ mg_configure_cb (GtkWidget *wid, GdkEventConfigure *event, rage_session *sess)
 		if (sess->type == SESS_DIALOG && prefs.mainwindow_save)
 		{
 			gtk_window_get_position (GTK_WINDOW (wid), &prefs.dialog_left,
-											 &prefs.dialog_top);
+					&prefs.dialog_top);
 			gtk_window_get_size (GTK_WINDOW (wid), &prefs.dialog_width,
-										&prefs.dialog_height);
+					&prefs.dialog_height);
 		}
 
 		if (((GtkXText *) sess->gui->xtext)->transparent)
@@ -360,7 +360,7 @@ mg_show_generic_tab (GtkWidget *button)
 	num = gtk_notebook_page_num (GTK_NOTEBOOK (mg_gui->note_book), box);
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (mg_gui->note_book), num);
 	gtk_window_set_title (GTK_WINDOW (mg_gui->window),
-								 g_object_get_data (G_OBJECT (button), "title"));
+			g_object_get_data (G_OBJECT (button), "title"));
 	gtk_widget_set_sensitive (mg_gui->menu, FALSE);
 
 	if (f)
@@ -387,10 +387,9 @@ mg_focus (rage_session *sess)
 	{
 		if (sess->server->server_session->type != SESS_SERVER)
 			sess->server->server_session = sess;
-	} else
-	{
-		sess->server->server_session = sess;
 	}
+	else
+		sess->server->server_session = sess;
 
 	if (sess->new_data || sess->nick_said || sess->msg_said)
 	{
@@ -414,12 +413,13 @@ mg_progressbar_update (GtkWidget *bar)
 		{
 			type = 1;
 			gtk_progress_bar_set_orientation ((GtkProgressBar *) bar,
-														 GTK_PROGRESS_RIGHT_TO_LEFT);
-		} else
+					GTK_PROGRESS_RIGHT_TO_LEFT);
+		}
+		else
 		{
 			type = 0;
 			gtk_progress_bar_set_orientation ((GtkProgressBar *) bar,
-														 GTK_PROGRESS_LEFT_TO_RIGHT);
+					GTK_PROGRESS_LEFT_TO_RIGHT);
 		}
 		pos = 0.05;
 	}
@@ -475,10 +475,10 @@ mg_unpopulate (rage_session *sess)
 	res->old_ul_value = userlist_get_value (gui->user_tree);
 	if (gui->lagometer)
 		res->lag_value = gtk_progress_bar_get_fraction (
-													GTK_PROGRESS_BAR (gui->lagometer));
+				GTK_PROGRESS_BAR (gui->lagometer));
 	if (gui->throttlemeter)
 		res->queue_value = gtk_progress_bar_get_fraction (
-													GTK_PROGRESS_BAR (gui->throttlemeter));
+				GTK_PROGRESS_BAR (gui->throttlemeter));
 
 	if (gui->bar)
 	{
@@ -498,10 +498,9 @@ mg_restore_label (GtkWidget *label, char **text)
 		gtk_label_set_text (GTK_LABEL (label), *text);
 		free (*text);
 		*text = NULL;
-	} else
-	{
-		gtk_label_set_text (GTK_LABEL (label), "");
 	}
+	else
+		gtk_label_set_text (GTK_LABEL (label), "");
 }
 
 static void
@@ -512,10 +511,10 @@ mg_restore_entry (GtkWidget *entry, char **text)
 		gtk_entry_set_text (GTK_ENTRY (entry), *text);
 		free (*text);
 		*text = NULL;
-	} else
-	{
-		gtk_entry_set_text (GTK_ENTRY (entry), "");
 	}
+	else
+		gtk_entry_set_text (GTK_ENTRY (entry), "");
+
 	gtk_editable_set_position (GTK_EDITABLE (entry), -1);
 }
 
@@ -532,7 +531,8 @@ mg_set_topic_tip (rage_session *sess)
 			snprintf (buf, sizeof (buf), _("Topic for %s is: %s"), sess->channel,
 						 sess->topic);
 			add_tip (sess->gui->topic_entry, buf);
-		} else
+		}
+		else
 			add_tip (sess->gui->topic_entry, _("No topic is set"));
 		break;
 	default:
@@ -585,29 +585,29 @@ mg_populate (rage_session *sess)
 
 	switch (sess->type)
 	{
-	case SESS_DIALOG:
-		/* show the dialog buttons */
-		gtk_widget_show (gui->dialogbutton_box);
-		/* hide the chan-mode buttons */
-		gtk_widget_hide (gui->topicbutton_box);
-		/* hide the userlist */
-		mg_userlist_showhide (sess, FALSE);
-		break;
-	case SESS_SERVER:
-		if (prefs.chanmodebuttons)
-			gtk_widget_show (gui->topicbutton_box);
-		/* hide the dialog buttons */
-		gtk_widget_hide (gui->dialogbutton_box);
-		/* hide the userlist */
-		mg_userlist_showhide (sess, FALSE);
-		break;
-	default:
-		/* hide the dialog buttons */
-		gtk_widget_hide (gui->dialogbutton_box);
-		if (prefs.chanmodebuttons)
-			gtk_widget_show (gui->topicbutton_box);
-		/* show the userlist */
-		mg_userlist_showhide (sess, TRUE);
+		case SESS_DIALOG:
+			/* show the dialog buttons */
+			gtk_widget_show (gui->dialogbutton_box);
+			/* hide the chan-mode buttons */
+			gtk_widget_hide (gui->topicbutton_box);
+			/* hide the userlist */
+			mg_userlist_showhide (sess, FALSE);
+			break;
+		case SESS_SERVER:
+			if (prefs.chanmodebuttons)
+				gtk_widget_show (gui->topicbutton_box);
+			/* hide the dialog buttons */
+			gtk_widget_hide (gui->dialogbutton_box);
+			/* hide the userlist */
+			mg_userlist_showhide (sess, FALSE);
+			break;
+		default:
+			/* hide the dialog buttons */
+			gtk_widget_hide (gui->dialogbutton_box);
+			if (prefs.chanmodebuttons)
+				gtk_widget_show (gui->topicbutton_box);
+			/* show the userlist */
+			mg_userlist_showhide (sess, TRUE);
 	}
 
 	/* move to THE irc tab */
@@ -619,7 +619,8 @@ mg_populate (rage_session *sess)
 		/* no change? then there will be no expose, so render now */
 		if (vis != gui->ul_hidden && gui->user_box->allocation.width > 1)
 			render = FALSE;
-	} else
+	}
+	else
 	{
 		/* userlist CHANGED? Let the pending exposure draw the xtext */
 		if (vis && !GTK_WIDGET_VISIBLE (gui->user_box))
@@ -651,9 +652,8 @@ mg_populate (rage_session *sess)
 
 	/* this is slow, so make it a timeout event */
 	if (!gui->is_tab)
-	{
 		mg_populate_userlist (sess);
-	} else
+	else
 	{
 		if (ul_tag == 0)
 			ul_tag = g_idle_add ((GSourceFunc)mg_populate_userlist, NULL);
@@ -665,15 +665,16 @@ mg_populate (rage_session *sess)
 	ignore_chanmode = TRUE;
 	for (i = 0; i < NUM_FLAG_WIDS - 1; i++)
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (gui->flag_wid[i]),
-												res->flag_wid_state[i]);
+				res->flag_wid_state[i]);
 	ignore_chanmode = FALSE;
 
 	if (gui->lagometer)
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (gui->lagometer),
-												 res->lag_value);
+				res->lag_value);
+	
 	if (gui->throttlemeter)
 		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (gui->throttlemeter),
-												 res->queue_value);
+				res->queue_value);
 
 	/* did this tab have a connecting graph? restore it.. */
 	if (res->c_graph)
@@ -702,7 +703,8 @@ mg_bring_tofront (GtkWidget *tab)
 			gtk_window_present (GTK_WINDOW (tab));
 		else
 			tab_focus (tab);
-	} else
+	}
+	else
 	{
 		if (sess && !sess->gui->is_tab)
 		{
@@ -901,14 +903,14 @@ mg_menu_destroy (GtkMenuShell *menushell, GtkWidget *menu)
 
 static void
 mg_create_icon_item (char *label, char *stock, GtkWidget *menu,
-							void *callback, void *userdata)
+		void *callback, void *userdata)
 {
 	GtkWidget *item;
 
 	item = create_icon_menu (label, stock, TRUE);
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-	g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (callback),
-							userdata);
+	g_signal_connect (G_OBJECT (item), "activate", 
+			G_CALLBACK (callback),userdata);
 	gtk_widget_show (item);
 }
 
@@ -928,10 +930,10 @@ mg_close_sess (rage_session *sess)
 	if (sess_list->next == NULL)
 	{
 		dialog = gtk_message_dialog_new (NULL, 0,
-										GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-										_("No other tabs open, quit xchat?"));
+				GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
+				_("No other tabs open, quit xchat?"));
 		g_signal_connect (G_OBJECT (dialog), "response",
-								G_CALLBACK (mg_quit_cb), NULL);
+				G_CALLBACK (mg_quit_cb), NULL);
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_widget_show (dialog);
 		return;
@@ -987,11 +989,11 @@ mg_create_color_menu (GtkWidget *menu, rage_session *sess)
 	{
 		item = gtk_menu_item_new_with_label ("");
 		sprintf (buf, "<sup>%02d</sup> <span background=\"#%02x%02x%02x\">"
-					"            </span>",
-				i, colors[i].red >> 8, colors[i].green >> 8, colors[i].blue >> 8);
+				"            </span>", i, colors[i].red >> 8, 
+				colors[i].green >> 8, colors[i].blue >> 8);
 		gtk_label_set_markup (GTK_LABEL (GTK_BIN (item)->child), buf);
 		g_signal_connect (G_OBJECT (item), "activate",
-								G_CALLBACK (mg_color_insert), GINT_TO_POINTER (i));
+				G_CALLBACK (mg_color_insert), GINT_TO_POINTER (i));
 		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 		gtk_widget_show (item);
 	}
@@ -1024,13 +1026,13 @@ mg_tab_press_cb (GtkWidget *wid, GdkEventButton *event, rage_session *sess)
 
 		submenu = gtk_menu_new ();
 
-		menu_toggle_item (_("Beep on message"), submenu, mg_beepmsg_cb, sess,
-								sess->beep);
+		menu_toggle_item (_("Beep on message"), submenu, 
+				mg_beepmsg_cb, sess, sess->beep);
 		if (sess->type == SESS_CHANNEL)
-			menu_toggle_item (_("Show join/part messages"), submenu, mg_hidejp_cb,
-									sess, !sess->hide_join_part);
-		menu_toggle_item (_("Color paste"), submenu, mg_colorpaste_cb, sess,
-								sess->color_paste);
+			menu_toggle_item (_("Show join/part messages"), submenu, 
+					mg_hidejp_cb, sess, !sess->hide_join_part);
+		menu_toggle_item (_("Color paste"), submenu, 
+				mg_colorpaste_cb, sess, sess->color_paste);
 
 		gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
 		gtk_widget_show (item);
@@ -1052,17 +1054,17 @@ mg_tab_press_cb (GtkWidget *wid, GdkEventButton *event, rage_session *sess)
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 	gtk_widget_show (item);
 
-	mg_create_icon_item (_("Close Tab"), GTK_STOCK_CLOSE, menu,
-								mg_destroy_tab_cb, wid);
+	mg_create_icon_item (_("Close Tab"), GTK_STOCK_CLOSE, 
+			menu, mg_destroy_tab_cb, wid);
 	if (sess)
-		mg_create_icon_item (_("Detach Tab"), GTK_STOCK_REDO, menu,
-									mg_detach_tab_cb, sess);
+		mg_create_icon_item (_("Detach Tab"), GTK_STOCK_REDO, 
+				menu, mg_detach_tab_cb, sess);
 
 	if (sess && tabmenu_list)
 		menu_create (menu, tabmenu_list, sess->channel, FALSE);
 
-	g_signal_connect (G_OBJECT (menu), "selection-done",
-							G_CALLBACK (mg_menu_destroy), menu);
+	g_signal_connect (G_OBJECT (menu), 
+			"selection-done", G_CALLBACK (mg_menu_destroy), menu);
 	gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, 0, event->time);
 	return TRUE;
 }
@@ -1078,8 +1080,7 @@ mg_add_chan (rage_session *sess)
 		name = sess->channel;
 
 	sess->res->tab = tab_group_add (sess->gui->tabs_box, name, sess->server,
-											  sess, mg_tab_press_cb, mg_link_cb,
-											  prefs.truncchans, prefs.tab_dnd);
+			sess, mg_tab_press_cb, mg_link_cb, prefs.truncchans, prefs.tab_dnd);
 	if (plain_list == NULL)
 		mg_create_tab_colors ();
 
@@ -1087,7 +1088,7 @@ mg_add_chan (rage_session *sess)
 	g_object_set_data (G_OBJECT (sess->res->tab), "sess", sess);
 
 	g_signal_connect (G_OBJECT (sess->res->tab), "destroy",
-					      G_CALLBACK (mg_tabdestroy_cb), sess);
+			G_CALLBACK (mg_tabdestroy_cb), sess);
 
 	if (sess->res->buffer == NULL)
 	{
@@ -1103,7 +1104,7 @@ mg_userlist_button (GtkWidget * box, char *label, char *cmd,
 {
 	GtkWidget *wid = gtk_button_new_with_label (label);
 	g_signal_connect (G_OBJECT (wid), "clicked",
-							G_CALLBACK (userlist_button_cb), cmd);
+			G_CALLBACK (userlist_button_cb), cmd);
 	gtk_table_attach_defaults (GTK_TABLE (box), wid, a, b, c, d);
 	show_and_unfocus (wid);
 }
@@ -1165,7 +1166,8 @@ mg_userlist_showhide (rage_session *sess, int show)
 			gtk_paned_set_position (GTK_PANED (gui->pane), 9999);
 		gtk_widget_hide (gui->user_box);
 		sess->gui->ul_hidden = 1;
-	} else
+	}
+	else
 	{
 		if (gui->pane)
 			gtk_paned_set_position (GTK_PANED (gui->pane), gui->pane_pos);
@@ -1183,7 +1185,8 @@ mg_userlist_toggle_cb (GtkWidget *button, gpointer userdata)
 	{
 		prefs.hideuserlist = 1;
 		mg_userlist_showhide (current_sess, FALSE);
-	} else
+	}
+	else
 	{
 		prefs.hideuserlist = 0;
 		mg_userlist_showhide (current_sess, TRUE);
@@ -1204,10 +1207,11 @@ mg_topic_cb (GtkWidget *entry, gpointer userdata)
 		if (text[0] == 0)
 			text = NULL;
 		sess->server->p_topic (sess->server, sess->channel, text);
-	} else
+	}
+	else
 		gtk_entry_set_text (GTK_ENTRY (entry), "");
-	/* restore focus to the input widget, where the next input will most
-likely be */
+	/* restore focus to the input widget, 
+	 * where the next input will most likely be */
 	gtk_widget_grab_focus (sess->gui->input_box);
 }
 
@@ -1245,13 +1249,14 @@ mg_safe_quit (void)
 	if (mg_dcc_active ())
 	{
 		dialog = gtk_message_dialog_new (NULL, 0,
-									GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
-								_("Some file transfers still active, quit xchat?"));
+				GTK_MESSAGE_WARNING, GTK_BUTTONS_YES_NO,
+				_("Some file transfers still active, quit xchat?"));
 		g_signal_connect (G_OBJECT (dialog), "response",
-								G_CALLBACK (mg_dcc_cb), NULL);
+				G_CALLBACK (mg_dcc_cb), NULL);
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 		gtk_widget_show (dialog);
-	} else
+	} 
+	else
 	{
 /*		printf("no active DCCs, quiting\n");*/
 		xchat_exit ();
@@ -1292,17 +1297,18 @@ mg_changui_destroy (rage_session *sess)
 	{
 		/* avoid calling the "destroy" callback */
 		g_signal_handlers_disconnect_by_func (G_OBJECT (sess->res->tab),
-														  mg_tabdestroy_cb, sess);
+				mg_tabdestroy_cb, sess);
 		tab_remove (sess->res->tab);
 		/* any tabs left? */
 		if (tab_group_get_size (sess->gui->tabs_box) < 1)
 			/* if not, destroy the main tab window */
 			gtk_widget_destroy (mg_gui->window);
-	} else
+	}
+	else
 	{
 		/* avoid calling the "destroy" callback */
 		g_signal_handlers_disconnect_by_func (G_OBJECT (sess->gui->window),
-														  mg_topdestroy_cb, sess);
+				mg_topdestroy_cb, sess);
 		gtk_widget_destroy (sess->gui->window);
 		free (sess->gui);
 		sess->gui = NULL;
@@ -1406,7 +1412,8 @@ flagl_hit (GtkWidget * wid, rage_session *sess)
 			serv->p_mode (serv, sess->channel, modes);
 			serv->p_join_info (serv, sess->channel);
 		}
-	} else
+	}
+	else
 		mg_change_flag (wid, sess, 'l');
 }
 
@@ -1722,8 +1729,8 @@ mg_xtext_error (int type)
 	{
 	case 0:
 		gtkutil_simpledialog (_("Unable to set transparent background!\n\n"
-										"You may be using a non-compliant window\n"
-										"manager that is not currently supported.\n"));
+					"You may be using a non-compliant window\n"
+					"manager that is not currently supported.\n"));
 		prefs.transparent = 0;
 		/* no others exist yet */
 	}
@@ -1756,7 +1763,7 @@ mg_create_textarea (session_gui *gui, GtkWidget *box)
 	mg_update_xtext (GTK_WIDGET (xtext));
 
 	g_signal_connect (G_OBJECT (xtext), "word_click",
-							G_CALLBACK (mg_word_clicked), NULL);
+			G_CALLBACK (mg_word_clicked), NULL);
 
 	gui->vscrollbar = gtk_vscrollbar_new (GTK_XTEXT (xtext)->adj);
 	gtk_box_pack_start (GTK_BOX (inbox), gui->vscrollbar, FALSE, TRUE, 1);
@@ -1983,7 +1990,9 @@ mg_set_tabs_pos (session_gui *gui, int pos)
 		new_tabs_box = tab_group_set_orientation (gui->tabs_box, FALSE);
 		gtk_widget_unref (gui->tabs_box);
 		gui->tabs_box = new_tabs_box;
-	} else if((pos == 2 || pos == 3) && orientation == GTK_ORIENTATION_HORIZONTAL) {
+	} 
+	else if((pos == 2 || pos == 3) && orientation == GTK_ORIENTATION_HORIZONTAL)
+	{
 		new_tabs_box = tab_group_set_orientation (gui->tabs_box, TRUE);
 		gtk_widget_unref (gui->tabs_box);
 		gui->tabs_box = new_tabs_box;
@@ -2035,17 +2044,17 @@ mg_create_entry (rage_session *sess, GtkWidget *box)
 	GTK_WIDGET_UNSET_FLAGS (but, GTK_CAN_FOCUS);
 	gtk_box_pack_end (GTK_BOX (gui->nick_box), but, 0, 0, 0);
 	g_signal_connect (G_OBJECT (but), "clicked",
-							G_CALLBACK (mg_nickclick_cb), NULL);
+			G_CALLBACK (mg_nickclick_cb), NULL);
 
 	gui->input_box = entry = gtk_entry_new ();
 	gtk_widget_set_name (entry, "xchat-inputbox");
 	gtk_entry_set_max_length (GTK_ENTRY (gui->input_box), 2048);
 	g_signal_connect (G_OBJECT (entry), "key_press_event",
-							G_CALLBACK (key_handle_key_press), NULL);
+			G_CALLBACK (key_handle_key_press), NULL);
 	g_signal_connect (G_OBJECT (entry), "focus_in_event",
-							G_CALLBACK (mg_inputbox_focus), gui);
+			G_CALLBACK (mg_inputbox_focus), gui);
 	g_signal_connect (G_OBJECT (entry), "activate",
-							G_CALLBACK (mg_inputbox_cb), gui);
+			G_CALLBACK (mg_inputbox_cb), gui);
 	gtk_container_add (GTK_CONTAINER (hbox), entry);
 	gtk_widget_grab_focus (entry);
 
@@ -2070,7 +2079,8 @@ mg_switch_tab_cb (GtkWidget *tab, rage_session *sess, gpointer family)
 				mg_unpopulate (current_tab);
 			mg_populate (sess);
 		}
-	} else if (old != active_tab)
+	}
+	else if (old != active_tab)
 		mg_show_generic_tab (active_tab);
 }
 
@@ -2146,7 +2156,7 @@ mg_create_menu (session_gui *gui, GtkWidget *box, int away_state)
 	g_object_unref (accel_group);
 
 	gui->menu = menu_create_main (accel_group, TRUE, away_state, !gui->is_tab,
-											&gui->away_item, &gui->user_menu);
+			&gui->away_item, &gui->user_menu);
 	gtk_box_pack_start (GTK_BOX (box), gui->menu, 0, 0, 0);
 	gtk_box_reorder_child (GTK_BOX (box), gui->menu, 0);
 }
@@ -2163,19 +2173,19 @@ mg_create_topwindow (rage_session *sess)
 				 rage_svn_version);
 	if (sess->type == SESS_DIALOG)
 		win = gtkutil_window_new (version, NULL,
-										  prefs.dialog_width, prefs.dialog_height, 0);
+				prefs.dialog_width, prefs.dialog_height, 0);
 	else
 		win = gtkutil_window_new (version, NULL,
-										  prefs.mainwindow_width,
-										  prefs.mainwindow_height, 0);
+				prefs.mainwindow_width,
+				prefs.mainwindow_height, 0);
 	sess->gui->window = win;
 	gtk_container_set_border_width (GTK_CONTAINER (win), 2);
 	g_signal_connect (G_OBJECT (win), "focus_in_event",
-							G_CALLBACK (mg_topwin_focus_cb), sess);
+			G_CALLBACK (mg_topwin_focus_cb), sess);
 	g_signal_connect (G_OBJECT (win), "destroy",
-							G_CALLBACK (mg_topdestroy_cb), sess);
+			G_CALLBACK (mg_topdestroy_cb), sess);
 	g_signal_connect (G_OBJECT (win), "configure_event",
-							G_CALLBACK (mg_configure_cb), sess);
+			G_CALLBACK (mg_configure_cb), sess);
 
 	palette_alloc (win);
 
@@ -2303,24 +2313,24 @@ mg_create_tabwindow (rage_session *sess)
 	snprintf (version, sizeof(version), "Rage ["VERSION"-%s]",
 				 rage_svn_version);
 	win = gtkutil_window_new (version, NULL, prefs.mainwindow_width,
-									  prefs.mainwindow_height, 0);
+			prefs.mainwindow_height, 0);
 	sess->gui->window = win;
 	gtk_window_move (GTK_WINDOW (win), prefs.mainwindow_left,
-						  prefs.mainwindow_top);
+			prefs.mainwindow_top);
 	if (prefs.gui_win_state)
 		gtk_window_maximize (GTK_WINDOW (win));
 	gtk_container_set_border_width (GTK_CONTAINER (win), 2);
 
 	g_signal_connect (G_OBJECT (win), "delete_event",
-						   G_CALLBACK (mg_tabwindow_de_cb), 0);
+			G_CALLBACK (mg_tabwindow_de_cb), 0);
 	g_signal_connect (G_OBJECT (win), "destroy",
-						   G_CALLBACK (mg_tabwindow_kill_cb), 0);
+			G_CALLBACK (mg_tabwindow_kill_cb), 0);
 	g_signal_connect (G_OBJECT (win), "focus_in_event",
-							G_CALLBACK (mg_tabwin_focus_cb), NULL);
+			G_CALLBACK (mg_tabwin_focus_cb), NULL);
 	g_signal_connect (G_OBJECT (win), "configure_event",
-							G_CALLBACK (mg_configure_cb), NULL);
+			G_CALLBACK (mg_configure_cb), NULL);
 	g_signal_connect (G_OBJECT (win), "window_state_event",
-							G_CALLBACK (mg_windowstate_cb), NULL);
+			G_CALLBACK (mg_windowstate_cb), NULL);
 
 	palette_alloc (win);
 
@@ -2334,7 +2344,7 @@ mg_create_tabwindow (rage_session *sess)
 	gtk_notebook_set_show_tabs (GTK_NOTEBOOK (book), FALSE);
 	gtk_notebook_set_show_border (GTK_NOTEBOOK (book), FALSE);
 	gtk_table_attach (GTK_TABLE (table), book, 1, 2, 1, 2,
-						GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 
 	mg_create_irctab (sess, book);
 	mg_create_tabs (sess->gui, vbox);
@@ -2396,8 +2406,8 @@ mg_add_generic_tab (char *name, char *title, void *family, GtkWidget *box)
 	gtk_widget_show (box);
 
 	but = tab_group_add (mg_gui->tabs_box, name, family, NULL,
-								mg_tab_press_cb, mg_link_cb, prefs.truncchans,
-								prefs.tab_dnd);
+			mg_tab_press_cb, mg_link_cb, prefs.truncchans,
+			prefs.tab_dnd);
 	tab_set_attrlist (but, plain_list);
 	g_object_set_data (G_OBJECT (but), "title", strdup (title));
 	g_object_set_data (G_OBJECT (but), "box", box);
@@ -2441,10 +2451,9 @@ fe_clear_channel (rage_session *sess)
 			strcpy (tbuf + 1, sess->waitchannel);
 			g_utf8_offset_to_pointer(tbuf, prefs.truncchans)[0] = 0;
 			strcat (tbuf, "..)");
-		} else
-		{
+		} 
+		else
 			sprintf (tbuf, "(%s)", sess->waitchannel);
-		}
 	}
 	else
 		strcpy (tbuf, _("<none>"));
@@ -2460,7 +2469,8 @@ fe_clear_channel (rage_session *sess)
 			gtk_widget_destroy (gui->op_xpm);
 			gui->op_xpm = 0;
 		}
-	} else
+	} 
+	else
 	{
 		if (sess->res->topic_text)
 		{
@@ -2515,10 +2525,9 @@ fe_update_mode_buttons (rage_session *sess, char mode, char sign)
 					gtk_toggle_button_set_active (
 							GTK_TOGGLE_BUTTON (sess->gui->flag_wid[i]), state);
 				ignore_chanmode = FALSE;
-			} else
-			{
-				sess->res->flag_wid_state[i] = state;
 			}
+			else
+				sess->res->flag_wid_state[i] = state;
 			return;
 		}
 	}
@@ -2610,7 +2619,8 @@ mg_changui_new (rage_session *sess, restore_gui *res, int tab, int focus)
 		mg_create_tabwindow (sess);
 		mg_gui = gui;
 		parent_window = (GtkWindow *)gui->window;
-	} else
+	}
+	else
 	{
 		sess->gui = gui = mg_gui;
 		gui->is_tab = TRUE;
@@ -2683,7 +2693,8 @@ mg_topic_showhide (rage_session *sess)
 	{
 		gtk_widget_hide (sess->gui->topic_bar);
 		prefs.topicbar = 0;
-	} else
+	}
+	else
 	{
 		gtk_widget_show (sess->gui->topic_bar);
 		prefs.topicbar = 1;
@@ -2755,3 +2766,4 @@ fe_session_callback (rage_session *sess)
 		free (sess->gui);
 	free (sess->res);
 }
+

@@ -853,7 +853,7 @@ pevt_gen_help
 Netsplit Join
 XP_TE_NS_JOIN
 pevt_gen_help
-%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0
+%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O
 2
 
 Stacked Join

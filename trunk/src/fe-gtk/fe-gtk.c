@@ -308,7 +308,8 @@ fe_new_window (rage_session *sess, int focus)
 	{
 		if (prefs.privmsgtab)
 			tab = TRUE;
-	} else
+	} 
+	else
 	{
 		if (prefs.tabchannels)
 			tab = TRUE;

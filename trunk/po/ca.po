@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-23 05:59+0100\n"
+"POT-Creation-Date: 2005-02-08 00:14+0100\n"
 "PO-Revision-Date: 2004-08-14 12:42+0200\n"
 "Last-Translator: Ernest Adrogué Calveras <eadrogue@gmx.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -51,15 +51,15 @@ msgstr ""
 msgid "Cannot create ~/.xchat2"
 msgstr "No s'ha pogut crear el directori ~/.xchat2"
 
-#: src/common/cfgfiles.c:753
+#: src/common/cfgfiles.c:757
 msgid "I'm busy"
 msgstr "Ara estic ocupat"
 
-#: src/common/cfgfiles.c:754
+#: src/common/cfgfiles.c:758
 msgid "Leaving"
 msgstr "Me'n vaig"
 
-#: src/common/cfgfiles.c:800
+#: src/common/cfgfiles.c:804
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"
@@ -67,36 +67,36 @@ msgstr ""
 "* Connectar-se a l'IRC com a root és estúpid! Haurieu\n"
 "  de crear un compte d'usuari i fer-ho des d'allí.\n"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Esperant"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Actiu"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Ha fallat"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Fet"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Connecta"
 
-#: src/common/dcc.c:37
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Avortat"
 
-#: src/common/dcc.c:1287
+#: src/common/dcc.c:1227
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "No es pot accedir a %s\n"
 
-#: src/common/dcc.c:1894
+#: src/common/dcc.c:1935
 msgid "No active DCCs\n"
 msgstr "No hi han connexions DCC actives\n"
 
@@ -112,24 +112,24 @@ msgstr "SÍ  "
 msgid "NO   "
 msgstr "NO   "
 
-#: src/common/ignore.c:347
+#: src/common/ignore.c:327
 #, c-format
 msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr "Esteu sent bombardejats amb peticions CTCP des de %s, s'ignora %s\n"
 
-#: src/common/ignore.c:372
+#: src/common/ignore.c:341
 #, fuzzy, c-format
 msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr ""
 "Esteu sent bombardejats amb peticions MSG des de %s, es desactiva l'opció "
 "«autodialog».\n"
 
-#: src/common/notify.c:383
+#: src/common/notify.c:375
 #, c-format
 msgid "  %-20s online\n"
 msgstr "  %-20s connectat\n"
 
-#: src/common/notify.c:385
+#: src/common/notify.c:377
 #, c-format
 msgid "  %-20s offline\n"
 msgstr "  %-20s no connectat\n"
@@ -142,11 +142,11 @@ msgstr "No esteu a cap canal. Proveu amb /join #<canal>\n"
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr "No connectat. Proveu amb /server <màquina> [<port>]\n"
 
-#: src/common/outbound.c:1395
+#: src/common/outbound.c:1420
 msgid "I need /bin/sh to run!\n"
 msgstr "Es necessita /bin/sh per a executar-lo!\n"
 
-#: src/common/outbound.c:1663
+#: src/common/outbound.c:1688
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -158,7 +158,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1698
+#: src/common/outbound.c:1723
 msgid ""
 "\n"
 "\n"
@@ -170,7 +170,7 @@ msgstr ""
 "Per a més informació feu /HELP <ordre>, o /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1699
+#: src/common/outbound.c:1724
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -180,38 +180,39 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1807
+#: src/common/outbound.c:1832
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "S'ignora l'argument desconegut «%s»."
 
-#: src/common/outbound.c:2789
+#: src/common/outbound.c:2818
 msgid "No such plugin found.\n"
 msgstr "No existeix tal connector.\n"
 
-#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:160
+#: src/common/outbound.c:2823 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Aquest connector refusa ser descarregat.\n"
 
-#: src/common/outbound.c:3037
+#: src/common/outbound.c:3066
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nom> <acció>, afegeix un botó sota la llista d'usuaris"
 
-#: src/common/outbound.c:3039
+#: src/common/outbound.c:3068
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <cmd>, envia una ordre a tots els canals on estigueu"
 
-#: src/common/outbound.c:3041
+#: src/common/outbound.c:3070
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <cmd>, envia una ordre a tots els servidors on estigueu"
 
-#: src/common/outbound.c:3042
+#: src/common/outbound.c:3071
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<motiu>], marca el vostre sobrenom com a absent"
 
-#: src/common/outbound.c:3044
+#: src/common/outbound.c:3073
+#, fuzzy
 msgid ""
-"BAN <mask> [<bantype>], bans everyone matching the mask from the current "
+"BAN <mask> [<masktype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
 "chanop)"
 msgstr ""
@@ -219,19 +220,19 @@ msgstr ""
 "màscara. Si ja es troben el canal amb això no els fareu fora (necessiteu ser "
 "operador del canal)"
 
-#: src/common/outbound.c:3046
+#: src/common/outbound.c:3075
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Esborra el text de la finestra actual"
 
-#: src/common/outbound.c:3047
+#: src/common/outbound.c:3076
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Tanca la finestra o pestanya actual"
 
-#: src/common/outbound.c:3049
+#: src/common/outbound.c:3078
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <codi>, cerca un codi de país, p.ex: au = Austràlia"
 
-#: src/common/outbound.c:3051
+#: src/common/outbound.c:3080
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -239,11 +240,11 @@ msgstr ""
 "CTCP <sobrenom> <missatge>, envia el missatge CTCP a l'usuari indicat, els "
 "missatges més comuns són VERSION i USERINFO"
 
-#: src/common/outbound.c:3053
+#: src/common/outbound.c:3082
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, surt i retorna immediatament al canal actual"
 
-#: src/common/outbound.c:3055
+#: src/common/outbound.c:3083
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -262,7 +263,7 @@ msgstr ""
 "DCC CLOSE <tipus> <sobrenom> <fitxer>        exemple:\n"
 "         /dcc close send albanoguer fitxer.tar.gz"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3092
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -270,11 +271,11 @@ msgstr ""
 "DEHOP <sobrenom>, treu l'estatus de semi-operador del canal al sobrenom "
 "indicat (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3094
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <nom>, elimina un botó de sota la llista d'usuaris"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3096
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -282,7 +283,7 @@ msgstr ""
 "DEOP <sobrenom>, treu l'estatus d'operador del canal al sobrenom indicat "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3098
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -290,19 +291,19 @@ msgstr ""
 "DEVOICE <sobrenom>, treu l'estatus de veu al sobrenom indicat (necessiteu "
 "ser operador del canal)"
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3099
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Finalitza la connexió amb el servidor"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3100
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <sobrenom|màquina|ip>, Cerca l'adreça IP d'un usuari"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3101
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <text>, Escriu el text localment"
 
-#: src/common/outbound.c:3076
+#: src/common/outbound.c:3104
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -310,11 +311,11 @@ msgstr ""
 "EXEC [-o] <ordre>, executa l'ordre. Si useu l'argument -o s'enviarà l'eixida "
 "cap al canal actual, si no es mostrarà a la finestra de text actual"
 
-#: src/common/outbound.c:3078
+#: src/common/outbound.c:3106
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, envia un senyal SIGCONT al procés"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3109
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -322,31 +323,35 @@ msgstr ""
 "EXECKILL [-9], mata un procés que s'estigui executant en la sessió actual. "
 "Si s'empreu -9 el senyal serà SIGKILL"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3111
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, envia un senyal SIGSTOP al procés"
 
-#: src/common/outbound.c:3084
+#: src/common/outbound.c:3112
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, envia dades als processos en stdin (entrada estàndard)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3115
+msgid "EXEMPT <mask> [masktype], sets a exempt"
+msgstr ""
+
+#: src/common/outbound.c:3117
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, neteja la cua d'enviaments al servidor actual"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3119
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <màquina> [<port>], usa el servidor intermedi indicat, el port per "
 "omissió és el 23"
 
-#: src/common/outbound.c:3096
+#: src/common/outbound.c:3125
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <sobrenom>, dóna l'estatus d'operador de canal a l'usuari indicat "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3127
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -362,7 +367,7 @@ msgstr ""
 "              PRIV, CHAN, NOTI, CTCP, DCC, INVI\n"
 "    opcions - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3104
+#: src/common/outbound.c:3133
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -370,17 +375,17 @@ msgstr ""
 "INVITE <sobrenom> [<canal>], convida l'usuari indicat a un canal, per "
 "omissió al canal actual (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3134
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <canal>, entra al canal"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3136
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <sobrenom>, fa fora l'usuari indicat del canal actual (necessiteu ser "
 "operador del canal)"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3138
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -388,32 +393,32 @@ msgstr ""
 "KICKBAN <sobrenom>, bandeja l'usuari indicat després de fer-lo fora del "
 "canal (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3112
+#: src/common/outbound.c:3140
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, força una nova comprovació del retard"
 
-#: src/common/outbound.c:3114
+#: src/common/outbound.c:3142
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <cadena>, cerca una cadena de text en el buffer"
 
-#: src/common/outbound.c:3116
+#: src/common/outbound.c:3144
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fitxer>, carrega un connector o script"
 
-#: src/common/outbound.c:3118
+#: src/common/outbound.c:3146
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, Treu l'estatus a tots els semi-operadors del canal en el canal "
 "actual (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3120
+#: src/common/outbound.c:3148
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, Treu l'estatus a tots els operadors del canal en el canal actual "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3150
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -421,40 +426,40 @@ msgstr ""
 "ME <acció>, anuncia una acció al canal actual (les accions s'escriuen en "
 "tercera persona, com ara /me salta d'alegria)"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3152
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, Fa fora tots els usuaris del canal actual (necessiteu ser operador "
 "del canal)"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3155
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, Dóna l'estatus d'operador a tots els usuaris en el canal actual "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3128
+#: src/common/outbound.c:3156
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <sobrenom> <missatge>, envia un missatge privat"
 
-#: src/common/outbound.c:3130
+#: src/common/outbound.c:3157
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, Llista els usuaris que hi ha al canal actual"
 
-#: src/common/outbound.c:3132
+#: src/common/outbound.c:3158
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <sobrenom> <missatge>, Envia un avís per CTCP"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3159
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <nom_màquina> [<port>]"
 
-#: src/common/outbound.c:3134
+#: src/common/outbound.c:3160
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <sobrenom>, canvia el vostre sobrenom"
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3162
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -462,41 +467,41 @@ msgstr ""
 "NOTICE <sobrenom/canal> <missatge>, envia una avís. Els avisos són uns tipus "
 "de missatge que no haurien de generar respostes automàtiques"
 
-#: src/common/outbound.c:3138
+#: src/common/outbound.c:3163
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<sobrenom>], mostra la vostra llista de notificació o hi afegeix a "
 "algú"
 
-#: src/common/outbound.c:3140
+#: src/common/outbound.c:3164
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <sobrenom>, dóna l'estatus d'operador del canal a l'usuari (necessiteu "
 "ser operador del canal)"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3166
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<canal>] [<motiu>], deixa el canal, per omissió l'actual"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3167
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <sobrenom | canal>, envia un ping CTCP a l'usuari o canal indicat"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3168
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 "QUERY <sobrenom>, obre una finestra nova de missatges privats per a algú"
 
-#: src/common/outbound.c:3148
+#: src/common/outbound.c:3169
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<motiu>], finalitza la connexió amb el servidor actual"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3170
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <text>, envia el text «en brut» cap al servidor"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3173
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -506,7 +511,7 @@ msgstr ""
 "amb /RECONNECT per així reconnectar-se al servidor actual o amb /RECONNECT "
 "ALL per a reconnectar-se a tots els servidors oberts"
 
-#: src/common/outbound.c:3156
+#: src/common/outbound.c:3176
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -516,7 +521,7 @@ msgstr ""
 "RECONNECT per així reconnectar-se al servidor actual o amb /RECONNECT ALL "
 "per a reconnectar-se a tots els servidors oberts"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3179
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -524,23 +529,23 @@ msgstr ""
 "RECV <text>, envia dades «en brut» a l'X-Chat, com si foren rebudes des del "
 "servidor IRC"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3180
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3181
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <text>, envia el text a l'objecte a la finestra actual"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3184
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN [-ssl] <màquina> <port> <canal>, connecta i entra en un canal"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3187
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN <màquina> <port> <canal>, connecta i entra en un canal"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3192
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -549,7 +554,7 @@ msgstr ""
 "el port per omissió per a connexions normals és el 6667, i el 9999 per a "
 "connexions ssl"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3195
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -557,49 +562,54 @@ msgstr ""
 "SERVER <màquina> [<port>] [<contrasenya>], connecta amb un servidor, el port "
 "per omissió és el 6667"
 
-#: src/common/outbound.c:3177
+#: src/common/outbound.c:3197
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET [-quiet] <variable> [<valor>]"
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3198
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3182
+#: src/common/outbound.c:3202
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr "TOPIC [<tòpic>], estableix o mostra el tema del canal actual"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3203
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <màscara> [<màscara>...], readmet els usuaris indicats al canal."
 
-#: src/common/outbound.c:3185
+#: src/common/outbound.c:3205
+#, fuzzy
+msgid "UNEXEMPT <mask> [<mask>...], unexempts the specified masks."
+msgstr "UNBAN <màscara> [<màscara>...], readmet els usuaris indicats al canal."
+
+#: src/common/outbound.c:3206
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <màscara> [QUIET]"
 
-#: src/common/outbound.c:3186
+#: src/common/outbound.c:3207
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <fitxer>, desactiva un connector o script"
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3209
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <sobrenom>, dóna l'estatus de veu a algú (necessiteu ser operador del "
 "canal)"
 
-#: src/common/outbound.c:3191
+#: src/common/outbound.c:3210
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <missatge>, escriu un missatge a tots els canals"
 
-#: src/common/outbound.c:3193
+#: src/common/outbound.c:3212
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <missatge>, envia un missatge a tots els operadors del canal actual"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3214
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -607,12 +617,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <missatge>, envia un missatge a tots els operadors del canal actual"
 
-#: src/common/outbound.c:3241
+#: src/common/outbound.c:3260
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Sintaxi: %s\n"
 
-#: src/common/outbound.c:3246
+#: src/common/outbound.c:3265
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -620,34 +630,34 @@ msgstr ""
 "\n"
 "No hi ha ajuda disponible per a aquesta ordre.\n"
 
-#: src/common/outbound.c:3252
+#: src/common/outbound.c:3271
 msgid "No such command.\n"
 msgstr "No existeix tal ordre.\n"
 
-#: src/common/outbound.c:3623
+#: src/common/outbound.c:3642
 msgid "Bad arguments for user command.\n"
 msgstr "Els arguments per a l'ordre d'usuari no són vàlids.\n"
 
-#: src/common/outbound.c:3785
+#: src/common/outbound.c:3804
 msgid "Too many recursive usercommands, aborting."
 msgstr "Massa ordres d'usuari recursives, s'avorta."
 
-#: src/common/outbound.c:3840
+#: src/common/outbound.c:3859
 msgid "Unknown Command. Try /help\n"
 msgstr "Ordre desconeguda. Proveu /help\n"
 
-#: src/common/plugin.c:339 src/common/plugin.c:379
+#: src/common/plugin.c:336 src/common/plugin.c:376
 #, fuzzy
 msgid "No rage_plugin_init symbol; is this really an rage plugin?"
 msgstr ""
 "No hi ha cap símbol xchat_plugin_init; de veres és un connector per a l'X-"
 "Chat?"
 
-#: src/common/server.c:545
+#: src/common/server.c:892
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr "Esteu segur que aquest servidor soporta SSL i el port és correcte?\n"
 
-#: src/common/server.c:897
+#: src/common/server.c:1244
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -656,7 +666,7 @@ msgstr ""
 "No s'ha pogut resoldre el nom de la màquina %s\n"
 "Comproveu la vostra configuració IP!\n"
 
-#: src/common/server.c:902
+#: src/common/server.c:1249
 msgid "Proxy traversal failed.\n"
 msgstr "Ha fallat la connexió amb el servidor intermediari.\n"
 
@@ -679,8 +689,9 @@ msgid "%C0%B%171Notify%187%B$tNow watching nick $1.%O"
 msgstr ""
 
 #: src/common/textevents.h:9
-msgid "%C0%B%171Ban List%B%187%B$t Ban for channel $1: $2 $3 $4"
-msgstr ""
+#, fuzzy
+msgid "%C0%B%171Ban List%187%B$tBan for channel $1: $2 $3 $4"
+msgstr "%C22*%O$tHeu estat mort per $1 ($2%O%C22)"
 
 #: src/common/textevents.h:12
 msgid "%C5%B%171Error%187%B%O$tYou are banned from channel $1.%O"
@@ -1313,6 +1324,29 @@ msgstr "%C18*%O%C18$t$1 $2%O"
 msgid "%C0%B%171Silence%187%B$t$1%O"
 msgstr "%C18*%O%C18$t$1 $2%O"
 
+#: src/common/textevents.h:423
+msgid "%C0%B%171Netsplit%187%B$tNetsplit detected between servers $1 and $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:426
+#, fuzzy
+msgid "%C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O"
+msgstr "%C22*%O$t$1 usuari(s) a la llista de notificació."
+
+#: src/common/textevents.h:429
+#, fuzzy
+msgid "%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O"
+msgstr "%C22*%O$t$1 usuari(s) a la llista de notificació."
+
+#: src/common/textevents.h:432
+#, fuzzy
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgstr "%C22*%O$t$1 usuari(s) a la llista de notificació."
+
+#: src/common/textevents.h:435
+msgid "%B-->%B$tStacked join, new users on $1 is: $2%O"
+msgstr ""
+
 #: src/common/text.c:195
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
@@ -1728,11 +1762,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "Ubicació"
 
-#: src/common/text.c:951 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
+#: src/common/text.c:951 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
 msgid "Position"
 msgstr "Posició"
 
-#: src/common/text.c:957 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
+#: src/common/text.c:957 src/fe-gtk/dccgui.c:447 src/fe-gtk/dccgui.c:620
 msgid "Size"
 msgstr "Mida"
 
@@ -1864,1253 +1898,1253 @@ msgstr "No s'ha pogut assignar aquesta adreça"
 msgid "Connection reset by peer"
 msgstr "Connexió reiniciada des de l'altre costat"
 
-#: src/common/util.c:595
+#: src/common/util.c:592
 msgid "Andorra"
 msgstr "Andorra"
 
-#: src/common/util.c:596
+#: src/common/util.c:593
 msgid "United Arab Emirates"
 msgstr "Emirats Àrabs Units"
 
-#: src/common/util.c:597
+#: src/common/util.c:594
 msgid "Afghanistan"
 msgstr "Afganistan"
 
-#: src/common/util.c:598
+#: src/common/util.c:595
 msgid "Antigua and Barbuda"
 msgstr "Antigua i Barbuda"
 
-#: src/common/util.c:599
+#: src/common/util.c:596
 msgid "Anguilla"
 msgstr "Anguilla"
 
-#: src/common/util.c:600
+#: src/common/util.c:597
 msgid "Albania"
 msgstr "Albània"
 
-#: src/common/util.c:601
+#: src/common/util.c:598
 msgid "Armenia"
 msgstr "Armènia"
 
-#: src/common/util.c:602
+#: src/common/util.c:599
 msgid "Netherlands Antilles"
 msgstr "Antilles Holandeses"
 
-#: src/common/util.c:603
+#: src/common/util.c:600
 msgid "Angola"
 msgstr "Angola"
 
-#: src/common/util.c:604
+#: src/common/util.c:601
 msgid "Antarctica"
 msgstr "Antàrtica"
 
-#: src/common/util.c:605
+#: src/common/util.c:602
 msgid "Argentina"
 msgstr "Argentina"
 
-#: src/common/util.c:606
+#: src/common/util.c:603
 msgid "Reverse DNS"
 msgstr "DNS invers"
 
-#: src/common/util.c:607
+#: src/common/util.c:604
 msgid "American Samoa"
 msgstr "Samoa Americana"
 
-#: src/common/util.c:608
+#: src/common/util.c:605
 msgid "Austria"
 msgstr "Àustria"
 
-#: src/common/util.c:609
+#: src/common/util.c:606
 msgid "Nato Fiel"
 msgstr "Camp de l'OTAN"
 
-#: src/common/util.c:610
+#: src/common/util.c:607
 msgid "Australia"
 msgstr "Austràlia"
 
-#: src/common/util.c:611
+#: src/common/util.c:608
 msgid "Aruba"
 msgstr "Aruba"
 
-#: src/common/util.c:612
+#: src/common/util.c:609
 msgid "Azerbaijan"
 msgstr "Azerbaitjan"
 
-#: src/common/util.c:613
+#: src/common/util.c:610
 msgid "Bosnia and Herzegovina"
 msgstr "Bòsnia i Hercegovina"
 
-#: src/common/util.c:614
+#: src/common/util.c:611
 msgid "Barbados"
 msgstr "Barbados"
 
-#: src/common/util.c:615
+#: src/common/util.c:612
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#: src/common/util.c:616
+#: src/common/util.c:613
 msgid "Belgium"
 msgstr "Bèlgica"
 
-#: src/common/util.c:617
+#: src/common/util.c:614
 msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
-#: src/common/util.c:618
+#: src/common/util.c:615
 msgid "Bulgaria"
 msgstr "Bulgària"
 
-#: src/common/util.c:619
+#: src/common/util.c:616
 msgid "Bahrain"
 msgstr "Bahrain"
 
-#: src/common/util.c:620
+#: src/common/util.c:617
 msgid "Burundi"
 msgstr "Burundi"
 
-#: src/common/util.c:621
+#: src/common/util.c:618
 msgid "Businesses"
 msgstr "Negoci"
 
-#: src/common/util.c:622
+#: src/common/util.c:619
 msgid "Benin"
 msgstr "Benín"
 
-#: src/common/util.c:623
+#: src/common/util.c:620
 msgid "Bermuda"
 msgstr "Bermuda"
 
-#: src/common/util.c:624
+#: src/common/util.c:621
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
 
-#: src/common/util.c:625
+#: src/common/util.c:622
 msgid "Bolivia"
 msgstr "Bolívia"
 
-#: src/common/util.c:626
+#: src/common/util.c:623
 msgid "Brazil"
 msgstr "Brasil"
 
-#: src/common/util.c:627
+#: src/common/util.c:624
 msgid "Bahamas"
 msgstr "Bahames"
 
-#: src/common/util.c:628
+#: src/common/util.c:625
 msgid "Bhutan"
 msgstr "Bhutan"
 
-#: src/common/util.c:629
+#: src/common/util.c:626
 msgid "Bouvet Island"
 msgstr "Illa Bouvet"
 
-#: src/common/util.c:630
+#: src/common/util.c:627
 msgid "Botswana"
 msgstr "Botswana"
 
-#: src/common/util.c:631
+#: src/common/util.c:628
 msgid "Belarus"
 msgstr "Bielorússia"
 
-#: src/common/util.c:632
+#: src/common/util.c:629
 msgid "Belize"
 msgstr "Belize"
 
-#: src/common/util.c:633
+#: src/common/util.c:630
 msgid "Canada"
 msgstr "Canadà"
 
-#: src/common/util.c:634
+#: src/common/util.c:631
 msgid "Cocos Islands"
 msgstr "Illes Cocos"
 
-#: src/common/util.c:635
+#: src/common/util.c:632
 msgid "Central African Republic"
 msgstr "República Centroafricana"
 
-#: src/common/util.c:636
+#: src/common/util.c:633
 msgid "Congo"
 msgstr "Congo"
 
-#: src/common/util.c:637
+#: src/common/util.c:634
 msgid "Switzerland"
 msgstr "Suïssa"
 
-#: src/common/util.c:638
+#: src/common/util.c:635
 msgid "Cote d'Ivoire"
 msgstr "Costa d'Ivori"
 
-#: src/common/util.c:639
+#: src/common/util.c:636
 msgid "Cook Islands"
 msgstr "Illes Cook"
 
-#: src/common/util.c:640
+#: src/common/util.c:637
 msgid "Chile"
 msgstr "Xile"
 
-#: src/common/util.c:641
+#: src/common/util.c:638
 msgid "Cameroon"
 msgstr "Camerun"
 
-#: src/common/util.c:642
+#: src/common/util.c:639
 msgid "China"
 msgstr "Xina"
 
-#: src/common/util.c:643
+#: src/common/util.c:640
 msgid "Colombia"
 msgstr "Colòmbia"
 
-#: src/common/util.c:644
+#: src/common/util.c:641
 msgid "Internic Commercial"
 msgstr "Internic Comercial"
 
-#: src/common/util.c:645
+#: src/common/util.c:642
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: src/common/util.c:646
+#: src/common/util.c:643
 msgid "Former Czechoslovakia"
 msgstr "Antiga Txecoslovàquia"
 
-#: src/common/util.c:647
+#: src/common/util.c:644
 msgid "Cuba"
 msgstr "Cuba"
 
-#: src/common/util.c:648
+#: src/common/util.c:645
 msgid "Cape Verde"
 msgstr "Cap Verd"
 
-#: src/common/util.c:649
+#: src/common/util.c:646
 msgid "Christmas Island"
 msgstr "Illa de Pascua"
 
-#: src/common/util.c:650
+#: src/common/util.c:647
 msgid "Cyprus"
 msgstr "Xipre"
 
-#: src/common/util.c:651
+#: src/common/util.c:648
 msgid "Czech Republic"
 msgstr "República Txeca"
 
-#: src/common/util.c:652
+#: src/common/util.c:649
 msgid "Germany"
 msgstr "Alemanya"
 
-#: src/common/util.c:653
+#: src/common/util.c:650
 msgid "Djibouti"
 msgstr "Yibuti"
 
-#: src/common/util.c:654
+#: src/common/util.c:651
 msgid "Denmark"
 msgstr "Dinamarca"
 
-#: src/common/util.c:655
+#: src/common/util.c:652
 msgid "Dominica"
 msgstr "Dominica"
 
-#: src/common/util.c:656
+#: src/common/util.c:653
 msgid "Dominican Republic"
 msgstr "República Dominicana"
 
-#: src/common/util.c:657
+#: src/common/util.c:654
 msgid "Algeria"
 msgstr "Algèria"
 
-#: src/common/util.c:658
+#: src/common/util.c:655
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: src/common/util.c:659
+#: src/common/util.c:656
 msgid "Educational Institution"
 msgstr "Institució educativa"
 
-#: src/common/util.c:660
+#: src/common/util.c:657
 msgid "Estonia"
 msgstr "Estònia"
 
-#: src/common/util.c:661
+#: src/common/util.c:658
 msgid "Egypt"
 msgstr "Egipte"
 
-#: src/common/util.c:662
+#: src/common/util.c:659
 msgid "Western Sahara"
 msgstr "Sàhara Occidental"
 
-#: src/common/util.c:663
+#: src/common/util.c:660
 msgid "Eritrea"
 msgstr "Eritrea"
 
-#: src/common/util.c:664
+#: src/common/util.c:661
 msgid "Spain"
 msgstr "Espanya"
 
-#: src/common/util.c:665
+#: src/common/util.c:662
 msgid "Ethiopia"
 msgstr "Etiòpia"
 
-#: src/common/util.c:666
+#: src/common/util.c:663
 msgid "Finland"
 msgstr "Finlàndia"
 
-#: src/common/util.c:667
+#: src/common/util.c:664
 msgid "Fiji"
 msgstr "Fiji"
 
-#: src/common/util.c:668
+#: src/common/util.c:665
 msgid "Falkland Islands"
 msgstr "Illes Malvines"
 
-#: src/common/util.c:669
+#: src/common/util.c:666
 msgid "Micronesia"
 msgstr "Micronèsia"
 
-#: src/common/util.c:670
+#: src/common/util.c:667
 msgid "Faroe Islands"
 msgstr "Illes Faroe"
 
-#: src/common/util.c:671
+#: src/common/util.c:668
 msgid "France"
 msgstr "França"
 
-#: src/common/util.c:672
+#: src/common/util.c:669
 msgid "France, Metropolitan"
 msgstr "França, Metropolitana"
 
-#: src/common/util.c:673
+#: src/common/util.c:670
 msgid "Gabon"
 msgstr "Gabon"
 
-#: src/common/util.c:674
+#: src/common/util.c:671
 msgid "Great Britain"
 msgstr "Gran Bretanya"
 
-#: src/common/util.c:675
+#: src/common/util.c:672
 msgid "Grenada"
 msgstr "Granada"
 
-#: src/common/util.c:676
+#: src/common/util.c:673
 msgid "Georgia"
 msgstr "Geòrgia"
 
-#: src/common/util.c:677
+#: src/common/util.c:674
 msgid "French Guiana"
 msgstr "Guyana Francesa"
 
-#: src/common/util.c:678
+#: src/common/util.c:675
 msgid "British Channel Isles"
 msgstr "Illes del Canal Britànic"
 
-#: src/common/util.c:679
+#: src/common/util.c:676
 msgid "Ghana"
 msgstr "Ghana"
 
-#: src/common/util.c:680
+#: src/common/util.c:677
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: src/common/util.c:681
+#: src/common/util.c:678
 msgid "Greenland"
 msgstr "Groenlàndia"
 
-#: src/common/util.c:682
+#: src/common/util.c:679
 msgid "Gambia"
 msgstr "Gàmbia"
 
-#: src/common/util.c:683
+#: src/common/util.c:680
 msgid "Guinea"
 msgstr "Guinea"
 
-#: src/common/util.c:684
+#: src/common/util.c:681
 msgid "Government"
 msgstr "Institució governamental"
 
-#: src/common/util.c:685
+#: src/common/util.c:682
 msgid "Guadeloupe"
 msgstr "Guadalupe"
 
-#: src/common/util.c:686
+#: src/common/util.c:683
 msgid "Equatorial Guinea"
 msgstr "Guinea Equatorial"
 
-#: src/common/util.c:687
+#: src/common/util.c:684
 msgid "Greece"
 msgstr "Grècia"
 
-#: src/common/util.c:688
+#: src/common/util.c:685
 msgid "S. Georgia and S. Sandwich Isles"
 msgstr "Illes Geòrgia del Sud i Sandwich del Sud"
 
-#: src/common/util.c:689
+#: src/common/util.c:686
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: src/common/util.c:690
+#: src/common/util.c:687
 msgid "Guam"
 msgstr "Guam"
 
-#: src/common/util.c:691
+#: src/common/util.c:688
 msgid "Guinea-Bissau"
 msgstr "Guinea-Bissau"
 
-#: src/common/util.c:692
+#: src/common/util.c:689
 msgid "Guyana"
 msgstr "Guyana"
 
-#: src/common/util.c:693
+#: src/common/util.c:690
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-#: src/common/util.c:694
+#: src/common/util.c:691
 msgid "Heard and McDonald Islands"
 msgstr "Illes Heard i McDonald"
 
-#: src/common/util.c:695
+#: src/common/util.c:692
 msgid "Honduras"
 msgstr "Hondures"
 
-#: src/common/util.c:696
+#: src/common/util.c:693
 msgid "Croatia"
 msgstr "Croàcia"
 
-#: src/common/util.c:697
+#: src/common/util.c:694
 msgid "Haiti"
 msgstr "Haití"
 
-#: src/common/util.c:698
+#: src/common/util.c:695
 msgid "Hungary"
 msgstr "Hongria"
 
-#: src/common/util.c:699
+#: src/common/util.c:696
 msgid "Indonesia"
 msgstr "Indonèsia"
 
-#: src/common/util.c:700
+#: src/common/util.c:697
 msgid "Ireland"
 msgstr "Irlanda"
 
-#: src/common/util.c:701
+#: src/common/util.c:698
 msgid "Israel"
 msgstr "Israel"
 
-#: src/common/util.c:702
+#: src/common/util.c:699
 msgid "India"
 msgstr "Índia"
 
-#: src/common/util.c:703
+#: src/common/util.c:700
 msgid "Informational"
 msgstr "Informatiu"
 
-#: src/common/util.c:704
+#: src/common/util.c:701
 msgid "International"
 msgstr "Internacional"
 
-#: src/common/util.c:705
+#: src/common/util.c:702
 msgid "British Indian Ocean Territory"
 msgstr "Territori oceànic de la Índia Britànica"
 
-#: src/common/util.c:706
+#: src/common/util.c:703
 msgid "Iraq"
 msgstr "Iraq"
 
-#: src/common/util.c:707
+#: src/common/util.c:704
 msgid "Iran"
 msgstr "Iran"
 
-#: src/common/util.c:708
+#: src/common/util.c:705
 msgid "Iceland"
 msgstr "Islàndia"
 
-#: src/common/util.c:709
+#: src/common/util.c:706
 msgid "Italy"
 msgstr "Itàlia"
 
-#: src/common/util.c:710
+#: src/common/util.c:707
 msgid "Jamaica"
 msgstr "Jamaica"
 
-#: src/common/util.c:711
+#: src/common/util.c:708
 msgid "Jordan"
 msgstr "Jordània"
 
-#: src/common/util.c:712
+#: src/common/util.c:709
 msgid "Japan"
 msgstr "Japó"
 
-#: src/common/util.c:713
+#: src/common/util.c:710
 msgid "Kenya"
 msgstr "Kenya"
 
-#: src/common/util.c:714
+#: src/common/util.c:711
 msgid "Kyrgyzstan"
 msgstr "Kyrgyzstan"
 
-#: src/common/util.c:715
+#: src/common/util.c:712
 msgid "Cambodia"
 msgstr "Cambodja"
 
-#: src/common/util.c:716
+#: src/common/util.c:713
 msgid "Kiribati"
 msgstr "Kiribati"
 
-#: src/common/util.c:717
+#: src/common/util.c:714
 msgid "Comoros"
 msgstr "Comoros"
 
-#: src/common/util.c:718
+#: src/common/util.c:715
 msgid "St. Kitts and Nevis"
 msgstr "St. Kitts i Nevis"
 
-#: src/common/util.c:719
+#: src/common/util.c:716
 msgid "North Korea"
 msgstr "Corea del Nord"
 
-#: src/common/util.c:720
+#: src/common/util.c:717
 msgid "South Korea"
 msgstr "Corea del Sud"
 
-#: src/common/util.c:721
+#: src/common/util.c:718
 msgid "Kuwait"
 msgstr "Kuwait"
 
-#: src/common/util.c:722
+#: src/common/util.c:719
 msgid "Cayman Islands"
 msgstr "Illes Caiman"
 
-#: src/common/util.c:723
+#: src/common/util.c:720
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
-#: src/common/util.c:724
+#: src/common/util.c:721
 msgid "Laos"
 msgstr "Laos"
 
-#: src/common/util.c:725
+#: src/common/util.c:722
 msgid "Lebanon"
 msgstr "Líban"
 
-#: src/common/util.c:726
+#: src/common/util.c:723
 msgid "Saint Lucia"
 msgstr "Santa Lucia"
 
-#: src/common/util.c:727
+#: src/common/util.c:724
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#: src/common/util.c:728
+#: src/common/util.c:725
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
-#: src/common/util.c:729
+#: src/common/util.c:726
 msgid "Liberia"
 msgstr "Libèria"
 
-#: src/common/util.c:730
+#: src/common/util.c:727
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#: src/common/util.c:731
+#: src/common/util.c:728
 msgid "Lithuania"
 msgstr "Lituània"
 
-#: src/common/util.c:732
+#: src/common/util.c:729
 msgid "Luxembourg"
 msgstr "Luxemburg"
 
-#: src/common/util.c:733
+#: src/common/util.c:730
 msgid "Latvia"
 msgstr "Letònia"
 
-#: src/common/util.c:734
+#: src/common/util.c:731
 msgid "Libya"
 msgstr "Líbia"
 
-#: src/common/util.c:735
+#: src/common/util.c:732
 msgid "Morocco"
 msgstr "Marroc"
 
-#: src/common/util.c:736
+#: src/common/util.c:733
 msgid "Monaco"
 msgstr "Mónaco"
 
-#: src/common/util.c:737
+#: src/common/util.c:734
 msgid "Moldova"
 msgstr "Moldàvia"
 
-#: src/common/util.c:738
+#: src/common/util.c:735
 msgid "United States Medical"
 msgstr "Servei mèdic dels Estats Units"
 
-#: src/common/util.c:739
+#: src/common/util.c:736
 msgid "Madagascar"
 msgstr "Madagascar"
 
-#: src/common/util.c:740
+#: src/common/util.c:737
 msgid "Marshall Islands"
 msgstr "Illes Marshall"
 
-#: src/common/util.c:741
+#: src/common/util.c:738
 msgid "Military"
 msgstr "Institució militar"
 
-#: src/common/util.c:742
+#: src/common/util.c:739
 msgid "Macedonia"
 msgstr "Macedònia"
 
-#: src/common/util.c:743
+#: src/common/util.c:740
 msgid "Mali"
 msgstr "Mali"
 
-#: src/common/util.c:744
+#: src/common/util.c:741
 msgid "Myanmar"
 msgstr "Myanmar"
 
-#: src/common/util.c:745
+#: src/common/util.c:742
 msgid "Mongolia"
 msgstr "Mongòlia"
 
-#: src/common/util.c:746
+#: src/common/util.c:743
 msgid "Macau"
 msgstr "Macao"
 
-#: src/common/util.c:747
+#: src/common/util.c:744
 msgid "Northern Mariana Islands"
 msgstr "Illes Mariana del Nord"
 
-#: src/common/util.c:748
+#: src/common/util.c:745
 msgid "Martinique"
 msgstr "Martinica"
 
-#: src/common/util.c:749
+#: src/common/util.c:746
 msgid "Mauritania"
 msgstr "Mauritània"
 
-#: src/common/util.c:750
+#: src/common/util.c:747
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#: src/common/util.c:751
+#: src/common/util.c:748
 msgid "Malta"
 msgstr "Malta"
 
-#: src/common/util.c:752
+#: src/common/util.c:749
 msgid "Mauritius"
 msgstr "Maurici"
 
-#: src/common/util.c:753
+#: src/common/util.c:750
 msgid "Maldives"
 msgstr "Maldives"
 
-#: src/common/util.c:754
+#: src/common/util.c:751
 msgid "Malawi"
 msgstr "Malawi"
 
-#: src/common/util.c:755
+#: src/common/util.c:752
 msgid "Mexico"
 msgstr "Mèxic"
 
-#: src/common/util.c:756
+#: src/common/util.c:753
 msgid "Malaysia"
 msgstr "Malàsia"
 
-#: src/common/util.c:757
+#: src/common/util.c:754
 msgid "Mozambique"
 msgstr "Moçambic"
 
-#: src/common/util.c:758
+#: src/common/util.c:755
 msgid "Namibia"
 msgstr "Namíbia"
 
-#: src/common/util.c:759
+#: src/common/util.c:756
 msgid "New Caledonia"
 msgstr "Nova Caledònia"
 
-#: src/common/util.c:760
+#: src/common/util.c:757
 msgid "Niger"
 msgstr "Níger"
 
-#: src/common/util.c:761
+#: src/common/util.c:758
 msgid "Internic Network"
 msgstr "Xarxa Internic"
 
-#: src/common/util.c:762
+#: src/common/util.c:759
 msgid "Norfolk Island"
 msgstr "Illes Norfolk"
 
-#: src/common/util.c:763
+#: src/common/util.c:760
 msgid "Nigeria"
 msgstr "Nigèria"
 
-#: src/common/util.c:764
+#: src/common/util.c:761
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#: src/common/util.c:765
+#: src/common/util.c:762
 msgid "Netherlands"
 msgstr "Holanda"
 
-#: src/common/util.c:766
+#: src/common/util.c:763
 msgid "Norway"
 msgstr "Noruega"
 
-#: src/common/util.c:767
+#: src/common/util.c:764
 msgid "Nepal"
 msgstr "Nepal"
 
-#: src/common/util.c:768
+#: src/common/util.c:765
 msgid "Nauru"
 msgstr "Nauru"
 
-#: src/common/util.c:769
+#: src/common/util.c:766
 msgid "Neutral Zone"
 msgstr "Zona neutral"
 
-#: src/common/util.c:770
+#: src/common/util.c:767
 msgid "Niue"
 msgstr "Niue"
 
-#: src/common/util.c:771
+#: src/common/util.c:768
 msgid "New Zealand"
 msgstr "Nova Zelanda"
 
-#: src/common/util.c:772
+#: src/common/util.c:769
 msgid "Oman"
 msgstr "Oman"
 
-#: src/common/util.c:773
+#: src/common/util.c:770
 msgid "Internic Non-Profit Organization"
 msgstr "Organització Internic sense ànim de lucre"
 
-#: src/common/util.c:774
+#: src/common/util.c:771
 msgid "Panama"
 msgstr "Panamà"
 
-#: src/common/util.c:775
+#: src/common/util.c:772
 msgid "Peru"
 msgstr "Perú"
 
-#: src/common/util.c:776
+#: src/common/util.c:773
 msgid "French Polynesia"
 msgstr "Polinèsia Francesa"
 
-#: src/common/util.c:777
+#: src/common/util.c:774
 msgid "Papua New Guinea"
 msgstr "Nova Guinea Papua"
 
-#: src/common/util.c:778
+#: src/common/util.c:775
 msgid "Philippines"
 msgstr "Filipines"
 
-#: src/common/util.c:779
+#: src/common/util.c:776
 msgid "Pakistan"
 msgstr "Paquistan"
 
-#: src/common/util.c:780
+#: src/common/util.c:777
 msgid "Poland"
 msgstr "Polònia"
 
-#: src/common/util.c:781
+#: src/common/util.c:778
 msgid "St. Pierre and Miquelon"
 msgstr "St. Pierre i Miquelon"
 
-#: src/common/util.c:782
+#: src/common/util.c:779
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
-#: src/common/util.c:783
+#: src/common/util.c:780
 msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
-#: src/common/util.c:784
+#: src/common/util.c:781
 msgid "Portugal"
 msgstr "Portugal"
 
-#: src/common/util.c:785
+#: src/common/util.c:782
 msgid "Palau"
 msgstr "Palau"
 
-#: src/common/util.c:786
+#: src/common/util.c:783
 msgid "Paraguay"
 msgstr "Paraguai"
 
-#: src/common/util.c:787
+#: src/common/util.c:784
 msgid "Qatar"
 msgstr "Qatar"
 
-#: src/common/util.c:788
+#: src/common/util.c:785
 msgid "Reunion"
 msgstr "Reunion"
 
-#: src/common/util.c:789
+#: src/common/util.c:786
 msgid "Romania"
 msgstr "Romania"
 
-#: src/common/util.c:790
+#: src/common/util.c:787
 msgid "Old School ARPAnet"
 msgstr "Antiga escola ARPAnet"
 
-#: src/common/util.c:791
+#: src/common/util.c:788
 msgid "Russian Federation"
 msgstr "Federació Russa"
 
-#: src/common/util.c:792
+#: src/common/util.c:789
 msgid "Rwanda"
 msgstr "Rwanda"
 
-#: src/common/util.c:793
+#: src/common/util.c:790
 msgid "Saudi Arabia"
 msgstr "Aràbia Saudita"
 
-#: src/common/util.c:794
+#: src/common/util.c:791
 msgid "Solomon Islands"
 msgstr "Illes Salomon"
 
-#: src/common/util.c:795
+#: src/common/util.c:792
 msgid "Seychelles"
 msgstr "Seychelles"
 
-#: src/common/util.c:796
+#: src/common/util.c:793
 msgid "Sudan"
 msgstr "Sudan"
 
-#: src/common/util.c:797
+#: src/common/util.c:794
 msgid "Sweden"
 msgstr "Suècia"
 
-#: src/common/util.c:798
+#: src/common/util.c:795
 msgid "Singapore"
 msgstr "Singapur"
 
-#: src/common/util.c:799
+#: src/common/util.c:796
 msgid "St. Helena"
 msgstr "St. Helena"
 
-#: src/common/util.c:800
+#: src/common/util.c:797
 msgid "Slovenia"
 msgstr "Eslovènia"
 
-#: src/common/util.c:801
+#: src/common/util.c:798
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "Illes Svalbard i Jan Mayen"
 
-#: src/common/util.c:802
+#: src/common/util.c:799
 msgid "Slovak Republic"
 msgstr "República Eslovaca"
 
-#: src/common/util.c:803
+#: src/common/util.c:800
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
-#: src/common/util.c:804
+#: src/common/util.c:801
 msgid "San Marino"
 msgstr "San Marino"
 
-#: src/common/util.c:805
+#: src/common/util.c:802
 msgid "Senegal"
 msgstr "Senegal"
 
-#: src/common/util.c:806
+#: src/common/util.c:803
 msgid "Somalia"
 msgstr "Somàlia"
 
-#: src/common/util.c:807
+#: src/common/util.c:804
 msgid "Suriname"
 msgstr "Surinam"
 
-#: src/common/util.c:808
+#: src/common/util.c:805
 msgid "Sao Tome and Principe"
 msgstr "Sao Tome i Principe"
 
-#: src/common/util.c:809
+#: src/common/util.c:806
 msgid "Former USSR"
 msgstr "Antiga URSS"
 
-#: src/common/util.c:810
+#: src/common/util.c:807
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: src/common/util.c:811
+#: src/common/util.c:808
 msgid "Syria"
 msgstr "Síria"
 
-#: src/common/util.c:812
+#: src/common/util.c:809
 msgid "Swaziland"
 msgstr "Swazilàndia"
 
-#: src/common/util.c:813
+#: src/common/util.c:810
 msgid "Turks and Caicos Islands"
 msgstr "Illes Turks i Caicos"
 
-#: src/common/util.c:814
+#: src/common/util.c:811
 msgid "Chad"
 msgstr "Txad"
 
-#: src/common/util.c:815
+#: src/common/util.c:812
 msgid "French Southern Territories"
 msgstr "Territoris francesos del sud"
 
-#: src/common/util.c:816
+#: src/common/util.c:813
 msgid "Togo"
 msgstr "Togo"
 
-#: src/common/util.c:817
+#: src/common/util.c:814
 msgid "Thailand"
 msgstr "Tailàndia"
 
-#: src/common/util.c:818
+#: src/common/util.c:815
 msgid "Tajikistan"
 msgstr "Tadjikistan"
 
-#: src/common/util.c:819
+#: src/common/util.c:816
 msgid "Tokelau"
 msgstr "Tokelau"
 
-#: src/common/util.c:820
+#: src/common/util.c:817
 msgid "Turkmenistan"
 msgstr "Turkmenistan"
 
-#: src/common/util.c:821
+#: src/common/util.c:818
 msgid "Tunisia"
 msgstr "Tunísia"
 
-#: src/common/util.c:822
+#: src/common/util.c:819
 msgid "Tonga"
 msgstr "Tonga"
 
-#: src/common/util.c:823
+#: src/common/util.c:820
 msgid "East Timor"
 msgstr "Timor Oriental"
 
-#: src/common/util.c:824
+#: src/common/util.c:821
 msgid "Turkey"
 msgstr "Turquia"
 
-#: src/common/util.c:825
+#: src/common/util.c:822
 msgid "Trinidad and Tobago"
 msgstr "Trinitat i Tobago"
 
-#: src/common/util.c:826
+#: src/common/util.c:823
 msgid "Tuvalu"
 msgstr "Tuvalu"
 
-#: src/common/util.c:827
+#: src/common/util.c:824
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#: src/common/util.c:828
+#: src/common/util.c:825
 msgid "Tanzania"
 msgstr "Tanzània"
 
-#: src/common/util.c:829
+#: src/common/util.c:826
 msgid "Ukraine"
 msgstr "Ucrània"
 
-#: src/common/util.c:830
+#: src/common/util.c:827
 msgid "Uganda"
 msgstr "Uganda"
 
-#: src/common/util.c:831
+#: src/common/util.c:828
 msgid "United Kingdom"
 msgstr "Regne Unit"
 
-#: src/common/util.c:832
+#: src/common/util.c:829
 msgid "US Minor Outlying Islands"
 msgstr "Illes menors de la perifèria dels EE.UU."
 
-#: src/common/util.c:833
+#: src/common/util.c:830
 msgid "United States of America"
 msgstr "Estats Units d'Amèrica"
 
-#: src/common/util.c:834
+#: src/common/util.c:831
 msgid "Uruguay"
 msgstr "Uruguai"
 
-#: src/common/util.c:835
+#: src/common/util.c:832
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-#: src/common/util.c:836
+#: src/common/util.c:833
 msgid "Vatican City State"
 msgstr "Ciutat Estat del Vaticà"
 
-#: src/common/util.c:837
+#: src/common/util.c:834
 msgid "St. Vincent and the Grenadines"
 msgstr "St. Vincent i les Granadines"
 
-#: src/common/util.c:838
+#: src/common/util.c:835
 msgid "Venezuela"
 msgstr "Veneçuela"
 
-#: src/common/util.c:839
+#: src/common/util.c:836
 msgid "British Virgin Islands"
 msgstr "Illes Verges Britàniques"
 
-#: src/common/util.c:840
+#: src/common/util.c:837
 msgid "US Virgin Islands"
 msgstr "Illes Verges dels EUA"
 
-#: src/common/util.c:841
+#: src/common/util.c:838
 msgid "Vietnam"
 msgstr "Vietnam"
 
-#: src/common/util.c:842
+#: src/common/util.c:839
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: src/common/util.c:843
+#: src/common/util.c:840
 msgid "Wallis and Futuna Islands"
 msgstr "Illes Wallis i Futuna"
 
-#: src/common/util.c:844
+#: src/common/util.c:841
 msgid "Samoa"
 msgstr "Samoa"
 
-#: src/common/util.c:845
+#: src/common/util.c:842
 msgid "Yemen"
 msgstr "Iemen"
 
-#: src/common/util.c:846
+#: src/common/util.c:843
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: src/common/util.c:847
+#: src/common/util.c:844
 msgid "Yugoslavia"
 msgstr "Iugoslàvia"
 
-#: src/common/util.c:848
+#: src/common/util.c:845
 msgid "South Africa"
 msgstr "Sudàfrica"
 
-#: src/common/util.c:849
+#: src/common/util.c:846
 msgid "Zambia"
 msgstr "Zàmbia"
 
-#: src/common/util.c:850
+#: src/common/util.c:847
 msgid "Zaire"
 msgstr "Zaire"
 
-#: src/common/util.c:851
+#: src/common/util.c:848
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
-#: src/common/util.c:857 src/common/util.c:867 src/fe-gtk/menu.c:482
+#: src/common/util.c:854 src/common/util.c:864 src/fe-gtk/menu.c:482
 #: src/fe-gtk/menu.c:486 src/fe-gtk/menu.c:490 src/fe-gtk/menu.c:494
 #: src/fe-gtk/menu.c:498
 msgid "Unknown"
 msgstr "Desconegut"
 
 # ESTIC AQUÍ
-#: src/common/rage.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr "Directe client-a-client"
 
-#: src/common/rage.c:900
+#: src/common/rage.c:903
 msgid "Send File"
 msgstr "Envia fitxer"
 
-#: src/common/rage.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr "Ofereix un xat"
 
-#: src/common/rage.c:902
+#: src/common/rage.c:905
 msgid "Abort Chat"
 msgstr "Avorta el xat"
 
-#: src/common/rage.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versió"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:907
 msgid "Userinfo"
 msgstr "Informació de l'usuari"
 
-#: src/common/rage.c:905
+#: src/common/rage.c:908
 msgid "Clientinfo"
 msgstr "Informació del client"
 
-#: src/common/rage.c:906 src/common/rage.c:940 src/common/rage.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:910
 msgid "Time"
 msgstr "Hora"
 
-#: src/common/rage.c:908
+#: src/common/rage.c:911
 msgid "Finger"
 msgstr "Finger"
 
-#: src/common/rage.c:909
+#: src/common/rage.c:912
 msgid "Oper"
 msgstr "Operador"
 
-#: src/common/rage.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr "Mata aquest usuari"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:914
 msgid "Mode"
 msgstr "Mode"
 
-#: src/common/rage.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr "Dóna estatus d'op"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr "Treu op"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:917
 msgid "Give Half-Ops"
 msgstr "Dóna estatus de semi-op"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:918
 msgid "Take Half-Ops"
 msgstr "Treu estatus de semi-op"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr "Dóna estatus de veu"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr "Treu estatus de veu"
 
-#: src/common/rage.c:918
+#: src/common/rage.c:921
 msgid "Ignore"
 msgstr "Ignora"
 
-#: src/common/rage.c:919
+#: src/common/rage.c:922
 msgid "Ignore User"
 msgstr "Ignora l'usuari"
 
-#: src/common/rage.c:920
+#: src/common/rage.c:923
 msgid "UnIgnore User"
 msgstr "Deixa d'ignorar l'usuari"
 
-#: src/common/rage.c:921
+#: src/common/rage.c:924
 msgid "Kick/Ban"
 msgstr "Fés fora/Bandeja"
 
-#: src/common/rage.c:922 src/common/rage.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Fés fora"
 
-#: src/common/rage.c:923 src/common/rage.c:924 src/common/rage.c:925
-#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Bandeja"
 
-#: src/common/rage.c:928 src/common/rage.c:929 src/common/rage.c:930
-#: src/common/rage.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 msgid "KickBan"
 msgstr "Fés fora i bandeja"
 
-#: src/common/rage.c:932 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:490 src/fe-gtk/dccgui.c:658
 msgid "Info"
 msgstr "Informació"
 
-#: src/common/rage.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr "Qui"
 
-#: src/common/rage.c:934 src/common/rage.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "WhoIs (Qui és?)"
 
-#: src/common/rage.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr "Consulta DNS"
 
-#: src/common/rage.c:936
+#: src/common/rage.c:939
 msgid "Trace"
 msgstr "Traça"
 
-#: src/common/rage.c:937
+#: src/common/rage.c:940
 msgid "UserHost"
 msgstr "UsuariMàquina"
 
-#: src/common/rage.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr "Extern"
 
-#: src/common/rage.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/rage.c:941
+#: src/common/rage.c:944
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/rage.c:942
+#: src/common/rage.c:945
 msgid "Open Dialog Window"
 msgstr "Obre una finestra de diàleg"
 
-#: src/common/rage.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Desconnecta"
 
-#: src/common/rage.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Torna a connectar"
 
-#: src/common/rage.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Deixa el canal"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Entra al canal..."
 
-#: src/common/rage.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Introduïu el canal on entrar:"
 
-#: src/common/rage.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Enllaços del servidor"
 
-#: src/common/rage.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Ping al servidor"
 
-#: src/common/rage.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Oculta la versió"
 
-#: src/common/rage.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Op"
 
-#: src/common/rage.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "DeOp"
 
-#: src/common/rage.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "adéu"
 
-#: src/common/rage.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Introduïu el motiu per a fer fora a %s:"
 
-#: src/common/rage.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Envia fitxer"
 
-#: src/common/rage.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Diàleg"
 
-#: src/common/rage.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Envia"
 
-#: src/common/rage.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Xat"
 
-#: src/common/rage.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Neteja"
@@ -3120,7 +3154,7 @@ msgstr "Neteja"
 msgid "About Rage"
 msgstr "Quant a X-Chat"
 
-#: src/fe-gtk/about.c:97
+#: src/fe-gtk/about.c:98
 msgid "A multiplatform IRC Client"
 msgstr "Un client d'IRC multiplataforma"
 
@@ -3136,7 +3170,7 @@ msgstr "Heu de seleccionar algun usuari bandejat."
 msgid "Mask"
 msgstr "Màscara"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:471
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:450
 msgid "From"
 msgstr "De"
 
@@ -3215,17 +3249,17 @@ msgstr "Desa la llista"
 msgid "Join Channel"
 msgstr "Entra al canal"
 
-#: src/fe-gtk/dccgui.c:100
+#: src/fe-gtk/dccgui.c:78
 #, c-format
 msgid "Send file to %s"
 msgstr "Envia el fitxer a %s"
 
-#: src/fe-gtk/dccgui.c:324
+#: src/fe-gtk/dccgui.c:303
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
 "   To/From: %s\n"
-"      Size: %lli\n"
+"      Size: %llu\n"
 "      Port: %d\n"
 " IP Number: %s\n"
 "Start Time: %s   Max CPS: %d\n"
@@ -3237,11 +3271,11 @@ msgstr ""
 " Adreça IP: %s\n"
 "     Inici: %s   CPS màxim: %d\n"
 
-#: src/fe-gtk/dccgui.c:358
+#: src/fe-gtk/dccgui.c:337
 msgid "That file is not resumable."
 msgstr "Aquest fitxer no es pot interrompre i reprendre."
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:341
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3252,7 +3286,7 @@ msgstr ""
 "%s.\n"
 "No es pot continuar."
 
-#: src/fe-gtk/dccgui.c:369
+#: src/fe-gtk/dccgui.c:348
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
@@ -3260,80 +3294,85 @@ msgstr ""
 "El fitxer del directori de recepcions és més gran que el fitxer ofert. No es "
 "pot continuar."
 
-#: src/fe-gtk/dccgui.c:373
+#: src/fe-gtk/dccgui.c:352
 msgid "Cannot resume the same file from two people."
 msgstr ""
 "No es pot reprendre la recepció del mateix fitxer des de dues persones "
 "diferents."
 
-#: src/fe-gtk/dccgui.c:460
+#: src/fe-gtk/dccgui.c:439
 msgid "MIME Type"
 msgstr "Tipus MIME"
 
-#: src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623 src/fe-gtk/dccgui.c:746
+#: src/fe-gtk/dccgui.c:445 src/fe-gtk/dccgui.c:618 src/fe-gtk/dccgui.c:742
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Estat"
 
-#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:624 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:446 src/fe-gtk/dccgui.c:619 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Fitxer"
 
-#: src/fe-gtk/dccgui.c:470 src/fe-gtk/dccgui.c:628
+#: src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:623
 msgid "ETA"
 msgstr "ETA"
 
-#: src/fe-gtk/dccgui.c:480
+#: src/fe-gtk/dccgui.c:459
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: Llista de fitxers rebuts"
 
-#: src/fe-gtk/dccgui.c:508 src/fe-gtk/dccgui.c:661 src/fe-gtk/dccgui.c:776
+#: src/fe-gtk/dccgui.c:487 src/fe-gtk/dccgui.c:656 src/fe-gtk/dccgui.c:771
 msgid "Abort"
 msgstr "Avorta"
 
-#: src/fe-gtk/dccgui.c:510 src/fe-gtk/dccgui.c:777
+#: src/fe-gtk/dccgui.c:488 src/fe-gtk/dccgui.c:772
 msgid "Accept"
 msgstr "Accepta"
 
-#: src/fe-gtk/dccgui.c:512
+#: src/fe-gtk/dccgui.c:489
 msgid "Resume"
 msgstr "Reprèn"
 
-#: src/fe-gtk/dccgui.c:516
+#: src/fe-gtk/dccgui.c:492
 msgid "Open"
 msgstr "Obre"
 
-#: src/fe-gtk/dccgui.c:627
+#: src/fe-gtk/dccgui.c:622
 msgid "Ack"
 msgstr "Pregunta"
 
-#: src/fe-gtk/dccgui.c:629
+#: src/fe-gtk/dccgui.c:624
 msgid "To"
 msgstr "A"
 
-#: src/fe-gtk/dccgui.c:639
+#: src/fe-gtk/dccgui.c:634
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: Llista de fitxers enviats"
 
-#: src/fe-gtk/dccgui.c:747
+#: src/fe-gtk/dccgui.c:657
+#, fuzzy
+msgid "Reoffer"
+msgstr "Elimina"
+
+#: src/fe-gtk/dccgui.c:743
 msgid "To/From"
 msgstr "A/De"
 
-#: src/fe-gtk/dccgui.c:748
+#: src/fe-gtk/dccgui.c:744
 msgid "Recv"
 msgstr "Rebut"
 
-#: src/fe-gtk/dccgui.c:749
+#: src/fe-gtk/dccgui.c:745
 msgid "Sent"
 msgstr "Enviat"
 
-#: src/fe-gtk/dccgui.c:750
+#: src/fe-gtk/dccgui.c:746
 msgid "StartTime"
 msgstr "Inici"
 
-#: src/fe-gtk/dccgui.c:760
+#: src/fe-gtk/dccgui.c:755
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: Llista de xats DCC"
@@ -3430,13 +3469,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:530
+#: src/fe-gtk/fe-gtk.c:531
 msgid "Search buffer is empty.\n"
 msgstr "El buffer està buit.\n"
 
-#: src/fe-gtk/fe-gtk.c:607
-#, c-format
-msgid "%d bytes"
+#: src/fe-gtk/fe-gtk.c:608
+#, fuzzy, c-format
+msgid "%d lines"
 msgstr "%d octets"
 
 #: src/fe-gtk/fkeys.c:114
@@ -3557,9 +3596,9 @@ msgstr "Hi ha hagut un error en carregar la configuració dels vincles de tecla"
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:863 src/fe-gtk/maingui.c:879
-#: src/fe-gtk/maingui.c:1022 src/fe-gtk/maingui.c:1075
-#: src/fe-gtk/maingui.c:2450
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
+#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
+#: src/fe-gtk/maingui.c:2458
 msgid "<none>"
 msgstr "<res>"
 
@@ -3665,7 +3704,7 @@ msgstr "No s'ha pogut llegir aquest fitxer"
 msgid "That mask already exists."
 msgstr "Aquesta màscara ja existeix."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1533
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
 msgid "Private"
 msgstr "Privat"
 
@@ -3730,7 +3769,7 @@ msgstr "Afegeix"
 msgid "Dialog with"
 msgstr "Conversa amb"
 
-#: src/fe-gtk/maingui.c:532
+#: src/fe-gtk/maingui.c:531
 #, c-format
 msgid "Topic for %s is: %s"
 msgstr "El tema per a %s és: %s"
@@ -3739,80 +3778,80 @@ msgstr "El tema per a %s és: %s"
 msgid "No topic is set"
 msgstr "No hi ha cap tema establert"
 
-#: src/fe-gtk/maingui.c:932
+#: src/fe-gtk/maingui.c:933
 msgid "No other tabs open, quit xchat?"
 msgstr "No hi han més pestanyes obertes, voleu sortir de l'X-Chat?"
 
-#: src/fe-gtk/maingui.c:978
+#: src/fe-gtk/maingui.c:979
 msgid "Insert color code"
 msgstr "Inseriu el codi del color"
 
-#: src/fe-gtk/maingui.c:1027
+#: src/fe-gtk/maingui.c:1028
 msgid "Beep on message"
 msgstr "Pita en rebre un missatge"
 
-#: src/fe-gtk/maingui.c:1030
+#: src/fe-gtk/maingui.c:1031
 msgid "Show join/part messages"
 msgstr "Mostra els missatges d'entrada i de sortida"
 
-#: src/fe-gtk/maingui.c:1032
+#: src/fe-gtk/maingui.c:1033
 msgid "Color paste"
 msgstr "Enganxa el color"
 
-#: src/fe-gtk/maingui.c:1042
+#: src/fe-gtk/maingui.c:1043
 msgid "Go to"
 msgstr "Vés a"
 
-#: src/fe-gtk/maingui.c:1055 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "Tanca la pestanya"
 
-#: src/fe-gtk/maingui.c:1058 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "Separa la pestanya"
 
-#: src/fe-gtk/maingui.c:1249
+#: src/fe-gtk/maingui.c:1252
 msgid "Some file transfers still active, quit xchat?"
 msgstr ""
 "Encara hi ha transferències de fitxers actives, voleu sortir de l'X-Chat?"
 
-#: src/fe-gtk/maingui.c:1400 src/fe-gtk/maingui.c:1506
+#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
 msgid "User limit must be a number!\n"
 msgstr "El límit d'usuaris ha de ser un número!\n"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1535
 msgid "Topic Protection"
 msgstr "Protecció del tema"
 
-#: src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/maingui.c:1536
 msgid "No outside messages"
 msgstr "Bloqueja els missatges exteriors"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1537
 msgid "Secret"
 msgstr "Secret"
 
-#: src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/maingui.c:1538
 msgid "Invite Only"
 msgstr "Només convidats"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1540
 msgid "Moderated"
 msgstr "Moderat"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1541
 msgid "Ban List"
 msgstr "Llista d'usuaris bandejats"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1543
 msgid "Keyword"
 msgstr "Contrasenya"
 
-#: src/fe-gtk/maingui.c:1549
+#: src/fe-gtk/maingui.c:1555
 msgid "User Limit"
 msgstr "Límit d'usuaris"
 
-#: src/fe-gtk/maingui.c:1724
+#: src/fe-gtk/maingui.c:1730
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3824,20 +3863,20 @@ msgstr ""
 "Potser esteu utilitzant un gestor de finestres\n"
 "no compatible que no està soportat.\n"
 
-#: src/fe-gtk/maingui.c:1884 src/fe-gtk/maingui.c:1895
-#: src/fe-gtk/maingui.c:2671
+#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
+#: src/fe-gtk/maingui.c:2680
 msgid "Attach/Detach this tab"
 msgstr "Afegeix/Separa aquesta pestanya"
 
-#: src/fe-gtk/maingui.c:1893 src/fe-gtk/maingui.c:2669
+#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
 msgid "Close this tab/window"
 msgstr "Tanca aquesta pestanya/finestra"
 
-#: src/fe-gtk/maingui.c:1920
+#: src/fe-gtk/maingui.c:1926
 msgid "Show/Hide userlist"
 msgstr "Mostra/Oculta la llista d'usuaris"
 
-#: src/fe-gtk/maingui.c:1958
+#: src/fe-gtk/maingui.c:1964
 msgid "Enter new nickname:"
 msgstr "Introduïu el nou sobrenom:"
 

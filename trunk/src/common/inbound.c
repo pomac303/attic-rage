@@ -673,8 +673,8 @@ handle_mjoin(rage_session *sess)
 				if (!g_queue_is_empty(sess->stack_join))
 					len += sprintf (buf + len, ", ");
 			}
-			EMIT_SIGNAL (XP_TE_MJOIN, sess, sess->channel, buf, 
-					NULL, NULL, 0);
+			EMIT_SIGNAL (sess->server->split_timer ? XP_TE_NS_JOIN : XP_TE_MJOIN, 
+					sess, sess->channel, buf, NULL, NULL, 0);
 		}
 	}
 	else
@@ -682,8 +682,8 @@ handle_mjoin(rage_session *sess)
 		tmp = g_queue_pop_head(sess->stack_join);
 		/* We might not have added anything due to netsplits */
 		if (tmp)
-			EMIT_SIGNAL (sess->server->split_timer ? XP_TE_NS_JOIN : XP_TE_JOIN, sess,
-					tmp->nick, sess->channel, tmp->hostname, NULL, 0);
+			EMIT_SIGNAL (XP_TE_JOIN, sess, tmp->nick, 
+					sess->channel, tmp->hostname, NULL, 0);
 	}
 	g_queue_free(sess->stack_join);
 	sess->stack_join = NULL;

@@ -320,10 +320,8 @@ pevent_dialog_show ()
 		return;
 	}
 
-	pevent_dialog =
-			  mg_create_generic_tab ("edit events", _("Edit Events"),
-											 TRUE, FALSE, pevent_dialog_close, NULL,
-											 600, 455, &vbox, 0);
+	pevent_dialog = mg_create_generic_tab ("edit events", _("Edit Events"),
+			TRUE, FALSE, pevent_dialog_close, NULL, 600, 455, &vbox, 0);
 
 	vbox2 = gtk_vbox_new (0, 2);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
@@ -338,23 +336,22 @@ pevent_dialog_show ()
 	gtk_box_pack_start (GTK_BOX (vbox), wid, 1, 1, 0);
 	gtk_widget_show (wid);
 	pevent_dialog_list = gtkutil_clist_new (2, titles, th, GTK_POLICY_ALWAYS,
-														 pevent_dialog_select, 0,
-														 pevent_dialog_unselect, 0,
-														 GTK_SELECTION_BROWSE);
+			pevent_dialog_select, 0, pevent_dialog_unselect, 
+			0, GTK_SELECTION_BROWSE);
 	gtk_clist_set_column_width (GTK_CLIST (pevent_dialog_list), 0, 80);
 	gtk_clist_set_column_width (GTK_CLIST (pevent_dialog_list), 1, 380);
 
 	pevent_dialog_twid = gtk_xtext_new (colors, 0);
-	gtk_xtext_set_tint (GTK_XTEXT (pevent_dialog_twid), prefs.tint_red, prefs.tint_green, prefs.tint_blue);
+	gtk_xtext_set_tint (GTK_XTEXT (pevent_dialog_twid), prefs.tint_red,
+			prefs.tint_green, prefs.tint_blue);
 	gtk_xtext_set_background (GTK_XTEXT (pevent_dialog_twid),
-									  channelwin_pix, prefs.transparent, prefs.tint);
+			channelwin_pix, prefs.transparent, prefs.tint);
 
 	pevent_dialog_entry = gtk_entry_new_with_max_length (255);
 	gtk_widget_set_usize (pevent_dialog_entry, 96, 0);
 
 	gtk_signal_connect (GTK_OBJECT (pevent_dialog_entry), "activate",
-							  GTK_SIGNAL_FUNC (pevent_dialog_update),
-							  pevent_dialog_twid);
+			GTK_SIGNAL_FUNC (pevent_dialog_update), pevent_dialog_twid);
 
 	gtk_box_pack_start (GTK_BOX (bh), pevent_dialog_entry, 0, 0, 0);
 	gtk_widget_show (pevent_dialog_entry);
@@ -374,9 +371,7 @@ pevent_dialog_show ()
 	show_and_unfocus (wid);
 
 	pevent_dialog_hlist = gtkutil_clist_new (2, help_titles, bh,
-														  GTK_POLICY_ALWAYS,
-														  NULL, 0, NULL, 0,
-														  GTK_SELECTION_BROWSE);
+			GTK_POLICY_ALWAYS, NULL, 0, NULL, 0, GTK_SELECTION_BROWSE);
 	gtk_clist_set_column_width (GTK_CLIST (pevent_dialog_list), 0, 120);
 	gtk_widget_show (pevent_dialog_hlist);
 
@@ -387,31 +382,32 @@ pevent_dialog_show ()
 	wid = gtk_button_new_with_label (_("Save"));
 	gtk_box_pack_end (GTK_BOX (hbox), wid, 0, 0, 0);
 	gtk_signal_connect (GTK_OBJECT (wid), "clicked",
-							  GTK_SIGNAL_FUNC (pevent_save_cb), NULL);
+			GTK_SIGNAL_FUNC (pevent_save_cb), NULL);
 	gtk_widget_show (wid);
 	wid = gtk_button_new_with_label (_("Save As"));
 	gtk_box_pack_end (GTK_BOX (hbox), wid, 0, 0, 0);
 	gtk_signal_connect (GTK_OBJECT (wid), "clicked",
-							  GTK_SIGNAL_FUNC (pevent_save_cb), (void *) 1);
+			GTK_SIGNAL_FUNC (pevent_save_cb), (void *) 1);
 	gtk_widget_show (wid);
 	wid = gtk_button_new_with_label (_("Load From"));
 	gtk_box_pack_end (GTK_BOX (hbox), wid, 0, 0, 0);
 	gtk_signal_connect (GTK_OBJECT (wid), "clicked",
-							  GTK_SIGNAL_FUNC (pevent_load_cb), (void *) 0);
+			GTK_SIGNAL_FUNC (pevent_load_cb), (void *) 0);
 	gtk_widget_show (wid);
 	wid = gtk_button_new_with_label (_("Test All"));
 	gtk_box_pack_end (GTK_BOX (hbox), wid, 0, 0, 0);
 	gtk_signal_connect (GTK_OBJECT (wid), "clicked",
-							  GTK_SIGNAL_FUNC (pevent_test_cb), pevent_dialog_twid);
+			GTK_SIGNAL_FUNC (pevent_test_cb), pevent_dialog_twid);
 	gtk_widget_show (wid);
 
 	wid = gtk_button_new_from_stock (GTK_STOCK_OK);
 	gtk_box_pack_start (GTK_BOX (hbox), wid, 0, 0, 0);
 	gtk_signal_connect (GTK_OBJECT (wid), "clicked",
-							  GTK_SIGNAL_FUNC (pevent_ok_cb), NULL);
+			GTK_SIGNAL_FUNC (pevent_ok_cb), NULL);
 	gtk_widget_show (wid);
 
 	gtk_widget_show (hbox);
 
 	gtk_widget_show (pevent_dialog);
 }
+

@@ -1488,11 +1488,7 @@ tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *
 			comp = 0;
 		}
 
-#if GLIB_CHECK_VERSION(2,4,0)
 		list = g_completion_complete_utf8 (gcomp, comp ? old_gcomp.data : ent, &result);
-#else
-		list = g_completion_complete (gcomp, comp ? old_gcomp.data : ent, &result);
-#endif
 
 		if (result == NULL) /* No matches found */
 		{
@@ -1578,10 +1574,7 @@ tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *
 						strncat (buf, result, buf_size - prefix_len);
 						cursor_pos = strlen (buf);
 						g_free(result);
-#if !GLIB_CHECK_VERSION(2,4,0)
-						g_utf8_validate (buf, -1, (const gchar **)&result);
-						(*result) = 0;
-#endif
+
 						if (postfix)
 						{
 							strcat (buf, " ");
