@@ -187,39 +187,28 @@ ignore_check (char *host, int type)
 	while (list)
 	{
 		ig = (struct ignore *) list->data;
-		if (ig->type & IG_UNIG)
-		{
-			if (ig->type & type)
-			{
-				if (match (ig->mask, host))
-					return FALSE;
-			}
-		}
-		list = list->next;
-	}
-
-	list = ignore_list;
-	while (list)
-	{
-		ig = (struct ignore *) list->data;
-
 		if (ig->type & type)
 		{
 			if (match (ig->mask, host))
 			{
-				ignored_total++;
-				if (type & IG_PRIV)
-					ignored_priv++;
-				if (type & IG_NOTI)
-					ignored_noti++;
-				if (type & IG_CHAN)
-					ignored_chan++;
-				if (type & IG_CTCP)
-					ignored_ctcp++;
-				if (type & IG_INVI)
-					ignored_invi++;
-				fe_ignore_update (2);
-				return TRUE;
+				if (ig->type & IG_UNIG)	
+					return FALSE;
+				else
+				{
+					ignored_total++;
+					if (type & IG_PRIV)
+						ignored_priv++;
+					if (type & IG_NOTI)
+						ignored_noti++;
+					if (type & IG_CHAN)
+						ignored_chan++;
+					if (type & IG_CTCP)
+						ignored_ctcp++;
+					if (type & IG_INVI)
+						ignored_invi++;
+					fe_ignore_update (2);
+					return TRUE;
+				}
 			}
 		}
 		list = list->next;
