@@ -109,6 +109,6 @@ endif
 	dh_md5sums -prage
 	dh_builddeb -prage
 	# removed -pxchat-text from all above
-binary: binary-indep binary-arch
+binary: binary-indep binary-arch clean
 	
 .PHONY: build clean binary-indep binary-arch binary install
