@@ -819,7 +819,8 @@ handle_netsplit(server *serv)
 				len += sprintf (buf + len, ", ");
 			g_free(tmp);
 		}
-		EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
+		if (!sess->hide_join_part)
+			EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
 	}
 	g_queue_free(serv->split_queue);
 	serv->split_queue = NULL;
@@ -838,67 +839,63 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 	int netsplit = FALSE;
 	char *seperator, *p;
 	
-	if (!sess->hide_join_part)
+	if (serv->split_reason && (strcmp(serv->split_reason, reason) == 0))
+		netsplit = TRUE;
+	else if ((seperator = strchr(reason, ' ')))
 	{
-		if (serv->split_reason && (strcmp(serv->split_reason, reason) == 0))
-			netsplit = TRUE;
-		else if ((seperator = strchr(reason, ' ')))
+		int tld = 0, space = FALSE;
+		*seperator = 0;
+
+		if((p = strchr(reason, '.')))
 		{
-			int tld = 0, space = FALSE;
-
-			*seperator = 0;
-
-			if((p = strchr(reason, '.')))
+			for (; *p; p++)
 			{
-				for (; *p; p++)
+				if (*p == '.')
+					tld = 0;
+				else
+					tld++;
+			}
+			if ((tld > 1) && (tld < 5))
+			{
+				if ((p = strchr(seperator +1, '.')))
 				{
-					if (*p == '.')
-						tld = 0;
-					else
-						tld++;
-				}
-				if ((tld > 1) && (tld < 5))
-				{
-					if ((p = strchr(seperator +1, '.')))
+					for (; *p; p++)
 					{
-						for (; *p; p++)
+						if (*p == ' ')
 						{
-							if (*p == ' ')
-							{
-								space = TRUE;
-								break;
-							}
-							if (*p == '.')
-								tld = 0;
-							else
-								tld++;
+							space = TRUE;
+							break;
 						}
-						if (!space && (tld > 1) && (tld < 6))
-							netsplit = TRUE;
+						if (*p == '.')
+							tld = 0;
+						else
+							tld++;
 					}
+					if (!space && (tld > 1) && (tld < 6))
+						netsplit = TRUE;
 				}
 			}
-			
-			if (netsplit)
-			{	
-				if (serv->split_queue)
-				{
-					if (serv->split_timer)
-						g_source_remove(serv->split_timer);
-					handle_netsplit(serv);
-				}
-
-				serv->split_queue = g_queue_new();
-
-				EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, 
-						seperator+1, NULL, NULL, 0);
-			
-				*seperator = ' ';
-				serv->split_reason = g_strdup(reason);
-			}
-			else
-				*seperator = ' ';
 		}
+		
+		if (netsplit)
+		{	
+			if (serv->split_queue)
+			{
+				if (serv->split_timer)
+					g_source_remove(serv->split_timer);
+				handle_netsplit(serv);
+			}
+
+			serv->split_queue = g_queue_new();
+
+			EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, 
+					seperator+1, NULL, NULL, 0);
+		
+			*seperator = ' ';
+			serv->split_reason = g_strdup(reason);
+		}
+		else
+			*seperator = ' ';
 	}
 	
 	if (netsplit)
