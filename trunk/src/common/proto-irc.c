@@ -371,6 +371,7 @@ static void
 irc_numeric(session *sess, int parc, char *parv[])
 {
 	char line[512];
+	char *lp;
 	session *tmp = NULL;
 	int i=0;
 
@@ -439,7 +440,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 					EMIT_SIGNAL(XP_TE_SERVTEXT,
 						sess->server->server_session,
 							parv[parc-1], parv[0],
-							NULL, NULL,
+							parv[1], NULL,
 							0);
 					who_sess->doing_who = FALSE;
 				} else
@@ -448,8 +449,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 						EMIT_SIGNAL (XP_TE_SERVTEXT,
 						sess->server->server_session,
 								parv[parc-1], 
-								parv[1],
-								NULL,NULL,
+								parv[0],
+								parv[1],NULL,
 								0);
 					sess->server->doing_dns = FALSE;
 				}
@@ -535,7 +536,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 				EMIT_SIGNAL(XP_TE_SERVTEXT, 
 						sess->server->server_session, 
 						parv[parc-1],
-						parv[0], NULL, NULL, 0);
+						parv[0], parv[1], NULL, 0);
 			else
 				fe_chan_list_end(sess->server);
 			return;
@@ -609,7 +610,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 				EMIT_SIGNAL(XP_TE_SERVTEXT, 
 						sess->server->server_session, 
 						parv[parc-1], parv[0], 
-						NULL, NULL, 0);
+						parv[1], NULL, 0);
 			
 			return;
 		}
@@ -631,7 +632,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 					EMIT_SIGNAL(XP_TE_SERVTEXT, 
 						sess->server->server_session,
 							parv[parc-1], parv[0],
-							NULL, NULL, 0);
+							parv[1], NULL, 0);
 				return;
 			}
 			else
@@ -735,9 +736,10 @@ irc_numeric(session *sess, int parc, char *parv[])
 		tmp = sess->server->server_session;
 	}
 
-	line[0]='\0';
-	for(i=2;i<parc;i++) {
-		snprintf(line,sizeof(line),"*s %s %s",line,parv[i]);
+	lp=line;
+	*lp='\0';
+	for(i=3;i<parc && lp<(line+sizeof(line));i++) {
+		lp+=snprintf(lp,sizeof(line)-(lp-line),"%s ",parv[i]);
 	}
 
 	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, line, 
@@ -937,14 +939,16 @@ irc_server(session *sess, int parc, char *parv[])
 		{
 			char line[512];
 			int i=0;
-			line[0]='\0';
-			for(i=(is_server ? 1 : 0);i<parc;i++) {
-				snprintf(line,sizeof(line),"*s %s %s",line,parv[i]);
+			char *lp;
+			lp=line;
+			*lp='\0';
+			for(i=3;i<parc && lp<(line+sizeof(line));i++) {
+				lp+=snprintf(lp,sizeof(line)-(lp-line),
+						"%s ",parv[i]);
 			}
 			if (is_server)
 				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
-						sess->server->servername,
-						NULL, NULL, 0);
+						parv[0], parv[1], NULL, 0);
 			else
 				PrintTextf(sess, "GARBAGE\t%s\n", line);
 		}
