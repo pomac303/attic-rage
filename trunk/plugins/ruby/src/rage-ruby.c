@@ -35,8 +35,8 @@
 
 /* ``global'' variables (global to the Rage-Ruby plugin) {{{ */
 
-static xchat_plugin *static_plugin_handle = NULL;
-static xchat_plugin *ph = NULL;
+static rage_plugin *static_plugin_handle = NULL;
+static rage_plugin *ph = NULL;
 static int           static_ruby_initialized = 0;
 
 static VALUE         static_rage_module;
@@ -64,7 +64,7 @@ static void static_init_ruby_environment( void );
 /**
  * Initializes the XChat environment.
  */
-static void static_init_rage_environment( xchat_plugin *plugin_handle,
+static void static_init_rage_environment( rage_plugin *plugin_handle,
                                            char **plugin_name,
                                            char **plugin_desc,
                                            char **plugin_version );
@@ -227,7 +227,7 @@ static int static_ruby_custom_timer_hook( void *userdata );
  * Callback for destroying a list when Ruby garbage collects
  * the associated XChatListInternal object.
  */
-static void static_free_rage_list( xchat_list *list );
+static void static_free_rage_list( rage_list *list );
 
 /*}}}*/
 
@@ -364,7 +364,7 @@ static void static_init_ruby_environment( void )
 }
 
 
-static void static_init_rage_environment( xchat_plugin *plugin_handle,
+static void static_init_rage_environment( rage_plugin *plugin_handle,
                                            char **plugin_name,
                                            char **plugin_desc,
                                            char **plugin_version )
@@ -385,7 +385,7 @@ static VALUE static_ruby_rage_hook_command( VALUE klass,
   char *s_help;
   int   i_priority;
 
-  xchat_hook *hook;
+  rage_hook *hook;
   VALUE       v_hook;
 
   Check_Type( name, T_STRING );
@@ -396,7 +396,7 @@ static VALUE static_ruby_rage_hook_command( VALUE klass,
   i_priority = FIX2INT( priority );
   s_help = STR2CSTR( help );
 
-  hook = xchat_hook_command( static_plugin_handle,
+  hook = rage_hook_command( static_plugin_handle,
                              s_name,
                              i_priority,
                              static_ruby_custom_command_hook,
@@ -417,7 +417,7 @@ static VALUE static_ruby_rage_hook_print( VALUE klass,
 {
   char *s_name;
   int   i_priority;
-  xchat_hook *hook;
+  rage_hook *hook;
   VALUE v_hook;
 
   Check_Type( name, T_STRING );
@@ -426,7 +426,7 @@ static VALUE static_ruby_rage_hook_print( VALUE klass,
   s_name = STR2CSTR( name );
   i_priority = FIX2INT( priority );
 
-  hook = xchat_hook_print( static_plugin_handle,
+  hook = rage_hook_print( static_plugin_handle,
                            s_name,
                            i_priority,
                            static_ruby_custom_print_hook,
@@ -446,7 +446,7 @@ static VALUE static_ruby_rage_hook_server( VALUE klass,
 {
   char *s_name;
   int   i_priority;
-  xchat_hook *hook;
+  rage_hook *hook;
   VALUE v_hook;
 
   Check_Type( name, T_STRING );
@@ -455,7 +455,7 @@ static VALUE static_ruby_rage_hook_server( VALUE klass,
   s_name = STR2CSTR( name );
   i_priority = FIX2INT( priority );
 
-  hook = xchat_hook_server( static_plugin_handle,
+  hook = rage_hook_server( static_plugin_handle,
                             s_name,
                             i_priority,
                             static_ruby_custom_server_hook,
@@ -475,7 +475,7 @@ static VALUE static_ruby_rage_hook_timer( VALUE klass,
 {
   char *s_name;
   int   i_timeout;
-  xchat_hook *hook;
+  rage_hook *hook;
   VALUE v_hook;
 
   Check_Type( name, T_STRING );
@@ -484,7 +484,7 @@ static VALUE static_ruby_rage_hook_timer( VALUE klass,
   s_name = STR2CSTR( name );
   i_timeout = FIX2INT( timeout );
 
-  hook = xchat_hook_timer( static_plugin_handle,
+  hook = rage_hook_timer( static_plugin_handle,
                            i_timeout,
                            static_ruby_custom_timer_hook,
                            (void*)name );
@@ -506,7 +506,7 @@ static VALUE static_ruby_rage_print( VALUE klass,
 
   s_text = STR2CSTR( text );
 
-  xchat_print( static_plugin_handle, s_text );
+  rage_print( static_plugin_handle, s_text );
 
   return Qnil;
 }
@@ -515,11 +515,11 @@ static VALUE static_ruby_rage_print( VALUE klass,
 static VALUE static_ruby_rage_unhook( VALUE klass,
                                        VALUE hook_id )
 {
-  xchat_hook *hook;
+  rage_hook *hook;
 
-  Data_Get_Struct( hook_id, xchat_hook, hook );
+  Data_Get_Struct( hook_id, rage_hook, hook );
 
-  xchat_unhook( static_plugin_handle, hook );
+  rage_unhook( static_plugin_handle, hook );
 
   return Qnil;
 }
@@ -533,7 +533,7 @@ static VALUE static_ruby_rage_command( VALUE klass,
   Check_Type( command, T_STRING );
   cmd = STR2CSTR( command );
 
-  xchat_command( static_plugin_handle,
+  rage_command( static_plugin_handle,
                  cmd );
 
   return Qnil;
@@ -546,13 +546,13 @@ static VALUE static_ruby_rage_find_context( VALUE klass,
 {
   char *s_server = NULL;
   char *s_channel = NULL;
-  xchat_context *ctx;
+  rage_context *ctx;
   VALUE v_ctx;
 
   if( !NIL_P( server ) ) s_server = STR2CSTR( server );
   if( !NIL_P( channel ) ) s_channel = STR2CSTR( channel );
 
-  ctx = xchat_find_context( static_plugin_handle,
+  ctx = rage_find_context( static_plugin_handle,
                             s_server,
                             s_channel );
 
@@ -569,10 +569,10 @@ static VALUE static_ruby_rage_find_context( VALUE klass,
 
 static VALUE static_ruby_rage_get_context( VALUE klass )
 {
-  xchat_context *ctx;
+  rage_context *ctx;
   VALUE v_ctx;
 
-  ctx = xchat_get_context( static_plugin_handle );
+  ctx = rage_get_context( static_plugin_handle );
 
   v_ctx = Data_Wrap_Struct( static_rage_context_klass,
                             NULL, NULL,
@@ -590,7 +590,7 @@ static VALUE static_ruby_rage_get_info( VALUE klass,
 
   s_id = STR2CSTR( id );
 
-  s_info = xchat_get_info( static_plugin_handle, s_id );
+  s_info = rage_get_info( static_plugin_handle, s_id );
 
   if( s_info == NULL ) return Qnil;
 
@@ -608,7 +608,7 @@ static VALUE static_ruby_rage_get_prefs( VALUE klass,
 
   s_name = STR2CSTR( name );
 
-  rc = xchat_get_prefs( static_plugin_handle,
+  rc = rage_get_prefs( static_plugin_handle,
                         s_name,
                         (const char**)&s_pref, &i_pref );
 
@@ -631,12 +631,12 @@ static VALUE static_ruby_rage_get_prefs( VALUE klass,
 static VALUE static_ruby_rage_set_context( VALUE klass,
                                             VALUE ctx )
 {
-  xchat_context *context;
+  rage_context *context;
   int rc;
 
-  Data_Get_Struct( ctx, xchat_context, context );
+  Data_Get_Struct( ctx, rage_context, context );
 
-  rc = xchat_set_context( static_plugin_handle,
+  rc = rage_set_context( static_plugin_handle,
                           context );
 
   return INT2FIX( rc );
@@ -653,20 +653,20 @@ static VALUE static_ruby_rage_nickcmp( VALUE klass,
   s_s1 = STR2CSTR( s1 );
   s_s2 = STR2CSTR( s2 );
 
-  return INT2FIX( xchat_nickcmp( static_plugin_handle, s_s1, s_s2 ) );
+  return INT2FIX( rage_nickcmp( static_plugin_handle, s_s1, s_s2 ) );
 }
 
 
 static VALUE static_ruby_rage_list_get( VALUE klass,
                                          VALUE name )
 {
-  xchat_list *list;
+  rage_list *list;
   char *s_name;
   VALUE v_list;
 
   s_name = STR2CSTR( name );
 
-  list = xchat_list_get( static_plugin_handle, s_name );
+  list = rage_list_get( static_plugin_handle, s_name );
   if( list == NULL )
     return Qnil;
 
@@ -681,14 +681,14 @@ static VALUE static_ruby_rage_list_get( VALUE klass,
 static VALUE static_ruby_rage_list_next( VALUE klass,
                                           VALUE list )
 {
-  xchat_list *x_list;
+  rage_list *x_list;
   int rc;
 
-  Data_Get_Struct( list, xchat_list, x_list );
+  Data_Get_Struct( list, rage_list, x_list );
   if( x_list == NULL )
     return Qfalse;
 
-  rc = xchat_list_next( static_plugin_handle, x_list );
+  rc = rage_list_next( static_plugin_handle, x_list );
 
   return ( rc ? Qtrue : Qfalse );
 }
@@ -698,14 +698,14 @@ static VALUE static_ruby_rage_list_str( VALUE klass,
                                          VALUE list,
                                          VALUE name )
 {
-  xchat_list *x_list;
+  rage_list *x_list;
   char *str;
   char *s_name;
 
-  Data_Get_Struct( list, xchat_list, x_list );
+  Data_Get_Struct( list, rage_list, x_list );
   s_name = STR2CSTR( name );
 
-  str = (char*)xchat_list_str( static_plugin_handle, x_list, (const char*)s_name );
+  str = (char*)rage_list_str( static_plugin_handle, x_list, (const char*)s_name );
   if( str == NULL )
     return Qnil;
 
@@ -717,14 +717,14 @@ static VALUE static_ruby_rage_list_int( VALUE klass,
                                          VALUE list,
                                          VALUE name )
 {
-  xchat_list *x_list;
+  rage_list *x_list;
   int rc;
   char *s_name;
 
-  Data_Get_Struct( list, xchat_list, x_list );
+  Data_Get_Struct( list, rage_list, x_list );
   s_name = STR2CSTR( name );
 
-  rc = xchat_list_int( static_plugin_handle, x_list, s_name );
+  rc = rage_list_int( static_plugin_handle, x_list, s_name );
 
   return INT2FIX( rc );
 }
@@ -749,7 +749,7 @@ printf( "[argc: %d]\n", argc );
     else parms[i-1] = STR2CSTR( argv[i] );
   }
 
-  i = xchat_emit_print( static_plugin_handle,
+  i = rage_emit_print( static_plugin_handle,
                         event,
                         parms[ 0], parms[ 1], parms[ 2], parms[ 3],
                         parms[ 4], parms[ 5], parms[ 6], parms[ 7],
@@ -856,13 +856,13 @@ static int static_ruby_custom_timer_hook( void *userdata )
 }
 
 
-static void static_free_rage_list( xchat_list *list )
+static void static_free_rage_list( rage_list *list )
 {
-  xchat_list_free( static_plugin_handle, list );
+  rage_list_free( static_plugin_handle, list );
 }
 
 
-int xchat_plugin_init(xchat_plugin *plugin_handle,
+int rage_plugin_init(rage_plugin *plugin_handle,
                       char **plugin_name,
                       char **plugin_desc,
                       char **plugin_version,
@@ -877,14 +877,14 @@ int xchat_plugin_init(xchat_plugin *plugin_handle,
 
   static_init_ruby_environment();
 
-  xchat_print( static_plugin_handle,
+  rage_print( static_plugin_handle,
                "Ruby interface loaded\n" );
 
   return 1;
 }
 
 
-int xchat_plugin_deinit()
+int rage_plugin_deinit()
 {
   rb_funcall( static_rage_klass,
               rb_intern( "unregister" ),

@@ -1352,13 +1352,13 @@ static PyObject *
 Module_rage_get_prefs(PyObject *self, PyObject *args)
 {
 	PyObject *res;
-	const void *info;
+	const char *info;
 	char *name;
 	int type;
 	if (!PyArg_ParseTuple(args, "s:get_prefs", &name))
 		return NULL;
 	BEGIN_RAGE_CALLS(NONE);
-	type = rage_get_prefs(ph, name, (const char **)&info, (int*)&info);
+	type = rage_get_prefs(ph, name, (const char **)&info, &type);
 	END_RAGE_CALLS();
 	switch (type) {
 		case 0:

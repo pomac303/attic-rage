@@ -1,6 +1,6 @@
 RUBY=ruby
 CC=gcc
-CFLAGS=-g -Wall -O1 -fpic -I../../../src/common/
+CFLAGS=-g -Wall -Wimplicit -Wstrict-prototypes -Werror -O1 -fpic -I../../../src/common/
 
 ARCHDIR=`$(RUBY) -rrbconfig -e "puts Config::CONFIG['archdir']"`
 

@@ -1,4 +1,4 @@
-CFLAGS+= -Wimplicit -Wstrict-prototypes
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 
 libdir = $(xchatdir)/plugins
 

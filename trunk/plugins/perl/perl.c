@@ -1282,8 +1282,7 @@ static XS (XS_IRC_add_message_handler)
 		if (strcasecmp (name, "inbound") == 0) {
 			name = "RAW LINE";
 		}
-		hook = rage_hook_server (ph, name, RAGE_PRI_NORM, perl_server_cb,
-									tmp);
+		hook = rage_hook_server (ph, name, RAGE_PRI_NORM, (rage_serv_cb *)&perl_server_cb, tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
 	
@@ -1307,11 +1306,9 @@ static XS (XS_IRC_add_command_handler)
 
 		/* use perl_server_cb when it's a "" hook, so that it gives
 		   word_eol[1] as the arg, instead of word_eol[2] */
-		hook = rage_hook_command (ph, SvPV_nolen (ST (0)),
-						RAGE_PRI_NORM,
-						SvPV_nolen (ST (0))[0] == 0 ? 
-					perl_server_cb : perl_command_cb,
-								NULL, tmp);
+		hook = rage_hook_command (ph, SvPV_nolen (ST (0)), RAGE_PRI_NORM,
+				SvPV_nolen (ST (0))[0] == 0 ? (rage_cmd_cb *)&perl_server_cb : 
+				(rage_cmd_cb *)&perl_command_cb, NULL, tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
 		
@@ -1335,7 +1332,7 @@ static XS (XS_IRC_add_print_handler)
 
 		hook = rage_hook_print (ph, SvPV_nolen (ST (0)),
 						RAGE_PRI_NORM,
-						perl_print_cb, tmp);
+						(rage_print_cb *)&perl_print_cb, tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
 	}
@@ -2531,13 +2528,10 @@ rage_plugin_init (rage_plugin *plugin_handle,
 	*plugin_version = VERSION;
 	*plugin_desc = "Perl scripting interface";
 
-	rage_hook_command (ph, "load", RAGE_PRI_NORM, perl_command_load, 0, 0);
-	rage_hook_command (ph, "unload", RAGE_PRI_NORM, perl_command_unload, 0,
-							  0);
-	rage_hook_command (ph, "unloadall", RAGE_PRI_NORM, perl_command_unloadall,
-							  0, 0);
-	rage_hook_command (ph, "reloadall", RAGE_PRI_NORM, perl_command_reloadall,
-							  0, 0);
+	rage_hook_command (ph, "load", RAGE_PRI_NORM, (rage_cmd_cb *)&perl_command_load, 0, 0);
+	rage_hook_command (ph, "unload", RAGE_PRI_NORM, (rage_cmd_cb *)&perl_command_unload, 0, 0);
+	rage_hook_command (ph, "unloadall", RAGE_PRI_NORM, (rage_cmd_cb *)&perl_command_unloadall, 0, 0);
+	rage_hook_command (ph, "reloadall", RAGE_PRI_NORM, (rage_cmd_cb *)&perl_command_reloadall,0, 0);
 
 	perl_auto_load ();
 

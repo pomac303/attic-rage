@@ -1,6 +1,6 @@
 # temp. solution while mailcheck & xdcc arn't in SUBDIRS
 
-CFLAGS+= -Wimplicit -Wstrict-prototypes
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 
 EXTRA_DIST = plugin20.html Make.plugin plugin-conf.in \
 				mailcheck/mailcheck.c \
