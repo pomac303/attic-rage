@@ -45,7 +45,7 @@ splay_addentry (dict_t *dict, char *cmd, char *name)
 	else
 		pop->cmd[0] = 0;
 
-	dict_insert(*dict, pop->name, pop);
+	dict_cmd_insert(*dict, pop->name, pop);
 }
 
 void

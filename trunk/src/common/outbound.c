@@ -3024,7 +3024,7 @@ cmd_voice (rage_session *sess, char *cmd, char *buf)
 static void
 add_command(command *cmd)
 {
-	dict_insert(rage_cmd_list, cmd->name, cmd);
+	dict_cmd_insert(rage_cmd_list, cmd->name, cmd);
 }
 
 int
@@ -3034,7 +3034,7 @@ add_plugin_command(command *cmd)
 
 	dict_find(rage_cmd_list, cmd->name, &found);
 	if (!found)
-		dict_insert(rage_cmd_list, cmd->name, cmd);
+		dict_cmd_insert(rage_cmd_list, cmd->name, cmd);
 	return !found;
 }
 

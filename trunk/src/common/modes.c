@@ -100,7 +100,7 @@ int
 is_channel (server * serv, char *chan)
 {
 	char *ct = get_isupport(serv, "CHANTYPES");
-	if (strchr(ct, chan[0]))
+	if (ct && strchr(ct, chan[0]))
 		return 1;
 	return 0;
 }
@@ -648,7 +648,7 @@ inbound_005 (server * serv, int parc, char *parv[])
 		pre = strchr(parv[w], '=');
 		if (pre)
 			pre[0] = 0;
-		dict_insert(serv->isupport, g_strdup(parv[w]), pre ? g_strdup(pre +1) : NULL);
+		dict_005_insert(serv->isupport, parv[w], pre ? (pre +1) : NULL);
 		if (pre)
 			pre[0] = '=';
 		w++;

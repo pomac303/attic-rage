@@ -321,14 +321,11 @@ set_server_defaults (server *serv)
 		dict_delete(serv->isupport);
 	serv->isupport = dict_new();
 
-	dict_set_free_keys(serv->isupport, g_free);
-	dict_set_free_data(serv->isupport, g_free);
-
 	/* setup some defaults */
-	dict_insert(serv->isupport, g_strdup("CHANMODES"), g_strdup("b,k,l,imnpst"));
-	dict_insert(serv->isupport, g_strdup("CHANTYPES"), g_strdup("#&")); 
-	dict_insert(serv->isupport, g_strdup("PREFIX"), g_strdup("(ov)@+"));
-	dict_insert(serv->isupport, g_strdup("MODES"), g_strdup("3")); /* 3 is default in rfc afair */
+	dict_005_insert(serv->isupport, "CHANMODES", "b,k,l,imnpst");
+	dict_005_insert(serv->isupport, "CHANTYPES", "#&"); 
+	dict_005_insert(serv->isupport, "PREFIX", "(ov)@+");
+	dict_005_insert(serv->isupport, "MODES", "3"); /* 3 is default in rfc afair */
 	
 	/*if (serv->encoding)
 	{

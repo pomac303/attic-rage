@@ -23,6 +23,7 @@ EXTRA_DIST = makefile.msc \
 	network.h \
 	notify.h \
 	dict.h \
+	set.h \
 	outbound.h \
 	parse.h \
 	plugin.h \
@@ -65,7 +66,7 @@ checkversion:
 rage-version.c: checkversion
 
 libragecommon_a_SOURCES = cfgfiles.c ctcp.c dcc.c history.c ignore.c \
-	inbound.c modes.c network.c notify.c dict-splay.c parse.c outbound.c \
+	inbound.c modes.c network.c notify.c dict.c set.c parse.c outbound.c \
 	plugin.c plugin-timer.c proto-irc.c server.c servlist.c $(ssl_c) \
 	text.c tree.c url.c userlist.c util.c rage.c rage-version.c
 

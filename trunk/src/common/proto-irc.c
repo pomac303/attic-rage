@@ -384,17 +384,9 @@ irc_numeric(rage_session *sess, int parc, char *parv[])
 		case 290: /* CAPAB reply */
 		{
 			int i;
-			char *tmp = NULL;
 			
-			for (i = 2; i < parc; i++)
-			{
-				tmp = g_malloc(strlen(parv[i]) + 7);
-				if (tmp != NULL)
-				{
-					sprintf(tmp, "CAPAB-%s", parv[i]);
-					dict_insert(sess->server->isupport, tmp, NULL);
-				}
-			}
+			for (i = 3; i < parc; i++)
+				dict_capab_insert(sess->server->isupport, parv[i]);
 			break;
 		}
 		case RPL_AWAY: /* 301 */

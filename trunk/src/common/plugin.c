@@ -174,7 +174,7 @@ plugin_list_add (rage_context *ctx, char *filename, const char *name,
 	pl->deinit_callback = deinit_func;
 	pl->fake = fake;
 
-	dict_insert(plugin_list, pl->name, pl);
+	dict_cmd_insert(plugin_list, pl->name, pl);
 
 	return pl;
 }
