@@ -36,10 +36,10 @@ struct DCC
 	unsigned int lastcpspos;
 	int maxcps;
 
-	unsigned int size;
-	unsigned int resumable;
-	unsigned int ack;
-	unsigned int pos;
+	off_t size;
+	off_t resumable;
+	off_t ack;
+	off_t pos;
 	time_t starttime;
 	time_t offertime;
 	time_t lasttime;

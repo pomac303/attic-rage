@@ -10,6 +10,8 @@
 */
 
 #define _FILE_OFFSET_BITS 64
+#define _LARGEFILE_SOURCE
+#define _GNU_SOURCE
 
 /* Include standard C includes */
 #include <stdlib.h>

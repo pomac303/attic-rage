@@ -28,20 +28,16 @@
 #define MEGABYTE (KILOBYTE * 1024)
 #define GIGABYTE (MEGABYTE * 1024)
 
-static void proper_unit (unsigned int size, char *buf, int buf_len)
+static void proper_unit (off_t size, char *buf, int buf_len)
 {
 	if (size <= KILOBYTE)
-	{
-		snprintf (buf, buf_len, "%uB", size);
-	}
+		snprintf (buf, buf_len, "%lliB", size);
 	else if (size > KILOBYTE && size <= MEGABYTE)
-	{
-		snprintf (buf, buf_len, "%ukB", size / KILOBYTE);
-	}
-	else
-	{
+		snprintf (buf, buf_len, "%llikB", size / KILOBYTE);
+	else if (size > MEGABYTE && size <= GIGABYTE)
 		snprintf (buf, buf_len, "%.2fMB", (float)size / MEGABYTE);
-	}
+	else
+		 snprintf (buf, buf_len, "%.2fGB", (float)size / GIGABYTE);
 }
 
 /*** UNIT PATCH ***/
@@ -321,7 +317,7 @@ dcc_info (struct DCC *dcc)
 	char tbuf[256];
 	snprintf (tbuf, 255, _("      File: %s\n"
 				 "   To/From: %s\n"
-				 "      Size: %u\n"
+				 "      Size: %lli\n"
 				 "      Port: %d\n"
 				 " IP Number: %s\n"
 				 "Start Time: %s"

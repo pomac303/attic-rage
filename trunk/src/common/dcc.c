@@ -397,8 +397,8 @@ dcc_write_chat (char *nick, char *text)
 			len = loc_len;
 		}
 
-		dcc->size += (int)len;
-		send (dcc->sok, text, (int)len, 0);
+		dcc->size += len;
+		send (dcc->sok, text, len, 0);
 		send (dcc->sok, "\n", 1, 0);
 		fe_dcc_update (dcc);
 		if (locale)
@@ -803,8 +803,8 @@ dcc_connect (struct DCC *dcc)
 		/* possible problems with filenames containing spaces? */
 		if (dcc->type == TYPE_RECV)
 			snprintf (tbuf, sizeof (tbuf), strchr (dcc->file, ' ') ?
-					"DCC SEND \"%s\" %lu %d %u %d" :
-					"DCC SEND %s %lu %d %u %d", dcc->file,
+					"DCC SEND \"%s\" %lu %d %lli %d" :
+					"DCC SEND %s %lu %d %lli %d", dcc->file,
 					dcc->addr, dcc->port, dcc->size, dcc->pasvid);
 		else
 			snprintf (tbuf, sizeof (tbuf), "DCC CHAT chat %lu %d %d",
@@ -1177,11 +1177,7 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 	if (stat (file_fs, &st) != -1)
 	{
 		if (sizeof (st.st_size) > 4 && st.st_size > 4294967295U)
-		{
-			PrintText (sess, "Cannot send files larger than 4 GB.\n");
-			goto noaxs;
-		}
-
+			PrintText (sess, "Warning file is larger than 4 GB, most clients has problems with that.\n");
 		if (*file_part (file_fs) && !S_ISDIR (st.st_mode))
 		{
 			if (st.st_size > 0)
@@ -1189,7 +1185,7 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 				dcc->starttime = dcc->offertime = time (0);
 				dcc->serv = sess->server;
 				dcc->dccstat = STAT_QUEUED;
-				dcc->size = (int)st.st_size;
+				dcc->size = st.st_size;
 				dcc->type = TYPE_SEND;
 				dcc->fp = open (file_fs, OFLAGS | O_RDONLY);
 				if (dcc->fp != -1)
@@ -1222,15 +1218,15 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 						{
 							dcc->pasvid = new_id();
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %u %d" :
-									"DCC SEND %s %lu %d %u %d",
+									"DCC SEND \"%s\" %lu %d %lli %d" :
+									"DCC SEND %s %lu %d %lli %d",
 									file_part (dcc->file), 199ul,
 									0, dcc->size, dcc->pasvid);
 						} else
 						{
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %u" :
-									"DCC SEND %s %lu %d %u",
+									"DCC SEND \"%s\" %lu %d %lli" :
+									"DCC SEND %s %lu %d %lli",
 									file_part (dcc->file), dcc->addr,
 									dcc->port, dcc->size);
 						}
@@ -1248,7 +1244,6 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 		}
 	}
 	PrintTextf (sess, _("Cannot access %s\n"), dcc->file);
-noaxs:
 	g_free (file_fs);
 	dcc_close (dcc, 0, TRUE);
 }
@@ -1484,8 +1479,8 @@ is_resumable (struct DCC *dcc)
 		{
 			if (st.st_size < dcc->size)
 			{
-				dcc->resumable = (int)st.st_size;
-				dcc->pos = (int)st.st_size;
+				dcc->resumable = st.st_size;
+				dcc->pos = st.st_size;
 			}
 			else
 				dcc->resume_error = 2;
@@ -1535,8 +1530,8 @@ dcc_resume (struct DCC *dcc)
 	{
 		/* filename contains spaces? Quote them! */
 		snprintf (tbuf, sizeof (tbuf) - 10, strchr (dcc->file, ' ') ?
-					  "DCC RESUME \"%s\" %d %u" :
-					  "DCC RESUME %s %d %u",
+					  "DCC RESUME \"%s\" %d %lli" :
+					  "DCC RESUME %s %d %lli",
 					  dcc->file, dcc->port, dcc->resumable);
 
 		if (dcc->pasvid)
@@ -1589,7 +1584,8 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 	struct DCC *dcc;
 	char *type = parv[4];
 	int port, pasvid = 0;
-	unsigned long size, addr;
+	unsigned long addr;
+	off_t size;
 
 	switch(MAKE4(toupper(type[0]),toupper(type[1]),
 				toupper(type[2]),toupper(type[3])))
@@ -1665,7 +1661,7 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 
 			if (dcc)
 			{
-				size = strtoul (parv[7], NULL, 10);
+				size = strtoull (parv[7], NULL, 10);
 				dcc->resumable = size;
 				if (dcc->resumable < dcc->size)
 				{
@@ -1676,18 +1672,18 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 					/* Checking if dcc is passive and if filename contains spaces */
 					if (dcc->pasvid)
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %u %d" :
-								"DCC ACCEPT %s %d %u %d",
+								"DCC ACCEPT \"%s\" %d %lli %d" :
+								"DCC ACCEPT %s %d %lli %d",
 								file_part (dcc->file), port, dcc->resumable, dcc->pasvid);
 					else
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %u" :
-								"DCC ACCEPT %s %d %u",
+								"DCC ACCEPT \"%s\" %d %lli" :
+								"DCC ACCEPT %s %d %lli",
 								file_part (dcc->file), port, dcc->resumable);
 
 					dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
 				}
-				sprintf (tbuf, "%u", dcc->pos);
+				sprintf (tbuf, "%lli", dcc->pos);
 				EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
 								 file_part (dcc->file), tbuf, NULL, 0);
 			}
@@ -1705,10 +1701,11 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 		{
 			char *file = file_part (parv[5]);
 			int psend = 0;
+			int len = 0;
 
 			port = atoi (parv[7]);
 			addr = strtoul (parv[6], NULL, 10);
-			size = strtoul (parv[8], NULL, 10);
+			size = strtoull (parv[8], NULL, 10);
 
 			if (port == 0) /* Passive dcc requested */
 				pasvid = atoi (parv[9]);
@@ -1816,10 +1813,11 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 				} else
 					fe_dcc_add (dcc);
 			}
-			sprintf (tbuf, "%lu", size);
-			snprintf (tbuf + 24, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
+			sprintf (tbuf, "%lli", size);
+			len = strlen(tbuf);
+			snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 			EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
-						 file, tbuf, tbuf + 24, 0);
+						 file, tbuf, tbuf + len, 0);
 			return;
 		}
 		default:
@@ -1841,7 +1839,7 @@ dcc_show_list (struct session *sess)
 	{
 		dcc = (struct DCC *) list->data;
 		i++;
-		PrintTextf (sess, " %s  %-10.10s %-7.7s %-7u %-7u %s\n",
+		PrintTextf (sess, " %s  %-10.10s %-7.7s %-7lli %-7lli %s\n",
 					 dcctypes[dcc->type], dcc->nick,
 					 _(dccstat[dcc->dccstat].name), dcc->size, dcc->pos,
 					 file_part (dcc->file));
