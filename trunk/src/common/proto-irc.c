@@ -612,14 +612,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* try to show only user initiated whos */
 
 			if (!who_sess || !who_sess->doing_who)
-			{
-				/* XXX: broken, dosn't spill the beans. 
-				 * ie, only minimal info gets through. */
-				EMIT_SIGNAL(XP_TE_SERVTEXT, 
-						sess->server->server_session, 
-						parv[parc-1], parv[0], 
-						parv[1], NULL, 0);
-			}
+				break;
 			
 			return;
 		}
@@ -638,10 +631,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 						parv[6], 0, away);
 
 				if (!who_sess || !who_sess->doing_who)
-					EMIT_SIGNAL(XP_TE_SERVTEXT, 
-						sess->server->server_session,
-							parv[parc-1], parv[0],
-							parv[1], NULL, 0);
+					break;
 				return;
 			}
 			else
