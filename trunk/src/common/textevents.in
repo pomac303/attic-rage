@@ -847,5 +847,5 @@ pevt_gen_help
 Stacked Join
 XP_TE_MJOIN
 pevt_gen_help
-0%B-->%B$t$1Stacked join, new users on $1 is: $2%O
+%B-->%B$tStacked join, new users on $1 is: $2%O
 2
