@@ -1,57 +1,129 @@
+/** Rage plugin interface
+ *
+ * This file describes the Rage plugin interface
+ */
+
 /* You can distribute this header with your plugins for easy compilation */
 #ifndef RAGE_PLUGIN_H
 #define RAGE_PLUGIN_H
 
-#define RAGE_IFACE_MAJOR	1
-#define RAGE_IFACE_MINOR	0
-#define RAGE_IFACE_MICRO	0
+#define RAGE_IFACE_MAJOR	1 /**< Major version of the interface */
+#define RAGE_IFACE_MINOR	0 /**< Minor version of the interface */
+#define RAGE_IFACE_MICRO	0 /**< Micro version of the interface */
+/** Constant defining the version of the interfact */
 #define RAGE_IFACE_VERSION	((RAGE_IFACE_MAJOR * 10000) + \
 				 (RAGE_IFACE_MINOR * 100) + \
 				 (RAGE_IFACE_MICRO))
 
-#define RAGE_PRI_HIGHEST	127
-#define RAGE_PRI_HIGH		64
-#define RAGE_PRI_NORM		0
-#define RAGE_PRI_LOW		(-64)
-#define RAGE_PRI_LOWEST	(-128)
+#define RAGE_PRI_HIGHEST	127  /**< Highest allowed priority */
+#define RAGE_PRI_HIGH		64   /**< High priority */
+#define RAGE_PRI_NORM		0    /**< Normal priority */
+#define RAGE_PRI_LOW		(-64) /**< Low priority */
+#define RAGE_PRI_LOWEST	(-128)       /**< Lowest allowed priority */
 
-#define RAGE_FD_READ		1
-#define RAGE_FD_WRITE		2
-#define RAGE_FD_EXCEPTION	4
-#define RAGE_FD_NOTSOCKET	8
+#define RAGE_FD_READ		1    /**< Constant defining read events */
+#define RAGE_FD_WRITE		2    /**< Constant defining write events */
+#define RAGE_FD_EXCEPTION	4    /**< Constant defining exceptional events */
+#define RAGE_FD_NOTSOCKET	8    /**< Constant defining this as not a socket */
 
-#define RAGE_EAT_NONE		0	/* pass it on through! */
-#define RAGE_EAT_RAGE		1	/* don't let rage see this event */
-#define RAGE_EAT_PLUGIN	2	/* don't let other plugins see this event */
+#define RAGE_EAT_NONE		0	/**< pass it on through! */
+#define RAGE_EAT_RAGE		1	/**< don't let rage see this event */
+#define RAGE_EAT_PLUGIN		2	/**< don't let other plugins see this event */
 #define RAGE_EAT_ALL		(RAGE_EAT_RAGE|RAGE_EAT_PLUGIN)	
-				/* don't let anything see this event */
+				/**< don't let anything see this event */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/** Type that covers the implementation of rage plugins */
 typedef struct _rage_plugin rage_plugin;
+/** List type used by rage */
 typedef struct _rage_list rage_list;
+/** Hook type used by rage */
 typedef struct _rage_hook rage_hook;
 #ifdef RAGE_INTERNAL
+/** Only used internally */
 typedef rage_session rage_context;
 #else
+/** Dummy context structure */
 typedef struct _rage_dummy_context rage_context;
 #endif
 
+/** User command callbacks
+ * @param parc Number of parameter elements
+ * @param parv 
+ *  parv[0]: The name of the command
+ *  parv[1]: The full input line buffer
+ *  parv[2]: The empty string
+ * @param user_data pointer the user_data registered when the hook was registered
+ *
+ * @returns one of RAGE_EAT_NONE, RAGE_EAT_RAGE, RAGE_EAT_PLUGIN, RAGE_EAT_ALL
+ *
+ * @note you can hook the empty string to catch lines being sent to the 
+ *       window directly
+ */
 typedef int (rage_cmd_cb) (int parc, char *parv[], void *user_data);
+/** A line was passed from the server
+ * @param parc The count of the tokens from the server
+ * @param parv The command as tokenised from the server.  The token prefixed
+ *             with a colon is correctly parsed into one parameter, with the
+ *             colon removed.
+ * @param user_data Data passed when the hook was registered
+ *
+ * @returns one of RAGE_EAT_NONE, RAGE_EAT_RAGE, RAGE_EAT_PLUGIN, RAGE_EAT_ALL
+ */
 typedef int (rage_serv_cb) (int parc, char *parv[], void *user_data);
+/** Text being displayed to the user
+ * @param parc The number of parameters in the parv array
+ * @param parv The text to be displayed
+ * @param user_data Data passed when then hook was registered
+ *
+ * @returns one of RAGE_EAT_NONE, RAGE_EAT_RAGE, RAGE_EAT_PLUGIN, RAGE_EAT_ALL
+ */
 typedef int (rage_print_cb) (int parc, char *parv[], void *user_data);
+/** Filedescriptor event has occured
+ * @param fd 	the filedescriptor which the event occured on
+ * @param flags	which event occured (RAGE_FD_READ, RAGE_FD_WRITE, RAGE_FD_EXCEPTION)
+ * @param user_data data registered when this hook was created
+ *
+ * @returns one of RAGE_EAT_NONE, RAGE_EAT_RAGE, RAGE_EAT_PLUGIN, RAGE_EAT_ALL
+ */
 typedef int (rage_fd_cb) (int fd, int flags, void *user_data);
+/** Timer event has expired
+ * @param user_data data registered when this hook was created
+ * @returns one of RAGE_EAT_NONE, RAGE_EAT_RAGE, RAGE_EAT_PLUGIN, RAGE_EAT_ALL
+ */
 typedef int (rage_timer_cb) (void *user_data);
-typedef int (rage_init_func) (rage_plugin *, char **, char **, char **, char *);
-typedef int (rage_deinit_func) (rage_plugin *);
+/** Event called when the plugin was registered 
+ * @param plugin the plugin object which contains pointers to functions in rage
+ *               for windows compatibility (as windows is missing 
+ *		 --export-dynamic)
+ * @param plugin_name This should be updated to point to the name of this
+ *                    plugin
+ * @param plugin_description This should be updated to point to a short 
+ *			description about this plugin
+ * @param plugin_version This should be updated to point to a string with the
+ * 			version of this plugin
+ * @param arg	The arguments passed to this plugin on the /load line
+ *
+ * @returns non-0 on success, or 0 on failure.
+*/
+typedef int (rage_init_func) (
+	rage_plugin *plugin, 
+	char **plugin_name, 
+	char **plugin_description, 
+	char **plugin_version, 
+	char *arg);
 
+/** Event called when the plugin is being unloaded */
+typedef int (rage_deinit_func) (rage_plugin *plugin);
+
+/** This structure contains pointers to the internal rage functions as
+  * windows is missing the vital --export-dynamic functionality.
+  */
 struct _rage_plugin
 {
-	/* parv[0] the command
-	 * parv[1] the entire line
-	 */
 	rage_hook *(*rage_hook_command) (rage_plugin *ph,
 		    const char *name,
 		    int pri,
@@ -164,6 +236,8 @@ struct _rage_plugin
 #endif /* RAGE_INTERNAL */
 };
 
+/** Add a hook for a command
+ */
 rage_hook *
 rage_hook_command (rage_plugin *ph,
 		    const char *name,

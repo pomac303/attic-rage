@@ -1011,15 +1011,19 @@ perl_timer_cb (void *perl_callback)
 }
 
 static int
-perl_server_cb (char *word[], char *word_eol[], void *perl_callback)
+perl_server_cb (int parc, char *parv[], void *perl_callback)
 {
-	return compat_execute_perl (perl_callback, word_eol[1]);
+	if (parc < 2)
+		return RAGE_EAT_NONE;
+	return compat_execute_perl (perl_callback, parv[1]);
 }
 
 static int
-perl_command_cb (char *word[], char *word_eol[], void *perl_callback)
+perl_command_cb (int parc, char *parv[], void *perl_callback)
 {
-	return compat_execute_perl (perl_callback, word_eol[2]);
+	if (parc < 2)
+		return RAGE_EAT_NONE;
+	return compat_execute_perl (perl_callback, parv[1]);
 }
 
 static int
@@ -2455,15 +2459,15 @@ perl_command_reloadall (char *word[], char *word_eol[], void *userdata)
 }
 
 static int
-perl_command_unload (char *word[], char *word_eol[], void *userdata)
+perl_command_unload (int parc,char *parv[], void *userdata)
 {
 	int len;
 	PerlScript *scp;
 	GSList *list;
 
 	/* try it by filename */
-	len = strlen (word[2]);
-	if (len > 3 && strcasecmp (".pl", word[2] + len - 3) == 0)
+	len = strlen (parv[2]);
+	if (len > 3 && strcasecmp (".pl", parv[2] + len - 3) == 0)
 	{
 		/* if only unloading was possible with this shitty interface */
 		rage_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
@@ -2475,7 +2479,7 @@ perl_command_unload (char *word[], char *word_eol[], void *userdata)
 	while (list)
 	{
 		scp = list->data;
-		if (strcasecmp (scp->name, word[2]) == 0)
+		if (strcasecmp (scp->name, parv[2]) == 0)
 		{
 			rage_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
 			return RAGE_EAT_RAGE;
@@ -2487,15 +2491,15 @@ perl_command_unload (char *word[], char *word_eol[], void *userdata)
 }
 
 static int
-perl_command_load (char *word[], char *word_eol[], void *userdata)
+perl_command_load (int parc, char *parv[], void *userdata)
 {
 	char *file;
 	int len;
 
-	len = strlen (word[2]);
-	if (len > 3 && strcasecmp (".pl", word[2] + len - 3) == 0)
+	len = strlen (parv[2]);
+	if (len > 3 && strcasecmp (".pl", parv[2] + len - 3) == 0)
 	{
-		file = expand_homedir (word[2]);
+		file = expand_homedir (parv[2]);
 		switch (perl_load_file (file))
 		{
 			case 1:
