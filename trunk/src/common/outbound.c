@@ -3752,8 +3752,6 @@ handle_command (session *sess, char *cmd, int check_spch)
 	char command[512];
 	int i;
 
-	printf("cmd: %s\n", cmd);
-
 	if (command_level > 99)
 	{
 		fe_message (_("Too many recursive usercommands, aborting."), FALSE);
@@ -3767,8 +3765,6 @@ handle_command (session *sess, char *cmd, int check_spch)
 		command[i]=cmd[i];
 	command[i]='\0';
 
-	printf("cmd: %s\n", cmd);
-	
 	if (check_spch && prefs.perc_color)
 		check_special_chars (cmd, prefs.perc_ascii);
 

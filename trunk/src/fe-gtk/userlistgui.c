@@ -21,6 +21,7 @@
 GdkPixbuf *
 get_user_icon (server *serv, struct User *user)
 {
+	char *prefix;
 	char *pre;
 	int level;
 
@@ -37,8 +38,12 @@ get_user_icon (server *serv, struct User *user)
 	}
 
 	/* find out how many levels above Op this user is */
-	pre = strchr (serv->nick_prefixes, '@');
-	if (pre && pre != serv->nick_prefixes)
+	prefix = get_isupport(serv, "PREFIX");
+	if((prefix = strchr(prefix, ')')))
+		prefix++;
+
+	pre = strchr (prefix, '@');
+	if (pre && pre != prefix)
 	{
 		pre--;
 		level = 0;
@@ -54,7 +59,7 @@ get_user_icon (server *serv, struct User *user)
 				break;	/* 3+, no icons */
 			}
 			level++;
-			if (pre == serv->nick_prefixes)
+			if (pre == prefix)
 				break;
 			pre--;
 		}

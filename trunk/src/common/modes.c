@@ -42,11 +42,7 @@ send_channel_modes (session *sess, char *word[], int wpos, int end,
 	int modes_per_line;
 	char tbuf[503];
 
-	/* sanity check. IRC RFC says three per line. */
-	if (serv->modes_per_line < 3)
-		serv->modes_per_line = 3;
-
-	modes_per_line = serv->modes_per_line;
+	modes_per_line = atoi(get_isupport(sess->server, "MODES"));
 
 	/* RFC max, minus length of "MODE %s " and "\r\n" and 1 +/- sign */
 	/* 512 - 6 - 2 - 1 - strlen(chan) */
@@ -114,20 +110,25 @@ is_channel (server * serv, char *chan)
 static int
 is_prefix_char (server * serv, char c)
 {
+	char *nm = get_isupport(serv, "PREFIX");
+	char *np = strchr(nm, ')');
 	int pos = 0;
-	char *np = serv->nick_prefixes;
 
-	while (np[0])
+	if(np)
 	{
-		if (np[0] == c)
-			return pos;
-		pos++;
 		np++;
-	}
 
-	if (serv->bad_prefix)
+		while(*np)
+		{
+			if(*np == c)
+				return pos;
+			pos++;
+			np++;
+		}
+	}
+	else
 	{
-		if (strchr (serv->bad_nick_prefixes, c))
+		if (strchr (nm, c))
 		/* valid prefix char, but mode unknown */
 			return -2;
 	}
@@ -140,12 +141,16 @@ is_prefix_char (server * serv, char c)
 char
 get_nick_prefix (server * serv, unsigned int access)
 {
+	char *np = get_isupport(serv, "PREFIX");
 	int pos;
 	char c;
 
+	if ((np = strchr(np, ')')));
+		np++;
+
 	for (pos = 0; pos < USERACCESS_SIZE; pos++)
 	{
-		c = serv->nick_prefixes[pos];
+		c = np[pos];
 		if (c == 0)
 			break;
 		if (access & (1 << pos))
@@ -195,16 +200,24 @@ nick_access (server * serv, char *nick, int *modechars)
 int
 mode_access (server * serv, char mode, char *prefix)
 {
+	char *nm = get_isupport(serv, "PREFIX");
+	char *np;
 	int pos = 0;
 
-	while (serv->nick_modes[pos])
+	nm++;
+	
+	if((np = strchr(nm, ')')))
+		np++;
+
+	while (*nm && *nm != ')')
 	{
-		if (serv->nick_modes[pos] == mode)
+		if (*nm == mode)
 		{
-			*prefix = serv->nick_prefixes[pos];
+			*prefix = np[pos];
 			return pos;
 		}
 		pos++;
+		nm++;
 	}
 
 	*prefix = 0;
@@ -265,6 +278,8 @@ handle_single_mode (mode_run *mr, char sign, char mode, char *nick,
 	session *sess;
 	server *serv = mr->serv;
 	char outbuf[4];
+	char *nm = get_isupport(serv, "PREFIX");
+	int nick_mode = 0;
 
 	outbuf[0] = sign;
 	outbuf[1] = 0;
@@ -278,13 +293,24 @@ handle_single_mode (mode_run *mr, char sign, char mode, char *nick,
 		sess = serv->front_session;
 		goto genmode;
 	}
-
+	
 	/* is this a nick mode? */
-	if (strchr (serv->nick_modes, mode))
+	nm++;
+	while(*nm && *nm != ')')
+	{
+		if(*nm == mode)
+		{
+			nick_mode = 1;
+			break;
+		}
+		nm++;
+	}
+	if (nick_mode)
 	{
 		/* update the user in the userlist */
 		ul_update_entry (sess, /*nickname */ arg, mode, sign);
-	} else
+	} 
+	else
 	{
 		if (!is_324 && !sess->ignore_mode)
 			record_chan_mode (sess);/*, sign, mode, arg);*/
@@ -400,12 +426,18 @@ handle_single_mode (mode_run *mr, char sign, char mode, char *nick,
 static int
 mode_has_arg (server * serv, char sign, char mode)
 {
+	char *nm = get_isupport(serv, "PREFIX");
 	char *cm;
 	int type;
 
 	/* if it's a nickmode, it must have an arg */
-	if (strchr (serv->nick_modes, mode))
-		return 1;
+	nm++;
+	while(*nm && *nm != ')')
+	{
+		if(*nm == mode)
+			return 1;
+		nm++;
+	}
 
 	/* see what numeric 005 CHANMODES=xxx said */
 	cm = get_isupport(serv, "CHANMODES");
@@ -645,9 +677,6 @@ run_005 (server * serv)
 		}
 	}
 	
-	if((pre = get_isupport(serv, "MODES")))
-		serv->modes_per_line = atoi (pre);
-	
 	if((pre = get_isupport(serv, "NAMESX")))
 		tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
 	
@@ -660,30 +689,6 @@ run_005 (server * serv)
 		}
 	}
 	
-	if((pre = get_isupport(serv, "PREFIX")))
-	{
-		char *new;
-		
-		new = strchr(pre, ')');
-		if (new)
-		{
-			new[0] = 0; /* NULL out the ')' */
-			free (serv->nick_prefixes);
-			free (serv->nick_modes);
-			serv->nick_prefixes = strdup (new + 1);
-			serv->nick_modes = strdup (pre + 1);
-			
-		} else
-		{
-			/* bad! some ircds don't give us the modes. */
-			/* in this case, we use it only to strip /NAMES */
-			serv->bad_prefix = TRUE;
-			if (serv->bad_nick_prefixes)
-				free (serv->bad_nick_prefixes);
-			serv->bad_nick_prefixes = strdup (pre);
-		}
-	}
-
 	if(isupport(serv, "CAPAB")) /* after this we get a 290 numeric reply */
 		 tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
 

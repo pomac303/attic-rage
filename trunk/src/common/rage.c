@@ -327,19 +327,14 @@ set_server_defaults (server *serv)
 	/* setup some defaults */
 	dict_insert(serv->isupport, g_strdup("CHANMODES"), g_strdup("b,k,l,imnpst"));
 	dict_insert(serv->isupport, g_strdup("CHANTYPES"), g_strdup("#&")); 
+	dict_insert(serv->isupport, g_strdup("PREFIX"), g_strdup("(ov)@+"));
+	dict_insert(serv->isupport, g_strdup("MODES"), g_strdup("3")); /* 3 is default in rfc afair */
 	
-	if (serv->nick_prefixes)
-		free (serv->nick_prefixes);
-	if (serv->nick_modes)
-		free (serv->nick_modes);
 	/*if (serv->encoding)
 	{
 		free (serv->encoding);
 		serv->encoding = NULL;
 	}*/
-
-	serv->nick_prefixes = strdup ("@%+");
-	serv->nick_modes = strdup ("ohv");
 
 	serv->nickcount = 1;
 	serv->end_of_motd = FALSE;
@@ -483,10 +478,8 @@ kill_server_callback (server * serv)
 	serv->flush_queue (serv);
 	free_away_messages (serv);
 
-	free (serv->nick_modes);
-	free (serv->nick_prefixes);
-	if (serv->bad_nick_prefixes)
-		free (serv->bad_nick_prefixes);
+	dict_delete(serv->isupport);
+
 	if (serv->last_away_reason)
 		free (serv->last_away_reason);
 	if (serv->encoding)

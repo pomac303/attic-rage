@@ -392,11 +392,6 @@ typedef struct server
 	int pos;								/* current position in linebuf */
 	int nickcount;
 
-	char *nick_prefixes;				/* e.g. "*@%+" */
-	char *nick_modes;					/* e.g. "aohv" */
-	char *bad_nick_prefixes;		/* for ircd that doesn't give the modes */
-	int modes_per_line;				/* 6 on undernet, 4 on efnet etc... */
-
 	void *network;						/* points to entry in servlist.c or NULL! */
 
 	GSList *outbound_queue;

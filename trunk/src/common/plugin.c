@@ -1159,10 +1159,10 @@ xchat_list_str (xchat_plugin *ph, xchat_list *xlist, const char *name)
 			return data;	/* this is a session * */
 		case 0x6de15a2e: /* network */
 			return get_network ((session *)data, FALSE);
-		case 0x8455e723: /* nickprefixes */
-			return ((session *)data)->server->nick_prefixes;
-		case 0x829689ad: /* nickmodes */
-			return ((session *)data)->server->nick_modes;
+//		case 0x8455e723: /* nickprefixes */
+//			return ((session *)data)->server->nick_prefixes;
+//		case 0x829689ad: /* nickmodes */
+//			return ((session *)data)->server->nick_modes;
 		case 0xca022f43: /* server */
 			return ((session *)data)->server->servername;
 		}
@@ -1268,8 +1268,9 @@ xchat_list_int (xchat_plugin *ph, xchat_list *xlist, const char *name)
 			tmp <<= 1;
 			tmp |= ((struct session *)data)->server->connected;  /* 0 */
 			return tmp;
-		case 0x1916144c: /* maxmodes */
-			return ((struct session *)data)->server->modes_per_line;
+		/* FIXME: isupport */
+//		case 0x1916144c: /* maxmodes */
+//			return ((struct session *)data)->server->modes_per_line;
 		case 0x368f3a:	/* type */
 			return ((struct session *)data)->type;
 		case 0x6a68e08: /* users */
