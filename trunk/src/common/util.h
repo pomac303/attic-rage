@@ -18,6 +18,16 @@
 
 extern const unsigned char rfc_tolowertab[];
 
+struct throttle_data {
+	int level;
+	int weight;
+	int leak;
+	int limit;
+	time_t ts;
+};
+
+typedef struct throttle_data throttle_t;
+
 int my_poptParseArgvString(const char * s, int * argcPtr, char *** argvPtr);
 char *expand_homedir (char *file);
 void path_part (char *file, char *path, int pathlen);
@@ -37,6 +47,7 @@ int waitline (int sok, char *buf, int bufsize);
 unsigned long make_ping_time (void);
 void download_move_to_completed_dir (char *dcc_dir, char *dcc_completed_dir, char *output_name, int dccpermissions);
 int mkdir_utf8 (char *dir);
+int gen_throttle(throttle_t *td);
 int tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta);
 void tab_clean(void);
 

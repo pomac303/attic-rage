@@ -1577,6 +1577,11 @@ dcc_deny_chat (void *ud)
 	dcc_abort (dcc->serv->front_session, dcc);
 }
 
+#define M_CHAT		MAKE4('C','H','A','T')
+#define M_RESUME	MAKE4('R','E','S','U')
+#define M_ACCEPT	MAKE4('A','C','C','E')
+#define M_SEND		MAKE4('S','E','N','D')
+
 void
 handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 {
@@ -1586,240 +1591,241 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 	int port, pasvid = 0;
 	unsigned long size, addr;
 
-	if (!strcasecmp (type, "CHAT"))
+	switch(MAKE4(type[0],type[1],type[2],type[3]))
 	{
-		port = atoi (parv[7]);
-		addr = strtoul (parv[6], NULL, 10);
-
-		if (port == 0)
-			pasvid = atoi (parv[8]);
-
-		if (!addr /*|| (port < 1024 && port != 0)*/
-			|| port > 0xffff || (port == 0 && pasvid == 0))
+		case M_CHAT:
 		{
-			dcc_malformed (sess, nick, parv[3] + 2);
-			return;
-		}
-		dcc = find_dcc (nick, "", TYPE_CHATSEND);
-		if (dcc)
-			dcc_close (dcc, 0, TRUE);
+			port = atoi (parv[7]);
+			addr = strtoul (parv[6], NULL, 10);
 
-		dcc = find_dcc (nick, "", TYPE_CHATRECV);
-		if (dcc)
-			dcc_close (dcc, 0, TRUE);
+			if (port == 0)
+				pasvid = atoi (parv[8]);
 
-		dcc = new_dcc ();
-		if (dcc)
-		{
-			dcc->serv = sess->server;
-			dcc->type = TYPE_CHATRECV;
-			dcc->dccstat = STAT_QUEUED;
-			dcc->addr = addr;
-			dcc->port = port;
-			dcc->pasvid = pasvid;
-			dcc->nick = strdup (nick);
-			dcc->starttime = time (0);
-
-			EMIT_SIGNAL (XP_TE_DCCCHATOFFER, sess->server->front_session, nick,
-							 NULL, NULL, NULL, 0);
-
-			if (prefs.autoopendccchatwindow)
-			{
-				if (fe_dcc_open_chat_win (TRUE))	/* already open? add only */
-					fe_dcc_add (dcc);
-			} else
-				fe_dcc_add (dcc);
-
-			if (prefs.autodccchat == 1)
-				dcc_connect (dcc);
-			else if (prefs.autodccchat == 2)
-			{
-				char buff[128];
-				snprintf (buff, sizeof (buff), "%s is offering DCC Chat.  Do you want to accept?", nick);
-				fe_confirm (buff, dcc_confirm_chat, dcc_deny_chat, dcc);
-			}
-		}
-		return;
-	}
-	if (!strcasecmp (type, "RESUME"))
-	{
-		port = atoi (parv[6]);
-
-		if (port == 0)
-		{ /* PASSIVE */
-			pasvid = atoi(parv[8]);
-			dcc = find_dcc_from_id(pasvid, TYPE_SEND);
-		} else
-		{
-			dcc = find_dcc_from_port (port, TYPE_SEND);
-		}
-		if (!dcc)
-			dcc = find_dcc (nick, parv[5], TYPE_SEND);
-		if (dcc)
-		{
-			size = strtoul (parv[7], NULL, 10);
-			dcc->resumable = size;
-			if (dcc->resumable < dcc->size)
-			{
-				dcc->pos = dcc->resumable;
-				dcc->ack = dcc->resumable;
-				lseek (dcc->fp, dcc->pos, SEEK_SET);
-
-				/* Checking if dcc is passive and if filename contains spaces */
-				if (dcc->pasvid)
-					snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-							"DCC ACCEPT \"%s\" %d %u %d" :
-							"DCC ACCEPT %s %d %u %d",
-							file_part (dcc->file), port, dcc->resumable, dcc->pasvid);
-				else
-					snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-							"DCC ACCEPT \"%s\" %d %u" :
-							"DCC ACCEPT %s %d %u",
-							file_part (dcc->file), port, dcc->resumable);
-
-				dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
-			}
-			sprintf (tbuf, "%u", dcc->pos);
-			EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
-							 file_part (dcc->file), tbuf, NULL, 0);
-		}
-		return;
-	}
-	if (!strcasecmp (type, "ACCEPT"))
-	{
-		port = atoi (parv[6]);
-		dcc = find_dcc_from_port (port, TYPE_RECV);
-		if (dcc && dcc->dccstat == STAT_QUEUED)
-		{
-			dcc_connect (dcc);
-		}
-		return;
-	}
-	if (!strcasecmp (type, "SEND"))
-	{
-		char *file = file_part (parv[5]);
-		int psend = 0;
-
-		port = atoi (parv[7]);
-		addr = strtoul (parv[6], NULL, 10);
-		size = strtoul (parv[8], NULL, 10);
-
-		if (port == 0) /* Passive dcc requested */
-			pasvid = atoi (parv[9]);
-		else if (parv[9][0] != 0)
-		{
-			/* Requesting passive dcc.
-			 * Destination user of an active dcc is giving his
-			 * TRUE address/port/pasvid data.
-			 * This information will be used later to
-			 * establish the connection to the user.
-			 * We can recognize this type of dcc using parv[9]
-			 * because this field is always null (no pasvid)
-			 * in normal dcc sends.
-			 */
-			pasvid = atoi (parv[9]);
-			psend = 1;
-		}
-
-
-		if (!addr || !size /*|| (port < 1024 && port != 0)*/
-			|| port > 0xffff || (port == 0 && pasvid == 0))
-		{
-			dcc_malformed (sess, nick, parv[3] + 2);
-			return;
-		}
-
-		if (psend)
-		{
-			/* Third Step of Passive send.
-			 * Connecting to the destination and finally
-			 * sending file.
-			 */
-			dcc = find_dcc_from_id (pasvid, TYPE_SEND);
-			if (dcc)
-			{
-				dcc->addr = addr;
-				dcc->port = port;
-				dcc_connect (dcc);
-			} else
+			if (!addr /*|| (port < 1024 && port != 0)*/
+				|| port > 0xffff || (port == 0 && pasvid == 0))
 			{
 				dcc_malformed (sess, nick, parv[3] + 2);
+				return;
+			}
+			dcc = find_dcc (nick, "", TYPE_CHATSEND);
+			if (dcc)
+				dcc_close (dcc, 0, TRUE);
+
+			dcc = find_dcc (nick, "", TYPE_CHATRECV);
+			if (dcc)
+				dcc_close (dcc, 0, TRUE);
+
+			dcc = new_dcc ();
+			if (dcc)
+			{
+				dcc->serv = sess->server;
+				dcc->type = TYPE_CHATRECV;
+				dcc->dccstat = STAT_QUEUED;
+				dcc->addr = addr;
+				dcc->port = port;
+				dcc->pasvid = pasvid;
+				dcc->nick = strdup (nick);
+				dcc->starttime = time (0);
+
+				EMIT_SIGNAL (XP_TE_DCCCHATOFFER, sess->server->front_session, nick,
+								 NULL, NULL, NULL, 0);
+
+				if (prefs.autoopendccchatwindow)
+				{
+					if (fe_dcc_open_chat_win (TRUE))	/* already open? add only */
+						fe_dcc_add (dcc);
+				} else
+					fe_dcc_add (dcc);
+
+				if (prefs.autodccchat == 1)
+					dcc_connect (dcc);
+				else if (prefs.autodccchat == 2)
+				{
+					char buff[128];
+					snprintf (buff, sizeof (buff), "%s is offering DCC Chat.  Do you want to accept?", nick);
+					fe_confirm (buff, dcc_confirm_chat, dcc_deny_chat, dcc);
+				}
 			}
 			return;
 		}
-
-		dcc = new_dcc ();
-		if (dcc)
+		case M_RESUME:
 		{
-			dcc->file = strdup (file);
+			port = atoi (parv[6]);
 
-			dcc->destfile = g_malloc ((gulong)(strlen (prefs.dccdir) + strlen (nick) +
-					strlen (file) + 4));
-
-			strcpy (dcc->destfile, prefs.dccdir);
-			if (prefs.dccdir[strlen (prefs.dccdir) - 1] != '/')
-				strcat (dcc->destfile, "/");
-			if (prefs.dccwithnick)
-			{
-#ifdef WIN32
-				char *t = strlen (dcc->destfile) + dcc->destfile;
-				strcpy (t, nick);
-				while (*t)
-				{
-					if (*t == '\\' || *t == '|')
-						*t = '_';
-					t++;
-				}
-#else
- 				strcat (dcc->destfile, nick);
-#endif
-				strcat (dcc->destfile, ".");
-			}
-			strcat (dcc->destfile, file);
-
-			/* get the local filesystem encoding */
-			dcc->destfile_fs = g_filename_from_utf8 (dcc->destfile, -1, 0, 0, 0);
-
-			dcc->resumable = 0;
-			dcc->pos = 0;
-			dcc->serv = sess->server;
-			dcc->type = TYPE_RECV;
-			dcc->dccstat = STAT_QUEUED;
-			dcc->addr = addr;
-			dcc->port = port;
-			dcc->pasvid = pasvid;
-			dcc->size = size;
-			dcc->nick = strdup (nick);
-			dcc->maxcps = prefs.dcc_max_get_cps;
-
-			is_resumable (dcc);
-
-			/* autodccsend is really autodccrecv.. right? */
-
-			if (prefs.autodccsend == 1)
-			{
-				dcc_get (dcc);
-			}
-			else if (prefs.autodccsend == 2)
-			{
-				char buff[128];
-				snprintf (buff, sizeof (buff), "%s is offering \"%s\" via DCC.  Do you want to accept the transfer?", nick, file);
-				fe_confirm (buff, dcc_confirm_send, dcc_deny_send, dcc);
-			}
-			if (prefs.autoopendccrecvwindow)
-			{
-				if (fe_dcc_open_recv_win (TRUE))	/* was already open? just add*/
-					fe_dcc_add (dcc);
+			if (port == 0)
+			{ /* PASSIVE */
+				pasvid = atoi(parv[8]);
+				dcc = find_dcc_from_id(pasvid, TYPE_SEND);
 			} else
-				fe_dcc_add (dcc);
+				dcc = find_dcc_from_port (port, TYPE_SEND);
+			
+			if (!dcc)
+				dcc = find_dcc (nick, parv[5], TYPE_SEND);
+
+			if (dcc)
+			{
+				size = strtoul (parv[7], NULL, 10);
+				dcc->resumable = size;
+				if (dcc->resumable < dcc->size)
+				{
+					dcc->pos = dcc->resumable;
+					dcc->ack = dcc->resumable;
+					lseek (dcc->fp, dcc->pos, SEEK_SET);
+
+					/* Checking if dcc is passive and if filename contains spaces */
+					if (dcc->pasvid)
+						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
+								"DCC ACCEPT \"%s\" %d %u %d" :
+								"DCC ACCEPT %s %d %u %d",
+								file_part (dcc->file), port, dcc->resumable, dcc->pasvid);
+					else
+						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
+								"DCC ACCEPT \"%s\" %d %u" :
+								"DCC ACCEPT %s %d %u",
+								file_part (dcc->file), port, dcc->resumable);
+
+					dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
+				}
+				sprintf (tbuf, "%u", dcc->pos);
+				EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
+								 file_part (dcc->file), tbuf, NULL, 0);
+			}
+			return;
 		}
-		sprintf (tbuf, "%lu", size);
-		snprintf (tbuf + 24, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
-		EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
+		case M_ACCEPT:
+		{
+			port = atoi (parv[6]);
+			dcc = find_dcc_from_port (port, TYPE_RECV);
+			if (dcc && dcc->dccstat == STAT_QUEUED)
+				dcc_connect (dcc);
+			return;
+		}
+		case M_SEND:
+		{
+			char *file = file_part (parv[5]);
+			int psend = 0;
+
+			port = atoi (parv[7]);
+			addr = strtoul (parv[6], NULL, 10);
+			size = strtoul (parv[8], NULL, 10);
+
+			if (port == 0) /* Passive dcc requested */
+				pasvid = atoi (parv[9]);
+			else if (parv[9][0] != 0)
+			{
+				/* Requesting passive dcc.
+				 * Destination user of an active dcc is giving his
+				 * TRUE address/port/pasvid data.
+				 * This information will be used later to
+				 * establish the connection to the user.
+				 * We can recognize this type of dcc using parv[9]
+				 * because this field is always null (no pasvid)
+				 * in normal dcc sends.
+				 */
+				pasvid = atoi (parv[9]);
+				psend = 1;
+			}
+
+
+			if (!addr || !size /*|| (port < 1024 && port != 0)*/
+				|| port > 0xffff || (port == 0 && pasvid == 0))
+			{
+				dcc_malformed (sess, nick, parv[3] + 2);
+				return;
+			}
+
+			if (psend)
+			{
+				/* Third Step of Passive send.
+				 * Connecting to the destination and finally
+				 * sending file.
+				 */
+				dcc = find_dcc_from_id (pasvid, TYPE_SEND);
+				if (dcc)
+				{
+					dcc->addr = addr;
+					dcc->port = port;
+					dcc_connect (dcc);
+				} 
+				else
+					dcc_malformed (sess, nick, parv[3] + 2);
+				return;
+			}
+
+			dcc = new_dcc ();
+			if (dcc)
+			{
+				dcc->file = strdup (file);
+
+				dcc->destfile = g_malloc ((gulong)(strlen (prefs.dccdir) + strlen (nick) +
+						strlen (file) + 4));
+
+				strcpy (dcc->destfile, prefs.dccdir);
+				if (prefs.dccdir[strlen (prefs.dccdir) - 1] != '/')
+					strcat (dcc->destfile, "/");
+				if (prefs.dccwithnick)
+				{
+#ifdef WIN32
+					char *t = strlen (dcc->destfile) + dcc->destfile;
+					strcpy (t, nick);
+					while (*t)
+					{
+						if (*t == '\\' || *t == '|')
+							*t = '_';
+						t++;
+					}
+#else
+ 					strcat (dcc->destfile, nick);
+#endif
+					strcat (dcc->destfile, ".");
+				}
+				strcat (dcc->destfile, file);
+
+				/* get the local filesystem encoding */
+				dcc->destfile_fs = g_filename_from_utf8 (dcc->destfile, -1, 0, 0, 0);
+
+				dcc->resumable = 0;
+				dcc->pos = 0;
+				dcc->serv = sess->server;
+				dcc->type = TYPE_RECV;
+				dcc->dccstat = STAT_QUEUED;
+				dcc->addr = addr;
+				dcc->port = port;
+				dcc->pasvid = pasvid;
+				dcc->size = size;
+				dcc->nick = strdup (nick);
+				dcc->maxcps = prefs.dcc_max_get_cps;
+
+				is_resumable (dcc);
+
+				/* autodccsend is really autodccrecv.. right? */
+
+				if (prefs.autodccsend == 1)
+					dcc_get (dcc);
+				else if (prefs.autodccsend == 2)
+				{
+					char buff[128];
+					snprintf (buff, sizeof (buff), "%s is offering \"%s\" via DCC.  Do you want to accept the transfer?", nick, file);
+					fe_confirm (buff, dcc_confirm_send, dcc_deny_send, dcc);
+				}
+				if (prefs.autoopendccrecvwindow)
+				{
+					if (fe_dcc_open_recv_win (TRUE))	/* was already open? just add*/
+						fe_dcc_add (dcc);
+				} else
+					fe_dcc_add (dcc);
+			}
+			sprintf (tbuf, "%lu", size);
+			snprintf (tbuf + 24, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
+			EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
 						 file, tbuf, tbuf + 24, 0);
-	} else
-		EMIT_SIGNAL (XP_TE_DCCGENERICOFFER, sess->server->front_session,
-						 parv[3] + 2, nick, NULL, NULL, 0);
+			return;
+		}
+		default:
+			EMIT_SIGNAL (XP_TE_DCCGENERICOFFER, sess->server->front_session,
+							 parv[3] + 2, nick, NULL, NULL, 0);
+			return;
+	}
 }
 
 void

@@ -60,27 +60,9 @@ ctcp_check (session *sess, char *tbuf, char *nick, int parc, char *parv[],
 	return ret;
 }
 
-static time_t throttle_time = 0;
-static int throttle_weight = 0;
-
-int
-ctcp_throttle(void)
-{
-	time_t tp = time(NULL);
-
-	if (throttle_time == 0)
-		throttle_time = tp;
-
-	throttle_weight += 25;
-	throttle_weight -= 10 * (tp - throttle_time);
-	throttle_time = tp;
-
-	if (throttle_weight < 0) /* check for underflows */
-		throttle_weight = 0;
-	if (throttle_weight >= 100) /* too many ctcp req's */
-		return 1;
-	return 0;
-}	
+/* The fields are: level, weight, leak, limit and timestamp */
+static throttle_t throttle_data = { 0, 34, 10, 100, 0 };
+#define ctcp_throttle gen_throttle(&throttle_data)
 
 void
 ctcp_handle (session *sess, char *to, char *nick,
@@ -103,7 +85,7 @@ ctcp_handle (session *sess, char *to, char *nick,
 		return;
 	}
 
-	if (ctcp_throttle() || ignore_check (parv[0], IG_CTCP))
+	if (ctcp_throttle || ignore_check (parv[0], IG_CTCP))
 		return;
 
 	if (!strcasecmp (msg, "VERSION") && !prefs.hidever)

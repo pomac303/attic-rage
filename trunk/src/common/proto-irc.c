@@ -734,6 +734,10 @@ irc_numeric(session *sess, int parc, char *parv[])
 				3, parc, parv), parv[0], parv[1], NULL, 0);
 }
 
+/* The fields are: level, weight, leak, limit and timestamp */
+static throttle_t throttle_inv_data = { 0, 30, 10, 60, 0 }; /* max 3 invites during 10 seconds. */
+#define throttle_invite gen_throttle(&throttle_inv_data)
+
 static void 
 irc_server(session *sess, int parc, char *parv[])
 {
@@ -757,7 +761,7 @@ irc_server(session *sess, int parc, char *parv[])
 
 	switch(MAKE4(parv[1][0],parv[1][1],parv[1][2],parv[1][3])) {
 		case M_INVITE:
-			if (ignore_check(parv[0], IG_INVI))
+			if (throttle_invite || ignore_check(parv[0], IG_INVI))
 				return;
 			/* TODO: Ratelimit invites to avoid floods */
 			EMIT_SIGNAL(XP_TE_INVITED, sess, parv[3], nick,

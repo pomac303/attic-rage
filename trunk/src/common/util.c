@@ -1365,6 +1365,24 @@ gcomp_nick_func (char *data)
 	return "";
 }
 
+int gen_throttle(throttle_t *td)
+{
+	time_t tp = time(NULL);
+
+	if (td->ts == 0)
+		td->ts = tp;
+
+	td->level += td->weight;
+	td->level -= td->leak * (tp - td->ts);
+	td->ts = tp;
+
+	if (td->level < 0) /* check for underflows */
+		td->level = 0;
+	if (td->level >= td->limit) /* too many events */
+		return 1;
+	return 0;
+}
+
 /* tab_comp, handle tab completion */
 int
 tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta)
