@@ -23,6 +23,7 @@
  */
 
 #include "rage.h"
+#include <inttypes.h>
 
 static char *dcctypes[] = { "SEND", "RECV", "CHAT", "CHAT" };
 
@@ -829,12 +830,10 @@ dcc_connect (struct DCC *dcc)
 		/* possible problems with filenames containing spaces? */
 		if (dcc->type == TYPE_RECV)
 			snprintf (tbuf, sizeof (tbuf), strchr (dcc->file, ' ') ?
-					"DCC SEND \"%s\" %llu %d %llu %d" :
-					"DCC SEND %s %llu %d %llu %d", 
-					dcc->file,
-					(guint64)dcc->addr, 
-					dcc->port,
-					(guint64)dcc->size,
+					"DCC SEND \"%s\" %"PRIu64" %d %"PRIu64" %d" :
+					"DCC SEND %s %"PRIu64" %d %"PRIu64" %d", 
+					dcc->file, (guint64)dcc->addr, 
+					dcc->port, (guint64)dcc->size,
 					dcc->pasvid);
 		else
 			snprintf (tbuf, sizeof (tbuf), "DCC CHAT chat %lu %d %d",
@@ -1199,16 +1198,16 @@ dcc_add_send (struct DCC *dcc)
 						{
 							dcc->pasvid = new_id();
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %llu %d" :
-									"DCC SEND %s %lu %d %llu %d",
+									"DCC SEND \"%s\" %lu %d %"PRIu64" %d" :
+									"DCC SEND %s %lu %d %"PRIu64" %d",
 									file_part (dcc->file), 199ul,
 									0, (guint64)dcc->size, dcc->pasvid);
 						}
 						else
 						{
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
-									"DCC SEND \"%s\" %lu %d %llu" :
-									"DCC SEND %s %lu %d %llu",
+									"DCC SEND \"%s\" %lu %d %"PRIu64 :
+									"DCC SEND %s %lu %d %"PRIu64,
 									file_part (dcc->file), dcc->addr,
 									dcc->port, (guint64)dcc->size);
 						}
@@ -1589,8 +1588,8 @@ dcc_resume (struct DCC *dcc)
 	{
 		/* filename contains spaces? Quote them! */
 		snprintf (tbuf, sizeof (tbuf) - 10, strchr (dcc->file, ' ') ?
-					  "DCC RESUME \"%s\" %d %llu" :
-					  "DCC RESUME %s %d %llu",
+					  "DCC RESUME \"%s\" %d %"PRIu64 :
+					  "DCC RESUME %s %d %"PRIu64,
 					  dcc->file, dcc->port, (guint64)dcc->resumable);
 
 		if (dcc->pasvid)
@@ -1741,7 +1740,7 @@ dcc_add_file (rage_session *sess, char *file, off_t size, int port, char *nick, 
 		else
 			fe_dcc_add (dcc);
 	}
-	sprintf (tbuf, "%llu", (guint64)size);
+	sprintf (tbuf, "%"PRIu64, (guint64)size);
 	len = strlen(tbuf) +1;
 	snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 	EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
@@ -1820,21 +1819,20 @@ handle_dcc (rage_session *sess, char *nick, char *ctcp_data)
 					/* Checking if dcc is passive and if filename contains spaces */
 					if (dcc->pasvid)
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %llu %d" :
-								"DCC ACCEPT %s %d %llu %d",
+								"DCC ACCEPT \"%s\" %d %"PRIu64" %d" :
+								"DCC ACCEPT %s %d %"PRIu64" %d",
 								file_part (dcc->file), port, 
-								(guint64)dcc->resumable,
-								dcc->pasvid);
+								(guint64)dcc->resumable, dcc->pasvid);
 					else
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
-								"DCC ACCEPT \"%s\" %d %llu" :
-								"DCC ACCEPT %s %d %llu",
+								"DCC ACCEPT \"%s\" %d %"PRIu64 :
+								"DCC ACCEPT %s %d %"PRIu64,
 								file_part (dcc->file), port, 
 								(guint64)dcc->resumable);
 
 					dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
 				}
-				sprintf (tbuf, "%llu", (guint64)dcc->pos);
+				sprintf (tbuf, "%"PRIu64, (guint64)dcc->pos);
 				EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
 								 file_part (dcc->file), tbuf, NULL, 0);
 			}

@@ -18,6 +18,7 @@
 
 #define WANTSOCKET
 #include "rage.h"
+#include <inttypes.h>
 
 char *
 file_part (char *file)
@@ -1627,17 +1628,17 @@ void
 capacity_format_size(char *s, unsigned long size, guint64 n)
 {
 	if (n < 1024 * 10)
-		snprintf(s, size, "%llu bytes", n);
+		snprintf(s, size, "%"PRIu64" bytes", n);
 	else if (n < 1024 * 1024)
-		snprintf(s, size, "%llu.%llu KB", n / 1024, n % 1024 * 10 / 1024);
+		snprintf(s, size, "%"PRIu64".%"PRIu64" KB", n / 1024, n % 1024 * 10 / 1024);
 	else if (n < 1024 * 1024 * 1024)
-		snprintf(s, size, "%llu.%llu MB", n / (1024 * 1024), n %
+		snprintf(s, size, "%"PRIu64".%"PRIu64" MB", n / (1024 * 1024), n %
 				(1024 * 1024) * 10 / (1024 * 1024));
 	else if (n < (guint64)1024 * 1024 * 1024 * 1024)
-		snprintf(s, size, "%llu.%llu GB", n / (1024 * 1024 * 1024), n %
+		snprintf(s, size, "%"PRIu64".%"PRIu64" GB", n / (1024 * 1024 * 1024), n %
 				(1024 * 1024 * 1024) * 10 / (1024 * 1024 * 1024));
 	else
-		snprintf(s, size, "%llu.%llu TB", n /
+		snprintf(s, size, "%"PRIu64".%"PRIu64" TB", n /
 				((guint64)1024 * 1024 * 1024 * 1024), n %
 				((guint64)1024 * 1024 * 1024 * 1024)  * 10 /
 				((guint64)1024 * 1024 * 1024 * 1024));

@@ -17,6 +17,7 @@
  */
 
 #include "fe-gtk.h"
+#include <inttypes.h>
 
 #ifdef USE_GNOME
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
@@ -302,7 +303,7 @@ dcc_info (struct DCC *dcc)
 	char tbuf[256];
 	snprintf (tbuf, 255, _("      File: %s\n"
 				 "   To/From: %s\n"
-				 "      Size: %llu\n"
+				 "      Size: %"PRIu64"\n"
 				 "      Port: %d\n"
 				 " IP Number: %s\n"
 				 "Start Time: %s"
