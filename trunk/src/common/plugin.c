@@ -223,7 +223,7 @@ plugin_add (rage_session *sess, char *filename, void *handle, void *init_func,
 		pl->rage_command = rage_command;
 		pl->rage_commandf = rage_commandf;
 		pl->rage_nickcmp = rage_nickcmp;
-#if 0 // #ifdef PLUGIN_C /* FIXME: why? */
+#ifdef PLUGIN_C /* FIXME: why? */
 		pl->rage_set_context = rage_set_context;
 		pl->rage_find_context = rage_find_context;
 		pl->rage_get_context = rage_get_context;
@@ -1155,17 +1155,21 @@ rage_list_str (rage_plugin *ph, rage_list *xlist, const char *name)
 		{
 		case 0x2c0b7d03: /* channel */
 			return ((rage_session *)data)->channel;
-		/* XXX: needs isupport */
-//		case 0x577e0867: /* chantypes */
-//			return ((rage_session *)data)->server->chantypes;
+		case 0x577e0867: /* chantypes */
+			return get_isupport(ph->context->server, "CHANTYPES");
 		case 0x38b735af: /* context */
 			return data;	/* this is a rage_session * */
 		case 0x6de15a2e: /* network */
 			return get_network ((rage_session *)data, FALSE);
-//		case 0x8455e723: /* nickprefixes */
-//			return ((rage_session *)data)->server->nick_prefixes;
-//		case 0x829689ad: /* nickmodes */
-//			return ((rage_session *)data)->server->nick_modes;
+		case 0x8455e723: /* nickprefixes */
+			return get_isupport(ph->context->server, "PREFIX");
+		case 0x829689ad: /* nickmodes */
+		{
+			char *str = strchr(get_isupport(ph->context->server, "PREFIX"), ')');
+			if(str)
+				*str++;
+			return str ? str : "";
+		}
 		case 0xca022f43: /* server */
 			return ((rage_session *)data)->server->servername;
 		}
@@ -1260,8 +1264,7 @@ rage_list_int (rage_plugin *ph, rage_list *xlist, const char *name)
 		case 0xd1b:	/* id */
 			return ((rage_session *)data)->server->id;
 		case 0x5cfee87:	/* flags */
-			/* XXX: broken, needs isupport modification 
-			tmp = ((rage_session *)data)->server->have_whox; */  /* bit 4 */
+			tmp = isupport(ph->context->server, "WHOX");  /* bit 4 */
 			tmp <<= 1;
 			tmp |= ((rage_session *)data)->server->end_of_motd;/* 3 */
 			tmp <<= 1;
@@ -1271,9 +1274,8 @@ rage_list_int (rage_plugin *ph, rage_list *xlist, const char *name)
 			tmp <<= 1;
 			tmp |= ((rage_session *)data)->server->connected;  /* 0 */
 			return tmp;
-		/* FIXME: isupport */
-//		case 0x1916144c: /* maxmodes */
-//			return ((rage_session *)data)->server->modes_per_line;
+		case 0x1916144c: /* maxmodes */
+			return atoi(get_isupport(ph->context->server, "MODES"));
 		case 0x368f3a:	/* type */
 			return ((rage_session *)data)->type;
 		case 0x6a68e08: /* users */
