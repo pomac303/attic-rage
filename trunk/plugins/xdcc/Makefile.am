@@ -1,6 +1,6 @@
 CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror -shared
 
-libdir = $(xchatdir)/plugins
+libdir = $(ragedir)/plugins
 
 lib_LTLIBRARIES = xdcc.la
 xdcc_la_SOURCES = xdcc.c

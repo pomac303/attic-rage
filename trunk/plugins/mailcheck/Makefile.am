@@ -17,7 +17,7 @@ EXTRA_DIST = mailcheck-config.h.in
 # Remember to include this line in your Makefile.am
 include @top_srcdir@/plugins/Make.plugin
 
-libdir = $(xchatdir)/plugins
+libdir = $(maildir)/plugins
 
 lib_LTLIBRARIES = mailcheck.la
 mailcheck_la_SOURCES = mailcheck.c

@@ -1,4 +1,4 @@
-/* XCHAT 2.0 PLUGIN: Mail checker */
+/* rage plugin: Mail checker */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,10 +7,10 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 
 
-static xchat_plugin *ph;	/* plugin handle */
+static rage_plugin *ph;	/* plugin handle */
 
 static int
 mail_items(char *file)
@@ -35,7 +35,7 @@ mail_items(char *file)
 }
 
 static void
-xchat_mail_check (void)
+rage_mail_check (void)
 {
 	static int last_size = -1;
 	int size;
@@ -63,8 +63,8 @@ xchat_mail_check (void)
 
 	if(size > last_size)
 	{
-		xchat_printf(ph,
-	"-\0033-\0039-\017\tYou have new mail (%d messages, %d bytes total).",
+		rage_printf(ph,
+				"-\0033-\0039-\017\tYou have new mail (%d messages, %d bytes total).",
 				mail_items(maildir), size);
 	}
 
@@ -73,14 +73,14 @@ xchat_mail_check (void)
 
 static int timeout_cb(void *userdata)
 {
-	xchat_mail_check();
+	rage_mail_check();
 
 	return 1;
 }
 
-int xchat_plugin_init(xchat_plugin *plugin_handle,
-				char **plugin_name, char **plugin_desc, char **plugin_version,
-				char *arg)
+int rage_plugin_init(rage_plugin *plugin_handle,
+		char **plugin_name, char **plugin_desc, char **plugin_version,
+		char *arg)
 {
 	ph = plugin_handle;
 
@@ -88,7 +88,8 @@ int xchat_plugin_init(xchat_plugin *plugin_handle,
 	*plugin_desc = "Checks your mailbox every 30 seconds";
 	*plugin_version = "0.1";
 
-	xchat_hook_timer(ph, 30000, timeout_cb, 0);
+	rage_hook_timer(ph, 30000, timeout_cb, 0);
 
 	return 1;
 }
+
