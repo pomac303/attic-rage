@@ -817,7 +817,9 @@ irc_server(session *sess, int parc, char *parv[])
 			char *text = parv[3];
 
 			if (is_server) {
-				EMIT_SIGNAL(XP_TE_SERVNOTICE, sess, text,
+				EMIT_SIGNAL(XP_TE_SERVNOTICE, 
+						sess->server->server_session, 
+						text,
 						sess->server->servername,
 						NULL, NULL, 0);
 			} else {
