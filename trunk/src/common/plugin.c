@@ -793,13 +793,16 @@ xchat_printf (xchat_plugin *ph, const char *format, ...)
 void
 xchat_command (xchat_plugin *ph, const char *command)
 {
+	char *buf;
 	if (!is_session (ph->context))
 	{
 		DEBUG(PrintTextf(0, "%s\txchat_command called without a valid context.\n", ph->name));
 		return;
 	}
 
-	handle_command (ph->context, (char *)command, FALSE);
+	buf=strdup(command);
+	handle_command (ph->context, buf, FALSE);
+	free(buf);
 }
 
 void

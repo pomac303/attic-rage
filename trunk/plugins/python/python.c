@@ -1801,27 +1801,12 @@ static int
 IInterp_Cmd(int parc, char *parv[], void *userdata)
 {
 	char *channel = (char *) xchat_get_info(ph, "channel");
-	int len=0;
-	char *buf;
-	int i;
 	g_return_val_if_fail(channel != NULL, 0);
-	for(i=0;i<parc;i++) {
-		len+=strlen(parv[i])+1; /* for the ' ' or '\0' */
-	}
-	buf=malloc(len);
-	*buf='\0'; /* start off \0 terminated */
-	for(i=0;i<parc;i++) {
-		if (i!=0)
-			strcat(buf," ");
-		strcat(buf,parv[i]);
-	}
 	if (channel[0] == '>' && strcmp(channel, ">>python<<") == 0) {
-		xchat_printf(ph, ">>> %s\n", buf);
-		IInterp_Exec(buf);
-		free(buf);
+		xchat_printf(ph, ">>> %s\n", parv[1]);
+		IInterp_Exec(parv[1]);
 		return 1;
 	}
-	free(buf);
 	return 0;
 }
 
@@ -2018,7 +2003,7 @@ xchat_plugin_init(xchat_plugin *plugin_handle,
 	*plugin_desc = "Python scripting interface";
 
 	/* Initialize python. */
-	Py_SetProgramName("xchat");
+	Py_SetProgramName("rage");
 	Py_Initialize();
 	PySys_SetArgv(1, argv);
 
