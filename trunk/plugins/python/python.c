@@ -974,17 +974,11 @@ ListItem_New(const char *listname)
 /* ===================================================================== */
 /* Plugin object */
 
-#define GET_MODULE_DATA(x, force) \
+#define GET_MODULE_DATA(x, def) \
 	o = PyObject_GetAttrString(m, "__module_" #x "__"); \
 	if (o == NULL)\
 	{ \
-		if (force) \
-		{ \
-			rage_print(ph, "Module has no __module_" #x "__ " \
-					"defined"); \
-			goto error; \
-		} \
-		plugin->x = g_strdup(""); \
+		plugin->x = g_strdup(def); \
 	} \
 	else \
 	{ \
@@ -1114,9 +1108,9 @@ Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 			rage_print(ph, "Can't get __main__ module");
 			goto error;
 		}
-		GET_MODULE_DATA(name, 1);
-		GET_MODULE_DATA(version, 0);
-		GET_MODULE_DATA(description, 0);
+		GET_MODULE_DATA(name, plugin->filename);
+		GET_MODULE_DATA(version, "1.0");
+		GET_MODULE_DATA(description, "");
 		plugin->gui = rage_plugingui_add(ph, plugin->filename,
 						  plugin->name,
 						  plugin->description,
@@ -1974,9 +1968,7 @@ Command_Py(int parc, char *word[], void *userdata)
 	int i;
 
 	p=word[1];
-	while(*p && *p!=' ')p++;
 	i=0;
-	while(*p && *p==' ')p++;
 	while(*p && *p!=' ' && i<sizeof(cmd)-1)
 	{
 		cmd[i++]=*p;
@@ -2029,18 +2021,23 @@ Command_Py(int parc, char *word[], void *userdata)
 		ok = 1;
 		Command_PyAbout();
 	}
-	if (!ok)
+	if (!ok) {
+		rage_printf(ph, "Unexpected command `%s'", cmd);
 		rage_print(ph, usage);
+	}
 	return RAGE_EAT_ALL;
 }
 
 static int
 Command_Load(int parc, char *word[], void *userdata)
 {
-	int len = strlen(word[2]);
-	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0)
+	int len;
+	if (parc < 2)
+		return RAGE_EAT_NONE;
+	len = strlen(word[1]);
+	if (len > 3 && strcasecmp(".py", word[1]+len-3) == 0)
 	{
-		Command_PyLoad(word[2]);
+		Command_PyLoad(word[1]);
 		return RAGE_EAT_RAGE;
 	}
 	return RAGE_EAT_NONE;

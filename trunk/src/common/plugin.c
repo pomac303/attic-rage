@@ -511,7 +511,17 @@ xit:
 int
 plugin_emit_command (rage_session *sess, char *name, char *buf)
 {
-	char *parv[3] = { name, buf, "" };
+	char *parv[3];
+
+	/* Skip over the first word */
+	while(*buf && *buf!=' ')
+		buf++;
+	while (*buf && *buf==' ')
+		buf++;
+
+	parv[0] = name;
+	parv[1] = buf;
+	parv[2] = "";
 	
 	return plugin_hook_run (sess, name, 2, parv, HOOK_COMMAND);
 }
