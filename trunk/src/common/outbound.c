@@ -3826,8 +3826,9 @@ handle_say (session *sess, char *text, int check_spch)
 		{
 			int i = 0, size;
 
-			/* traverse the utf8 string and find the nearest cut point that
-				doesn't split 1 char in half */
+			/* traverse the utf8 string and find the nearest 
+			 * cut point that doesn't split 1 char in half 
+			 * TODO: Try splitting on word boundaries*/
 			while (1)
 			{
 				size = g_utf8_skip[((unsigned char *)text)[i]];
@@ -3837,7 +3838,9 @@ handle_say (session *sess, char *text, int check_spch)
 			}
 			max = i;
 			t = text[max];
-			text[max] = 0;			  /* insert a NULL terminator to shorten it */
+			text[max] = 0;			  /* insert a NULL 
+							     terminator to 
+							     shorten it */
 		}
 
 		inbound_chanmsg (sess->server, sess, sess->channel, sess->server->nick,

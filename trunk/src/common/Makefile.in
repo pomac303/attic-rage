@@ -262,34 +262,35 @@ LIBRARIES = $(noinst_LIBRARIES)
 libxchatcommon_a_AR = $(AR) cru
 libxchatcommon_a_LIBADD =
 am__libxchatcommon_a_SOURCES_DIST = cfgfiles.c ctcp.c dcc.c history.c \
-	ignore.c inbound.c modes.c network.c notify.c dict-splay.c outbound.c \
-	plugin.c plugin-timer.c proto-irc.c server.c servlist.c ssl.c \
-	text.c tree.c url.c userlist.c util.c xchat.c
+	ignore.c inbound.c modes.c network.c notify.c dict-splay.c \
+	outbound.c plugin.c plugin-timer.c proto-irc.c server.c \
+	servlist.c ssl.c text.c tree.c url.c userlist.c util.c xchat.c
 @USE_OPENSSL_TRUE@am__objects_1 = ssl.$(OBJEXT)
 am_libxchatcommon_a_OBJECTS = cfgfiles.$(OBJEXT) ctcp.$(OBJEXT) \
 	dcc.$(OBJEXT) history.$(OBJEXT) ignore.$(OBJEXT) \
 	inbound.$(OBJEXT) modes.$(OBJEXT) network.$(OBJEXT) \
-	notify.$(OBJEXT) dict-splay.$(OBJEXT) outbound.$(OBJEXT) plugin.$(OBJEXT) \
-	plugin-timer.$(OBJEXT) proto-irc.$(OBJEXT) server.$(OBJEXT) \
-	servlist.$(OBJEXT) $(am__objects_1) text.$(OBJEXT) \
-	tree.$(OBJEXT) url.$(OBJEXT) userlist.$(OBJEXT) util.$(OBJEXT) \
-	xchat.$(OBJEXT)
+	notify.$(OBJEXT) dict-splay.$(OBJEXT) outbound.$(OBJEXT) \
+	plugin.$(OBJEXT) plugin-timer.$(OBJEXT) proto-irc.$(OBJEXT) \
+	server.$(OBJEXT) servlist.$(OBJEXT) $(am__objects_1) \
+	text.$(OBJEXT) tree.$(OBJEXT) url.$(OBJEXT) userlist.$(OBJEXT) \
+	util.$(OBJEXT) xchat.$(OBJEXT)
 libxchatcommon_a_OBJECTS = $(am_libxchatcommon_a_OBJECTS)
 
 DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/cfgfiles.Po ./$(DEPDIR)/ctcp.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/dcc.Po ./$(DEPDIR)/history.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/ignore.Po ./$(DEPDIR)/inbound.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/modes.Po ./$(DEPDIR)/network.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/notify.Po ./$(DEPDIR)/outbound.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/plugin-timer.Po ./$(DEPDIR)/plugin.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/proto-irc.Po ./$(DEPDIR)/server.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/servlist.Po ./$(DEPDIR)/ssl.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/text.Po ./$(DEPDIR)/tree.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/url.Po ./$(DEPDIR)/userlist.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/util.Po ./$(DEPDIR)/xchat.Po
+@AMDEP_TRUE@	./$(DEPDIR)/dcc.Po ./$(DEPDIR)/dict-splay.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/history.Po ./$(DEPDIR)/ignore.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/inbound.Po ./$(DEPDIR)/modes.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/network.Po ./$(DEPDIR)/notify.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/outbound.Po ./$(DEPDIR)/plugin-timer.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/plugin.Po ./$(DEPDIR)/proto-irc.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/server.Po ./$(DEPDIR)/servlist.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/ssl.Po ./$(DEPDIR)/text.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/tree.Po ./$(DEPDIR)/url.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/userlist.Po ./$(DEPDIR)/util.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/xchat.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
@@ -327,6 +328,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cfgfiles.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ctcp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dcc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dict-splay.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/history.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ignore.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/inbound.Po@am__quote@

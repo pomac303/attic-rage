@@ -689,7 +689,7 @@ key_dialog_show ()
 	}
 
 	key_dialog =
-			  mg_create_generic_tab ("editkeys", _("X-Chat: Keyboard Shortcuts"),
+			  mg_create_generic_tab ("editkeys", _("Rage: Keyboard Shortcuts"),
 							TRUE, FALSE, key_dialog_close, NULL, 560, 330, &vbox, 0);
 
 	hbox = gtk_hbox_new (0, 2);
@@ -828,7 +828,7 @@ key_save_kbs (char *fn)
 		return;
 	}
 	write (fd, buf,
-			 snprintf (buf, 510, "# XChat key bindings config file\n\n"));
+			 snprintf (buf, 510, "# Rage key bindings config file\n\n"));
 
 	kb = keys_root;
 	i = 0;

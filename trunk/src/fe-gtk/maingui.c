@@ -314,27 +314,27 @@ fe_set_title (session *sess)
 	switch (type)
 	{
 	case SESS_DIALOG:
-		snprintf (tbuf, sizeof (tbuf), "X-Chat ["VERSION"]: %s %s @ %s",
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s %s @ %s",
 					 _("Dialog with"), sess->channel, sess->server->servername);
 		break;
 	case SESS_SERVER:
-		snprintf (tbuf, sizeof (tbuf), "X-Chat ["VERSION"]: %s @ %s",
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s @ %s",
 					 sess->server->nick, sess->server->servername);
 		break;
 	case SESS_CHANNEL:
 		snprintf (tbuf, sizeof (tbuf),
-					 "X-Chat ["VERSION"]: %s @ %s / %s (%s)",
+					 "Rage ["VERSION"]: %s @ %s / %s (%s)",
 					 sess->server->nick, sess->server->servername,
 					 sess->channel, sess->current_modes ? sess->current_modes : "");
 		break;
 	case SESS_NOTICES:
 	case SESS_SNOTICES:
-		snprintf (tbuf, sizeof (tbuf), "X-Chat ["VERSION"]: %s @ %s (notices)",
+		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"]: %s @ %s (notices)",
 					 sess->server->nick, sess->server->servername);
 		break;
 	default:
 	def:
-		gtk_window_set_title (GTK_WINDOW (sess->gui->window), "X-Chat ["VERSION"]");
+		gtk_window_set_title (GTK_WINDOW (sess->gui->window), "Rage ["VERSION"]");
 		return;
 	}
 
@@ -2209,10 +2209,10 @@ mg_create_topwindow (session *sess)
 	GtkWidget *vvbox;
 
 	if (sess->type == SESS_DIALOG)
-		win = gtkutil_window_new ("X-Chat ["VERSION"]", NULL,
+		win = gtkutil_window_new ("Rage ["VERSION"]", NULL,
 										  prefs.dialog_width, prefs.dialog_height, 0);
 	else
-		win = gtkutil_window_new ("X-Chat ["VERSION"]", NULL,
+		win = gtkutil_window_new ("Rage ["VERSION"]", NULL,
 										  prefs.mainwindow_width,
 										  prefs.mainwindow_height, 0);
 	sess->gui->window = win;
@@ -2346,7 +2346,7 @@ mg_create_tabwindow (session *sess)
 	GtkWidget *table;
 	GtkWidget *book;
 
-	win = gtkutil_window_new ("X-Chat ["VERSION"]", NULL, prefs.mainwindow_width,
+	win = gtkutil_window_new ("Rage ["VERSION"]", NULL, prefs.mainwindow_width,
 									  prefs.mainwindow_height, 0);
 	sess->gui->window = win;
 	gtk_window_move (GTK_WINDOW (win), prefs.mainwindow_left,
