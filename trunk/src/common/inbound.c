@@ -697,14 +697,27 @@ inbound_join (server *serv, char *chan, char *user, char *ip)
 	{
 		if (!sess->hide_join_part)
 		{
+			struct User *user_node;
+			GList *tmp;
+			
 			if (sess->stack_timer)
 				g_source_remove(sess->stack_timer);
 			else
 				sess->stack_join = g_queue_new();
-			g_queue_push_head(sess->stack_join, add_name (sess, user, ip));
-			sess->stack_timer = g_timeout_add(500, 
-					(GSourceFunc)handle_mjoin, sess);
 			
+			user_node = add_name (sess, user, ip);
+			
+			if (sess->server->split_queue && 
+					(tmp = g_queue_find(sess->server->split_queue, user_node->nick)))
+			{
+				g_free(tmp->data);
+				g_queue_delete_link(sess->server->split_queue, tmp);
+			}
+			else
+				g_queue_push_head(sess->stack_join, user_node);
+			
+			sess->stack_timer = g_timeout_add(250, 
+					(GSourceFunc)handle_mjoin, sess);
 		}
 		else
 			add_name (sess, user, ip);
@@ -820,76 +833,81 @@ void
 inbound_quit (server *serv, char *nick, char *ip, char *reason)
 {
 	GSList *list = sess_list;
-	rage_session *sess;
+	rage_session *sess = NULL;
 	int was_on_front_session = FALSE;
 	int netsplit = FALSE;
 	char *seperator, *p;
-
-	if (serv->split_reason && (strcmp(serv->split_reason, reason) == 0))
-		netsplit = TRUE;
-	else if ((seperator = strchr(reason, ' ')))
+	
+	if (!sess->hide_join_part)
 	{
-		int tld = 0, space = FALSE;
-
-		*seperator = 0;
-
-		if((p = strchr(reason, '.')))
+		if (serv->split_reason && (strcmp(serv->split_reason, reason) == 0))
+			netsplit = TRUE;
+		else if ((seperator = strchr(reason, ' ')))
 		{
-			for (; *p; p++)
+			int tld = 0, space = FALSE;
+
+			*seperator = 0;
+
+			if((p = strchr(reason, '.')))
 			{
-				if (*p == '.')
-					tld = 0;
-				else
-					tld++;
-			}
-			if ((tld > 1) && (tld < 5))
-			{
-				if ((p = strchr(seperator +1, '.')))
+				for (; *p; p++)
 				{
-					for (; *p; p++)
+					if (*p == '.')
+						tld = 0;
+					else
+						tld++;
+				}
+				if ((tld > 1) && (tld < 5))
+				{
+					if ((p = strchr(seperator +1, '.')))
 					{
-						if (*p == ' ')
+						for (; *p; p++)
 						{
-							space = TRUE;
-							break;
+							if (*p == ' ')
+							{
+								space = TRUE;
+								break;
+							}
+							if (*p == '.')
+								tld = 0;
+							else
+								tld++;
 						}
-						if (*p == '.')
-							tld = 0;
-						else
-							tld++;
+						if (!space && (tld > 1) && (tld < 6))
+							netsplit = TRUE;
 					}
-					if (!space && (tld > 1) && (tld < 6))
-						netsplit = TRUE;
 				}
 			}
-		}
-
-		if (netsplit)
-		{	
-			if (serv->split_queue)
-			{
-				if (serv->split_timer)
-					g_source_remove(serv->split_timer);
-				handle_netsplit(serv);
-			}
-
-			serv->split_queue = g_queue_new();
-
-			EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, 
-					seperator+1, NULL, NULL, 0);
 			
-			*seperator = ' ';
-			serv->split_reason = g_strdup(reason);
+			if (netsplit)
+			{	
+				if (serv->split_queue)
+				{
+					if (serv->split_timer)
+						g_source_remove(serv->split_timer);
+					handle_netsplit(serv);
+				}
+
+				serv->split_queue = g_queue_new();
+
+				EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, 
+						seperator+1, NULL, NULL, 0);
+			
+				*seperator = ' ';
+				serv->split_reason = g_strdup(reason);
+			}
+			else
+				*seperator = ' ';
 		}
-		else
-			*seperator = ' ';
 	}
+	
 	if (netsplit)
 	{
 		g_queue_push_head(serv->split_queue, g_strdup(nick));
 		if (serv->split_timer)
 			g_source_remove(serv->split_timer);
-		serv->split_timer = g_timeout_add(500, (GSourceFunc)handle_netsplit, serv);
+		serv->split_timer = g_timeout_add(prefs.netsplit_time, 
+				(GSourceFunc)handle_netsplit, serv);
 	}
 
 	for (; list; list = list->next)
@@ -901,7 +919,7 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
  				was_on_front_session = TRUE;
 			if (sub_name (sess, nick))
 			{
-				if (!netsplit || !sess->hide_join_part)
+				if (!netsplit && !sess->hide_join_part)
 					EMIT_SIGNAL (XP_TE_QUIT, sess, nick, reason, ip, NULL, 0);
 			}
 			else if (sess->type == SESS_DIALOG && 
