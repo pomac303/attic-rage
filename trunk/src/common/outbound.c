@@ -3747,13 +3747,16 @@ perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
 static void
 user_command (session * sess, char *cmd, char *buf)
 {
-	char tbuf[512];
+	char tbuf[2048];
 	int parc;
 	char *parv[MAX_TOKENS];
+	char buf2[2048];
 
-	split_cmd_parv(buf,&parc,parv);
+	snprintf(buf2,sizeof(buf),"%s %s",sess->channel,buf);
 
-	if (!auto_insert (tbuf, 2048, cmd, parc, parv, "",
+	split_cmd_parv(buf2,&parc,parv);
+
+	if (!auto_insert (tbuf, sizeof(tbuf), cmd, parc, parv, "",
 			sess->channel, "", "", sess->server->nick, ""))
 	{
 		PrintText (sess, _("Bad arguments for user command.\n"));
