@@ -676,34 +676,34 @@ static char defaultconf_replace[] =
 	"NAME u\n"					"CMD you\n\n"*/
 
 static char defaultconf_commands[] =
-	"NAME ACTION\n"		"CMD me &2\n\n"\
-	"NAME AME\n"			"CMD allchan me &2\n\n"\
-	"NAME ANICK\n"			"CMD allserv nick &2\n\n"\
-	"NAME AMSG\n"			"CMD allchan say &2\n\n"\
+	"NAME ACTION\n"		"CMD me &1\n\n"\
+	"NAME AME\n"			"CMD allchan me &1\n\n"\
+	"NAME ANICK\n"			"CMD allserv nick &1\n\n"\
+	"NAME AMSG\n"			"CMD allchan say &1\n\n"\
 	"NAME BACK\n"			"CMD away\n\n"\
 	"NAME BANLIST\n"		"CMD quote MODE %c +b\n\n"\
-	"NAME CHAT\n"			"CMD dcc chat %2\n\n"\
-	"NAME DIALOG\n"		"CMD query %2\n\n"\
-	"NAME DMSG\n"			"CMD msg =%2 &3\n\n"\
+	"NAME CHAT\n"			"CMD dcc chat %1\n\n"\
+	"NAME DIALOG\n"		"CMD query %1\n\n"\
+	"NAME DMSG\n"			"CMD msg =%1 &2\n\n"\
 	"NAME EXIT\n"			"CMD quit\n\n"\
-	"NAME J\n"				"CMD join &2\n\n"\
-	"NAME KILL\n"			"CMD quote KILL %2 :&3\n\n"\
-	"NAME LEAVE\n"			"CMD part &2\n\n"\
-	"NAME M\n"				"CMD msg &2\n\n"\
-	"NAME ONOTICE\n"		"CMD notice @%c &2\n\n"\
-	"NAME RAW\n"			"CMD quote &2\n\n"\
+	"NAME J\n"				"CMD join &1\n\n"\
+	"NAME KILL\n"			"CMD quote KILL %1 :&2\n\n"\
+	"NAME LEAVE\n"			"CMD part &1\n\n"\
+	"NAME M\n"				"CMD msg &1\n\n"\
+	"NAME ONOTICE\n"		"CMD notice @%c &1\n\n"\
+	"NAME RAW\n"			"CMD quote &1\n\n"\
 	"NAME SERVHELP\n"		"CMD quote HELP\n\n"\
 	"NAME SPING\n"			"CMD ping\n\n"\
-	"NAME SQUERY\n"		"CMD quote SQUERY %2 :&3\n\n"\
-	"NAME SSLSERVER\n"	"CMD server -ssl &2\n\n"\
+	"NAME SQUERY\n"		"CMD quote SQUERY %1 :&2\n\n"\
+	"NAME SSLSERVER\n"	"CMD server -ssl &1\n\n"\
 	"NAME SV\n"				"CMD echo xchat %v %m\n\n"\
-	"NAME UMODE\n"			"CMD mode %n &2\n\n"\
+	"NAME UMODE\n"			"CMD mode %n &1\n\n"\
 	"NAME UPTIME\n"		"CMD quote STATS u\n\n"\
-	"NAME VER\n"			"CMD ctcp %2 VERSION\n\n"\
-	"NAME VERSION\n"		"CMD ctcp %2 VERSION\n\n"\
-	"NAME WALLOPS\n"		"CMD quote WALLOPS :&2\n\n"\
-	"NAME WALLUSERS\n"		"CMD quote WALLUSERS :&2\n\n"\
-	"NAME WII\n"			"CMD quote WHOIS %2 %2\n\n";
+	"NAME VER\n"			"CMD ctcp %1 VERSION\n\n"\
+	"NAME VERSION\n"		"CMD ctcp %1 VERSION\n\n"\
+	"NAME WALLOPS\n"		"CMD quote WALLOPS :&1\n\n"\
+	"NAME WALLUSERS\n"		"CMD quote WALLUSERS :&1\n\n"\
+	"NAME WII\n"			"CMD quote WHOIS %1 %1\n\n";
 
 #ifdef WIN32
 static char defaultconf_urlhandlers[] =
