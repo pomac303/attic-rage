@@ -290,7 +290,7 @@ menu_quick_sub (char *name, GtkWidget *menu, GtkWidget **sub_item_ret)
 }
 
 static GtkWidget *
-menu_quick_endsub ()
+menu_quick_endsub (void)
 {
 	/* Just delete the first element in the linked list pointed to by first */
 	if (submenu_list)
@@ -864,7 +864,7 @@ menu_close (GtkWidget * wid, gpointer none)
 }
 
 static void
-menu_search ()
+menu_search (void)
 {
 	search_open (current_sess);
 }

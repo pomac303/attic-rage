@@ -67,7 +67,7 @@ struct gcomp_data
 };
 
 static int key_load_kbs (char *);
-static void key_load_defaults ();
+static void key_load_defaults (void);
 static void key_save_kbs (char *);
 static int key_action_handle_command (GtkWidget * wid, GdkEventKey * evt,
 												  char *d1, char *d2,
@@ -328,7 +328,7 @@ static GtkWidget *key_dialog_ent_key, *key_dialog_ent_d1, *key_dialog_ent_d2;
 static GtkWidget *key_dialog_text;
 
 static void
-key_load_defaults ()
+key_load_defaults (void)
 {
 		/* This is the default config */
 #define defcfg \
@@ -377,7 +377,7 @@ key_load_defaults ()
 }
 
 static void
-key_dialog_close ()
+key_dialog_close (void)
 {
 	key_dialog = NULL;
 	key_save_kbs (NULL);

@@ -1035,7 +1035,7 @@ static char *pevt_rpong_help[] = {
 #include "textevents.h"
 
 static void
-pevent_load_defaults ()
+pevent_load_defaults (void)
 {
 	int i;
 
@@ -1053,7 +1053,7 @@ pevent_load_defaults ()
 }
 
 void
-pevent_make_pntevts ()
+pevent_make_pntevts (void)
 {
 	int i, m, len;
 	char out[1024];
@@ -1238,7 +1238,7 @@ pevent_load (char *filename)
 }
 
 static void
-pevent_check_all_loaded ()
+pevent_check_all_loaded (void)
 {
 	int i, len;
 
@@ -1257,7 +1257,7 @@ pevent_check_all_loaded ()
 }
 
 void
-load_text_events ()
+load_text_events (void)
 {
 	memset (&pntevts_text, 0, sizeof (char *) * (NUM_XP));
 	memset (&pntevts, 0, sizeof (char *) * (NUM_XP));
