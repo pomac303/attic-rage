@@ -58,7 +58,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include "xchat-plugin.h"
+#include "rage-plugin.h"
 #include "Python.h"
 #include "structmember.h"
 #include "pythread.h"

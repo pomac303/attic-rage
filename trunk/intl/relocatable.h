@@ -20,11 +20,6 @@
 #ifndef _RELOCATABLE_H
 #define _RELOCATABLE_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 /* This can be enabled through the configure --enable-relocatable option.  */
 #if ENABLE_RELOCATABLE
 
@@ -67,11 +62,6 @@ extern const char * compute_curr_prefix (const char *orig_installprefix,
 /* By default, we use the hardwired pathnames.  */
 #define relocate(pathname) (pathname)
 
-#endif
-
-
-#ifdef __cplusplus
-}
 #endif
 
 #endif /* _RELOCATABLE_H */
