@@ -370,6 +370,10 @@ irc_split(server *serv,char *buf,int *parc,char *parv[])
 static void
 irc_numeric(session *sess, int parc, char *parv[])
 {
+	char line[512];
+	session *tmp = NULL;
+	int i=0;
+
 	switch(atoi(parv[1])) {
 		case RPL_WELCOME:  /* 001 */
 			inbound_login_start(sess,parv[2],parv[0]);
@@ -381,7 +385,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 			 */
 			break;
 		case RPL_ISUPPORT: /* 005 */
-			/* XXX: Broken */
 			inbound_005(sess->server,parc,parv);
 			break;
 		case 290: /* CAPAB reply */
@@ -719,18 +722,27 @@ irc_numeric(session *sess, int parc, char *parv[])
 	/* TODO: Generate a signal based on the numeric, which gets rid of
 	 *       a huge number of cases above, and lets people script things
 	 *       far more easily.
+	 *
+	 * For the time being, the numeric is now in an extra parameter,
+	 * which at least helps the cause.
 	 */
-	if (is_channel (sess->server, parv[3]))
+	if (is_channel (sess->server, parv[2]))
 	{
-		session *tmp = find_channel(sess->server,parv[3]);
+		tmp = find_channel(sess->server,parv[2]);
 		if (!tmp)
 			tmp = sess->server->server_session;
-		EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, parv[parc-1], 
-				parv[0], parv[1], NULL, 0);
 	} else {
-		EMIT_SIGNAL(XP_TE_SERVTEXT, sess->server->server_session, 
-				parv[parc-1], parv[0], parv[1], NULL, 0);
+		tmp = sess->server->server_session;
 	}
+
+	line[0]='\0';
+	for(i=2;i<parc;i++) {
+		strncpy(line,parv[i],sizeof(line));
+	}
+	line[sizeof(line)-1]='\0'; /* strncpy doesn't always null terminate */
+
+	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, line, 
+			parv[0], parv[1], NULL, 0);
 }
 
 static void 
@@ -776,7 +788,6 @@ irc_server(session *sess, int parc, char *parv[])
 
 		case M_MODE:
 		{
-			/* XXX: BROKEN */
 			handle_mode (sess->server, parc,parv, nick, FALSE);
 			return;
 		}
@@ -854,7 +865,6 @@ irc_server(session *sess, int parc, char *parv[])
 								sess,0);
 					if (strncasecmp(text,"DCC ",4) == 0)
 					{ } 
-					/* XXX: BROKEN */
 					ctcp_handle(sess, to, nick, text, parc, parv);
 				} else
 				{
@@ -921,16 +931,25 @@ irc_server(session *sess, int parc, char *parv[])
 			tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
 			break;
 		case M_ERROR:
-			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[1], NULL,
+			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,
 					NULL, NULL, 0);
 			break;
 		default:
+		{
+			char line[512];
+			int i=0;
+			line[0]='\0';
+			for(i=(is_server ? 1 : 0);i<parc;i++) {
+				strncat(line,sizeof(line),parv[i]);
+			}
+			line[sizeof(line)-1]='\0';
 			if (is_server)
-				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, parv[1],
+				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
 						sess->server->servername,
 						NULL, NULL, 0);
 			else
-				PrintTextf(sess, "GARBAGE: %s\n", parv[1]);
+				PrintTextf(sess, "GARBAGE\t%s\n", line);
+		}
 	}
 }
 
