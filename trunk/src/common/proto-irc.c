@@ -196,7 +196,14 @@ irc_user_whois (server *serv, char *nicks)
 static void
 irc_message (server *serv, char *channel, char *text)
 {
-	tcp_sendf (serv, "PRIVMSG %s :%s\r\n", channel, text);
+	session *sess = NULL;
+	
+	if (is_channel(serv, channel))
+			sess = find_channel(serv, channel);
+	if (sess && sess->me->op && isupport(serv, "CPRIVMSG"))
+		tcp_sendf (serv, "CPRIVMSG %s :%s\r\n", channel, text);
+	else
+		tcp_sendf (serv, "PRIVMSG %s :%s\r\n", channel, text);
 }
 
 static void
@@ -208,7 +215,14 @@ irc_action (server *serv, char *channel, char *act)
 static void
 irc_notice (server *serv, char *channel, char *text)
 {
-	tcp_sendf (serv, "NOTICE %s :%s\r\n", channel, text);
+	session *sess = NULL;
+
+	if (is_channel(serv, channel))
+		sess = find_channel(serv, channel);
+	if (sess && sess->me->op && isupport(serv, "CNOTICE"))
+		tcp_sendf (serv, "CNOTICE %s :%s\r\n", channel, text);
+	else	
+		tcp_sendf (serv, "NOTICE %s :%s\r\n", channel, text);
 }
 
 static void
@@ -312,6 +326,7 @@ channel_date (session *sess, char *chan, char *timestr)
 #define M_WALL          MAKE4('W','A','L','L')
 #define M_PING          MAKE4('P','I','N','G')
 #define M_PONG          MAKE4('P','O','N','G')
+#define M_RPONG		MAKE4('R','P','O','N')
 #define M_INVITE        MAKE4('I','N','V','I')
 
 /* Splits "buf" up into parv/parc */
@@ -947,6 +962,14 @@ irc_server(session *sess, int parc, char *parv[])
 			break;
 		case M_PING:
 			tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
+			break;
+		case M_RPONG:
+			/* XXX: needs a text event */
+			/* parv[0] == source server
+			 * parv[3] == dest server
+			 * parv[4] == miliseconds
+			 * parv[5] == user added time, ie from client.
+			 */
 			break;
 		case M_ERROR:
 			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,

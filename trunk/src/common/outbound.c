@@ -2384,6 +2384,9 @@ cmd_msg (struct session *sess, char *cmd, char *buf)
 				if (strcasecmp (nick, "nickserv") == 0 &&
 					 strncasecmp (msg, "identify ", 9) == 0)
 					msg = "identify ****";
+				if (strcasecmp (nick, "authserv") == 0 &&
+						strncasecmp (msg, "auth ", 5) == 0)
+					msg = "auth ****";
 				EMIT_SIGNAL (XP_TE_MSGSEND, sess, nick, msg, NULL, NULL, 0);
 			}
 
@@ -2657,6 +2660,32 @@ cmd_recv (struct session *sess, char *msg, char *buf)
 	}
 
 	return FALSE;
+}
+
+static int
+cmd_rping (struct session *sess, char *msg, char *buf)
+{
+	char *parv[MAX_TOKENS];
+	int parc;
+	time_t tp;
+	char line[512];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	if (parc == 0)
+		return FALSE;
+
+	tp = time(NULL);
+
+	if (parc > 1)
+		snprintf(line, 512, "RPING %s %s :%li\r\n", parv[1], parv[2], tp);
+	else
+		snprintf(line, 512, "RPING %s %s :%li\r\n", sess->server->servername,
+				parv[1], tp);
+	
+	sess->server->p_raw (sess->server, line);
+	
+	return TRUE;
 }
 
 static int
@@ -3292,6 +3321,7 @@ static struct commands splay_reconnect = {"RECONNECT", cmd_reconnect, 0, 0,
 	 N_("RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")};
 #endif
 static struct commands splay_recv = {"RECV", cmd_recv, 1, 0, N_("RECV <text>, send raw data to xchat, as if it was received from the irc server")};
+static struct commands splay_rping = {"RPING", cmd_rping, 1, 0, N_("RPING <server> [server], ping between servers")};
 static struct commands splay_say = {"SAY", cmd_say, 0, 0,
 	 N_("SAY <text>, sends the text to the object in the current window")};
 #ifdef USE_OPENSSL
@@ -3401,6 +3431,7 @@ setup_commands(void)
 	add_command(&splay_quote);
 	add_command(&splay_reconnect);
 	add_command(&splay_recv);
+	add_command(&splay_rping);
 	add_command(&splay_say);
 	add_command(&splay_servchan);
 	add_command(&splay_server);

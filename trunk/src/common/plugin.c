@@ -701,7 +701,7 @@ plugin_show_help (session *sess, char *cmd)
 		return 1;
 	}
 
-	list = plugin_hook_find (hook_list, HOOK_COMMAND, cmd);
+	list = plugin_hook_find (hook_list[HOOK_COMMAND], HOOK_COMMAND, cmd);
 	if (list)
 	{
 		hook = list->data;
