@@ -804,7 +804,7 @@ PARSE_FUNC(numeric_endofmotd)
 
 PARSE_FUNC(numeric_nosuchtarget)
 {
-	queue_remove_target(sess->server, parv[3]);
+	queue_remove_target(sess->server, parv[3], 0);
 	return 0;
 }
 
@@ -1087,7 +1087,7 @@ PARSE_FUNC(servermsg_pong)
 PARSE_FUNC(servermsg_quit)
 {
 	inbound_quit(sess->server, nick, ip, parv[2]);
-	queue_remove_target(sess->server, nick);
+	queue_remove_target(sess->server, nick, 0);
 	return 1;
 }
 

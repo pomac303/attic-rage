@@ -19,7 +19,7 @@ void send_replyf(server *serv, char *target, char *fmt, ...);
 
 /* Data manipulation */
 void queue_target_change(server *serv, char *old_target, char *new_target);
-void queue_remove_target(server *serv, char *target);
+void queue_remove_target(server *serv, char *target, int queue);
 
 int queue_count(server *serv, char *target, int queue);
 

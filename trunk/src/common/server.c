@@ -26,7 +26,9 @@ enum {
 typedef struct queued_msg {
 	char *msg;
 	char *target;
-	int len;
+	char *channel;
+	int type;
+	int utf8;
 } queued_msg;
 
 static void auto_reconnect (server *serv, int send_quit, int err);
@@ -83,18 +85,24 @@ queue_remove_target_it(gpointer data, gpointer user_data)
 
 /* Remove all queued data for a specific target */
 void
-queue_remove_target(server *serv, char *target)
+queue_remove_target(server *serv, char *target, int queue)
 {
 	struct it_remove_data it = {NULL, target};
 	int i;
 	
-	for (i = 0; i < 3; i++)
-	{
-		if (!g_queue_is_empty(serv->out_queue[i])) /* ->length > 0) */
+	if (queue > 0 && !g_queue_is_empty(serv->out_queue[queue]))
+		g_queue_foreach(serv->out_queue[queue],
+				queue_remove_target_it, &it);
+	else
+	{	
+		for (i = 0; i < 3; i++)
 		{
-			it.queue = serv->out_queue[i];
-			g_queue_foreach(serv->out_queue[i],
-					queue_remove_target_it, &it);
+			if (!g_queue_is_empty(serv->out_queue[i]))
+			{
+				it.queue = serv->out_queue[i];
+				g_queue_foreach(serv->out_queue[i],
+						queue_remove_target_it, &it);
+			}
 		}
 	}
 }
@@ -107,6 +115,7 @@ queue_clean_it(gpointer data, gpointer user_data)
 
 	g_queue_remove(q, data);
 	g_free(msg->target);
+	g_free(msg->channel);
 	g_free(msg->msg);
 	g_free(msg);
 }
@@ -152,18 +161,47 @@ queue_count(server *serv, char *target, int queue)
 static int
 tcp_send_data (server *serv, queued_msg *msg)
 {
-	int ret;
+	char tmp[520];
+	int len, ret;
+
+	switch (msg->type)
+	{
+		case QUEUE_COMMAND:
+			snprintf(tmp, sizeof(tmp)-1, "%s", msg->msg);
+			break;
+		case QUEUE_MESSAGE:
+			snprintf(tmp, sizeof(tmp)-1, "PRIVMSG %s :%s%s", msg->target,
+					 msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+			break;
+		case QUEUE_NOTICE:
+		case QUEUE_REPLY:
+			snprintf(tmp, sizeof(tmp)-1, "NOTICE %s :%s%s", msg->target,
+					msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+			break;
+		case QUEUE_CMESSAGE:
+			snprintf(tmp, sizeof(tmp)-1, "CMESSAGE %s %s :%s%s", msg->target,
+					msg->channel, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+			break;
+		case QUEUE_CNOTICE:
+			snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s", msg->target,
+					msg->channel, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
+	}
+	/* free data that isn't used anymore */
+	g_free (msg->msg);
+	g_free (msg->target);
+	g_free (msg->channel);
+	g_free (msg);
+
+	len = strlen(tmp);
+	/* Add line to the rawline ui */
+	fe_add_rawlog (serv, tmp, len, TRUE);
 
 #ifdef USE_OPENSSL
 	if (serv->ssl)
-		ret = _SSL_send (serv->ssl, msg->msg, msg->len);
+		ret = _SSL_send (serv->ssl, tmp, len);
 	else
 #endif
-		ret = send (serv->sok, msg->msg, msg->len, 0);
-	/* Free the message */
-	g_free (msg->msg);
-	g_free (msg->target);
-	g_free (msg);
+		ret = send (serv->sok, tmp, len, 0);
 	return ret;
 }
 
@@ -174,7 +212,6 @@ set_queue_len(server *serv)
 	for (i = 0; i < 3; i++)
 		value += serv->out_queue[i]->length;
 	serv->sendq_len = value;
-	printf("Value is now: %i\n", value);
 	fe_set_throttle (serv);
 }
 
@@ -225,7 +262,7 @@ queue_throttle(server *serv)
 
 	if (serv->queue_level < 0) /* check for underflows */
 		serv->queue_level = 0;
-	if (serv->queue_level >= 50)
+	if (serv->queue_level > 50)
 		return 1;
 	return 0;
 }
@@ -246,51 +283,24 @@ tcp_queue_data (server *serv, int type, char *target, char *channel, char *buf)
 		line = g_convert(buf, len, serv->encoding, "UTF-8", NULL, &written, NULL);
 	}
 
-	if (type == QUEUE_COMMAND)
-		msg->msg = line ? line : g_strdup(buf);
-	else
-	{
-		char tmp[520];
-		char *txt = line ? line : buf;
-
-		switch(type)
-		{
-			case QUEUE_MESSAGE:
-				snprintf(tmp, sizeof(tmp)-1, "PRIVMSG %s :%s%s", target, 
-						line ? "" : "\xEF\xBB\xBF", txt);
-				break;
-			case QUEUE_NOTICE:
-				type = QUEUE_MESSAGE;
-			case QUEUE_REPLY:
-				snprintf(tmp, sizeof(tmp)-1, "NOTICE %s :%s%s", target,
-						line ? "" : "\xEF\xBB\xBF", txt);
-				break;
-			case QUEUE_CMESSAGE:
-				type = QUEUE_MESSAGE;
-				snprintf(tmp, sizeof(tmp)-1, "CMESSAGE %s %s :%s%s", target,
-						channel, line ? "" : "\xEF\xBB\xBF", txt);
-				break;
-			case QUEUE_CNOTICE:
-				type = QUEUE_MESSAGE;
-				snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s", target,
-						channel, line ? "" : "\xEF\xBB\xBF", txt);
-		}
-		tmp[sizeof(tmp)] = 0;
-		g_free(line);
-		msg->msg = g_strdup(tmp);
-	}
+	msg->msg = line ? line : g_strdup(buf);
 	msg->target = target ? g_strdup(target) : NULL;
-	msg->len = strlen(msg->msg);
-
-	/* Add line to the rawlog ui */
-	fe_add_rawlog (serv, buf, msg->len, TRUE);
+	msg->channel = channel ? g_strdup(channel) : NULL;
+	msg->type = type;
+	msg->utf8 = line ? 0 : 1; /* If line is non null, the data got converted */
 
 	/* Calc on each line to know when to stop throttling... */
 	throttle = queue_throttle(serv);
 
 	if (serv->queue_timer || throttle)
 	{
-		g_queue_push_tail(serv->out_queue[type], msg);
+		if (type == QUEUE_COMMAND)
+			g_queue_push_tail(serv->out_queue[QUEUE_COMMAND], msg);
+		else if (type == QUEUE_REPLY)
+			g_queue_push_tail(serv->out_queue[QUEUE_REPLY], msg);
+		else
+			g_queue_push_tail(serv->out_queue[QUEUE_MESSAGE], msg);
+
 		if (!serv->queue_timer)
 			serv->queue_timer = g_timeout_add(2000, (GSourceFunc)tcp_send_queue, serv);
 	}

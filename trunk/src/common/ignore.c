@@ -318,10 +318,14 @@ flood_check (char *nick, char *host, server *serv, rage_session *sess, int what)
 		{
 			char *tmp = strchr(host, '@');
 			snprintf (real_ip, sizeof (real_ip), "*!*%s", tmp);
+			/* Clean the queue and add the ignore first to avoid
+			 * stating the ignore several times. */
+			queue_remove_target(serv, nick, 2);
+			ignore_add (real_ip, IG_CTCP);
+
 			snprintf (buf, sizeof (buf),
 					_("You are being CTCP flooded from %s, ignoring %s\n"), 
 					nick, real_ip);
-			ignore_add (real_ip, IG_CTCP);
 			flood = 1;
 		}
 	}
