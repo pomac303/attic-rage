@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-18 04:21+0200\n"
 "PO-Revision-Date: 2004-08-10 07:37 +0900\n"
 "Last-Translator: Michael Kim <lavnrose@e.sarang.net>\n"
 "Language-Team: Korean <translation-team-ko@lists.sourceforge.net>\n"
@@ -34,36 +34,36 @@ msgstr ""
 "* IRC를 루트계정으로 실행했습니다!!\n"
 "  새로운 사용자 어카운트를 생성하고 그것을 이용하십시오.\n"
 
-#: src/common/dcc.c:30
+#: src/common/dcc.c:32
 msgid "Waiting"
 msgstr "잠시만 기다려주십시오"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:33
 msgid "Active"
 msgstr "활성"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:34
 msgid "Failed"
 msgstr "실패"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:35
 msgid "Done"
 msgstr "확인"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:36
 msgid "Connect"
 msgstr "접속"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:37
 msgid "Aborted"
 msgstr "취소됨"
 
-#: src/common/dcc.c:1281
+#: src/common/dcc.c:1287
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "%s에 접근할 수 없습니다\n"
 
-#: src/common/dcc.c:1890
+#: src/common/dcc.c:1894
 msgid "No active DCCs\n"
 msgstr "DCC가 활성화되지 않았습니다\n"
 
@@ -110,11 +110,11 @@ msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr ""
 "접속되어 있지 않습니다. \"/server <서버주소> [<포트>]\"명령으로 접속하세요.\n"
 
-#: src/common/outbound.c:1446
+#: src/common/outbound.c:1400
 msgid "I need /bin/sh to run!\n"
 msgstr "실행을 위해서 /bin/sh 가 필요합니다!\n"
 
-#: src/common/outbound.c:1716
+#: src/common/outbound.c:1669
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -126,7 +126,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1749
+#: src/common/outbound.c:1704
 msgid ""
 "\n"
 "\n"
@@ -138,7 +138,7 @@ msgstr ""
 "\"/HELP -l\" 명령으로 명령어 목록을 확인 할 수 있습니다.\n"
 "\n"
 
-#: src/common/outbound.c:1750
+#: src/common/outbound.c:1705
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -148,36 +148,36 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1846
+#: src/common/outbound.c:1813
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "'%s'는 알 수 없으므로 무시합니다."
 
-#: src/common/outbound.c:2789
+#: src/common/outbound.c:2755
 msgid "No such plugin found.\n"
 msgstr "확장기능을 찾을 수 없습니다.\n"
 
-#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "해당 확장기능을 제거 했습니다.\n"
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3020
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <단추명> <동작>, 사용자목록에 단추를 추가 합니다. "
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3022
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <명령>, 대화중인 모든 대화방에 명령을 수행합니다."
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3024
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <명령>. 접속중인 모든 서버에서 명령을 수행합니다."
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3025
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<이유>], 자리비움으로 표시합니다."
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3027
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -187,19 +187,19 @@ msgstr ""
 "여하지 못하게합니다. 만약 이미 대화방에 있다면,  강제퇴장 시키면 그 사람은 다"
 "시 참여 할 수 없습니다.(대화방 관리권한 필요)"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3029
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, 현재 창의 글월을 삭제 합니다."
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3030
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, 현재 창이나 탭을 닫습니다."
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3032
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <번호>, 친근한 국가 코드, 예: au = 오스트레일리아"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3034
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <대화명> <메세지>, CTCP 메세지를 해당 사요자에게 보냅니다, 널리 쓰이는 "
 "메세지는 VERSION 과 USERINFO 입니다."
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3036
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, 현재 대화방을 나갔다가 다시 들어 옵니다."
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3038
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -229,23 +229,23 @@ msgstr ""
 "DCC CLOSE <형태> <대화명> <화일>         예:\n"
 "         /dcc close send johnsmith file.tar.gz"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3047
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
 msgstr "DEHOP <대화명>, 현재 대화방에서 관리 권한을 박탈합니다.(관리권한 필요)"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3049
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <단추명>, 사용자목록의 단추를 삭제합니다."
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3051
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
 msgstr "DEOP <대화명>, 현재 대화방에서 관리권한을 박탈합니다.(관리권한 필요)"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3053
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -253,19 +253,19 @@ msgstr ""
 "DEVOICE <대화명>, 현재 대화방에서 해당 사용자의 발언권을 박탈 합니다.(관리권"
 "한 필요)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3054
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, 서버와 연결을 끊습니다"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3055
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <대화명|호스트|ip>, 해당 사용자의 IP주소를 찾습니다."
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3056
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <글월>, 글월을 대화창에 출력합니다."
 
-#: src/common/outbound.c:3093
+#: src/common/outbound.c:3059
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -273,11 +273,11 @@ msgstr ""
 "EXEC [-o] <명령>, 명령을 실행합니다. 만약 -o 인수가 사용되면 결과를 현재 대화"
 "방에 출력하고,그렇지 않을 경우 자신에게만 보여 줍니다."
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3061
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, 프로세스 SIGCONT를 보냅니다."
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3064
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -285,29 +285,29 @@ msgstr ""
 "EXECKILL [-9], 현재 실행중인 세션을 종료시킵니다. 만약 -9 가 주어진다면 프로"
 "세스는 SIGKILL 을 받아 강제 종료됩니다."
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3066
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, 프로세스 SIGSTOP을 보냅니다."
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3067
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, 프로세스의 표준입력으로 데이터를 보냅니다."
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3071
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, 현재 서버에 보낼 목록을 제거 합니다."
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3073
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <호스트> [<포트>], 해당 호스트를 프록시로 사용하고, 포트의 기본값은 23 "
 "입니다."
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3079
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr "HOP <대화명>, 해당 사용자에게 관리권한을 부여합니다 (관리권한 필요)"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3081
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -321,7 +321,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    추가인수 - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3087
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -329,17 +329,17 @@ msgstr ""
 "INVITE <대화명> [<대화방>], 누군가를 대화방에 초대합니다. 대화방의 기본값은 "
 "현재 대화방 입니다.(관리권한 필요)"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3088
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <대화방> [<암호>], 대화방에 참여 합니다."
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3090
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <대화명>, 해당 사용자를 현재 대화방에서 강제 퇴장 시킵니다 (관리권한 필"
 "요)"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3092
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -347,30 +347,30 @@ msgstr ""
 "KICKBAN <대화명>, 해당 사용자를 대화방에서 강제 퇴장시키고 다시 참여하지 못하"
 "게 합니다.(관리권한 필요)"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3095
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, 새로운 lag 확인"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3097
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <문자열>, 기억공간에서 해당 문자열을 검색합니다"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3099
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <화일>, 추가기능이나 혼자말을 읽어 들입니다."
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3101
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, 현재 대화방에서  모든 관리자의 권한을 박탈합니다. (관리권한 필요)"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3103
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, 현재 대화방에서  모든 관리자의 권한을 박탈합니다. (관리권한 필요)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3105
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -378,37 +378,37 @@ msgstr ""
 "ME <행동>, 현재 대화방에서  행동을 취합니다. (행동은 3자에게 사용합니다. "
 "예: /me 후다다닭==33 )"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3107
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, 현재 대화방에서 모든 사람을 강제 퇴장 시킵니다. (관리권한 필요)"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3110
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, 현재 대화방의 모든 사용자에게 관리 권한을 부여합니다 (관리권한 필요)"
 
-#: src/common/outbound.c:3145
+#: src/common/outbound.c:3111
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <대화명> <메세지>, 귓속말을 보냅니다."
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3113
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, 현재 대화방에 참여하고 있는 모든 대화명을 출력합니다."
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3115
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <대화명> <메세지>, CTCP 알림 메세지를 보냅니다."
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3116
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <호스트명> [<포트>], 새로운 서버에 접속합니다."
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3117
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <대화명>, 당신의 대화명을 설정하거나 변경합니다."
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3119
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -416,40 +416,40 @@ msgstr ""
 "NOTICE <대화명/대화방> <메세지>, 공지를 보냅니다. 공지사항은 자동으로 취해지"
 "는 메세지의형태 입니다."
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3121
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<대화명>], 당신의 알림 목록에 사용자를 추가 하거나 목록을 봅니다."
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3123
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <대화명>, 해당 사용자에게 대화방 관리권한을 부여 합니다. (관리권한 필요)"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3125
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 "PART [<대화방>] [<이유>], 대화방을 나갑니다, 대화방의 기본 값은 현재 대화방 "
 "입니다."
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3127
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <대화명 | 대화방>, 사용자나 대화방에 CTCP 핑을 보냅니다."
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3129
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <대화명>, 해당 사용자와 새 귓속말 창을 엽니다."
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3131
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<이유>], 서버와 접속을 종료 합니다."
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3133
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <글월>, 서버에 원시 메세지를 보냅니다."
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3136
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -459,7 +459,7 @@ msgstr ""
 "를 재 접속 하고  /RECONNECT ALL 을 사용하면  접속되어 있는 모든 서버에 재 접"
 "속 합니다."
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3139
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -469,7 +469,7 @@ msgstr ""
 "속 하고  /RECONNECT ALL 을 사용하면  접속되어 있는 모든 서버에 재 접속 합니"
 "다."
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3141
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -477,27 +477,27 @@ msgstr ""
 "RECV <글월>, xchat에 원시 자료를 보냈을때, 만약 IRC 서버로부터 받은자료가 있"
 "다면 수신 합니다"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3142
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3144
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <글월>, 현재 창의 객체에게 글월을 보냅니다."
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3147
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <호스트> <포트> <대화방>, 접속후, 대화방에 자동 참여 하거나 "
 "대화방을 개설합니다."
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3150
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <호스트> <포트> <대화방>, 접속후, 대화방에 자동 참여 하거나 대화방"
 "을 개설합니다."
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3155
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -505,7 +505,7 @@ msgstr ""
 "SERVER [-ssl] <호스트> [<포트>] [<암호>], 서버에 접속합니다, 일반적인 접속의 "
 "포트는 6667 이며ssl 접속을 위해 9999 를 사용합니다."
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3158
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -513,57 +513,57 @@ msgstr ""
 "SERVER [-ssl] <호스트> [<포트>] [<암호>], 서버에 접속합니다, 일반적인 접속의 "
 "포트는 6667 입니다."
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3160
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET [-quiet] <변수> [<값>]"
 
-#: src/common/outbound.c:3197
+#: src/common/outbound.c:3163
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<주제>], 주제가 주어지면 주어진 주제를 설정하고, 아닐경우 현재 주제를 "
 "보여 줍니다."
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3165
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 "UNBAN <매스크> [<매스크>...], 정의된 매스크를 추방목록에서 해제 합니다."
 
-#: src/common/outbound.c:3200
+#: src/common/outbound.c:3166
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <매스크> [QUIET]"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3167
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <이름>, 추가기능이나 혼자말의 사용을 중지합니다."
 
-#: src/common/outbound.c:3204
+#: src/common/outbound.c:3170
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <대화명>, 해당 사용자에게 발언권을 부여합니다 (관리권한 필요)"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3172
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <메세지>, 모든 대화방에 메세지를 보냅니다."
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3174
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <메세지>, 현재 대화방의 모든 관리자에게 메세지를 보냅니다."
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3176
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <메세지>, 현재 대화방의 모든 관리자에게 메세지를 보냅니다."
 
-#: src/common/outbound.c:3255
+#: src/common/outbound.c:3221
 #, c-format
 msgid "Usage: %s\n"
 msgstr "사용법: %s\n"
 
-#: src/common/outbound.c:3260
+#: src/common/outbound.c:3226
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -571,19 +571,19 @@ msgstr ""
 "\n"
 "이 명령은 도움말이 없습니다..\n"
 
-#: src/common/outbound.c:3266
+#: src/common/outbound.c:3232
 msgid "No such command.\n"
 msgstr "해당 명령이 존재하지 않습니다.\n"
 
-#: src/common/outbound.c:3625
+#: src/common/outbound.c:3595
 msgid "Bad arguments for user command.\n"
 msgstr "사용자명령에 잘못된 인수.\n"
 
-#: src/common/outbound.c:3787
+#: src/common/outbound.c:3757
 msgid "Too many recursive usercommands, aborting."
 msgstr "너무 많은 사용자 명령, 취소됨."
 
-#: src/common/outbound.c:3845
+#: src/common/outbound.c:3812
 msgid "Unknown Command. Try /help\n"
 msgstr "알 수 없는 명령. /help 를 사용하세요.\n"
 
@@ -1238,7 +1238,12 @@ msgstr "%C22*%O$t당신의 IP를 찾았습니다: [$1]"
 
 #: src/common/textevents.h:417
 #, fuzzy
-msgid "%C0%B&171Garbage%187%B$t$1%O"
+msgid "%C0%B%171Garbage%187%B$t$1%O"
+msgstr "%C22*%O$t당신의 IP를 찾았습니다: [$1]"
+
+#: src/common/textevents.h:420
+#, fuzzy
+msgid "%C0%B%171Silence%187%B$t$1%O"
 msgstr "%C22*%O$t당신의 IP를 찾았습니다: [$1]"
 
 #: src/common/text.c:195
@@ -1656,11 +1661,11 @@ msgstr ""
 msgid "Pathname"
 msgstr "경로"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
 msgid "Position"
 msgstr "위치"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
 msgid "Size"
 msgstr "크기"
 
@@ -1745,7 +1750,12 @@ msgstr "클라이언트 정보"
 msgid "the message"
 msgstr "메세지"
 
-#: src/common/text.c:1082
+#: src/common/text.c:1049
+#, fuzzy
+msgid "the hostmask"
+msgstr "호스트 매스크"
+
+#: src/common/text.c:1086
 #, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1754,7 +1764,7 @@ msgstr ""
 "상황 %s 설정 오류.\n"
 "기본값을 사용합니다."
 
-#: src/common/text.c:1789
+#: src/common/text.c:1793
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -2821,219 +2831,219 @@ msgstr ""
 msgid "Unknown"
 msgstr "알수없음"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:895
 msgid "Direct client-to-client"
 msgstr "직접 연결"
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:896
 msgid "Send File"
 msgstr "화일 전송"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:897
 msgid "Offer Chat"
 msgstr "대화"
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:898
 msgid "Abort Chat"
 msgstr "대화 취소"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:899 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "판번호"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:900
 msgid "Userinfo"
 msgstr "사용자 정보"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:901
 msgid "Clientinfo"
 msgstr "클라이언트 정보"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:902 src/common/rage.c:936 src/common/rage.c:987
 msgid "Ping"
 msgstr ""
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:903
 msgid "Time"
 msgstr "시간"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:904
 msgid "Finger"
 msgstr ""
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:905
 msgid "Oper"
 msgstr "서버관리자"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:906
 msgid "Kill this user"
 msgstr "이 사용자 죽이기"
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:907
 msgid "Mode"
 msgstr "상태"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:908
 msgid "Give Ops"
 msgstr "관리권한 주기"
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:909
 msgid "Take Ops"
 msgstr "관리권한 박탈"
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:910
 msgid "Give Half-Ops"
 msgstr "관리권한 주기"
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:911
 msgid "Take Half-Ops"
 msgstr "관리권한 박탈"
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:912
 msgid "Give Voice"
 msgstr "발언권 주기"
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:913
 msgid "Take Voice"
 msgstr "발언권 뺏기"
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:914
 msgid "Ignore"
 msgstr "무시"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:915
 msgid "Ignore User"
 msgstr "사용자 무시"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:916
 msgid "UnIgnore User"
 msgstr "무시 해제"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:917
 msgid "Kick/Ban"
 msgstr "퇴장/추방"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:918 src/common/rage.c:970
 msgid "Kick"
 msgstr "강제퇴장"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:919 src/common/rage.c:920 src/common/rage.c:921
+#: src/common/rage.c:922 src/common/rage.c:923 src/common/rage.c:969
 msgid "Ban"
 msgstr "추방"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
+#: src/common/rage.c:927
 msgid "KickBan"
 msgstr "지금추방"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:928 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "정보"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:929
 msgid "Who"
 msgstr ""
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:930 src/common/rage.c:983
 msgid "WhoIs"
 msgstr ""
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:931
 msgid "DNS Lookup"
 msgstr "DNS 보기"
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:932
 msgid "Trace"
 msgstr "추적"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:933
 msgid "UserHost"
 msgstr "호스트"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:934
 msgid "External"
 msgstr "외부도구"
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:935
 msgid "Traceroute"
 msgstr "경로추적"
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:937
 msgid "Telnet"
 msgstr ""
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:938
 msgid "Open Dialog Window"
 msgstr "대화창 열기"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:950
 msgid "Disconnect"
 msgstr "접속해제"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:951
 msgid "Reconnect"
 msgstr "재접속"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:952
 msgid "Leave Channel"
 msgstr "대화방 나가기"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:953
 msgid "Join Channel..."
 msgstr "대화 참여..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:954
 msgid "Enter Channel to Join:"
 msgstr "참여할 대화방을 입력하세요:"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:955
 msgid "Server Links"
 msgstr "서버 연결"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:956
 msgid "Ping Server"
 msgstr "서버에 핑"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:957
 msgid "Hide Version"
 msgstr "판번호 숨김"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:967
 msgid "Op"
 msgstr "관리권한"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:968
 msgid "DeOp"
 msgstr "관리권 뺐기"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:971
 msgid "bye"
 msgstr "안녕"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:972
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "%s님을 추방하는 이유:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:973
 msgid "Sendfile"
 msgstr "화일보내기"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:974
 msgid "Dialog"
 msgstr "귓속말"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:984
 msgid "Send"
 msgstr "보내기"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:985
 msgid "Chat"
 msgstr "대화"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:986 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "삭제"
 
@@ -3058,7 +3068,7 @@ msgstr "먼저 추방된 목록에서 선택 하십시오."
 msgid "Mask"
 msgstr ""
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:471
 msgid "From"
 msgstr "보낸이"
 
@@ -3137,12 +3147,12 @@ msgstr "목록 저장"
 msgid "Join Channel"
 msgstr "대화 참여"
 
-#: src/fe-gtk/dccgui.c:98
+#: src/fe-gtk/dccgui.c:100
 #, c-format
 msgid "Send file to %s"
 msgstr "%s 님에게 화일 보내기"
 
-#: src/fe-gtk/dccgui.c:322
+#: src/fe-gtk/dccgui.c:324
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3159,11 +3169,11 @@ msgstr ""
 "    IP 주소: %s\n"
 "   시작시간: %s   최대속도: %d CPS\n"
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:358
 msgid "That file is not resumable."
 msgstr "그 화일은 이어 받을 수 없습니다."
 
-#: src/fe-gtk/dccgui.c:359
+#: src/fe-gtk/dccgui.c:362
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3174,85 +3184,85 @@ msgstr ""
 "%s.\n"
 "이어받기가 불가능 합니다."
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:369
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr ""
 "받을 디렉토리의 화일이 전송 받을 화일 보다 큽니다. 이어 받기는 불가능 합니다."
 
-#: src/fe-gtk/dccgui.c:370
+#: src/fe-gtk/dccgui.c:373
 msgid "Cannot resume the same file from two people."
 msgstr "두사람에게서 같은 화일을 받을경우 이어 받을 수 없습니다."
 
-#: src/fe-gtk/dccgui.c:457
+#: src/fe-gtk/dccgui.c:460
 msgid "MIME Type"
 msgstr "MIME 형태"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623 src/fe-gtk/dccgui.c:746
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "상태"
 
-#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:624 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "화일"
 
-#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
+#: src/fe-gtk/dccgui.c:470 src/fe-gtk/dccgui.c:628
 msgid "ETA"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:477
+#: src/fe-gtk/dccgui.c:480
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: 화일 받기 목록"
 
-#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
+#: src/fe-gtk/dccgui.c:508 src/fe-gtk/dccgui.c:661 src/fe-gtk/dccgui.c:776
 msgid "Abort"
 msgstr "취소"
 
-#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
+#: src/fe-gtk/dccgui.c:510 src/fe-gtk/dccgui.c:777
 msgid "Accept"
 msgstr "허용"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:512
 msgid "Resume"
 msgstr "이어받기"
 
-#: src/fe-gtk/dccgui.c:513
+#: src/fe-gtk/dccgui.c:516
 msgid "Open"
 msgstr "열기"
 
-#: src/fe-gtk/dccgui.c:624
+#: src/fe-gtk/dccgui.c:627
 msgid "Ack"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:626
+#: src/fe-gtk/dccgui.c:629
 msgid "To"
 msgstr "받는이"
 
-#: src/fe-gtk/dccgui.c:636
+#: src/fe-gtk/dccgui.c:639
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: 화일 전송 목록"
 
-#: src/fe-gtk/dccgui.c:744
+#: src/fe-gtk/dccgui.c:747
 msgid "To/From"
 msgstr "수신/송신"
 
-#: src/fe-gtk/dccgui.c:745
+#: src/fe-gtk/dccgui.c:748
 msgid "Recv"
 msgstr "받음"
 
-#: src/fe-gtk/dccgui.c:746
+#: src/fe-gtk/dccgui.c:749
 msgid "Sent"
 msgstr "보냄"
 
-#: src/fe-gtk/dccgui.c:747
+#: src/fe-gtk/dccgui.c:750
 msgid "StartTime"
 msgstr "시작시간"
 
-#: src/fe-gtk/dccgui.c:757
+#: src/fe-gtk/dccgui.c:760
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC 대화 목록"
@@ -3265,43 +3275,43 @@ msgstr "*새로만듬*"
 msgid "EDIT ME"
 msgstr "수정 해 주세요"
 
-#: src/fe-gtk/editlist.c:277 src/fe-gtk/plugingui.c:49
+#: src/fe-gtk/editlist.c:281 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "이름"
 
-#: src/fe-gtk/editlist.c:278
+#: src/fe-gtk/editlist.c:282
 msgid "Command"
 msgstr "명령"
 
-#: src/fe-gtk/editlist.c:314
+#: src/fe-gtk/editlist.c:318
 msgid "Move Up"
 msgstr "위로"
 
-#: src/fe-gtk/editlist.c:318
+#: src/fe-gtk/editlist.c:322
 msgid "Move Dn"
 msgstr "아래로"
 
-#: src/fe-gtk/editlist.c:326
+#: src/fe-gtk/editlist.c:330
 msgid "Cancel"
 msgstr "취소"
 
-#: src/fe-gtk/editlist.c:330 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "저장"
 
-#: src/fe-gtk/editlist.c:338
+#: src/fe-gtk/editlist.c:342
 msgid "Add New"
 msgstr "새로 추가"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:346 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "삭제"
 
-#: src/fe-gtk/editlist.c:350
+#: src/fe-gtk/editlist.c:354
 msgid "Sort"
 msgstr "정렬"
 
-#: src/fe-gtk/editlist.c:354
+#: src/fe-gtk/editlist.c:358
 msgid "Help"
 msgstr "도움말"
 
@@ -3444,7 +3454,7 @@ msgstr "글쇠 연결 설정 읽는중 오류가 발생 했습니다."
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<없음>"
 
@@ -3541,7 +3551,7 @@ msgstr "해당 화일을 쓸 수 없습니다."
 msgid "Cannot read that file."
 msgstr "해당 화일은 열 수 없습니다."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr "해당 매스크가 이미 존재합니다."
 
@@ -3569,46 +3579,42 @@ msgstr "초대"
 msgid "Unignore"
 msgstr "무시해제"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 msgid "Enter mask to ignore:"
 msgstr "무시할 매스크 입력:"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: 무시 목록"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "무시 상태:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "대화방:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "개인:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "알림:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "초대:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "새로만들기"
-
-#: src/fe-gtk/ignoregui.c:351
-msgid "Delete All"
-msgstr "모두 삭제"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "추가"
 
 #: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
@@ -3695,19 +3701,7 @@ msgstr "암호"
 msgid "User Limit"
 msgstr "사용자 제한"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "이 창/탭을 닫습니다."
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "사용자목록을 표시하거나 숨깁니다."
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3719,7 +3713,20 @@ msgstr ""
 "당신이 사용하는 창 관리자는  호환되지 않습니다.\n"
 "현재로서는 해당 창관리자는 지원하지 않습니다.\n"
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "이 창/탭을 닫습니다."
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "사용자목록을 표시하거나 숨깁니다."
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "새로운 대화명:"
 
@@ -3979,6 +3986,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "서버 목록..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "새로만들기"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "서버 탭..."
@@ -4227,10 +4238,6 @@ msgstr "추가할 대화명:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: 알림 목록"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "추가"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5304,18 +5311,13 @@ msgstr "복사"
 msgid "Save list to a file"
 msgstr "목록을 화일로 저장합니다"
 
-#: src/fe-gtk/userlistgui.c:75
+#: src/fe-gtk/userlistgui.c:80
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d 명의 관리자, 총 %d 명"
 
-#, fuzzy
-#~ msgid "%C0%B%171Silence%187%B$t$1%O"
-#~ msgstr "%C22*%O$t당신의 IP를 찾았습니다: [$1]"
-
-#, fuzzy
-#~ msgid "the hostmask"
-#~ msgstr "호스트 매스크"
+#~ msgid "Delete All"
+#~ msgstr "모두 삭제"
 
 #~ msgid "%C22*%O$t$1 added to notify list."
 #~ msgstr "%C22*%O$t$1 님을 알림 목록에 추가 했습니다."

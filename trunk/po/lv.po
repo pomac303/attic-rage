@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-18 04:21+0200\n"
 "PO-Revision-Date: 2002-12-26 03:36+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -35,36 +35,36 @@ msgstr ""
 "* Lietot IRC kā rootam ir muļķīgi! Jums vajadzētu\n"
 " Izveidot Lietotāja Kontu un lietot to, lai pieteiktos.\n"
 
-#: src/common/dcc.c:30
+#: src/common/dcc.c:32
 msgid "Waiting"
 msgstr "Gaidu"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:33
 msgid "Active"
 msgstr "Aktīvs"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:34
 msgid "Failed"
 msgstr "Neizdevās"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:35
 msgid "Done"
 msgstr "Darīts"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:36
 msgid "Connect"
 msgstr "Pieslēgties"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:37
 msgid "Aborted"
 msgstr "Izbeigts"
 
-#: src/common/dcc.c:1281
+#: src/common/dcc.c:1287
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Nevar piekļūt %s\n"
 
-#: src/common/dcc.c:1890
+#: src/common/dcc.c:1894
 msgid "No active DCCs\n"
 msgstr "Nav aktīvu DCC\n"
 
@@ -108,11 +108,11 @@ msgstr "Neesi pievienojies nevienam kanālam. Pamēģini /join #<kanāls>\n"
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr "Neesi pieslēdzies. Pamēģini /server <resursdators> [<ports>]\n"
 
-#: src/common/outbound.c:1446
+#: src/common/outbound.c:1400
 msgid "I need /bin/sh to run!\n"
 msgstr "Lai darbotos, man vajag /bin/sh!\n"
 
-#: src/common/outbound.c:1716
+#: src/common/outbound.c:1669
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -124,7 +124,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1749
+#: src/common/outbound.c:1704
 msgid ""
 "\n"
 "\n"
@@ -136,7 +136,7 @@ msgstr ""
 "Raksti /HELP <komanda> papildus informācijai, vai /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1750
+#: src/common/outbound.c:1705
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -146,36 +146,36 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1846
+#: src/common/outbound.c:1813
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Nezināmais arguments '%s' ignorēts."
 
-#: src/common/outbound.c:2789
+#: src/common/outbound.c:2755
 msgid "No such plugin found.\n"
 msgstr "Tāds iespraudnis nav atrasts.\n"
 
-#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Šis iespraudnis atsakās izlādēties.\n"
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3020
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nosaukums> <darbība>, pievieno pogu zem lietotājzvēlnes"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3022
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <komada>, sūta komandu uz visiem kanāliem, kuros esat"
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3024
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <komanda>, sūta komandu uz visiem serveriem, kuros esat"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3025
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<iemesls>], atzīmē jūs kā promesošu"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3027
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -184,19 +184,19 @@ msgstr ""
 "BAN <maska> [<bantype>], izraida visus, kuri atbilst maskai no pašreizējā "
 "kanāla. Ja viņi jau ir kanālā, tas viņus neizmet (vajag būt kanālop)"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3029
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Attīra pašreizējo teksta logu"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3030
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Aizver pašreizējo logu/sadaļu"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3032
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kods>, atrod valsts kodu, piem.: lv = Latvija"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3034
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -204,11 +204,11 @@ msgstr ""
 "CTCP <segvārds> <ziņa>, sūta CTCP ziņu segvārdam, izplatītākās ziņas ir "
 "VERSION un USERINFO"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3036
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, iziet no pašreizējā kanāla un nekavējoties atkal pievienojas"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3038
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -226,7 +226,7 @@ msgstr ""
 "DCC CLOSE <tips> <segvārds> <fails>         piemērs:\n"
 "         /dcc close send johnsmith file.tar.gz"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3047
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -234,11 +234,11 @@ msgstr ""
 "DEHOP <segvāds>, noņem kanālpus-op statusu segvārdam pašreizējā kanālā "
 "(vajag būt kanālop)"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3049
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <nosaukums>, izdzēš pogu no lietotājsaraksta"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3051
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -246,7 +246,7 @@ msgstr ""
 "DEOP <segvāds>, noņem kanālop statusu segvārdam pašreizējā kanālā (vajag būt "
 "kanālop)"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3053
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -254,19 +254,19 @@ msgstr ""
 "DEVOICE <segvārds>, noņem balss statusu segvārdam pašreizējā kanāla (vajag "
 "būt kanālop)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3054
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Atslēdzas no servera"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3055
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <segvārds|hostdators|ip>, Atrod lietotāja IP numuru"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3056
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <teksts>, Izvada tekstu lokāli"
 
-#: src/common/outbound.c:3093
+#: src/common/outbound.c:3059
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -275,11 +275,11 @@ msgstr ""
 "izvade tiek sūtīta uz pašreizējo kanālu, citādāk tā tiek izvadīta uz "
 "pašreizējo teksta lodziņu"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3061
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, sūta procesam SIGCONT"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3064
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -287,30 +287,30 @@ msgstr ""
 "EXECKILL [-9], nokauj palaisto exec pašreizējā sesijā. Ja tiek dots -9, "
 "process tiek SIGKILL'ots"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3066
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, sūta procesam SIGSTOP"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3067
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, sūta datus uz procesa stdin"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3071
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, noflašo pašreizējā servera sūtīšanas rindu"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3073
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <hostdators> [<ports>], caur resursdatoru kā starpserveri, noklusētais "
 "ports ir 23"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3079
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <segvārds>, piešķir kanālpus-op'a statusu segvārdam (vajag būt kanālop)"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3081
 #, fuzzy
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
@@ -325,7 +325,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, INVI, ALL\n"
 "    opcijas - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3087
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -333,16 +333,16 @@ msgstr ""
 "INVITE <segvārds> [<kanāls>], ielūdz kādu kanālā, pēc noklusējuma uz "
 "pašreizējo kanālu (vajag kanālop)"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3088
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanāls>, pievienojas kanālam"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3090
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <segvārds>, izmet segvārdu no pašreizējā kanāla (vajag būt kanālop)"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3092
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -350,31 +350,31 @@ msgstr ""
 "KICKBAN <segvārds>, izraida un tad izmet segvārdu no pašreizējā kanāla "
 "(vajag būt kanālop)"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3095
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, rosina jaunu aiztures pārbaudi"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3097
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <rindiņa>, buferī meklē rindiņu"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3099
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fails>, ielādē iespraudni vai skriptu"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3101
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, Masveidā deop'o visus kanālpus-op'us pašreizējā kanālā (vajag būt "
 "kanālop)"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3103
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, Masveidā deop'o visus kanālop'us pašreizējā kanālā (vajag būt kanālop)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3105
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -382,40 +382,40 @@ msgstr ""
 "ME <darbība>, sūta darbību uz pašreizējo kanālu (darbības tiek rakstītas "
 "trešajā personā, kā /me smaida)"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3107
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, Masveidā izmet visus, izņemot tevi, pašreizējā kanālā (vajag būt "
 "kanālop)"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3110
 #, fuzzy
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, Masveidā deop'o visus kanālop'us pašreizējā kanālā (vajag būt kanālop)"
 
-#: src/common/outbound.c:3145
+#: src/common/outbound.c:3111
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <segvārds> <ziņa>, sūta privātu ziņu"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3113
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, Parāda pašreizējā kanālā esošos segvārdus"
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3115
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <segvārds> <ziņa>, Sūta CTCP paziņojumu"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3116
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <hostdators> [<ports>]"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3117
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <segvārds>, uzstāda jums segvārdu"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3119
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -423,37 +423,37 @@ msgstr ""
 "NOTICE <segvārds/kanāls> <ziņa>, sūta paziņojumu. Paziņojumi ir tādas ziņas, "
 "uz kurām vajadzētu automātiski reaģēt"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3121
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<segvārds>], parāda jūsuu paziņojumu sarakstu vai kādu tam pievieno"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3123
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <segvārds>, piešķir kanālop statusu segvārdam (vajag būt kanālop)"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3125
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<kanāls>] [<iemesls>], pamet kanālu, pēc noklusējuma pašreizējo"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3127
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <segvārds | kanāls>, CTCP pingo segvārdu vai kanālu"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3129
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <segvārds>, atver jaunu privāto ziņu logu ar kādu"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3131
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<iemesls>], atslēdzas no pašreizējā servera"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3133
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <teksts>, sūta tekstu jēlā formā serverim"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3136
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -463,7 +463,7 @@ msgstr ""
 "vienkārši kā /RECONNECT, lai vēlreiz pārslēgtos uz pašreizējo serveri vai "
 "ar /RECONNECT ALL uz visiem atvērtajiem serveriem"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3139
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -473,32 +473,32 @@ msgstr ""
 "RECONNECT, lai vēlreiz pārslēgtos uz pašreizējo serveri vai ar /RECONNECT "
 "ALL uz visiem atvērtajiem serveriem"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3141
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr "RECV <teksts>, sūta jēldatus xchat tā, itkā tas nāktu no irc servera"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3142
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3144
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <teksts>, sūta tekstu objektam pašreizējā logā"
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3147
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <hostdators> <ports> <kanāls>, pieslēdzas un pievienojas "
 "kanālam"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3150
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <hostdators> <ports> <kanāls>, pieslēdzas un pievienojas kanālam"
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3155
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -506,7 +506,7 @@ msgstr ""
 "SERVER <hostdators> [<ports>] [<parole>], pieslēdzas serverim, noklusētais "
 "ports ir 6667 parastiem savienojumiem, 9999 ssl savienojumiem"
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3158
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -514,57 +514,57 @@ msgstr ""
 "SERVER <hostdators> [<ports>] [<parole>], pieslēdzas serverim, noklusētais "
 "ports ir 6667"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3160
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <mainīgais> [<vērtība>]"
 
-#: src/common/outbound.c:3197
+#: src/common/outbound.c:3163
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<temats>], uzstāda tematu, ja tāds ir dots, savādāk parāda pašreizējo "
 "tematu"
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3165
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <maska> [<maska>...], noņem izraidījumu norādītajām maskām."
 
-#: src/common/outbound.c:3200
+#: src/common/outbound.c:3166
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <maska> [QUIET]"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3167
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <nosaukums>, izlādē iespraudni vai skriptu"
 
-#: src/common/outbound.c:3204
+#: src/common/outbound.c:3170
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <segvārds>, piešķir kādam balss statusu (vajag būt kanālop)"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3172
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <ziņa>, raksta ziņu visiem kanāliem"
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3174
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <ziņa>, aizsūta ziņu visiem pašreizējā kanāla kanālopiem"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3176
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <ziņa>, aizsūta ziņu visiem pašreizējā kanāla kanālopiem"
 
-#: src/common/outbound.c:3255
+#: src/common/outbound.c:3221
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Lietošana: %s\n"
 
-#: src/common/outbound.c:3260
+#: src/common/outbound.c:3226
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -572,19 +572,19 @@ msgstr ""
 "\n"
 "Šādai komandai palīdzība nav pieejama.\n"
 
-#: src/common/outbound.c:3266
+#: src/common/outbound.c:3232
 msgid "No such command.\n"
 msgstr "Nav tādas komandas.\n"
 
-#: src/common/outbound.c:3625
+#: src/common/outbound.c:3595
 msgid "Bad arguments for user command.\n"
 msgstr "Slikti argumenti lietotāja komandai.\n"
 
-#: src/common/outbound.c:3787
+#: src/common/outbound.c:3757
 msgid "Too many recursive usercommands, aborting."
 msgstr "Pārāk daudz rekursīvu pietotājkomandu, pārtraucu"
 
-#: src/common/outbound.c:3845
+#: src/common/outbound.c:3812
 msgid "Unknown Command. Try /help\n"
 msgstr "Nezināma Komanda.  Pamēģini /help\n"
 
@@ -1174,7 +1174,11 @@ msgid "%C0%B%171Who%187%B$t$1%O"
 msgstr ""
 
 #: src/common/textevents.h:417
-msgid "%C0%B&171Garbage%187%B$t$1%O"
+msgid "%C0%B%171Garbage%187%B$t$1%O"
+msgstr ""
+
+#: src/common/textevents.h:420
+msgid "%C0%B%171Silence%187%B$t$1%O"
 msgstr ""
 
 #: src/common/text.c:195
@@ -1595,11 +1599,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "Ceļa nosaukums"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:469 src/fe-gtk/dccgui.c:626
 msgid "Position"
 msgstr "Pozīcija"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:468 src/fe-gtk/dccgui.c:625
 msgid "Size"
 msgstr "Izmērs"
 
@@ -1683,7 +1687,12 @@ msgstr ""
 msgid "the message"
 msgstr "Ziņa"
 
-#: src/common/text.c:1082
+#: src/common/text.c:1049
+#, fuzzy
+msgid "the hostmask"
+msgstr "Hostdatora maska"
+
+#: src/common/text.c:1086
 #, fuzzy, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1692,7 +1701,7 @@ msgstr ""
 "Kļūda parsējot notikumu %s.\n"
 "Lādēju noklusēto"
 
-#: src/common/text.c:1789
+#: src/common/text.c:1793
 #, fuzzy, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -2761,249 +2770,249 @@ msgstr "Zimbabve"
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:895
 msgid "Direct client-to-client"
 msgstr ""
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:896
 #, fuzzy
 msgid "Send File"
 msgstr "Skaņas fails:"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:897
 msgid "Offer Chat"
 msgstr ""
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:898
 #, fuzzy
 msgid "Abort Chat"
 msgstr "Par X-Chat"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:899 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versija"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:900
 #, fuzzy
 msgid "Userinfo"
 msgstr "Lietotājs"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:901
 msgid "Clientinfo"
 msgstr ""
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:902 src/common/rage.c:936 src/common/rage.c:987
 msgid "Ping"
 msgstr ""
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:903
 #, fuzzy
 msgid "Time"
 msgstr "Laiks"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:904
 #, fuzzy
 msgid "Finger"
 msgstr "Nigēra"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:905
 #, fuzzy
 msgid "Oper"
 msgstr "Atvērt"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:906
 msgid "Kill this user"
 msgstr ""
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:907
 #, fuzzy
 msgid "Mode"
 msgstr "Mod"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:908
 msgid "Give Ops"
 msgstr ""
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:909
 msgid "Take Ops"
 msgstr ""
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:910
 msgid "Give Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:911
 msgid "Take Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:912
 msgid "Give Voice"
 msgstr ""
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:913
 msgid "Take Voice"
 msgstr ""
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:914
 #, fuzzy
 msgid "Ignore"
 msgstr "Neignorēt"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:915
 #, fuzzy
 msgid "Ignore User"
 msgstr "Ignorēšanas Maska:"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:916
 #, fuzzy
 msgid "UnIgnore User"
 msgstr "Neignorēt"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:917
 #, fuzzy
 msgid "Kick/Ban"
 msgstr "Segvārds"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:918 src/common/rage.c:970
 #, fuzzy
 msgid "Kick"
 msgstr "Segvārds"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:919 src/common/rage.c:920 src/common/rage.c:921
+#: src/common/rage.c:922 src/common/rage.c:923 src/common/rage.c:969
 #, fuzzy
 msgid "Ban"
 msgstr "Butāna"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:924 src/common/rage.c:925 src/common/rage.c:926
+#: src/common/rage.c:927
 #, fuzzy
 msgid "KickBan"
 msgstr "Segvārds"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:928 src/fe-gtk/dccgui.c:514 src/fe-gtk/dccgui.c:662
 msgid "Info"
 msgstr "Info"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:929
 msgid "Who"
 msgstr ""
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:930 src/common/rage.c:983
 msgid "WhoIs"
 msgstr ""
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:931
 msgid "DNS Lookup"
 msgstr ""
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:932
 #, fuzzy
 msgid "Trace"
 msgstr "Francija"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:933
 #, fuzzy
 msgid "UserHost"
 msgstr "Lietotāji"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:934
 msgid "External"
 msgstr ""
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:935
 msgid "Traceroute"
 msgstr ""
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:937
 #, fuzzy
 msgid "Telnet"
 msgstr "Dzēst"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:938
 #, fuzzy
 msgid "Open Dialog Window"
 msgstr "Automātiski Atvērt Dialoga Logus"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:950
 #, fuzzy
 msgid "Disconnect"
 msgstr "Pieslēgties"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:951
 #, fuzzy
 msgid "Reconnect"
 msgstr "Pieslēgties"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:952
 #, fuzzy
 msgid "Leave Channel"
 msgstr "Atstāt Kanālu"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:953
 #, fuzzy
 msgid "Join Channel..."
 msgstr "Pievienoties Kanālam"
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:954
 #, fuzzy
 msgid "Enter Channel to Join:"
 msgstr "Kanāls gatavojas"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:955
 #, fuzzy
 msgid "Server Links"
 msgstr "Serveru Saraksts..."
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:956
 #, fuzzy
 msgid "Ping Server"
 msgstr "Serveris"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:957
 #, fuzzy
 msgid "Hide Version"
 msgstr "Versija"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:967
 #, fuzzy
 msgid "Op"
 msgstr "Atvērt"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:968
 msgid "DeOp"
 msgstr ""
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:971
 msgid "bye"
 msgstr ""
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:972
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr ""
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:973
 #, fuzzy
 msgid "Sendfile"
 msgstr "Skaņas fails:"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:974
 msgid "Dialog"
 msgstr ""
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:984
 #, fuzzy
 msgid "Send"
 msgstr "Aizs"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:985
 #, fuzzy
 msgid "Chat"
 msgstr "Čada"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:986 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Attīrīt"
 
@@ -3028,7 +3037,7 @@ msgstr ""
 msgid "Mask"
 msgstr "Maska"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:471
 msgid "From"
 msgstr "No"
 
@@ -3110,12 +3119,12 @@ msgstr "Saglabāt sarakstu"
 msgid "Join Channel"
 msgstr "Pievienoties Kanālam"
 
-#: src/fe-gtk/dccgui.c:98
+#: src/fe-gtk/dccgui.c:100
 #, c-format
 msgid "Send file to %s"
 msgstr "Sūtīt failu %s"
 
-#: src/fe-gtk/dccgui.c:322
+#: src/fe-gtk/dccgui.c:324
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3132,11 +3141,11 @@ msgstr ""
 "     IP Numurs: %s\n"
 "Sākšanas Laiks: %s   Maks.CPS: %d\n"
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:358
 msgid "That file is not resumable."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:359
+#: src/fe-gtk/dccgui.c:362
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3144,84 +3153,84 @@ msgid ""
 "Resuming not possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:369
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:370
+#: src/fe-gtk/dccgui.c:373
 msgid "Cannot resume the same file from two people."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:457
+#: src/fe-gtk/dccgui.c:460
 msgid "MIME Type"
 msgstr "MIME Tips"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623 src/fe-gtk/dccgui.c:746
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Satuss"
 
-#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:624 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Fails"
 
-#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
+#: src/fe-gtk/dccgui.c:470 src/fe-gtk/dccgui.c:628
 msgid "ETA"
 msgstr "ETA"
 
-#: src/fe-gtk/dccgui.c:477
+#: src/fe-gtk/dccgui.c:480
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: Saņemamo Failu Saraksts"
 
-#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
+#: src/fe-gtk/dccgui.c:508 src/fe-gtk/dccgui.c:661 src/fe-gtk/dccgui.c:776
 msgid "Abort"
 msgstr "Pārtraukt"
 
-#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
+#: src/fe-gtk/dccgui.c:510 src/fe-gtk/dccgui.c:777
 msgid "Accept"
 msgstr "Pieņemt"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:512
 msgid "Resume"
 msgstr "Atsākt"
 
-#: src/fe-gtk/dccgui.c:513
+#: src/fe-gtk/dccgui.c:516
 msgid "Open"
 msgstr "Atvērt"
 
-#: src/fe-gtk/dccgui.c:624
+#: src/fe-gtk/dccgui.c:627
 msgid "Ack"
 msgstr "Ack"
 
-#: src/fe-gtk/dccgui.c:626
+#: src/fe-gtk/dccgui.c:629
 msgid "To"
 msgstr "Uz"
 
-#: src/fe-gtk/dccgui.c:636
+#: src/fe-gtk/dccgui.c:639
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: Failu Sūtīšanas Saraksts"
 
-#: src/fe-gtk/dccgui.c:744
+#: src/fe-gtk/dccgui.c:747
 msgid "To/From"
 msgstr "Uz/No"
 
-#: src/fe-gtk/dccgui.c:745
+#: src/fe-gtk/dccgui.c:748
 msgid "Recv"
 msgstr "Saņ"
 
-#: src/fe-gtk/dccgui.c:746
+#: src/fe-gtk/dccgui.c:749
 msgid "Sent"
 msgstr "Aizs"
 
-#: src/fe-gtk/dccgui.c:747
+#: src/fe-gtk/dccgui.c:750
 msgid "StartTime"
 msgstr "SākšanasLaiks"
 
-#: src/fe-gtk/dccgui.c:757
+#: src/fe-gtk/dccgui.c:760
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC Tērzēšanas Saraksts"
@@ -3234,43 +3243,43 @@ msgstr "*JAUNS*"
 msgid "EDIT ME"
 msgstr "REDIĢĒ MANI"
 
-#: src/fe-gtk/editlist.c:277 src/fe-gtk/plugingui.c:49
+#: src/fe-gtk/editlist.c:281 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "Nosaukums"
 
-#: src/fe-gtk/editlist.c:278
+#: src/fe-gtk/editlist.c:282
 msgid "Command"
 msgstr "Komanda"
 
-#: src/fe-gtk/editlist.c:314
+#: src/fe-gtk/editlist.c:318
 msgid "Move Up"
 msgstr "Augšup"
 
-#: src/fe-gtk/editlist.c:318
+#: src/fe-gtk/editlist.c:322
 msgid "Move Dn"
 msgstr "Lejup"
 
-#: src/fe-gtk/editlist.c:326
+#: src/fe-gtk/editlist.c:330
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: src/fe-gtk/editlist.c:330 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Saglabāt"
 
-#: src/fe-gtk/editlist.c:338
+#: src/fe-gtk/editlist.c:342
 msgid "Add New"
 msgstr "Pievienot Jaunu"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:346 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Dzēst"
 
-#: src/fe-gtk/editlist.c:350
+#: src/fe-gtk/editlist.c:354
 msgid "Sort"
 msgstr "Kārtot"
 
-#: src/fe-gtk/editlist.c:354
+#: src/fe-gtk/editlist.c:358
 msgid "Help"
 msgstr "Palīdzība"
 
@@ -3444,7 +3453,7 @@ msgstr "Atgadījās kļūda, lādējot taustiņu atbilstību konfigurāciju"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<nekas>"
 
@@ -3541,7 +3550,7 @@ msgstr "Nevar ierakstīt tajā failā."
 msgid "Cannot read that file."
 msgstr "Nevar nolasīt to failu."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr ""
 
@@ -3569,48 +3578,43 @@ msgstr "Ielūgt"
 msgid "Unignore"
 msgstr "Neignorēt"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 #, fuzzy
 msgid "Enter mask to ignore:"
 msgstr "Kanāls gatavojas"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Ignorēšanas saraksts"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Ignorēšānas Statistika:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Kanāls:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Privāts:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Paziņojums:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Ielūgt:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Jauns"
-
-#: src/fe-gtk/ignoregui.c:351
-#, fuzzy
-msgid "Delete All"
-msgstr "Dzēst"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Pievienot"
 
 #: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
@@ -3698,19 +3702,7 @@ msgstr "Atslēgvārds"
 msgid "User Limit"
 msgstr "Lietotāju Limits"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Aizvērt šo sadaļu/logu"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr "Pievienot/Atdalīt šo sadaļu"
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Parādīt/Paslēpt lietotāju sarakstu"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3718,7 +3710,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr "Pievienot/Atdalīt šo sadaļu"
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Aizvērt šo sadaļu/logu"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Parādīt/Paslēpt lietotāju sarakstu"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Ievadiet jaunu segvārdu:"
 
@@ -3980,6 +3985,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "Serveru Saraksts..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Jauns"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "Servera Sadaļa..."
@@ -4235,10 +4244,6 @@ msgstr "Ievadiet pievienojamo segvārdu:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Paziņojumu Saraksts"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Pievienot"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5399,14 +5404,14 @@ msgstr "Apcirpt"
 msgid "Save list to a file"
 msgstr "Nevar ierakstīt tajā failā."
 
-#: src/fe-gtk/userlistgui.c:75
+#: src/fe-gtk/userlistgui.c:80
 #, c-format
 msgid "%d ops, %d total"
 msgstr ""
 
 #, fuzzy
-#~ msgid "the hostmask"
-#~ msgstr "Hostdatora maska"
+#~ msgid "Delete All"
+#~ msgstr "Dzēst"
 
 #~ msgid "_X-Chat"
 #~ msgstr "_X-Chat"
