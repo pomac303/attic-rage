@@ -121,13 +121,13 @@ tcp_send_queue (server *serv)
 					serv->next_send = now;
 				}
 
-				for (p = buf, i = len; i && *p != ' '; p++, i--);
+				for (p = buf, i = (int)len; i && *p != ' '; p++, i--);
 				serv->next_send += (2 + i / 120);
-				serv->sendq_len -= len;
+				serv->sendq_len -= (int)len;
 				serv->prev_now = now;
 				fe_set_throttle (serv);
 
-				tcp_send_real (serv, buf, len);
+				tcp_send_real (serv, buf, (int)len);
 
 				buf--;
 				serv->outbound_queue = g_slist_remove (serv->outbound_queue, buf);
@@ -194,7 +194,7 @@ tcp_sendf (server *serv, char *fmt, ...)
 	if (len < 0 || len > (sizeof (send_buf) - 1))
 		len = strlen (send_buf);
 
-	tcp_send_len (serv, send_buf, len);
+	tcp_send_len (serv, send_buf, (int)len);
 }
 
 static int
@@ -912,7 +912,7 @@ server_read_child (GIOChannel *source, GIOCondition condition, server *serv)
 static int
 server_cleanup (server * serv)
 {
-	fe_set_lag (serv, 0.0);
+	fe_set_lag (serv, 0);
 
 	if (serv->iotag)
 	{
@@ -1186,7 +1186,7 @@ base64_encode (char *to, char *from, unsigned int len)
 	if (len)
 	{
 		char three[3]={0,0,0};
-		int i=0;
+		unsigned int i=0;
 		for (i=0;i<len;i++)
 			three[i] = *from++;
 		three_to_four (three, to);

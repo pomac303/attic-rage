@@ -61,7 +61,7 @@ list_load_from_data (GSList ** list, char *ibuf, size_t size)
 	cmd[0] = 0;
 	name[0] = 0;
 
-	while (buf_get_line (ibuf, &buf, &pnt, size))
+	while (buf_get_line (ibuf, &buf, &pnt, (int)size))
 	{
 		if (*buf != '#')
 		{
@@ -105,11 +105,11 @@ list_loadconf (char *file, GSList ** list, char *defaultconf)
 		abort ();
 	}
 
-	ibuf = malloc (st.st_size);
-	read (fh, ibuf, st.st_size);
+	ibuf = malloc ((int)st.st_size);
+	read (fh, ibuf, (int)st.st_size);
 	close (fh);
 
-	list_load_from_data (list, ibuf, st.st_size);
+	list_load_from_data (list, ibuf, (int)st.st_size);
 
 	free (ibuf);
 }
@@ -190,7 +190,7 @@ cfg_put_str (int fh, char *var, char *value)
 
 	snprintf (buf, sizeof buf, "%s = %s\n", var, value);
 	len = strlen (buf);
-	return (write (fh, buf, len) == len);
+	return (write (fh, buf, (int)len) == len);
 }
 
 int
@@ -201,7 +201,7 @@ cfg_put_color (int fh, int r, int g, int b, char *var)
 
 	snprintf (buf, sizeof buf, "%s = %04x %04x %04x\n", var, r, g, b);
 	len = strlen (buf);
-	return (write (fh, buf, len) == len);
+	return (write (fh, buf, (int)len) == len);
 }
 
 int
@@ -215,7 +215,7 @@ cfg_put_int (int fh, int value, char *var)
 
 	snprintf (buf, sizeof buf, "%s = %d\n", var, value);
 	len = strlen (buf);
-	return (write (fh, buf, len) == len);
+	return (write (fh, buf, (int)len) == len);
 }
 
 int
@@ -666,9 +666,9 @@ load_config (void)
 	if (fh != -1)
 	{
 		fstat (fh, &st);
-		cfg = malloc (st.st_size + 1);
+		cfg = malloc ((int)st.st_size + 1);
 		cfg[0] = '\0';
-		i = read (fh, cfg, st.st_size);
+		i = read (fh, cfg, (int)st.st_size);
 		if (i >= 0)
 			cfg[i] = '\0';					/* make sure cfg is NULL terminated */
 		close (fh);
@@ -796,7 +796,7 @@ set_showval (session *sess, const struct prefs *var, char *tbuf)
 
 	len = strlen (var->name);
 	memcpy (tbuf, var->name, len);
-	dots = 29 - len;
+	dots = 29 - (int)len;
 	if (dots < 0)
 		dots = 0;
 	tbuf[len++] = '\003';

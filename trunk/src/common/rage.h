@@ -14,7 +14,6 @@
 /* Include standard C includes */
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 #include <time.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -32,6 +31,7 @@
 #include <sys/utsname.h>
 #include <dirent.h>
 #include <regex.h>
+#include <sys/time.h>
 #endif
 
 /* Require glib */

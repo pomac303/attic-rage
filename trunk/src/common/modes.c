@@ -36,8 +36,8 @@ void
 send_channel_modes (session *sess, char *word[], int wpos, int end, 
 		char sign, char mode)
 {
-	int usable_modes, i, max;
-	size_t orig_len, len, wlen;
+	int usable_modes, i;
+	size_t orig_len, len, wlen, max;
 	server *serv = sess->server;
 	int modes_per_line;
 	char tbuf[503];
@@ -50,7 +50,7 @@ send_channel_modes (session *sess, char *word[], int wpos, int end,
 
 	/* RFC max, minus length of "MODE %s " and "\r\n" and 1 +/- sign */
 	/* 512 - 6 - 2 - 1 - strlen(chan) */
-	max = 503 - strlen (sess->channel);
+	max = 503 - (int)strlen (sess->channel);
 
 	while (wpos < end)
 	{
@@ -179,7 +179,7 @@ nick_access (server * serv, char *nick, int *modechars)
 		nick++;
 	}
 
-	*modechars = nick - orig;
+	*modechars = (int)(nick - orig);
 
 	return access;
 }
@@ -446,12 +446,13 @@ handle_mode (server * serv, int parc, char *parv[],
 	char *argstr;
 	char sign;
 	int arg;
-	int i, num_args;
+	int num_args;
 	int num_modes;
-	int offset = 2;
 	int all_modes_have_args = FALSE;
 	int using_front_tab = FALSE;
+	unsigned int i, offset = 2;
 	mode_run mr;
+	size_t size;
 
 	mr.serv = serv;
 	mr.op = mr.deop = mr.voice = mr.devoice = NULL;
@@ -494,7 +495,7 @@ handle_mode (server * serv, int parc, char *parv[],
 	/* count the number of arguments (e.g. after the -o+v) */
 	num_args = 0;
 	i = 2;
-	while (i+offset < parc)
+	while (i+offset < (unsigned)parc)
 	{
 		if (!(*parv[i + offset]))
 			break;
@@ -505,7 +506,8 @@ handle_mode (server * serv, int parc, char *parv[],
 	/* count the number of modes (without the -/+ chars */
 	num_modes = 0;
 	i = 0;
-	while (i < strlen (modes))
+	size = strlen(modes);
+	while (i < size)
 	{
 		if (modes[i] != '+' && modes[i] != '-')
 			num_modes++;

@@ -1545,7 +1545,7 @@ tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, 
 					{
 						len = strlen (buf);     /* current buffer */
 						elen = strlen (list->data);     /* next item to add */
-						if (len + elen + 2 >= buf_size) /* +2 is space + null */
+						if (len + elen + 2 >= (int)buf_size) /* +2 is space + null */
 						{
 							PrintText (sess, buf);
 							buf[0] = 0;
@@ -1558,7 +1558,7 @@ tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, 
 					PrintText (sess, buf);
 					buf[0] = 0;
 					
-					if (strlen(result) > elen)
+					if ((int)strlen(result) > elen)
 					{
 						if (prefix_len)
 							g_utf8_strncpy (buf, text, prefix_len);

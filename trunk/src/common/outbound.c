@@ -66,7 +66,7 @@ random_line (char *file_name)
 
 	/* go down a random number */
 	rewind (fh);
-	srand (time (0));
+	srand ((unsigned int)time(0));
 	ran = rand () % lines;
 	do
 	{
@@ -399,7 +399,7 @@ cmd_away (struct session *sess, char *cmd, char *buf)
 	{
 		if (back)
 		{
-			gone = time (NULL) - sess->server->away_time;
+			gone = (unsigned int)time (NULL) - (unsigned int)sess->server->away_time;
 			sprintf (send, "me is back (gone %.2d:%.2d:%.2d)", gone / 3600,
 						(gone / 60) % 60, gone % 60);
 		} else
@@ -1809,7 +1809,7 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 		dict_iterator_t it;
 		command *cmd;
 		char *buf = malloc (4096);
-		int t = 1, j;
+		unsigned int t = 1, j;
 		strcpy (buf, _("\nCommands Available:\n\n  "));
 		if (longfmt)
 		{
@@ -2105,8 +2105,7 @@ static int
 cmd_load (struct session *sess, char *cmd, char *buf)
 {
 	FILE *fp;
-	char *error, *arg, *nl, *file;
-	int len;
+	char *nl, *file;
 	char tbuf[1024];
 
 	split_cmd(&buf); /* Skip the command */
@@ -2140,17 +2139,20 @@ cmd_load (struct session *sess, char *cmd, char *buf)
 	file = split_cmd(&buf);
 
 #ifdef USE_PLUGIN
-	len = strlen (file);
+	{
+		int len;
+		char *error, *arg;
+
+		len = strlen (file);
 #ifdef WIN32
-	if (len > 4 && strcasecmp (".dll", file + len - 4) == 0)
+		if (len > 4 && strcasecmp (".dll", file + len - 4) == 0)
 #else
 #if defined(__hpux)
-	if (len > 3 && strcasecmp (".sl", file + len - 3) == 0)
+		if (len > 3 && strcasecmp (".sl", file + len - 3) == 0)
 #else
-	if (len > 3 && strcasecmp (".so", file + len - 3) == 0)
+		if (len > 3 && strcasecmp (".so", file + len - 3) == 0)
 #endif
 #endif
-	{
 		arg = NULL;
 		skip_white(&buf);
 		if (buf)
@@ -2612,7 +2614,7 @@ cmd_recv (struct session *sess, char *msg, char *buf)
 	skip_white(&buf);
 	if (*buf)
 	{
-		sess->server->p_inline (sess->server, buf, strlen (buf));
+		sess->server->p_inline (sess->server, buf, (int)strlen (buf));
 		return TRUE;
 	}
 
@@ -3402,7 +3404,7 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 					utf = g_locale_to_utf8 (dest, 1, 0, &utf_len, 0);
 					if (utf)
 					{
-						if ((dest - orig) + utf_len >= destlen)
+						if ((dest - orig) + utf_len >= (unsigned)destlen)
 						{
 							g_free (utf);
 							return 2;
@@ -3425,7 +3427,7 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 						utf = parv[num];
 
 						/* avoid recusive usercommand overflow */
-						if ((dest - orig) + strlen (utf) >= destlen)
+						if ((dest - orig) + strlen (utf) >= (unsigned)destlen)
 							return 2;
 
 						strcpy (dest, utf);
@@ -3482,7 +3484,7 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 
 				if (utf)
 				{
-					if ((dest - orig) + strlen (utf) >= destlen)
+					if ((dest - orig) + strlen (utf) >= (unsigned)destlen)
 						return 2;
 					strcpy (dest, utf);
 					dest += strlen (dest);
@@ -3494,7 +3496,7 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 		{
 			utf_len = g_utf8_skip[src[0]];
 
-			if ((dest - orig) + utf_len >= destlen)
+			if ((dest - orig) + utf_len >= (unsigned)destlen)
 				return 2;
 
 			if (utf_len == 1)
@@ -3524,7 +3526,7 @@ check_special_chars (char *cmd, int do_ascii) /* check for %X */
 	size_t len = strlen (cmd);
 	char *buf, *utf;
 	char tbuf[4];
-	int i = 0, j = 0;
+	unsigned int i = 0, j = 0;
 	gsize utf_len;
 
 	if (!len)
@@ -3624,9 +3626,9 @@ nick_comp_cb (struct User *user, nickdata *data)
 			sprintf (data->tbuf, "%s%s", user->nick, data->space);
 			data->len = -1;
 			return FALSE;
-		} else if (lenu < data->bestlen)
+		} else if (lenu < (unsigned)data->bestlen)
 		{
-			data->bestlen = lenu;
+			data->bestlen = (int)lenu;
 			data->best = user;
 		}
 	}
@@ -3653,7 +3655,7 @@ perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
 				nick[len] = 0;
 
 				data.nick = nick;
-				data.len = len;
+				data.len = (int)len;
 				data.bestlen = INT_MAX;
 				data.best = NULL;
 				data.tbuf = tbuf;
@@ -3709,7 +3711,7 @@ handle_say (session *sess, char *text, int check_spch)
 	char *newcmd = newcmd_static;
 	char *tbuf = tbuf_static;
 	size_t len;
-	int newcmdlen = sizeof newcmd_static;
+	unsigned int newcmdlen = sizeof newcmd_static;
 
 	if (strcmp (sess->channel, "(lastlog)") == 0)
 	{
@@ -3722,7 +3724,7 @@ handle_say (session *sess, char *text, int check_spch)
 		pdibuf = malloc (len + 1);
 
 	if (len + NICKLEN >= newcmdlen)
-		newcmd = malloc (newcmdlen = len + NICKLEN + 1);
+		newcmd = malloc (newcmdlen = (unsigned int)len + NICKLEN + 1);
 
 	if (len * 2 >= sizeof tbuf_static)
 		tbuf = malloc (len * 2 + 1);
@@ -3777,10 +3779,10 @@ handle_say (session *sess, char *text, int check_spch)
 		/* :nickname!username@host.com PRIVMSG #channel :text\r\n */
 		max = 512;
 		max -= 16;	/* :, !, @, " PRIVMSG ", " ", :, \r, \n */
-		max -= strlen (sess->server->nick);
-		max -= strlen (sess->channel);
+		max -= (unsigned int)strlen (sess->server->nick);
+		max -= (unsigned int)strlen (sess->channel);
 		if (sess->me && sess->me->hostname)
-			max -= strlen (sess->me->hostname);
+			max -= (unsigned int)strlen (sess->me->hostname);
 		else
 		{
 			max -= 9;	/* username */
@@ -3797,7 +3799,7 @@ handle_say (session *sess, char *text, int check_spch)
 			while (1)
 			{
 				size = g_utf8_skip[((unsigned char *)text)[i]];
-				if ((i + size) >= max)
+				if ((unsigned)(i + size) >= max)
 					break;
 				i += size;
 			}

@@ -150,7 +150,7 @@ inbound_privmsg (server *serv, char *from, char *ip, char *text, int id)
 			{
 				char tbuf[1024];
 				snprintf (tbuf, sizeof (tbuf), "[%s has address %s]\n", from, ip);
-				write (sess->logfd, tbuf, strlen (tbuf));
+				write (sess->logfd, tbuf, (int)strlen (tbuf));
 			}
 			set_topic (sess, ip);
 		}

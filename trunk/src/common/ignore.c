@@ -266,9 +266,9 @@ ignore_load ()
 		fstat (fh, &st);
 		if (st.st_size)
 		{
-			cfg = malloc (st.st_size + 1);
+			cfg = malloc ((int)st.st_size + 1);
 			cfg[0] = '\0';
-			i = read (fh, cfg, st.st_size);
+			i = read (fh, cfg, (int)st.st_size);
 			if (i >= 0)
 				cfg[i] = '\0';
 			my_cfg = cfg;
@@ -306,7 +306,7 @@ ignore_save ()
 			{
 				snprintf (buf, sizeof (buf), "mask = %s\ntype = %d\n\n",
 							 ig->mask, ig->type);
-				write (fh, buf, strlen (buf));
+				write (fh, buf, (int)strlen (buf));
 			}
 			temp = temp->next;
 		}

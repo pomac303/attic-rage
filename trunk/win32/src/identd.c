@@ -1,6 +1,6 @@
 /* simple identd server for xchat under win32 */
 
-#include "../../src/common/rage.h"
+#include "rage.h"
 
 static int identd_is_running = FALSE;
 

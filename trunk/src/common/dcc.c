@@ -120,8 +120,8 @@ dcc_calc_cps (struct DCC *dcc)
 
 		posdiff = pos - dcc->lastcpspos;
 		oldcps = dcc->cps;
-		dcc->cps = ((double) posdiff / timediff) * (timediff / startdiff) +
-			(double) dcc->cps * (1.0 - (timediff / startdiff));
+		dcc->cps = (int)((double) posdiff / timediff) * (int)(timediff / startdiff)
+			+ (int)((double)dcc->cps * (int)(1.0 - (int)(timediff / startdiff)));
 
 		*cpssum += dcc->cps - oldcps;
 	}
@@ -232,7 +232,7 @@ dcc_connect_sok (struct DCC *dcc)
 	int sok;
 	struct sockaddr_in addr;
 
-	sok = socket (AF_INET, SOCK_STREAM, 0);
+	sok = (int)socket (AF_INET, SOCK_STREAM, 0);
 	if (sok == -1)
 		return -1;
 
@@ -385,10 +385,10 @@ dcc_write_chat (char *nick, char *text)
 		{
 			locale = NULL;
 			if (!prefs.utf8_locale)
-				locale = g_locale_from_utf8 (text, len, NULL, &loc_len, NULL);
+				locale = g_locale_from_utf8 (text, (gssize)len, NULL, &loc_len, NULL);
 		} else
 		{
-			locale = g_convert (text, len, dcc->serv->encoding, "UTF-8", 0, &loc_len, 0);
+			locale = g_convert (text, (gssize)len, dcc->serv->encoding, "UTF-8", 0, &loc_len, 0);
 		}
 
 		if (locale)
@@ -397,8 +397,8 @@ dcc_write_chat (char *nick, char *text)
 			len = loc_len;
 		}
 
-		dcc->size += len;
-		send (dcc->sok, text, len, 0);
+		dcc->size += (int)len;
+		send (dcc->sok, text, (int)len, 0);
 		send (dcc->sok, "\n", 1, 0);
 		fe_dcc_update (dcc);
 		if (locale)
@@ -426,9 +426,9 @@ dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 	len = strlen (line);
 
 	if (dcc->serv->encoding == NULL)     /* system */
-		utf = g_locale_to_utf8 (line, len, NULL, &utf_len, NULL);
+		utf = g_locale_to_utf8 (line, (int)len, NULL, &utf_len, NULL);
 	else
-		utf = g_convert (line, len, "UTF-8", dcc->serv->encoding, 0, &utf_len, 0);
+		utf = g_convert (line, (int)len, "UTF-8", dcc->serv->encoding, 0, &utf_len, 0);
 
 	if (utf)
 	{
@@ -437,7 +437,7 @@ dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 	}
 
 	/* we really need valid UTF-8 now */
-	conv = text_validate (&line, &len);
+	conv = text_validate (&line, (int *)&len);
 
 	sess = find_dialog (dcc->serv, dcc->nick);
 	if (!sess)
@@ -576,9 +576,9 @@ dcc_calc_average_cps (struct DCC *dcc)
 	if (sec < 1)
 		sec = 1;
 	if (dcc->type == TYPE_SEND)
-		dcc->cps = (dcc->ack - dcc->resumable) / sec;
+		dcc->cps = (dcc->ack - dcc->resumable) / (int)sec;
 	else
-		dcc->cps = (dcc->pos - dcc->resumable) / sec;
+		dcc->cps = (dcc->pos - dcc->resumable) / (int)sec;
 }
 
 static gboolean
@@ -954,7 +954,7 @@ dcc_accept (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	socklen_t len;
 
 	len = sizeof (CAddr);
-	sok = accept (dcc->sok, (struct sockaddr *) &CAddr, &len);
+	sok = (int)accept (dcc->sok, (struct sockaddr *) &CAddr, &len);
 	fe_input_remove (dcc->iotag);
 	dcc->iotag = 0;
 	closesocket (dcc->sok);
@@ -1018,7 +1018,7 @@ dcc_listen_init (struct DCC *dcc, session *sess)
 	int i, bindretval = -1;
 	socklen_t len;
 
-	dcc->sok = socket (AF_INET, SOCK_STREAM, 0);
+	dcc->sok = (int)socket (AF_INET, SOCK_STREAM, 0);
 	if (dcc->sok == -1)
 		return FALSE;
 
@@ -1189,7 +1189,7 @@ dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
 				dcc->starttime = dcc->offertime = time (0);
 				dcc->serv = sess->server;
 				dcc->dccstat = STAT_QUEUED;
-				dcc->size = st.st_size;
+				dcc->size = (int)st.st_size;
 				dcc->type = TYPE_SEND;
 				dcc->fp = open (file_fs, OFLAGS | O_RDONLY);
 				if (dcc->fp != -1)
@@ -1484,8 +1484,8 @@ is_resumable (struct DCC *dcc)
 		{
 			if (st.st_size < dcc->size)
 			{
-				dcc->resumable = st.st_size;
-				dcc->pos = st.st_size;
+				dcc->resumable = (int)st.st_size;
+				dcc->pos = (int)st.st_size;
 			}
 			else
 				dcc->resume_error = 2;
@@ -1753,8 +1753,8 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 		{
 			dcc->file = strdup (file);
 
-			dcc->destfile = g_malloc (strlen (prefs.dccdir) + strlen (nick) +
-					strlen (file) + 4);
+			dcc->destfile = g_malloc ((gulong)(strlen (prefs.dccdir) + strlen (nick) +
+					strlen (file) + 4));
 
 			strcpy (dcc->destfile, prefs.dccdir);
 			if (prefs.dccdir[strlen (prefs.dccdir) - 1] != '/')

@@ -61,7 +61,7 @@ notify_save (void)
 		while (list)
 		{
 			notify = (struct notify *) list->data;
-			write (fh, notify->name, strlen (notify->name));
+			write (fh, notify->name, (int)strlen (notify->name));
 			write (fh, "\n", 1);
 			list = list->next;
 		}

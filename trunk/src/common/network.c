@@ -101,7 +101,7 @@ net_bind (netstore * tobindto, int sok4, int sok6)
 void
 net_sockets (int *sok4, int *sok6)
 {
-	*sok4 = socket (AF_INET, SOCK_STREAM, 0);
+	*sok4 = (int)socket (AF_INET, SOCK_STREAM, 0);
 	*sok6 = -1;
 	net_set_socket_options (*sok4);
 }

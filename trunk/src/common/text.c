@@ -141,7 +141,7 @@ text_word_check (char *word)
  
 	/* check if it's an IP number */
 	dots = 0;
-	for (i = 0; i < len; i++)
+	for (i = 0; i < (signed int)len; i++)
 	{
 		if (word[i] == '.' && i > 1)
 			dots++;
@@ -1168,11 +1168,11 @@ pevent_load (char *filename)
 		return 1;
 	if (fstat (fd, &st) != 0)
 		return 1;
-	ibuf = malloc (st.st_size);
-	read (fd, ibuf, st.st_size);
+	ibuf = malloc ((int)st.st_size);
+	read (fd, ibuf, (int)st.st_size);
 	close (fd);
 
-	while (buf_get_line (ibuf, &buf, &pnt, st.st_size))
+	while (buf_get_line (ibuf, &buf, &pnt, (int)st.st_size))
 	{
 		if (buf[0] == '#')
 			continue;

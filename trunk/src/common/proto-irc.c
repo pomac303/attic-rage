@@ -262,10 +262,10 @@ irc_raw (server *serv, char *raw)
 		if (len < sizeof (tbuf) - 3)
 		{
 			len = snprintf (tbuf, sizeof (tbuf), "%s\r\n", raw);
-			tcp_send_len (serv, tbuf, len);
+			tcp_send_len (serv, tbuf, (int)len);
 		} else
 		{
-			tcp_send_len (serv, raw, len);
+			tcp_send_len (serv, raw, (int)len);
 			tcp_send_len (serv, "\r\n", 2);
 		}
 		return TRUE;
@@ -749,7 +749,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 	lp=line;
 	*lp='\0';
 	for(i=3;i<parc && lp<(line+sizeof(line));i++) {
-		lp+=snprintf(lp,sizeof(line)-(lp-line),"%s ",parv[i]);
+		lp+=snprintf(lp,(gulong)sizeof(line)-(lp-line),"%s ",parv[i]);
 	}
 
 	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, line, 
@@ -964,7 +964,7 @@ irc_server(session *sess, int parc, char *parv[])
 			lp=line;
 			*lp='\0';
 			for(i=3;i<parc && lp<(line+sizeof(line));i++) {
-				lp+=snprintf(lp,sizeof(line)-(lp-line),
+				lp+=snprintf(lp,(gulong)sizeof(line)-(lp-line),
 						"%s ",parv[i]);
 			}
 			if (is_server)

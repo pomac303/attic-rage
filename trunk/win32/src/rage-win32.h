@@ -1,3 +1,6 @@
+#ifdef WIN32
+#ifndef _RAGE_WIN32_H
+#define _RAGE_WIN32_H
 /*
 ** rage-win32.h
 ** Windows specific includes and stuffs.
@@ -9,10 +12,6 @@
 ** (c) 2004 The Rage Development Team
 */
 
-#if !defined(_RAGE_COMMON_H) || !defined(WIN32)
-#error "You must not directly include this file!"
-#else
-
 #ifndef NDEBUG
 // turn off some security warnings while building in debug mode
 #pragma warning(disable:4996)
@@ -23,6 +22,7 @@
 #include <windows.h>
 #include <sys/timeb.h>
 #include <process.h>
+#include <io.h>
 
 // set some configuration defines
 // FIXME: This is ALL subject to change (and will do!)
@@ -45,7 +45,11 @@
 #endif
 
 // include specifics directly to windows
-#define strcasecmp strcmpi
-#define strncasecmp _strncmpi
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
 
+// make sure server.c can find the identd hack
+void identd_start (char *username);
+
+#endif
 #endif
