@@ -194,7 +194,7 @@ xchat_read_fd (xchat_plugin *ph, GIOChannel *source, char *buf, int *len)
 /* Load a static plugin */
 
 void
-plugin_add (session *sess, char *filename, void *handle, void *init_func,
+plugin_add (rage_session *sess, char *filename, void *handle, void *init_func,
 				void *deinit_func, char *arg, int fake)
 {
 	xchat_plugin *pl;
@@ -317,7 +317,7 @@ plugin_kill_all (void)
 /* load a plugin from a filename. Returns: NULL-success or an error string */
 
 char *
-plugin_load (session *sess, char *filename, char *arg)
+plugin_load (rage_session *sess, char *filename, char *arg)
 {
 	void *handle;
 	xchat_init_func *init_func;
@@ -388,7 +388,7 @@ plugin_load (session *sess, char *filename, char *arg)
 	return NULL;
 }
 
-static session *ps;
+static rage_session *ps;
 
 static void
 plugin_auto_load_cb (char *filename)
@@ -404,7 +404,7 @@ plugin_auto_load_cb (char *filename)
 }
 
 void
-plugin_auto_load (session *sess)
+plugin_auto_load (rage_session *sess)
 {
 	ps = sess;
 #ifdef WIN32
@@ -451,7 +451,7 @@ plugin_hook_find (GSList *list, int type, char *name)
 /* check for plugin hooks and run them */
 
 static int
-plugin_hook_run (session *sess, char *name, int parc, char *parv[], int type)
+plugin_hook_run (rage_session *sess, char *name, int parc, char *parv[], int type)
 {
 	GSList *list, *next;
 	xchat_hook *hook;
@@ -516,7 +516,7 @@ xit:
 /* execute a plugged in command. Called from outbound.c */
 
 int
-plugin_emit_command (session *sess, char *name, char *buf)
+plugin_emit_command (rage_session *sess, char *name, char *buf)
 {
 	char *parv[3] = { name, buf, "" };
 	
@@ -526,7 +526,7 @@ plugin_emit_command (session *sess, char *name, char *buf)
 /* got a server PRIVMSG, NOTICE, numeric etc... */
 
 int
-plugin_emit_server (session *sess, char *name, int parc, char *parv[])
+plugin_emit_server (rage_session *sess, char *name, int parc, char *parv[])
 {
 	return plugin_hook_run (sess, name, parc, parv, HOOK_SERVER);
 }
@@ -534,13 +534,13 @@ plugin_emit_server (session *sess, char *name, int parc, char *parv[])
 /* see if any plugins are interested in this print event */
 
 int
-plugin_emit_print (session *sess, int parc, char *parv[])
+plugin_emit_print (rage_session *sess, int parc, char *parv[])
 {
 	return plugin_hook_run (sess, parv[0], parc, parv, HOOK_PRINT);
 }
 
 int
-plugin_emit_dummy_print (session *sess, char *name)
+plugin_emit_dummy_print (rage_session *sess, char *name)
 {
 	char *word[32];
 	int i;
@@ -662,7 +662,7 @@ plugin_command_list(GList *tmp_list)
 }
 
 int
-plugin_show_help (session *sess, char *cmd)
+plugin_show_help (rage_session *sess, char *cmd)
 {
 	GSList *list;
 	xchat_hook *hook;
@@ -822,7 +822,7 @@ xchat_commandf (xchat_plugin *ph, const char *format, ...)
 int
 xchat_nickcmp (xchat_plugin *ph, const char *s1, const char *s2)
 {
-	return ((session *)ph->context)->server->p_cmp (s1, s2);
+	return ((rage_session *)ph->context)->server->p_cmp (s1, s2);
 }
 
 xchat_context *
@@ -847,7 +847,7 @@ xchat_find_context (xchat_plugin *ph, const char *servname, const char *channel)
 {
 	GSList *slist, *clist;
 	server *serv;
-	session *sess;
+	rage_session *sess;
 	char *netname;
 
 	if (servname == NULL && channel == NULL)
@@ -888,7 +888,7 @@ xchat_find_context (xchat_plugin *ph, const char *servname, const char *channel)
 const char *
 xchat_get_info (xchat_plugin *ph, const char *id)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = ph->context;
 	if (!is_session (sess))
@@ -1053,7 +1053,7 @@ xchat_list_next (xchat_plugin *ph, xchat_list *xlist)
 	if (xlist->type == LIST_NOTIFY)
 	{
 		xlist->notifyps = notify_find_server_entry (xlist->pos->data,
-													((session *)xlist->head)->server);
+													((rage_session *)xlist->head)->server);
 		if (!xlist->notifyps)
 			return 0;
 	}
@@ -1148,20 +1148,20 @@ xchat_list_str (xchat_plugin *ph, xchat_list *xlist, const char *name)
 		switch (hash)
 		{
 		case 0x2c0b7d03: /* channel */
-			return ((session *)data)->channel;
+			return ((rage_session *)data)->channel;
 		/* XXX: needs isupport */
 //		case 0x577e0867: /* chantypes */
-//			return ((session *)data)->server->chantypes;
+//			return ((rage_session *)data)->server->chantypes;
 		case 0x38b735af: /* context */
-			return data;	/* this is a session * */
+			return data;	/* this is a rage_session * */
 		case 0x6de15a2e: /* network */
-			return get_network ((session *)data, FALSE);
+			return get_network ((rage_session *)data, FALSE);
 //		case 0x8455e723: /* nickprefixes */
-//			return ((session *)data)->server->nick_prefixes;
+//			return ((rage_session *)data)->server->nick_prefixes;
 //		case 0x829689ad: /* nickmodes */
-//			return ((session *)data)->server->nick_modes;
+//			return ((rage_session *)data)->server->nick_modes;
 		case 0xca022f43: /* server */
-			return ((session *)data)->server->servername;
+			return ((rage_session *)data)->server->servername;
 		}
 		break;
 
@@ -1252,26 +1252,26 @@ xchat_list_int (xchat_plugin *ph, xchat_list *xlist, const char *name)
 		switch (hash)
 		{
 		case 0xd1b:	/* id */
-			return ((struct session *)data)->server->id;
+			return ((rage_session *)data)->server->id;
 		case 0x5cfee87:	/* flags */
 			/* XXX: broken, needs isupport modification 
-			tmp = ((struct session *)data)->server->have_whox; */  /* bit 4 */
+			tmp = ((rage_session *)data)->server->have_whox; */  /* bit 4 */
 			tmp <<= 1;
-			tmp |= ((struct session *)data)->server->end_of_motd;/* 3 */
+			tmp |= ((rage_session *)data)->server->end_of_motd;/* 3 */
 			tmp <<= 1;
-			tmp |= ((struct session *)data)->server->is_away;    /* 2 */
+			tmp |= ((rage_session *)data)->server->is_away;    /* 2 */
 			tmp <<= 1;
-			tmp |= ((struct session *)data)->server->connecting; /* 1 */ 
+			tmp |= ((rage_session *)data)->server->connecting; /* 1 */ 
 			tmp <<= 1;
-			tmp |= ((struct session *)data)->server->connected;  /* 0 */
+			tmp |= ((rage_session *)data)->server->connected;  /* 0 */
 			return tmp;
 		/* FIXME: isupport */
 //		case 0x1916144c: /* maxmodes */
-//			return ((struct session *)data)->server->modes_per_line;
+//			return ((rage_session *)data)->server->modes_per_line;
 		case 0x368f3a:	/* type */
-			return ((struct session *)data)->type;
+			return ((rage_session *)data)->type;
 		case 0x6a68e08: /* users */
-			return ((struct session *)data)->total;
+			return ((rage_session *)data)->total;
 		}
 		break;
 

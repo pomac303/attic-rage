@@ -70,19 +70,19 @@ struct dccstat_info
 
 extern struct dccstat_info dccstat[];
 
-void dcc_abort (session *sess, struct DCC *dcc);
+void dcc_abort (rage_session *sess, struct DCC *dcc);
 void dcc_get (struct DCC *dcc);
 int dcc_resume (struct DCC *dcc);
 void dcc_check_timeouts (void);
 void dcc_change_nick (server *serv, char *oldnick, char *newnick);
 void dcc_notify_kill (struct server *serv);
 struct DCC *dcc_write_chat (char *nick, char *text);
-void dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive);
+void dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive);
 struct DCC *find_dcc (char *nick, char *file, int type);
-void dcc_get_nick (struct session *sess, char *nick);
-void dcc_chat (session *sess, char *nick);
-void handle_dcc (session *sess, char *nick, char *ctcp_data);
-void dcc_show_list (session *sess);
+void dcc_get_nick (rage_session *sess, char *nick);
+void dcc_chat (rage_session *sess, char *nick);
+void handle_dcc (rage_session *sess, char *nick, char *ctcp_data);
+void dcc_show_list (rage_session *sess);
 void open_dcc_recv_window (void);
 void open_dcc_send_window (void);
 void open_dcc_chat_window (void);

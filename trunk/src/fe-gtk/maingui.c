@@ -18,8 +18,8 @@
 
 #include "fe-gtk.h"
 
-static void mg_create_entry (session *sess, GtkWidget *box);
-static void mg_link_irctab (session *sess, int focus);
+static void mg_create_entry (rage_session *sess, GtkWidget *box);
+static void mg_link_irctab (rage_session *sess, int focus);
 
 static session_gui static_mg_gui;
 static session_gui *mg_gui = NULL;	/* the shared irc tab */
@@ -126,7 +126,7 @@ flash_window (GtkWidget *win)
 /* set a tab plain, red, light-red, or blue */
 
 void
-fe_set_tab_color (struct session *sess, int col, int flash)
+fe_set_tab_color (rage_session *sess, int col, int flash)
 {
 	if (sess->gui->is_tab && (col == 0 || sess != current_tab))
 	{
@@ -188,7 +188,7 @@ static gboolean
 mg_inputbox_focus (GtkWidget *widget, GdkEventFocus *event, session_gui *gui)
 {
 	GSList *list;
-	session *sess;
+	rage_session *sess;
 
 	if (gui->is_tab)
 		return FALSE;
@@ -216,7 +216,7 @@ mg_inputbox_cb (GtkWidget *igad, session_gui *gui)
 	char *cmd = GTK_ENTRY (igad)->text;
 	static int ignore = FALSE;
 	GSList *list;
-	session *sess = NULL;
+	rage_session *sess = NULL;
 
 	if (ignore)
 		return;
@@ -255,7 +255,7 @@ mg_inputbox_cb (GtkWidget *igad, session_gui *gui)
 }
 
 void
-fe_set_title (session *sess)
+fe_set_title (rage_session *sess)
 {
 	char tbuf[256];
 	int type;
@@ -310,7 +310,7 @@ mg_windowstate_cb (GtkWidget *wid, GdkEvent *event, gpointer userdata)
 }
 
 static gboolean
-mg_configure_cb (GtkWidget *wid, GdkEventConfigure *event, session *sess)
+mg_configure_cb (GtkWidget *wid, GdkEventConfigure *event, rage_session *sess)
 {
 	if (sess == NULL)			/* for the main_window */
 	{
@@ -370,7 +370,7 @@ mg_show_generic_tab (GtkWidget *button)
 /* a channel has been focused */
 
 static void
-mg_focus (session *sess)
+mg_focus (rage_session *sess)
 {
 	if (sess->gui->is_tab)
 		current_tab = sess;
@@ -448,7 +448,7 @@ mg_progressbar_destroy (session_gui *gui)
 /* switching tabs away from this one, so remember some info about it! */
 
 static void
-mg_unpopulate (session *sess)
+mg_unpopulate (rage_session *sess)
 {
 	restore_gui *res;
 	session_gui *gui;
@@ -520,7 +520,7 @@ mg_restore_entry (GtkWidget *entry, char **text)
 }
 
 void
-mg_set_topic_tip (session *sess)
+mg_set_topic_tip (rage_session *sess)
 {
 	char buf[512];
 
@@ -547,7 +547,7 @@ mg_set_topic_tip (session *sess)
 static int ul_tag = 0;
 
 static gboolean
-mg_populate_userlist (session *sess)
+mg_populate_userlist (rage_session *sess)
 {
 	session_gui *gui;
 
@@ -572,7 +572,7 @@ mg_populate_userlist (session *sess)
 /* fill the irc tab with a new channel */
 
 static void
-mg_populate (session *sess)
+mg_populate (rage_session *sess)
 {
 	session_gui *gui = sess->gui;
 	restore_gui *res = sess->res;
@@ -692,7 +692,7 @@ mg_populate (session *sess)
 void
 mg_bring_tofront (GtkWidget *tab)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = g_object_get_data (G_OBJECT (tab), "sess");
 	if (!sess)
@@ -742,7 +742,7 @@ mg_gendestroy (GtkWidget *tab)
 /* a toplevel IRC window was destroyed */
 
 static void
-mg_topdestroy_cb (GtkWidget *win, session *sess)
+mg_topdestroy_cb (GtkWidget *win, rage_session *sess)
 {
 /*	printf("enter mg_topdestroy. sess %p was destroyed\n", sess);*/
 
@@ -755,7 +755,7 @@ mg_topdestroy_cb (GtkWidget *win, session *sess)
 /* an IRC tab was destroyed */
 
 static void
-mg_ircdestroy (GtkWidget *tab, session *sess)
+mg_ircdestroy (GtkWidget *tab, rage_session *sess)
 {
 	GSList *list;
 
@@ -794,7 +794,7 @@ mg_ircdestroy (GtkWidget *tab, session *sess)
 /* a tab has been destroyed */
 
 static void
-mg_tabdestroy_cb (GtkWidget *tab, session *sess)
+mg_tabdestroy_cb (GtkWidget *tab, rage_session *sess)
 {
 	if (tab == active_tab && !xchat_is_quitting)
 		mg_find_replacement_focus (tab);
@@ -810,7 +810,7 @@ mg_tabdestroy_cb (GtkWidget *tab, session *sess)
 }
 
 static void
-mg_tree_cb (GtkWidget *item, session *sess)
+mg_tree_cb (GtkWidget *item, rage_session *sess)
 {
 	if (is_session (sess))
 	{
@@ -822,7 +822,7 @@ mg_tree_cb (GtkWidget *item, session *sess)
 }
 
 static void
-mg_colorpaste_cb (GtkCheckMenuItem *item, session *sess)
+mg_colorpaste_cb (GtkCheckMenuItem *item, rage_session *sess)
 {
 	sess->color_paste = FALSE;
 	if (item->active)
@@ -831,7 +831,7 @@ mg_colorpaste_cb (GtkCheckMenuItem *item, session *sess)
 }
 
 static void
-mg_beepmsg_cb (GtkCheckMenuItem *item, session *sess)
+mg_beepmsg_cb (GtkCheckMenuItem *item, rage_session *sess)
 {
 	sess->beep = FALSE;
 	if (item->active)
@@ -839,7 +839,7 @@ mg_beepmsg_cb (GtkCheckMenuItem *item, session *sess)
 }
 
 static void
-mg_hidejp_cb (GtkCheckMenuItem *item, session *sess)
+mg_hidejp_cb (GtkCheckMenuItem *item, rage_session *sess)
 {
 	sess->hide_join_part = TRUE;
 	if (item->active)
@@ -852,7 +852,7 @@ mg_create_sess_tree (GtkWidget *menu)
 	GtkWidget *top_item, *item, *submenu;
 	GSList *list, *ilist;
 	server *serv;
-	session *sess;
+	rage_session *sess;
 
 	list = serv_list;
 	while (list)
@@ -921,7 +921,7 @@ mg_quit_cb (GtkDialog *dialog, gint arg1, gpointer userdata)
 }
 
 static void
-mg_close_sess (session *sess)
+mg_close_sess (rage_session *sess)
 {
 	GtkWidget *dialog;
 
@@ -941,7 +941,7 @@ mg_close_sess (session *sess)
 }
 
 static void
-mg_detach_tab_cb (GtkWidget *item, session *sess)
+mg_detach_tab_cb (GtkWidget *item, rage_session *sess)
 {
 	mg_link_irctab (sess, 0);
 }
@@ -949,7 +949,7 @@ mg_detach_tab_cb (GtkWidget *item, session *sess)
 static void
 mg_destroy_tab_cb (GtkWidget *item, GtkWidget *tab)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = g_object_get_data (G_OBJECT (tab), "sess");
 	if (sess)
@@ -968,7 +968,7 @@ mg_color_insert (GtkWidget *item, gpointer userdata)
 }
 
 static void
-mg_create_color_menu (GtkWidget *menu, session *sess)
+mg_create_color_menu (GtkWidget *menu, rage_session *sess)
 {
 	GtkWidget *item;
 	GtkWidget *submenu;
@@ -998,7 +998,7 @@ mg_create_color_menu (GtkWidget *menu, session *sess)
 }
 
 static gboolean
-mg_tab_press_cb (GtkWidget *wid, GdkEventButton *event, session *sess)
+mg_tab_press_cb (GtkWidget *wid, GdkEventButton *event, rage_session *sess)
 {
 	GtkWidget *menu, *submenu, *item;
 
@@ -1070,7 +1070,7 @@ mg_tab_press_cb (GtkWidget *wid, GdkEventButton *event, session *sess)
 /* add a tabbed channel */
 
 static void
-mg_add_chan (session *sess)
+mg_add_chan (rage_session *sess)
 {
 	char *name = _("<none>");
 
@@ -1139,7 +1139,7 @@ mg_create_userlistbuttons (GtkWidget *box)
 }
 
 void
-mg_chanmodebuttons_showhide (session *sess, int show)
+mg_chanmodebuttons_showhide (rage_session *sess, int show)
 {
 	switch (sess->type)
 	{
@@ -1155,7 +1155,7 @@ mg_chanmodebuttons_showhide (session *sess, int show)
 }
 
 void
-mg_userlist_showhide (session *sess, int show)
+mg_userlist_showhide (rage_session *sess, int show)
 {
 	session_gui *gui = sess->gui;
 
@@ -1195,7 +1195,7 @@ mg_userlist_toggle_cb (GtkWidget *button, gpointer userdata)
 static void
 mg_topic_cb (GtkWidget *entry, gpointer userdata)
 {
-	session *sess = current_sess;
+	rage_session *sess = current_sess;
 	char *text;
 
 	if (sess->channel[0] && sess->server->connected)
@@ -1286,7 +1286,7 @@ mg_x_click_cb (GtkWidget *button, gpointer userdata)
 }
 
 static void
-mg_changui_destroy (session *sess)
+mg_changui_destroy (rage_session *sess)
 {
 	if (sess->gui->is_tab)
 	{
@@ -1310,7 +1310,7 @@ mg_changui_destroy (session *sess)
 }
 
 static void
-mg_link_irctab (session *sess, int focus)
+mg_link_irctab (rage_session *sess, int focus)
 {
 	if (sess->gui->is_tab)
 	{
@@ -1363,7 +1363,7 @@ check_is_number (char *t)
 }
 
 static void
-mg_change_flag (GtkWidget * wid, session *sess, char flag)
+mg_change_flag (GtkWidget * wid, rage_session *sess, char flag)
 {
 	server *serv = sess->server;
 	char mode[3];
@@ -1384,7 +1384,7 @@ mg_change_flag (GtkWidget * wid, session *sess, char flag)
 }
 
 static void
-flagl_hit (GtkWidget * wid, struct session *sess)
+flagl_hit (GtkWidget * wid, rage_session *sess)
 {
 	char modes[512];
 	const char *limit_str;
@@ -1411,7 +1411,7 @@ flagl_hit (GtkWidget * wid, struct session *sess)
 }
 
 static void
-flagk_hit (GtkWidget * wid, struct session *sess)
+flagk_hit (GtkWidget * wid, rage_session *sess)
 {
 	char modes[512];
 	server *serv = sess->server;
@@ -1431,7 +1431,7 @@ flagk_hit (GtkWidget * wid, struct session *sess)
 static void
 mg_flagbutton_cb (GtkWidget *but, char *flag)
 {
-	session *sess;
+	rage_session *sess;
 	char mode;
 
 	if (ignore_chanmode)
@@ -1479,7 +1479,7 @@ static void
 mg_key_entry_cb (GtkWidget * igad, gpointer userdata)
 {
 	char modes[512];
-	session *sess = current_sess;
+	rage_session *sess = current_sess;
 	server *serv = sess->server;
 
 	if (serv->connected && sess->channel[0])
@@ -1495,7 +1495,7 @@ static void
 mg_limit_entry_cb (GtkWidget * igad, gpointer userdata)
 {
 	char modes[512];
-	session *sess = current_sess;
+	rage_session *sess = current_sess;
 	server *serv = sess->server;
 
 	if (serv->connected && sess->channel[0])
@@ -1624,7 +1624,7 @@ mg_word_check (GtkWidget * xtext, char *word)
 
 static void
 mg_word_clicked (GtkWidget *xtext, char *word, GdkEventButton *even,
-					  session *sess)
+					  rage_session *sess)
 {
 	sess = current_sess;
 
@@ -1851,7 +1851,7 @@ mg_create_userlist (session_gui *gui, GtkWidget *box, int pack)
 }
 
 static void
-mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
+mg_create_center (rage_session *sess, session_gui *gui, GtkWidget *box)
 {
 	GtkWidget *vbox, *hbox, *paned = NULL;
 
@@ -2019,7 +2019,7 @@ mg_set_tabs_pos (session_gui *gui, int pos)
 }
 
 static void
-mg_create_entry (session *sess, GtkWidget *box)
+mg_create_entry (rage_session *sess, GtkWidget *box)
 {
 	GtkWidget *hbox, *but, *entry;
 	session_gui *gui = sess->gui;
@@ -2054,7 +2054,7 @@ mg_create_entry (session *sess, GtkWidget *box)
 }
 
 static void
-mg_switch_tab_cb (GtkWidget *tab, session *sess, gpointer family)
+mg_switch_tab_cb (GtkWidget *tab, rage_session *sess, gpointer family)
 {
 	GtkWidget *old;
 
@@ -2077,7 +2077,7 @@ mg_switch_tab_cb (GtkWidget *tab, session *sess, gpointer family)
 /* compare two tabs (for tab sorting function) */
 
 static int
-mg_tabs_compare (session *a, session *b)
+mg_tabs_compare (rage_session *a, rage_session *b)
 {
 	/* this is for "Open Utilities in: Tabs" (i.e. sess is NULL) */
 	if (!a)
@@ -2125,7 +2125,7 @@ mg_tabwin_focus_cb (GtkWindow * win, GdkEventFocus *event, gpointer userdata)
 }
 
 static gboolean
-mg_topwin_focus_cb (GtkWindow * win, GdkEventFocus *event, session *sess)
+mg_topwin_focus_cb (GtkWindow * win, GdkEventFocus *event, rage_session *sess)
 {
 	current_sess = sess;
 	if (!sess->server->server_session)
@@ -2152,7 +2152,7 @@ mg_create_menu (session_gui *gui, GtkWidget *box, int away_state)
 }
 
 static void
-mg_create_topwindow (session *sess)
+mg_create_topwindow (rage_session *sess)
 {
 	char version[512];
 	GtkWidget *win;
@@ -2228,7 +2228,7 @@ mg_create_topwindow (session *sess)
 }
 
 static void
-mg_create_irctab (session *sess, GtkWidget *book)
+mg_create_irctab (rage_session *sess, GtkWidget *book)
 {
 	GtkWidget *vbox;
 	session_gui *gui = sess->gui;
@@ -2243,7 +2243,7 @@ static void
 mg_tabwindow_kill_cb (GtkWidget *win, gpointer userdata)
 {
 	GSList *list;
-	session *sess;
+	rage_session *sess;
 
 /*	puts("enter mg_tabwindow_kill_cb");*/
 	xchat_is_quitting = TRUE;
@@ -2272,7 +2272,7 @@ static gboolean
 mg_tabwindow_de_cb (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
 	GSList *list;
-	session *sess;
+	rage_session *sess;
 
 	/* check for remaining toplevel windows */
 	list = sess_list;
@@ -2292,7 +2292,7 @@ mg_tabwindow_de_cb (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 }
 
 static void
-mg_create_tabwindow (session *sess)
+mg_create_tabwindow (rage_session *sess)
 {
 	char version[512];
 	GtkWidget *win;
@@ -2371,7 +2371,7 @@ void
 mg_apply_setup (void)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	mg_create_tab_colors ();
 
@@ -2413,7 +2413,7 @@ mg_add_generic_tab (char *name, char *title, void *family, GtkWidget *box)
 }
 
 void
-fe_buttons_update (session *sess)
+fe_buttons_update (rage_session *sess)
 {
 	session_gui *gui = sess->gui;
 
@@ -2427,7 +2427,7 @@ fe_buttons_update (session *sess)
 }
 
 void
-fe_clear_channel (session *sess)
+fe_clear_channel (rage_session *sess)
 {
 	char tbuf[CHANLEN+6];
 	session_gui *gui = sess->gui;
@@ -2471,12 +2471,12 @@ fe_clear_channel (session *sess)
 }
 
 void
-fe_set_nonchannel (session *sess, int state)
+fe_set_nonchannel (rage_session *sess, int state)
 {
 }
 
 void
-fe_dlgbuttons_update (session *sess)
+fe_dlgbuttons_update (rage_session *sess)
 {
 	GtkWidget *box;
 	session_gui *gui = sess->gui;
@@ -2495,7 +2495,7 @@ fe_dlgbuttons_update (session *sess)
 }
 
 void
-fe_update_mode_buttons (session *sess, char mode, char sign)
+fe_update_mode_buttons (rage_session *sess, char mode, char sign)
 {
 	int state, i;
 
@@ -2528,7 +2528,7 @@ void
 fe_set_nick (server *serv, char *newnick)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	while (list)
 	{
@@ -2546,7 +2546,7 @@ void
 fe_set_away (server *serv)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	while (list)
 	{
@@ -2561,13 +2561,13 @@ fe_set_away (server *serv)
 }
 
 void
-fe_set_channel (session *sess)
+fe_set_channel (rage_session *sess)
 {
 	tab_rename (sess->res->tab, sess->channel, prefs.truncchans);
 }
 
 void
-mg_changui_new (session *sess, restore_gui *res, int tab, int focus)
+mg_changui_new (rage_session *sess, restore_gui *res, int tab, int focus)
 {
 	int first_run = FALSE;
 	session_gui *gui;
@@ -2677,7 +2677,7 @@ mg_create_generic_tab (char *name, char *title, int force_toplevel,
 }
 
 void
-mg_topic_showhide (session *sess)
+mg_topic_showhide (rage_session *sess)
 {
 	if (GTK_WIDGET_VISIBLE (sess->gui->topic_bar))
 	{
@@ -2728,7 +2728,7 @@ fe_server_callback (server *serv)
 /* called when a session is being killed */
 
 void
-fe_session_callback (session *sess)
+fe_session_callback (rage_session *sess)
 {
 	if (sess->res->input_text)
 		free (sess->res->input_text);

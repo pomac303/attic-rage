@@ -83,7 +83,7 @@ goto_url (char *url)
 /* execute a userlistbutton/popupmenu command */
 
 static void
-nick_command (session * sess, char *cmd)
+nick_command (rage_session * sess, char *cmd)
 {
 	if (*cmd == '!')
 		xchat_exec (cmd + 1);
@@ -94,7 +94,7 @@ nick_command (session * sess, char *cmd)
 /* fill in the %a %s %n etc and execute the command */
 
 void
-nick_command_parse (session *sess, char *cmd, char *nick, char *allnick)
+nick_command_parse (rage_session *sess, char *cmd, char *nick, char *allnick)
 {
 	char *buf;
 	char *host = _("Host unknown");
@@ -134,7 +134,7 @@ userlist_button_cb (GtkWidget * button, char *cmd)
 	int i, num_sel, using_allnicks = FALSE;
 	char **nicks, *allnicks;
 	char *nick = NULL;
-	session *sess;
+	rage_session *sess;
 
 	sess = current_sess;
 
@@ -433,7 +433,7 @@ menu_popup (GtkWidget *menu, GdkEventButton *event, gpointer objtounref)
 static char *str_copy = 0;		/* for all pop-up menus */
 
 void
-menu_nickmenu (session *sess, GdkEventButton *event, char *nick, int num_sel)
+menu_nickmenu (rage_session *sess, GdkEventButton *event, char *nick, int num_sel)
 {
 	char buf[256];
 	struct User *user;
@@ -496,7 +496,7 @@ menu_nickmenu (session *sess, GdkEventButton *event, char *nick, int num_sel)
 static void
 menu_showhide (void)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list;
 
 	list = sess_list;
@@ -549,7 +549,7 @@ menu_middle_cb (GtkWidget *item, gpointer userdata)
 }
 
 void
-menu_middlemenu (session *sess, GdkEventButton *event)
+menu_middlemenu (rage_session *sess, GdkEventButton *event)
 {
 	GtkWidget *menu, *away, *user, *item;
 	GtkAccelGroup *accel_group;
@@ -684,7 +684,7 @@ menu_chan_join (GtkWidget * menu, char *chan)
 }
 
 void
-menu_chanmenu (struct session *sess, GdkEventButton * event, char *chan)
+menu_chanmenu (rage_session *sess, GdkEventButton * event, char *chan)
 {
 	GtkWidget *menu;
 	int is_joined = FALSE;
@@ -762,7 +762,7 @@ usermenu_update (void)
 {
 	int done_main = FALSE;
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	while (list)
 	{
@@ -882,7 +882,7 @@ menu_flushbuffer (GtkWidget * wid, gpointer none)
 }
 
 static void
-savebuffer_req_done (session *sess, char *file)
+savebuffer_req_done (rage_session *sess, char *file)
 {
 	int fh;
 

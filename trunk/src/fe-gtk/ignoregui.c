@@ -188,7 +188,7 @@ ignore_treeview_new (GtkWidget *box)
 }
 
 static void
-ignore_delete_entry_clicked (GtkWidget * wid, struct session *sess)
+ignore_delete_entry_clicked (GtkWidget * wid, rage_session *sess)
 {
 	GtkTreeView *view = g_object_get_data (G_OBJECT (ignorewin), "view");
 	GtkListStore *store = GTK_LIST_STORE (gtk_tree_view_get_model (view));
@@ -272,7 +272,7 @@ ignore_clear_entry_clicked (GtkWidget * wid, gpointer unused)
 }
 
 static void
-ignore_new_entry_clicked (GtkWidget * wid, struct session *sess)
+ignore_new_entry_clicked (GtkWidget * wid, rage_session *sess)
 {
 	fe_get_str (_("Enter mask to ignore:"), "nick!userid@host.com",
 	            ignore_store_new, NULL);

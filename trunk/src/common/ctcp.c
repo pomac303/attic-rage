@@ -19,7 +19,7 @@
 #include "rage.h"
 
 static void
-ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],
+ctcp_reply (rage_session *sess, char *tbuf, char *nick, int parc, char *parv[],
 				char *conf)
 {
 	conf = strdup (conf);
@@ -32,7 +32,7 @@ ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],
 }
 
 static int
-ctcp_check (session *sess, char *tbuf, char *nick, int parc, char *parv[], 
+ctcp_check (rage_session *sess, char *tbuf, char *nick, int parc, char *parv[], 
 		char *ctcp)
 {
 	int ret = 0;
@@ -52,11 +52,11 @@ static throttle_t dcc_throttle_data = { 0, 34, 20, 100, 0};
 #define dcc_throttle gen_throttle(&dcc_throttle_data)
 
 void
-ctcp_handle (session *sess, char *to, char *nick, char *ip,
+ctcp_handle (rage_session *sess, char *to, char *nick, char *ip,
 				 char *msg, int parc, char *parv[])
 {
 	char *po;
-	session *chansess;
+	rage_session *chansess;
 	server *serv = sess->server;
 	char outbuf[1024];
 	char *tmp;

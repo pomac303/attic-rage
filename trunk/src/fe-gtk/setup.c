@@ -1580,7 +1580,7 @@ setup_apply (struct xchatprefs *pr)
 {
 	GSList *list;
 	int done_main = FALSE;
-	session *sess;
+	rage_session *sess;
 	GtkStyle *old_style;
 	int new_pix = FALSE;
 	int noapply = FALSE;

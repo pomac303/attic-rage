@@ -36,7 +36,7 @@ color_of (char *name)
 }
 
 void
-clear_channel (session *sess)
+clear_channel (rage_session *sess)
 {
 	if (sess->channel[0])
 		strcpy (sess->waitchannel, sess->channel);
@@ -65,7 +65,7 @@ clear_channel (session *sess)
 }
 
 void
-set_topic (session *sess, char *topic)
+set_topic (rage_session *sess, char *topic)
 {
 	if (sess->topic)
 		free (sess->topic);
@@ -73,10 +73,10 @@ set_topic (session *sess, char *topic)
 	fe_set_topic (sess, topic);
 }
 
-static session *
+static rage_session *
 find_session_from_nick (char *nick, server *serv)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 
 	sess = find_dialog (serv, nick);
@@ -108,10 +108,10 @@ find_session_from_nick (char *nick, server *serv)
 	return 0;
 }
 
-static session *
+static rage_session *
 inbound_open_dialog (server *serv, char *from)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = new_ircwindow (serv, from, SESS_DIALOG, 0);
 	/* for playing sounds */
@@ -123,7 +123,7 @@ inbound_open_dialog (server *serv, char *from)
 void
 inbound_privmsg (server *serv, char *from, char *ip, char *text, int id)
 {
-	session *sess;
+	rage_session *sess;
 	char idtext[64];
 
 	sess = find_dialog (serv, from);
@@ -231,7 +231,7 @@ SearchNick (char *text, char *nicks)
 }
 
 static int
-is_hilight (char *text, session *sess, server *serv)
+is_hilight (char *text, rage_session *sess, server *serv)
 {
 	if ((SearchNick (text, serv->nick)) || SearchNick (text, prefs.bluestring))
 	{
@@ -252,9 +252,9 @@ is_hilight (char *text, session *sess, server *serv)
 }
 
 void
-inbound_action (session *sess, char *chan, char *from, char *text, int fromme)
+inbound_action (rage_session *sess, char *chan, char *from, char *text, int fromme)
 {
-	session *def = sess;
+	rage_session *def = sess;
 	server *serv = sess->server;
 	int beep = FALSE;
 	int hilight = FALSE;
@@ -321,7 +321,7 @@ inbound_action (session *sess, char *chan, char *from, char *text, int fromme)
 }
 
 void
-inbound_chanmsg (server *serv, session *sess, char *chan, char *from, char *text, char fromme, int id)
+inbound_chanmsg (server *serv, rage_session *sess, char *chan, char *from, char *text, char fromme, int id)
 {
 	struct User *user;
 	int hilight = FALSE;
@@ -402,7 +402,7 @@ void
 inbound_newnick (server *serv, char *nick, char *newnick, int quiet)
 {
 	int me = FALSE;
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 
 	if (!serv->p_cmp (nick, serv->nick))
@@ -445,14 +445,14 @@ inbound_newnick (server *serv, char *nick, char *newnick, int quiet)
 }
 
 /* find a "<none>" tab */
-static session *
+static rage_session *
 find_unused_session (server *serv)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->type == SESS_CHANNEL && sess->channel[0] == 0 &&
 			 sess->server == serv)
 		{
@@ -464,14 +464,14 @@ find_unused_session (server *serv)
 	return 0;
 }
 
-static session *
+static rage_session *
 find_session_from_waitchannel (char *chan, struct server *serv)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv && sess->channel[0] == 0 && sess->type == SESS_CHANNEL)
 		{
 			if (!serv->p_cmp (chan, sess->waitchannel))
@@ -485,7 +485,7 @@ find_session_from_waitchannel (char *chan, struct server *serv)
 void
 inbound_ujoin (server *serv, char *chan, char *nick, char *ip)
 {
-	session *sess;
+	rage_session *sess;
 
 	/* already joined? probably a bnc */
 	sess = find_channel (serv, chan);
@@ -534,7 +534,7 @@ inbound_ujoin (server *serv, char *chan, char *nick, char *ip)
 void
 inbound_ukick (server *serv, char *chan, char *kicker, char *reason)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
 		EMIT_SIGNAL (XP_TE_UKICK, sess, serv->nick, chan, kicker, reason, 0);
@@ -550,7 +550,7 @@ inbound_ukick (server *serv, char *chan, char *kicker, char *reason)
 void
 inbound_upart (server *serv, char *chan, char *ip, char *reason)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
 		if (*reason)
@@ -565,7 +565,7 @@ inbound_upart (server *serv, char *chan, char *ip, char *reason)
 void
 inbound_nameslist (server *serv, char *chan, char *names)
 {
-	session *sess;
+	rage_session *sess;
 	char name[NICKLEN];
 	int pos = 0;
 
@@ -611,7 +611,7 @@ inbound_nameslist (server *serv, char *chan, char *names)
 void
 inbound_topic (server *serv, char *chan, char *topic_text)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	char *new_topic;
 
 	if (sess)
@@ -628,7 +628,7 @@ inbound_topic (server *serv, char *chan, char *topic_text)
 void
 inbound_topicnew (server *serv, char *nick, char *chan, char *topic)
 {
-	session *sess;
+	rage_session *sess;
 	char *new_topic;
 
 	sess = find_channel (serv, chan);
@@ -644,7 +644,7 @@ inbound_topicnew (server *serv, char *nick, char *chan, char *topic)
 void
 inbound_join (server *serv, char *chan, char *user, char *ip)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
 		if (!sess->hide_join_part)
@@ -656,7 +656,7 @@ inbound_join (server *serv, char *chan, char *user, char *ip)
 void
 inbound_kick (server *serv, char *chan, char *user, char *kicker, char *reason)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
 		EMIT_SIGNAL (XP_TE_KICK, sess, kicker, user, chan, reason, 0);
@@ -667,7 +667,7 @@ inbound_kick (server *serv, char *chan, char *user, char *kicker, char *reason)
 void
 inbound_part (server *serv, char *chan, char *user, char *ip, char *reason)
 {
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
 		if (!sess->hide_join_part)
@@ -685,7 +685,7 @@ void
 inbound_topictime (server *serv, char *chan, char *nick, time_t stamp)
 {
 	char *tim = ctime (&stamp);
-	session *sess = find_channel (serv, chan);
+	rage_session *sess = find_channel (serv, chan);
 
 	if (!sess)
 		sess = serv->server_session;
@@ -698,7 +698,7 @@ void
 set_server_name (struct server *serv, char *name)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	if (name[0] == 0)
 		name = serv->hostname;
@@ -711,7 +711,7 @@ set_server_name (struct server *serv, char *name)
 
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv)
 			fe_set_title (sess);
 		list = list->next;
@@ -734,12 +734,12 @@ void
 inbound_quit (server *serv, char *nick, char *ip, char *reason)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 	int was_on_front_session = FALSE;
 
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv)
 		{
  			if (sess == current_sess)
@@ -760,7 +760,7 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 }
 
 void
-inbound_ping_reply (session *sess, char *timestring, char *from)
+inbound_ping_reply (rage_session *sess, char *timestring, char *from)
 {
 	unsigned long tim, nowtim, dif;
 	int lag = 0;
@@ -799,10 +799,10 @@ inbound_ping_reply (session *sess, char *timestring, char *from)
 	}
 }
 
-static session *
+static rage_session *
 find_session_from_type (int type, server *serv)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
@@ -818,7 +818,7 @@ void
 inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int server_notice, int id)
 {
 	char *po,*ptr=to;
-	session *sess = 0;
+	rage_session *sess = 0;
 	int new_session = 0;
 
 	if (is_channel (serv, ptr))
@@ -915,7 +915,7 @@ void
 inbound_away (server *serv, char *nick, char *msg)
 {
 	struct away_msg *away = find_away_message (serv, nick);
-	session *sess = NULL;
+	rage_session *sess = NULL;
 	GSList *list;
 
 	if (away && !strcmp (msg, away->message))	/* Seen the msg before? */
@@ -947,7 +947,7 @@ inbound_away (server *serv, char *nick, char *msg)
 int
 inbound_nameslist_end (server *serv, char *chan)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list;
 
 	if (!strcmp (chan, "*"))
@@ -979,7 +979,7 @@ static void
 check_willjoin_channels (server *serv)
 {
 	char *po;
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 
 	while (list)
@@ -1005,7 +1005,7 @@ check_willjoin_channels (server *serv)
 }
 
 void
-inbound_next_nick (session *sess, char *nick)
+inbound_next_nick (rage_session *sess, char *nick)
 {
 	sess->server->nickcount++;
 
@@ -1027,7 +1027,7 @@ inbound_next_nick (session *sess, char *nick)
 }
 
 void
-do_dns (session *sess, char *nick, char *host)
+do_dns (rage_session *sess, char *nick, char *host)
 {
 	char *po;
 	char tbuf[1024];
@@ -1062,7 +1062,7 @@ set_default_modes (server *serv)
 }
 
 void
-inbound_login_start (session *sess, char *nick, char *servname)
+inbound_login_start (rage_session *sess, char *nick, char *servname)
 {
 	inbound_newnick (sess->server, sess->server->nick, nick, TRUE);
 	set_server_name (sess->server, servname);
@@ -1080,7 +1080,7 @@ static void
 inbound_set_all_away_status (server *serv, char *nick, unsigned int status)
 {
 	GSList *list;
-	session *sess;
+	rage_session *sess;
 
 	list = sess_list;
 	while (list)
@@ -1113,7 +1113,7 @@ inbound_uback (server *serv)
 }
 
 void
-inbound_foundip (session *sess, char *ip)
+inbound_foundip (rage_session *sess, char *ip)
 {
 	struct hostent *HostAddr;
 
@@ -1128,19 +1128,19 @@ inbound_foundip (session *sess, char *ip)
 }
 
 void
-inbound_user_info_start (session *sess, char *nick)
+inbound_user_info_start (rage_session *sess, char *nick)
 {
 	/* set away to FALSE now, 301 may turn it back on */
 	inbound_set_all_away_status (sess->server, nick, 0);
 }
 
 int
-inbound_user_info (session *sess, char *chan, char *user, char *host,
+inbound_user_info (rage_session *sess, char *chan, char *user, char *host,
 						 char *servname, char *nick, char *realname,
 						 unsigned int away)
 {
 	server *serv = sess->server;
-	session *who_sess;
+	rage_session *who_sess;
 	char *uhost;
 
 	who_sess = find_channel (serv, chan);
@@ -1178,7 +1178,7 @@ inbound_user_info (session *sess, char *chan, char *user, char *host,
 }
 
 void
-inbound_banlist (session *sess, time_t stamp, char *chan, char *mask, char *banner)
+inbound_banlist (rage_session *sess, time_t stamp, char *chan, char *mask, char *banner)
 {
 	char *time_str = ctime (&stamp);
 	server *serv = sess->server;
@@ -1206,7 +1206,7 @@ inbound_exec_eom_cmd (char *str, void *sess)
 }
 
 void
-inbound_login_end (session *sess, char *text)
+inbound_login_end (rage_session *sess, char *text)
 {
 	server *serv = sess->server;
 

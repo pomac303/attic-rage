@@ -72,7 +72,7 @@ read_stdin (void)
 static int done_intro = 0;
 
 void
-fe_new_window (struct session *sess, int focus)
+fe_new_window (rage_session *sess, int focus)
 {
 	char buf[512];
 
@@ -151,7 +151,7 @@ timecat (char *buf)
 static const short colconv[] = { 0, 7, 4, 2, 1, 3, 5, 11, 13, 12, 6, 16, 14, 15, 10, 7 };
 
 void
-fe_print_text (struct session *sess, char *text)
+fe_print_text (rage_session *sess, char *text)
 {
 	int dotime = FALSE;
 	char num[8];
@@ -559,7 +559,7 @@ fe_message (char *msg, int wait)
 }
 
 void
-fe_close_window (struct session *sess)
+fe_close_window (rage_session *sess)
 {
 	kill_session_callback (sess);
 	done = TRUE;
@@ -576,7 +576,7 @@ fe_add_rawlog (struct server *serv, char *text, int len, int outbound)
 {
 }
 void
-fe_set_topic (struct session *sess, char *topic)
+fe_set_topic (rage_session *sess, char *topic)
 {
 }
 void
@@ -584,23 +584,23 @@ fe_cleanup (void)
 {
 }
 void
-fe_set_hilight (struct session *sess)
+fe_set_hilight (rage_session *sess)
 {
 }
 void
-fe_set_tab_color (struct session *sess, int col, int flash)
+fe_set_tab_color (rage_session *sess, int col, int flash)
 {
 }
 void
-fe_update_mode_buttons (struct session *sess, char mode, char sign)
+fe_update_mode_buttons (rage_session *sess, char mode, char sign)
 {
 }
 void
-fe_update_channel_key (struct session *sess)
+fe_update_channel_key (rage_session *sess)
 {
 }
 void
-fe_update_channel_limit (struct session *sess)
+fe_update_channel_limit (rage_session *sess)
 {
 }
 int
@@ -618,16 +618,16 @@ fe_chan_list_end (struct server *serv)
 {
 }
 int
-fe_is_banwindow (struct session *sess)
+fe_is_banwindow (rage_session *sess)
 {
 	return 0;
 }
 void
-fe_add_ban_list (struct session *sess, char *chan, char *users, char *topic)
+fe_add_ban_list (rage_session *sess, char *chan, char *users, char *topic)
 {
 }               
 void
-fe_ban_list_end (struct session *sess)
+fe_ban_list_end (rage_session *sess)
 {
 }
 void
@@ -635,11 +635,11 @@ fe_notify_update (char *name)
 {
 }
 void
-fe_text_clear (struct session *sess)
+fe_text_clear (rage_session *sess)
 {
 }
 void
-fe_progressbar_start (struct session *sess)
+fe_progressbar_start (rage_session *sess)
 {
 }
 void
@@ -647,28 +647,28 @@ fe_progressbar_end (struct server *serv)
 {
 }
 void
-fe_userlist_insert (struct session *sess, struct User *newuser, int row, int sel)
+fe_userlist_insert (rage_session *sess, struct User *newuser, int row, int sel)
 {
 }
 int
-fe_userlist_remove (struct session *sess, struct User *user)
+fe_userlist_remove (rage_session *sess, struct User *user)
 {
 	return 0;
 }
 void
-fe_userlist_rehash (struct session *sess, struct User *user)
+fe_userlist_rehash (rage_session *sess, struct User *user)
 {
 }
 void
-fe_userlist_move (struct session *sess, struct User *user, int new_row)
+fe_userlist_move (rage_session *sess, struct User *user, int new_row)
 {
 }
 void
-fe_userlist_numbers (struct session *sess)
+fe_userlist_numbers (rage_session *sess)
 {
 }
 void
-fe_userlist_clear (struct session *sess)
+fe_userlist_clear (rage_session *sess)
 {
 }
 void
@@ -684,11 +684,11 @@ fe_dcc_remove (struct DCC *dcc)
 {
 }
 void
-fe_clear_channel (struct session *sess)
+fe_clear_channel (rage_session *sess)
 {
 }
 void
-fe_session_callback (struct session *sess)
+fe_session_callback (rage_session *sess)
 {
 }
 void
@@ -704,27 +704,27 @@ fe_pluginlist_update (void)
 {
 }
 void
-fe_buttons_update (struct session *sess)
+fe_buttons_update (rage_session *sess)
 {
 }
 void
-fe_dlgbuttons_update (struct session *sess)
+fe_dlgbuttons_update (rage_session *sess)
 {
 }
 void
-fe_dcc_send_filereq (struct session *sess, char *nick, int maxcps, int passive)
+fe_dcc_send_filereq (rage_session *sess, char *nick, int maxcps, int passive)
 {
 }
 void
-fe_set_channel (struct session *sess)
+fe_set_channel (rage_session *sess)
 {
 }
 void
-fe_set_title (struct session *sess)
+fe_set_title (rage_session *sess)
 {
 }
 void
-fe_set_nonchannel (struct session *sess, int state)
+fe_set_nonchannel (rage_session *sess, int state)
 {
 }
 void

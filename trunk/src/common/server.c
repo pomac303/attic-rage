@@ -19,10 +19,10 @@
 #include "rage.h"
 
 static void auto_reconnect (server *serv, int send_quit, int err);
-static void server_disconnect (session * sess, int sendquit, int err);
+static void server_disconnect (rage_session * sess, int sendquit, int err);
 static int server_cleanup (server * serv);
 static void server_connect (server *serv, char *hostname, int port, int no_login);
-static struct session *g_sess = NULL;
+static rage_session *g_sess = NULL;
 
 /* actually send to the socket. This might do a character translation or
    send via SSL */
@@ -697,7 +697,7 @@ timeout_auto_reconnect (server *serv)
 static void
 auto_reconnect (server *serv, int send_quit, int err)
 {
-	session *s;
+	rage_session *s;
 	GSList *list;
 	int del;
 
@@ -809,7 +809,7 @@ server_connect_success (server *serv)
 static gboolean
 server_read_child (GIOChannel *source, GIOCondition condition, server *serv)
 {
-	session *sess = serv->server_session;
+	rage_session *sess = serv->server_session;
 	char tbuf[128];
 	char outbuf[512];
 	char host[100];
@@ -957,7 +957,7 @@ server_cleanup (server * serv)
 }
 
 static void
-server_disconnect (session * sess, int sendquit, int err)
+server_disconnect (rage_session * sess, int sendquit, int err)
 {
 	server *serv = sess->server;
 	GSList *list;
@@ -986,7 +986,7 @@ server_disconnect (session * sess, int sendquit, int err)
 	list = sess_list;
 	while (list)
 	{
-		sess = (struct session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv)
 		{
 			/* print "Disconnected" to each window using this server */
@@ -1390,7 +1390,7 @@ static void
 server_connect (server *serv, char *hostname, int port, int no_login)
 {
 	int pid, read_des[2];
-	session *sess;
+	rage_session *sess;
 
 #ifdef USE_OPENSSL
 	if (!ctx && serv->use_ssl)

@@ -61,8 +61,8 @@ int auto_connect = TRUE;
 int skip_plugins = FALSE;
 char *connect_url = NULL;
 
-struct session *current_tab;
-struct session *current_sess = 0;
+rage_session *current_tab;
+rage_session *current_sess = 0;
 struct xchatprefs prefs;
 
 #ifdef USE_OPENSSL
@@ -77,16 +77,16 @@ is_server (server * serv)
 }
 
 int
-is_session (session * sess)
+is_session (rage_session * sess)
 {
 	return g_slist_find (sess_list, sess) ? 1 : 0;
 }
 
-session *
+rage_session *
 find_dialog (server *serv, char *nick)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	while (list)
 	{
@@ -101,10 +101,10 @@ find_dialog (server *serv, char *nick)
 	return 0;
 }
 
-session *
+rage_session *
 find_channel (server *serv, char *chan)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
@@ -177,7 +177,7 @@ lag_check (void)
 static int
 away_check (void)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list;
 	int full, sent, loop = 0;
 
@@ -260,7 +260,7 @@ xchat_misc_checks (void)		/* this gets called every 1/2 second */
 /* executed when the first irc window opens */
 
 static void
-irc_init (session *sess)
+irc_init (rage_session *sess)
 {
 	static int done_init = FALSE;
 
@@ -291,13 +291,13 @@ irc_init (session *sess)
 	}
 }
 
-static session *
+static rage_session *
 new_session (server *serv, char *from, int type, int focus)
 {
-	session *sess;
+	rage_session *sess;
 
-	sess = malloc (sizeof (struct session));
-	memset (sess, 0, sizeof (struct session));
+	sess = malloc (sizeof (rage_session));
+	memset (sess, 0, sizeof (rage_session));
 
 	sess->server = serv;
 	sess->logfd = -1;
@@ -367,10 +367,10 @@ new_server (void)
 	return serv;
 }
 
-session *
+rage_session *
 new_ircwindow (server *serv, char *name, int type, int focus)
 {
-	session *sess;
+	rage_session *sess;
 
 	switch (type)
 	{
@@ -409,7 +409,7 @@ new_ircwindow (server *serv, char *name, int type, int focus)
 }
 
 char *
-get_network (session *sess, gboolean fallback)
+get_network (rage_session *sess, gboolean fallback)
 {
 	char *name;
 
@@ -498,7 +498,7 @@ kill_server_callback (server * serv)
 }
 
 static void
-exec_notify_kill (session * sess)
+exec_notify_kill (rage_session * sess)
 {
 #ifndef WIN32
 	struct nbexec *re;
@@ -518,18 +518,18 @@ exec_notify_kill (session * sess)
 }
 
 static void
-send_quit_or_part (session * killsess)
+send_quit_or_part (rage_session * killsess)
 {
 	int willquit = TRUE;
 	GSList *list;
-	session *sess;
+	rage_session *sess;
 	server *killserv = killsess->server;
 
 	/* check if this is the last session using this server */
 	list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == killserv && sess != killsess)
 		{
 			willquit = FALSE;
@@ -562,10 +562,10 @@ send_quit_or_part (session * killsess)
 }
 
 void
-kill_session_callback (session * killsess)
+kill_session_callback (rage_session * killsess)
 {
 	server *killserv = killsess->server;
-	session *sess;
+	rage_session *sess;
 	GSList *list;
 
 	plugin_emit_dummy_print (killsess, "Close Context");
@@ -583,7 +583,7 @@ kill_session_callback (session * killsess)
 		list = sess_list;
 		while (list)
 		{
-			sess = (session *) list->data;
+			sess = (rage_session *) list->data;
 			if (sess != killsess && sess->server == killserv)
 			{
 				killserv->front_session = sess;
@@ -628,7 +628,7 @@ kill_session_callback (session * killsess)
 	list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == killserv)
 			return;					  /* this server is still being used! */
 		list = list->next;
@@ -765,7 +765,7 @@ static void
 sigusr1_handler (int signal, siginfo_t *si, void *un)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	if (prefs.logging)
 	{
@@ -783,7 +783,7 @@ sigusr1_handler (int signal, siginfo_t *si, void *un)
 static void
 sigusr2_handler (int signal, siginfo_t *si, void *un)
 {
-	session *sess = current_sess;
+	rage_session *sess = current_sess;
 
 	if (sess)
 		handle_command (sess, "SIGUSR2", FALSE);
@@ -1110,62 +1110,62 @@ void fe_input_remove(int a) {}
 int fe_input_add(int a,int b,void *c,void *d) { return 0; }
 void fe_dcc_add(struct DCC *a) {}
 int fe_dcc_open_send_win(int a) { return 0; }
-int plugin_emit_print(struct session *a,int b,char **c) { return 0; }
+int plugin_emit_print(rage_session *a,int b,char **c) { return 0; }
 int fe_dcc_open_chat_win(int a) { return 0; }
 int fe_dcc_open_recv_win(int a) { return 0; }
 void fe_confirm(char const *a,void (*b)(void *),void (*c)(void *),void *d) {}
 void fe_ignore_update(int a) {}
-void fe_set_title(struct session *a) {}
-void fe_set_nonchannel(struct session *a,int b) {}
-void fe_clear_channel(struct session *a) {}
+void fe_set_title(rage_session *a) {}
+void fe_set_nonchannel(rage_session *a,int b) {}
+void fe_clear_channel(rage_session *a) {}
 void fe_timeout_remove(int a) {}
-void fe_set_topic(struct session *a,char *b) {}
-void fe_set_hilight(struct session *a) {}
+void fe_set_topic(rage_session *a,char *b) {}
+void fe_set_hilight(rage_session *a) {}
 void fe_set_nick(struct server *a,char *b) {}
-void fe_set_channel(struct session *a) {}
+void fe_set_channel(rage_session *a) {}
 void fe_set_lag(struct server *a,int b) {}
 void fe_set_away(struct server *a) {}
-void fe_add_ban_list(struct session *a,char *b,char *c,char *d) {}
-int fe_is_banwindow(struct session *a) { return 0; }
-void fe_update_channel_limit(struct session *a) {}
-void fe_update_mode_buttons(struct session *a,char b,char c) {}
-void fe_update_channel_key(struct session *a) {}
+void fe_add_ban_list(rage_session *a,char *b,char *c,char *d) {}
+int fe_is_banwindow(rage_session *a) { return 0; }
+void fe_update_channel_limit(rage_session *a) {}
+void fe_update_mode_buttons(rage_session *a,char b,char c) {}
+void fe_update_channel_key(rage_session *a) {}
 int fe_timeout_add(int a,void *b,void *c) { return 0; }
 void fe_notify_update(char *a) {}
-void fe_buttons_update(struct session *a) {}
-void fe_dlgbuttons_update(struct session *a) {}
-void fe_text_clear(struct session *a) {}
-void fe_close_window(struct session *a) {}
-void fe_dcc_send_filereq(struct session *a,char *b,int c,int d) {}
+void fe_buttons_update(rage_session *a) {}
+void fe_dlgbuttons_update(rage_session *a) {}
+void fe_text_clear(rage_session *a) {}
+void fe_close_window(rage_session *a) {}
+void fe_dcc_send_filereq(rage_session *a,char *b,int c,int d) {}
 void fe_get_int(char *a,int b,void *c,void *d) {}
 void fe_get_str(char *a,char *b,void *c,void *d) {}
-void fe_ctrl_gui(struct session *a,int b,int c) {}
-int plugin_show_help(struct session *a,char *b) { return 0; }
+void fe_ctrl_gui(rage_session *a,int b,int c) {}
+int plugin_show_help(rage_session *a,char *b) { return 0; }
 void xchat_exit(void) {}
-void fe_lastlog(struct session *a ,struct session *b,char *c) {}
-int plugin_emit_command(struct session *a,char *b,char *c) { return 0; }
-int plugin_emit_server(struct session *a,char *b,int c,char **d) { return 0; }
-void fe_ban_list_end(struct session *a) {}
+void fe_lastlog(rage_session *a ,rage_session *b,char *c) {}
+int plugin_emit_command(rage_session *a,char *b,char *c) { return 0; }
+int plugin_emit_server(rage_session *a,char *b,int c,char **d) { return 0; }
+void fe_ban_list_end(rage_session *a) {}
 void fe_chan_list_end(struct server *a) {}
 void fe_add_chan_list(struct server *a,char *b,char *c,char *d) {}
 int fe_is_chanwindow(struct server *a) { return 0; }
 void fe_add_rawlog(struct server *a,char *b,int c,int d) {}
 void fe_set_throttle(struct server *a) {}
 void fe_progressbar_end(struct server *a) {}
-void fe_progressbar_start(struct session *a) {}
-void fe_print_text(struct session *b,char *a) {}
+void fe_progressbar_start(rage_session *a) {}
+void fe_print_text(rage_session *b,char *a) {}
 void fe_beep(void) {}
 void fe_url_add(char const *a) {}
-void fe_userlist_rehash(struct session *a,struct User *b) {}
-void fe_userlist_numbers(struct session *a) {}
-void fe_userlist_clear(struct session *a) {}
-void fe_userlist_move(struct session *a,struct User *b,int c) {}
-int fe_userlist_remove(struct session *a,struct User *b) { return 0; }
-void fe_userlist_insert(struct session *a,struct User *b,int c,int d) {}
+void fe_userlist_rehash(rage_session *a,struct User *b) {}
+void fe_userlist_numbers(rage_session *a) {}
+void fe_userlist_clear(rage_session *a) {}
+void fe_userlist_move(rage_session *a,struct User *b,int c) {}
+int fe_userlist_remove(rage_session *a,struct User *b) { return 0; }
+void fe_userlist_insert(rage_session *a,struct User *b,int c,int d) {}
 struct _GList *plugin_command_list(struct _GList *a) { return ((struct _GList *)0); }
-int plugin_emit_dummy_print(struct session *a,char *b) { return 0; }
-void fe_new_window(struct session *a,int c) {}
+int plugin_emit_dummy_print(rage_session *a,char *b) { return 0; }
+void fe_new_window(rage_session *a,int c) {}
 void fe_new_server(struct server *a) {}
-void fe_session_callback(struct session *a) {}
+void fe_session_callback(rage_session *a) {}
 void fe_server_callback(struct server *a) {}
 #endif

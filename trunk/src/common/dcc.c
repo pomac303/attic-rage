@@ -318,7 +318,7 @@ dcc_close (struct DCC *dcc, int dccstat, int destroy)
 }
 
 void
-dcc_abort (session *sess, struct DCC *dcc)
+dcc_abort (rage_session *sess, struct DCC *dcc)
 {
 	if (dcc)
 	{
@@ -416,7 +416,7 @@ dcc_write_chat (char *nick, char *text)
 static int
 dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 {
-	session *sess;
+	rage_session *sess;
 	char *word[PDIWORDS];
 	char *po;
 	char *utf;
@@ -808,7 +808,7 @@ dcc_connect_finished (GIOChannel *source, GIOCondition condition, struct DCC *dc
 	return TRUE;
 }
 
-static int dcc_listen_init (struct DCC *, struct session *);
+static int dcc_listen_init (struct DCC *, rage_session *);
 
 static void
 dcc_connect (struct DCC *dcc)
@@ -1051,7 +1051,7 @@ dcc_accept (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 }
 
 static int
-dcc_listen_init (struct DCC *dcc, session *sess)
+dcc_listen_init (struct DCC *dcc, rage_session *sess)
 {
 	unsigned long my_addr;
 	struct sockaddr_in SAddr;
@@ -1154,7 +1154,7 @@ dcc_listen_init (struct DCC *dcc, session *sess)
 	return TRUE;
 }
 
-static struct session *dccsess;
+static rage_session *dccsess;
 static char *dccto;				  /* lame!! */
 static int dccmaxcps;
 static int recursive = FALSE;
@@ -1166,7 +1166,7 @@ dcc_send_wild (char *file)
 }
 
 void
-dcc_send (struct session *sess, char *to, char *file, int maxcps, int passive)
+dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 {
 	char outbuf[512];
 	struct stat st;
@@ -1400,7 +1400,7 @@ dcc_get (struct DCC *dcc)
 }
 
 void
-dcc_get_nick (struct session *sess, char *nick)
+dcc_get_nick (rage_session *sess, char *nick)
 {
 	struct DCC *dcc;
 	GSList *list = dcc_list;
@@ -1438,7 +1438,7 @@ new_dcc (void)
 }
 
 void
-dcc_chat (struct session *sess, char *nick)
+dcc_chat (rage_session *sess, char *nick)
 {
 	char outbuf[512];
 	struct DCC *dcc;
@@ -1501,7 +1501,7 @@ dcc_chat (struct session *sess, char *nick)
 }
 
 static void
-dcc_malformed (struct session *sess, char *nick, char *data)
+dcc_malformed (rage_session *sess, char *nick, char *data)
 {
 	EMIT_SIGNAL (XP_TE_MALFORMED, sess, nick, data, NULL, NULL, 0);
 }
@@ -1614,7 +1614,7 @@ dcc_deny_chat (void *ud)
 }
 
 void
-handle_dcc (struct session *sess, char *nick, char *ctcp_data)
+handle_dcc (rage_session *sess, char *nick, char *ctcp_data)
 {
 	char tbuf[512];
 	char *parv[MAX_TOKENS], *type;
@@ -1873,7 +1873,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 }
 
 void
-dcc_show_list (struct session *sess)
+dcc_show_list (rage_session *sess)
 {
 	int i = 0;
 	struct DCC *dcc;

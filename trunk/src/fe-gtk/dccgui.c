@@ -52,7 +52,7 @@ struct dccwindow
 
 struct my_dcc_send
 {
-	struct session *sess;
+	rage_session *sess;
 	char *nick;
 	int maxcps;
 };
@@ -87,7 +87,7 @@ dcc_psend_filereq_file (struct my_dcc_send *mdc, char *file)
 }
 
 void
-fe_dcc_send_filereq (struct session *sess, char *nick, int maxcps, int passive)
+fe_dcc_send_filereq (rage_session *sess, char *nick, int maxcps, int passive)
 {
 	char tbuf[128];
 	struct my_dcc_send *mdc;

@@ -26,13 +26,13 @@ struct ignore
 
 struct ignore *ignore_exists (char *mask);
 int ignore_add (char *mask, int type);
-void ignore_showlist (session *sess);
+void ignore_showlist (rage_session *sess);
 int ignore_del (char *mask, struct ignore *ig);
 int ignore_check (char *mask, int type);
 void ignore_load (void);
 void ignore_save (void);
 void ignore_gui_open (void);
 void ignore_gui_update (int level);
-int flood_check (char *nick, char *ip, server *serv, session *sess, int what);
+int flood_check (char *nick, char *ip, server *serv, rage_session *sess, int what);
 
 #endif

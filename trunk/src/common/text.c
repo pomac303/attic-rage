@@ -73,7 +73,7 @@ q3link (char *word)
 int
 text_word_check (char *word)
 {
-	session *sess = current_sess;
+	rage_session *sess = current_sess;
 	char *at, *dot;
 	int i, dots;
 	size_t len = strlen (word);
@@ -183,7 +183,7 @@ text_word_check (char *word)
 }
 
 void
-log_close (session *sess)
+log_close (rage_session *sess)
 {
 	char obuf[512];
 	time_t currenttime;
@@ -313,7 +313,7 @@ log_open_file (char *servname, char *channame, char *netname)
 }
 
 void
-log_open (session *sess)
+log_open (rage_session *sess)
 {
 	static gboolean log_error = FALSE;
 
@@ -367,7 +367,7 @@ get_stamp_str (char *fmt, time_t tim, char **ret)
 }
 
 static void
-log_write (session *sess, char *text)
+log_write (rage_session *sess, char *text)
 {
 	char *temp;
 	char *stamp;
@@ -434,7 +434,7 @@ text_validate (char **text, size_t *len)
 }
 
 void
-PrintText (session *sess, char *text)
+PrintText (rage_session *sess, char *text)
 {
 	char *conv;
 
@@ -442,7 +442,7 @@ PrintText (session *sess, char *text)
 	{
 		if (!sess_list)
 			return;
-		sess = (session *) sess_list->data;
+		sess = (rage_session *) sess_list->data;
 	}
 
 	/* make sure it's valid utf8 */
@@ -464,7 +464,7 @@ PrintText (session *sess, char *text)
 }
 
 void
-PrintTextf (session *sess, char *format, ...)
+PrintTextf (rage_session *sess, char *format, ...)
 {
 	va_list args;
 	char *buf;
@@ -1285,7 +1285,7 @@ load_text_events (void)
 }
 
 static void
-display_event (char *i, session *sess, int numargs, char **args)
+display_event (char *i, rage_session *sess, int numargs, char **args)
 {
 	size_t len;
 	int oi, ii;
@@ -1609,7 +1609,7 @@ align_error:
 /* called by EMIT_SIGNAL macro */
 
 void
-text_emit (int index, session *sess, char *a, char *b, char *c, char *d)
+text_emit (int index, rage_session *sess, char *a, char *b, char *c, char *d)
 {
 	char *word[PDIWORDS];
 	int i;
@@ -1640,7 +1640,7 @@ text_emit (int index, session *sess, char *a, char *b, char *c, char *d)
 }
 
 int
-text_emit_by_name (char *name, session *sess, char *a, char *b, char *c, char *d)
+text_emit_by_name (char *name, rage_session *sess, char *a, char *b, char *c, char *d)
 {
 	int i = 0;
 
@@ -1695,7 +1695,7 @@ pevent_save (char *fn)
 char *sound_files[NUM_XP];
 
 void
-sound_beep (session *sess)
+sound_beep (rage_session *sess)
 {
 	if (sound_files[XP_TE_BEEP] && sound_files[XP_TE_BEEP][0])
 		/* user defined beep _file_ */

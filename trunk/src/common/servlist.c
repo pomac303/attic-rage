@@ -472,7 +472,7 @@ GSList *network_list = 0;
 
 
 void
-servlist_connect (session *sess, ircnet *net)
+servlist_connect (rage_session *sess, ircnet *net)
 {
 	ircserver *ircserv;
 	GSList *list;
@@ -555,7 +555,7 @@ servlist_connect (session *sess, ircnet *net)
 }
 
 int
-servlist_connect_by_netname (session *sess, char *network)
+servlist_connect_by_netname (rage_session *sess, char *network)
 {
 	ircnet *net;
 	GSList *list = network_list;
@@ -597,7 +597,7 @@ servlist_have_auto (void)
 }
 
 int
-servlist_auto_connect (session *sess)
+servlist_auto_connect (rage_session *sess)
 {
 	GSList *list = network_list;
 	ircnet *net;

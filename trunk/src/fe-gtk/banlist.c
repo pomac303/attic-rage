@@ -28,19 +28,19 @@ enum
 };
 
 static GtkTreeView *
-get_view (struct session *sess)
+get_view (rage_session *sess)
 {
 	return GTK_TREE_VIEW (sess->res->banlist_treeview);
 }
 
 static GtkListStore *
-get_store (struct session *sess)
+get_store (rage_session *sess)
 {
 	return GTK_LIST_STORE (gtk_tree_view_get_model (get_view (sess)));
 }
 
 void
-fe_add_ban_list (struct session *sess, char *mask, char *who, char *when)
+fe_add_ban_list (rage_session *sess, char *mask, char *who, char *when)
 {
 	GtkListStore *store;
 	GtkTreeIter iter;
@@ -52,7 +52,7 @@ fe_add_ban_list (struct session *sess, char *mask, char *who, char *when)
 }
 
 void
-fe_ban_list_end (struct session *sess)
+fe_ban_list_end (rage_session *sess)
 {
 	gtk_widget_set_sensitive (sess->res->banlist_butRefresh, TRUE);
 }
@@ -61,7 +61,7 @@ fe_ban_list_end (struct session *sess)
  *  * Performs the actual refresh operations.
  *  */
 static void
-banlist_do_refresh (struct session *sess)
+banlist_do_refresh (rage_session *sess)
 {
 	char tbuf[256];
 	if (sess->server->connected)
@@ -83,7 +83,7 @@ banlist_do_refresh (struct session *sess)
 }
 
 static void
-banlist_refresh (GtkWidget * wid, struct session *sess)
+banlist_refresh (GtkWidget * wid, rage_session *sess)
 {
 	/* JG NOTE: Didn't see actual use of wid here, so just forwarding
 	   *          * this to chanlist_do_refresh because I use it without any widget
@@ -95,7 +95,7 @@ banlist_refresh (GtkWidget * wid, struct session *sess)
 }
 
 static void
-banlist_unban (GtkWidget * wid, struct session *sess)
+banlist_unban (GtkWidget * wid, rage_session *sess)
 {
 	GtkTreeModel *model;
 	GtkTreeSelection *sel;
@@ -150,7 +150,7 @@ banlist_unban (GtkWidget * wid, struct session *sess)
 }
 
 static void
-banlist_clear (GtkWidget * wid, struct session *sess)
+banlist_clear (GtkWidget * wid, rage_session *sess)
 {
 	GtkTreeSelection *sel;
 
@@ -177,7 +177,7 @@ banlist_add_selected_cb (GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *it
 }
 
 static void
-banlist_crop (GtkWidget * wid, struct session *sess)
+banlist_crop (GtkWidget * wid, rage_session *sess)
 {
 	GtkTreeSelection *select;
 	GSList *list = NULL, *node;
@@ -243,14 +243,14 @@ banlist_treeview_new (GtkWidget *box)
 }
 
 static void
-banlist_closegui (GtkWidget *wid, session *sess)
+banlist_closegui (GtkWidget *wid, rage_session *sess)
 {
 	if (is_session (sess))
 		sess->res->banlist_window = 0;
 }
 
 void
-banlist_opengui (struct session *sess)
+banlist_opengui (rage_session *sess)
 {
 	GtkWidget *vbox1;
 	GtkWidget *bbox;

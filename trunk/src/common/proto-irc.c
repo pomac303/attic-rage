@@ -279,7 +279,7 @@ irc_raw (server *serv, char *raw)
 
 
 static void
-channel_date (session *sess, char *chan, char *timestr)
+channel_date (rage_session *sess, char *chan, char *timestr)
 {
 	time_t timestamp = (time_t) atol (timestr);
 	char *tim = ctime (&timestamp);
@@ -341,10 +341,10 @@ irc_split(server *serv,char *buf,int *parc,char *parv[])
  * parv[3...] = args
  */
 static void
-irc_numeric(session *sess, int parc, char *parv[])
+irc_numeric(rage_session *sess, int parc, char *parv[])
 {
 	char line[512];
-	session *tmp = NULL;
+	rage_session *tmp = NULL;
 	server *serv = sess->server;
 
 	switch(atoi(parv[1])) {
@@ -428,7 +428,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			return;
 		case RPL_ENDOFWHO: /* 315 */
 		{
-			session *who_sess;
+			rage_session *who_sess;
 			who_sess = find_channel(sess->server,parv[3]);
 
 			if (who_sess)
@@ -595,7 +595,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 		{	
 			unsigned int away = 0;
 			char *tmp;
-			session *who_sess = find_channel(sess->server, parv[3]);
+			rage_session *who_sess = find_channel(sess->server, parv[3]);
 			/* TODO: eww */
 			if (*parv[8] == 'G')
 				away = 1;
@@ -624,7 +624,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			if (strcmp(parv[3],"152") == 0)
 			{
 				int away = 0;
-				session *who_sess = find_channel(sess->server, parv[4]);
+				rage_session *who_sess = find_channel(sess->server, parv[4]);
 
 				/* TODO: eew */
 				if (*parv[6] == 'G')
@@ -748,7 +748,7 @@ static throttle_t throttle_inv_data = { 0, 30, 10, 60, 0 }; /* max 3 invites dur
 #define throttle_invite gen_throttle(&throttle_inv_data)
 
 static void 
-irc_server(session *sess, int parc, char *parv[])
+irc_server(rage_session *sess, int parc, char *parv[])
 {
 	char *ex = strchr(parv[0],'!');
 	int is_server;
@@ -970,7 +970,7 @@ irc_server(session *sess, int parc, char *parv[])
 static void
 irc_inline (server *serv, char *buf, int len)
 {
-	session *sess;
+	rage_session *sess;
 	char *parv[MAX_TOKENS];
 	int parc;
 

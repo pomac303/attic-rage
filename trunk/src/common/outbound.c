@@ -19,20 +19,20 @@
 #define _GNU_SOURCE	/* for memrchr, not used on Windows */
 #include "rage.h"
 
-static int cmd_server (session *sess, char *cmd, char *buf);
-static void help (session *sess, char *helpcmd, int quiet);
-static void handle_say (session *sess, char *text, int check_spch);
+static int cmd_server (rage_session *sess, char *cmd, char *buf);
+static void help (rage_session *sess, char *helpcmd, int quiet);
+static void handle_say (rage_session *sess, char *text, int check_spch);
 
 dict_t rage_cmd_list = NULL;
 
 static void
-notj_msg (struct session *sess)
+notj_msg (rage_session *sess)
 {
 	PrintText (sess, _("No channel joined. Try /join #<channel>\n"));
 }
 
 void
-notc_msg (struct session *sess)
+notc_msg (rage_session *sess)
 {
 	PrintText (sess, _("Not connected. Try /server <host> [<port>]\n"));
 }
@@ -95,7 +95,7 @@ server_sendpart (server * serv, char *channel, char *reason)
 }
 
 void
-server_sendquit (session * sess)
+server_sendquit (rage_session * sess)
 {
 	char *rea, *colrea;
 
@@ -194,7 +194,7 @@ def:
 }
 
 static int
-cmd_addbutton (struct session *sess, char *cmd, char *buf)
+cmd_addbutton (rage_session *sess, char *cmd, char *buf)
 {
 	char *parv[MAX_TOKENS];
 	int parc;
@@ -218,7 +218,7 @@ cmd_addbutton (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_allchannels (session *sess, char *cmd, char *buf)
+cmd_allchannels (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
 
@@ -241,7 +241,7 @@ cmd_allchannels (session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_allservers (struct session *sess, char *cmd, char *buf)
+cmd_allservers (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 	server *serv;
@@ -264,7 +264,7 @@ cmd_allservers (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_away (struct session *sess, char *cmd, char *buf)
+cmd_away (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 	char *reason;
@@ -308,11 +308,11 @@ cmd_away (struct session *sess, char *cmd, char *buf)
 		while (list)
 		{
 			/* am I the right server and not a dialog box */
-			if (((struct session *) list->data)->server == sess->server
-				 && ((struct session *) list->data)->type == SESS_CHANNEL
-				 && ((struct session *) list->data)->channel[0])
+			if (((rage_session *) list->data)->server == sess->server
+				 && ((rage_session *) list->data)->type == SESS_CHANNEL
+				 && ((rage_session *) list->data)->channel[0])
 			{
-				handle_command ((session *) list->data, send, TRUE);
+				handle_command ((rage_session *) list->data, send, TRUE);
 			}
 			list = list->next;
 		}
@@ -331,7 +331,7 @@ cmd_away (struct session *sess, char *cmd, char *buf)
 }
 
 static void
-ban (session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
+ban (rage_session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 {
 	int bantype;
 	struct User *user;
@@ -443,7 +443,7 @@ ban (session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 }
 
 static int
-cmd_ban (struct session *sess, char *cmd, char *buf)
+cmd_ban (rage_session *sess, char *cmd, char *buf)
 {
 	char *mask;
 	int parc;
@@ -463,7 +463,7 @@ cmd_ban (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_unban (struct session *sess, char *cmd, char *buf)
+cmd_unban (rage_session *sess, char *cmd, char *buf)
 {
 	/* Allow more than one mask in /unban -- tvk */
 	int i = 1;
@@ -486,7 +486,7 @@ cmd_unban (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_charset (struct session *sess, char *cmd, char *buf)
+cmd_charset (rage_session *sess, char *cmd, char *buf)
 {
 	server *serv = sess->server;
 	const char *locale = NULL;
@@ -514,7 +514,7 @@ cmd_charset (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_clear (struct session *sess, char *cmd, char *buf)
+cmd_clear (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
 
@@ -537,7 +537,7 @@ cmd_clear (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_close (struct session *sess, char *cmd, char *buf)
+cmd_close (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 	int parc;
@@ -567,7 +567,7 @@ cmd_close (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_ctcp (struct session *sess, char *cmd, char *buf)
+cmd_ctcp (rage_session *sess, char *cmd, char *buf)
 {
 	int mbl;
 	char *to;
@@ -609,7 +609,7 @@ cmd_ctcp (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_country (struct session *sess, char *cmd, char *buf)
+cmd_country (rage_session *sess, char *cmd, char *buf)
 {
 	char tbuf[500];
 
@@ -625,7 +625,7 @@ cmd_country (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_cycle (struct session *sess, char *cmd, char *buf)
+cmd_cycle (rage_session *sess, char *cmd, char *buf)
 {
 	char *key = sess->channelkey;
 	char *chan = sess->channel;
@@ -639,7 +639,7 @@ cmd_cycle (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_dcc (struct session *sess, char *cmd, char *buf)
+cmd_dcc (rage_session *sess, char *cmd, char *buf)
 {
 	int goodtype;
 	struct DCC *dcc = 0;
@@ -764,9 +764,9 @@ cmd_dcc (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_debug (struct session *sess, char *cmd, char *buf)
+cmd_debug (rage_session *sess, char *cmd, char *buf)
 {
-	struct session *s;
+	rage_session *s;
 	struct server *v;
 	GSList *list = sess_list;
 	char tbuf[512];
@@ -774,7 +774,7 @@ cmd_debug (struct session *sess, char *cmd, char *buf)
 	PrintText (sess, "Session   T Channel    WaitChan  WillChan  Server\n");
 	while (list)
 	{
-		s = (struct session *) list->data;
+		s = (rage_session *) list->data;
 		sprintf (tbuf, "%p %1x %-10.10s %-10.10s %-10.10s %p\n",
 					s, s->type, s->channel, s->waitchannel,
 					s->willjoinchannel, s->server);
@@ -803,7 +803,7 @@ cmd_debug (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_delbutton (struct session *sess, char *cmd, char *buf)
+cmd_delbutton (rage_session *sess, char *cmd, char *buf)
 {
 	int parc;
 	char *parv[MAX_TOKENS];
@@ -827,7 +827,7 @@ cmd_delbutton (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_dehop (struct session *sess, char *cmd, char *buf)
+cmd_dehop (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 1;
 	int parc;
@@ -849,7 +849,7 @@ cmd_dehop (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_deop (struct session *sess, char *cmd, char *buf)
+cmd_deop (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 1;
 	int parc;
@@ -874,7 +874,7 @@ typedef struct
 {
 	char **nicks;
 	int i;
-	session *sess;
+	rage_session *sess;
 	char *reason;
 	char *tbuf;
 } multidata;
@@ -891,7 +891,7 @@ mdehop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mdehop (struct session *sess, char *cmd, char *buf)
+cmd_mdehop (rage_session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->hops);
 	multidata data;
@@ -917,7 +917,7 @@ mdeop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mdeop (struct session *sess, char *cmd, char *buf)
+cmd_mdeop (rage_session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->ops);
 	multidata data;
@@ -955,7 +955,7 @@ mkickops_cb (struct User *user, multidata *data)
  *  /mkick reason
  */
 static int
-cmd_mkick (struct session *sess, char *cmd, char *buf)
+cmd_mkick (rage_session *sess, char *cmd, char *buf)
 {
 	multidata data;
 
@@ -971,7 +971,7 @@ cmd_mkick (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_devoice (struct session *sess, char *cmd, char *buf)
+cmd_devoice (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 1;
 	int parc;
@@ -993,14 +993,14 @@ cmd_devoice (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_discon (struct session *sess, char *cmd, char *buf)
+cmd_discon (rage_session *sess, char *cmd, char *buf)
 {
 	sess->server->disconnect (sess, TRUE, -1);
 	return TRUE;
 }
 
 static int
-cmd_dns (struct session *sess, char *cmd, char *buf)
+cmd_dns (rage_session *sess, char *cmd, char *buf)
 {
 #ifdef WIN32
 	PrintText (sess, "DNS is not implemented in Windows.\n");
@@ -1036,7 +1036,7 @@ cmd_dns (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_echo (struct session *sess, char *cmd, char *buf)
+cmd_echo (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf); /* Skip the command */
 	skip_white(&buf);
@@ -1047,7 +1047,7 @@ cmd_echo (struct session *sess, char *cmd, char *buf)
 #ifndef WIN32
 
 static void
-exec_check_process (struct session *sess)
+exec_check_process (rage_session *sess)
 {
 	int val;
 
@@ -1065,7 +1065,7 @@ exec_check_process (struct session *sess)
 
 #ifndef __EMX__
 static int
-cmd_execs (struct session *sess, char *cmd, char *buf)
+cmd_execs (rage_session *sess, char *cmd, char *buf)
 {
 	int r;
 
@@ -1083,7 +1083,7 @@ cmd_execs (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_execc (struct session *sess, char *cmd, char *buf)
+cmd_execc (rage_session *sess, char *cmd, char *buf)
 {
 	int r;
 
@@ -1101,7 +1101,7 @@ cmd_execc (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_execk (struct session *sess, char *cmd, char *buf)
+cmd_execk (rage_session *sess, char *cmd, char *buf)
 {
 	int r;
 
@@ -1126,7 +1126,7 @@ cmd_execk (struct session *sess, char *cmd, char *buf)
 /* OS/2 Can't have the /EXECW command because it uses pipe(2) not socketpair
    and thus it is simplex --AGL */
 static int
-cmd_execw (struct session *sess, char *cmd, char *buf)
+cmd_execw (rage_session *sess, char *cmd, char *buf)
 {
 	int len;
 	char *temp;
@@ -1351,7 +1351,7 @@ exec_data (GIOChannel *source, GIOCondition condition, struct nbexec *s)
 
 /* needs EOL */
 static int
-cmd_exec (struct session *sess, char *cmd, char *buf)
+cmd_exec (rage_session *sess, char *cmd, char *buf)
 {
 	int tochannel = FALSE;
 	int fds[2], pid = 0;
@@ -1472,7 +1472,7 @@ cmd_exec (struct session *sess, char *cmd, char *buf)
 #endif
 
 static int
-cmd_flushq (struct session *sess, char *cmd, char *buf)
+cmd_flushq (rage_session *sess, char *cmd, char *buf)
 {
 	char tbuf[512];
 
@@ -1483,7 +1483,7 @@ cmd_flushq (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_quit (struct session *sess, char *cmd, char *buf)
+cmd_quit (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -1497,7 +1497,7 @@ cmd_quit (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_gate (struct session *sess, char *cmd, char *buf)
+cmd_gate (rage_session *sess, char *cmd, char *buf)
 {
 	char *server_name;
 	server *serv = sess->server;
@@ -1524,7 +1524,7 @@ cmd_gate (struct session *sess, char *cmd, char *buf)
 typedef struct
 {
 	char *cmd;
-	session *sess;
+	rage_session *sess;
 } getvalinfo;
 
 static void
@@ -1544,7 +1544,7 @@ get_int_cb (int cancel, int val, getvalinfo *info)
 }
 
 static int
-cmd_getint (struct session *sess, char *cmd, char *buf)
+cmd_getint (rage_session *sess, char *cmd, char *buf)
 {
 	getvalinfo *info;
 	int parc;
@@ -1581,7 +1581,7 @@ get_str_cb (int cancel, char *val, getvalinfo *info)
 }
 
 static int
-cmd_getstr (struct session *sess, char *cmd, char *buf)
+cmd_getstr (rage_session *sess, char *cmd, char *buf)
 {
 	getvalinfo *info;
 	int parc;
@@ -1602,7 +1602,7 @@ cmd_getstr (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_gui (struct session *sess, char *cmd, char *buf)
+cmd_gui (rage_session *sess, char *cmd, char *buf)
 {
 	unsigned int type;
 	int parc;
@@ -1636,7 +1636,7 @@ cmd_gui (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_help (struct session *sess, char *cmd, char *buf)
+cmd_help (rage_session *sess, char *cmd, char *buf)
 {
 	int longfmt = 0;
 	char *helpcmd = "";
@@ -1731,7 +1731,7 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_ignore (struct session *sess, char *cmd, char *buf)
+cmd_ignore (rage_session *sess, char *cmd, char *buf)
 {
 	int i;
 	int type = 0;
@@ -1812,7 +1812,7 @@ cmd_ignore (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_invite (struct session *sess, char *cmd, char *buf)
+cmd_invite (rage_session *sess, char *cmd, char *buf)
 {
 	int parc;
 	char *parv[MAX_TOKENS];
@@ -1829,7 +1829,7 @@ cmd_invite (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_join (struct session *sess, char *cmd, char *buf)
+cmd_join (rage_session *sess, char *cmd, char *buf)
 {
 	char *chan;
 	int parc;
@@ -1856,7 +1856,7 @@ cmd_join (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_kick (struct session *sess, char *cmd, char *buf)
+cmd_kick (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 	char *reason;
@@ -1875,7 +1875,7 @@ cmd_kick (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_kickban (struct session *sess, char *cmd, char *buf)
+cmd_kickban (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 	char *reason;
@@ -1909,23 +1909,23 @@ cmd_kickban (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_killall (struct session *sess, char *cmd, char *buf)
+cmd_killall (rage_session *sess, char *cmd, char *buf)
 {
 	xchat_exit();
 	return 2;
 }
 
 static int
-cmd_lagcheck (struct session *sess, char *cmd, char *buf)
+cmd_lagcheck (rage_session *sess, char *cmd, char *buf)
 {
 	lag_check ();
 	return TRUE;
 }
 
 static void
-lastlog (session *sess, char *search)
+lastlog (rage_session *sess, char *search)
 {
-	session *lastlog_sess;
+	rage_session *lastlog_sess;
 
 	if (!is_session (sess))
 		return;
@@ -1941,7 +1941,7 @@ lastlog (session *sess, char *search)
 }
 
 static int
-cmd_lastlog (struct session *sess, char *cmd, char *buf)
+cmd_lastlog (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -1955,7 +1955,7 @@ cmd_lastlog (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_list (struct session *sess, char *cmd, char *buf)
+cmd_list (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -1966,7 +1966,7 @@ cmd_list (struct session *sess, char *cmd, char *buf)
 
 /* needs word_eol for arg */
 static int
-cmd_load (struct session *sess, char *cmd, char *buf)
+cmd_load (rage_session *sess, char *cmd, char *buf)
 {
 	FILE *fp;
 	char *nl, *file;
@@ -2039,7 +2039,7 @@ cmd_load (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_me (struct session *sess, char *cmd, char *buf)
+cmd_me (rage_session *sess, char *cmd, char *buf)
 {
 	char *act;
 	char tbuf[512];
@@ -2082,7 +2082,7 @@ cmd_me (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_mode (struct session *sess, char *cmd, char *buf)
+cmd_mode (rage_session *sess, char *cmd, char *buf)
 {
 	char *dest;
 	char *ch;
@@ -2128,7 +2128,7 @@ mop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mop (struct session *sess, char *cmd, char *buf)
+cmd_mop (rage_session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * (sess->total - sess->ops));
 	multidata data;
@@ -2145,11 +2145,11 @@ cmd_mop (struct session *sess, char *cmd, char *buf)
 
 /* once again, need word_eol[] for msg */
 static int
-cmd_msg (struct session *sess, char *cmd, char *buf)
+cmd_msg (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 	char *msg;
-	struct session *newsess;
+	rage_session *newsess;
 
 	split_cmd(&buf);
 	nick=split_cmd(&buf);
@@ -2212,7 +2212,7 @@ cmd_msg (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_names (struct session *sess, char *cmd, char *buf)
+cmd_names (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -2224,7 +2224,7 @@ cmd_names (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_nctcp (struct session *sess, char *cmd, char *buf)
+cmd_nctcp (rage_session *sess, char *cmd, char *buf)
 {
 	char *target;
 	split_cmd(&buf);
@@ -2239,7 +2239,7 @@ cmd_nctcp (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_newserver (struct session *sess, char *cmd, char *buf)
+cmd_newserver (rage_session *sess, char *cmd, char *buf)
 {
 	sess = new_ircwindow (NULL, NULL, SESS_SERVER, 0);
 	cmd_server (sess, cmd, buf);
@@ -2247,7 +2247,7 @@ cmd_newserver (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_nick (struct session *sess, char *cmd, char *buf)
+cmd_nick (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 
@@ -2267,7 +2267,7 @@ cmd_nick (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_notice (struct session *sess, char *cmd, char *buf)
+cmd_notice (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 	char *msg;
@@ -2288,7 +2288,7 @@ cmd_notice (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_notify (struct session *sess, char *cmd, char *buf)
+cmd_notify (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 0;
 	int parc;
@@ -2317,7 +2317,7 @@ cmd_notify (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_op (struct session *sess, char *cmd, char *buf)
+cmd_op (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 1;
 	int parc;
@@ -2339,7 +2339,7 @@ cmd_op (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_part (struct session *sess, char *cmd, char *buf)
+cmd_part (rage_session *sess, char *cmd, char *buf)
 {
 	char *chan;
 	char *reason;
@@ -2363,7 +2363,7 @@ cmd_part (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_ping (struct session *sess, char *cmd, char *buf)
+cmd_ping (rage_session *sess, char *cmd, char *buf)
 {
 	char timestring[64];
 	unsigned long tim;
@@ -2381,7 +2381,7 @@ cmd_ping (struct session *sess, char *cmd, char *buf)
 
 static int
 
-cmd_query (struct session *sess, char *cmd, char *buf)
+cmd_query (rage_session *sess, char *cmd, char *buf)
 {
 	char *nick;
 
@@ -2399,7 +2399,7 @@ cmd_query (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_quote (struct session *sess, char *cmd, char *buf)
+cmd_quote (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -2408,7 +2408,7 @@ cmd_quote (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_reconnect (struct session *sess, char *cmd, char *buf)
+cmd_reconnect (rage_session *sess, char *cmd, char *buf)
 {
 	int tmp = prefs.recon_delay;
 	GSList *list;
@@ -2465,7 +2465,7 @@ cmd_reconnect (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_recv (struct session *sess, char *msg, char *buf)
+cmd_recv (rage_session *sess, char *msg, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -2479,7 +2479,7 @@ cmd_recv (struct session *sess, char *msg, char *buf)
 }
 
 static int
-cmd_rping (struct session *sess, char *msg, char *buf)
+cmd_rping (rage_session *sess, char *msg, char *buf)
 {
 	char *parv[MAX_TOKENS];
 	int parc;
@@ -2505,7 +2505,7 @@ cmd_rping (struct session *sess, char *msg, char *buf)
 }
 
 static int
-cmd_say (struct session *sess, char *cmd, char *buf)
+cmd_say (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -2518,7 +2518,7 @@ cmd_say (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_settab (struct session *sess, char *cmd, char *buf)
+cmd_settab (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
 	skip_white(&buf);
@@ -2535,7 +2535,7 @@ cmd_settab (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_server (struct session *sess, char *cmd, char *buf)
+cmd_server (rage_session *sess, char *cmd, char *buf)
 {
 	int offset = 0;
 	char *server_name;
@@ -2648,7 +2648,7 @@ urlserv:
 
 /* TODO: /server supports -e, servchan doesn't */
 static int
-cmd_servchan (struct session *sess, char *cmd, char *buf)
+cmd_servchan (rage_session *sess, char *cmd, char *buf)
 {
 	int offset = 0;
 	char *tmp;
@@ -2675,7 +2675,7 @@ cmd_servchan (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_topic (struct session *sess, char *cmd, char *buf)
+cmd_topic (rage_session *sess, char *cmd, char *buf)
 {
 	char *p;
 
@@ -2704,7 +2704,7 @@ cmd_topic (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_unignore (struct session *sess, char *cmd, char *buf)
+cmd_unignore (rage_session *sess, char *cmd, char *buf)
 {
 	char *mask;
 	char *arg;
@@ -2729,7 +2729,7 @@ cmd_unignore (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_unload (struct session *sess, char *cmd, char *buf)
+cmd_unload (rage_session *sess, char *cmd, char *buf)
 {
 #ifdef USE_PLUGIN
 	int len, by_file = FALSE;
@@ -2766,7 +2766,7 @@ cmd_unload (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-userlist_cb (struct User *user, session *sess)
+userlist_cb (struct User *user, rage_session *sess)
 {
 	time_t lt;
 
@@ -2782,7 +2782,7 @@ userlist_cb (struct User *user, session *sess)
 }
 
 static int
-cmd_userlist (struct session *sess, char *cmd, char *buf)
+cmd_userlist (rage_session *sess, char *cmd, char *buf)
 {
 	tree_foreach (sess->usertree, (tree_traverse_func *)userlist_cb, sess);
 	return TRUE;
@@ -2833,7 +2833,7 @@ wallvoices_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_wallchops (struct session *sess, char *cmd, char *buf)
+cmd_wallchops (rage_session *sess, char *cmd, char *buf)
 {
 	multidata data;
 	char sent[1024];
@@ -2875,7 +2875,7 @@ cmd_wallchops (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_wallvoices (struct session *sess, char *cmd, char *buf)
+cmd_wallvoices (rage_session *sess, char *cmd, char *buf)
 {
 	multidata data;
 	char sent[1024];
@@ -2917,7 +2917,7 @@ cmd_wallvoices (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_wallchan (struct session *sess, char *cmd, char *buf)
+cmd_wallchan (rage_session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 
@@ -2944,7 +2944,7 @@ cmd_wallchan (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_hop (struct session *sess, char *cmd, char *buf)
+cmd_hop (rage_session *sess, char *cmd, char *buf)
 {
 	int i = 1;
 	int parc;
@@ -2966,7 +2966,7 @@ cmd_hop (struct session *sess, char *cmd, char *buf)
 }
 
 static int
-cmd_voice (struct session *sess, char *cmd, char *buf)
+cmd_voice (rage_session *sess, char *cmd, char *buf)
 {
 	int parc;
 	char *parv[MAX_TOKENS];
@@ -3204,7 +3204,7 @@ find_user_command (char *name)
 }
 
 static void
-help (session *sess, char *helpcmd, int quiet)
+help (rage_session *sess, char *helpcmd, int quiet)
 {
 	command *cmd;
 	char tbuf[512];
@@ -3548,7 +3548,7 @@ nick_comp_cb (struct User *user, nickdata *data)
 }
 
 static void
-perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
+perform_nick_completion (rage_session *sess, char *cmd, char *tbuf)
 {
 	size_t len;
 	char *space = strchr (cmd, ' ');
@@ -3589,7 +3589,7 @@ perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
 }
 
 static void
-user_command (session * sess, char *cmd, char *buf)
+user_command (rage_session * sess, char *cmd, char *buf)
 {
 	char tbuf[512];
 	int parc;
@@ -3610,7 +3610,7 @@ user_command (session * sess, char *cmd, char *buf)
 /* handle text entered without a CMDchar prefix */
 
 static void
-handle_say (session *sess, char *text, int check_spch)
+handle_say (rage_session *sess, char *text, int check_spch)
 {
 	struct DCC *dcc;
 	int parc=0;
@@ -3750,7 +3750,7 @@ xit:
 /* handle a command, without the '/' prefix */
 
 int
-handle_command (session *sess, char *cmd, int check_spch)
+handle_command (rage_session *sess, char *cmd, int check_spch)
 {
 	struct popup *pop;
 	int user_cmd = FALSE;
@@ -3831,7 +3831,7 @@ xit:
 /* handle one line entered into the input box */
 
 static int
-handle_user_input (session *sess, char *text, int history, int nocommand)
+handle_user_input (rage_session *sess, char *text, int history, int nocommand)
 {
 	if (*text == '\0')
 		return 1;
@@ -3876,7 +3876,7 @@ handle_user_input (session *sess, char *text, int history, int nocommand)
 
 /* changed by Steve Green. Macs sometimes paste with imbedded \r */
 void
-handle_multiline (session *sess, char *cmd, int history, int nocommand)
+handle_multiline (rage_session *sess, char *cmd, int history, int nocommand)
 {
 	while (*cmd)
 	{

@@ -120,7 +120,7 @@ static void
 notify_announce_offline (server * serv, struct notify_per_server *servnot,
 								char *nick, int quiet)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = serv->front_session;
 
@@ -137,7 +137,7 @@ static void
 notify_announce_online (server * serv, struct notify_per_server *servnot,
 								char *nick)
 {
-	session *sess;
+	rage_session *sess;
 
 	sess = serv->front_session;
 
@@ -365,7 +365,7 @@ notify_checklist (void)
 }
 
 void
-notify_showlist (struct session *sess)
+notify_showlist (rage_session *sess)
 {
 	char outbuf[256];
 	struct notify *notify;
@@ -445,7 +445,7 @@ notify_adduser (char *name)
 }
 
 int
-notify_isnotify (struct session *sess, char *name)
+notify_isnotify (rage_session *sess, char *name)
 {
 	struct notify *notify;
 	struct notify_per_server *servnot;

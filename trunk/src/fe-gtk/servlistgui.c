@@ -32,7 +32,7 @@ static GtkWidget *edit_tree;
 
 static ircnet *selected_net = NULL;
 static ircserver *selected_serv = NULL;
-static session *servlist_sess;
+static rage_session *servlist_sess;
 
 /* prototypes */
 static void servlist_network_row_cb (GtkTreeSelection *sel, gpointer user_data);
@@ -1516,7 +1516,7 @@ servlist_open_networks (void)
 }
 
 void
-fe_serverlist_open (session *sess)
+fe_serverlist_open (rage_session *sess)
 {
 	if (serverlist_win)
 	{

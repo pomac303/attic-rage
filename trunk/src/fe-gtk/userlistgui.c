@@ -69,7 +69,7 @@ get_user_icon (server *serv, struct User *user)
 }
 
 void
-fe_userlist_numbers (session *sess)
+fe_userlist_numbers (rage_session *sess)
 {
 	char tbuf[256];
 
@@ -89,7 +89,7 @@ fe_userlist_numbers (session *sess)
 /* select a row in the userlist by nick-name */
 
 void
-userlist_select (session *sess, char *name)
+userlist_select (rage_session *sess, char *name)
 {
 	GtkTreeIter iter;
 	GtkTreePath *path;
@@ -213,7 +213,7 @@ userlist_get_value (GtkWidget *treeview)
 }
 
 int
-fe_userlist_remove (session *sess, struct User *user)
+fe_userlist_remove (rage_session *sess, struct User *user)
 {
 	GtkTreeIter *iter;
 /*	GtkAdjustment *adj;
@@ -244,7 +244,7 @@ fe_userlist_remove (session *sess, struct User *user)
 }
 
 void
-fe_userlist_rehash (session *sess, struct User *user)
+fe_userlist_rehash (rage_session *sess, struct User *user)
 {
 	GtkTreeIter *iter;
 	int sel;
@@ -267,7 +267,7 @@ fe_userlist_rehash (session *sess, struct User *user)
 }
 
 void
-fe_userlist_insert (session *sess, struct User *newuser, int row, int sel)
+fe_userlist_insert (rage_session *sess, struct User *newuser, int row, int sel)
 {
 	GtkTreeModel *model = sess->res->user_model;
 	GdkPixbuf *pix;
@@ -317,13 +317,13 @@ fe_userlist_insert (session *sess, struct User *newuser, int row, int sel)
 }
 
 void
-fe_userlist_move (session *sess, struct User *user, int new_row)
+fe_userlist_move (rage_session *sess, struct User *user, int new_row)
 {
 	fe_userlist_insert (sess, user, new_row, fe_userlist_remove (sess, user));
 }
 
 void
-fe_userlist_clear (session *sess)
+fe_userlist_clear (rage_session *sess)
 {
 	gtk_list_store_clear (sess->res->user_model);
 	sess->res->myself = NULL;
@@ -581,7 +581,7 @@ userlist_create (GtkWidget *box)
 }
 
 void
-userlist_show (session *sess)
+userlist_show (rage_session *sess)
 {
 	gtk_tree_view_set_model (GTK_TREE_VIEW (sess->gui->user_tree),
 									 sess->res->user_model);

@@ -54,7 +54,7 @@ struct key_binding
 struct key_action
 {
 	int (*handler) (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
-						 struct session * sess);
+						 rage_session * sess);
 	char *name;
 	char *help;
 };
@@ -70,40 +70,40 @@ static void key_load_defaults (void);
 static void key_save_kbs (char *);
 static int key_action_handle_command (GtkWidget * wid, GdkEventKey * evt,
 												  char *d1, char *d2,
-												  struct session *sess);
+												  rage_session *sess);
 static int key_action_page_switch (GtkWidget * wid, GdkEventKey * evt,
-											  char *d1, char *d2, struct session *sess);
+											  char *d1, char *d2, rage_session *sess);
 int key_action_insert (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
-							  struct session *sess);
+							  rage_session *sess);
 static int key_action_scroll_page (GtkWidget * wid, GdkEventKey * evt,
-											  char *d1, char *d2, struct session *sess);
+											  char *d1, char *d2, rage_session *sess);
 static int key_action_set_buffer (GtkWidget * wid, GdkEventKey * evt,
-											 char *d1, char *d2, struct session *sess);
+											 char *d1, char *d2, rage_session *sess);
 static int key_action_history_up (GtkWidget * wid, GdkEventKey * evt,
-											 char *d1, char *d2, struct session *sess);
+											 char *d1, char *d2, rage_session *sess);
 static int key_action_history_down (GtkWidget * wid, GdkEventKey * evt,
-												char *d1, char *d2, struct session *sess);
+												char *d1, char *d2, rage_session *sess);
 static int key_action_tab_comp (GtkWidget * wid, GdkEventKey * evt, char *d1,
-										  char *d2, struct session *sess);
+										  char *d2, rage_session *sess);
 static int key_action_comp_chng (GtkWidget * wid, GdkEventKey * evt, char *d1,
-                                                                                        char *d2, struct session *sess);
+                                                                                        char *d2, rage_session *sess);
 static int key_action_replace (GtkWidget * wid, GdkEventKey * evt, char *d1,
-										 char *d2, struct session *sess);
+										 char *d2, rage_session *sess);
 static int key_action_move_tab_left (GtkWidget * wid, GdkEventKey * evt,
 												 char *d1, char *d2,
-												 struct session *sess);
+												 rage_session *sess);
 static int key_action_move_tab_right (GtkWidget * wid, GdkEventKey * evt,
 												  char *d1, char *d2,
-												  struct session *sess);
+												  rage_session *sess);
 static int key_action_move_tab_family_left (GtkWidget * wid, GdkEventKey * evt,
 												 char *d1, char *d2,
-												 struct session *sess);
+												 rage_session *sess);
 static int key_action_move_tab_family_right (GtkWidget * wid, GdkEventKey * evt,
 												  char *d1, char *d2,
-												  struct session *sess);
+												  rage_session *sess);
 static int key_action_put_history (GtkWidget * wid, GdkEventKey * evt,
 												  char *d1, char *d2,
-												  struct session *sess);
+												  rage_session *sess);
 
 static GtkWidget *key_dialog;
 static struct key_binding *keys_root = NULL;
@@ -181,7 +181,7 @@ key_get_key_name (int keyval)
    the Gdk event
    data 1
    data 2
-   session struct
+   rage_session struct
    }
    * key bindings are stored in a linked list of key_binding structs
    * which looks like {
@@ -199,7 +199,7 @@ key_get_key_name (int keyval)
  */
 
 gboolean
-key_handle_key_press (GtkWidget *wid, GdkEventKey *evt, session *sess)
+key_handle_key_press (GtkWidget *wid, GdkEventKey *evt, rage_session *sess)
 {
 	struct key_binding *kb, *last = NULL;
 	int keyval = evt->keyval;
@@ -1098,7 +1098,7 @@ key_load_kbs (char *filename)
 /* "Run command" */
 static int
 key_action_handle_command (GtkWidget * wid, GdkEventKey * evt, char *d1,
-									char *d2, struct session *sess)
+									char *d2, rage_session *sess)
 {
 	int ii, oi, len;
 	char out[2048], d = 0;
@@ -1137,7 +1137,7 @@ key_action_handle_command (GtkWidget * wid, GdkEventKey * evt, char *d1,
 
 static int
 key_action_page_switch (GtkWidget * wid, GdkEventKey * evt, char *d1,
-								char *d2, struct session *sess)
+								char *d2, rage_session *sess)
 {
 	int len, i, num;
 
@@ -1171,7 +1171,7 @@ key_action_page_switch (GtkWidget * wid, GdkEventKey * evt, char *d1,
 
 int
 key_action_insert (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
-						 struct session *sess)
+						 rage_session *sess)
 {
 	int tmp_pos;
 
@@ -1187,7 +1187,7 @@ key_action_insert (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
 /* handles PageUp/Down keys */
 static int
 key_action_scroll_page (GtkWidget * wid, GdkEventKey * evt, char *d1,
-								char *d2, struct session *sess)
+								char *d2, rage_session *sess)
 {
 	int value, end;
 	GtkAdjustment *adj;
@@ -1241,7 +1241,7 @@ key_action_scroll_page (GtkWidget * wid, GdkEventKey * evt, char *d1,
 
 static int
 key_action_set_buffer (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
-							  struct session *sess)
+							  rage_session *sess)
 {
 	if (!d1)
 		return 1;
@@ -1256,7 +1256,7 @@ key_action_set_buffer (GtkWidget * wid, GdkEventKey * evt, char *d1, char *d2,
 
 static int
 key_action_history_up (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
-							  struct session *sess)
+							  rage_session *sess)
 {
 	char *new_line;
 
@@ -1272,7 +1272,7 @@ key_action_history_up (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
 
 static int
 key_action_history_down (GtkWidget * wid, GdkEventKey * ent, char *d1,
-								 char *d2, struct session *sess)
+								 char *d2, rage_session *sess)
 {
 	char *new_line;
 
@@ -1288,7 +1288,7 @@ key_action_history_down (GtkWidget * wid, GdkEventKey * ent, char *d1,
 
 static int
 key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
-							struct session *sess)
+							rage_session *sess)
 {
 	char buf[500];
 	int pos = 0, ret = 0;
@@ -1311,7 +1311,7 @@ key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 
 static int
 key_action_comp_chng (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
-		struct session *sess)
+		rage_session *sess)
 {
 	key_action_tab_comp(wid, ent, d1, d2, sess);
 	return 2;
@@ -1320,7 +1320,7 @@ key_action_comp_chng (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
 
 static int
 key_action_replace (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
-						  struct session *sess)
+						  rage_session *sess)
 {
 	replace_handle (wid);
 	return 1;
@@ -1329,7 +1329,7 @@ key_action_replace (GtkWidget * wid, GdkEventKey * ent, char *d1, char *d2,
 
 static int
 key_action_move_tab_left (GtkWidget * wid, GdkEventKey * ent, char *d1,
-								  char *d2, struct session *sess)
+								  char *d2, rage_session *sess)
 {
 	mg_move_tab (sess->res->tab, +1);
 	return 2;						  /* don't allow default action */
@@ -1337,7 +1337,7 @@ key_action_move_tab_left (GtkWidget * wid, GdkEventKey * ent, char *d1,
 
 static int
 key_action_move_tab_right (GtkWidget * wid, GdkEventKey * ent, char *d1,
-									char *d2, struct session *sess)
+									char *d2, rage_session *sess)
 {
 	mg_move_tab (sess->res->tab, -1);
 	return 2;						  /* -''- */
@@ -1345,7 +1345,7 @@ key_action_move_tab_right (GtkWidget * wid, GdkEventKey * ent, char *d1,
 
 static int
 key_action_move_tab_family_left (GtkWidget * wid, GdkEventKey * ent, char *d1,
-								  char *d2, struct session *sess)
+								  char *d2, rage_session *sess)
 {
 	mg_move_tab_family (sess->res->tab, +1);
 	return 2;						  /* don't allow default action */
@@ -1353,7 +1353,7 @@ key_action_move_tab_family_left (GtkWidget * wid, GdkEventKey * ent, char *d1,
 
 static int
 key_action_move_tab_family_right (GtkWidget * wid, GdkEventKey * ent, char *d1,
-									char *d2, struct session *sess)
+									char *d2, rage_session *sess)
 {
 	mg_move_tab_family (sess->res->tab, -1);
 	return 2;						  /* -''- */
@@ -1361,7 +1361,7 @@ key_action_move_tab_family_right (GtkWidget * wid, GdkEventKey * ent, char *d1,
 
 static int
 key_action_put_history (GtkWidget * wid, GdkEventKey * ent, char *d1,
-									char *d2, struct session *sess)
+									char *d2, rage_session *sess)
 {
 	history_add (&sess->history, (char *)GTK_ENTRY (wid)->text);
 	gtk_entry_set_text (GTK_ENTRY (wid), "");

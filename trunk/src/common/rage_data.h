@@ -89,7 +89,7 @@ struct nbexec
 	int iotag;
 	char *linebuf;
 	int buffill;
-	struct session *sess;
+	struct rage_session *sess;
 };
 
 struct xchatprefs
@@ -277,7 +277,7 @@ struct xchatprefs
 #define SESS_NOTICES	4
 #define SESS_SNOTICES	5
 
-typedef struct session
+typedef struct rage_session
 {
 	struct server *server;
 	void *usertree_alpha;			/* pure alphabetical tree */
@@ -305,7 +305,7 @@ typedef struct session
 
 	int mode_timeout_tag;
 
-	struct session *lastlog_sess;
+	struct rage_session *lastlog_sess;
 	struct nbexec *running_exec;
 
 	struct session_gui *gui;		/* initialized by fe_new_window */
@@ -326,13 +326,13 @@ typedef struct session
 	int beep:1;				/* beep enabled? */
 	int color_paste:1;
 	int done_away_check:1;	/* done checking for away status changes */
-} session;
+} rage_session;
 
 typedef struct server
 {
 	/*  server control operations (in server*.c) */
 	void (*connect)(struct server *, char *hostname, int port, int no_login);
-	void (*disconnect)(struct session *, int sendquit, int err);
+	void (*disconnect)(rage_session *, int sendquit, int err);
 	int  (*cleanup)(struct server *);
 	void (*flush_queue)(struct server *);
 	void (*auto_reconnect)(struct server *, int send_quit, int err);
@@ -398,8 +398,8 @@ typedef struct server
 	time_t prev_now;					/* previous now-time */
 	int sendq_len;						/* queue size */
 
-	struct session *front_session;	/* front-most window/tab */
-	struct session *server_session;	/* server window/tab */
+	rage_session *front_session;	/* front-most window/tab */
+	rage_session *server_session;	/* server window/tab */
 
 	struct server_gui *gui;		  /* initialized by fe_new_server */
 
@@ -438,7 +438,7 @@ typedef struct server
 #endif
 } server;
 
-typedef int (*cmd_callback) (struct session * sess, char *cmd, char *buf);
+typedef int (*cmd_callback) (rage_session * sess, char *cmd, char *buf);
 
 typedef struct command
 {

@@ -28,7 +28,7 @@ static void
 redraw_trans_xtexts (void)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 	int done_main = FALSE;
 
 	while (list)
@@ -270,7 +270,7 @@ log_handler (const gchar   *log_domain,
 		       const gchar   *message,
 		       gpointer	      unused_data)
 {
-	session *sess;
+	rage_session *sess;
 
 	if (getenv ("XCHAT_WARNING_IGNORE"))
 		return;
@@ -287,7 +287,7 @@ log_handler (const gchar   *log_domain,
 #endif
 
 void
-fe_new_window (session *sess, int focus)
+fe_new_window (rage_session *sess, int focus)
 {
 	int tab = FALSE;
 
@@ -380,7 +380,7 @@ fe_input_add (int sok, int flags, void *func, void *data)
 }
 
 void
-fe_set_topic (session *sess, char *topic)
+fe_set_topic (rage_session *sess, char *topic)
 {
 	if (!sess->gui->is_tab || sess == current_tab)
 	{
@@ -395,14 +395,14 @@ fe_set_topic (session *sess, char *topic)
 }
 
 void
-fe_set_hilight (struct session *sess)
+fe_set_hilight (rage_session *sess)
 {
 	if (sess->gui->is_tab)
 		fe_set_tab_color (sess, 3, TRUE);	/* blue, with taskbar flash */
 }
 
 static void
-fe_update_mode_entry (session *sess, GtkWidget *entry, char **text, char *new_text)
+fe_update_mode_entry (rage_session *sess, GtkWidget *entry, char **text, char *new_text)
 {
 	if (!sess->gui->is_tab || sess == current_tab)
 	{
@@ -420,7 +420,7 @@ fe_update_mode_entry (session *sess, GtkWidget *entry, char **text, char *new_te
 }
 
 void
-fe_update_channel_key (struct session *sess)
+fe_update_channel_key (rage_session *sess)
 {
 	fe_update_mode_entry (sess, sess->gui->key_entry,
 								 &sess->res->key_text, sess->channelkey);
@@ -428,7 +428,7 @@ fe_update_channel_key (struct session *sess)
 }
 
 void
-fe_update_channel_limit (struct session *sess)
+fe_update_channel_limit (rage_session *sess)
 {
 	char tmp[16];
 
@@ -447,7 +447,7 @@ fe_is_chanwindow (struct server *serv)
 }
 
 int
-fe_is_banwindow (struct session *sess)
+fe_is_banwindow (rage_session *sess)
 {
    if (!sess->res->banlist_window)
      return 0;
@@ -468,13 +468,13 @@ fe_notify_update (char *name)
 }
 
 void
-fe_text_clear (struct session *sess)
+fe_text_clear (rage_session *sess)
 {
 	gtk_xtext_clear (sess->res->buffer);
 }
 
 void
-fe_close_window (struct session *sess)
+fe_close_window (rage_session *sess)
 {
 	if (sess->gui->is_tab)
 		gtk_widget_destroy (sess->res->tab);
@@ -483,7 +483,7 @@ fe_close_window (struct session *sess)
 }
 
 void
-fe_progressbar_start (session *sess)
+fe_progressbar_start (rage_session *sess)
 {
 	if (!sess->gui->is_tab || current_tab == sess)
 	/* if it's the focused tab, create it for real! */
@@ -497,7 +497,7 @@ void
 fe_progressbar_end (server *serv)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 
 	while (list)				  /* check all windows that use this server and  *
 									   * remove the connecting graph, if it has one. */
@@ -514,7 +514,7 @@ fe_progressbar_end (server *serv)
 }
 
 void
-fe_print_text (struct session *sess, char *text)
+fe_print_text (rage_session *sess, char *text)
 {
 	PrintTextRaw (sess->res->buffer, (unsigned char *)text, prefs.indent_nicks);
 
@@ -536,7 +536,7 @@ fe_beep (void)
 }
 
 typedef struct {
-	session *sess;
+	rage_session *sess;
 	char *sstr;
 } fe_lastlog_info;
 
@@ -550,7 +550,7 @@ fe_lastlog_foreach (GtkXText *xtext, unsigned char *text, void *data)
 }
 
 void
-fe_lastlog (session *sess, session *lastlog_sess, char *sstr)
+fe_lastlog (rage_session *sess, rage_session *lastlog_sess, char *sstr)
 {
 	if (gtk_xtext_is_empty (sess->res->buffer))
 	{
@@ -571,7 +571,7 @@ void
 fe_set_lag (server *serv, int lag)
 {
 	GSList *list = sess_list;
-	session *sess;
+	rage_session *sess;
 	gdouble per;
 	char tip[64];
 	unsigned long nowtim;
@@ -618,7 +618,7 @@ void
 fe_set_throttle (server *serv)
 {
 	GSList *list = sess_list;
-	struct session *sess;
+	rage_session *sess;
 	float per;
 	char tbuf[64];
 
@@ -652,7 +652,7 @@ fe_set_throttle (server *serv)
 }
 
 void
-fe_ctrl_gui (session *sess, int action, int arg)
+fe_ctrl_gui (rage_session *sess, int action, int arg)
 {
 	switch (action)
 	{
@@ -679,7 +679,7 @@ fe_confirm (const char *message, void (*yesproc)(void *), void (*noproc)(void *)
 }
 
 int
-fe_gui_info (session *sess, int info_type)
+fe_gui_info (rage_session *sess, int info_type)
 {
 	switch (info_type)
 	{

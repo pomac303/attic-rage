@@ -33,7 +33,7 @@ typedef struct
    sign   - a char, e.g. '+' or '-'
    mode   - a mode, e.g. 'o' or 'v'	*/
 void
-send_channel_modes (session *sess, char *word[], int wpos, int end, 
+send_channel_modes (rage_session *sess, char *word[], int wpos, int end, 
 		char sign, char mode)
 {
 	int usable_modes, i;
@@ -226,7 +226,7 @@ mode_access (server * serv, char mode, char *prefix)
 }
 
 static int
-mode_timeout_cb (session *sess)
+mode_timeout_cb (rage_session *sess)
 {
 	if (is_session (sess))
 	{
@@ -239,7 +239,7 @@ mode_timeout_cb (session *sess)
 }
 
 static void
-record_chan_mode (session *sess)/*, char sign, char mode, char *arg)*/
+record_chan_mode (rage_session *sess)/*, char sign, char mode, char *arg)*/
 {
 	/* Should we write a routine to add sign,mode to sess->current_modes?
 		nah! too hard. Lets just issue a MODE #channel and read it back.
@@ -275,7 +275,7 @@ static void
 handle_single_mode (mode_run *mr, char sign, char mode, char *nick,
 						  char *chan, char *arg, int quiet, int is_324)
 {
-	session *sess;
+	rage_session *sess;
 	server *serv = mr->serv;
 	char outbuf[4];
 	char *nm = get_isupport(serv, "PREFIX");
@@ -473,7 +473,7 @@ void
 handle_mode (server * serv, int parc, char *parv[],
 				 char *nick, int numeric_324)
 {
-	session *sess;
+	rage_session *sess;
 	char buf[200]; /* FIXME: Is this large enough? */
 	char *chan, *modes, *argstr;
 	char sign;

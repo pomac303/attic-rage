@@ -86,7 +86,7 @@ ignore_add (char *mask, int type)
 }
 
 void
-ignore_showlist (session *sess)
+ignore_showlist (rage_session *sess)
 {
 	struct ignore *ig;
 	GSList *list = ignore_list;
@@ -305,7 +305,7 @@ ignore_save ()
 }
 
 int
-flood_check (char *nick, char *ip, server *serv, session *sess, int what)	/*0=ctcp  1=priv */
+flood_check (char *nick, char *ip, server *serv, rage_session *sess, int what)	/*0=ctcp  1=priv */
 {
 	/*
 	   serv

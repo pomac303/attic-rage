@@ -33,7 +33,7 @@ typedef struct _xchat_plugin xchat_plugin;
 typedef struct _xchat_list xchat_list;
 typedef struct _xchat_hook xchat_hook;
 #ifdef RAGE_INTERNAL
-typedef struct session xchat_context;
+typedef rage_session xchat_context;
 #else
 typedef struct _rage_dummy_context xchat_context;
 #endif
@@ -157,7 +157,7 @@ struct _xchat_plugin
 	char *name;
 	char *desc;
 	char *version;
-	session *context;
+	rage_session *context;
 	void *deinit_callback;	/* pointer to xchat_plugin_deinit */
 	unsigned int fake:1;		/* fake plugin. Added by xchat_plugingui_add() */
 	

@@ -22,7 +22,7 @@ static void *last;	/* FIXME */
 
 
 static void
-search_search (session * sess, const char *text)
+search_search (rage_session * sess, const char *text)
 {
 	if (!is_session (sess))
 	{
@@ -35,7 +35,7 @@ search_search (session * sess, const char *text)
 }
 
 static void
-search_find_cb (GtkWidget * button, session * sess)
+search_find_cb (GtkWidget * button, rage_session * sess)
 {
 	GtkEntry *entry;
 	const char *text;
@@ -59,13 +59,13 @@ search_close_cb (GtkWidget * button, GtkWidget * win)
 }
 
 static void
-search_entry_cb (GtkWidget * entry, session * sess)
+search_entry_cb (GtkWidget * entry, rage_session * sess)
 {
 	search_search (sess, gtk_entry_get_text (GTK_ENTRY (entry)));
 }
 
 void
-search_open (session * sess)
+search_open (rage_session * sess)
 {
 	GtkWidget *win, *hbox, *vbox, *entry, *wid;
 

@@ -36,9 +36,9 @@ extern GSList *network_list;
 void servlist_init (void);
 int servlist_save (void);
 int servlist_cycle (server *serv);
-void servlist_connect (session *sess, ircnet *net);
-int servlist_connect_by_netname (session *sess, char *network);
-int servlist_auto_connect (session *sess);
+void servlist_connect (rage_session *sess, ircnet *net);
+int servlist_connect_by_netname (rage_session *sess, char *network);
+int servlist_auto_connect (rage_session *sess);
 int servlist_have_auto (void);
 int servlist_check_encoding (char *charset);
 

@@ -163,11 +163,11 @@ editlist_gui_save (GtkWidget * igad)
 		else if (editlist_list == button_list)
 		{
 			GSList *list = sess_list;
-			struct session *sess;
+			rage_session *sess;
 			list_loadconf (editlist_file, &button_list, 0);
 			while (list)
 			{
-				sess = (struct session *) list->data;
+				sess = (rage_session *) list->data;
 				fe_buttons_update (sess);
 				list = list->next;
 			}
@@ -175,11 +175,11 @@ editlist_gui_save (GtkWidget * igad)
 		else if (editlist_list == dlgbutton_list)
 		{
 			GSList *list = sess_list;
-			struct session *sess;
+			rage_session *sess;
 			list_loadconf (editlist_file, &dlgbutton_list, 0);
 			while (list)
 			{
-				sess = (struct session *) list->data;
+				sess = (rage_session *) list->data;
 				fe_dlgbuttons_update (sess);
 				list = list->next;
 			}

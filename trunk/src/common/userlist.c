@@ -71,7 +71,7 @@ nick_cmp (struct User *user1, struct User *user2, server *serv)
 */
 
 static int
-userlist_insertname (session *sess, struct User *newuser)
+userlist_insertname (rage_session *sess, struct User *newuser)
 {
 	if (!sess->usertree)
 	{
@@ -84,7 +84,7 @@ userlist_insertname (session *sess, struct User *newuser)
 }
 
 void
-userlist_set_away (struct session *sess, char *nick, unsigned int away)
+userlist_set_away (rage_session *sess, char *nick, unsigned int away)
 {
 	struct User *user;
 
@@ -101,7 +101,7 @@ userlist_set_away (struct session *sess, char *nick, unsigned int away)
 }
 
 int
-userlist_add_hostname (struct session *sess, char *nick, char *hostname,
+userlist_add_hostname (rage_session *sess, char *nick, char *hostname,
 							  char *realname, char *servername, unsigned int away)
 {
 	struct User *user;
@@ -142,7 +142,7 @@ free_user (struct User *user, gpointer data)
 }
 
 void
-free_userlist (session *sess)
+free_userlist (rage_session *sess)
 {
 	tree_foreach (sess->usertree, (tree_traverse_func *)free_user, NULL);
 	tree_destroy (sess->usertree);
@@ -158,7 +158,7 @@ free_userlist (session *sess)
 }
 
 void
-clear_user_list (session *sess)
+clear_user_list (rage_session *sess)
 {
 	fe_userlist_clear (sess);
 	free_userlist (sess);
@@ -172,7 +172,7 @@ find_cmp (const char *name, struct User *user, server *serv)
 }
 
 struct User *
-find_name (struct session *sess, char *name)
+find_name (rage_session *sess, char *name)
 {
 	int pos;
 
@@ -187,11 +187,11 @@ struct User *
 find_name_global (struct server *serv, char *name)
 {
 	struct User *user;
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv)
 		{
 			user = find_name (sess, name);
@@ -206,11 +206,11 @@ find_name_global (struct server *serv, char *name)
 int
 find_ctarget (struct server *serv, char *channel, char *name)
 {
-	session *sess;
+	rage_session *sess;
 	GSList *list = sess_list;
 	while (list)
 	{
-		sess = (session *) list->data;
+		sess = (rage_session *) list->data;
 		if (sess->server == serv && sess->me && sess->me->op)
 		{
 			if (find_name(sess, name))
@@ -225,7 +225,7 @@ find_ctarget (struct server *serv, char *channel, char *name)
 }
 
 static void
-update_counts (session *sess, struct User *user, char prefix,
+update_counts (rage_session *sess, struct User *user, char prefix,
 					int level, int offset)
 {
 	switch (prefix)
@@ -246,7 +246,7 @@ update_counts (session *sess, struct User *user, char prefix,
 }
 
 void
-ul_update_entry (session *sess, char *name, char mode, char sign)
+ul_update_entry (rage_session *sess, char *name, char mode, char sign)
 {
 	int access;
 	int offset = 0;
@@ -300,7 +300,7 @@ ul_update_entry (session *sess, char *name, char mode, char sign)
 }
 
 int
-change_nick (struct session *sess, char *oldname, char *newname)
+change_nick (rage_session *sess, char *oldname, char *newname)
 {
 	struct User *user = find_name (sess, oldname);
 	int pos;
@@ -324,7 +324,7 @@ change_nick (struct session *sess, char *oldname, char *newname)
 }
 
 int
-sub_name (struct session *sess, char *name)
+sub_name (rage_session *sess, char *name)
 {
 	struct User *user;
 	int pos;
@@ -354,7 +354,7 @@ sub_name (struct session *sess, char *name)
 }
 
 void
-add_name (struct session *sess, char *name, char *hostname)
+add_name (rage_session *sess, char *name, char *hostname)
 {
 	struct User *user;
 	int row, prefix_chars;
@@ -410,14 +410,14 @@ add_name (struct session *sess, char *name, char *hostname)
 }
 
 static int
-rehash_cb (struct User *user, session *sess)
+rehash_cb (struct User *user, rage_session *sess)
 {
 	fe_userlist_rehash (sess, user);
 	return TRUE;
 }
 
 void
-userlist_rehash (session *sess)
+userlist_rehash (rage_session *sess)
 {
 	tree_foreach (sess->usertree_alpha, (tree_traverse_func *)rehash_cb, sess);
 }
@@ -430,7 +430,7 @@ flat_cb (struct User *user, GSList **list)
 }
 
 GSList *
-userlist_flat_list (session *sess)
+userlist_flat_list (rage_session *sess)
 {
 	GSList *list = NULL;
 
@@ -446,7 +446,7 @@ double_cb (struct User *user, GList **list)
 }
 
 GList *
-userlist_double_list(session *sess)
+userlist_double_list(rage_session *sess)
 {
 	GList *list = NULL;
 

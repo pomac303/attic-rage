@@ -885,7 +885,7 @@ save_config (void)
 }
 
 static void
-set_showval (session *sess, const struct prefs *var, char *tbuf)
+set_showval (rage_session *sess, const struct prefs *var, char *tbuf)
 {
 	int dots, j;
 	size_t len;
@@ -920,7 +920,7 @@ set_showval (session *sess, const struct prefs *var, char *tbuf)
 }
 
 static void
-set_list (session * sess, char *tbuf)
+set_list (rage_session * sess, char *tbuf)
 {
 	int i;
 
@@ -952,7 +952,7 @@ cfg_get_bool (char *var)
 }
 
 int
-cmd_set (struct session *sess, char *cmd, char *buf)
+cmd_set (rage_session *sess, char *cmd, char *buf)
 {
 	int wild = FALSE;
 	int quiet = FALSE;

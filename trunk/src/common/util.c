@@ -1324,7 +1324,7 @@ tab_clean(void)
 
 /* work on the data, ie return only channels */
 static int
-double_chan_cb (session *lsess, GList **list)
+double_chan_cb (rage_session *lsess, GList **list)
 {
 	if (lsess->type == SESS_CHANNEL)
 		*list = g_list_prepend(*list, lsess->channel);
@@ -1368,7 +1368,7 @@ int gen_throttle(throttle_t *td)
 
 /* tab_comp, handle tab completion */
 int
-tab_comp(session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta)
+tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta)
 {
 	int len = 0, elen = 0, cursor_pos, ent_start = 0, comp = 0, found = 0,
 	    prefix_len, skip_len = 0, is_nick, is_cmd = 0;

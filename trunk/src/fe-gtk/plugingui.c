@@ -106,7 +106,7 @@ fe_pluginlist_update (void)
 }
 
 static void
-plugingui_load_cb (session *sess, char *file)
+plugingui_load_cb (rage_session *sess, char *file)
 {
 	if (file)
 	{
