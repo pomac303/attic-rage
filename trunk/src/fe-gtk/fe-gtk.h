@@ -23,7 +23,6 @@
 #endif
 
 /* GTK includes */
-//#define GTK_DISABLE_DEPRECATED
 #include <gtk/gtkversion.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtkcontainer.h>
