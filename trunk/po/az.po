@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.7pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-02-08 00:14+0100\n"
+"POT-Creation-Date: 2005-03-02 21:58+0100\n"
 "PO-Revision-Date: 2004-03-12 22:22+0200\n"
 "Last-Translator: Metin Amiroff <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <translation-team-az@lists.sourceforge.net>\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/common/cfgfiles.c:433
-msgid "Cannot create ~/.xchat2"
+#, fuzzy
+msgid "Cannot create ~/.rage"
 msgstr "~/.xchat2 yaradıla bilmir"
 
 #: src/common/cfgfiles.c:757
@@ -1155,7 +1156,7 @@ msgid "%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O"
 msgstr ""
 
 #: src/common/textevents.h:432
-msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
 msgstr ""
 
 #: src/common/textevents.h:435
@@ -3217,7 +3218,7 @@ msgstr "Aşağı Daşı"
 msgid "Cancel"
 msgstr "Ləğv Et"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Qeyd Et"
 
@@ -3382,9 +3383,9 @@ msgstr ""
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
-#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
-#: src/fe-gtk/maingui.c:2458
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
 msgid "<none>"
 msgstr "<boş>"
 
@@ -3474,7 +3475,7 @@ msgstr "Bu fayl oxuna bilmir."
 msgid "That mask already exists."
 msgstr "Bu maska onsuz da mövcuddur."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
 msgid "Private"
 msgstr "Şəxsi"
 
@@ -3549,79 +3550,79 @@ msgstr "%s mövzusu: %s"
 msgid "No topic is set"
 msgstr "Mövzu seçilməyib"
 
-#: src/fe-gtk/maingui.c:933
+#: src/fe-gtk/maingui.c:934
 msgid "No other tabs open, quit xchat?"
 msgstr "Açıq səkmə qalmadı, xchat sonlandırılsın?"
 
-#: src/fe-gtk/maingui.c:979
+#: src/fe-gtk/maingui.c:980
 msgid "Insert color code"
 msgstr "Rəng kodu daxil et"
 
-#: src/fe-gtk/maingui.c:1028
+#: src/fe-gtk/maingui.c:1029
 msgid "Beep on message"
 msgstr "İsmarış gələndə səs çal"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Show join/part messages"
 msgstr "join/part ismarışlarını göstər"
 
-#: src/fe-gtk/maingui.c:1033
+#: src/fe-gtk/maingui.c:1034
 msgid "Color paste"
 msgstr "Rəngli yapışdır"
 
-#: src/fe-gtk/maingui.c:1043
+#: src/fe-gtk/maingui.c:1044
 msgid "Go to"
 msgstr "Get"
 
-#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "Səkməni Bağla"
 
-#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "Səkməni Ayır"
 
-#: src/fe-gtk/maingui.c:1252
+#: src/fe-gtk/maingui.c:1253
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Bə'zi fayl transferləri hələ də fəaldır, xchat sonlandırılsın?"
 
-#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
 msgid "User limit must be a number!\n"
 msgstr "İstifadəçi hüdüdu nömrə olmalıdır!\n"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1536
 msgid "Topic Protection"
 msgstr "Mövzu Qoruması"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "No outside messages"
 msgstr "Xarici ismarışlar göstərilməsin"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1538
 msgid "Secret"
 msgstr "Gizli"
 
-#: src/fe-gtk/maingui.c:1538
+#: src/fe-gtk/maingui.c:1539
 msgid "Invite Only"
 msgstr "Ancaq Dəvət Et"
 
-#: src/fe-gtk/maingui.c:1540
+#: src/fe-gtk/maingui.c:1541
 msgid "Moderated"
 msgstr "Modereytlənmiş"
 
-#: src/fe-gtk/maingui.c:1541
+#: src/fe-gtk/maingui.c:1542
 msgid "Ban List"
 msgstr "Ban Siyahısı"
 
-#: src/fe-gtk/maingui.c:1543
+#: src/fe-gtk/maingui.c:1544
 msgid "Keyword"
 msgstr "Açar Kəlmə"
 
-#: src/fe-gtk/maingui.c:1555
+#: src/fe-gtk/maingui.c:1556
 msgid "User Limit"
 msgstr "İstifadəçi Hüdüdu"
 
-#: src/fe-gtk/maingui.c:1730
+#: src/fe-gtk/maingui.c:1731
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3629,20 +3630,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
-#: src/fe-gtk/maingui.c:2680
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
 msgid "Attach/Detach this tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
 msgid "Close this tab/window"
 msgstr "Bu səkmə/pəncərəni bağla"
 
-#: src/fe-gtk/maingui.c:1926
+#: src/fe-gtk/maingui.c:1927
 msgid "Show/Hide userlist"
 msgstr "İstifadəçi siyahısını göstər/gizlət"
 
-#: src/fe-gtk/maingui.c:1964
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "Yeni ləqəb bildir:"
 
@@ -5221,19 +5222,19 @@ msgstr "Mətn Faylını Çap Et"
 msgid "$ Number"
 msgstr "$ Nömrəsi"
 
-#: src/fe-gtk/textgui.c:324
+#: src/fe-gtk/textgui.c:323
 msgid "Edit Events"
 msgstr "Hadisələri Dəyişdir"
 
-#: src/fe-gtk/textgui.c:392
+#: src/fe-gtk/textgui.c:387
 msgid "Save As"
 msgstr "Fərqli Qeyd Et"
 
-#: src/fe-gtk/textgui.c:397
+#: src/fe-gtk/textgui.c:392
 msgid "Load From"
 msgstr "Buradan Yüklə"
 
-#: src/fe-gtk/textgui.c:402
+#: src/fe-gtk/textgui.c:397
 msgid "Test All"
 msgstr "Hamısı Sına"
 

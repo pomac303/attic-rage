@@ -32,7 +32,7 @@ static int done = FALSE;		  /* finished ? */
 
 
 static void
-send_command (char *cmd)
+send_line (char *cmd)
 {
 	handle_multiline (sess_list->data, cmd, TRUE, FALSE);
 }
@@ -57,7 +57,7 @@ read_stdin (void)
 		case '\n':
 			inbuf[pos] = 0;
 			pos = 0;
-			send_command (inbuf);
+			send_line (inbuf);
 			break;
 
 		default:
@@ -718,14 +718,14 @@ fe_gui_info (rage_session *sess, int info_type)
 void fe_confirm (const char *message, void (*yesproc)(void *), void (*noproc)(void *), void *ud)
 {
 }
-char *fe_get_inputbox_contents (struct session *sess)
+char *fe_get_inputbox_contents (rage_session *sess)
 {
 	return NULL;
 }
-void fe_set_inputbox_contents (struct session *sess, char *text)
+void fe_set_inputbox_contents (rage_session *sess, char *text)
 {
 }
-void fe_set_inputbox_cursor (struct session *sess, int delta, int pos)
+void fe_set_inputbox_cursor (rage_session *sess, int delta, int pos)
 {
 }
 

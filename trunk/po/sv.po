@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-02-08 00:14+0100\n"
+"POT-Creation-Date: 2005-03-02 21:58+0100\n"
 "PO-Revision-Date: 2004-03-18 23:41+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -17,8 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/common/cfgfiles.c:433
-msgid "Cannot create ~/.xchat2"
-msgstr "Kan inte skapa ~/.xchat2"
+#, fuzzy
+msgid "Cannot create ~/.rage"
+msgstr "Kan inte skapa ~/.xchat"
 
 #: src/common/cfgfiles.c:757
 msgid "I'm busy"
@@ -1319,7 +1320,7 @@ msgstr "-%C10-%C11-%O$t$1 användare i notifieringslistan."
 
 #: src/common/textevents.h:432
 #, fuzzy
-msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
 msgstr "-%C10-%C11-%O$t$1 användare i notifieringslistan."
 
 #: src/common/textevents.h:435
@@ -3390,7 +3391,7 @@ msgstr "Flytta ned"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Spara"
 
@@ -3583,9 +3584,9 @@ msgstr ""
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
-#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
-#: src/fe-gtk/maingui.c:2458
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
 msgid "<none>"
 msgstr "<ingen>"
 
@@ -3686,7 +3687,7 @@ msgstr "Kan inte läsa den filen."
 msgid "That mask already exists."
 msgstr "Den masken finns redan."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
 msgid "Private"
 msgstr "Privat"
 
@@ -3761,80 +3762,80 @@ msgstr "Ämnet för %s är: %s"
 msgid "No topic is set"
 msgstr "Inget ämne är satt"
 
-#: src/fe-gtk/maingui.c:933
+#: src/fe-gtk/maingui.c:934
 msgid "No other tabs open, quit xchat?"
 msgstr "Inga andra flikar öppna. Avsluta xchat?"
 
-#: src/fe-gtk/maingui.c:979
+#: src/fe-gtk/maingui.c:980
 msgid "Insert color code"
 msgstr "Infoga färgkod"
 
-#: src/fe-gtk/maingui.c:1028
+#: src/fe-gtk/maingui.c:1029
 msgid "Beep on message"
 msgstr "Pip vid meddelande"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Show join/part messages"
 msgstr "Visa meddelanden om ingång/lämnande"
 
-#: src/fe-gtk/maingui.c:1033
+#: src/fe-gtk/maingui.c:1034
 msgid "Color paste"
 msgstr "Färginklistring"
 
-#: src/fe-gtk/maingui.c:1043
+#: src/fe-gtk/maingui.c:1044
 msgid "Go to"
 msgstr "Gå till"
 
-#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "Stäng flik"
 
-#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "Ta loss flik"
 
-#: src/fe-gtk/maingui.c:1252
+#: src/fe-gtk/maingui.c:1253
 msgid "Some file transfers still active, quit xchat?"
 msgstr "En del filöverföringar är fortfarande aktiva. Avsluta xchat?"
 
-#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
 msgid "User limit must be a number!\n"
 msgstr "Användargränsen måste vara en siffra!\n"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1536
 msgid "Topic Protection"
 msgstr "Ämnesskydd"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "No outside messages"
 msgstr "Inga meddelanden från utomstående"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1538
 msgid "Secret"
 msgstr "Hemlig"
 
-#: src/fe-gtk/maingui.c:1538
+#: src/fe-gtk/maingui.c:1539
 msgid "Invite Only"
 msgstr "Kräver inbjudan"
 
-#: src/fe-gtk/maingui.c:1540
+#: src/fe-gtk/maingui.c:1541
 msgid "Moderated"
 msgstr "Modererad"
 
-#: src/fe-gtk/maingui.c:1541
+#: src/fe-gtk/maingui.c:1542
 msgid "Ban List"
 msgstr "Bannlysningslista"
 
 # I IRC-sammanhang är "keyword" ett lösenord för att komma in på en kanal.
-#: src/fe-gtk/maingui.c:1543
+#: src/fe-gtk/maingui.c:1544
 msgid "Keyword"
 msgstr "Lösenord"
 
-#: src/fe-gtk/maingui.c:1555
+#: src/fe-gtk/maingui.c:1556
 msgid "User Limit"
 msgstr "Användargräns"
 
-#: src/fe-gtk/maingui.c:1730
+#: src/fe-gtk/maingui.c:1731
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3846,20 +3847,20 @@ msgstr ""
 "Du kanske använder en ickekompatibel fönster-\n"
 "hanterare som inte stöds för tillfället.\n"
 
-#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
-#: src/fe-gtk/maingui.c:2680
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
 msgid "Attach/Detach this tab"
 msgstr "Fäst/Lösgör denna flik"
 
-#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
 msgid "Close this tab/window"
 msgstr "Stäng denna flik/detta fönster"
 
-#: src/fe-gtk/maingui.c:1926
+#: src/fe-gtk/maingui.c:1927
 msgid "Show/Hide userlist"
 msgstr "Visa/Dölj användarlista"
 
-#: src/fe-gtk/maingui.c:1964
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "Ange nytt smeknamn:"
 
@@ -5487,19 +5488,19 @@ msgstr "Skriv ut textfil"
 msgid "$ Number"
 msgstr "$-nummer"
 
-#: src/fe-gtk/textgui.c:324
+#: src/fe-gtk/textgui.c:323
 msgid "Edit Events"
 msgstr "Redigera händelser"
 
-#: src/fe-gtk/textgui.c:392
+#: src/fe-gtk/textgui.c:387
 msgid "Save As"
 msgstr "Spara som"
 
-#: src/fe-gtk/textgui.c:397
+#: src/fe-gtk/textgui.c:392
 msgid "Load From"
 msgstr "Läs in från"
 
-#: src/fe-gtk/textgui.c:402
+#: src/fe-gtk/textgui.c:397
 msgid "Test All"
 msgstr "Testa allt"
 
@@ -5532,6 +5533,9 @@ msgstr "Spara lista till en fil"
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d oppar, %d totalt"
+
+#~ msgid "Cannot create ~/.xchat2"
+#~ msgstr "Kan inte skapa ~/.xchat2"
 
 #~ msgid "Delete All"
 #~ msgstr "Ta bort alla"
@@ -6113,9 +6117,6 @@ msgstr "%d oppar, %d totalt"
 
 #~ msgid "Replace Popup..."
 #~ msgstr "Ersättningsfönster..."
-
-#~ msgid "Cannot create ~/.xchat"
-#~ msgstr "Kan inte skapa ~/.xchat"
 
 #~ msgid "Bye"
 #~ msgstr "Hejdå"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-02-08 00:14+0100\n"
+"POT-Creation-Date: 2005-03-02 21:58+0100\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/common/cfgfiles.c:433
-msgid "Cannot create ~/.xchat2"
+#, fuzzy
+msgid "Cannot create ~/.rage"
 msgstr "Hakemiston ~/.xchat2 luominen epäonnistui"
 
 #: src/common/cfgfiles.c:757
@@ -1309,7 +1310,7 @@ msgstr "-%C10-%C11-%O$tIlmoitusluettelossa on $1 käyttäjä(ä)."
 
 #: src/common/textevents.h:432
 #, fuzzy
-msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
 msgstr "-%C10-%C11-%O$tIlmoitusluettelossa on $1 käyttäjä(ä)."
 
 #: src/common/textevents.h:435
@@ -3377,7 +3378,7 @@ msgstr "Siirrä alemmas"
 msgid "Cancel"
 msgstr "Peru"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Tallenna"
 
@@ -3567,9 +3568,9 @@ msgstr "Virhe ladattaessa näppäinsidonta-asetuksia"
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
-#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
-#: src/fe-gtk/maingui.c:2458
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
 msgid "<none>"
 msgstr "<ei mitään>"
 
@@ -3670,7 +3671,7 @@ msgstr "Antamaasi tiedostoa ei voi lukea."
 msgid "That mask already exists."
 msgstr "Kyseinen peite on jo olemassa."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
 msgid "Private"
 msgstr "Yksityiset"
 
@@ -3744,79 +3745,79 @@ msgstr "Kanavan %s aihe on: %s"
 msgid "No topic is set"
 msgstr "Aihetta ei ole asetettu"
 
-#: src/fe-gtk/maingui.c:933
+#: src/fe-gtk/maingui.c:934
 msgid "No other tabs open, quit xchat?"
 msgstr "Muita välilehtiä ei ole auki. Lopetetaanko XChat?"
 
-#: src/fe-gtk/maingui.c:979
+#: src/fe-gtk/maingui.c:980
 msgid "Insert color code"
 msgstr "Lisää värikoodi"
 
-#: src/fe-gtk/maingui.c:1028
+#: src/fe-gtk/maingui.c:1029
 msgid "Beep on message"
 msgstr "Anna äänimerkki viestin saapuessa"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Show join/part messages"
 msgstr "Näytä liittymis/poistumisviestit"
 
-#: src/fe-gtk/maingui.c:1033
+#: src/fe-gtk/maingui.c:1034
 msgid "Color paste"
 msgstr "Liitä väritysten kanssa"
 
-#: src/fe-gtk/maingui.c:1043
+#: src/fe-gtk/maingui.c:1044
 msgid "Go to"
 msgstr "Siirry"
 
-#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "Sulje välilehti"
 
-#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "Irrota välilehti"
 
-#: src/fe-gtk/maingui.c:1252
+#: src/fe-gtk/maingui.c:1253
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Jotkut tiedostonsiirrot ovat vielä aktiivisia. Lopetetaanko X-Chat?"
 
-#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
 msgid "User limit must be a number!\n"
 msgstr "Käyttäjärajan tulee olla numero!\n"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1536
 msgid "Topic Protection"
 msgstr "Aiheensuojaus"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "No outside messages"
 msgstr "Ei ulkopuolisia viestejä"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1538
 msgid "Secret"
 msgstr "Salainen"
 
-#: src/fe-gtk/maingui.c:1538
+#: src/fe-gtk/maingui.c:1539
 msgid "Invite Only"
 msgstr "Vain kutsutuille"
 
-#: src/fe-gtk/maingui.c:1540
+#: src/fe-gtk/maingui.c:1541
 msgid "Moderated"
 msgstr "Moderoitu"
 
-#: src/fe-gtk/maingui.c:1541
+#: src/fe-gtk/maingui.c:1542
 msgid "Ban List"
 msgstr "Banniluettelo"
 
-#: src/fe-gtk/maingui.c:1543
+#: src/fe-gtk/maingui.c:1544
 msgid "Keyword"
 msgstr "Tunnussana"
 
-#: src/fe-gtk/maingui.c:1555
+#: src/fe-gtk/maingui.c:1556
 msgid "User Limit"
 msgstr "Käyttäjäraja"
 
-#: src/fe-gtk/maingui.c:1730
+#: src/fe-gtk/maingui.c:1731
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3828,20 +3829,20 @@ msgstr ""
 "Ikkunointiohjelma on ehkä epäyhteensopiva,\n"
 "eikä sitä tällä hetkellä tueta.\n"
 
-#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
-#: src/fe-gtk/maingui.c:2680
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
 msgid "Attach/Detach this tab"
 msgstr "Liitä/irrota tämä välilehti"
 
-#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
 msgid "Close this tab/window"
 msgstr "Sulje tämä välilehti/ikkuna"
 
-#: src/fe-gtk/maingui.c:1926
+#: src/fe-gtk/maingui.c:1927
 msgid "Show/Hide userlist"
 msgstr "Näytä/piilota käyttäjäluettelo"
 
-#: src/fe-gtk/maingui.c:1964
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "Anna uusi kutsumanimi:"
 
@@ -5469,19 +5470,19 @@ msgstr "Tallenna tekstitiedosto"
 msgid "$ Number"
 msgstr "$ Numero"
 
-#: src/fe-gtk/textgui.c:324
+#: src/fe-gtk/textgui.c:323
 msgid "Edit Events"
 msgstr "Muokkaa tapahtumia"
 
-#: src/fe-gtk/textgui.c:392
+#: src/fe-gtk/textgui.c:387
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: src/fe-gtk/textgui.c:397
+#: src/fe-gtk/textgui.c:392
 msgid "Load From"
 msgstr "Lataa tiedostosta"
 
-#: src/fe-gtk/textgui.c:402
+#: src/fe-gtk/textgui.c:397
 msgid "Test All"
 msgstr "Kokeile kaikki"
 

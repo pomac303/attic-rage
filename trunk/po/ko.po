@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-02-08 00:14+0100\n"
+"POT-Creation-Date: 2005-03-02 21:58+0100\n"
 "PO-Revision-Date: 2004-08-10 07:37 +0900\n"
 "Last-Translator: Michael Kim <lavnrose@e.sarang.net>\n"
 "Language-Team: Korean <translation-team-ko@lists.sourceforge.net>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/common/cfgfiles.c:433
-msgid "Cannot create ~/.xchat2"
+#, fuzzy
+msgid "Cannot create ~/.rage"
 msgstr "~/.xchat2 디렉토리를 생성 할 수 없습니다."
 
 #: src/common/cfgfiles.c:757
@@ -1278,7 +1279,7 @@ msgstr "%C22*%O$t$1명의 사용자가 알림 몰록에 있습니다."
 
 #: src/common/textevents.h:432
 #, fuzzy
-msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
 msgstr "%C22*%O$t$1명의 사용자가 알림 몰록에 있습니다."
 
 #: src/common/textevents.h:435
@@ -3339,7 +3340,7 @@ msgstr "아래로"
 msgid "Cancel"
 msgstr "취소"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "저장"
 
@@ -3505,9 +3506,9 @@ msgstr "글쇠 연결 설정 읽는중 오류가 발생 했습니다."
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
-#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
-#: src/fe-gtk/maingui.c:2458
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
 msgid "<none>"
 msgstr "<없음>"
 
@@ -3608,7 +3609,7 @@ msgstr "해당 화일은 열 수 없습니다."
 msgid "That mask already exists."
 msgstr "해당 매스크가 이미 존재합니다."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
 msgid "Private"
 msgstr "개인:"
 
@@ -3682,79 +3683,79 @@ msgstr "대화방 %s 의 주제는 %s 입니다."
 msgid "No topic is set"
 msgstr "주제가 정해져 있지 않습니다."
 
-#: src/fe-gtk/maingui.c:933
+#: src/fe-gtk/maingui.c:934
 msgid "No other tabs open, quit xchat?"
 msgstr "열린 탭이 없습니다. 종료하시겠습니까?"
 
-#: src/fe-gtk/maingui.c:979
+#: src/fe-gtk/maingui.c:980
 msgid "Insert color code"
 msgstr "색상코드 삽입"
 
-#: src/fe-gtk/maingui.c:1028
+#: src/fe-gtk/maingui.c:1029
 msgid "Beep on message"
 msgstr "메세지에 삑소리"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 msgid "Show join/part messages"
 msgstr "참여/퇴장 메세지 표시"
 
-#: src/fe-gtk/maingui.c:1033
+#: src/fe-gtk/maingui.c:1034
 msgid "Color paste"
 msgstr "색상추출"
 
-#: src/fe-gtk/maingui.c:1043
+#: src/fe-gtk/maingui.c:1044
 msgid "Go to"
 msgstr "이동"
 
-#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "탭 분리"
 
-#: src/fe-gtk/maingui.c:1252
+#: src/fe-gtk/maingui.c:1253
 msgid "Some file transfers still active, quit xchat?"
 msgstr "화일전송이 진행 중입니다. 종료 하시겠습니까?"
 
-#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
 msgid "User limit must be a number!\n"
 msgstr "사용자 제한은 숫자만 입력 가능합니다.\n"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1536
 msgid "Topic Protection"
 msgstr "주제 잠금"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "No outside messages"
 msgstr "외부 메세지 받지않음"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1538
 msgid "Secret"
 msgstr "비밀방"
 
-#: src/fe-gtk/maingui.c:1538
+#: src/fe-gtk/maingui.c:1539
 msgid "Invite Only"
 msgstr "초대만 가능"
 
-#: src/fe-gtk/maingui.c:1540
+#: src/fe-gtk/maingui.c:1541
 msgid "Moderated"
 msgstr "중재식 대화"
 
-#: src/fe-gtk/maingui.c:1541
+#: src/fe-gtk/maingui.c:1542
 msgid "Ban List"
 msgstr "추방 목록"
 
-#: src/fe-gtk/maingui.c:1543
+#: src/fe-gtk/maingui.c:1544
 msgid "Keyword"
 msgstr "암호"
 
-#: src/fe-gtk/maingui.c:1555
+#: src/fe-gtk/maingui.c:1556
 msgid "User Limit"
 msgstr "사용자 제한"
 
-#: src/fe-gtk/maingui.c:1730
+#: src/fe-gtk/maingui.c:1731
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3766,20 +3767,20 @@ msgstr ""
 "당신이 사용하는 창 관리자는  호환되지 않습니다.\n"
 "현재로서는 해당 창관리자는 지원하지 않습니다.\n"
 
-#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
-#: src/fe-gtk/maingui.c:2680
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
 msgid "Attach/Detach this tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
 msgid "Close this tab/window"
 msgstr "이 창/탭을 닫습니다."
 
-#: src/fe-gtk/maingui.c:1926
+#: src/fe-gtk/maingui.c:1927
 msgid "Show/Hide userlist"
 msgstr "사용자목록을 표시하거나 숨깁니다."
 
-#: src/fe-gtk/maingui.c:1964
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "새로운 대화명:"
 
@@ -5323,19 +5324,19 @@ msgstr "문서 화일 출력"
 msgid "$ Number"
 msgstr "% 숫자"
 
-#: src/fe-gtk/textgui.c:324
+#: src/fe-gtk/textgui.c:323
 msgid "Edit Events"
 msgstr "상황 편집"
 
-#: src/fe-gtk/textgui.c:392
+#: src/fe-gtk/textgui.c:387
 msgid "Save As"
 msgstr "다른이름으로 저장"
 
-#: src/fe-gtk/textgui.c:397
+#: src/fe-gtk/textgui.c:392
 msgid "Load From"
 msgstr "가져오기"
 
-#: src/fe-gtk/textgui.c:402
+#: src/fe-gtk/textgui.c:397
 msgid "Test All"
 msgstr "모두 시험"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-02-08 00:14+0100\n"
+"POT-Creation-Date: 2005-03-02 21:58+0100\n"
 "PO-Revision-Date: 2002-12-26 03:36+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/common/cfgfiles.c:433
-msgid "Cannot create ~/.xchat2"
+#, fuzzy
+msgid "Cannot create ~/.rage"
 msgstr "Nevaru izveidot ~/.xchat2"
 
 #: src/common/cfgfiles.c:757
@@ -1207,7 +1208,7 @@ msgid "%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O"
 msgstr ""
 
 #: src/common/textevents.h:432
-msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%0"
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
 msgstr ""
 
 #: src/common/textevents.h:435
@@ -3301,7 +3302,7 @@ msgstr "Lejup"
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Saglabāt"
 
@@ -3497,9 +3498,9 @@ msgstr "Atgadījās kļūda, lādējot taustiņu atbilstību konfigurāciju"
 
 #: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
-#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:864 src/fe-gtk/maingui.c:880
-#: src/fe-gtk/maingui.c:1023 src/fe-gtk/maingui.c:1076
-#: src/fe-gtk/maingui.c:2458
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
 msgid "<none>"
 msgstr "<nekas>"
 
@@ -3600,7 +3601,7 @@ msgstr "Nevar nolasīt to failu."
 msgid "That mask already exists."
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1539
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
 msgid "Private"
 msgstr "Privāts"
 
@@ -3675,80 +3676,80 @@ msgstr "Temats %s ir: %s"
 msgid "No topic is set"
 msgstr "Temats nav uzstādīts"
 
-#: src/fe-gtk/maingui.c:933
+#: src/fe-gtk/maingui.c:934
 msgid "No other tabs open, quit xchat?"
 msgstr "Nav atvērtas citas sadaļas, iziet no xchat?"
 
-#: src/fe-gtk/maingui.c:979
+#: src/fe-gtk/maingui.c:980
 msgid "Insert color code"
 msgstr "Ievietot krāsas kodu"
 
-#: src/fe-gtk/maingui.c:1028
+#: src/fe-gtk/maingui.c:1029
 msgid "Beep on message"
 msgstr "Pīkstiens uz ziņām"
 
-#: src/fe-gtk/maingui.c:1031
+#: src/fe-gtk/maingui.c:1032
 #, fuzzy
 msgid "Show join/part messages"
 msgstr "Pīkstiens uz privātām ziņām"
 
-#: src/fe-gtk/maingui.c:1033
+#: src/fe-gtk/maingui.c:1034
 msgid "Color paste"
 msgstr "Krāsas ievietošana"
 
-#: src/fe-gtk/maingui.c:1043
+#: src/fe-gtk/maingui.c:1044
 msgid "Go to"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1056 src/fe-gtk/menu.c:1255
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
 msgid "Close Tab"
 msgstr "Aizvērt Sadaļu"
 
-#: src/fe-gtk/maingui.c:1059 src/fe-gtk/menu.c:1408
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
 msgid "Detach Tab"
 msgstr "Atdalīt Sadaļu"
 
-#: src/fe-gtk/maingui.c:1252
+#: src/fe-gtk/maingui.c:1253
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Dažas failu pārsūtes joprojām aktīvas, iziet no xchat?"
 
-#: src/fe-gtk/maingui.c:1405 src/fe-gtk/maingui.c:1512
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
 msgid "User limit must be a number!\n"
 msgstr "Lietotāju limitam ir jābūt skaitlim!\n"
 
-#: src/fe-gtk/maingui.c:1535
+#: src/fe-gtk/maingui.c:1536
 msgid "Topic Protection"
 msgstr "Temata Aizsardzība"
 
-#: src/fe-gtk/maingui.c:1536
+#: src/fe-gtk/maingui.c:1537
 msgid "No outside messages"
 msgstr "Bez ārējām ziņām"
 
-#: src/fe-gtk/maingui.c:1537
+#: src/fe-gtk/maingui.c:1538
 msgid "Secret"
 msgstr "Slepens"
 
-#: src/fe-gtk/maingui.c:1538
+#: src/fe-gtk/maingui.c:1539
 msgid "Invite Only"
 msgstr "Tikai ar ielūgumu"
 
-#: src/fe-gtk/maingui.c:1540
+#: src/fe-gtk/maingui.c:1541
 msgid "Moderated"
 msgstr "Apvaldīts"
 
-#: src/fe-gtk/maingui.c:1541
+#: src/fe-gtk/maingui.c:1542
 msgid "Ban List"
 msgstr "Izraidīto Saraksts"
 
-#: src/fe-gtk/maingui.c:1543
+#: src/fe-gtk/maingui.c:1544
 msgid "Keyword"
 msgstr "Atslēgvārds"
 
-#: src/fe-gtk/maingui.c:1555
+#: src/fe-gtk/maingui.c:1556
 msgid "User Limit"
 msgstr "Lietotāju Limits"
 
-#: src/fe-gtk/maingui.c:1730
+#: src/fe-gtk/maingui.c:1731
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3756,20 +3757,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1890 src/fe-gtk/maingui.c:1901
-#: src/fe-gtk/maingui.c:2680
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
 msgid "Attach/Detach this tab"
 msgstr "Pievienot/Atdalīt šo sadaļu"
 
-#: src/fe-gtk/maingui.c:1899 src/fe-gtk/maingui.c:2678
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
 msgid "Close this tab/window"
 msgstr "Aizvērt šo sadaļu/logu"
 
-#: src/fe-gtk/maingui.c:1926
+#: src/fe-gtk/maingui.c:1927
 msgid "Show/Hide userlist"
 msgstr "Parādīt/Paslēpt lietotāju sarakstu"
 
-#: src/fe-gtk/maingui.c:1964
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "Ievadiet jaunu segvārdu:"
 
@@ -5406,19 +5407,19 @@ msgstr "Drukāt Teksta Failu"
 msgid "$ Number"
 msgstr "$ Numurs"
 
-#: src/fe-gtk/textgui.c:324
+#: src/fe-gtk/textgui.c:323
 msgid "Edit Events"
 msgstr "Rediģēt Notikumus"
 
-#: src/fe-gtk/textgui.c:392
+#: src/fe-gtk/textgui.c:387
 msgid "Save As"
 msgstr "Saglabāt Kā"
 
-#: src/fe-gtk/textgui.c:397
+#: src/fe-gtk/textgui.c:392
 msgid "Load From"
 msgstr "Ielādēt No"
 
-#: src/fe-gtk/textgui.c:402
+#: src/fe-gtk/textgui.c:397
 msgid "Test All"
 msgstr "Testēt Visus"
 

@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wimplicit -Wstrict-prototypes -Werror -O2 -g -I ../../src/common
+CFLAGS = -Wall -Wimplicit -Wstrict-prototypes -Werror -O2 -fPIC -g -I ../../src/common
 
 OBJS= tbh.c
 
