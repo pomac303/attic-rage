@@ -53,6 +53,23 @@
 #include "rage-win32.h"
 #endif
 
+/* 64-bit stuff */
+#if defined(__linux__)
+	#include <byteswap.h>
+	#if __BYTE_ORDER == __LITTLE_ENDIAN
+	#define htonll(x)	bswap_64(x)
+	#define ntohll(x)	bswap_64(x)
+	#else
+	#define htonll(x)	(x)
+	#define ntohll(x)	(x)
+	#endif
+#elif defined(WIN32)
+	#define ntohll(x) (((__int64)(ntohl((int)((x << 32) >> 32))) << 32) | (unsigned int)ntohl(((int)(x >> 32))))
+	#define htonll(x) ntohll(x)
+#else
+	#error No 64-bit stuff defined for your platform
+#endif
+
 /* XXX: configure */
 #define NDEBUG
 

@@ -23,7 +23,6 @@
  */
 
 #include "rage.h"
-#include <byteswap.h>
 
 static char *dcctypes[] = { "SEND", "RECV", "CHAT", "CHAT" };
 
@@ -44,14 +43,6 @@ static void dcc_close (struct DCC *dcc, int dccstat, int destroy);
 static gboolean dcc_send_data (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc);
-
-#if __BYTE_ORDER == __LITTLE_ENDIAN
-#define htonll(x)	bswap_64(x)
-#define ntohll(x)	bswap_64(x)
-#else
-#define htonll(x)	(x)
-#define ntohll(x)	(x)
-#endif
 
 static int new_id(void)
 {
