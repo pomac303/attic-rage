@@ -160,9 +160,8 @@ struct _rage_plugin
 	char *version;
 	rage_session *context;
 	void *deinit_callback;	/* pointer to rage_plugin_deinit */
-	unsigned int fake:1;		/* fake plugin. Added by rage_plugingui_add() */
-	
-#endif
+	unsigned int fake:1;		/* fake plugin. Added by rage_plugingui_add() */	
+#endif /* RAGE_INTERNAL */
 };
 
 rage_hook *

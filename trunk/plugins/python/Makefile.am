@@ -1,4 +1,4 @@
-CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror -shared
 
 EXTRA_DIST = makefile.msc
 

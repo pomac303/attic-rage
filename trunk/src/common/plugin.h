@@ -1,5 +1,5 @@
-#ifndef XCHAT_COMMONPLUGIN_H
-#define XCHAT_COMMONPLUGIN_H
+#ifndef RAGE_COMMONPLUGIN_H
+#define RAGE_COMMONPLUGIN_H
 
 #include "rage-plugin.h"
 

@@ -17,6 +17,8 @@ AM_GNU_GETTEXT
 dnl displaced from acconfig.h
 AH_VERBATIM([OLD_PERL],[#undef OLD_PERL])
 AH_VERBATIM([PREFIX],[#undef PREFIX])
+AH_VERBATIM([RAGELIBDIR],[#undef RAGELIBDIR])
+AH_VERBATIM([RAGESHAREDIR],[#undef RAGESHAREDIR])
 AH_VERBATIM([SOCKS],[#undef SOCKS])
 AH_VERBATIM([USE_DEBUG],[#undef USE_DEBUG])
 dnl AH_VERBATIM([USE_GNOME],[#undef USE_GNOME])
@@ -620,8 +622,12 @@ AC_SUBST(PLUGIN_INCLUDES)
 
 if test "x${prefix}" = "xNONE"; then
 	AC_DEFINE_UNQUOTED(PREFIX, "${ac_default_prefix}")
+	AC_DEFINE_UNQUOTED(RAGELIBDIR, "${ac_default_prefix}/lib/rage")
+	AC_DEFINE_UNQUOTED(RAGESHAREDIR, "${ac_default_prefix}/share/rage")
 else
 	AC_DEFINE_UNQUOTED(PREFIX, "${prefix}")
+	AC_DEFINE_UNQUOTED(RAGELIBDIR, "${prefix}/lib/rage")
+	AC_DEFINE_UNQUOTED(RAGESHAREDIR, "${prefix}/share/rage")
 fi
 
 AC_OUTPUT([

@@ -55,6 +55,7 @@
 #define I_NOSAVE	MAKE4('N','O','S','A')
 #define I_DCC		MAKE4('D','C','C','\0')
 
+#include "config.h"
 
 /* Include standard C includes */
 #include <stdlib.h>

@@ -2,12 +2,10 @@ localedir = $(datadir)/locale
 
 CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 
-LDFLAGS=--export-dynamic
-
 bin_PROGRAMS = rage
 
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \
-	-I $(top_srcdir)/src/common/ -DRAGELIBDIR=\"$(libdir)\"
+	-I $(top_srcdir)/src/common/
 
 rage_LDADD = ../common/libragecommon.a $(GUI_LIBS)
 
@@ -31,5 +29,3 @@ rage_SOURCES = about.c ascii.c banlist.c chanlist.c dccgui.c editlist.c \
 	search.c servlistgui.c setup.c tabs.c textgui.c \
 	urlgrab.c userlistgui.c xtext.c
 
-pixmaps.o: $(srcdir)/pixmaps.c
-	$(COMPILE) -DXCHATSHAREDIR=\"$(ragesharedir)\" -c $(srcdir)/pixmaps.c

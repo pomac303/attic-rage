@@ -1,6 +1,6 @@
 ## Process with automake to produce Makefile.in
 
-CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror -shared
 
 # To create a standalone tarball of your plugin run the plugin_dist
 # target.  Note: you must configure the main source tree with
