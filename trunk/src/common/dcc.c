@@ -41,7 +41,6 @@ static int dcc_global_throttle;	/* 0x1 = sends, 0x2 = gets */
 static int dcc_sendcpssum, dcc_getcpssum;
 
 static struct DCC *new_dcc (void);
-static void dcc_close (struct DCC *dcc, int dccstat, int destroy);
 static gboolean dcc_send_data (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read (GIOChannel *, GIOCondition, struct DCC *);
 static gboolean dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc);
@@ -249,7 +248,7 @@ dcc_connect_sok (struct DCC *dcc)
 	return sok;
 }
 
-static void
+void
 dcc_close (struct DCC *dcc, int dccstat, int destroy)
 {
 	if (dcc->wiotag)

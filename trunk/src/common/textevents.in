@@ -7,7 +7,7 @@ pevt_generic_nick_help
 Ban List
 XP_TE_BANLIST
 pevt_banlist_help
-%C0%B%171Ban List%B%187%B$t Ban for channel $1: $2 $3 $4
+%C0%B%171Ban List%187%B$tBan for channel $1: $2 $3 $4
 4
 
 Banned

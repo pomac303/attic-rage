@@ -70,6 +70,7 @@ struct dccstat_info
 
 extern struct dccstat_info dccstat[];
 
+void dcc_close (struct DCC *dcc, int dccstat, int destroy);
 void dcc_abort (rage_session *sess, struct DCC *dcc);
 void dcc_get (struct DCC *dcc);
 int dcc_resume (struct DCC *dcc);

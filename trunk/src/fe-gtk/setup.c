@@ -11,7 +11,7 @@ GtkStyle *create_input_style (void);
 static int last_selected_page = 0;
 static int last_selected_row = 0; /* sound row */
 static gboolean color_change;
-static struct xchatprefs setup_prefs;
+static struct rageprefs setup_prefs;
 static GtkWidget *cancel_button;
 
 enum
@@ -1576,7 +1576,7 @@ setup_apply_to_sess (session_gui *gui)
 }
 
 static void
-setup_apply (struct xchatprefs *pr)
+setup_apply (struct rageprefs *pr)
 {
 	GSList *list;
 	int done_main = FALSE;

@@ -1,7 +1,7 @@
 #ifndef XCHAT_C_H
 #define XCHAT_C_H
 
-extern struct xchatprefs prefs;
+extern struct rageprefs prefs;
 
 extern int auto_connect;
 extern int skip_plugins;

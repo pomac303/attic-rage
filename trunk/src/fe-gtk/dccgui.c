@@ -600,6 +600,25 @@ info_send_clicked (GtkWidget * wid, gpointer none)
 }
 
 static void
+reoffer_send_clicked (GtkWidget * wid, gpointer none)
+{
+	int row;
+	struct DCC *dcc;
+	
+	row = gtkutil_clist_selection (dccswin.list);
+	if (row != -1)
+	{
+		dcc = gtk_clist_get_row_data (GTK_CLIST (dccswin.list), row);
+		if (dcc->dccstat == STAT_FAILED || dcc->dccstat == STAT_ABORTED)
+		{
+			dcc_send(dcc->serv->front_session, dcc->nick, 
+				dcc->file, dcc->maxcps, dcc->pasvid ? 1 : 0);
+			dcc_close(dcc, dcc->dccstat, TRUE);
+		}
+	}
+}
+
+static void
 abort_send_clicked (GtkWidget * wid, gpointer none)
 {
 	int row;
@@ -659,6 +678,7 @@ fe_dcc_open_send_win (int passive)
 	gtk_widget_show (bbox);
 
 	gtkutil_button (bbox, GTK_STOCK_CANCEL, 0, abort_send_clicked, 0, _("Abort"));
+	gtkutil_button (bbox, GTK_STOCK_REFRESH, 0, reoffer_send_clicked, 0, _("Reoffer"));
 	gtkutil_button (bbox, GTK_STOCK_DIALOG_INFO, 0, info_send_clicked, 0, _("Info"));
 
 	gtk_widget_show (dccswin.window);

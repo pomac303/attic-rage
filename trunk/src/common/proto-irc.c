@@ -660,6 +660,7 @@ PARSE_FUNC(numeric_whoisactually)
 			parv[4], parv[5], parv[6], 0);
 	return 1;
 }
+
 PARSE_FUNC(numeric_inviting)
 {
 	EMIT_SIGNAL (XP_TE_UINVITE, sess, parv[3], parv[4],
@@ -667,6 +668,26 @@ PARSE_FUNC(numeric_inviting)
 	return 1;
 }
 
+/*
+PARSE_FUNC(numeric_exemptlist)
+{
+	//inbound_banlist (sess, atol (parv[6]), parv[3], parv[4], parv[5], TRUE)
+	return 0;
+}
+
+PARSE_FUNC(numeric_endofexemptlist)
+{
+	server *serv = sess->server;
+
+	sess = find_channel (serv, parv[3]);
+	if (!sess)
+		sess = serv->front_session;
+	if (!fe_is_banwindow (sess))
+		return 1;
+	fe_ban_list_end (sess);
+	return 0;
+}
+*/
 PARSE_FUNC(numeric_whoreply)
 {
 	unsigned int away = 0;
@@ -869,6 +890,8 @@ static ircparser_numeric irc_numerics[] = {
 	{RPL_TOPICWHOTIME, numeric_topicwhotime},	/* 333 */
 	{RPL_WHOISACTUALLY, numeric_whoisactually}, 	/* 338 */
 	{RPL_INVITING, numeric_inviting},		/* 341 */
+//	{348, numeric_exemptlist},			/* RPL_EXEMPTLIST */
+//	{349, numeric_endofexemptlist},			/* RPL_ENDOFEXEMPTLIST */
 	{RPL_WHOREPLY, numeric_whoreply},		/* 352 */
 	{RPL_WHOSPCRPL, numeric_whospcrpl},		/* 354, WHOX */
 	{RPL_NAMREPLY, numeric_namreply},		/* 353 */

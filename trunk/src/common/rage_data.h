@@ -92,7 +92,7 @@ struct nbexec
 	struct rage_session *sess;
 };
 
-struct xchatprefs
+struct rageprefs
 {
 	char nick1[NICKLEN];
 	char nick2[NICKLEN];
@@ -162,7 +162,7 @@ struct xchatprefs
 	int dialog_height;
 	int dccpermissions;
 	int recon_delay;
-	int bantype;
+	int masktype;
 	int userlist_sort;
 	int nu_color;
 	unsigned long local_ip;

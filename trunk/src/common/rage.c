@@ -63,7 +63,7 @@ char *connect_url = NULL;
 
 rage_session *current_tab;
 rage_session *current_sess = 0;
-struct xchatprefs prefs;
+struct rageprefs prefs;
 
 #ifdef USE_OPENSSL
 SSL_CTX *ctx = NULL;

@@ -24,8 +24,7 @@ void fe_update_mode_buttons (rage_session *sess, char mode, char sign);
 void fe_update_channel_key (rage_session *sess);
 void fe_update_channel_limit (rage_session *sess);
 int fe_is_chanwindow (struct server *serv);
-void fe_add_chan_list (struct server *serv, char *chan, char *users,
-							  char *topic);
+void fe_add_chan_list (struct server *serv, char *chan, char *users, char *topic);
 void fe_chan_list_end (struct server *serv);
 int fe_is_banwindow (rage_session *sess);
 void fe_add_ban_list (rage_session *sess, char *mask, char *who, char *when);

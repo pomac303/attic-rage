@@ -6,7 +6,7 @@ const struct text_event te[] = {
 N_("%C0%B%171Notify%187%B$tNow watching nick $1.%O")},
 
 {"Ban List", pevt_banlist_help, 4, 
-N_("%C0%B%171Ban List%B%187%B$t Ban for channel $1: $2 $3 $4")},
+N_("%C0%B%171Ban List%187%B$tBan for channel $1: $2 $3 $4")},
 
 {"Banned", pevt_generic_channel_help, 1, 
 N_("%C5%B%171Error%187%B%O$tYou are banned from channel $1.%O")},

@@ -541,7 +541,7 @@ const struct prefs vars[] = {
 	{"input_perc_color", P_OFFINT (perc_color), TYPE_BOOL},
 
 	{"irc_auto_rejoin", P_OFFINT (autorejoin), TYPE_BOOL},
-	{"irc_ban_type", P_OFFINT (bantype), TYPE_INT},
+	{"irc_mask_type", P_OFFINT (masktype), TYPE_INT},
 	{"irc_conf_mode", P_OFFINT (confmode), TYPE_BOOL},
 	{"irc_extra_hilight", P_OFFSET (bluestring), TYPE_STR},
 	{"irc_hide_version", P_OFFINT (hidever), TYPE_BOOL},
@@ -662,7 +662,7 @@ load_config (void)
 	username = convert_with_fallback (username, "username");
 	realname = convert_with_fallback (realname, "realname");
 
-	memset (&prefs, 0, sizeof (struct xchatprefs));
+	memset (&prefs, 0, sizeof (struct rageprefs));
 
 	/* put in default values, anything left out is automatically zero */
 	prefs.completion_amount = 5;
@@ -722,7 +722,7 @@ load_config (void)
 	prefs.userhost = 1;
 	prefs.dcc_send_fillspaces = 1;
 	prefs.mainwindow_save = 1;
-	prefs.bantype = 2;
+	prefs.masktype = 2;
 	prefs.flash_hilight = 1;
 #ifdef WIN32
 	prefs.identd = 1;

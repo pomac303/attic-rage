@@ -331,26 +331,21 @@ cmd_away (rage_session *sess, char *cmd, char *buf)
 }
 
 static void
-ban (rage_session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
+maskmode (rage_session * sess, char *tbuf, char *mode, char *mask, char *masktypestr, int deop)
 {
-	int bantype;
+	int masktype;
 	struct User *user;
 	char *at, *dot, *lastdot;
-	char username[64], fullhost[128], domain[128], *mode, *p2;
+	char username[64], fullhost[128], domain[128], *p2;
 	server *serv = sess->server;
 
 	user = find_name (sess, mask);
-	if (user && user->hostname)  /* it's a nickname, let's find a proper ban mask */
+	if (user && user->hostname)  /* it's a nickname, let's find a proper mask */
 	{
 		if (deop)
-		{
-			mode = "-o+b";
 			p2 = user->nick;
-		} else
-		{
-			mode = "+b";
+		else
 			p2 = "";
-		}
 
 		mask = user->hostname;
 
@@ -359,14 +354,14 @@ ban (rage_session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 			return;					  /* can't happen? */
 		*at = 0;
 
-		if (mask[0] == '~' || mask[0] == '+' ||
-		    mask[0] == '=' || mask[0] == '^' || mask[0] == '-')
+		if (mask[0] == '~' || mask[0] == '+' || mask[0] == '=' ||
+				mask[0] == '^' || mask[0] == '-')
 		{
 			safe_strcpy (username, mask+1, sizeof (username));
-		} else
-		{
-			safe_strcpy (username, mask, sizeof (username));
 		}
+		else
+			safe_strcpy (username, mask, sizeof (username));
+
 		*at = '@';
 		safe_strcpy (fullhost, at + 1, sizeof (fullhost));
 
@@ -374,15 +369,16 @@ ban (rage_session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 		if (dot)
 		{
 			safe_strcpy (domain, dot, sizeof (domain));
-		} else
-		{
-			safe_strcpy (domain, fullhost, sizeof (domain));
 		}
-
-		if (*bantypestr)
-			bantype = atoi (bantypestr);
 		else
-			bantype = prefs.bantype;
+			safe_strcpy (domain, fullhost, sizeof (domain));
+
+		if (*masktypestr)
+		{
+			masktype = atoi (masktypestr);
+		}
+		else
+			masktype = prefs.masktype;
 
 		tbuf[0] = 0;
 		if (inet_addr (fullhost) != -1)	/* "fullhost" is really a IP number */
@@ -395,49 +391,51 @@ ban (rage_session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 			strcpy (domain, fullhost);
 			*lastdot = '.';
 
-			switch (bantype)
+			switch (masktype)
 			{
-			case 0:
-				sprintf (tbuf, "%s %s *!*@%s.*", mode, p2, domain);
-				break;
+				case 0:
+					sprintf (tbuf, "%s %s *!*@%s.*", mode, p2, domain);
+					break;
 
-			case 1:
-				sprintf (tbuf, "%s %s *!*@%s", mode, p2, fullhost);
-				break;
+				case 1:
+					sprintf (tbuf, "%s %s *!*@%s", mode, p2, fullhost);
+					break;
 
-			case 2:
-				sprintf (tbuf, "%s %s *!*%s@%s.*", mode, p2, username, domain);
-				break;
+				case 2:
+					sprintf (tbuf, "%s %s *!*%s@%s.*", mode, p2, username, domain);
+					break;
 
-			case 3:
-				sprintf (tbuf, "%s %s *!*%s@%s", mode, p2, username, fullhost);
-				break;
+				case 3:
+					sprintf (tbuf, "%s %s *!*%s@%s", mode, p2, username, fullhost);
+					break;
 			}
-		} else
+		}
+		else
 		{
-			switch (bantype)
+			switch (masktype)
 			{
-			case 0:
-				sprintf (tbuf, "%s %s *!*@*%s", mode, p2, domain);
-				break;
+				case 0:
+					sprintf (tbuf, "%s %s *!*@*%s", mode, p2, domain);
+					break;
 
-			case 1:
-				sprintf (tbuf, "%s %s *!*@%s", mode, p2, fullhost);
-				break;
+				case 1:
+					sprintf (tbuf, "%s %s *!*@%s", mode, p2, fullhost);
+					break;
 
-			case 2:
-				sprintf (tbuf, "%s %s *!*%s@*%s", mode, p2, username, domain);
-				break;
+				case 2:
+					sprintf (tbuf, "%s %s *!*%s@*%s", mode, p2, username, domain);
+					break;
 
-			case 3:
-				sprintf (tbuf, "%s %s *!*%s@%s", mode, p2, username, fullhost);
-				break;
+				case 3:
+					sprintf (tbuf, "%s %s *!*%s@%s", mode, p2, username, fullhost);
+					break;
 			}
 		}
 
-	} else
+	}
+	else
 	{
-		sprintf (tbuf, "+b %s", mask);
+		sprintf (tbuf, "%s %s", mode, mask);
 	}
 	serv->p_mode (serv, sess->channel, tbuf);
 }
@@ -451,11 +449,10 @@ cmd_ban (rage_session *sess, char *cmd, char *buf)
 	char send[1024];
 
 	split_cmd_parv(buf,&parc,parv);
-
 	mask=parv[1];
 
 	if (*mask)
-		ban (sess, send, mask, parv[2], 0);
+		maskmode (sess, send, "+b", mask, parv[2], 0);
 	else
 		sess->server->p_mode (sess->server, sess->channel, "+b");	/* banlist */
 
@@ -466,23 +463,51 @@ static int
 cmd_unban (rage_session *sess, char *cmd, char *buf)
 {
 	/* Allow more than one mask in /unban -- tvk */
-	int i = 1;
 	int parc;
 	char *parv[MAX_TOKENS];
 
 	split_cmd_parv(buf,&parc,parv);
 
-	while (1)
-	{
-		if (!*parv[i])
-		{
-			if (i == 1)
-				return FALSE;
-			send_channel_modes (sess, parv, 1, i, '-', 'b');
-			return TRUE;
-		}
-		i++;
-	}
+	if (!*parv[1] && parc == 1)
+		return FALSE;
+
+	send_channel_modes (sess, parv, 1, parc, '-', 'b');
+	return TRUE;
+}
+
+static int
+cmd_exempt (rage_session *sess, char *cmd, char *buf)
+{
+	char *mask;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char send[1024];
+
+	split_cmd_parv(buf,&parc,parv);
+	mask=parv[1];
+	
+	if (*mask)
+		maskmode (sess, send, "+e", mask, parv[2], 0);
+	else
+		sess->server->p_mode (sess->server, sess->channel, "+e");       /* banlist */
+
+	return TRUE;
+}
+
+static int
+cmd_unexempt (rage_session *sess, char *cmd, char *buf)
+{
+	/* Allow more than one mask in /unban -- tvk */
+	int parc;
+	char *parv[MAX_TOKENS];
+	
+	split_cmd_parv(buf,&parc,parv);
+	
+	if (!*parv[1] && parc == 1)
+		return FALSE;
+
+	send_channel_modes (sess, parv, 1, parc, '-', 'e');
+	return TRUE;
 }
 
 static int
@@ -1881,6 +1906,7 @@ cmd_kickban (rage_session *sess, char *cmd, char *buf)
 	char *reason;
 	struct User *user;
 	char tbuf[512];
+	int is_op;
 
 	split_cmd(&buf); /* Skip the command */
 	nick = split_cmd(&buf);
@@ -1892,14 +1918,15 @@ cmd_kickban (rage_session *sess, char *cmd, char *buf)
 		/* if the reason is a 1 digit number, treat it as a bantype */
 
 		user = find_name (sess, nick);
+		is_op = (user && user->op);
 
 		if (isdigit (reason[0]) && reason[1] == 0)
 		{
-			ban (sess, tbuf, nick, reason, (user && user->op));
+			maskmode (sess, tbuf, is_op ? "-o+b" : "+b", nick, reason, is_op);
 			reason[0] = 0;
 		}
 		else
-			ban (sess, tbuf, nick, "", (user && user->op));
+			maskmode (sess, tbuf, is_op ? "-o+b" : "+b", nick, "", is_op);
 
 		sess->server->p_kick (sess->server, sess->channel, nick, reason);
 
@@ -3036,165 +3063,155 @@ get_command_list(GList *list)
 
 static command commands[] = {
 	{"ADDBUTTON", cmd_addbutton, 0, 0,
-	N_("ADDBUTTON <name> <action>, adds a button under the user-list")},
+		N_("ADDBUTTON <name> <action>, adds a button under the user-list")},
 	{"ALLCHAN", cmd_allchannels, 0, 0,
-	 N_("ALLCHAN <cmd>, sends a command to all channels you're in")},
+		N_("ALLCHAN <cmd>, sends a command to all channels you're in")},
 	{"ALLSERV", cmd_allservers, 0, 0,
-	 N_("ALLSERV <cmd>, sends a command to all servers you're in")},
+		N_("ALLSERV <cmd>, sends a command to all servers you're in")},
 	{"AWAY", cmd_away, 1, 0, N_("AWAY [<reason>], sets you away")},
 	{"BAN", cmd_ban, 1, 1,
-	 N_("BAN <mask> [<bantype>], bans everyone matching the mask from the current channel. If they are already on the channel this doesn't kick them (needs chanop)")},
+		N_("BAN <mask> [<masktype>], bans everyone matching the mask from the current channel. If they are already on the channel this doesn't kick them (needs chanop)")},
 	{"CHARSET", cmd_charset, 0, 0, 0},
 	{"CLEAR", cmd_clear, 0, 0, N_("CLEAR, Clears the current text window")},
 	{"CLOSE", cmd_close, 0, 0, N_("CLOSE, Closes the current window/tab")},
 	{"COUNTRY", cmd_country, 0, 0,
-	 N_("COUNTRY <code>, finds a country code, eg: au = australia")},
+		N_("COUNTRY <code>, finds a country code, eg: au = australia")},
 	{"CTCP", cmd_ctcp, 1, 0,
-	 N_("CTCP <nick> <message>, send the CTCP message to nick, common messages are VERSION and USERINFO")},
+		N_("CTCP <nick> <message>, send the CTCP message to nick, common messages are VERSION and USERINFO")},
 	{"CYCLE", cmd_cycle, 1, 1,
-	N_("CYCLE, parts current channel and immediately rejoins")},
-	{"DCC", cmd_dcc, 0, 0,
-	 N_("\n"
-	 "DCC GET <nick>                     - accept an offered file\n"
-	 "DCC SEND [-maxcps=#] <nick> [file] - send a file to someone\n"
-	 "DCC LIST                           - show DCC list\n"
-	 "DCC CHAT <nick>                    - offer DCC CHAT to someone\n"
-	 "DCC CLOSE <type> <nick> <file>         example:\n"
-	 "         /dcc close send johnsmith file.tar.gz")},
+		N_("CYCLE, parts current channel and immediately rejoins")},
+	{"DCC", cmd_dcc, 0, 0, N_("\n"
+				"DCC GET <nick>                     - accept an offered file\n"
+				"DCC SEND [-maxcps=#] <nick> [file] - send a file to someone\n"
+				"DCC LIST                           - show DCC list\n"
+				"DCC CHAT <nick>                    - offer DCC CHAT to someone\n"
+				"DCC CLOSE <type> <nick> <file>         example:\n"
+				"         /dcc close send johnsmith file.tar.gz")},
 	{"DEBUG", cmd_debug, 0, 0, 0},
 	{"DEHOP", cmd_dehop, 1, 1,
-	 N_("DEHOP <nick>, removes chanhalf-op status from the nick on the current channel (needs chanop)")},
+		N_("DEHOP <nick>, removes chanhalf-op status from the nick on the current channel (needs chanop)")},
 	{"DELBUTTON", cmd_delbutton, 0, 0,
-	 N_("DELBUTTON <name>, deletes a button from under the user-list")},
+		N_("DELBUTTON <name>, deletes a button from under the user-list")},
 	{"DEOP", cmd_deop, 1, 1,
-	 N_("DEOP <nick>, removes chanop status from the nick on the current channel (needs chanop)")},
+		N_("DEOP <nick>, removes chanop status from the nick on the current channel (needs chanop)")},
 	{"DEVOICE", cmd_devoice, 1, 1,
-	 N_("DEVOICE <nick>, removes voice status from the nick on the current channel (needs chanop)")},
+		N_("DEVOICE <nick>, removes voice status from the nick on the current channel (needs chanop)")},
 	{"DISCON", cmd_discon, 0, 0, N_("DISCON, Disconnects from server")},
 	{"HOST", cmd_dns, 0, 0, N_("DNS <nick|host|ip>, Finds a users IP number")},
 	{"ECHO", cmd_echo, 0, 0, N_("ECHO <text>, Prints text locally")},
 #ifndef WIN32
 	{"EXEC", cmd_exec, 0, 0,
-	 N_("EXEC [-o] <command>, runs the command. If -o flag is used then output is sent to current channel, else is printed to current text box")},
+		N_("EXEC [-o] <command>, runs the command. If -o flag is used then output is sent to current channel, else is printed to current text box")},
 #ifndef __EMX__
 	{"EXECCONT", cmd_execc, 0, 0, N_("EXECCONT, sends the process SIGCONT")},
 #endif
 	{"EXECKILL", cmd_execk, 0, 0,
-	 N_("EXECKILL [-9], kills a running exec in the current session. If -9 is given the process is SIGKILL'ed")},
+		N_("EXECKILL [-9], kills a running exec in the current session. If -9 is given the process is SIGKILL'ed")},
 #ifndef __EMX__
 	{"EXECSTOP", cmd_execs, 0, 0, N_("EXECSTOP, sends the process SIGSTOP")},
 	{"EXECWRITE", cmd_execw, 0, 0, N_("EXECWRITE, sends data to the processes stdin")},
 #endif /* __EMX__ */
 #endif /* WIN32 */
+	{"EXEMPT", cmd_exempt, 1, 1, N_("EXEMPT <mask> [masktype], sets a exempt")},
 	{"FLUSHQ", cmd_flushq, 0, 0,
-	 N_("FLUSHQ, flushes the current server's send queue")},
+		N_("FLUSHQ, flushes the current server's send queue")},
 	{"GATE", cmd_gate, 0, 0,
-	N_("GATE <host> [<port>], proxies through a host, port defaults to 23")},
+		N_("GATE <host> [<port>], proxies through a host, port defaults to 23")},
 	{"GETINT", cmd_getint, 0, 0, "GETINT <default> <command> <prompt>"},
 	{"GETSTR", cmd_getstr, 0, 0, "GETSTR <default> <command> <prompt>"},
 	{"GUI", cmd_gui, 0, 0, "GUI [SHOW|HIDE|FOCUS|FLASH|ICONIFY|COLOR <n>]"},
 	{"HELP", cmd_help, 0, 0, 0},
 	{"HOP", cmd_hop, 1, 1,
-	 N_("HOP <nick>, gives chanhalf-op status to the nick (needs chanop)")},
+		N_("HOP <nick>, gives chanhalf-op status to the nick (needs chanop)")},
 	{"IGNORE", cmd_ignore, 0, 0,
-	 N_("IGNORE <mask> <types..> <options..>\n"
-	 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
-	 "    types - types of data to ignore, one or all of:\n"
-	 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
-	 "    options - NOSAVE, QUIET")},
+		N_("IGNORE <mask> <types..> <options..>\n"
+				"    mask - host mask to ignore, eg: *!*@*.aol.com\n"
+				"    types - types of data to ignore, one or all of:\n"
+				"            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
+				"    options - NOSAVE, QUIET")},
 	{"INVITE", cmd_invite, 1, 0,
-	 N_("INVITE <nick> [<channel>], invites someone to a channel, by default the current channel (needs chanop)")},
+		N_("INVITE <nick> [<channel>], invites someone to a channel, by default the current channel (needs chanop)")},
 	{"JOIN", cmd_join, 1, 0, N_("JOIN <channel>, joins the channel")},
 	{"KICK", cmd_kick, 1, 1,
-	 N_("KICK <nick>, kicks the nick from the current channel (needs chanop)")},
+		N_("KICK <nick>, kicks the nick from the current channel (needs chanop)")},
 	{"KICKBAN", cmd_kickban, 1, 1,
-	 N_("KICKBAN <nick>, bans then kicks the nick from the current channel (needs chanop)")},
+		N_("KICKBAN <nick>, bans then kicks the nick from the current channel (needs chanop)")},
 	{"KILLALL", cmd_killall, 0, 0, "KILLALL, immediately exit"},
-	{"LAGCHECK", cmd_lagcheck, 0, 0,
-	 N_("LAGCHECK, forces a new lag check")},
+	{"LAGCHECK", cmd_lagcheck, 0, 0, N_("LAGCHECK, forces a new lag check")},
 	{"LASTLOG", cmd_lastlog, 0, 0,
-	 N_("LASTLOG <string>, searches for a string in the buffer")},
+		N_("LASTLOG <string>, searches for a string in the buffer")},
 	{"LIST", cmd_list, 1, 0, 0},
 	{"LOAD", cmd_load, 0, 0, N_("LOAD <file>, loads a plugin or script")},
 	{"MDEHOP", cmd_mdehop, 1, 1,
-	 N_("MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)")},
+		N_("MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)")},
 	{"MDEOP", cmd_mdeop, 1, 1,
-	 N_("MDEOP, Mass deop's all chanops in the current channel (needs chanop)")},
+		N_("MDEOP, Mass deop's all chanops in the current channel (needs chanop)")},
 	{"ME", cmd_me, 0, 0,
-	 N_("ME <action>, sends the action to the current channel (actions are written in the 3rd person, like /me jumps)")},
+		N_("ME <action>, sends the action to the current channel (actions are written in the 3rd person, like /me jumps)")},
 	{"MKICK", cmd_mkick, 1, 1,
-	 N_("MKICK, Mass kicks everyone except you in the current channel (needs chanop)")},
+		N_("MKICK, Mass kicks everyone except you in the current channel (needs chanop)")},
 	{"MODE", cmd_mode, 1, 0, 0},
 	{"MOP", cmd_mop, 1, 1,
-	 N_("MOP, Mass op's all users in the current channel (needs chanop)")},
+		N_("MOP, Mass op's all users in the current channel (needs chanop)")},
 	{"MSG", cmd_msg, 0, 0, N_("MSG <nick> <message>, sends a private message")},
-	{"NAMES", cmd_names, 1, 0,
-	 N_("NAMES, Lists the nicks on the current channel")},
-	{"NCTCP", cmd_nctcp, 1, 0,
-	 N_("NCTCP <nick> <message>, Sends a CTCP notice")},
+	{"NAMES", cmd_names, 1, 0, N_("NAMES, Lists the nicks on the current channel")},
+	{"NCTCP", cmd_nctcp, 1, 0, N_("NCTCP <nick> <message>, Sends a CTCP notice")},
 	{"NEWSERVER", cmd_newserver, 0, 0, N_("NEWSERVER <hostname> [<port>]")},
 	{"NICK", cmd_nick, 0, 0, N_("NICK <nickname>, sets your nick")},
 	{"NOTICE", cmd_notice, 1, 0,
-	 N_("NOTICE <nick/channel> <message>, sends a notice. Notices are a type of message that should be auto reacted to")},
-	{"NOTIFY", cmd_notify, 0, 0,
-	 N_("NOTIFY [<nick>], lists your notify list or adds someone to it")},
-	{"OP", cmd_op, 1, 1,
-	 N_("OP <nick>, gives chanop status to the nick (needs chanop)")},
-	{"PART", cmd_part, 1, 1,
-	 N_("PART [<channel>] [<reason>], leaves the channel, by default the current one")},
-	{"PING", cmd_ping, 1, 0,
-	 N_("PING <nick | channel>, CTCP pings nick or channel")},
-	{"QUERY", cmd_query, 0, 0,
-	 N_("QUERY <nick>, opens up a new privmsg window to someone")},
-	{"QUIT", cmd_quit, 0, 0,
-	 N_("QUIT [<reason>], disconnects from the current server")},
-	{"QUOTE", cmd_quote, 1, 0,
-	 N_("QUOTE <text>, sends the text in raw form to the server")},
+		N_("NOTICE <nick/channel> <message>, sends a notice. Notices are a type of message that should be auto reacted to")},
+	{"NOTIFY", cmd_notify, 0, 0, N_("NOTIFY [<nick>], lists your notify list or adds someone to it")},
+	{"OP", cmd_op, 1, 1, N_("OP <nick>, gives chanop status to the nick (needs chanop)")},
+	{"PART", cmd_part, 1, 1, 
+		N_("PART [<channel>] [<reason>], leaves the channel, by default the current one")},
+	{"PING", cmd_ping, 1, 0, N_("PING <nick | channel>, CTCP pings nick or channel")},
+	{"QUERY", cmd_query, 0, 0, N_("QUERY <nick>, opens up a new privmsg window to someone")},
+	{"QUIT", cmd_quit, 0, 0, N_("QUIT [<reason>], disconnects from the current server")},
+	{"QUOTE", cmd_quote, 1, 0, N_("QUOTE <text>, sends the text in raw form to the server")},
 #ifdef USE_OPENSSL
 	{"RECONNECT", cmd_reconnect, 0, 0,
-	 N_("RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")},
+		N_("RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")},
 #else 
 	{"RECONNECT", cmd_reconnect, 0, 0,
-	 N_("RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")},
+		N_("RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT to reconnect to the current server or with /RECONNECT ALL to reconnect to all the open servers")},
 #endif
-	{"RECV", cmd_recv, 1, 0, N_("RECV <text>, send raw data to xchat, as if it was received from the irc server")},
+	{"RECV", cmd_recv, 1, 0,
+		N_("RECV <text>, send raw data to xchat, as if it was received from the irc server")},
 	{"RPING", cmd_rping, 1, 0, N_("RPING <server> [server], ping between servers")},
-	{"SAY", cmd_say, 0, 0,
-	 N_("SAY <text>, sends the text to the object in the current window")},
+	{"SAY", cmd_say, 0, 0, N_("SAY <text>, sends the text to the object in the current window")},
 #ifdef USE_OPENSSL
 	{"SERVCHAN", cmd_servchan, 0, 0,
-	 N_("SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel")},
+		N_("SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel")},
 #else
 	{"SERVCHAN", cmd_servchan, 0, 0,
-	 N_("SERVCHAN <host> <port> <channel>, connects and joins a channel")},
+		N_("SERVCHAN <host> <port> <channel>, connects and joins a channel")},
 #endif
 
 #ifdef USE_OPENSSL
 	{"SERVER", cmd_server, 0, 0,
-	 N_("SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the default port is 6667 for normal connections, and 9999 for ssl connections")},
+		N_("SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the default port is 6667 for normal connections, and 9999 for ssl connections")},
 #else
 	{"SERVER", cmd_server, 0, 0,
-	 N_("SERVER <host> [<port>] [<password>], connects to a server, the default port is 6667")},
+		N_("SERVER <host> [<port>] [<password>], connects to a server, the default port is 6667")},
 #endif
 	{"SET", cmd_set, 0, 0, N_("SET [-quiet] <variable> [<value>]")},
 	{"SETCURSOR", cmd_setcursor, 0, 0, N_("SETCURSOR [-|+]<position>")},
 	{"SETTAB", cmd_settab, 0, 0, 0},
 	{"SETTEXT", cmd_settext, 0, 0, 0},
 	{"TOPIC", cmd_topic, 1, 1,
-	 N_("TOPIC [<topic>], sets the topic if one is given, else shows the current topic")},
-	{"UNBAN", cmd_unban, 1, 1,
-	 N_("UNBAN <mask> [<mask>...], unbans the specified masks.")},
+		N_("TOPIC [<topic>], sets the topic if one is given, else shows the current topic")},
+	{"UNBAN", cmd_unban, 1, 1, N_("UNBAN <mask> [<mask>...], unbans the specified masks.")},
+	{"UNEXEMPT", cmd_unexempt, 1, 1, 
+		N_("UNEXEMPT <mask> [<mask>...], unexempts the specified masks.")},
 	{"UNIGNORE", cmd_unignore, 0, 0, N_("UNIGNORE <mask> [QUIET]")},
 	{"UNLOAD", cmd_unload, 0, 0, N_("UNLOAD <name>, unloads a plugin or script")},
 	{"USERLIST", cmd_userlist, 1, 1, 0},
-	{"VOICE", cmd_voice, 1, 1,
-	 N_("VOICE <nick>, gives voice status to someone (needs chanop)")},
-	{"WALLCHAN", cmd_wallchan, 1, 1,
-	 N_("WALLCHAN <message>, writes the message to all channels")},
+	{"VOICE", cmd_voice, 1, 1, N_("VOICE <nick>, gives voice status to someone (needs chanop)")},
+	{"WALLCHAN", cmd_wallchan, 1, 1, N_("WALLCHAN <message>, writes the message to all channels")},
 	{"WALLCHOPS", cmd_wallchops, 1, 1,
-	 N_("WALLCHOPS <message>, sends the message to all chanops on the current channel")},
+		N_("WALLCHOPS <message>, sends the message to all chanops on the current channel")},
 	{"WALLVOICES", cmd_wallvoices, 1, 1,
-	N_("WALLVOICES <message>, sends the message to all voiced users on the current channel")},
+		N_("WALLVOICES <message>, sends the message to all voiced users on the current channel")},
 };
 
 void
