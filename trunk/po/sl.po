@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-05 17:24+0200\n"
+"POT-Creation-Date: 2004-10-06 18:07+0200\n"
 "PO-Revision-Date: 2004-03-14 18:28+0100\n"
 "Last-Translator: Jure Cuhalev <gandalf@owca.info>\n"
 "Language-Team: Slovenian <translation-team-sl@lists.sourceforge.net>\n"
@@ -58,12 +58,12 @@ msgstr "Poveži se"
 msgid "Aborted"
 msgstr "Prekinjeno"
 
-#: src/common/dcc.c:1275
+#: src/common/dcc.c:1290
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Ne morem dostopati do %s\n"
 
-#: src/common/dcc.c:1878
+#: src/common/dcc.c:1893
 msgid "No active DCCs\n"
 msgstr "Ni aktivnih DCCjev\n"
 
@@ -1677,11 +1677,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "Ime poti"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:462 src/fe-gtk/dccgui.c:619
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "Lega"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:461 src/fe-gtk/dccgui.c:618
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "Velikost"
 
@@ -2953,7 +2953,7 @@ msgstr "Izobči"
 msgid "KickBan"
 msgstr "Brcni in izobči"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:655
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Podatki"
 
@@ -3084,7 +3084,7 @@ msgstr "Izbrati morate nekaj izobčenih."
 msgid "Mask"
 msgstr "Maska"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:464
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "Od"
 
@@ -3168,7 +3168,7 @@ msgstr "Pridruži se kanalu"
 msgid "Send file to %s"
 msgstr "Pošlji datoteko k %s"
 
-#: src/fe-gtk/dccgui.c:318
+#: src/fe-gtk/dccgui.c:322
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3185,11 +3185,11 @@ msgstr ""
 "Številka IP: %s\n"
 "    Začetek: %s Največ CPS: %d\n"
 
-#: src/fe-gtk/dccgui.c:351
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr "Sprejema te datoteke ni mogoče nadaljevati."
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3200,7 +3200,7 @@ msgstr ""
 "%s\n"
 "Nadaljevanje ni možno."
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
@@ -3208,78 +3208,78 @@ msgstr ""
 "Datoteka v imeniku za prenesene datoteke je večja od datoteke, ki vam je "
 "ponujena. Nadaljevnje ni možno."
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr "Ne morem nadaljevati datoteke od dveh ljudi."
 
-#: src/fe-gtk/dccgui.c:453
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "Tip MIME"
 
-#: src/fe-gtk/dccgui.c:459 src/fe-gtk/dccgui.c:616 src/fe-gtk/dccgui.c:739
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Stanje"
 
-#: src/fe-gtk/dccgui.c:460 src/fe-gtk/dccgui.c:617 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Datoteka"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:621
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr "Preostal čas"
 
-#: src/fe-gtk/dccgui.c:473
+#: src/fe-gtk/dccgui.c:477
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: Seznam prejetih datotek"
 
-#: src/fe-gtk/dccgui.c:501 src/fe-gtk/dccgui.c:654 src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "Prekini"
 
-#: src/fe-gtk/dccgui.c:503 src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: src/fe-gtk/dccgui.c:505
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "Nadaljuj"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "Odpri"
 
-#: src/fe-gtk/dccgui.c:620
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "Ack"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "Za"
 
-#: src/fe-gtk/dccgui.c:632
+#: src/fe-gtk/dccgui.c:636
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: Seznam pošiljanja datotek"
 
-#: src/fe-gtk/dccgui.c:740
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "Od/Za"
 
-#: src/fe-gtk/dccgui.c:741
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "Prejeto"
 
-#: src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "Poslano"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "Začetničas"
 
-#: src/fe-gtk/dccgui.c:753
+#: src/fe-gtk/dccgui.c:757
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: Seznam klepetov DCC"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-05 17:24+0200\n"
+"POT-Creation-Date: 2004-10-06 18:07+0200\n"
 "PO-Revision-Date: 2004-08-08 23:03+0800\n"
 "Last-Translator: Rongjun Mu <rongjunmu+i18n@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-translation@lists.linux.net.cn>\n"
@@ -64,12 +64,12 @@ msgstr "连接"
 msgid "Aborted"
 msgstr "中止"
 
-#: src/common/dcc.c:1275
+#: src/common/dcc.c:1290
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "无法访问 %s\n"
 
-#: src/common/dcc.c:1878
+#: src/common/dcc.c:1893
 msgid "No active DCCs\n"
 msgstr "无活跃的 DCC\n"
 
@@ -1641,11 +1641,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "路径名"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:462 src/fe-gtk/dccgui.c:619
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "位置"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:461 src/fe-gtk/dccgui.c:618
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "大小"
 
@@ -2912,7 +2912,7 @@ msgstr "封禁"
 msgid "KickBan"
 msgstr "踢出并封禁"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:655
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "信息"
 
@@ -3043,7 +3043,7 @@ msgstr "您必须选择一些被封禁者"
 msgid "Mask"
 msgstr "掩码"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:464
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "从"
 
@@ -3127,7 +3127,7 @@ msgstr "加入聊天室"
 msgid "Send file to %s"
 msgstr "给 %s 发送文件"
 
-#: src/fe-gtk/dccgui.c:318
+#: src/fe-gtk/dccgui.c:322
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3144,11 +3144,11 @@ msgstr ""
 "   IP 地址：%s\n"
 "  开始时间：%s   最大 CPS：%d\n"
 
-#: src/fe-gtk/dccgui.c:351
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr "改文件不可续传。"
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3159,84 +3159,84 @@ msgstr ""
 "%s.\n"
 "无法续传。"
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr "下载目录中的文件比提供的文件大，无法续传。"
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr "不能从两人那里续传同一文件"
 
-#: src/fe-gtk/dccgui.c:453
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "MIME 类型"
 
-#: src/fe-gtk/dccgui.c:459 src/fe-gtk/dccgui.c:616 src/fe-gtk/dccgui.c:739
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "状态"
 
-#: src/fe-gtk/dccgui.c:460 src/fe-gtk/dccgui.c:617 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "文件"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:621
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr "ETA"
 
-#: src/fe-gtk/dccgui.c:473
+#: src/fe-gtk/dccgui.c:477
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat：文件接收列表"
 
-#: src/fe-gtk/dccgui.c:501 src/fe-gtk/dccgui.c:654 src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "中止"
 
-#: src/fe-gtk/dccgui.c:503 src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "接受"
 
-#: src/fe-gtk/dccgui.c:505
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "续传"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "打开"
 
-#: src/fe-gtk/dccgui.c:620
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "确认"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "到"
 
-#: src/fe-gtk/dccgui.c:632
+#: src/fe-gtk/dccgui.c:636
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat：文件发送列表"
 
-#: src/fe-gtk/dccgui.c:740
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "到/从"
 
-#: src/fe-gtk/dccgui.c:741
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "接收"
 
-#: src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "已发送"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "开始时间"
 
-#: src/fe-gtk/dccgui.c:753
+#: src/fe-gtk/dccgui.c:757
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat：DCC 交谈列表"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-05 17:24+0200\n"
+"POT-Creation-Date: 2004-10-06 18:07+0200\n"
 "PO-Revision-Date: 2004-03-18 23:41+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -60,12 +60,12 @@ msgstr "Anslut"
 msgid "Aborted"
 msgstr "Avbruten"
 
-#: src/common/dcc.c:1275
+#: src/common/dcc.c:1290
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Kan inte komma åt %s\n"
 
-#: src/common/dcc.c:1878
+#: src/common/dcc.c:1893
 msgid "No active DCCs\n"
 msgstr "Inga aktiva DCC:er\n"
 
@@ -1701,11 +1701,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "Sökväg"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:462 src/fe-gtk/dccgui.c:619
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "Position"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:461 src/fe-gtk/dccgui.c:618
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "Storlek"
 
@@ -2977,7 +2977,7 @@ msgstr "Bannlys"
 msgid "KickBan"
 msgstr "Sparka ut och bannlys"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:655
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
@@ -3109,7 +3109,7 @@ msgstr "Du måste välja några bannlysningar."
 msgid "Mask"
 msgstr "Mask"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:464
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "Från"
 
@@ -3193,7 +3193,7 @@ msgstr "Gå in i kanalen"
 msgid "Send file to %s"
 msgstr "Skicka filen till %s"
 
-#: src/fe-gtk/dccgui.c:318
+#: src/fe-gtk/dccgui.c:322
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3210,11 +3210,11 @@ msgstr ""
 " IP-nummer: %s\n"
 "  Starttid: %s   Max CPS: %d\n"
 
-#: src/fe-gtk/dccgui.c:351
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr "Den filen kan inte återupptas."
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3225,7 +3225,7 @@ msgstr ""
 "%s.\n"
 "Återupptagning inte möjlig."
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
@@ -3233,78 +3233,78 @@ msgstr ""
 "Filen i hämtningskatalogen är större än den fil som erbjudits. "
 "Återupptagning är inte möjlig."
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr "Kan inte återuppta samma fil från två personer."
 
-#: src/fe-gtk/dccgui.c:453
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "MIME-typ"
 
-#: src/fe-gtk/dccgui.c:459 src/fe-gtk/dccgui.c:616 src/fe-gtk/dccgui.c:739
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Status"
 
-#: src/fe-gtk/dccgui.c:460 src/fe-gtk/dccgui.c:617 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Fil"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:621
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr "Beräknad tid"
 
-#: src/fe-gtk/dccgui.c:473
+#: src/fe-gtk/dccgui.c:477
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: Filmottagningslista"
 
-#: src/fe-gtk/dccgui.c:501 src/fe-gtk/dccgui.c:654 src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "Avbryt"
 
-#: src/fe-gtk/dccgui.c:503 src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "Acceptera"
 
-#: src/fe-gtk/dccgui.c:505
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "Återuppta"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "Öppna"
 
-#: src/fe-gtk/dccgui.c:620
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "Bekräftat"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "Till"
 
-#: src/fe-gtk/dccgui.c:632
+#: src/fe-gtk/dccgui.c:636
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: Filskickningslista"
 
-#: src/fe-gtk/dccgui.c:740
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "Till/Från"
 
-#: src/fe-gtk/dccgui.c:741
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "Mottaget"
 
-#: src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "Skickat"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "Starttid"
 
-#: src/fe-gtk/dccgui.c:753
+#: src/fe-gtk/dccgui.c:757
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC Chat-lista"

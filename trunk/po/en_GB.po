@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-05 17:24+0200\n"
+"POT-Creation-Date: 2004-10-06 18:07+0200\n"
 "PO-Revision-Date: 2004-04-20 12:14-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: English (British) <en_gb@li.org>\n"
@@ -58,12 +58,12 @@ msgstr "Connect"
 msgid "Aborted"
 msgstr "Aborted"
 
-#: src/common/dcc.c:1275
+#: src/common/dcc.c:1290
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Cannot access %s\n"
 
-#: src/common/dcc.c:1878
+#: src/common/dcc.c:1893
 msgid "No active DCCs\n"
 msgstr "No active DCCs\n"
 
@@ -1663,11 +1663,11 @@ msgstr "CPS"
 msgid "Pathname"
 msgstr "Pathname"
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:462 src/fe-gtk/dccgui.c:619
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "Position"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:461 src/fe-gtk/dccgui.c:618
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "Size"
 
@@ -2939,7 +2939,7 @@ msgstr "Ban"
 msgid "KickBan"
 msgstr "KickBan"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:655
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
@@ -3070,7 +3070,7 @@ msgstr "You must select some bans."
 msgid "Mask"
 msgstr "Mask"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:464
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "From"
 
@@ -3154,7 +3154,7 @@ msgstr "Join Channel"
 msgid "Send file to %s"
 msgstr "Send file to %s"
 
-#: src/fe-gtk/dccgui.c:318
+#: src/fe-gtk/dccgui.c:322
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3171,11 +3171,11 @@ msgstr ""
 " IP Number: %s\n"
 "Start Time: %s   Max CPS: %d\n"
 
-#: src/fe-gtk/dccgui.c:351
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr "That file is not resumable."
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3186,7 +3186,7 @@ msgstr ""
 "%s.\n"
 "Resuming not possible."
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
@@ -3194,78 +3194,78 @@ msgstr ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr "Cannot resume the same file from two people."
 
-#: src/fe-gtk/dccgui.c:453
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "MIME Type"
 
-#: src/fe-gtk/dccgui.c:459 src/fe-gtk/dccgui.c:616 src/fe-gtk/dccgui.c:739
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Status"
 
-#: src/fe-gtk/dccgui.c:460 src/fe-gtk/dccgui.c:617 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "File"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:621
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr "ETA"
 
-#: src/fe-gtk/dccgui.c:473
+#: src/fe-gtk/dccgui.c:477
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: File Receive List"
 
-#: src/fe-gtk/dccgui.c:501 src/fe-gtk/dccgui.c:654 src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "Abort"
 
-#: src/fe-gtk/dccgui.c:503 src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "Accept"
 
-#: src/fe-gtk/dccgui.c:505
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "Resume"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "Open"
 
-#: src/fe-gtk/dccgui.c:620
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "Ack"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "To"
 
-#: src/fe-gtk/dccgui.c:632
+#: src/fe-gtk/dccgui.c:636
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: File Send List"
 
-#: src/fe-gtk/dccgui.c:740
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "To/From"
 
-#: src/fe-gtk/dccgui.c:741
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "Recv"
 
-#: src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "Sent"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "StartTime"
 
-#: src/fe-gtk/dccgui.c:753
+#: src/fe-gtk/dccgui.c:757
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC Chat List"

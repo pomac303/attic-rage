@@ -825,9 +825,9 @@ irc_server(session *sess, int parc, char *parv[])
 					if (*text == '+')
 					{
 						id=TRUE;
-						text++;
+						parv[3]++;
 					} else if (*text == '-')
-						text++;
+						parv[3]++;
 				}
 
 				if (!ignore_check(parv[0], IG_NOTI))
@@ -861,9 +861,9 @@ irc_server(session *sess, int parc, char *parv[])
 					if (*text == '+')
 					{
 						id = TRUE;
-						text++;
+						parv[3]++;
 					} else if (*text == '-')
-						text++;
+						parv[3]++;
 				}
 				len = strlen(text);
 

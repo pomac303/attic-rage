@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xchat 1.9.x\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-05 17:24+0200\n"
+"POT-Creation-Date: 2004-10-06 18:07+0200\n"
 "PO-Revision-Date: 2002-11-19 15:07+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -61,12 +61,12 @@ msgstr "Ühenda"
 msgid "Aborted"
 msgstr "Katkestatud"
 
-#: src/common/dcc.c:1275
+#: src/common/dcc.c:1290
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Puudub ligipääs failile %s\n"
 
-#: src/common/dcc.c:1878
+#: src/common/dcc.c:1893
 msgid "No active DCCs\n"
 msgstr "Ei ole ühtegi aktiivset DCCd\n"
 
@@ -1632,11 +1632,11 @@ msgstr ""
 msgid "Pathname"
 msgstr ""
 
-#: src/common/text.c:955 src/fe-gtk/dccgui.c:462 src/fe-gtk/dccgui.c:619
+#: src/common/text.c:955 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "Positsioon"
 
-#: src/common/text.c:961 src/fe-gtk/dccgui.c:461 src/fe-gtk/dccgui.c:618
+#: src/common/text.c:961 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "Suurus"
 
@@ -2920,7 +2920,7 @@ msgstr "Bhutan"
 msgid "KickBan"
 msgstr "Nimi"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:655
+#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
@@ -3067,7 +3067,7 @@ msgstr ""
 msgid "Mask"
 msgstr "Mask"
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:464
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "Kasutajalt"
 
@@ -3154,7 +3154,7 @@ msgstr "Liitu kanaliga"
 msgid "Send file to %s"
 msgstr "Saada fail kasutajale %s"
 
-#: src/fe-gtk/dccgui.c:318
+#: src/fe-gtk/dccgui.c:322
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
@@ -3171,11 +3171,11 @@ msgstr ""
 " IP aadr: %s\n"
 "Algusaeg: %s   Max C/S: %d\n"
 
-#: src/fe-gtk/dccgui.c:351
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:355
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3183,84 +3183,84 @@ msgid ""
 "Resuming not possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:362
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:366
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:453
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "MIME tüüp"
 
-#: src/fe-gtk/dccgui.c:459 src/fe-gtk/dccgui.c:616 src/fe-gtk/dccgui.c:739
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Olek"
 
-#: src/fe-gtk/dccgui.c:460 src/fe-gtk/dccgui.c:617 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Fail"
 
-#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:621
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:473
+#: src/fe-gtk/dccgui.c:477
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: saabuvate failide nimekiri"
 
-#: src/fe-gtk/dccgui.c:501 src/fe-gtk/dccgui.c:654 src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "Katkesta"
 
-#: src/fe-gtk/dccgui.c:503 src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "Võta vastu"
 
-#: src/fe-gtk/dccgui.c:505
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "Jätka"
 
-#: src/fe-gtk/dccgui.c:509
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "Ava"
 
-#: src/fe-gtk/dccgui.c:620
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "Kviteering"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "Kellele"
 
-#: src/fe-gtk/dccgui.c:632
+#: src/fe-gtk/dccgui.c:636
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: saadetavate failide nimekiri"
 
-#: src/fe-gtk/dccgui.c:740
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "Kellele/Kellelt"
 
-#: src/fe-gtk/dccgui.c:741
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "Siia"
 
-#: src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "Sinna"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "Algusaeg"
 
-#: src/fe-gtk/dccgui.c:753
+#: src/fe-gtk/dccgui.c:757
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC vestluste nimekiri"
