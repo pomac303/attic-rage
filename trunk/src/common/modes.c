@@ -651,7 +651,14 @@ inbound_005 (server * serv, int parc, char *parv[])
 		pre = strchr(parv[w], '=');
 		if (pre)
 			pre[0] = 0;
-		dict_005_insert(serv->isupport, parv[w], pre ? (pre +1) : NULL);
+		/* Check for sevrers returning broken PREFIX data */
+		if((strcmp("PREFIX", parv[w]) == 0) && pre && !(pre[1] == '('))
+			EMIT_SIGNAL(XP_TE_SERVERERROR, serv->front_session, 
+					"This server has a broken PREFIX definition in it's ISUPPORT message.",
+					NULL, NULL, NULL, 0);
+		else
+			dict_005_insert(serv->isupport, parv[w], pre ? (pre +1) : NULL);
+
 		if (pre)
 			pre[0] = '=';
 		w++;

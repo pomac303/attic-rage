@@ -323,7 +323,9 @@ set_server_defaults (server *serv)
 
 	/* setup some defaults */
 	dict_005_insert(serv->isupport, "CHANMODES", "b,k,l,imnpst");
-	dict_005_insert(serv->isupport, "CHANTYPES", "#&"); 
+	/* Some servers don't do 005 yet and some server coders might
+	 * think that rfc 2811 applies to all networks */
+	dict_005_insert(serv->isupport, "CHANTYPES", "#&!+"); 
 	dict_005_insert(serv->isupport, "PREFIX", "(ov)@+");
 	dict_005_insert(serv->isupport, "MODES", "3"); /* 3 is default in rfc afair */
 	
