@@ -584,7 +584,7 @@ static void
 dcc_send_ack (struct DCC *dcc)
 {
 	/* send in 64-bit big endian */
-	if (dcc->size > 4294967295U)
+	if (dcc->size > G_MAXUINT32)
 	{
 		guint64 pos = htonll(dcc->pos);
 		send (dcc->sok, (char *) &pos, sizeof(pos), 0);
@@ -950,7 +950,7 @@ dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	if (len < 4)
 		return TRUE;
 	/* if file is larger than 4 gig, assume that the ack is 64 bit */
-	if(dcc->size > 4294967295U)
+	if(dcc->size > G_MAXUINT32)
 	{
 		guint64 ack;
 		recv (sok, (char *) &ack, sizeof(ack), 0);
@@ -1096,7 +1096,8 @@ dcc_listen_init (struct DCC *dcc, rage_session *sess)
 		len = 1;
 		setsockopt (dcc->sok, SOL_SOCKET, SO_REUSEADDR, (char *) &len, sizeof (len));
 
-	} else
+	}
+	else
 	{
 		/* try random port */
 		SAddr.sin_port = 0;
@@ -1125,21 +1126,19 @@ dcc_listen_init (struct DCC *dcc, rage_session *sess)
 		dcc->addr = prefs.dcc_ip;
 	else if (prefs.dcc_ip_str[0])
 	{
-	   dns_query = gethostbyname ((const char *) prefs.dcc_ip_str);
+		dns_query = gethostbyname ((const char *) prefs.dcc_ip_str);
 
-	   if (dns_query != NULL &&
-	       dns_query->h_length == 4 &&
-	       dns_query->h_addr_list[0] != NULL)
-		  {
-		    /*we're offered at least one IPv4 address: we take the first*/
-
-		    dcc->addr = (unsigned long) *((guint32*) dns_query->h_addr_list[0]);
-		  }
+		if (dns_query != NULL && dns_query->h_length == 4 &&
+				dns_query->h_addr_list[0] != NULL)
+		{
+			/*we're offered at least one IPv4 address: we take the first*/
+			dcc->addr = (unsigned long) *((guint32*) dns_query->h_addr_list[0]);
+		}
 	}
 
 	/*if nothing else worked we use the address we bound to*/
 	if (dcc->addr == 0)
-	   dcc->addr = my_addr;
+		dcc->addr = my_addr;
 
 	dcc->addr = ntohl (dcc->addr);
 
@@ -1152,85 +1151,28 @@ dcc_listen_init (struct DCC *dcc, rage_session *sess)
 	return TRUE;
 }
 
-static rage_session *dccsess;
-static char *dccto;				  /* lame!! */
-static int dccmaxcps;
-static int recursive = FALSE;
-
-static void
-dcc_send_wild (char *file)
-{
-	dcc_send (dccsess, dccto, file, dccmaxcps, 0);
-}
-
 void
-dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
+dcc_add_send (struct DCC *dcc)
 {
 	char outbuf[512];
 	struct stat st;
-	struct DCC *dcc;
-	char *file_fs;
-
-	/* this is utf8 */
-	file = expand_homedir (file);
-
-	if (!recursive && (strchr (file, '*') || strchr (file, '?')))
-	{
-		char path[256];
-		char wild[256];
-		char *path_fs;	/* local filesystem encoding */
-
-		safe_strcpy (wild, file_part (file), sizeof (wild));
-		path_part (file, path, sizeof (path));
-		if (path[0] != '/' || path[1] != '\0')
-			path[strlen (path) - 1] = 0;	/* remove trailing slash */
-
-		dccsess = sess;
-		dccto = to;
-		dccmaxcps = maxcps;
-
-		free (file);
-
-		/* for_files() will use opendir, so we need local FS encoding */
-		path_fs = g_filename_from_utf8 (path, -1, 0, 0, 0);
-		if (path_fs)
-		{
-			recursive = TRUE;
-			for_files (path_fs, wild, dcc_send_wild);
-			recursive = FALSE;
-			g_free (path_fs);
-		}
-
-		return;
-	}
-
-	dcc = new_dcc ();
-	if (!dcc)
-		return;
-	dcc->file = file;
-	dcc->maxcps = maxcps;
-
-	/* get the local filesystem encoding */
-	file_fs = g_filename_from_utf8 (file, -1, 0, 0, 0);
+	char *file, *file_fs = g_filename_from_utf8 (dcc->file, -1, 0, 0, 0);
 
 	if (stat (file_fs, &st) != -1)
 	{
-		if (sizeof (st.st_size) > 4 && st.st_size > 4294967295U)
-			PrintText (sess, "Warning, the file you want to send is larger than 4GB and most clients can't handle this. Make sure that the other user either uses Rage as well or another client with 64bit file access.\n");
+		if (sizeof (st.st_size) > 4 && st.st_size > G_MAXUINT32)
+			PrintText (dcc->serv->front_session, "Warning, the file you want to send is larger than 4GB and most clients can't handle this. Make sure that the other user either uses Rage as well or another client with 64bit file access.\n");
 		if (*file_part (file_fs) && !S_ISDIR (st.st_mode))
 		{
 			if (st.st_size > 0)
 			{
 				dcc->starttime = dcc->offertime = time (0);
-				dcc->serv = sess->server;
-				dcc->dccstat = STAT_QUEUED;
-				dcc->size = (off_t)st.st_size;
-				dcc->type = TYPE_SEND;
+				dcc->size = (guint64)st.st_size;
 				dcc->fp = open (file_fs, OFLAGS | O_RDONLY);
 				if (dcc->fp != -1)
 				{
 					g_free (file_fs);
-					if (passive || dcc_listen_init (dcc, sess))
+					if (dcc->pasvid || dcc_listen_init (dcc, dcc->serv->front_session))
 					{
 						char havespaces = 0;
 						file = dcc->file;
@@ -1239,21 +1181,21 @@ dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 							if (*file == ' ')
 							{
 								if (prefs.dcc_send_fillspaces)
-						    		*file = '_';
+						    			*file = '_';
 							  	else
-							   	havespaces = 1;
+							   		havespaces = 1;
 							}
 							file++;
 						}
-						dcc->nick = strdup (to);
 						if (prefs.autoopendccsendwindow)
 						{
 							if (fe_dcc_open_send_win (TRUE))	/* already open? add */
 								fe_dcc_add (dcc);
-						} else
+						}
+						else
 							fe_dcc_add (dcc);
 
-						if (passive)
+						if (dcc->pasvid)
 						{
 							dcc->pasvid = new_id();
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
@@ -1261,7 +1203,8 @@ dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 									"DCC SEND %s %lu %d %llu %d",
 									file_part (dcc->file), 199ul,
 									0, (guint64)dcc->size, dcc->pasvid);
-						} else
+						}
+						else
 						{
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
 									"DCC SEND \"%s\" %lu %d %llu" :
@@ -1269,22 +1212,99 @@ dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 									file_part (dcc->file), dcc->addr,
 									dcc->port, (guint64)dcc->size);
 						}
-						sess->server->p_ctcp (sess->server, to, outbuf);
+						dcc->serv->p_ctcp (dcc->serv, dcc->nick, outbuf);
 
-						EMIT_SIGNAL (XP_TE_DCCOFFER, sess, file_part (dcc->file),
-										 to, dcc->file, NULL, 0);
-					} else
-					{
+						EMIT_SIGNAL (XP_TE_DCCOFFER, dcc->serv->front_session, file_part (dcc->file),
+								dcc->nick, dcc->file, NULL, 0);
+					} 
+					else
 						dcc_close (dcc, 0, TRUE);
-					}
 					return;
 				}
 			}
 		}
 	}
-	PrintTextf (sess, _("Cannot access %s\n"), dcc->file);
+	PrintTextf (dcc->serv->front_session, _("Cannot access %s\n"), dcc->file);
 	g_free (file_fs);
 	dcc_close (dcc, 0, TRUE);
+}
+
+void
+dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
+{
+	const gchar *entry;
+	char buf[512];
+	GDir *dir;
+	struct DCC *dcc;
+	GPatternSpec *pattern;
+
+	/* this is utf8 */
+	file = expand_homedir (file);
+
+	/* does this filename contain globbings? */
+	if (strchr (file, '*') || strchr (file, '?'))
+	{
+		char path[256];
+		char wild[256];
+		char *path_fs;  /* local filesystem encoding */
+
+		safe_strcpy (wild, file_part (file), sizeof (wild));
+		path_part (file, path, sizeof (path));
+		if (path[0] != '/' || path[1] != '\0')
+			path[strlen (path) - 1] = 0;    /* remove trailing slash */
+
+		free (file);
+
+		path_fs = g_filename_from_utf8 (path, -1, 0, 0, 0);
+		if (path_fs)
+		{
+			pattern = g_pattern_spec_new(wild);
+			dir = g_dir_open(path_fs, 0, NULL);
+			if (dir)
+			{
+				while ((entry = g_dir_read_name(dir)))
+				{
+					if (g_pattern_match_string(pattern, entry))
+					{
+						dcc = new_dcc ();
+						if (!dcc)
+							return;
+						dcc->maxcps = maxcps;
+						dcc->serv = sess->server;
+						dcc->dccstat = STAT_QUEUED;
+						dcc->type = TYPE_SEND;
+						dcc->nick = g_strdup(to);
+						dcc->pasvid = passive;
+						
+						snprintf(buf, sizeof(buf), "%s/%s", path_fs, entry);
+						dcc->file = g_strdup(buf);
+						dcc->destfile = g_strdup(buf); /* original filename for reoffer */
+						dcc_add_send(dcc);
+						buf[0] = 0;
+					}
+				}
+				g_dir_close(dir);
+			}
+			g_pattern_spec_free(pattern);
+			g_free (path_fs);
+		}
+		return;
+	}
+	
+	/* common dcc */
+	dcc = new_dcc ();
+	if (!dcc)
+		return;
+	dcc->maxcps = maxcps;
+	dcc->serv = sess->server;
+	dcc->dccstat = STAT_QUEUED;
+	dcc->type = TYPE_SEND;
+	dcc->nick = g_strdup(to);
+	dcc->pasvid = passive;
+	dcc->file = file;
+	dcc->destfile = g_strdup(file); /* original filename for reoffer */
+	
+	dcc_add_send(dcc);
 }
 
 static struct DCC *

@@ -87,13 +87,7 @@
 #endif
 
 /* Require glib */
-#include <glib/gslist.h>
-#include <glib/glist.h>
-#include <glib/gutils.h>
-#include <glib/giochannel.h>
-#include <glib/gstrfuncs.h>
-#include <glib/ghash.h>
-#include <glib/gcompletion.h>
+#include <glib.h>
 #ifndef HAVE_SNPRINTF
 #define snprintf g_snprintf
 #endif
@@ -104,27 +98,12 @@
 #endif
 
 /* 64-bit stuff */
-#if defined(__linux__)
-	#include <byteswap.h>
-	#if __BYTE_ORDER == __LITTLE_ENDIAN
-	#define htonll(x)	bswap_64(x)
-	#define ntohll(x)	bswap_64(x)
-	#else
-	#define htonll(x)	(x)
-	#define ntohll(x)	(x)
-	#endif
-#elif defined(__APPLE__) && defined(__MACH__)
-	#if __BYTE_ORDER == __BIG_ENDIAN
-	#define ntohll(x)	(x)
-	#define htonll(x)	(x)
-	#else
-	/* Can't hurt */
-	#define ntohll(x) (((int64_t)(ntohl((int)((x << 32) >> 32))) << 32) | (unsigned int)ntohl(((int)(x >> 32))))
-	#define htonll(x) ntohll(x)
-	#endif
-#elif defined(WIN32)
-	#define ntohll(x) (((__int64)(ntohl((int)((x << 32) >> 32))) << 32) | (unsigned int)ntohl(((int)(x >> 32))))
-	#define htonll(x) ntohll(x)
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+	#define htonll(x)	GUINT64_TO_BE(x)
+	#define ntohll(x)	GUINT64_FROM_BE(x)
+#elif G_BYTE_ORDER == G_BIG_ENDIAN
+	#define ntohll(x)       (x)
+	#define htonll(x)       (x)
 #else
 	#error No 64-bit stuff defined for your platform
 #endif

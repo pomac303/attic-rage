@@ -608,7 +608,7 @@ reoffer_send_clicked (GtkWidget * wid, gpointer none)
 		if (dcc->dccstat == STAT_FAILED || dcc->dccstat == STAT_ABORTED)
 		{
 			dcc_send(dcc->serv->front_session, dcc->nick, 
-				dcc->file, dcc->maxcps, dcc->pasvid ? 1 : 0);
+				dcc->destfile, dcc->maxcps, dcc->pasvid ? 1 : 0);
 			dcc_close(dcc, dcc->dccstat, TRUE);
 		}
 	}

@@ -65,7 +65,7 @@
 #define MAX_TOKENS	64
 
 #define safe_strcpy(dest,src,len)	{strncpy(dest,src,len); \
-												dest[len-1] = 0;}
+	dest[len-1] = 0;}
 
 #if defined(ENABLE_NLS) && !defined(_)
 #  include <libintl.h>

@@ -377,6 +377,17 @@ PARSE_FUNC(numeric_isupport)
 	return 0;
 }
 
+PARSE_FUNC(numeric_bounce)
+{
+	char buf[800];
+	PrintText(sess, "Warning, this code is untested. Please report the server that triggered it.\n");
+	snprintf(buf, sizeof(buf), "Got bounced to %s:%s, due to: %s\n", parv[0], parv[1], parv[2]);
+	PrintText(sess, buf);
+	snprintf(buf, sizeof(buf), "server %s:%s", parv[0], parv[1]);
+	handle_command(sess, buf, 0);
+	return 1;
+}
+
 PARSE_FUNC(numeric_silence)
 {
 	EMIT_SIGNAL(XP_TE_SILENCE, sess->server->server_session, 
@@ -423,7 +434,7 @@ PARSE_FUNC(numeric_userhost)
 
 PARSE_FUNC(numeric_ison)
 {
-	notify_markonline(sess->server,parv);
+	notify_markonline(sess->server, parv[3]);
 	return 1;
 }
 
@@ -864,6 +875,7 @@ static ircparser_numeric irc_numerics[] = {
 	{RPL_WELCOME, numeric_welcome},			/* 001 */
 	{RPL_MYINFO, numeric_myinfo},			/* 004 */
 	{RPL_ISUPPORT, numeric_isupport},		/* 005 */
+	{10, numeric_bounce},				/* RPL_BOUNCE */
 	{271, numeric_silence},				/* RPL_SILENCE ? */
 	{290, numeric_capab},				/* RPL_CAPAB */
 	{RPL_AWAY, numeric_away},			/* 301 */

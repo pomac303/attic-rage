@@ -177,15 +177,16 @@ expand_homedir (char *file)
 		if (file[1] != '\0' && file[1] != '/')
 		{
 			user = strdup(file);
-			if (strchr(user,'/') != NULL)
-				*(strchr(user,'/')) = '\0';
+			if ((ret = strchr(user,'/')))
+				*ret = '\0';
 			if ((pw = getpwnam(user + 1)) == NULL)
 			{
 				free(user);
 				return strdup(file);
 			}
 			free(user);
-			user = strchr(file, '/') != NULL ? strchr(file,'/') : file;
+			if((user = strchr(file, '/')) == NULL)
+				user = file;
 			ret = malloc(strlen(user) + strlen(pw->pw_dir) + 1);
 			strcpy(ret, pw->pw_dir);
 			strcat(ret, user);
@@ -533,30 +534,26 @@ break_while:
 void
 for_files (char *dirname, char *mask, void callback (char *file))
 {
-#ifndef WIN32
-	DIR *dir;
-	struct dirent *ent;
-	char *buf;
+	GDir *dir;
+	const gchar *entry;
+	char buf[512];
+	GPatternSpec *pattern = g_pattern_spec_new(mask);
 
-	dir = opendir (dirname);
-	if (dir)
+	dir = g_dir_open(dirname, 0, NULL);
+	if(dir)
 	{
-		while ((ent = readdir (dir)))
+		while ((entry = g_dir_read_name(dir)))
 		{
-			if (strcmp (ent->d_name, ".") && strcmp (ent->d_name, ".."))
+			if (g_pattern_match_string(pattern, entry))
 			{
-				if (match (mask, ent->d_name))
-				{
-					buf = malloc (strlen (dirname) + strlen (ent->d_name) + 2);
-					sprintf (buf, "%s/%s", dirname, ent->d_name);
-					callback (buf);
-					free (buf);
-				}
+				snprintf(buf, sizeof(buf), "%s/%s", dirname, entry);
+				callback(buf);
+				buf[0] = 0;
 			}
 		}
-		closedir (dir);
+		g_dir_close(dir);
 	}
-#endif
+	g_pattern_spec_free(pattern);
 }
 
 /*void

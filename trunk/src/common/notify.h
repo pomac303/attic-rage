@@ -35,7 +35,7 @@ int notify_isnotify (rage_session *sess, char *name);
 struct notify_per_server *notify_find_server_entry (struct notify *notify, struct server *serv);
 
 /* the old ISON stuff - remove me? */
-void notify_markonline (server *serv, char *word[]);
+void notify_markonline (server *serv, char *nicks);
 int notify_checklist (void);
 
 #endif

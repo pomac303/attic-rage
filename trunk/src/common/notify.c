@@ -272,12 +272,15 @@ notify_send_watches (server * serv)
 /* called when receiving a ISON 303 - should this func go? */
 
 void
-notify_markonline (server *serv, char *word[])
+notify_markonline (server *serv, char *nicks)
 {
 	struct notify *notify;
 	struct notify_per_server *servnot;
 	GSList *list = notify_list;
-	int i, seen;
+	char *parv[MAX_TOKENS];
+	int i, seen, parc;
+
+	split_cmd_parv(nicks,&parc,parv);
 
 	while (list)
 	{
@@ -288,29 +291,18 @@ notify_markonline (server *serv, char *word[])
 			list = list->next;
 			continue;
 		}
-		i = 4;
 		seen = FALSE;
-		while (*word[i])
+		for (i = 0; i < parc; i++)
 		{
-			if (!serv->p_cmp (notify->name, word[i]))
+			if (!serv->p_cmp (notify->name, parv[i]))
 			{
 				seen = TRUE;
 				notify_announce_online (serv, servnot, notify->name);
 				break;
 			}
-			i++;
-			/* FIXME: word[] is only a 32 element array, limits notify list to
-			   about 27 people */
-			if (i > PDIWORDS - 5)
-			{
-				/*fprintf (stderr, _("*** XCHAT WARNING: notify list too large.\n"));*/
-				break;
-			}
 		}
 		if (!seen && servnot->ison)
-		{
 			notify_announce_offline (serv, servnot, notify->name, FALSE);
-		}
 		list = list->next;
 	}
 	fe_notify_update (0);
