@@ -1892,7 +1892,6 @@ mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
 	}
 	else
 	{
-		//mg_create_link_buttons (gui->topic_bar, NULL);
 		gtkutil_button (gui->topic_bar, GTK_STOCK_CLOSE, _("Close this tab/window"),
 				mg_x_click_cb, NULL, 0);
 		gtkutil_button (gui->topic_bar, GTK_STOCK_REDO, _("Attach/Detach this tab"),
@@ -2667,7 +2666,6 @@ mg_create_generic_tab (char *name, char *title, int force_toplevel,
 				mg_x_click_cb, userdata, 0);
 		gtkutil_button (hbox, GTK_STOCK_REDO, _("Attach/Detach this tab"),
 				mg_link_cb, userdata, 0);
-		//mg_create_link_buttons (hbox, tab);
 		gtk_widget_show (hbox);
 	}
 
