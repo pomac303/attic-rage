@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-10 03:54+0200\n"
+"POT-Creation-Date: 2004-10-11 15:01+0200\n"
 "PO-Revision-Date: 2004-06-14 12:21+0400\n"
 "Last-Translator: Peter Astakhov <astakhovp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -42,36 +42,36 @@ msgstr ""
 "* По умолчанию каталог для скачивания в вашем  \n"
 "  домашнем каталоге. Вы можете поменять его позже.\n"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Ожидание"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Активен"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Ошибка"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Готово"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Соединение"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Остановлено"
 
-#: src/common/dcc.c:1290
+#: src/common/dcc.c:1281
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Нет доступа к %s\n"
 
-#: src/common/dcc.c:1893
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "Нет активных DCC\n"
 

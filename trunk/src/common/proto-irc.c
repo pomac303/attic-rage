@@ -898,21 +898,10 @@ irc_server(session *sess, int parc, char *parv[])
 				/* TODO: Not good enough */
 				if (text[0] == '\001' && text[len-1]=='\001') 
 				{
-					int parc2;
-					char msg[512]; /* String max len is 512, this is a part of a string */
 					text[len-1]=0;
 					parv[3]++;
-					if (strncasecmp(text,"ACTION",6)!=0)
-						flood_check(nick,ip,
-								sess->server,
-								sess,0);
-					strcpy(msg, parv[3]);
-					/* DCC is handled in ctcp_handle aswell.
-					 * Note that the -1 in these 2 lines is essential since
-					 * the splitter starts at element 1. */
-					split_cmd_parv_n(parv[3], &parc2, parv + parc - 1, MAX_TOKENS - parc);
-					parc += parc2 -1;
-					ctcp_handle(sess, to, nick, msg, parc, parv);
+					/* DCC is handled in ctcp_handle aswell. */
+					ctcp_handle(sess, to, nick, ip, parv[3], parc, parv);
 				} else
 				{
 					if (is_channel(sess->server,to))

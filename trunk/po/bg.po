@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-10 03:54+0200\n"
+"POT-Creation-Date: 2004-10-11 15:01+0200\n"
 "PO-Revision-Date: 2004-04-03 15:45+0300\n"
 "Last-Translator: Rostislav Raykov <zbrox@dir.bg>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
@@ -36,36 +36,36 @@ msgstr ""
 "* Да влизате в IRC като root е ГЛУПАВО! Направете си\n"
 "  потребителски акаунт и използвайте него.\n"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Чака"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Активна"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Пропадна"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Готово"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Свързва"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Прекъснато"
 
-#: src/common/dcc.c:1290
+#: src/common/dcc.c:1281
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Няма достъп до %s\n"
 
-#: src/common/dcc.c:1893
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "Няма активни DCC-та\n"
 

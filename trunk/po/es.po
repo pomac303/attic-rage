@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-10 03:54+0200\n"
+"POT-Creation-Date: 2004-10-11 15:01+0200\n"
 "PO-Revision-Date: 2004-03-19 02:18+0100\n"
 "Last-Translator: Ramón Rey Vicente <ramon.rey@hispalinux.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -38,36 +38,36 @@ msgstr ""
 "* ¡Ejecutar IRC como root es peligroso!. Debería crear una\n"
 "  cuenta de usuario normal y usarla para conectarse.\n"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Esperando"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Activo"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Ha fallado"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Terminado"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Conectar"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Abortado"
 
-#: src/common/dcc.c:1290
+#: src/common/dcc.c:1281
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "No se puede acceder a %s\n"
 
-#: src/common/dcc.c:1893
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "No hay DCCs activos\n"
 

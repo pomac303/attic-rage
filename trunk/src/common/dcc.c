@@ -1613,30 +1613,36 @@ dcc_deny_chat (void *ud)
 #define M_SEND		MAKE4('S','E','N','D')
 
 void
-handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
+handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 {
 	char tbuf[512];
+	char *parv[MAX_TOKENS], *type;
+	int parc;
 	struct DCC *dcc;
-	char *type = parv[4];
 	int port, pasvid = 0;
 	unsigned long addr;
 	off_t size;
 
+	strcpy(tbuf, ctcp_data); /* FIXME: ok? */
+	split_cmd_parv(tbuf, &parc, parv);
+
+	type = parv[0];
+	
 	switch(MAKE4(toupper(type[0]),toupper(type[1]),
 				toupper(type[2]),toupper(type[3])))
 	{
 		case M_CHAT:
 		{
-			port = atoi (parv[7]);
-			addr = strtoul (parv[6], NULL, 10);
+			port = atoi (parv[3]);
+			addr = strtoul (parv[2], NULL, 10);
 
 			if (port == 0)
-				pasvid = atoi (parv[8]);
+				pasvid = atoi (parv[4]);
 
 			if (!addr /*|| (port < 1024 && port != 0)*/
 				|| port > 0xffff || (port == 0 && pasvid == 0))
 			{
-				dcc_malformed (sess, nick, parv[3] + 2);
+				dcc_malformed (sess, nick, ctcp_data);
 				return;
 			}
 			dcc = find_dcc (nick, "", TYPE_CHATSEND);
@@ -1682,21 +1688,21 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 		}
 		case M_RESUME:
 		{
-			port = atoi (parv[6]);
+			port = atoi (parv[2]);
 
 			if (port == 0)
 			{ /* PASSIVE */
-				pasvid = atoi(parv[8]);
+				pasvid = atoi(parv[4]);
 				dcc = find_dcc_from_id(pasvid, TYPE_SEND);
 			} else
 				dcc = find_dcc_from_port (port, TYPE_SEND);
 			
 			if (!dcc)
-				dcc = find_dcc (nick, parv[5], TYPE_SEND);
+				dcc = find_dcc (nick, parv[1], TYPE_SEND);
 
 			if (dcc)
 			{
-				size = strtoull (parv[7], NULL, 10);
+				size = strtoull (parv[3], NULL, 10);
 				dcc->resumable = size;
 				if (dcc->resumable < dcc->size)
 				{
@@ -1726,7 +1732,7 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 		}
 		case M_ACCEPT:
 		{
-			port = atoi (parv[6]);
+			port = atoi (parv[2]);
 			dcc = find_dcc_from_port (port, TYPE_RECV);
 			if (dcc && dcc->dccstat == STAT_QUEUED)
 				dcc_connect (dcc);
@@ -1734,28 +1740,28 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 		}
 		case M_SEND:
 		{
-			char *file = file_part (parv[5]);
+			char *file = file_part (parv[1]);
 			int psend = 0;
 			int len = 0;
 
-			port = atoi (parv[7]);
-			addr = strtoul (parv[6], NULL, 10);
-			size = strtoull (parv[8], NULL, 10);
+			port = atoi (parv[3]);
+			addr = strtoul (parv[2], NULL, 10);
+			size = strtoull (parv[4], NULL, 10);
 
 			if (port == 0) /* Passive dcc requested */
-				pasvid = atoi (parv[9]);
-			else if (parv[9][0] != 0)
+				pasvid = atoi (parv[5]);
+			else if (parv[5][0] != 0)
 			{
 				/* Requesting passive dcc.
 				 * Destination user of an active dcc is giving his
 				 * TRUE address/port/pasvid data.
 				 * This information will be used later to
 				 * establish the connection to the user.
-				 * We can recognize this type of dcc using parv[9]
+				 * We can recognize this type of dcc using parv[5]
 				 * because this field is always null (no pasvid)
 				 * in normal dcc sends.
 				 */
-				pasvid = atoi (parv[9]);
+				pasvid = atoi (parv[5]);
 				psend = 1;
 			}
 
@@ -1763,7 +1769,7 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 			if (!addr || !size /*|| (port < 1024 && port != 0)*/
 				|| port > 0xffff || (port == 0 && pasvid == 0))
 			{
-				dcc_malformed (sess, nick, parv[3] + 2);
+				dcc_malformed (sess, nick, ctcp_data);
 				return;
 			}
 
@@ -1781,10 +1787,10 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 					dcc_connect (dcc);
 				} 
 				else
-					dcc_malformed (sess, nick, parv[3] + 2);
+					dcc_malformed (sess, nick, ctcp_data);
 				return;
 			}
-
+			
 			dcc = new_dcc ();
 			if (dcc)
 			{
@@ -1852,12 +1858,12 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 			len = strlen(tbuf) + 1;
 			snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 			EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
-						 file, tbuf, tbuf + len, 0);
+						 dcc->file, tbuf, tbuf + len, 0);
 			return;
 		}
 		default:
 			EMIT_SIGNAL (XP_TE_DCCGENERICOFFER, sess->server->front_session,
-							 parv[3] + 2, nick, NULL, NULL, 0);
+							 ctcp_data, nick, NULL, NULL, 0);
 			return;
 	}
 }

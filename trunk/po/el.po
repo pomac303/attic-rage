@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: X-Chat 1.9.8\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-10 03:54+0200\n"
+"POT-Creation-Date: 2004-10-11 15:01+0200\n"
 "PO-Revision-Date: 2003-01-14 03:00GMT+2\n"
 "Last-Translator: Dokianakis Theofanis <madf@hellug.gr>\n"
 "Language-Team: Greek <EL@li.org>\n"
@@ -36,36 +36,36 @@ msgstr ""
 "  Πρέπει να δημιουργήσετε ένα Λογαριασμό Απλού Χρήστη\n"
 "  και να χρησιμοποιείτε αυτόν.\n"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Αναμονή"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Ενεργό"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Απέτυχε"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Έγινε"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Σύνδεση"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Ματαιώθηκε"
 
-#: src/common/dcc.c:1290
+#: src/common/dcc.c:1281
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Αδυναμία πρόσβασης στο %s\n"
 
-#: src/common/dcc.c:1893
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "Μη ενεργά DCC\n"
 

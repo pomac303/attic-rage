@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-10 03:54+0200\n"
+"POT-Creation-Date: 2004-10-11 15:01+0200\n"
 "PO-Revision-Date: 2004-08-11 14:51+0100\n"
 "Last-Translator: Claudio Satriano <satriano@na.infn.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -36,36 +36,36 @@ msgstr ""
 "  Sarebbe preferibile creare un account utente\n"
 "  e utilizzare tale utente per effettuare il login.\n"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "In attesa"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Attivo"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Fallito"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Completato"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Connessione"
 
-#: src/common/dcc.c:36
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Interrotto"
 
-#: src/common/dcc.c:1290
+#: src/common/dcc.c:1281
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Impossibile accedere a %s\n"
 
-#: src/common/dcc.c:1893
+#: src/common/dcc.c:1890
 msgid "No active DCCs\n"
 msgstr "Nessun DCC attivo\n"
 

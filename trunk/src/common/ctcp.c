@@ -22,12 +22,10 @@ static void
 ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],
 				char *conf)
 {
-	char buf[200]; /* FIXME: is this enough? */
 	conf = strdup (conf);
 	/* process %C %B etc */
 	check_special_chars (conf, TRUE);
-	auto_insert (tbuf, 2048, conf, parc, parv, "", "", 
-			paste_parv(buf, sizeof(buf), 4, parc, parv),
+	auto_insert (tbuf, 2048, conf, parc, parv, "", "", parv[4],
 					"" ,"", nick);
 	free (conf);
 	handle_command (sess, tbuf, FALSE);
@@ -48,23 +46,27 @@ ctcp_check (session *sess, char *tbuf, char *nick, int parc, char *parv[],
 }
 
 /* The fields are: level, weight, leak, limit and timestamp */
-static throttle_t throttle_data = { 0, 34, 10, 100, 0 };
-#define ctcp_throttle gen_throttle(&throttle_data)
+static throttle_t ctcp_throttle_data = { 0, 34, 10, 100, 0 };
+#define ctcp_throttle gen_throttle(&ctcp_throttle_data)
+static throttle_t dcc_throttle_data = { 0, 34, 20, 100, 0};
+#define dcc_throttle gen_throttle(&dcc_throttle_data)
 
 #define MAKE4(ch0, ch1, ch2, ch3)       (guint32)(ch0 | (ch1 << 8) | (ch2 << 16) | (ch3 << 24))
 
+#define M_DCC		MAKE4('D','C','C',' ')
 #define M_VERSION	MAKE4('V','E','R','S')
 #define M_ACTION	MAKE4('A','C','T','I')
 #define M_SOUND		MAKE4('S','O','U','N')
 
 void
-ctcp_handle (session *sess, char *to, char *nick,
+ctcp_handle (session *sess, char *to, char *nick, char *ip,
 				 char *msg, int parc, char *parv[])
 {
 	char *po;
 	session *chansess;
 	server *serv = sess->server;
 	char outbuf[1024];
+	char *tmp;
 	guint32 type = MAKE4(toupper(parv[3][0]), toupper(parv[3][1]), 
 			toupper(parv[3][2]), toupper(parv[3][3]));
 
@@ -74,20 +76,24 @@ ctcp_handle (session *sess, char *to, char *nick,
 			inbound_action (sess, to, nick, msg + 7, FALSE);
 			return;
 	}
-	else if(strncasecmp(parv[3], "DCC", 3) == 0)
+
+	flood_check(nick,ip,sess->server,sess,0);
+
+	tmp = parv[3];
+	parv[3] = split_cmd(&tmp);
+	parv[4] = tmp;
+
+	if (type == M_DCC)
 	{
-		/* but still let CTCP replies override DCCs */
-		if (!ctcp_check (sess, outbuf, nick, parc, parv, parv[3] + 2))
-		{
-			if (!(ctcp_throttle || ignore_check (parv[0], IG_DCC)))
-				handle_dcc (sess, nick, parc, parv);
-		}
+		/* we don't allow dcc overrides.*/
+		if (!(dcc_throttle || ignore_check (parv[0], IG_DCC)))
+			handle_dcc (sess, nick, parv[4]);
 		return;
 	}
 	
 	if (ctcp_throttle || ignore_check (parv[0], IG_CTCP))
 		return;
-	
+
 	if(!ctcp_check (sess, outbuf, nick, parc, parv, parv[3]))
 	{
 		switch (type)
@@ -101,6 +107,7 @@ ctcp_handle (session *sess, char *to, char *nick,
 				}
 				break;
 			case M_SOUND:
+			{
 				po = strchr (parv[4], '\001');
 				if (po)
 					po[0] = 0;
@@ -114,6 +121,7 @@ ctcp_handle (session *sess, char *to, char *nick,
 					xchat_exec (outbuf);
 				}
 				return;
+			}
 		}
 	}
 
