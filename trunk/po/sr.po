@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-06 18:07+0200\n"
+"POT-Creation-Date: 2004-10-08 23:30+0200\n"
 "PO-Revision-Date: 2004-08-08 23:02-0400\n"
 "Last-Translator: Aleksandar Jelenak <jelenak@netlinkplus.net>\n"
 "Language-Team: Serbian <gnu@prevod.org>\n"
@@ -3461,7 +3461,7 @@ msgstr "Грешка при учитавању распореда тастера
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2451
+#: src/fe-gtk/maingui.c:2454
 msgid "<none>"
 msgstr "<нема>"
 
@@ -3563,7 +3563,7 @@ msgstr "Ова се датотека не може читати."
 msgid "That mask already exists."
 msgstr "Овај шаблон већ постоји."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
 msgid "Private"
 msgstr "Приватно"
 
@@ -3678,51 +3678,51 @@ msgstr "Откачи језичак"
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Још увек ради пренос датотека, да ли ипак желите крај рада?"
 
-#: src/fe-gtk/maingui.c:1398 src/fe-gtk/maingui.c:1504
+#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
 msgid "User limit must be a number!\n"
 msgstr "Макс. број корисника мора бити унет као број!\n"
 
-#: src/fe-gtk/maingui.c:1526
+#: src/fe-gtk/maingui.c:1528
 msgid "Topic Protection"
 msgstr "Заштита теме"
 
-#: src/fe-gtk/maingui.c:1527
+#: src/fe-gtk/maingui.c:1529
 msgid "No outside messages"
 msgstr "Нема спољашњих порука"
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1530
 msgid "Secret"
 msgstr "Тајни"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1531
 msgid "Invite Only"
 msgstr "По позиву"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1533
 msgid "Moderated"
 msgstr "Надгледан"
 
-#: src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/maingui.c:1534
 msgid "Ban List"
 msgstr "Списак избачених"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1536
 msgid "Keyword"
 msgstr "Кључна реч"
 
-#: src/fe-gtk/maingui.c:1546
+#: src/fe-gtk/maingui.c:1548
 msgid "User Limit"
 msgstr "Макс. људи"
 
-#: src/fe-gtk/maingui.c:1562
+#: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Затвори прозор/језичак"
 
-#: src/fe-gtk/maingui.c:1659
+#: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Покажи/сакриј кориснике"
 
-#: src/fe-gtk/maingui.c:1772
+#: src/fe-gtk/maingui.c:1775
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3734,7 +3734,7 @@ msgstr ""
 "Можда користите управљач прозора који\n"
 "тренутно није подржан.\n"
 
-#: src/fe-gtk/maingui.c:1965
+#: src/fe-gtk/maingui.c:1968
 msgid "Enter new nickname:"
 msgstr "Унесите ново име:"
 
@@ -4323,77 +4323,77 @@ msgstr "Нова мрежа"
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "Да ли заиста треба брисати мрежу \"%s\" и све сервере у њој?"
 
-#: src/fe-gtk/servlistgui.c:976
+#: src/fe-gtk/servlistgui.c:990
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: Уреди (%s)"
 
-#: src/fe-gtk/servlistgui.c:995
+#: src/fe-gtk/servlistgui.c:1009
 #, c-format
 msgid "Servers for %s"
 msgstr "Сервери за: %s"
 
-#: src/fe-gtk/servlistgui.c:1006
+#: src/fe-gtk/servlistgui.c:1020
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1007
+#: src/fe-gtk/servlistgui.c:1021
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1023
 msgid "Your Details"
 msgstr "Ваши подаци"
 
-#: src/fe-gtk/servlistgui.c:1015
+#: src/fe-gtk/servlistgui.c:1029
 msgid "Use global user information"
 msgstr "Користи главне податке о кориснику"
 
-#: src/fe-gtk/servlistgui.c:1018 src/fe-gtk/servlistgui.c:1267
+#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
 msgid "_Nick name:"
 msgstr "_Надимак:"
 
-#: src/fe-gtk/servlistgui.c:1022 src/fe-gtk/servlistgui.c:1288
+#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
 msgid "_User name:"
 msgstr "_Корисничко име:"
 
-#: src/fe-gtk/servlistgui.c:1026
+#: src/fe-gtk/servlistgui.c:1040
 msgid "Real na_me:"
 msgstr "Право _име:"
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1043
 msgid "Connecting"
 msgstr "Повезивање у току"
 
-#: src/fe-gtk/servlistgui.c:1035
+#: src/fe-gtk/servlistgui.c:1049
 msgid "Auto connect to this network at startup"
 msgstr "Повежи се аутоматски када се програм покрене"
 
-#: src/fe-gtk/servlistgui.c:1037
+#: src/fe-gtk/servlistgui.c:1051
 msgid "Use a proxy server"
 msgstr "Користи заступника (proxy)"
 
-#: src/fe-gtk/servlistgui.c:1039
+#: src/fe-gtk/servlistgui.c:1053
 msgid "Use SSL for all the servers on this network"
 msgstr "Користи SSL за све рачунаре у овој мрежи"
 
-#: src/fe-gtk/servlistgui.c:1044
+#: src/fe-gtk/servlistgui.c:1058
 msgid "Accept invalid SSL certificate"
 msgstr "Прихвати неважећи SSL сертификат."
 
-#: src/fe-gtk/servlistgui.c:1050
+#: src/fe-gtk/servlistgui.c:1064
 msgid "C_hannels to join:"
 msgstr "Приступи _каналима:"
 
-#: src/fe-gtk/servlistgui.c:1052
+#: src/fe-gtk/servlistgui.c:1066
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr "Канале треба раздвојити запетама, не размацима!"
 
-#: src/fe-gtk/servlistgui.c:1055
+#: src/fe-gtk/servlistgui.c:1069
 msgid "Connect command:"
 msgstr "Пошаљи ову команду:"
 
-#: src/fe-gtk/servlistgui.c:1057
+#: src/fe-gtk/servlistgui.c:1071
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
@@ -4403,72 +4403,72 @@ msgstr ""
 "овде унесите LOAD -e <ДАТОТЕКА>, где је <ДАТОТЕКА> име датотеке са командама "
 "које треба извршити."
 
-#: src/fe-gtk/servlistgui.c:1060
+#: src/fe-gtk/servlistgui.c:1074
 msgid "Nickserv password:"
 msgstr "Лозинка за nickserv:"
 
-#: src/fe-gtk/servlistgui.c:1065
+#: src/fe-gtk/servlistgui.c:1079
 msgid "Server password:"
 msgstr "Лозинка за сервер:"
 
-#: src/fe-gtk/servlistgui.c:1067
+#: src/fe-gtk/servlistgui.c:1081
 msgid "Password for the server, if in doubt, leave blank."
 msgstr ""
 "Лозинка за приступ серверу. Ако нисте сигурни шта овде треба да стоји, "
 "оставите празно."
 
-#: src/fe-gtk/servlistgui.c:1070
+#: src/fe-gtk/servlistgui.c:1084
 msgid "Character set:"
 msgstr "Скуп знакова:"
 
-#: src/fe-gtk/servlistgui.c:1158
+#: src/fe-gtk/servlistgui.c:1171
 msgid "_Edit"
 msgstr "_Уреди"
 
-#: src/fe-gtk/servlistgui.c:1241
+#: src/fe-gtk/servlistgui.c:1254
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: Списак сервера"
 
-#: src/fe-gtk/servlistgui.c:1257
+#: src/fe-gtk/servlistgui.c:1270
 #, fuzzy
 msgid "User Information"
 msgstr "Подаци о серверу"
 
-#: src/fe-gtk/servlistgui.c:1274
+#: src/fe-gtk/servlistgui.c:1287
 msgid "Second choice:"
 msgstr "Други избор:"
 
-#: src/fe-gtk/servlistgui.c:1281
+#: src/fe-gtk/servlistgui.c:1294
 msgid "Third choice:"
 msgstr "Трећи избор:"
 
-#: src/fe-gtk/servlistgui.c:1295
+#: src/fe-gtk/servlistgui.c:1308
 msgid "Rea_l name:"
 msgstr "_Право име:"
 
-#: src/fe-gtk/servlistgui.c:1341
+#: src/fe-gtk/servlistgui.c:1354
 #, fuzzy
 msgid "Networks"
 msgstr "Мрежа"
 
-#: src/fe-gtk/servlistgui.c:1382
+#: src/fe-gtk/servlistgui.c:1395
 msgid "Skip server list on startup"
 msgstr "Не приказуј овај списак при покретању програма"
 
-#: src/fe-gtk/servlistgui.c:1427
+#: src/fe-gtk/servlistgui.c:1440
 msgid "_Edit..."
 msgstr "_Уреди..."
 
-#: src/fe-gtk/servlistgui.c:1434
+#: src/fe-gtk/servlistgui.c:1447
 msgid "_Sort"
 msgstr "Поређај"
 
-#: src/fe-gtk/servlistgui.c:1450
+#: src/fe-gtk/servlistgui.c:1463
 msgid "C_onnect"
 msgstr "_Повежи се"
 
-#: src/fe-gtk/servlistgui.c:1459
+#: src/fe-gtk/servlistgui.c:1472
 msgid "Connect in new tab"
 msgstr "Повежи се у _новом језичку"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.7pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-06 18:07+0200\n"
+"POT-Creation-Date: 2004-10-08 23:30+0200\n"
 "PO-Revision-Date: 2004-04-05 18:55+0200\n"
 "Last-Translator: Pablo Saratxaga <pablo@walon.org>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -3289,7 +3289,7 @@ msgstr ""
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2451
+#: src/fe-gtk/maingui.c:2454
 msgid "<none>"
 msgstr "<nouk>"
 
@@ -3382,7 +3382,7 @@ msgstr "Dji n' sai lére ci fitchî la."
 msgid "That mask already exists."
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
 msgid "Private"
 msgstr "Privé"
 
@@ -3496,51 +3496,51 @@ msgstr ""
 msgid "Some file transfers still active, quit xchat?"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1398 src/fe-gtk/maingui.c:1504
+#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
 msgid "User limit must be a number!\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1526
+#: src/fe-gtk/maingui.c:1528
 msgid "Topic Protection"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1527
+#: src/fe-gtk/maingui.c:1529
 msgid "No outside messages"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1530
 msgid "Secret"
 msgstr "Sicret"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1531
 msgid "Invite Only"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1533
 msgid "Moderated"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/maingui.c:1534
 msgid "Ban List"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1536
 msgid "Keyword"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1546
+#: src/fe-gtk/maingui.c:1548
 msgid "User Limit"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1562
+#: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1659
+#: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1772
+#: src/fe-gtk/maingui.c:1775
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3548,7 +3548,7 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1965
+#: src/fe-gtk/maingui.c:1968
 msgid "Enter new nickname:"
 msgstr ""
 
@@ -4074,159 +4074,159 @@ msgstr "Novele rantoele"
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "Voloz vs vormint oister l' rantoele «%s» eyet tos ses sierveus?"
 
-#: src/fe-gtk/servlistgui.c:976
+#: src/fe-gtk/servlistgui.c:990
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: Candjî les tapes rascourtis"
 
-#: src/fe-gtk/servlistgui.c:995
+#: src/fe-gtk/servlistgui.c:1009
 #, fuzzy, c-format
 msgid "Servers for %s"
 msgstr "Sierveu: %s"
 
-#: src/fe-gtk/servlistgui.c:1006
+#: src/fe-gtk/servlistgui.c:1020
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1007
+#: src/fe-gtk/servlistgui.c:1021
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1023
 msgid "Your Details"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1015
+#: src/fe-gtk/servlistgui.c:1029
 #, fuzzy
 msgid "Use global user information"
 msgstr "Informåcions sol sierveu"
 
-#: src/fe-gtk/servlistgui.c:1018 src/fe-gtk/servlistgui.c:1267
+#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
 msgid "_Nick name:"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1022 src/fe-gtk/servlistgui.c:1288
+#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
 #, fuzzy
 msgid "_User name:"
 msgstr "No d' uzeu:"
 
-#: src/fe-gtk/servlistgui.c:1026
+#: src/fe-gtk/servlistgui.c:1040
 #, fuzzy
 msgid "Real na_me:"
 msgstr "Vraiy no:"
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1043
 #, fuzzy
 msgid "Connecting"
 msgstr "Raloyaedje"
 
-#: src/fe-gtk/servlistgui.c:1035
+#: src/fe-gtk/servlistgui.c:1049
 msgid "Auto connect to this network at startup"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1037
+#: src/fe-gtk/servlistgui.c:1051
 msgid "Use a proxy server"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1039
+#: src/fe-gtk/servlistgui.c:1053
 msgid "Use SSL for all the servers on this network"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1044
+#: src/fe-gtk/servlistgui.c:1058
 msgid "Accept invalid SSL certificate"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1050
+#: src/fe-gtk/servlistgui.c:1064
 #, fuzzy
 msgid "C_hannels to join:"
 msgstr "Tapez l' canå a-z adjonde:"
 
-#: src/fe-gtk/servlistgui.c:1052
+#: src/fe-gtk/servlistgui.c:1066
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr "Canås a-z adjonde, separés pa des comas, sins nou vude inte di zels!"
 
-#: src/fe-gtk/servlistgui.c:1055
+#: src/fe-gtk/servlistgui.c:1069
 #, fuzzy
 msgid "Connect command:"
 msgstr "Comande å raloyaedje:"
 
-#: src/fe-gtk/servlistgui.c:1057
+#: src/fe-gtk/servlistgui.c:1071
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
 "to execute."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1060
+#: src/fe-gtk/servlistgui.c:1074
 #, fuzzy
 msgid "Nickserv password:"
 msgstr "Sicret pol sierveu:"
 
-#: src/fe-gtk/servlistgui.c:1065
+#: src/fe-gtk/servlistgui.c:1079
 #, fuzzy
 msgid "Server password:"
 msgstr "Sicret pol sierveu:"
 
-#: src/fe-gtk/servlistgui.c:1067
+#: src/fe-gtk/servlistgui.c:1081
 msgid "Password for the server, if in doubt, leave blank."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1070
+#: src/fe-gtk/servlistgui.c:1084
 #, fuzzy
 msgid "Character set:"
 msgstr "Ecôdaedje:"
 
-#: src/fe-gtk/servlistgui.c:1158
+#: src/fe-gtk/servlistgui.c:1171
 msgid "_Edit"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1241
+#: src/fe-gtk/servlistgui.c:1254
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: Djivêye des sierveus"
 
-#: src/fe-gtk/servlistgui.c:1257
+#: src/fe-gtk/servlistgui.c:1270
 #, fuzzy
 msgid "User Information"
 msgstr "Informåcions sol sierveu"
 
-#: src/fe-gtk/servlistgui.c:1274
+#: src/fe-gtk/servlistgui.c:1287
 #, fuzzy
 msgid "Second choice:"
 msgstr "Fitchî son: "
 
-#: src/fe-gtk/servlistgui.c:1281
+#: src/fe-gtk/servlistgui.c:1294
 msgid "Third choice:"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1295
+#: src/fe-gtk/servlistgui.c:1308
 #, fuzzy
 msgid "Rea_l name:"
 msgstr "Vraiy no:"
 
-#: src/fe-gtk/servlistgui.c:1341
+#: src/fe-gtk/servlistgui.c:1354
 msgid "Networks"
 msgstr "Rantoeles"
 
-#: src/fe-gtk/servlistgui.c:1382
+#: src/fe-gtk/servlistgui.c:1395
 msgid "Skip server list on startup"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1427
+#: src/fe-gtk/servlistgui.c:1440
 #, fuzzy
 msgid "_Edit..."
 msgstr "_Tcherdjî..."
 
-#: src/fe-gtk/servlistgui.c:1434
+#: src/fe-gtk/servlistgui.c:1447
 #, fuzzy
 msgid "_Sort"
 msgstr "Relére"
 
-#: src/fe-gtk/servlistgui.c:1450
+#: src/fe-gtk/servlistgui.c:1463
 msgid "C_onnect"
 msgstr "Ralo_yî"
 
-#: src/fe-gtk/servlistgui.c:1459
+#: src/fe-gtk/servlistgui.c:1472
 #, fuzzy
 msgid "Connect in new tab"
 msgstr "Si raloyî en ene _novele linwete"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-06 18:07+0200\n"
+"POT-Creation-Date: 2004-10-08 23:30+0200\n"
 "PO-Revision-Date: 2004-08-07 12:54+0100\n"
 "Last-Translator: Hauke Hagenhoff <Hauke.Hagenhoff@gmx.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -3493,7 +3493,7 @@ msgstr "Fehler beim Laden der Tastaturkürzel-Konfiguration"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2451
+#: src/fe-gtk/maingui.c:2454
 msgid "<none>"
 msgstr "<leer>"
 
@@ -3596,7 +3596,7 @@ msgstr "Kann diese Datei nicht lesen."
 msgid "That mask already exists."
 msgstr "Diese Maske gibt es bereits."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
 msgid "Private"
 msgstr "Privat"
 
@@ -3710,51 +3710,51 @@ msgstr "Reiter lösen"
 msgid "Some file transfers still active, quit xchat?"
 msgstr "Einige Dateitransfers sind noch aktiv, XChat beenden?"
 
-#: src/fe-gtk/maingui.c:1398 src/fe-gtk/maingui.c:1504
+#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
 msgid "User limit must be a number!\n"
 msgstr "Benutzerlimit muß eine Zahl sein!\n"
 
-#: src/fe-gtk/maingui.c:1526
+#: src/fe-gtk/maingui.c:1528
 msgid "Topic Protection"
 msgstr "Themenschutz"
 
-#: src/fe-gtk/maingui.c:1527
+#: src/fe-gtk/maingui.c:1529
 msgid "No outside messages"
 msgstr "Keine Nachrichten von Außen"
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1530
 msgid "Secret"
 msgstr "Geheim"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1531
 msgid "Invite Only"
 msgstr "Nur auf Einladung"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1533
 msgid "Moderated"
 msgstr "Moderiert"
 
-#: src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/maingui.c:1534
 msgid "Ban List"
 msgstr "Bannliste"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1536
 msgid "Keyword"
 msgstr "Schlüsselwort"
 
-#: src/fe-gtk/maingui.c:1546
+#: src/fe-gtk/maingui.c:1548
 msgid "User Limit"
 msgstr "Benutzerlimit"
 
-#: src/fe-gtk/maingui.c:1562
+#: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Dieses Fenster/Reiter schließen"
 
-#: src/fe-gtk/maingui.c:1659
+#: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Benutzerliste zeigen/verstecken"
 
-#: src/fe-gtk/maingui.c:1772
+#: src/fe-gtk/maingui.c:1775
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3766,7 +3766,7 @@ msgstr ""
 "Eventuell benutzen Sie einen nicht\n"
 "unterstützten Windowmanager.\n"
 
-#: src/fe-gtk/maingui.c:1965
+#: src/fe-gtk/maingui.c:1968
 msgid "Enter new nickname:"
 msgstr "Neuen Nicknamen eingeben:"
 
@@ -4356,78 +4356,78 @@ msgstr "Neues Netzwerk"
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "Wirklich das Netzwerk \"%s\" und alle seine Server löschen?"
 
-#: src/fe-gtk/servlistgui.c:976
+#: src/fe-gtk/servlistgui.c:990
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: Editiere %s"
 
-#: src/fe-gtk/servlistgui.c:995
+#: src/fe-gtk/servlistgui.c:1009
 #, c-format
 msgid "Servers for %s"
 msgstr "Server für %s"
 
-#: src/fe-gtk/servlistgui.c:1006
+#: src/fe-gtk/servlistgui.c:1020
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1007
+#: src/fe-gtk/servlistgui.c:1021
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1023
 msgid "Your Details"
 msgstr "Deine Details"
 
-#: src/fe-gtk/servlistgui.c:1015
+#: src/fe-gtk/servlistgui.c:1029
 msgid "Use global user information"
 msgstr "Globale Benutzerinformationen benutzen"
 
-#: src/fe-gtk/servlistgui.c:1018 src/fe-gtk/servlistgui.c:1267
+#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
 msgid "_Nick name:"
 msgstr "_Nickname:"
 
-#: src/fe-gtk/servlistgui.c:1022 src/fe-gtk/servlistgui.c:1288
+#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
 msgid "_User name:"
 msgstr "Ben_utzer:"
 
-#: src/fe-gtk/servlistgui.c:1026
+#: src/fe-gtk/servlistgui.c:1040
 msgid "Real na_me:"
 msgstr "Wahrer Na_me:"
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1043
 msgid "Connecting"
 msgstr "Verbinde"
 
-#: src/fe-gtk/servlistgui.c:1035
+#: src/fe-gtk/servlistgui.c:1049
 msgid "Auto connect to this network at startup"
 msgstr "Automatisches Verbinden mit diesem Netzwerk beim Start"
 
-#: src/fe-gtk/servlistgui.c:1037
+#: src/fe-gtk/servlistgui.c:1051
 msgid "Use a proxy server"
 msgstr "Proxy-Server benutzen"
 
-#: src/fe-gtk/servlistgui.c:1039
+#: src/fe-gtk/servlistgui.c:1053
 msgid "Use SSL for all the servers on this network"
 msgstr "SSL für alle Server dieses Netzes benutzen"
 
-#: src/fe-gtk/servlistgui.c:1044
+#: src/fe-gtk/servlistgui.c:1058
 msgid "Accept invalid SSL certificate"
 msgstr "Ungültiges SSL-Zertifikat akzeptieren"
 
-#: src/fe-gtk/servlistgui.c:1050
+#: src/fe-gtk/servlistgui.c:1064
 msgid "C_hannels to join:"
 msgstr "Zu betretende C_hannels:"
 
-#: src/fe-gtk/servlistgui.c:1052
+#: src/fe-gtk/servlistgui.c:1066
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr ""
 "Zu betretende Channels getrennt durch Kommata, nicht durch Leerzeichen!"
 
-#: src/fe-gtk/servlistgui.c:1055
+#: src/fe-gtk/servlistgui.c:1069
 msgid "Connect command:"
 msgstr "Verbindungskommando:"
 
-#: src/fe-gtk/servlistgui.c:1057
+#: src/fe-gtk/servlistgui.c:1071
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
@@ -4437,70 +4437,70 @@ msgstr ""
 "Kommandos benutze LOAD -e <Dateiname>, wobei <Dateiname> eine Textdatei mit "
 "den auszuführenden Kommandos ist."
 
-#: src/fe-gtk/servlistgui.c:1060
+#: src/fe-gtk/servlistgui.c:1074
 msgid "Nickserv password:"
 msgstr "NickServ-Passwort:"
 
-#: src/fe-gtk/servlistgui.c:1065
+#: src/fe-gtk/servlistgui.c:1079
 msgid "Server password:"
 msgstr "Server-Passwort:"
 
-#: src/fe-gtk/servlistgui.c:1067
+#: src/fe-gtk/servlistgui.c:1081
 msgid "Password for the server, if in doubt, leave blank."
 msgstr "Serverpasswort. Im Zweifel freilassen."
 
-#: src/fe-gtk/servlistgui.c:1070
+#: src/fe-gtk/servlistgui.c:1084
 msgid "Character set:"
 msgstr "Zeichensatz:"
 
-#: src/fe-gtk/servlistgui.c:1158
+#: src/fe-gtk/servlistgui.c:1171
 msgid "_Edit"
 msgstr "_Editieren"
 
-#: src/fe-gtk/servlistgui.c:1241
+#: src/fe-gtk/servlistgui.c:1254
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: Serverliste"
 
-#: src/fe-gtk/servlistgui.c:1257
+#: src/fe-gtk/servlistgui.c:1270
 #, fuzzy
 msgid "User Information"
 msgstr "Server-Information"
 
-#: src/fe-gtk/servlistgui.c:1274
+#: src/fe-gtk/servlistgui.c:1287
 msgid "Second choice:"
 msgstr "Zweite Wahl:"
 
-#: src/fe-gtk/servlistgui.c:1281
+#: src/fe-gtk/servlistgui.c:1294
 msgid "Third choice:"
 msgstr "Dritte Wahl:"
 
-#: src/fe-gtk/servlistgui.c:1295
+#: src/fe-gtk/servlistgui.c:1308
 msgid "Rea_l name:"
 msgstr "Wahrer Name:"
 
-#: src/fe-gtk/servlistgui.c:1341
+#: src/fe-gtk/servlistgui.c:1354
 #, fuzzy
 msgid "Networks"
 msgstr "Netzwerk"
 
-#: src/fe-gtk/servlistgui.c:1382
+#: src/fe-gtk/servlistgui.c:1395
 msgid "Skip server list on startup"
 msgstr "Keine Serverliste beim Start"
 
-#: src/fe-gtk/servlistgui.c:1427
+#: src/fe-gtk/servlistgui.c:1440
 msgid "_Edit..."
 msgstr "_Editiere..."
 
-#: src/fe-gtk/servlistgui.c:1434
+#: src/fe-gtk/servlistgui.c:1447
 msgid "_Sort"
 msgstr "Sortiere"
 
-#: src/fe-gtk/servlistgui.c:1450
+#: src/fe-gtk/servlistgui.c:1463
 msgid "C_onnect"
 msgstr "_Verbinde"
 
-#: src/fe-gtk/servlistgui.c:1459
+#: src/fe-gtk/servlistgui.c:1472
 msgid "Connect in new tab"
 msgstr "Verbinde in einem _neuen Reiter"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-06 18:07+0200\n"
+"POT-Creation-Date: 2004-10-08 23:30+0200\n"
 "PO-Revision-Date: 2004-08-08 22:51+0200\n"
 "Last-Translator: Mikel Olasagasti <hey_neken@mundurat.net>\n"
 "Language-Team: Basque <translation-team-eu@lists.sourceforge.net>\n"
@@ -3357,7 +3357,7 @@ msgstr "Errore bat egon da tekla-mapa konfigurazioa kargatzerakoan"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2451
+#: src/fe-gtk/maingui.c:2454
 msgid "<none>"
 msgstr "<bat ere ez>"
 
@@ -3448,7 +3448,7 @@ msgstr "Ezin irakurri fitxategi hori."
 msgid "That mask already exists."
 msgstr "Maskara hau dagoeneko exisititzen da."
 
-#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1530
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1532
 msgid "Private"
 msgstr "Pribatua"
 
@@ -3564,51 +3564,51 @@ msgstr ""
 "Fitxategi transferentzia batzuk aktibo daude oraindek, xchat-etik irten nahi "
 "duzu?"
 
-#: src/fe-gtk/maingui.c:1398 src/fe-gtk/maingui.c:1504
+#: src/fe-gtk/maingui.c:1399 src/fe-gtk/maingui.c:1505
 msgid "User limit must be a number!\n"
 msgstr "Erabiltzaile mugak zenbakia izan behar du!\n"
 
-#: src/fe-gtk/maingui.c:1526
+#: src/fe-gtk/maingui.c:1528
 msgid "Topic Protection"
 msgstr "Gaia babestua"
 
-#: src/fe-gtk/maingui.c:1527
+#: src/fe-gtk/maingui.c:1529
 msgid "No outside messages"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1528
+#: src/fe-gtk/maingui.c:1530
 msgid "Secret"
 msgstr "Sekretu"
 
-#: src/fe-gtk/maingui.c:1529
+#: src/fe-gtk/maingui.c:1531
 msgid "Invite Only"
 msgstr "Gonbidapenarekin bakarrik"
 
-#: src/fe-gtk/maingui.c:1531
+#: src/fe-gtk/maingui.c:1533
 msgid "Moderated"
 msgstr "Moderatua"
 
-#: src/fe-gtk/maingui.c:1532
+#: src/fe-gtk/maingui.c:1534
 msgid "Ban List"
 msgstr "Debekatuen zerrenda"
 
-#: src/fe-gtk/maingui.c:1534
+#: src/fe-gtk/maingui.c:1536
 msgid "Keyword"
 msgstr "Gako-hitza"
 
-#: src/fe-gtk/maingui.c:1546
+#: src/fe-gtk/maingui.c:1548
 msgid "User Limit"
 msgstr "Erabiltzaile limitea"
 
-#: src/fe-gtk/maingui.c:1562
+#: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Fitxa/leiho hau itxitzen du"
 
-#: src/fe-gtk/maingui.c:1659
+#: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Erakutsi/ezkutatu erabiltzaile zerrenda"
 
-#: src/fe-gtk/maingui.c:1772
+#: src/fe-gtk/maingui.c:1775
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3616,7 +3616,7 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1965
+#: src/fe-gtk/maingui.c:1968
 msgid "Enter new nickname:"
 msgstr "Sartu ezizen berria:"
 
@@ -4152,146 +4152,146 @@ msgstr "Sare berria"
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:976
+#: src/fe-gtk/servlistgui.c:990
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
 msgstr "X-Chat: Editatu %s"
 
-#: src/fe-gtk/servlistgui.c:995
+#: src/fe-gtk/servlistgui.c:1009
 #, c-format
 msgid "Servers for %s"
 msgstr "%s-rentzat zerbitzariak"
 
-#: src/fe-gtk/servlistgui.c:1006
+#: src/fe-gtk/servlistgui.c:1020
 msgid "Connect to selected server only"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1007
+#: src/fe-gtk/servlistgui.c:1021
 msgid "Don't cycle through all the servers when the connection fails."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1009
+#: src/fe-gtk/servlistgui.c:1023
 msgid "Your Details"
 msgstr "Zure xehetasunak"
 
-#: src/fe-gtk/servlistgui.c:1015
+#: src/fe-gtk/servlistgui.c:1029
 msgid "Use global user information"
 msgstr "Erabili erabiltzailearen informazio globala"
 
-#: src/fe-gtk/servlistgui.c:1018 src/fe-gtk/servlistgui.c:1267
+#: src/fe-gtk/servlistgui.c:1032 src/fe-gtk/servlistgui.c:1280
 msgid "_Nick name:"
 msgstr "_Ezizena:"
 
-#: src/fe-gtk/servlistgui.c:1022 src/fe-gtk/servlistgui.c:1288
+#: src/fe-gtk/servlistgui.c:1036 src/fe-gtk/servlistgui.c:1301
 msgid "_User name:"
 msgstr "_Erabiltzaile izena:"
 
-#: src/fe-gtk/servlistgui.c:1026
+#: src/fe-gtk/servlistgui.c:1040
 msgid "Real na_me:"
 msgstr "Be_netazko izena:"
 
-#: src/fe-gtk/servlistgui.c:1029
+#: src/fe-gtk/servlistgui.c:1043
 msgid "Connecting"
 msgstr "Konektatzen"
 
-#: src/fe-gtk/servlistgui.c:1035
+#: src/fe-gtk/servlistgui.c:1049
 msgid "Auto connect to this network at startup"
 msgstr "Automatikoki konektatu sare hontara abiaratzean"
 
-#: src/fe-gtk/servlistgui.c:1037
+#: src/fe-gtk/servlistgui.c:1051
 msgid "Use a proxy server"
 msgstr "Erabili proxy zerbitzari bat"
 
-#: src/fe-gtk/servlistgui.c:1039
+#: src/fe-gtk/servlistgui.c:1053
 msgid "Use SSL for all the servers on this network"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1044
+#: src/fe-gtk/servlistgui.c:1058
 msgid "Accept invalid SSL certificate"
 msgstr "Onartu baliogabeko SSL zertifikatuak"
 
-#: src/fe-gtk/servlistgui.c:1050
+#: src/fe-gtk/servlistgui.c:1064
 msgid "C_hannels to join:"
 msgstr "S_artu nahi diren kanalen izenak:"
 
-#: src/fe-gtk/servlistgui.c:1052
+#: src/fe-gtk/servlistgui.c:1066
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr "Sartuko den kanalak, komaz banandua, baina hutsunerik gabe!"
 
-#: src/fe-gtk/servlistgui.c:1055
+#: src/fe-gtk/servlistgui.c:1069
 msgid "Connect command:"
 msgstr "Konektatzeko komandoa:"
 
-#: src/fe-gtk/servlistgui.c:1057
+#: src/fe-gtk/servlistgui.c:1071
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
 "to execute."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1060
+#: src/fe-gtk/servlistgui.c:1074
 msgid "Nickserv password:"
 msgstr "Nickserv-erako pasahitza:"
 
-#: src/fe-gtk/servlistgui.c:1065
+#: src/fe-gtk/servlistgui.c:1079
 msgid "Server password:"
 msgstr "Zerbitzariko pasahitza:"
 
-#: src/fe-gtk/servlistgui.c:1067
+#: src/fe-gtk/servlistgui.c:1081
 msgid "Password for the server, if in doubt, leave blank."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1070
+#: src/fe-gtk/servlistgui.c:1084
 msgid "Character set:"
 msgstr "Karaktere-jokoa:"
 
-#: src/fe-gtk/servlistgui.c:1158
+#: src/fe-gtk/servlistgui.c:1171
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: src/fe-gtk/servlistgui.c:1241
+#: src/fe-gtk/servlistgui.c:1254
 #, fuzzy
 msgid "Rage: Server List"
 msgstr "X-Chat: Zerbitzari zerrenda"
 
-#: src/fe-gtk/servlistgui.c:1257
+#: src/fe-gtk/servlistgui.c:1270
 #, fuzzy
 msgid "User Information"
 msgstr "Zerbitzariaren informazioa"
 
-#: src/fe-gtk/servlistgui.c:1274
+#: src/fe-gtk/servlistgui.c:1287
 msgid "Second choice:"
 msgstr "Bigarren aukera:"
 
-#: src/fe-gtk/servlistgui.c:1281
+#: src/fe-gtk/servlistgui.c:1294
 msgid "Third choice:"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1295
+#: src/fe-gtk/servlistgui.c:1308
 msgid "Rea_l name:"
 msgstr "Benetazko _izena:"
 
-#: src/fe-gtk/servlistgui.c:1341
+#: src/fe-gtk/servlistgui.c:1354
 msgid "Networks"
 msgstr "Sareak"
 
-#: src/fe-gtk/servlistgui.c:1382
+#: src/fe-gtk/servlistgui.c:1395
 msgid "Skip server list on startup"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1427
+#: src/fe-gtk/servlistgui.c:1440
 msgid "_Edit..."
 msgstr "_Editatu..."
 
-#: src/fe-gtk/servlistgui.c:1434
+#: src/fe-gtk/servlistgui.c:1447
 msgid "_Sort"
 msgstr "_Sailkatu"
 
-#: src/fe-gtk/servlistgui.c:1450
+#: src/fe-gtk/servlistgui.c:1463
 msgid "C_onnect"
 msgstr "K_onektatu"
 
-#: src/fe-gtk/servlistgui.c:1459
+#: src/fe-gtk/servlistgui.c:1472
 msgid "Connect in new tab"
 msgstr "Konektatu fitxa berrian"
 

@@ -1328,6 +1328,7 @@ mg_link_irctab (session *sess, int focus)
 static void
 mg_link_gentab (GtkWidget *tab)
 {
+/* XXX: What is this? */
 #if 0
 	GtkWidget *win, *box, *vbox;
 
@@ -1523,6 +1524,7 @@ mg_apply_entry_style (GtkWidget *entry)
 static void
 mg_create_chanmodebuttons (session_gui *gui, GtkWidget *box)
 {
+	/* XXX: Where the channel mode buttons are created */
 	gui->flag_t = mg_create_flagbutton (_("Topic Protection"), box, "T");
 	gui->flag_n = mg_create_flagbutton (_("No outside messages"), box, "N");
 	gui->flag_s = mg_create_flagbutton (_("Secret"), box, "S");
@@ -1562,6 +1564,7 @@ mg_create_link_buttons (GtkWidget *box, gpointer userdata)
 	gtkutil_button (box, GTK_STOCK_CLOSE, _("Close this tab/window"),
 						 mg_x_click_cb, userdata, 0);
 
+	/* XXX: Why is this uncommneted */
 	/*if (!userdata)
 	gtkutil_button (box, GTK_STOCK_REDO, _("Attach/Detach this tab"),
 						 mg_link_cb, userdata, 0);*/

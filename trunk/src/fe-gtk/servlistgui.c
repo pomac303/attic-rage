@@ -558,6 +558,20 @@ servlist_deleteserver_cb (GtkWidget *item, gpointer none)
 	}
 }
 
+static void
+servlist_moveserver_up_cb (GtkWidget *item, gpointer none)
+{
+	if (selected_serv)
+		servlist_move_server (selected_serv, -1);
+}
+
+static void
+servlist_moveserver_down_cb (GtkWidget *item, gpointer none)
+{
+	if (selected_serv)
+		servlist_move_server (selected_serv, +1);
+}
+
 static ircnet *
 servlist_find_selected_net (GtkTreeSelection *sel)
 {
@@ -1142,15 +1156,14 @@ servlist_open_edit (GtkWidget *parent, ircnet *net)
 	
 	button_servlist_up = gtk_button_new_from_stock ("gtk-go-up");
 	g_signal_connect (G_OBJECT (button_servlist_up), "clicked",
-							G_CALLBACK (servlist_deleteserver_cb), NULL);
+							G_CALLBACK (servlist_moveserver_up_cb), NULL);
 	gtk_widget_show (button_servlist_up);
 	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_up);
 	GTK_WIDGET_SET_FLAGS (button_servlist_up, GTK_CAN_DEFAULT);
 	
 	button_servlist_down = gtk_button_new_from_stock ("gtk-go-down");
 	g_signal_connect (G_OBJECT (button_servlist_down), "clicked",
-							G_CALLBACK (servlist_deleteserver_cb), NULL);
-
+							G_CALLBACK (servlist_moveserver_down_cb), NULL);
 	gtk_widget_show (button_servlist_down);
 	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_down);
 	GTK_WIDGET_SET_FLAGS (button_servlist_down, GTK_CAN_DEFAULT);
