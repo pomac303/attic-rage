@@ -417,7 +417,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			break;
 		case RPL_WHOISSERVER: /* 312 */
 			EMIT_SIGNAL(XP_TE_WHOIS3, 
-					sess,
+					sess->server->server_session,
 					parv[3],parv[4],
 					NULL,
 					NULL,
@@ -425,7 +425,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			return;
 		case RPL_WHOISCHANNELS: /* 319 */
 			EMIT_SIGNAL (XP_TE_WHOIS2, 
-					sess,
+					sess->server->server_session,
 					parv[3], parv[4], 
 					NULL, 
 					NULL, 
@@ -439,7 +439,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 			if (who_sess)
 			{
 				if (!who_sess->doing_who)
-					EMIT_SIGNAL(XP_TE_WHO, sess,
+					EMIT_SIGNAL(XP_TE_WHO, 
+							sess->server->server_session,
 							paste_parv(line, sizeof(line),
 								3, parc, parv),
 							NULL, NULL, NULL, 0);
@@ -447,7 +448,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 			} else
 			{
 				if (!sess->server->doing_dns)
-					EMIT_SIGNAL (XP_TE_WHO, sess,
+					EMIT_SIGNAL (XP_TE_WHO, 
+							sess->server->server_session,
 							paste_parv(line, sizeof(line),
 								3, parc, parv), 
 							NULL, NULL, NULL, 0);
@@ -460,7 +462,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* FALL THRU */
 		case RPL_WHOWASUSER:
 			inbound_user_info_start(sess,parv[3]);
-			EMIT_SIGNAL(XP_TE_WHOIS1, sess,
+			EMIT_SIGNAL(XP_TE_WHOIS1, 
+					sess->server->server_session,
 					parv[3], parv[4], parv[5],
 					parv[6], 0);
 			return;
@@ -478,16 +481,16 @@ irc_numeric(session *sess, int parc, char *parv[])
 						idle % 60);
 			if (timestamp == 0)
 				EMIT_SIGNAL(XP_TE_WHOIS4, 
-						sess,
-							parv[3],
-							outbuf, NULL,
-							NULL, 0);
+						sess->server->server_session,
+						parv[3], outbuf, NULL,
+						NULL, 0);
 			else 
 			{
 				tim = ctime(&timestamp);
 				tim[19] = '\0'; /* Get rid of the nasty \n */
 
-				EMIT_SIGNAL (XP_TE_WHOIS4T, sess,
+				EMIT_SIGNAL (XP_TE_WHOIS4T, 
+						sess->server->server_session,
 						parv[3], outbuf, tim,
 						NULL, 0);
 			}
@@ -495,13 +498,15 @@ irc_numeric(session *sess, int parc, char *parv[])
 		}
 		case RPL_WHOISOPERATOR: /* 313 */
 		case 320: /* Is an identified user */
-			EMIT_SIGNAL(XP_TE_WHOIS_ID, sess,
+			EMIT_SIGNAL(XP_TE_WHOIS_ID, 
+					sess->server->server_session,
 					parv[3],parv[4], NULL, NULL, 0);
 			return;
 			
 		case RPL_ENDOFWHOIS: /* 318 */
 			sess->server->inside_whois = 0;
-			EMIT_SIGNAL (XP_TE_WHOIS6, sess,
+			EMIT_SIGNAL (XP_TE_WHOIS6, 
+					sess->server->server_session,
 					parv[3],NULL,
 					NULL,NULL,0);
 			return;
@@ -571,7 +576,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			return;
 		case RPL_WHOISACCOUNT: /* 330 */
 			EMIT_SIGNAL(XP_TE_WHOIS_AUTH, 
-					sess,
+					sess->server->server_session,
 					parv[3],parv[5], parv[4], NULL, 0);
 			return;
 		case RPL_TOPIC: /* 332 */
@@ -582,7 +587,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 					parv[3],parv[4],atol(parv[5]));
 			return;
 		case RPL_WHOISACTUALLY: /* 338 */
-			EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, sess, parv[3],
+			EMIT_SIGNAL (XP_TE_WHOIS_REALHOST, 
+					sess->server->server_session, parv[3],
 					parv[4], parv[5], parv[6], 0);
 			return;
 		case RPL_INVITING: /* 341 */
@@ -602,7 +608,9 @@ irc_numeric(session *sess, int parc, char *parv[])
 			/* try to show only user initiated whos */
 
 			if (!who_sess || !who_sess->doing_who)
-				EMIT_SIGNAL(XP_TE_WHO, sess, paste_parv(line, sizeof(line),
+				EMIT_SIGNAL(XP_TE_WHO, 
+						sess->server->server_session, 
+						paste_parv(line, sizeof(line),
 							3, parc, parv), 
 						NULL, NULL, NULL, 0);
 			return;
