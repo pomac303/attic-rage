@@ -20,6 +20,7 @@
   Maybe move some hardcoded things into plugins (eg, /mop,/mdeop etc)
 
 #8 -  Move the hook code to a map<hook_name,list<hooks>>
+  Made into a array of linked lists. (pomac)
 
 #9 - Look at the http://xchat-gnome.navi.cx/ people, perhaps get them onboard?
 
@@ -29,11 +30,11 @@
 #11 - Profile code and look for obvious bottlenecks.
 
 #12 - 005 needs to be a map<005name,value>
-  005 is now a splay db.
+  005 is now a splay db. (pomac)
 
 #13 - once 005 update is done, add support for WALLCHOPS, WALLVOICES, CPRIVMSG,
   CNOTICE.
-  (Isomer)
+  Fixed. (pomac)
 
 #14 - Event theming
   (Isomer)
