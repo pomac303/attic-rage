@@ -252,7 +252,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 #else
 		mkdir (buf, S_IRUSR | S_IWUSR | S_IXUSR);
 #endif
-	auto_insert (fn, sizeof (fn), prefs.logmask, NULL, NULL, "", channame, "", "", netname, servname);
+	auto_insert (fn, sizeof (fn), prefs.logmask, 0, NULL, "", channame, "", "", netname, servname);
 	g_free (channame);
 
 	snprintf (buf, 512, "%s/xchatlogs/%s", get_xdir_fs (), fn);
@@ -1550,7 +1550,7 @@ text_emit (int index, session *sess, char *a, char *b, char *c, char *d)
 	for (i = 5; i < PDIWORDS; i++)
 		word[i] = "\000";
 
-	if (plugin_emit_print (sess, word))
+	if (plugin_emit_print (sess, 5, word))
 		return;
 
 	sound_play_event (index);

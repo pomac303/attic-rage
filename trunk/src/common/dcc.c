@@ -484,7 +484,7 @@ dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 	for (i = 5; i < PDIWORDS; i++)
 		word[i] = "\000";
 
-	ret = plugin_emit_print (sess, word);
+	ret = plugin_emit_print (sess, 5, word);
 
 	/* did the plugin close it? */
 	if (!g_slist_find (dcc_list, dcc))
@@ -1607,27 +1607,26 @@ dcc_deny_chat (void *ud)
 }
 
 void
-handle_dcc (struct session *sess, char *nick, char *word[],
-				char *word_eol[])
+handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 {
 	char tbuf[512];
 	struct DCC *dcc;
-	char *type = word[5];
+	char *type = parv[4];
 	int port, pasvid = 0;
 	unsigned long size, addr;
 
 	if (!strcasecmp (type, "CHAT"))
 	{
-		port = atoi (word[8]);
-		addr = strtoul (word[7], NULL, 10);
+		port = atoi (parv[7]);
+		addr = strtoul (parv[6], NULL, 10);
 
 		if (port == 0)
-			pasvid = atoi (word[9]);
+			pasvid = atoi (parv[8]);
 
 		if (!addr /*|| (port < 1024 && port != 0)*/
 			|| port > 0xffff || (port == 0 && pasvid == 0))
 		{
-			dcc_malformed (sess, nick, word_eol[4] + 2);
+			dcc_malformed (sess, nick, parv[3] + 2);
 			return;
 		}
 		dcc = find_dcc (nick, "", TYPE_CHATSEND);
@@ -1673,21 +1672,21 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 	}
 	if (!strcasecmp (type, "RESUME"))
 	{
-		port = atoi (word[7]);
+		port = atoi (parv[6]);
 
 		if (port == 0)
 		{ /* PASSIVE */
-			pasvid = atoi(word[9]);
+			pasvid = atoi(parv[8]);
 			dcc = find_dcc_from_id(pasvid, TYPE_SEND);
 		} else
 		{
 			dcc = find_dcc_from_port (port, TYPE_SEND);
 		}
 		if (!dcc)
-			dcc = find_dcc (nick, word[6], TYPE_SEND);
+			dcc = find_dcc (nick, parv[5], TYPE_SEND);
 		if (dcc)
 		{
-			size = strtoul (word[8], NULL, 10);
+			size = strtoul (parv[7], NULL, 10);
 			dcc->resumable = size;
 			if (dcc->resumable < dcc->size)
 			{
@@ -1717,7 +1716,7 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 	}
 	if (!strcasecmp (type, "ACCEPT"))
 	{
-		port = atoi (word[7]);
+		port = atoi (parv[6]);
 		dcc = find_dcc_from_port (port, TYPE_RECV);
 		if (dcc && dcc->dccstat == STAT_QUEUED)
 		{
@@ -1727,27 +1726,27 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 	}
 	if (!strcasecmp (type, "SEND"))
 	{
-		char *file = file_part (word[6]);
+		char *file = file_part (parv[5]);
 		int psend = 0;
 
-		port = atoi (word[8]);
-		addr = strtoul (word[7], NULL, 10);
-		size = strtoul (word[9], NULL, 10);
+		port = atoi (parv[7]);
+		addr = strtoul (parv[6], NULL, 10);
+		size = strtoul (parv[8], NULL, 10);
 
 		if (port == 0) /* Passive dcc requested */
-			pasvid = atoi (word[10]);
-		else if (word[10][0] != 0)
+			pasvid = atoi (parv[9]);
+		else if (parv[9][0] != 0)
 		{
 			/* Requesting passive dcc.
 			 * Destination user of an active dcc is giving his
 			 * TRUE address/port/pasvid data.
 			 * This information will be used later to
 			 * establish the connection to the user.
-			 * We can recognize this type of dcc using word[10]
+			 * We can recognize this type of dcc using parv[9]
 			 * because this field is always null (no pasvid)
 			 * in normal dcc sends.
 			 */
-			pasvid = atoi (word[10]);
+			pasvid = atoi (parv[9]);
 			psend = 1;
 		}
 
@@ -1755,7 +1754,7 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 		if (!addr || !size /*|| (port < 1024 && port != 0)*/
 			|| port > 0xffff || (port == 0 && pasvid == 0))
 		{
-			dcc_malformed (sess, nick, word_eol[4] + 2);
+			dcc_malformed (sess, nick, parv[3] + 2);
 			return;
 		}
 
@@ -1773,7 +1772,7 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 				dcc_connect (dcc);
 			} else
 			{
-				dcc_malformed (sess, nick, word_eol[4] + 2);
+				dcc_malformed (sess, nick, parv[3] + 2);
 			}
 			return;
 		}
@@ -1849,7 +1848,7 @@ handle_dcc (struct session *sess, char *nick, char *word[],
 						 file, tbuf, tbuf + 24, 0);
 	} else
 		EMIT_SIGNAL (XP_TE_DCCGENERICOFFER, sess->server->front_session,
-						 word_eol[4] + 2, nick, NULL, NULL, 0);
+						 parv[3] + 2, nick, NULL, NULL, 0);
 }
 
 void

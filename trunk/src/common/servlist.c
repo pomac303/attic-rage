@@ -967,8 +967,8 @@ servlist_write_ccmd (char *str, void *fp)
    function for each token found */
 
 int
-token_foreach (char *str, char sep,
-					int (*callback) (char *str, void *ud), void *ud)
+token_foreach (char *str, char sep, int (*callback) (char *str, void *ud), 
+		void *ud)
 {
 	char t, *start = str;
 

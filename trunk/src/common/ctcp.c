@@ -36,20 +36,20 @@
 
 
 static void
-ctcp_reply (session *sess, char *tbuf, char *nick, char *word[],
-				char *word_eol[], char *conf)
+ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],
+				char *conf)
 {
 	conf = strdup (conf);
 	/* process %C %B etc */
 	check_special_chars (conf, TRUE);
-	auto_insert (tbuf, 2048, conf, word, word_eol, "", "", word_eol[5], "", "", nick);
+	auto_insert (tbuf, 2048, conf, parc,parv, "","", parv[5], "","", nick);
 	free (conf);
 	handle_command (sess, tbuf, FALSE);
 }
 
 static int
-ctcp_check (session *sess, char *tbuf, char *nick, char *word[],
-				char *word_eol[], char *ctcp)
+ctcp_check (session *sess, char *tbuf, char *nick, int parc, char *parv[], 
+		char *ctcp)
 {
 	int ret = 0;
 	char *po;
@@ -60,7 +60,7 @@ ctcp_check (session *sess, char *tbuf, char *nick, char *word[],
 	if (po)
 		*po = 0;
 
-	po = strchr (word_eol[5], '\001');
+	po = strchr (parv[4], '\001');
 	if (po)
 		*po = 0;
 
@@ -69,7 +69,7 @@ ctcp_check (session *sess, char *tbuf, char *nick, char *word[],
 		pop = (struct popup *) list->data;
 		if (!strcasecmp (ctcp, pop->name))
 		{
-			ctcp_reply (sess, tbuf, nick, word, word_eol, pop->cmd);
+			ctcp_reply (sess, tbuf, nick, parc, parv, pop->cmd);
 			ret = 1;
 		}
 		list = list->next;
@@ -79,7 +79,7 @@ ctcp_check (session *sess, char *tbuf, char *nick, char *word[],
 
 void
 ctcp_handle (session *sess, char *to, char *nick,
-				 char *msg, char *word[], char *word_eol[])
+				 char *msg, int parc, char *parv[])
 {
 	char *po;
 	session *chansess;
@@ -90,25 +90,25 @@ ctcp_handle (session *sess, char *to, char *nick,
 	if (!strncasecmp (msg, "DCC", 3))
 	{
 		/* but still let CTCP replies override it */
-		if (!ctcp_check (sess, outbuf, nick, word, word_eol, word[4] + 2))
+		if (!ctcp_check (sess, outbuf, nick, parc, parv, parv[3] + 2))
 		{
-			if (!ignore_check (word[1], IG_DCC))
-				handle_dcc (sess, nick, word, word_eol);
+			if (!ignore_check (parv[0], IG_DCC))
+				handle_dcc (sess, nick, parc, parv);
 		}
 		return;
 	}
 
-	if (ignore_check (word[1], IG_CTCP))
+	if (ignore_check (parv[0], IG_CTCP))
 		return;
 
 	if (!strcasecmp (msg, "VERSION") && !prefs.hidever)
 	{
-		snprintf (outbuf, sizeof (outbuf), "VERSION xchat "VERSION" %s",
+		snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION" %s",
 					 get_cpu_str ());
 		serv->p_nctcp (serv, nick, outbuf);
 	}
 
-	if (!ctcp_check (sess, outbuf, nick, word, word_eol, word[4] + 2))
+	if (!ctcp_check (sess, outbuf, nick, parc, parv, parv[3] + 2))
 	{
 		if (!strncasecmp (msg, "ACTION", 6))
 		{
@@ -117,16 +117,16 @@ ctcp_handle (session *sess, char *to, char *nick,
 		}
 		if (!strncasecmp (msg, "SOUND", 5))
 		{
-			po = strchr (word[5], '\001');
+			po = strchr (parv[4], '\001');
 			if (po)
 				po[0] = 0;
-			EMIT_SIGNAL (XP_TE_CTCPSND, sess->server->front_session, word[5],
+			EMIT_SIGNAL (XP_TE_CTCPSND, sess->server->front_session, parv[4],
 							 nick, NULL, NULL, 0);
-			snprintf (outbuf, sizeof (outbuf), "%s/%s", prefs.sounddir, word[5]);
-			if (strchr (word[5], '/') == 0 && access (outbuf, R_OK) == 0)
+			snprintf (outbuf, sizeof (outbuf), "%s/%s", prefs.sounddir, parv[4]);
+			if (strchr (parv[3], '/') == 0 && access (outbuf, R_OK) == 0)
 			{
 				snprintf (outbuf, sizeof (outbuf), "%s %s/%s", prefs.soundcmd,
-							 prefs.sounddir, word[5]);
+							 prefs.sounddir, parv[4]);
 				xchat_exec (outbuf);
 			}
 			return;

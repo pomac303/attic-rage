@@ -135,7 +135,7 @@ timer_showlist (void)
 }
 
 static int
-timer_cb (char *word[], char *word_eol[], void *userdata)
+timer_cb (int parc, char *parv[], void *userdata)
 {
 	int repeat = 1;
 	int timeout;
@@ -144,38 +144,38 @@ timer_cb (char *word[], char *word_eol[], void *userdata)
 	int quiet = FALSE;
 	char *command;
 
-	if (!word[2][0])
+	if (!parv[1][0])
 	{
 		timer_showlist ();
 		return XCHAT_EAT_XCHAT;
 	}
 
-	if (strcasecmp (word[2], "-quiet") == 0)
+	if (strcasecmp (parv[1], "-quiet") == 0)
 	{
 		quiet = TRUE;
 		offset++;
 	}
 
-	if (strcasecmp (word[2 + offset], "-delete") == 0)
+	if (strcasecmp (parv[1 + offset], "-delete") == 0)
 	{
-		timer_del_ref (atoi (word[3 + offset]), quiet);
+		timer_del_ref (atoi (parv[2 + offset]), quiet);
 		return XCHAT_EAT_XCHAT;
 	}
 
-	if (strcasecmp (word[2 + offset], "-refnum") == 0)
+	if (strcasecmp (parv[1 + offset], "-refnum") == 0)
 	{
-		ref = atoi (word[3 + offset]);
+		ref = atoi (parv[3 + offset]);
 		offset += 2;
 	}
 
-	if (strcasecmp (word[2 + offset], "-repeat") == 0)
+	if (strcasecmp (parv[1 + offset], "-repeat") == 0)
 	{
-		repeat = atoi (word[3 + offset]);
+		repeat = atoi (parv[2 + offset]);
 		offset += 2;
 	}
 
-	timeout = atoi (word[2 + offset]);
-	command = word_eol[3 + offset];
+	timeout = atoi (parv[1 + offset]);
+	command = parv[2 + offset];
 
 	if (timeout < 1 || !command[0])
 		xchat_print (ph, HELP);

@@ -72,13 +72,6 @@ struct _xchat_list
 	struct notify_per_server *notifyps;	/* notify_per_server * */
 };
 
-typedef int (xchat_cmd_cb) (char *word[], char *word_eol[], void *user_data);
-typedef int (xchat_serv_cb) (char *word[], char *word_eol[], void *user_data);
-typedef int (xchat_print_cb) (char *word[], void *user_data);
-typedef int (xchat_fd_cb) (int fd, int flags, void *user_data);
-typedef int (xchat_timer_cb) (void *user_data);
-typedef int (xchat_init_func) (xchat_plugin *, char **, char **, char **, char *);
-typedef int (xchat_deinit_func) (xchat_plugin *);
 
 enum
 {
@@ -474,7 +467,7 @@ plugin_hook_find (GSList *list, int type, char *name)
 /* check for plugin hooks and run them */
 
 static int
-plugin_hook_run (session *sess, char *name, char *word[], char *word_eol[], int type)
+plugin_hook_run (session *sess, char *name, int parc, char *parv[], int type)
 {
 	GSList *list, *next;
 	xchat_hook *hook;
@@ -495,13 +488,13 @@ plugin_hook_run (session *sess, char *name, char *word[], char *word_eol[], int 
 		switch (type)
 		{
 		case HOOK_COMMAND:
-			ret = ((xchat_cmd_cb *)hook->callback) (word, word_eol, hook->userdata);
+			ret = ((xchat_cmd_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		case HOOK_SERVER:
-			ret = ((xchat_serv_cb *)hook->callback) (word, word_eol, hook->userdata);
+			ret = ((xchat_serv_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		default: /*case HOOK_PRINT:*/
-			ret = ((xchat_print_cb *)hook->callback) (word, hook->userdata);
+			ret = ((xchat_print_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		}
 
@@ -539,25 +532,25 @@ xit:
 /* execute a plugged in command. Called from outbound.c */
 
 int
-plugin_emit_command (session *sess, char *name, char *word[], char *word_eol[])
+plugin_emit_command (session *sess, char *name, int parc, char *parv[])
 {
-	return plugin_hook_run (sess, name, word, word_eol, HOOK_COMMAND);
+	return plugin_hook_run (sess, name, parc, parv, HOOK_COMMAND);
 }
 
 /* got a server PRIVMSG, NOTICE, numeric etc... */
 
 int
-plugin_emit_server (session *sess, char *name, char *word[], char *word_eol[])
+plugin_emit_server (session *sess, char *name, int parc, char *parv[])
 {
-	return plugin_hook_run (sess, name, word, word_eol, HOOK_SERVER);
+	return plugin_hook_run (sess, name, parc, parv, HOOK_SERVER);
 }
 
 /* see if any plugins are interested in this print event */
 
 int
-plugin_emit_print (session *sess, char *word[])
+plugin_emit_print (session *sess, int parc, char *parv[])
 {
-	return plugin_hook_run (sess, word[0], word, NULL, HOOK_PRINT);
+	return plugin_hook_run (sess, parv[0], parc, parv, HOOK_PRINT);
 }
 
 int
@@ -570,7 +563,7 @@ plugin_emit_dummy_print (session *sess, char *name)
 	for (i = 1; i < 32; i++)
 		word[i] = "\000";
 
-	return plugin_hook_run (sess, name, word, NULL, HOOK_PRINT);
+	return plugin_hook_run (sess, name, 1, word, HOOK_PRINT);
 }
 
 static int
@@ -745,7 +738,7 @@ xchat_unhook (xchat_plugin *ph, xchat_hook *hook)
 
 xchat_hook *
 xchat_hook_command (xchat_plugin *ph, const char *name, int pri,
-						  xchat_cmd_cb *callb, const char *help_text, void *userdata)
+		xchat_cmd_cb *callb, const char *help_text, void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_COMMAND, pri, name, help_text, callb, 0,
 									userdata);
@@ -753,7 +746,7 @@ xchat_hook_command (xchat_plugin *ph, const char *name, int pri,
 
 xchat_hook *
 xchat_hook_server (xchat_plugin *ph, const char *name, int pri,
-						 xchat_serv_cb *callb, void *userdata)
+				 xchat_serv_cb *callb, void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_SERVER, pri, name, 0, callb, 0, userdata);
 }

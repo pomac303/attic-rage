@@ -447,7 +447,7 @@ mode_has_arg (server * serv, char sign, char mode)
 /* handle a MODE or numeric 324 from server */
 
 void
-handle_mode (server * serv, char *word[], char *word_eol[],
+handle_mode (server * serv, int parc, char *parv[],
 				 char *nick, int numeric_324)
 {
 	session *sess;
@@ -455,11 +455,10 @@ handle_mode (server * serv, char *word[], char *word_eol[],
 	char *modes;
 	char *argstr;
 	char sign;
-	int len;
 	int arg;
 	int i, num_args;
 	int num_modes;
-	int offset = 3;
+	int offset = 2;
 	int all_modes_have_args = FALSE;
 	int using_front_tab = FALSE;
 	mode_run mr;
@@ -471,10 +470,8 @@ handle_mode (server * serv, char *word[], char *word_eol[],
 	if (numeric_324)
 		offset++;
 
-	chan = word[offset];
-	modes = word[offset + 1];
-	if (*modes == ':')
-		modes++;
+	chan = parv[offset];
+	modes = parv[offset + 1];
 
 	if (*modes == 0)
 		return;	/* beyondirc's blank modes */
@@ -485,19 +482,18 @@ handle_mode (server * serv, char *word[], char *word_eol[],
 		sess = serv->front_session;
 		using_front_tab = TRUE;
 	}
-	/* remove trailing space */
-	len = strlen (word_eol[offset]) - 1;
-	if (word_eol[offset][len] == ' ')
-		word_eol[offset][len] = 0;
 
+	/* XXX: BROKEN: Need to paste word_eol together */
 	if (prefs.raw_modes && !numeric_324)
-		EMIT_SIGNAL (XP_TE_RAWMODES, sess, nick, word_eol[offset], 0, 0, 0);
+		EMIT_SIGNAL (XP_TE_RAWMODES, sess, nick, parv[offset], 
+				parv[offset+1], parv[offset+2], parv[offset+3]);
 
 	if (numeric_324 && !using_front_tab)
 	{
 		if (sess->current_modes)
 			free (sess->current_modes);
-		sess->current_modes = strdup (word_eol[offset+1]);
+		/* XXX: BROKEN: Needs to paste word_eol together */
+		sess->current_modes = strdup (parv[offset+1]);
 		fe_set_title (sess);
 	}
 
@@ -507,12 +503,12 @@ handle_mode (server * serv, char *word[], char *word_eol[],
 
 	/* count the number of arguments (e.g. after the -o+v) */
 	num_args = 0;
-	i = 1;
-	while (i < PDIWORDS)
+	i = 2;
+	while (i+offset < parc)
 	{
-		i++;
-		if (!(*word[i + offset]))
+		if (!(*parv[i + offset]))
 			break;
+		i++;
 		num_args++;
 	}
 
@@ -544,7 +540,7 @@ handle_mode (server * serv, char *word[], char *word_eol[],
 			if (all_modes_have_args || mode_has_arg (serv, sign, *modes))
 			{
 				arg++;
-				argstr = word[arg + offset];
+				argstr = parv[arg + offset];
 			}
 			handle_single_mode (&mr, sign, *modes, nick, chan,
 									  argstr, numeric_324 || prefs.raw_modes,
@@ -584,35 +580,35 @@ xit:
 /* handle the 005 numeric */
 
 void
-inbound_005 (server * serv, char *word[])
+inbound_005 (server * serv, int parc, char *parv[])
 {
 	int w;
 	char *pre;
 
-	w = 4;							  /* start at the 4th word */
-	while (w < PDIWORDS && *word[w])
+	w = 3;
+	while (w < parc && *parv[w])
 	{
-		if (strncmp (word[w], "MODES=", 6) == 0)
+		if (strncmp (parv[w], "MODES=", 6) == 0)
 		{
-			serv->modes_per_line = atoi (word[w] + 6);
-		} else if (strncmp (word[w], "CHANTYPES=", 10) == 0)
+			serv->modes_per_line = atoi (parv[w] + 6);
+		} else if (strncmp (parv[w], "CHANTYPES=", 10) == 0)
 		{
 			free (serv->chantypes);
-			serv->chantypes = strdup (word[w] + 10);
-		} else if (strncmp (word[w], "CHANMODES=", 10) == 0)
+			serv->chantypes = strdup (parv[w] + 10);
+		} else if (strncmp (parv[w], "CHANMODES=", 10) == 0)
 		{
 			free (serv->chanmodes);
-			serv->chanmodes = strdup (word[w] + 10);
-		} else if (strncmp (word[w], "PREFIX=", 7) == 0)
+			serv->chanmodes = strdup (parv[w] + 10);
+		} else if (strncmp (parv[w], "PREFIX=", 7) == 0)
 		{
-			pre = strchr (word[w] + 7, ')');
+			pre = strchr (parv[w] + 7, ')');
 			if (pre)
 			{
 				pre[0] = 0;			  /* NULL out the ')' */
 				free (serv->nick_prefixes);
 				free (serv->nick_modes);
 				serv->nick_prefixes = strdup (pre + 1);
-				serv->nick_modes = strdup (word[w] + 8);
+				serv->nick_modes = strdup (parv[w] + 8);
 			} else
 			{
 				/* bad! some ircds don't give us the modes. */
@@ -620,43 +616,43 @@ inbound_005 (server * serv, char *word[])
 				serv->bad_prefix = TRUE;
 				if (serv->bad_nick_prefixes)
 					free (serv->bad_nick_prefixes);
-				serv->bad_nick_prefixes = strdup (word[w] + 7);
+				serv->bad_nick_prefixes = strdup (parv[w] + 7);
 			}
-		} else if (strncmp (word[w], "WATCH=", 6) == 0)
+		} else if (strncmp (parv[w], "WATCH=", 6) == 0)
 		{
 			serv->supports_watch = TRUE;
-		} else if (strncmp (word[w], "NETWORK=", 8) == 0)
+		} else if (strncmp (parv[w], "NETWORK=", 8) == 0)
 		{
 /*			if (serv->networkname)
 				free (serv->networkname);
-			serv->networkname = strdup (word[w] + 8);*/
+			serv->networkname = strdup (parv[w] + 8);*/
 
 			if (serv->server_session->type == SESS_SERVER)
 			{
-				safe_strcpy (serv->server_session->channel, word[w] + 8, CHANLEN);
+				safe_strcpy (serv->server_session->channel, parv[w] + 8, CHANLEN);
 				fe_set_channel (serv->server_session);
 			}
 
-		} else if (strncmp (word[w], "CASEMAPPING=", 12) == 0)
+		} else if (strncmp (parv[w], "CASEMAPPING=", 12) == 0)
 		{
-			if (strcmp (word[w] + 12, "ascii") == 0)	/* bahamut */
+			if (strcmp (parv[w] + 12, "ascii") == 0)	/* bahamut */
 				serv->p_cmp = (void *)strcasecmp;
-		} else if (strncmp (word[w], "CHARSET=", 8) == 0)
+		} else if (strncmp (parv[w], "CHARSET=", 8) == 0)
 		{
-			if (strcasecmp (word[w] + 8, "UTF-8") == 0)
+			if (strcasecmp (parv[w] + 8, "UTF-8") == 0)
 			{
 				if (serv->encoding)
 					free (serv->encoding);
 				serv->encoding = strdup ("UTF-8");
 			}
-		} else if (strcmp (word[w], "NAMESX") == 0)
+		} else if (strcmp (parv[w], "NAMESX") == 0)
 		{
 									/* 12345678901234567 */
 			tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
-		} else if (strcmp (word[w], "WHOX") == 0)
+		} else if (strcmp (parv[w], "WHOX") == 0)
 		{
 			serv->have_whox = TRUE;
-		} else if (strcmp (word[w], "CAPAB") == 0)
+		} else if (strcmp (parv[w], "CAPAB") == 0)
 		{
 			serv->have_capab = TRUE;
 									/* 12345678901234567890 */

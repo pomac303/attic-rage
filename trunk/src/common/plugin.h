@@ -9,18 +9,18 @@ struct _xchat_plugin
 	xchat_hook *(*xchat_hook_command) (xchat_plugin *ph,
 		    const char *name,
 		    int pri,
-		    int (*callback) (char *word[], char *word_eol[], void *user_data),
+		    xchat_cmd_cb *callb,
 		    const char *help_text,
 		    void *userdata);
 	xchat_hook *(*xchat_hook_server) (xchat_plugin *ph,
 		   const char *name,
 		   int pri,
-		   int (*callback) (char *word[], char *word_eol[], void *user_data),
+		   xchat_serv_cb *callb,
 		   void *userdata);
 	xchat_hook *(*xchat_hook_print) (xchat_plugin *ph,
 		  const char *name,
 		  int pri,
-		  int (*callback) (char *word[], void *user_data),
+		  int (*callback) (int parc, char *parv[], void *user_data),
 		  void *userdata);
 	xchat_hook *(*xchat_hook_timer) (xchat_plugin *ph,
 		  int timeout,
@@ -115,9 +115,9 @@ void plugin_add (session *sess, char *filename, void *handle, void *init_func, v
 int plugin_kill (char *name, int by_filename);
 void plugin_kill_all (void);
 void plugin_auto_load (session *sess);
-int plugin_emit_command (session *sess, char *name, char *word[], char *word_eol[]);
-int plugin_emit_server (session *sess, char *name, char *word[], char *word_eol[]);
-int plugin_emit_print (session *sess, char *word[]);
+int plugin_emit_command (session *sess, char *name, int parc, char *parv[]);
+int plugin_emit_server (session *sess, char *name, int parc, char *parv[]);
+int plugin_emit_print (session *sess, int parc, char *parv[]);
 int plugin_emit_dummy_print (session *sess, char *name);
 GList* plugin_command_list(GList *tmp_list);
 int plugin_show_help (session *sess, char *cmd);

@@ -38,6 +38,13 @@ typedef struct _xchat_hook xchat_hook;
 typedef struct _xchat_context xchat_context;
 #endif
 
+typedef int (xchat_cmd_cb) (int parc, char *parv[], void *user_data);
+typedef int (xchat_serv_cb) (int parc, char *parv[], void *user_data);
+typedef int (xchat_print_cb) (int parc, char *parv[], void *user_data);
+typedef int (xchat_fd_cb) (int fd, int flags, void *user_data);
+typedef int (xchat_timer_cb) (void *user_data);
+typedef int (xchat_init_func) (xchat_plugin *, char **, char **, char **, char *);
+typedef int (xchat_deinit_func) (xchat_plugin *);
 #ifndef PLUGIN_C
 struct _xchat_plugin
 {
@@ -56,7 +63,7 @@ struct _xchat_plugin
 	xchat_hook *(*xchat_hook_print) (xchat_plugin *ph,
 		  const char *name,
 		  int pri,
-		  int (*callback) (char *word[], void *user_data),
+		  int (*callback) (int parc, char *parv[], void *user_data),
 		  void *userdata);
 	xchat_hook *(*xchat_hook_timer) (xchat_plugin *ph,
 		  int timeout,
@@ -139,7 +146,7 @@ xchat_hook *
 xchat_hook_command (xchat_plugin *ph,
 		    const char *name,
 		    int pri,
-		    int (*callback) (char *word[], char *word_eol[], void *user_data),
+		    xchat_cmd_cb *callb,
 		    const char *help_text,
 		    void *userdata);
 
@@ -147,14 +154,14 @@ xchat_hook *
 xchat_hook_server (xchat_plugin *ph,
 		   const char *name,
 		   int pri,
-		   int (*callback) (char *word[], char *word_eol[], void *user_data),
+		   xchat_cmd_cb *callb,
 		   void *userdata);
 
 xchat_hook *
 xchat_hook_print (xchat_plugin *ph,
 		  const char *name,
 		  int pri,
-		  int (*callback) (char *word[], void *user_data),
+		  int (*callback) (int parc, char *parv[], void *user_data),
 		  void *userdata);
 
 xchat_hook *

@@ -50,4 +50,8 @@ void servlist_server_remove (ircnet *net, ircserver *serv);
 ircserver *servlist_server_add (ircnet *net, char *name);
 ircserver *servlist_server_find (ircnet *net, char *name, int *pos);
 
+int token_foreach (char *str, char sep, int (*callback) (char *str, void *ud), 
+		                void *ud);
+
+
 #endif

@@ -72,7 +72,8 @@ void *xchat_realloc (char *old, int len, char *file, int line);
 #define DOMAINLEN	100
 #define NICKLEN		64				/* including the NULL, so 63 really */
 #define CHANLEN		300
-#define PDIWORDS		32
+#define PDIWORDS		32		/* Going away */
+#define MAX_TOKENS	64
 
 #define safe_strcpy(dest,src,len)	{strncpy(dest,src,len); \
 												dest[len-1] = 0;}
@@ -457,8 +458,8 @@ typedef struct server
 #endif
 } server;
 
-typedef int (*cmd_callback) (struct session * sess, char *tbuf, char *word[],
-									  char *word_eol[]);
+typedef int (*cmd_callback) (struct session * sess, char *tbuf, int parc,
+									  char *parv[]);
 
 struct commands
 {

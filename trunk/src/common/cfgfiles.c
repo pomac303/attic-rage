@@ -865,29 +865,29 @@ cfg_get_bool (char *var)
 }
 
 int
-cmd_set (struct session *sess, char *tbuf, char *word[], char *word_eol[])
+cmd_set (struct session *sess, char *tbuf, int parc, char *parv[])
 {
 	int wild = FALSE;
 	int quiet = FALSE;
 	int erase = FALSE;
 	int i = 0, finds = 0, found;
-	int idx = 2;
+	int idx = 1;
 	char *var, *val;
 
-	if (strcasecmp (word[2], "-quiet") == 0)
+	if (strcasecmp (parv[1], "-quiet") == 0)
 	{
 		idx++;
 		quiet = TRUE;
 	}
 
-	if (strcasecmp (word[2], "-e") == 0)
+	if (strcasecmp (parv[1], "-e") == 0)
 	{
 		idx++;
 		erase = TRUE;
 	}
 
-	var = word[idx];
-	val = word_eol[idx+1];
+	var = parv[idx];
+	var = parv[idx];
 
 	if (!*var)
 	{
