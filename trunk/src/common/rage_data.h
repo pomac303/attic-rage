@@ -397,12 +397,17 @@ typedef struct server
 
 	void *network;				/* points to entry in servlist.c or NULL! */
 
-	/* things relating to the queue including leaky bucket
+	/* things relating to the output queue including leaky bucket
 	 * throttling and the timer. */
 	time_t queue_time;
 	int queue_level;
 	guint queue_timer;
 	GQueue *out_queue[3];
+
+	/* Netsplit detection and other magic */
+	GQueue *split_queue;
+	guint split_timer;
+	char *split_reason;
 	
 	time_t next_send;			/* cptr->since in ircu */
 	time_t prev_now;			/* previous now-time */

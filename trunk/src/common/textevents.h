@@ -418,4 +418,10 @@ N_("%C0%B%171Garbage%187%B$t$1%O")},
 
 {"Silence", pevt_silence_help, 1, 
 N_("%C0%B%171Silence%187%B$t$1%O")},
+
+{"Netsplit", pevt_gen_help, 2, 
+N_("%C0%B%171Netsplit%187%B$tNetsplit detected between servers $1 and $2.%O")},
+
+{"Netsplit Users Gone", pevt_gen_help, 1, 
+N_("%C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O")},
 };

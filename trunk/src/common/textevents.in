@@ -831,3 +831,16 @@ XP_TE_SILENCE
 pevt_silence_help
 %C0%B%171Silence%187%B$t$1%O
 1
+
+Netsplit
+XP_TE_NS_START
+pevt_gen_help
+%C0%B%171Netsplit%187%B$tNetsplit detected between servers $1 and $2.%O
+2
+
+Netsplit Users Gone
+XP_TE_NS_GONE
+pevt_gen_help
+%C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O
+1
+
