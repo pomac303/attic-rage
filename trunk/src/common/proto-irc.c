@@ -538,7 +538,6 @@ irc_numeric(session *sess, int parc, char *parv[])
 			return;
 
 		case RPL_CHANNELMODEIS: /* 324 */
-			/* XXX: Shouldn't this be parv[2]? */
 			sess = find_channel(sess->server,parv[3]);
 			if (!sess)
 				sess = sess->server->server_session;
@@ -883,6 +882,7 @@ irc_server(session *sess, int parc, char *parv[])
 					}
 				}
 			}
+			break;
 		}
 		case M_PONG:
 			inbound_ping_reply (sess->server->server_session, parv[3], parv[2]);

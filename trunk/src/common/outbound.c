@@ -1337,20 +1337,24 @@ cmd_exec (struct session *sess, char *tbuf, int parc, char *parv[])
 			return TRUE;
 		}
 
-		if (!strcmp (parv[1], "-d"))
+		if (cmd[0] == '-')
 		{
 			if (!*parv[2])
 				return FALSE;
 			cmd = parv[2];
-			shell = FALSE;
-		}
-		else if (!strcmp (parv[1], "-o"))
-		{
-			if (!*parv[2])
-				return FALSE;
-			cmd = parv[2];
-			tochannel = TRUE;
-		}
+			
+			switch(cmd[1])
+			{
+				case 0:
+					return FALSE;
+				case 'd':
+					shell = FALSE;
+					break;
+				case 'o':
+					tochannel = TRUE;
+					break;
+			}
+		}					
 
 		if (shell)
 		{
