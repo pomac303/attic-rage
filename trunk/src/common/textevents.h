@@ -225,7 +225,7 @@ N_("%C0%B%171Ignore%187%B$tIgnore list is empty.%O")},
 N_("%C5%B%171Error%187%B%O$tYou can't join $1; this channel is invite Only.%O")},
 
 {"Invited", pevt_invited_help, 3, 
-N_("event_text=%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O")},
+N_("%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O")},
 
 {"Join", pevt_join_help, 3, 
 N_("%C0%B-->%B$t$1 ($3) has joined channel $2%O")},

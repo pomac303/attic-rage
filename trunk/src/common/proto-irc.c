@@ -345,6 +345,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 {
 	char line[512];
 	session *tmp = NULL;
+	server *serv = sess->server;
 
 	switch(atoi(parv[1])) {
 		case RPL_WELCOME:  /* 001 */
@@ -540,7 +541,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 			char *chmode;
 			sess = find_channel(sess->server,parv[3]);
 			if (!sess)
-				sess = sess->server->server_session;
+				sess = serv->server_session;
 			if (sess->ignore_mode)
 				sess->ignore_mode = FALSE;
 			else
@@ -657,7 +658,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_ENDOFBANLIST: /* 368 */
 			sess = find_channel (sess->server, parv[3]);
 			if (!sess)
-				sess = sess->server->front_session;
+				sess = serv->front_session;
 
 			if (!fe_is_banwindow(sess))
 				return;
