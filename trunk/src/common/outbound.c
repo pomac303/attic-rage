@@ -2141,7 +2141,7 @@ cmd_load (struct session *sess, char *cmd, char *buf)
 #ifdef USE_PLUGIN
 	{
 		int len;
-		char *error, *arg;
+		char *error, *arg = NULL;
 
 		len = strlen (file);
 #ifdef WIN32
@@ -2153,7 +2153,6 @@ cmd_load (struct session *sess, char *cmd, char *buf)
 		if (len > 3 && strcasecmp (".so", file + len - 3) == 0)
 #endif
 #endif
-		arg = NULL;
 		skip_white(&buf);
 		if (buf)
 			arg = buf;
