@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2004-04-20 12:14-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: English (British) <en_gb@li.org>\n"
@@ -2831,221 +2831,221 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Unknown"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr "Direct client-to-client"
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 msgid "Send File"
 msgstr "Send File"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr "Offer Chat"
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 msgid "Abort Chat"
 msgstr "Abort Chat"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Version"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 msgid "Userinfo"
 msgstr "Userinfo"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 msgid "Clientinfo"
 msgstr "Clientinfo"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 msgid "Time"
 msgstr "Time"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 msgid "Finger"
 msgstr "Finger"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 msgid "Oper"
 msgstr "Oper"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr "Kill this user"
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 msgid "Mode"
 msgstr "Mode"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr "Give Ops"
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr "Take Ops"
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Give Ops"
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Take Ops"
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr "Give Voice"
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr "Take Voice"
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 msgid "Ignore"
 msgstr "Ignore"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 msgid "Ignore User"
 msgstr "Ignore User"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 msgid "UnIgnore User"
 msgstr "UnIgnore User"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 msgid "Kick/Ban"
 msgstr "Kick/Ban"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Kick"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Ban"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 msgid "KickBan"
 msgstr "KickBan"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr "Who"
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "WhoIs"
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr "DNS Lookup"
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 msgid "Trace"
 msgstr "Trace"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 msgid "UserHost"
 msgstr "UserHost"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr "External"
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 msgid "Open Dialog Window"
 msgstr "Open Dialogue Window"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Disconnect"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Reconnect"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Leave Channel"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Join Channel..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Enter Channel to Join:"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Server Links"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Ping Server"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Hide Version"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Op"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "DeOp"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "bye"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Enter reason to kick %s:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Sendfile"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Dialogue"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Send"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Chat"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Clear"
 
@@ -3306,7 +3306,7 @@ msgstr "Save"
 msgid "Add New"
 msgstr "Add New"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Delete"
 
@@ -3483,7 +3483,7 @@ msgstr "There was an error loading key bindings configuration"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<none>"
 
@@ -3580,7 +3580,7 @@ msgstr "Cannot write to that file."
 msgid "Cannot read that file."
 msgstr "Cannot read that file."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr "That mask already exists."
 
@@ -3608,46 +3608,42 @@ msgstr "Invite"
 msgid "Unignore"
 msgstr "Unignore"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 msgid "Enter mask to ignore:"
 msgstr "Enter mask to ignore:"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Ignore list"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Ignore Stats:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Channel:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Private:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Notice:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Invite:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "New"
-
-#: src/fe-gtk/ignoregui.c:351
-msgid "Delete All"
-msgstr "Delete All"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Add"
 
 #: src/fe-gtk/maingui.c:275
 #, fuzzy
@@ -3735,19 +3731,7 @@ msgstr "Keyword"
 msgid "User Limit"
 msgstr "User Limit"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Close this tab/window"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Show/Hide userlist"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3759,7 +3743,20 @@ msgstr ""
 "You may be using a non-compliant window\n"
 "manager that is not currently supported.\n"
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Close this tab/window"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Show/Hide userlist"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Enter new nickname:"
 
@@ -4019,6 +4016,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "Server List..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "New"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "Server Tab..."
@@ -4267,10 +4268,6 @@ msgstr "Enter nickname to add:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Notify List"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Add"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5426,6 +5423,9 @@ msgstr "Save list to a file"
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d ops, %d total"
+
+#~ msgid "Delete All"
+#~ msgstr "Delete All"
 
 #, fuzzy
 #~ msgid "%C22*%O$t$1 added to notify list."

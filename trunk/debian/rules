@@ -73,7 +73,7 @@ install-stamp: build
 	install -o root -g root -m 755 rage $(CURDIR)/debian/rage/usr/bin
 #	install -o root -g root -m 755 xchat-text $(CURDIR)/debian/xchat-text/usr/bin
 #	install -o root -g root -m 644 plugins/perl/*.pl $(CURDIR)/debian/xchat-common/usr/share/doc/xchat-common/scripts-perl/
-	install -o root -g root -m 644 src/common/xchat-plugin.h $(CURDIR)/debian/rage-common/usr/include/rage/
+	install -o root -g root -m 644 src/common/rage-plugin.h $(CURDIR)/debian/rage-common/usr/include/rage/
 	install -o root -g root -m 644 debian/rage_mini.xpm $(CURDIR)/debian/rage-common/usr/share/icons/
 	ln -s xchat-common $(CURDIR)/debian/rage/usr/share/doc/rage
 #	ln -s xchat-common $(CURDIR)/debian/xchat-text/usr/share/doc/xchat-text

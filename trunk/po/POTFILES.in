@@ -9,7 +9,7 @@ src/common/servlist.c
 src/common/textevents.h
 src/common/text.c
 src/common/util.c
-src/common/xchat.c
+src/common/rage.c
 src/fe-gtk/about.c
 src/fe-gtk/ascii.c
 src/fe-gtk/banlist.c

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: X-Chat 1.9.8\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2003-01-14 03:00GMT+2\n"
 "Last-Translator: Dokianakis Theofanis <madf@hellug.gr>\n"
 "Language-Team: Greek <EL@li.org>\n"
@@ -2765,238 +2765,238 @@ msgstr "Ζιμπάμπουε"
 msgid "Unknown"
 msgstr "¶γνωστο"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr ""
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 #, fuzzy
 msgid "Send File"
 msgstr "Αποστολή"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr ""
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 #, fuzzy
 msgid "Abort Chat"
 msgstr "Περί X-Chat"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Έκδοση"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 #, fuzzy
 msgid "Userinfo"
 msgstr "Χρήστης"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 #, fuzzy
 msgid "Clientinfo"
 msgstr "Έξοδος πελάτη"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr ""
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 #, fuzzy
 msgid "Time"
 msgstr "Η ώρα"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 #, fuzzy
 msgid "Finger"
 msgstr "Νίγηρα"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 #, fuzzy
 msgid "Oper"
 msgstr "¶νοιγμα"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr ""
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 #, fuzzy
 msgid "Mode"
 msgstr "Mod"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr ""
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr ""
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 msgid "Give Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 msgid "Take Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr ""
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr ""
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 #, fuzzy
 msgid "Ignore"
 msgstr "Unignore"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 #, fuzzy
 msgid "Ignore User"
 msgstr "Μάσκα Ignore:"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 #, fuzzy
 msgid "UnIgnore User"
 msgstr "Unignore"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 #, fuzzy
 msgid "Kick/Ban"
 msgstr "Kick"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Kick"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Ban"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 #, fuzzy
 msgid "KickBan"
 msgstr "Kick"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr ""
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr ""
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr ""
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 #, fuzzy
 msgid "Trace"
 msgstr "Γαλλία"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 #, fuzzy
 msgid "UserHost"
 msgstr "Χρήστες"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr ""
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr ""
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 #, fuzzy
 msgid "Telnet"
 msgstr "Διαγραφή"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 #, fuzzy
 msgid "Open Dialog Window"
 msgstr "Αυτόματο ¶νοιγμα Παραθύρων Διαλόγου"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Αποσύνδεση"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Επανασύνδεση"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Εγκατάλειψη Καναλιού"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Σύνδεση στο Κανάλι..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Εισάγετε το Κανάλι για Σύνδεση"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Συνδέσεις Διακομιστών"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Ping στο Διακομιστή"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Απόκρυψη Έκδοσης"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Op"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "DeOp"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "αντίο"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Εισάγετε αιτία για το kick του %s:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Αποστολή"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Διάλογος"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 #, fuzzy
 msgid "Send"
 msgstr "Στάλθ"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 #, fuzzy
 msgid "Chat"
 msgstr "Τσαντ"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Καθάρισμα"
 
@@ -3252,7 +3252,7 @@ msgstr "Αποθήκευση"
 msgid "Add New"
 msgstr "Προσθήκη Νέου"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -3438,7 +3438,7 @@ msgstr "Σφάλμα κατά το φόρτωμα των ρυθμίσεων των πλήκτρων συντόμευσης"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<κανένα>"
 
@@ -3535,7 +3535,7 @@ msgstr "Αδυναμία εγγραφής σε αυτό το αρχείο."
 msgid "Cannot read that file."
 msgstr "Αδυναμία ανάγνωσης αυτού του αρχείου"
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr ""
 
@@ -3563,48 +3563,43 @@ msgstr "Invite"
 msgid "Unignore"
 msgstr "Unignore"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 #, fuzzy
 msgid "Enter mask to ignore:"
 msgstr "Εισάγετε το Κανάλι για Σύνδεση"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Λίστα ignore"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Στατιστικά Ignore:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Κανάλι:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Προσωπικό:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Ειδοποίηση:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Invite:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Νέο"
-
-#: src/fe-gtk/ignoregui.c:351
-#, fuzzy
-msgid "Delete All"
-msgstr "Διαγραφή"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Προσθήκη"
 
 #: src/fe-gtk/maingui.c:275
 #, fuzzy
@@ -3693,19 +3688,7 @@ msgstr "Λέξη Κλειδί"
 msgid "User Limit"
 msgstr "Όριο Χρηστών"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Κλεισιμο αυτής της σελίδας/παραθύρου"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr "Προσάρτηση/Αποκοπή αυτής της σελίδας"
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Εμφάνιση/Απόκρυψη λίστας χρηστών"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3713,7 +3696,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr "Προσάρτηση/Αποκοπή αυτής της σελίδας"
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Κλεισιμο αυτής της σελίδας/παραθύρου"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Εμφάνιση/Απόκρυψη λίστας χρηστών"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Εισάγετε νέο ψευδώνυμο:"
 
@@ -3972,6 +3968,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "Λίστα Διακομιστών..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Νέο"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "Σελίδα Διακομιστή..."
@@ -4227,10 +4227,6 @@ msgstr "Εισάγετε ψευδόνυμο για πρόσθεση:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Λίστα ειδοποίησης"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Προσθήκη"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5394,6 +5390,10 @@ msgstr "Αδυναμία εγγραφής σε αυτό το αρχείο."
 #, c-format
 msgid "%d ops, %d total"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete All"
+#~ msgstr "Διαγραφή"
 
 #~ msgid "_X-Chat"
 #~ msgstr "_X-Chat"

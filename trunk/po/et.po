@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xchat 1.9.x\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2002-11-19 15:07+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -2799,249 +2799,249 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr ""
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 #, fuzzy
 msgid "Send File"
 msgstr "Helifail: "
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr ""
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 #, fuzzy
 msgid "Abort Chat"
 msgstr "X-Chati info"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versioon"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 #, fuzzy
 msgid "Userinfo"
 msgstr "Kasutaja"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 #, fuzzy
 msgid "Clientinfo"
 msgstr "Klient väljub"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr ""
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 #, fuzzy
 msgid "Time"
 msgstr "Aeg"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 #, fuzzy
 msgid "Finger"
 msgstr "Niger"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 #, fuzzy
 msgid "Oper"
 msgstr "Ava"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr ""
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 #, fuzzy
 msgid "Mode"
 msgstr "Modereeritav"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr ""
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr ""
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 msgid "Give Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 msgid "Take Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr ""
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr ""
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 #, fuzzy
 msgid "Ignore"
 msgstr "Ära ignoreeri"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 #, fuzzy
 msgid "Ignore User"
 msgstr "Ignoreerimise mask:"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 #, fuzzy
 msgid "UnIgnore User"
 msgstr "Ära ignoreeri"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 #, fuzzy
 msgid "Kick/Ban"
 msgstr "Nimi"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 #, fuzzy
 msgid "Kick"
 msgstr "Nimi"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 #, fuzzy
 msgid "Ban"
 msgstr "Bhutan"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 #, fuzzy
 msgid "KickBan"
 msgstr "Nimi"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 #, fuzzy
 msgid "Who"
 msgstr "KesOn"
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "KesOn"
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr ""
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 #, fuzzy
 msgid "Trace"
 msgstr "Prantsusmaa"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 #, fuzzy
 msgid "UserHost"
 msgstr "Kasutajad"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr ""
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr ""
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 #, fuzzy
 msgid "Telnet"
 msgstr "Kustuta"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 #, fuzzy
 msgid "Open Dialog Window"
 msgstr "Ava dialoogiaknad automaatselt"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 #, fuzzy
 msgid "Disconnect"
 msgstr "Ühenda"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 #, fuzzy
 msgid "Reconnect"
 msgstr "Ühenda"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 #, fuzzy
 msgid "Leave Channel"
 msgstr "Lahku kanalist"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 #, fuzzy
 msgid "Join Channel..."
 msgstr "Liitu kanaliga"
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 #, fuzzy
 msgid "Enter Channel to Join:"
 msgstr "Sihtkanal"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 #, fuzzy
 msgid "Server Links"
 msgstr "Serverite nimekiri..."
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 #, fuzzy
 msgid "Ping Server"
 msgstr "Server"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 #, fuzzy
 msgid "Hide Version"
 msgstr "Versioon"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 #, fuzzy
 msgid "Op"
 msgstr "Ava"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr ""
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr ""
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr ""
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 #, fuzzy
 msgid "Sendfile"
 msgstr "Helifail: "
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr ""
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Saada"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Vestlus"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Puhasta"
 
@@ -3301,7 +3301,7 @@ msgstr "Salvesta"
 msgid "Add New"
 msgstr "Lisa uus"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Kustuta"
 
@@ -3454,7 +3454,7 @@ msgstr ""
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<tühi>"
 
@@ -3551,7 +3551,7 @@ msgstr "Sellese faili ei saa kirjutada."
 msgid "Cannot read that file."
 msgstr "Sellest failist ei saa lugeda."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr ""
 
@@ -3579,48 +3579,43 @@ msgstr "Kutsumised"
 msgid "Unignore"
 msgstr "Ära ignoreeri"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 #, fuzzy
 msgid "Enter mask to ignore:"
 msgstr "Sihtkanal"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: ignoreeritavate nimekiri"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Ignoreerimise statistika:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Kanalile:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Privaatne:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Teateid:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Kutsumisi:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Lisa uus"
-
-#: src/fe-gtk/ignoregui.c:351
-#, fuzzy
-msgid "Delete All"
-msgstr "Kustuta"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Lisa"
 
 #: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
@@ -3711,19 +3706,7 @@ msgstr "Märgusõna"
 msgid "User Limit"
 msgstr "Kasutajate piirang"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Sulge see sakk/aken"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Näita/peida kasutajate nimekiri"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3731,7 +3714,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Sulge see sakk/aken"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Näita/peida kasutajate nimekiri"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Sisesta uus hüüdnimi:"
 
@@ -3975,6 +3971,10 @@ msgstr ""
 #: src/fe-gtk/menu.c:1205
 msgid "Server List..."
 msgstr "Serverite nimekiri..."
+
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Lisa uus"
 
 #: src/fe-gtk/menu.c:1209
 #, fuzzy
@@ -4255,10 +4255,6 @@ msgstr "Sisesta uus hüüdnimi:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: märguande nimekiri"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Lisa"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5428,6 +5424,10 @@ msgstr "Sellese faili ei saa kirjutada."
 #, c-format
 msgid "%d ops, %d total"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete All"
+#~ msgstr "Kustuta"
 
 #, fuzzy
 #~ msgid "%C22*%O$t$1 added to notify list."

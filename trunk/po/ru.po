@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2004-06-14 12:21+0400\n"
 "Last-Translator: Peter Astakhov <astakhovp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -2859,221 +2859,221 @@ msgstr "Зимбабве"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr "Прямое соединение"
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 msgid "Send File"
 msgstr "Послать файл"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr "Предложить разговор"
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 msgid "Abort Chat"
 msgstr "Прервать Разговор"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Версия"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 msgid "Userinfo"
 msgstr "Информация о пользователе"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 msgid "Clientinfo"
 msgstr "Информация о клиенте"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 msgid "Time"
 msgstr "Время"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 msgid "Finger"
 msgstr "Finger"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 msgid "Oper"
 msgstr "Операция"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr "Убить этого пользователя"
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 msgid "Mode"
 msgstr "Режим"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr "Дать оператора"
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr "Снять оператора"
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Дать оператора"
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Снять оператора"
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr "Дать голос"
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr "Забрать голос"
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 msgid "Ignore"
 msgstr "Игнорировать"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 msgid "Ignore User"
 msgstr "Игнорировать пользователя"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 msgid "UnIgnore User"
 msgstr "Снять игнорирование пользователя"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 msgid "Kick/Ban"
 msgstr "Кик/Бан"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Кик"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Бан"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 msgid "KickBan"
 msgstr "Кик+Бан"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Информация"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr "Кто "
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "Кто "
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr "Просмотр DNS:"
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 msgid "Trace"
 msgstr "Трассировка"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 msgid "UserHost"
 msgstr "Компьютер пользователя"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr "Внешние"
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 msgid "Open Dialog Window"
 msgstr "Открыть диалоговое окно"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Отключить"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Пересоединиться"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Уйти с канала"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Зайти на канал..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Введите канал для входа:"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Ссылки сервера"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Ping Server"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Не показывать версию"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Оператор"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "Снять оператора"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "пока"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "введите причину выброса %s:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Послать файл"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Диалог"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Послать"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Разговор"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Очистить"
 
@@ -3333,7 +3333,7 @@ msgstr "Записать"
 msgid "Add New"
 msgstr "Добавить новый"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Удалить"
 
@@ -3509,7 +3509,7 @@ msgstr "Ошибка загрузки конфигурации клавиш"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<none>"
 
@@ -3606,7 +3606,7 @@ msgstr "Невозможно записать в этот файл."
 msgid "Cannot read that file."
 msgstr "Невозможно прочитать этот файл."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr "Такая маска уже существует."
 
@@ -3634,46 +3634,42 @@ msgstr "Приглашен"
 msgid "Unignore"
 msgstr "Не игнорировать"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 msgid "Enter mask to ignore:"
 msgstr "Введите маску для игнорирования:"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Список игнорирования"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Состояние игнорирования:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Канал:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Приватный:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Сообщение:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Пригласить:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Новый"
-
-#: src/fe-gtk/ignoregui.c:351
-msgid "Delete All"
-msgstr "Удалить все"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Добавить"
 
 #: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
@@ -3760,19 +3756,7 @@ msgstr "Ключевое слово"
 msgid "User Limit"
 msgstr "Ограничение пользователей"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Закрыть вкладку/окно"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Показать/Скрыть список пользователей"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3784,7 +3768,20 @@ msgstr ""
 "Возможно, вы используете несовместимый оконный\n"
 "менеджер, который не поддерживает такую возможность.\n"
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Закрыть вкладку/окно"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Показать/Скрыть список пользователей"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Введите новый ник:"
 
@@ -4044,6 +4041,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "Список серверов..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Новый"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "Вкладка сервера..."
@@ -4292,10 +4293,6 @@ msgstr "Введите ник для добавления:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Список уведомлений"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Добавить"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5455,6 +5452,9 @@ msgstr "Записать список в файл"
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d оп-ов, %d всего"
+
+#~ msgid "Delete All"
+#~ msgstr "Удалить все"
 
 #, fuzzy
 #~ msgid "%C22*%O$t$1 added to notify list."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -2857,221 +2857,221 @@ msgstr "Zimbabwe"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr "Suora vertaisyhteys"
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 msgid "Send File"
 msgstr "Lähetä tiedosto"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr "Tarjoa keskustelua"
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 msgid "Abort Chat"
 msgstr "Keskeytä keskustelu"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versio"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 msgid "Userinfo"
 msgstr "Käyttäjätiedot"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 msgid "Clientinfo"
 msgstr "Asiakasohjelmatiedot"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 msgid "Time"
 msgstr "Aika"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 msgid "Finger"
 msgstr "Tunnustelu"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 msgid "Oper"
 msgstr "Operaattori"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr "Tapa tämä käyttäjä"
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 msgid "Mode"
 msgstr "Tila"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr "Anna opit"
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr "Poista opit"
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Anna opit"
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Poista opit"
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr "Anna puheoikeus"
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr "Poista puheoikeus"
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 msgid "Ignore"
 msgstr "Jätä huomiotta"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 msgid "Ignore User"
 msgstr "Jätä käyttäjä huomiotta"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 msgid "UnIgnore User"
 msgstr "Huomioi käyttäjä jälleen"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 msgid "Kick/Ban"
 msgstr "Potkaise/Bannaa"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Potkaise"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Bannaa"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 msgid "KickBan"
 msgstr "Potkaise ja bannaa"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Tiedot"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr "Kuka"
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "KukaOn"
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr "DNS-haku"
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 msgid "Trace"
 msgstr "Jäljitä"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 msgid "UserHost"
 msgstr "KäyttäjäIsäntä"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr "Ulkoiset"
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 msgid "Open Dialog Window"
 msgstr "Avaa keskusteluikkuna"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Katkaise yhteys"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Yhdistä uudelleen"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Poistu kanavalta"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Liity kanavalle..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Anna liityttävän kanavan nimi:"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Palvelinlinkit"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Pingaa palvelinta"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Piilota versionumero"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Oppaa"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "DeOppaa"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "heihei"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Anna syy miksi %s potkaistaan:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Lähetä"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Keskustele"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Lähetä"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Keskustelu"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Tyhjennä"
 
@@ -3332,7 +3332,7 @@ msgstr "Tallenna"
 msgid "Add New"
 msgstr "Lisää uusi"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Poista"
 
@@ -3507,7 +3507,7 @@ msgstr "Virhe ladattaessa näppäinsidonta-asetuksia"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<ei mitään>"
 
@@ -3604,7 +3604,7 @@ msgstr "Antamaasi tiedostoon ei voi kirjoittaa."
 msgid "Cannot read that file."
 msgstr "Antamaasi tiedostoa ei voi lukea."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr "Kyseinen peite on jo olemassa."
 
@@ -3632,46 +3632,42 @@ msgstr "Kutsut"
 msgid "Unignore"
 msgstr "Huomioi jälleen"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 msgid "Enter mask to ignore:"
 msgstr "Anna peite huomiotta jätettäville:"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Huomioimattomuusluettelo"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Huomioimattomuustilastot:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Kavavia:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Yksityisiä:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Ilmoituksia:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Kutsuja:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Uusi"
-
-#: src/fe-gtk/ignoregui.c:351
-msgid "Delete All"
-msgstr "Poista kaikki"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Lisää uusi"
 
 #: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
@@ -3758,19 +3754,7 @@ msgstr "Tunnussana"
 msgid "User Limit"
 msgstr "Käyttäjäraja"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Sulje tämä välilehti/ikkuna"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr "Liitä/irrota tämä välilehti"
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "Näytä/piilota käyttäjäluettelo"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3782,7 +3766,20 @@ msgstr ""
 "Ikkunointiohjelma on ehkä epäyhteensopiva,\n"
 "eikä sitä tällä hetkellä tueta.\n"
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr "Liitä/irrota tämä välilehti"
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Sulje tämä välilehti/ikkuna"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "Näytä/piilota käyttäjäluettelo"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Anna uusi kutsumanimi:"
 
@@ -4040,6 +4037,10 @@ msgstr ""
 msgid "Server List..."
 msgstr "Palvelinluettelo..."
 
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Uusi"
+
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
 msgstr "Palvelinvälilehti..."
@@ -4288,10 +4289,6 @@ msgstr "Anna lisättävä kutsumanimi:"
 #, fuzzy
 msgid "Rage: Notify List"
 msgstr "X-Chat: Ilmoitusluettelo"
-
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Lisää uusi"
 
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
@@ -5455,6 +5452,9 @@ msgstr "Tallenna luettelo tiedostoon"
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d oppia, %d yhteensä"
+
+#~ msgid "Delete All"
+#~ msgstr "Poista kaikki"
 
 #, fuzzy
 #~ msgid "%C22*%O$t$1 added to notify list."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.7pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 22:13+0200\n"
+"POT-Creation-Date: 2004-10-14 16:50+0200\n"
 "PO-Revision-Date: 2004-03-12 22:22+0200\n"
 "Last-Translator: Metin Amiroff <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <translation-team-az@lists.sourceforge.net>\n"
@@ -574,12 +574,11 @@ msgstr ""
 #: src/common/textevents.h:21
 #, fuzzy
 msgid "%C11*%O$t$1 $2%O"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgstr "-%C10-%C11-%O$t$1%O"
 
 #: src/common/textevents.h:24
-#, fuzzy
 msgid "%C16*$t$1 $2%O"
-msgstr "-%C10-%C11-%O$t$1%O"
+msgstr ""
 
 #: src/common/textevents.h:27
 msgid "%C0%B%171Ban%187%B$t$1 sets ban on \"$2\".%O"
@@ -615,7 +614,6 @@ msgid "%C0%B%171Invite%187%B$t$1 sets invite on $2.%O"
 msgstr ""
 
 #: src/common/textevents.h:51
-#, fuzzy
 msgid "%UChannel          Users   Topic%O"
 msgstr "%UKanalı          İstifadəçi   Mövzu%O"
 
@@ -635,11 +633,12 @@ msgstr ""
 #: src/common/textevents.h:63
 #, fuzzy
 msgid "%C16<$1>$t$2%O"
-msgstr "-%C10-%C11-%O$t$1%O"
+msgstr "%C6<%O$1%C6>%O$t$2%O"
 
 #: src/common/textevents.h:66
+#, fuzzy
 msgid "%C16-$1-%O$t[to $2]%O $3%O"
-msgstr ""
+msgstr "%C12-%C13$1%C12-%O$t$2%O"
 
 #: src/common/textevents.h:69
 msgid "%C0%B%171OP%187%B$t$1 gives channel operator status to $2%O"
@@ -825,8 +824,9 @@ msgid "%C0%B%171Notify%187%B$tNick $1 is no longer watched.%O"
 msgstr ""
 
 #: src/common/textevents.h:198
+#, fuzzy
 msgid "%C0%B%171Connect%187%B$tDisconnected.%O"
-msgstr ""
+msgstr "-%C10-%C11-%O$tBağlantı kəsildi ($1)."
 
 #: src/common/textevents.h:201
 msgid "%C0%B%171IP%187%B$tFound your IP: $1%O"
@@ -927,7 +927,7 @@ msgstr ""
 #: src/common/textevents.h:264
 #, fuzzy
 msgid "-%B$1%B-$t$2%O"
-msgstr "$1$t$2"
+msgstr "%C12-%C13$1%C12-%O$t$2%O"
 
 #: src/common/textevents.h:267
 #, fuzzy
@@ -935,9 +935,8 @@ msgid "}$1{$t$2"
 msgstr "$1$t$2"
 
 #: src/common/textevents.h:270
-#, fuzzy
 msgid "%C0%B%171Notify%187%B$tNotify list is empty.%O"
-msgstr "  Rədd siyahısı boşdur."
+msgstr ""
 
 #: src/common/textevents.h:273
 msgid "%C08,02 -- Notify List --------------- %O"
@@ -956,14 +955,12 @@ msgid "%C0%B%171Notify%187%B$tDetected Nick $1 ($2).%O"
 msgstr ""
 
 #: src/common/textevents.h:288
-#, fuzzy
 msgid "%C0%B<--%B$t$1 ($2) has left channel $3%O"
-msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+msgstr ""
 
 #: src/common/textevents.h:291
-#, fuzzy
 msgid "%C0%B<--%B$t$1 ($2) has left channel $3 ($4).%O"
-msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+msgstr ""
 
 #: src/common/textevents.h:294
 msgid "%C4%B%171Pong%187%B$tGot PING response from $1: $2s%O"
@@ -976,12 +973,12 @@ msgstr ""
 #: src/common/textevents.h:300
 #, fuzzy
 msgid "%B*$1*%B$t$2%O"
-msgstr "-%C10-%C11-%O$t$1%O"
+msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
 
 #: src/common/textevents.h:303
 #, fuzzy
 msgid "%C16*$1*$t$2%O"
-msgstr "-%C10-%C11-%O$t$1%O"
+msgstr "%C12*%C13$1%C12*$t%O$2%O"
 
 #: src/common/textevents.h:306
 msgid "%C0%B%171Notify%187%B$tA process is already running.%O"
@@ -1053,9 +1050,8 @@ msgid "%C0%B%171Whois%187%B$t$1 is away: $2%O"
 msgstr ""
 
 #: src/common/textevents.h:360
-#, fuzzy
 msgid "%C0%B%171Whois%187%B$t$1 $2%O"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgstr ""
 
 #: src/common/textevents.h:363
 msgid "%C0%B%171Whois%187%B$tEnd of WHOIS list.%O"
@@ -1070,9 +1066,8 @@ msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B $2 $3"
 msgstr ""
 
 #: src/common/textevents.h:372
-#, fuzzy
 msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B real user@host $2, real IP $3"
-msgstr "%C2<%O$1%C2>%O$t$2%O"
+msgstr ""
 
 #: src/common/textevents.h:375
 msgid "%C0%B%171Whois%187%B$tIdle: $2%O"
@@ -1119,19 +1114,17 @@ msgid "%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O"
 msgstr ""
 
 #: src/common/textevents.h:411
-#, fuzzy
 msgid "%C0%B%171List%187%B$t$(-16)1   $(-7)2 $3%O"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgstr ""
 
 #: src/common/textevents.h:414
 #, fuzzy
 msgid "%C0%B%171Who%187%B$t$1%O"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgstr "-%C10-%C11-%O$t$1%O"
 
 #: src/common/textevents.h:417
-#, fuzzy
 msgid "%C0%B&171Garbage%187%B$t$1%O"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgstr ""
 
 #: src/common/text.c:195
 #, c-format
@@ -1614,7 +1607,7 @@ msgstr "Ban vaxtı"
 #: src/common/text.c:1032
 #, fuzzy
 msgid "Source Server"
-msgstr "Vəkil vericisi"
+msgstr "Verici"
 
 #: src/common/text.c:1033
 #, fuzzy
@@ -2711,221 +2704,221 @@ msgstr "Zimbabve"
 msgid "Unknown"
 msgstr "Namə'lum"
 
-#: src/common/xchat.c:899
+#: src/common/rage.c:902
 msgid "Direct client-to-client"
 msgstr "Birbaşa client-to-client"
 
-#: src/common/xchat.c:900
+#: src/common/rage.c:903
 msgid "Send File"
 msgstr "Fayl Yolla"
 
-#: src/common/xchat.c:901
+#: src/common/rage.c:904
 msgid "Offer Chat"
 msgstr "Söhbət Təklif Et"
 
-#: src/common/xchat.c:902
+#: src/common/rage.c:905
 msgid "Abort Chat"
 msgstr "Söhbəti Sonlandır"
 
-#: src/common/xchat.c:903 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Buraxılış"
 
-#: src/common/xchat.c:904
+#: src/common/rage.c:907
 msgid "Userinfo"
 msgstr "İstifadəçi mə'lumatı"
 
-#: src/common/xchat.c:905
+#: src/common/rage.c:908
 msgid "Clientinfo"
 msgstr "Alıcı mə'lumatı"
 
-#: src/common/xchat.c:906 src/common/xchat.c:940 src/common/xchat.c:991
+#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
 msgid "Ping"
 msgstr "Ping"
 
-#: src/common/xchat.c:907
+#: src/common/rage.c:910
 msgid "Time"
 msgstr "Saat"
 
-#: src/common/xchat.c:908
+#: src/common/rage.c:911
 msgid "Finger"
 msgstr "Finger"
 
-#: src/common/xchat.c:909
+#: src/common/rage.c:912
 msgid "Oper"
 msgstr "Oper"
 
-#: src/common/xchat.c:910
+#: src/common/rage.c:913
 msgid "Kill this user"
 msgstr "Bu istifadəçini kill et"
 
-#: src/common/xchat.c:911
+#: src/common/rage.c:914
 msgid "Mode"
 msgstr "Mod"
 
-#: src/common/xchat.c:912
+#: src/common/rage.c:915
 msgid "Give Ops"
 msgstr "Op Ver"
 
-#: src/common/xchat.c:913
+#: src/common/rage.c:916
 msgid "Take Ops"
 msgstr "Op Al"
 
-#: src/common/xchat.c:914
+#: src/common/rage.c:917
 #, fuzzy
 msgid "Give Half-Ops"
 msgstr "Op Ver"
 
-#: src/common/xchat.c:915
+#: src/common/rage.c:918
 #, fuzzy
 msgid "Take Half-Ops"
 msgstr "Op Al"
 
-#: src/common/xchat.c:916
+#: src/common/rage.c:919
 msgid "Give Voice"
 msgstr "Voice Ver"
 
-#: src/common/xchat.c:917
+#: src/common/rage.c:920
 msgid "Take Voice"
 msgstr "Voice Al"
 
-#: src/common/xchat.c:918
+#: src/common/rage.c:921
 msgid "Ignore"
 msgstr "Rədd Et"
 
-#: src/common/xchat.c:919
+#: src/common/rage.c:922
 msgid "Ignore User"
 msgstr "İstifadəçini Rədd Et"
 
-#: src/common/xchat.c:920
+#: src/common/rage.c:923
 msgid "UnIgnore User"
 msgstr "İstifadəçidən Rəddi Sil"
 
-#: src/common/xchat.c:921
+#: src/common/rage.c:924
 msgid "Kick/Ban"
 msgstr "Kick/Ban"
 
-#: src/common/xchat.c:922 src/common/xchat.c:974
+#: src/common/rage.c:925 src/common/rage.c:977
 msgid "Kick"
 msgstr "Kick-lə"
 
-#: src/common/xchat.c:923 src/common/xchat.c:924 src/common/xchat.c:925
-#: src/common/xchat.c:926 src/common/xchat.c:927 src/common/xchat.c:973
+#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
+#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
 msgid "Ban"
 msgstr "Ban-la"
 
-#: src/common/xchat.c:928 src/common/xchat.c:929 src/common/xchat.c:930
-#: src/common/xchat.c:931
+#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
+#: src/common/rage.c:934
 msgid "KickBan"
 msgstr "KickBan-la"
 
-#: src/common/xchat.c:932 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
+#: src/common/rage.c:935 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Mə'lumat"
 
-#: src/common/xchat.c:933
+#: src/common/rage.c:936
 msgid "Who"
 msgstr "Who"
 
-#: src/common/xchat.c:934 src/common/xchat.c:987
+#: src/common/rage.c:937 src/common/rage.c:990
 msgid "WhoIs"
 msgstr "WhoIs"
 
-#: src/common/xchat.c:935
+#: src/common/rage.c:938
 msgid "DNS Lookup"
 msgstr "DNS Lookup"
 
-#: src/common/xchat.c:936
+#: src/common/rage.c:939
 msgid "Trace"
 msgstr "Trace"
 
-#: src/common/xchat.c:937
+#: src/common/rage.c:940
 msgid "UserHost"
 msgstr "İstifadəçi Qovşağı"
 
-#: src/common/xchat.c:938
+#: src/common/rage.c:941
 msgid "External"
 msgstr "Xarici"
 
-#: src/common/xchat.c:939
+#: src/common/rage.c:942
 msgid "Traceroute"
 msgstr "Traceroute"
 
-#: src/common/xchat.c:941
+#: src/common/rage.c:944
 msgid "Telnet"
 msgstr "Telnet"
 
-#: src/common/xchat.c:942
+#: src/common/rage.c:945
 msgid "Open Dialog Window"
 msgstr "Dialoq Pəncərəsini Aç"
 
-#: src/common/xchat.c:954
+#: src/common/rage.c:957
 msgid "Disconnect"
 msgstr "Bağlantını Kəs"
 
-#: src/common/xchat.c:955
+#: src/common/rage.c:958
 msgid "Reconnect"
 msgstr "Yenidən Bağlan"
 
-#: src/common/xchat.c:956
+#: src/common/rage.c:959
 msgid "Leave Channel"
 msgstr "Kanaldan Çıx"
 
-#: src/common/xchat.c:957
+#: src/common/rage.c:960
 msgid "Join Channel..."
 msgstr "Kanala Daxil Ol..."
 
-#: src/common/xchat.c:958
+#: src/common/rage.c:961
 msgid "Enter Channel to Join:"
 msgstr "Daxil Olunacaq Kanalı Bildir:"
 
-#: src/common/xchat.c:959
+#: src/common/rage.c:962
 msgid "Server Links"
 msgstr "Verici Körpüləri"
 
-#: src/common/xchat.c:960
+#: src/common/rage.c:963
 msgid "Ping Server"
 msgstr "Vericini Pinglə"
 
-#: src/common/xchat.c:961
+#: src/common/rage.c:964
 msgid "Hide Version"
 msgstr "Buraxılışı Gizlət"
 
-#: src/common/xchat.c:971
+#: src/common/rage.c:974
 msgid "Op"
 msgstr "Op"
 
-#: src/common/xchat.c:972
+#: src/common/rage.c:975
 msgid "DeOp"
 msgstr "DeOp"
 
-#: src/common/xchat.c:975
+#: src/common/rage.c:978
 msgid "bye"
 msgstr "Di ha!"
 
-#: src/common/xchat.c:976
+#: src/common/rage.c:979
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "Kickləmə səbəbi %s:"
 
-#: src/common/xchat.c:977
+#: src/common/rage.c:980
 msgid "Sendfile"
 msgstr "Fayl yolla"
 
-#: src/common/xchat.c:978
+#: src/common/rage.c:981
 msgid "Dialog"
 msgstr "Dialoq"
 
-#: src/common/xchat.c:988
+#: src/common/rage.c:991
 msgid "Send"
 msgstr "Yolla"
 
-#: src/common/xchat.c:989
+#: src/common/rage.c:992
 msgid "Chat"
 msgstr "Söhbət"
 
-#: src/common/xchat.c:990 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
-#: src/fe-gtk/urlgrab.c:175
+#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Təmizlə"
 
@@ -3186,7 +3179,7 @@ msgstr "Qeyd Et"
 msgid "Add New"
 msgstr "Yenisini Əlavə Et"
 
-#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
 msgid "Delete"
 msgstr "Sil"
 
@@ -3336,7 +3329,7 @@ msgstr ""
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
 #: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
-#: src/fe-gtk/maingui.c:2454
+#: src/fe-gtk/maingui.c:2443
 msgid "<none>"
 msgstr "<boş>"
 
@@ -3353,9 +3346,8 @@ msgid "Action"
 msgstr "Gedişat"
 
 #: src/fe-gtk/fkeys.c:652
-#, fuzzy
 msgid "Rage: Keyboard Shortcuts"
-msgstr "X-Chat: Axtarış"
+msgstr ""
 
 #: src/fe-gtk/fkeys.c:699
 msgid "Add new"
@@ -3423,7 +3415,7 @@ msgstr "Bu fayla yazıla bilmir."
 msgid "Cannot read that file."
 msgstr "Bu fayl oxuna bilmir."
 
-#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
 msgid "That mask already exists."
 msgstr "Bu maska onsuz da mövcuddur."
 
@@ -3451,46 +3443,42 @@ msgstr "Dəvət Et"
 msgid "Unignore"
 msgstr "Qəbul Et"
 
-#: src/fe-gtk/ignoregui.c:270
+#: src/fe-gtk/ignoregui.c:277
 msgid "Enter mask to ignore:"
 msgstr "Rədd ediləcək maskanı bildir:"
 
-#: src/fe-gtk/ignoregui.c:317
+#: src/fe-gtk/ignoregui.c:324
 #, fuzzy
 msgid "Rage: Ignore list"
 msgstr "X-Chat: Rədd siyahısı"
 
-#: src/fe-gtk/ignoregui.c:324
+#: src/fe-gtk/ignoregui.c:331
 msgid "Ignore Stats:"
 msgstr "Rədd Statistikaları:"
 
-#: src/fe-gtk/ignoregui.c:332
+#: src/fe-gtk/ignoregui.c:339
 msgid "Channel:"
 msgstr "Kanal:"
 
-#: src/fe-gtk/ignoregui.c:333
+#: src/fe-gtk/ignoregui.c:340
 msgid "Private:"
 msgstr "Şəxsi:"
 
-#: src/fe-gtk/ignoregui.c:334
+#: src/fe-gtk/ignoregui.c:341
 msgid "Notice:"
 msgstr "Bildiriş:"
 
-#: src/fe-gtk/ignoregui.c:335
+#: src/fe-gtk/ignoregui.c:342
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:336
+#: src/fe-gtk/ignoregui.c:343
 msgid "Invite:"
 msgstr "Dəvət:"
 
-#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
-msgid "New"
-msgstr "Yeni"
-
-#: src/fe-gtk/ignoregui.c:351
-msgid "Delete All"
-msgstr "Hamısı Sil"
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Əlavə Et"
 
 #: src/fe-gtk/maingui.c:275
 #, fuzzy
@@ -3578,19 +3566,7 @@ msgstr "Açar Kəlmə"
 msgid "User Limit"
 msgstr "İstifadəçi Hüdüdu"
 
-#: src/fe-gtk/maingui.c:1564
-msgid "Close this tab/window"
-msgstr "Bu səkmə/pəncərəni bağla"
-
-#: src/fe-gtk/maingui.c:1569
-msgid "Attach/Detach this tab"
-msgstr ""
-
-#: src/fe-gtk/maingui.c:1662
-msgid "Show/Hide userlist"
-msgstr "İstifadəçi siyahısını göstər/gizlət"
-
-#: src/fe-gtk/maingui.c:1775
+#: src/fe-gtk/maingui.c:1723
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3598,7 +3574,20 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1968
+#: src/fe-gtk/maingui.c:1883 src/fe-gtk/maingui.c:1894
+#: src/fe-gtk/maingui.c:2664
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1892 src/fe-gtk/maingui.c:2662
+msgid "Close this tab/window"
+msgstr "Bu səkmə/pəncərəni bağla"
+
+#: src/fe-gtk/maingui.c:1919
+msgid "Show/Hide userlist"
+msgstr "İstifadəçi siyahısını göstər/gizlət"
+
+#: src/fe-gtk/maingui.c:1957
 msgid "Enter new nickname:"
 msgstr "Yeni ləqəb bildir:"
 
@@ -3800,6 +3789,10 @@ msgstr ""
 #: src/fe-gtk/menu.c:1205
 msgid "Server List..."
 msgstr "Verici Siyahısı..."
+
+#: src/fe-gtk/menu.c:1208
+msgid "New"
+msgstr "Yeni"
 
 #: src/fe-gtk/menu.c:1209
 msgid "Server Tab..."
@@ -4050,10 +4043,6 @@ msgstr "Əlavə ediləcək ləqəbi yazın:"
 msgid "Rage: Notify List"
 msgstr "X-Chat: Bildiriş Siyahısı"
 
-#: src/fe-gtk/notifygui.c:277
-msgid "Add"
-msgstr "Əlavə Et"
-
 #: src/fe-gtk/notifygui.c:279
 msgid "Remove"
 msgstr "Sil"
@@ -4133,7 +4122,7 @@ msgstr "Həqiqətən də \"%s\" şəbəkəsi və bütün onun vericiləri silins
 #: src/fe-gtk/servlistgui.c:1012
 #, fuzzy, c-format
 msgid "Rage: Edit %s"
-msgstr "X-Chat: Ban Siyahısı (%s)"
+msgstr "İstifadə Qaydası: %s\n"
 
 #: src/fe-gtk/servlistgui.c:1031
 #, fuzzy, c-format
@@ -4571,9 +4560,8 @@ msgid "Small tabs"
 msgstr ""
 
 #: src/fe-gtk/setup.c:164
-#, fuzzy
 msgid "Sort tabs in alphabetical order"
-msgstr "Tabların böyüklüyü:"
+msgstr ""
 
 #: src/fe-gtk/setup.c:165
 msgid "Focus new tabs:"
@@ -5035,7 +5023,7 @@ msgstr "Yeni Mə'lumat:"
 #: src/fe-gtk/setup.c:1031
 #, fuzzy
 msgid "Marker line:"
-msgstr "Uzaqda cəziyyətini bir dəfə göstər"
+msgstr "Ön işarə:"
 
 #: src/fe-gtk/setup.c:1032
 #, fuzzy
@@ -5224,133 +5212,37 @@ msgstr "Siyahını fayla qeyd et"
 msgid "%d ops, %d total"
 msgstr "%d op, %d toplam"
 
-#, fuzzy
-#~ msgid "%C18*$t$1%O $2"
-#~ msgstr "-%C10-%C11-%O$t$1%O"
+#~ msgid "%C2<%O$1%C2>%O$t$2%O"
+#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
 
-#, fuzzy
-#~ msgid "%C21*%O$t%C21%B$1%O%C21 $2"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C18%B%B$4$1%O%C18%O$t$2"
-#~ msgstr "%C6<%O$1%C6>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "$4%C21%B$1%O$t%C21$2"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C28-%C29$1/$2%C28-%O$t$3"
+#~ msgid "%C12-%C13$1/$2%C12-%O$t$3%O"
 #~ msgstr "%C12-%C13$1/$2%C12-%O$t$3%O"
 
-#, fuzzy
-#~ msgid "%C19>%O$1%C19<%O$tCTCP $2"
+#~ msgid "%C3>%O$1%C3<%O$tCTCP $2%O"
 #~ msgstr "%C3>%O$1%C3<%O$tCTCP $2%O"
 
-#, fuzzy
-#~ msgid "%C22*%O$tOffering%C26 $1%O to%C26 $2"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t$1 deleted from notify list."
-#~ msgstr "%O%C11$1%O rədd siyahısından silindi."
-
-#, fuzzy
-#~ msgid "%C22*%O$tDisconnected ($1)."
-#~ msgstr "-%C10-%C11-%O$tBağlantı kəsildi ($1)."
-
-#, fuzzy
-#~ msgid "%O%C26$1%O added to ignore list."
-#~ msgstr "%O%C11$1%O rədd siyahısından silindi."
-
-#, fuzzy
 #~ msgid ""
-#~ "%C24,18                                                              "
+#~ "%C08,02                                                              %O"
 #~ msgstr ""
 #~ "%C08,02                                                              %O"
 
-#, fuzzy
-#~ msgid "%O%C26$1%O removed from ignore list."
+#~ msgid "%O%C11$1%O removed from ignore list."
 #~ msgstr "%O%C11$1%O rədd siyahısından silindi."
-
-#, fuzzy
-#~ msgid "%C21*%O$t%C21$1 has kicked $2 from $3 ($4%O%C21)"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C28-%C29$1%C28-%O$t$2"
-#~ msgstr "%C12-%C13$1%C12-%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C19>%O$1%C19<%O$t$2"
-#~ msgstr "%C3>%O$1%C3<%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C24,18 %B  Notify List                           "
-#~ msgstr ""
-#~ "%C08,02                                                              %O"
-
-#, fuzzy
-#~ msgid "%C28*%C29$3$1%C28*$t%O$2"
-#~ msgstr "%C12*%C13$1%C12*$t%O$2%O"
-
-#, fuzzy
-#~ msgid "%C18%B%B$3$1%O$t$2"
-#~ msgstr "%C6<%O$1%C6>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C23*%O$t%C23$1 has quit (%O%C23$2)"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C28-%C29$1/Wallops%C28-%O$t$2"
-#~ msgstr "%C12-%C13$1%C12-%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t$1"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28]%O $2"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28] %O$2"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28] %O$2%C27 $3"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2%O, signon:%C26 $3"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C22*%O$t%C28[%O$1%C28] %C30(%O$2@$3%C30)%O: $4"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
-
-#, fuzzy
-#~ msgid "%C31%B%B$4$1%O$t%C30$2"
-#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
-
-#~ msgid "_X-Chat"
-#~ msgstr "_X-Chat"
 
 #~ msgid "X-Chat: Edit Key Bindings"
 #~ msgstr "X-Chat: Qısa Yolları Dəyişdir"
 
+#~ msgid "Delete All"
+#~ msgstr "Hamısı Sil"
+
+#~ msgid "_X-Chat"
+#~ msgstr "_X-Chat"
+
+#~ msgid "Lists"
+#~ msgstr "Siyahılar"
+
 #~ msgid "Key Bindings..."
 #~ msgstr "Qısa Yollar..."
-
-#, fuzzy
-#~ msgid "%C23[%O$1%O%C23]%O$t$2%O"
-#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
 
 #~ msgid "Settings for %s"
 #~ msgstr "%s qurğuları"
@@ -5403,9 +5295,6 @@ msgstr "%d op, %d toplam"
 #~ msgid "Edit mode"
 #~ msgstr "Təfərruatlar"
 
-#~ msgid "Lists"
-#~ msgstr "Siyahılar"
-
 #~ msgid "Tint red:"
 #~ msgstr "Qırmızı:"
 
@@ -5456,9 +5345,6 @@ msgstr "%d op, %d toplam"
 
 #~ msgid "Address to bind to:"
 #~ msgstr "Yapışdırılacaq ünvan:"
-
-#~ msgid "Mark fore:"
-#~ msgstr "Ön işarə:"
 
 #~ msgid "Mark back:"
 #~ msgstr "Arxa işarə:"
