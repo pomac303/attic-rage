@@ -279,7 +279,6 @@ void
 xchat_send_modes (xchat_plugin *ph,
 		  const char **targets,
 		  int ntargets,
-		  int modes_per_line,
 		  char sign,
 		  char mode);
 

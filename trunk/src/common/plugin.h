@@ -89,7 +89,6 @@ struct _xchat_plugin
 	void (*xchat_send_modes) (xchat_plugin *ph,
 		  const char **targets,
 		  int ntargets,
-		  int modes_per_line,
 		  char sign,
 		  char mode);
 	void *(*xchat_dummy6) (xchat_plugin *ph);
@@ -115,7 +114,7 @@ void plugin_add (session *sess, char *filename, void *handle, void *init_func, v
 int plugin_kill (char *name, int by_filename);
 void plugin_kill_all (void);
 void plugin_auto_load (session *sess);
-int plugin_emit_command (session *sess, char *name, int parc, char *parv[]);
+int plugin_emit_command (session *sess, char *name, char *cmd);
 int plugin_emit_server (session *sess, char *name, int parc, char *parv[]);
 int plugin_emit_print (session *sess, int parc, char *parv[]);
 int plugin_emit_dummy_print (session *sess, char *name);

@@ -26,6 +26,7 @@
 
 #include "xchat.h"
 #include "cfgfiles.h"
+#include "proto-irc.h"
 #include "util.h"
 #include "fe.h"
 #include "text.h"
@@ -865,7 +866,7 @@ cfg_get_bool (char *var)
 }
 
 int
-cmd_set (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_set (struct session *sess, char *cmd, char *buf)
 {
 	int wild = FALSE;
 	int quiet = FALSE;
@@ -873,6 +874,11 @@ cmd_set (struct session *sess, char *tbuf, int parc, char *parv[])
 	int i = 0, finds = 0, found;
 	int idx = 1;
 	char *var, *val;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[512];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (strcasecmp (parv[1], "-quiet") == 0)
 	{
@@ -887,7 +893,7 @@ cmd_set (struct session *sess, char *tbuf, int parc, char *parv[])
 	}
 
 	var = parv[idx];
-	var = parv[idx];
+	val = parv[idx];
 
 	if (!*var)
 	{

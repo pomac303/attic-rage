@@ -458,8 +458,7 @@ typedef struct server
 #endif
 } server;
 
-typedef int (*cmd_callback) (struct session * sess, char *tbuf, int parc,
-									  char *parv[]);
+typedef int (*cmd_callback) (struct session * sess, char *cmd, char *buf);
 
 struct commands
 {

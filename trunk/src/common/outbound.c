@@ -60,8 +60,8 @@
 extern int current_mem_usage;
 #endif
 
-static void help (session *sess, char *tbuf, char *helpcmd, int quiet);
-static int cmd_server (session *sess, char *tbuf, int parc, char *parv[]);
+static int cmd_server (session *sess, char *cmd, char *buf);
+static void help (session *sess, char *helpcmd, int quiet);
 static void handle_say (session *sess, char *text, int check_spch);
 
 
@@ -233,10 +233,109 @@ def:
 	}
 }
 
-static int
-cmd_addbutton (struct session *sess, char *tbuf, int parc,
-					char *parv[])
+void
+skip_white(char **buf)
 {
+	while(**buf==' ')
+		(*buf)++;
+}
+
+/* returns 
+ *  NULL : No option
+ *  else : pointer to the option
+ *
+ * side effects:
+ *  buf now points at the end of the option
+ *  buf is modified (\0 inserted)
+ *
+ * TODO:
+ *  Return an argument to an option eg
+ *   --foo=6 should return "foo" and "6"
+ * */
+static char* 
+split_opt(char **buf)
+{
+	char *ret = NULL;
+
+	skip_white(buf);
+
+	if (**buf=='-') {
+		(*buf)++;
+		ret=(*buf);
+		while(**buf && **buf!=' ') {
+			(*buf)++;
+		}
+		if (**buf)
+			*((*buf)++)='\0';
+	}
+	return ret;
+}
+
+/* Get the next word in a line
+ *
+ * Returns
+ *  NULL : End of line
+ *  other: Pointer to a word
+ *
+ * Side effects:
+ *  updates *buf
+ *  modified *buf
+ *
+ * ' foo bar baz' => 'foo' 'bar baz'
+ * ' "foo bar" baz' => 'foo bar' ' baz'
+ */
+static char* 
+split_cmd(char **buf)
+{
+	char *ret = 0;
+
+	skip_white(buf);
+
+	if (**buf=='"') {// Quoted
+		(*buf)++;
+		ret=*buf;
+		while(**buf && **buf!='"')
+			(*buf)++;
+		if (**buf) {
+			**buf='\0';
+			(*buf)++;
+		}
+	}
+	else {
+		ret=*buf;
+		while(**buf && **buf!=' ')
+			(*buf)++;
+		if (**buf) {
+			**buf='\0';
+			(*buf)++;
+		}
+	}
+	return ret;
+}
+
+/* Split a command line up into parc,parv 
+ * using command line rules
+ */
+void 
+split_cmd_parv(char *buf,int *parc, char *parv[])
+{
+	*parc=0;
+	while(*buf) {
+		parv[(*parc)++]=split_cmd(&buf);
+		if (*parc>=(MAX_TOKENS-1)) {
+			parv[*parc]=buf;
+		}
+		else
+			parv[*parc]="\0";
+	}
+}
+
+static int
+cmd_addbutton (struct session *sess, char *cmd, char *buf)
+{
+	char *parv[MAX_TOKENS];
+	int parc;
+	split_cmd_parv(buf,&parc,parv);
 	if (*parv[1] && *parv[2])
 	{
 		if (sess->type == SESS_DIALOG)
@@ -254,9 +353,13 @@ cmd_addbutton (struct session *sess, char *tbuf, int parc,
 }
 
 static int
-cmd_allchannels (session *sess, char *tbuf, int parc, char **parv)
+cmd_allchannels (session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!*parv[1])
 		return FALSE;
@@ -275,10 +378,14 @@ cmd_allchannels (session *sess, char *tbuf, int parc, char **parv)
 }
 
 static int
-cmd_allservers (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_allservers (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 	server *serv;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!*parv[1])
 		return FALSE;
@@ -296,12 +403,17 @@ cmd_allservers (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_away (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_away (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list;
-	char *reason = parv[1];
+	char *reason;
 	int back = FALSE;
 	unsigned int gone;
+	char send[1024];
+
+	split_cmd(&buf);
+	skip_white(&buf);
+	reason = buf;
 
 	if (!(*reason) && sess->server->is_away)
 	{
@@ -326,11 +438,11 @@ cmd_away (struct session *sess, char *tbuf, int parc, char *parv[])
 		if (back)
 		{
 			gone = time (NULL) - sess->server->away_time;
-			sprintf (tbuf, "me is back (gone %.2d:%.2d:%.2d)", gone / 3600,
+			sprintf (send, "me is back (gone %.2d:%.2d:%.2d)", gone / 3600,
 						(gone / 60) % 60, gone % 60);
 		} else
 		{
-			sprintf (tbuf, "me is away: %s", reason);
+			sprintf (send, "me is away: %s", reason);
 		}
 
 		list = sess_list;
@@ -341,7 +453,7 @@ cmd_away (struct session *sess, char *tbuf, int parc, char *parv[])
 				 && ((struct session *) list->data)->type == SESS_CHANNEL
 				 && ((struct session *) list->data)->channel[0])
 			{
-				handle_command ((session *) list->data, tbuf, TRUE);
+				handle_command ((session *) list->data, send, TRUE);
 			}
 			list = list->next;
 		}
@@ -350,7 +462,7 @@ cmd_away (struct session *sess, char *tbuf, int parc, char *parv[])
 	if (sess->server->last_away_reason != reason)
 	{
 		free (sess->server->last_away_reason);
-		if (reason == parv[1])
+		if (reason == buf)
 			sess->server->last_away_reason = strdup (reason);
 		else
 			sess->server->last_away_reason = reason;
@@ -472,13 +584,20 @@ ban (session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 }
 
 static int
-cmd_ban (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_ban (struct session *sess, char *cmd, char *buf)
 {
-	char *mask = parv[1];
+	char *mask;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char send[1024];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	mask=parv[1];
 
 	if (*mask)
 	{
-		ban (sess, tbuf, mask, parv[2], 0);
+		ban (sess, send, mask, parv[2], 0);
 	} else
 	{
 		sess->server->p_mode (sess->server, sess->channel, "+b");	/* banlist */
@@ -488,10 +607,14 @@ cmd_ban (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_unban (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_unban (struct session *sess, char *cmd, char *buf)
 {
 	/* Allow more than one mask in /unban -- tvk */
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -499,7 +622,7 @@ cmd_unban (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 2, i, '-', 'b', 0);
+			send_channel_modes (sess, parv, 2, i, '-', 'b');
 			return TRUE;
 		}
 		i++;
@@ -507,10 +630,14 @@ cmd_unban (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_charset (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_charset (struct session *sess, char *cmd, char *buf)
 {
 	server *serv = sess->server;
 	const char *locale = NULL;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!parv[1][0])
 	{
@@ -535,10 +662,16 @@ cmd_charset (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_clear (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_clear (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
-	char *reason = parv[1];
+	char *reason;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	reason = parv[1];
 
 	if (strncasecmp (reason, "all", 3) == 0)
 	{
@@ -558,9 +691,13 @@ cmd_clear (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_close (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_close (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (strcmp (parv[1], "-m") == 0)
 	{
@@ -582,18 +719,25 @@ cmd_close (struct session *sess, char *tbuf, int parc, char *parv[])
 	return TRUE;
 }
 
-/* FIXME: parv[2] needs to be words_eol[2] */
 static int
-cmd_ctcp (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_ctcp (struct session *sess, char *cmd, char *buf)
 {
 	int mbl;
-	char *to = parv[1];
+	char *to;
+	char *msg;
+	split_cmd(&buf);
+	to=split_cmd(&buf);
+	skip_white(&buf);
+	msg=buf;
 	if (*to)
 	{
-		char *msg = parv[2];
 		if (*msg)
 		{
 			unsigned char *cmd = (unsigned char *)msg;
+			int parc;
+			char *parv[MAX_TOKENS];
+
+			split_cmd_parv(buf,&parc,parv);
 
 			/* make the first word upper case (as per RFC) */
 			while (1)
@@ -617,9 +761,17 @@ cmd_ctcp (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_country (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_country (struct session *sess, char *cmd, char *buf)
 {
-	char *code = parv[1];
+	char *code;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[500];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	code = parv[1];
+
 	if (*code)
 	{
 		sprintf (tbuf, "%s = %s\n", code, country (code));
@@ -630,10 +782,15 @@ cmd_country (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_cycle (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_cycle (struct session *sess, char *cmd, char *buf)
 {
 	char *key = sess->channelkey;
 	char *chan = sess->channel;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (*chan && sess->type == SESS_CHANNEL)
 	{
 		sess->server->p_cycle (sess->server, chan, key);
@@ -643,11 +800,18 @@ cmd_cycle (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_dcc (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_dcc (struct session *sess, char *cmd, char *buf)
 {
 	int goodtype;
 	struct DCC *dcc = 0;
-	char *type = parv[1];
+	char *type;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	type = parv[1];
+
 	if (*type)
 	{
 		if (!strcasecmp (type, "HELP"))
@@ -764,11 +928,16 @@ cmd_dcc (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_debug (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_debug (struct session *sess, char *cmd, char *buf)
 {
 	struct session *s;
 	struct server *v;
 	GSList *list = sess_list;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[512];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	PrintText (sess, "Session   T Channel    WaitChan  WillChan  Server\n");
 	while (list)
@@ -806,8 +975,13 @@ cmd_debug (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_delbutton (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_delbutton (struct session *sess, char *cmd, char *buf)
 {
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (*parv[1])
 	{
 		if (sess->type == SESS_DIALOG)
@@ -825,9 +999,13 @@ cmd_delbutton (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_dehop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_dehop (struct session *sess, char *cmd, char *buf)
 {
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -835,7 +1013,7 @@ cmd_dehop (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 2, i, '-', 'h', 0);
+			send_channel_modes (sess, parv, 2, i, '-', 'h');
 			return TRUE;
 		}
 		i++;
@@ -843,9 +1021,13 @@ cmd_dehop (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_deop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_deop (struct session *sess, char *cmd, char *buf)
 {
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -853,7 +1035,7 @@ cmd_deop (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 2, i, '-', 'o', 0);
+			send_channel_modes (sess, parv, 2, i, '-', 'o');
 			return TRUE;
 		}
 		i++;
@@ -881,15 +1063,19 @@ mdehop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mdehop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_mdehop (struct session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->hops);
 	multidata data;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	data.nicks = nicks;
 	data.i = 0;
 	tree_foreach (sess->usertree, (tree_traverse_func *)mdehop_cb, &data);
-	send_channel_modes (sess, tbuf, nicks, 0, data.i, '-', 'h', 0);
+	send_channel_modes (sess, nicks, 0, data.i, '-', 'h');
 	free (nicks);
 
 	return TRUE;
@@ -907,15 +1093,19 @@ mdeop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mdeop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_mdeop (struct session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->ops);
 	multidata data;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	data.nicks = nicks;
 	data.i = 0;
 	tree_foreach (sess->usertree, (tree_traverse_func *)mdeop_cb, &data);
-	send_channel_modes (sess, tbuf, nicks, 0, data.i, '-', 'o', 0);
+	send_channel_modes (sess, nicks, 0, data.i, '-', 'o');
 	free (nicks);
 
 	return TRUE;
@@ -937,14 +1127,17 @@ mkickops_cb (struct User *user, multidata *data)
 	return TRUE;
 }
 
-/* FIXME: parv[3] == parv_eol[3] */
+/* XXX What is the syntax of this command? */
 static int
-cmd_mkick (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_mkick (struct session *sess, char *cmd, char *buf)
 {
 	multidata data;
 
+	split_cmd(&buf); /* Skip the command */
+	skip_white(&buf);
+
 	data.sess = sess;
-	data.reason = parv[3];
+	data.reason = buf;
 	tree_foreach (sess->usertree, (tree_traverse_func *)mkickops_cb, &data);
 	tree_foreach (sess->usertree, (tree_traverse_func *)mkick_cb, &data);
 
@@ -952,9 +1145,13 @@ cmd_mkick (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_devoice (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_devoice (struct session *sess, char *cmd, char *buf)
 {
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -962,7 +1159,7 @@ cmd_devoice (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 2, i, '-', 'v', 0);
+			send_channel_modes (sess, parv, 2, i, '-', 'v');
 			return TRUE;
 		}
 		i++;
@@ -970,21 +1167,28 @@ cmd_devoice (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_discon (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_discon (struct session *sess, char *cmd, char *buf)
 {
 	sess->server->disconnect (sess, TRUE, -1);
 	return TRUE;
 }
 
 static int
-cmd_dns (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_dns (struct session *sess, char *cmd, char *buf)
 {
 #ifdef WIN32
 	PrintText (sess, "DNS is not implemented in Windows.\n");
 	return TRUE;
 #else
-	char *nick = parv[1];
+	char *nick;
 	struct User *user;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[512];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	nick = parv[1];
 
 	if (*nick)
 	{
@@ -1010,11 +1214,12 @@ cmd_dns (struct session *sess, char *tbuf, int parc, char *parv[])
 #endif
 }
 
-/* needs eol */
 static int
-cmd_echo (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_echo (struct session *sess, char *cmd, char *buf)
 {
-	PrintText (sess, parv[1]);
+	split_cmd(&buf); /* Skip the command */
+	skip_white(&buf);
+	PrintText (sess, buf);
 	return TRUE;
 }
 
@@ -1039,7 +1244,7 @@ exec_check_process (struct session *sess)
 
 #ifndef __EMX__
 static int
-cmd_execs (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_execs (struct session *sess, char *cmd, char *buf)
 {
 	int r;
 
@@ -1057,7 +1262,7 @@ cmd_execs (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_execc (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_execc (struct session *sess, char *cmd, char *buf)
 {
 	int r;
 
@@ -1075,9 +1280,13 @@ cmd_execc (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_execk (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_execk (struct session *sess, char *cmd, char *buf)
 {
 	int r;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	exec_check_process (sess);
 	if (sess->running_exec == NULL)
@@ -1097,21 +1306,24 @@ cmd_execk (struct session *sess, char *tbuf, int parc, char *parv[])
 
 /* OS/2 Can't have the /EXECW command because it uses pipe(2) not socketpair
    and thus it is simplex --AGL */
-/* needs eol */
 static int
-cmd_execw (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_execw (struct session *sess, char *cmd, char *buf)
 {
 	int len;
 	char *temp;
+
+	split_cmd(&buf);
+	skip_white(&buf);
+
 	exec_check_process (sess);
 	if (sess->running_exec == NULL)
 	{
 		EMIT_SIGNAL (XP_TE_NOCHILD, sess, NULL, NULL, NULL, NULL, 0);
 		return FALSE;
 	}
-	len = strlen(parv[1]);
+	len = strlen(buf);
 	temp = malloc(len + 2);
-	sprintf(temp, "%s\n", parv[1]);
+	sprintf(temp, "%s\n", buf);
 	PrintText(sess, temp);
 	write(sess->running_exec->myfd, temp, len + 1);
 	free(temp);
@@ -1320,120 +1532,126 @@ exec_data (GIOChannel *source, GIOCondition condition, struct nbexec *s)
 
 /* needs EOL */
 static int
-cmd_exec (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_exec (struct session *sess, char *cmd, char *buf)
 {
 	int tochannel = FALSE;
-	char *cmd = parv[1];
 	int fds[2], pid = 0;
 	struct nbexec *s;
 	int shell = TRUE;
 
-	if (*cmd)
+	split_cmd(&buf); /* skip the command */
+	skip_white(&buf);
+
+	if (!*buf)
+		return TRUE;
+
+	exec_check_process (sess);
+	if (sess->running_exec != NULL)
 	{
-		exec_check_process (sess);
-		if (sess->running_exec != NULL)
+		EMIT_SIGNAL (XP_TE_ALREADYPROCESS, sess, NULL, NULL, NULL, NULL, 0);
+		return TRUE;
+	}
+
+	if (buf[0] == '-')
+	{
+		char *opt = split_opt(&buf);
+
+		skip_white(&buf);
+
+		if (!opt)
+			return FALSE;
+
+		switch(opt[1])
 		{
-			EMIT_SIGNAL (XP_TE_ALREADYPROCESS, sess, NULL, NULL, NULL, NULL, 0);
+			case 0:
+				return FALSE;
+			case 'd':
+				shell = FALSE;
+				break;
+			case 'o':
+				tochannel = TRUE;
+				break;
+		}
+	}					
+
+	if (shell)
+	{
+		if (access ("/bin/sh", X_OK) != 0)
+		{
+			fe_message (_("I need /bin/sh to run!\n"), FALSE);
 			return TRUE;
 		}
-
-		if (cmd[0] == '-')
-		{
-			if (!*parv[2])
-				return FALSE;
-			cmd = parv[2];
-			
-			switch(cmd[1])
-			{
-				case 0:
-					return FALSE;
-				case 'd':
-					shell = FALSE;
-					break;
-				case 'o':
-					tochannel = TRUE;
-					break;
-			}
-		}					
-
-		if (shell)
-		{
-			if (access ("/bin/sh", X_OK) != 0)
-			{
-				fe_message (_("I need /bin/sh to run!\n"), FALSE);
-				return TRUE;
-			}
-		}
+	}
 
 #ifdef __EMX__						  /* if os/2 */
-		if (pipe (fds) < 0)
-		{
-			PrintText (sess, "Pipe create error\n");
-			return FALSE;
-		}
-		setmode (fds[0], O_BINARY);
-		setmode (fds[1], O_BINARY);
+	if (pipe (fds) < 0)
+	{
+		PrintText (sess, "Pipe create error\n");
+		return FALSE;
+	}
+	setmode (fds[0], O_BINARY);
+	setmode (fds[1], O_BINARY);
 #else
-		if (socketpair (PF_UNIX, SOCK_STREAM, 0, fds) == -1)
-		{
-			PrintText (sess, "socketpair(2) failed\n");
-			return FALSE;
-		}
+	if (socketpair (PF_UNIX, SOCK_STREAM, 0, fds) == -1)
+	{
+		PrintText (sess, "socketpair(2) failed\n");
+		return FALSE;
+	}
 #endif
-		s = (struct nbexec *) malloc (sizeof (struct nbexec));
-		memset(s, 0, sizeof(*s));
-		s->myfd = fds[0];
-		s->tochannel = tochannel;
-		s->sess = sess;
 
-		pid = fork ();
-		if (pid == 0)
+	s = (struct nbexec *) malloc (sizeof (struct nbexec));
+	memset(s, 0, sizeof(*s));
+	s->myfd = fds[0];
+	s->tochannel = tochannel;
+	s->sess = sess;
+
+	pid = fork ();
+	if (pid == 0)
+	{
+		/* This is the child's context */
+		close (0);
+		close (1);
+		close (2);
+		/* Close parent's end of pipe */
+		close(s->myfd);
+		/* Copy the child end of the pipe to stdout and stderr */
+		dup2 (fds[1], 1);
+		dup2 (fds[1], 2);
+		/* Also copy it to stdin so we can write to it */
+		dup2 (fds[1], 0);
+		/* Now we call /bin/sh to run our cmd ; made it more friendly -DC1 */
+		if (shell)
 		{
-			/* This is the child's context */
-			close (0);
-			close (1);
-			close (2);
-			/* Close parent's end of pipe */
-			close(s->myfd);
-			/* Copy the child end of the pipe to stdout and stderr */
-			dup2 (fds[1], 1);
-			dup2 (fds[1], 2);
-			/* Also copy it to stdin so we can write to it */
-			dup2 (fds[1], 0);
-			/* Now we call /bin/sh to run our cmd ; made it more friendly -DC1 */
-			if (shell)
-			{
-				execl ("/bin/sh", "sh", "-c", cmd, 0);
-			} else
-			{
-				char **argv;
-				int argc;
-
-				my_poptParseArgvString (cmd, &argc, &argv);
-				execvp (argv[0], argv);
-			}
-			/* not reached unless error */
-			/*printf("exec error\n");*/
-			fflush (stdout);
-			fflush (stdin);
-			_exit (0);
-		}
-		if (pid == -1)
-		{
-			/* Parent context, fork() failed */
-
-			PrintText (sess, "Error in fork(2)\n");
-			close(fds[0]);
-			close(fds[1]);
+			execl ("/bin/sh", "sh", "-c", buf, 0);
 		} else
 		{
-			/* Parent path */
-			close(fds[1]);
-			s->childpid = pid;
-			s->iotag = fe_input_add (s->myfd, FIA_READ|FIA_EX, exec_data, s);
-			sess->running_exec = s;
-			return TRUE;
+			char **argv;
+			int argc;
+
+			my_poptParseArgvString (cmd, &argc, &argv);
+			execvp (argv[0], argv);
 		}
+		/* not reached unless error */
+		/*printf("exec error\n");*/
+		fflush (stdout);
+		fflush (stdin);
+		_exit (0);
+	}
+	if (pid == -1)
+	{
+		/* Parent context, fork() failed */
+
+		PrintText (sess, "Error in fork(2)\n");
+		close(fds[0]);
+		close(fds[1]);
+	} else
+	{
+		/* Parent path */
+		close(fds[1]);
+		s->childpid = pid;
+		s->iotag = fe_input_add (s->myfd, FIA_READ|FIA_EX, exec_data, s);
+		sess->running_exec = s;
+		return TRUE;
 	}
 	return FALSE;
 }
@@ -1441,33 +1659,43 @@ cmd_exec (struct session *sess, char *tbuf, int parc, char *parv[])
 #endif
 
 static int
-cmd_flushq (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_flushq (struct session *sess, char *cmd, char *buf)
 {
+	char tbuf[512];
+
 	sprintf (tbuf, "Flushing server send queue, %d bytes.\n", sess->server->sendq_len);
 	PrintText (sess, tbuf);
 	sess->server->flush_queue (sess->server);
 	return TRUE;
 }
 
-/* needs EOL */
 static int
-cmd_quit (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_quit (struct session *sess, char *cmd, char *buf)
 {
-	if (*parv[1])
-		sess->quitreason = parv[1];
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	if (*buf)
+		sess->quitreason = buf;
+
 	sess->server->disconnect (sess, TRUE, -1);
 	sess->quitreason = NULL;
 	return 2;
 }
 
 static int
-cmd_gate (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_gate (struct session *sess, char *cmd, char *buf)
 {
-	char *server_name = parv[1];
+	char *server_name;
+
+	split_cmd(&buf);
+	server_name=split_cmd(&buf);
+
 	server *serv = sess->server;
+
 	if (*server_name)
 	{
-		char *port = parv[2];
+		char *port = split_cmd(&buf);
 #ifdef USE_OPENSSL
 		serv->use_ssl = FALSE;
 #endif
@@ -1504,9 +1732,13 @@ get_int_cb (int cancel, int val, getvalinfo *info)
 }
 
 static int
-cmd_getint (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_getint (struct session *sess, char *cmd, char *buf)
 {
 	getvalinfo *info;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!parv[3][0])
 		return FALSE;
@@ -1537,9 +1769,13 @@ get_str_cb (int cancel, char *val, getvalinfo *info)
 }
 
 static int
-cmd_getstr (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_getstr (struct session *sess, char *cmd, char *buf)
 {
 	getvalinfo *info;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!parv[3][0])
 		return FALSE;
@@ -1554,8 +1790,13 @@ cmd_getstr (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_gui (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_gui (struct session *sess, char *cmd, char *buf)
 {
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (!strcasecmp (parv[1], "HIDE"))
 	{
 		fe_ctrl_gui (sess, 0, 0);
@@ -1583,10 +1824,15 @@ cmd_gui (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_help (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_help (struct session *sess, char *cmd, char *buf)
 {
 	int i = 0, longfmt = 0;
 	char *helpcmd = "";
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[512];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (tbuf)
 		helpcmd = parv[1];
@@ -1595,7 +1841,7 @@ cmd_help (struct session *sess, char *tbuf, int parc, char *parv[])
 
 	if (*helpcmd && !longfmt)
 	{
-		help (sess, tbuf, helpcmd, FALSE);
+		help (sess, helpcmd, FALSE);
 	} else
 	{
 		struct popup *pop;
@@ -1673,11 +1919,16 @@ cmd_help (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_ignore (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_ignore (struct session *sess, char *cmd, char *buf)
 {
 	int i;
 	int type = 0;
 	int quiet = 0;
+	int parc;
+	char *parv[MAX_TOKENS];
+	char tbuf[512];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (!*parv[1])
 	{
@@ -1738,8 +1989,13 @@ cmd_ignore (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_invite (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_invite (struct session *sess, char *cmd, char *buf)
 {
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (!*parv[1])
 		return FALSE;
 	if (*parv[2])
@@ -1750,9 +2006,16 @@ cmd_invite (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_join (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_join (struct session *sess, char *cmd, char *buf)
 {
-	char *chan = parv[1];
+	char *chan;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	chan = parv[1];
+
 	if (*chan)
 	{
 		char *po, *pass = parv[2];
@@ -1770,10 +2033,16 @@ cmd_join (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_kick (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_kick (struct session *sess, char *cmd, char *buf)
 {
-	char *nick = parv[1];
-	char *reason = parv[2];
+	char *nick;
+	char *reason;
+
+	split_cmd(&buf); /* Skip the command */
+	nick = split_cmd(&buf);
+	skip_white(&buf);
+	reason = buf;
+
 	if (*nick)
 	{
 		sess->server->p_kick (sess->server, sess->channel, nick, reason);
@@ -1782,13 +2051,18 @@ cmd_kick (struct session *sess, char *tbuf, int parc, char *parv[])
 	return FALSE;
 }
 
-/* need parv_eol[] */
 static int
-cmd_kickban (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_kickban (struct session *sess, char *cmd, char *buf)
 {
-	char *nick = parv[2];
-	char *reason = parv[3];
+	char *nick;
+	char *reason;
 	struct User *user;
+	char tbuf[512];
+
+	split_cmd(&buf); /* Skip the command */
+	nick = split_cmd(&buf);
+	skip_white(&buf);
+	reason = buf;
 
 	if (*nick)
 	{
@@ -1811,14 +2085,14 @@ cmd_kickban (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_killall (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_killall (struct session *sess, char *cmd, char *buf)
 {
 	xchat_exit();
 	return 2;
 }
 
 static int
-cmd_lagcheck (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_lagcheck (struct session *sess, char *cmd, char *buf)
 {
 	lag_check ();
 	return TRUE;
@@ -1842,73 +2116,87 @@ lastlog (session *sess, char *search)
 	fe_lastlog (sess, lastlog_sess, search);
 }
 
-/* needs parv eol */
 static int
-cmd_lastlog (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_lastlog (struct session *sess, char *cmd, char *buf)
 {
-	if (*parv[1])
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
 	{
-		lastlog (sess, parv[1]);
+		lastlog (sess, buf);
 		return TRUE;
 	}
 
 	return FALSE;
 }
 
-/* needs cmd_eol */
 static int
-cmd_list (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_list (struct session *sess, char *cmd, char *buf)
 {
-	sess->server->p_list_channels (sess->server, parv[1]);
+	split_cmd(&buf);
+	skip_white(&buf);
+	sess->server->p_list_channels (sess->server, buf);
 
 	return TRUE;
 }
 
 /* needs word_eol for arg */
 static int
-cmd_load (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_load (struct session *sess, char *cmd, char *buf)
 {
 	FILE *fp;
 	char *error, *arg, *nl, *file;
 	int len;
+	char tbuf[1024];
 
-	if (strcmp (parv[1], "-e") == 0)
-	{
-		file = expand_homedir (parv[2]);
-		fp = fopen (file, "r");
-		free (file);
-		if (fp)
+	split_cmd(&buf); /* Skip the command */
+	skip_white(&buf);
+
+	if (*buf == '-') {
+		char *opt = split_opt(&buf);
+		if (strcmp(opt,"-e") == 0) 
 		{
-			tbuf[1024] = 0;
-			while (fgets (tbuf, 1024, fp))
+			file = expand_homedir (split_cmd(&buf));
+			fp = fopen (file, "r");
+			free (file);
+			if (fp)
 			{
-				nl = strchr (tbuf, '\n');
-				if (nl)
-					*nl = 0;
-				handle_command (sess, tbuf, TRUE);
+				tbuf[1024] = '\0';
+				while (fgets (tbuf, 1024, fp))
+				{
+					nl = strchr (tbuf, '\n');
+					if (nl)
+						*nl = 0;
+					handle_command (sess, tbuf, TRUE);
+				}
+				fclose (fp);
 			}
-			fclose (fp);
+			return TRUE;
 		}
-		return TRUE;
+		else
+			return FALSE; /* Unknown command */
 	}
 
+	file = split_cmd(&buf);
+
 #ifdef USE_PLUGIN
-	len = strlen (parv[1]);
+	len = strlen (file);
 #ifdef WIN32
-	if (len > 4 && strcasecmp (".dll", parv[1] + len - 4) == 0)
+	if (len > 4 && strcasecmp (".dll", file + len - 4) == 0)
 #else
 #if defined(__hpux)
-	if (len > 3 && strcasecmp (".sl", parv[1] + len - 3) == 0)
+	if (len > 3 && strcasecmp (".sl", file + len - 3) == 0)
 #else
-	if (len > 3 && strcasecmp (".so", parv[1] + len - 3) == 0)
+	if (len > 3 && strcasecmp (".so", file + len - 3) == 0)
 #endif
 #endif
 	{
 		arg = NULL;
-		if (parv[2][0])
-			arg = parv[2];
+		skip_white(&buf);
+		if (buf)
+			arg = buf;
 
-		file = expand_homedir (parv[1]);
+		file = expand_homedir (file);
 		error = plugin_load (sess, file, arg);
 		free (file);
 
@@ -1919,17 +2207,22 @@ cmd_load (struct session *sess, char *tbuf, int parc, char *parv[])
 	}
 #endif
 
-	sprintf (tbuf, "Unknown file type %s. Maybe you need to install the Perl or Python plugin?\n", parv[1]);
+	sprintf (tbuf, "Unknown file type %s. Maybe you need to install the Perl or Python plugin?\n", file);
 	PrintText (sess, tbuf);
 
 	return FALSE;
 }
 
-/* XXX: needs word_eol for act */
 static int
-cmd_me (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_me (struct session *sess, char *cmd, char *buf)
 {
-	char *act = parv[1];
+	char *act;
+	char tbuf[512];
+
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	act = buf;
 
 	if (!(*act))
 		return FALSE;
@@ -1963,22 +2256,41 @@ cmd_me (struct session *sess, char *tbuf, int parc, char *parv[])
 	return TRUE;
 }
 
+/* TODO: add cmd_umode */
 static int
-cmd_mode (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_mode (struct session *sess, char *cmd, char *buf)
 {
+	char *dest;
+	char *mode;
+	char nick[1024];
+	char *tmp;
+
+	split_cmd(&buf);
+	dest = split_cmd(&buf);
+	skip_white(&buf);
+	mode = buf;
+
+	strncpy(nick,mode,sizeof(nick));
+	nick[sizeof(nick)-1]='\0';
+	tmp=nick;
+	split_opt(&tmp);
+
+
 	/* +channel channels are dying, let those servers whine about modes.
 	 * return info about current channel if available and no info is given 
 	 * */
-	/* TODO: rfc_casecmp -> sess->p_cmp ? */
-	if ((*parv[1] == '+') || (*parv[1] == 0) || (!is_channel(sess->server, parv[1]) && 
-				!(rfc_casecmp(sess->server->nick, parv[1]) == 0)))
+
+	if ((*dest == '+') // no channel?
+	  ||(*dest == '\0')   // no argument?
+	  || (!is_channel(sess->server, dest) // not a channel?
+           && !(sess->server->p_cmp(sess->server->nick, nick) == 0)))
 	{
-		if(sess->channel[0] == 0)
+		if(sess->channel[0] == '\0')
 			return FALSE;
-		sess->server->p_mode (sess->server, sess->channel, parv[1]);
+		sess->server->p_mode (sess->server, sess->channel, mode);
 	}	
 	else
-		sess->server->p_mode (sess->server, parv[1], parv[2]);
+		sess->server->p_mode (sess->server, dest, mode);
 	return TRUE;
 }
 
@@ -1994,7 +2306,7 @@ mop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_mop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_mop (struct session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * (sess->total - sess->ops));
 	multidata data;
@@ -2002,7 +2314,7 @@ cmd_mop (struct session *sess, char *tbuf, int parc, char *parv[])
 	data.nicks = nicks;
 	data.i = 0;
 	tree_foreach (sess->usertree, (tree_traverse_func *)mop_cb, &data);
-	send_channel_modes (sess, tbuf, nicks, 0, data.i, '+', 'o', 0);
+	send_channel_modes (sess, nicks, 0, data.i, '+', 'o');
 
 	free (nicks);
 
@@ -2011,11 +2323,16 @@ cmd_mop (struct session *sess, char *tbuf, int parc, char *parv[])
 
 /* once again, need word_eol[] for msg */
 static int
-cmd_msg (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_msg (struct session *sess, char *cmd, char *buf)
 {
-	char *nick = parv[1];
-	char *msg = parv[2];
+	char *nick;
+	char *msg;
 	struct session *newsess;
+
+	split_cmd(&buf);
+	nick=split_cmd(&buf);
+	skip_white(&buf);
+	msg=buf;
 
 	if (*nick)
 	{
@@ -2070,19 +2387,25 @@ cmd_msg (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_names (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_names (struct session *sess, char *cmd, char *buf)
 {
-	if (*parv[1])
-	  	sess->server->p_names (sess->server, parv[1]);
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
+	  	sess->server->p_names (sess->server, buf);
 	else
 		sess->server->p_names (sess->server, sess->channel);
 	return TRUE;
 }
 
-/* once again, needs EOL */
 static int
-cmd_nctcp (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_nctcp (struct session *sess, char *cmd, char *buf)
 {
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (*parv[2])
 	{
 		sess->server->p_nctcp (sess->server, parv[1], parv[2]);
@@ -2092,17 +2415,22 @@ cmd_nctcp (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_newserver (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_newserver (struct session *sess, char *cmd, char *buf)
 {
 	sess = new_ircwindow (NULL, NULL, SESS_SERVER, 0);
-	cmd_server (sess, tbuf, parc, parv);
+	cmd_server (sess, cmd, buf);
 	return TRUE;
 }
 
 static int
-cmd_nick (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_nick (struct session *sess, char *cmd, char *buf)
 {
-	char *nick = parv[1];
+	char *nick;
+
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	nick=buf;
 	if (*nick)
 	{
 		if (sess->server->connected)
@@ -2114,23 +2442,35 @@ cmd_nick (struct session *sess, char *tbuf, int parc, char *parv[])
 	return FALSE;
 }
 
-/* eol */
 static int
-cmd_notice (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_notice (struct session *sess, char *cmd, char *buf)
 {
-	if (*parv[1] && *parv[2])
+	char *nick;
+	char *msg;
+
+	split_cmd(&buf);
+	nick = split_cmd(&buf);
+	skip_white(&buf);
+
+	msg=buf;
+
+	if (*nick && *msg)
 	{
-		sess->server->p_notice (sess->server, parv[1], parv[2]);
-		EMIT_SIGNAL (XP_TE_NOTICESEND, sess, parv[1], parv[2], NULL, NULL, 0);
+		sess->server->p_notice (sess->server,nick, msg);
+		EMIT_SIGNAL (XP_TE_NOTICESEND, sess, nick, msg, NULL, NULL, 0);
 		return TRUE;
 	}
 	return FALSE;
 }
 
 static int
-cmd_notify (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_notify (struct session *sess, char *cmd, char *buf)
 {
 	int i = 0;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	if (*parv[1])
 	{
@@ -2153,9 +2493,13 @@ cmd_notify (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_op (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_op (struct session *sess, char *cmd, char *buf)
 {
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -2163,19 +2507,23 @@ cmd_op (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 2, i, '+', 'o', 0);
+			send_channel_modes (sess, parv, 2, i, '+', 'o');
 			return TRUE;
 		}
 		i++;
 	}
 }
 
-/* more EOL */
 static int
-cmd_part (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_part (struct session *sess, char *cmd, char *buf)
 {
-	char *chan = parv[1];
-	char *reason = parv[2];
+	char *chan;
+	char *reason;
+
+	chan = split_cmd(&buf);
+	skip_white(&buf);
+	reason = buf;
+
 	if (!*chan)
 		chan = sess->channel;
 	if ((*chan) && is_channel (sess->server, chan))
@@ -2189,24 +2537,32 @@ cmd_part (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_ping (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_ping (struct session *sess, char *cmd, char *buf)
 {
 	char timestring[64];
 	unsigned long tim;
-	char *to = parv[1];
+
+	split_cmd(&buf);
+	skip_white(&buf);
 
 	tim = make_ping_time ();
 
 	snprintf (timestring, sizeof (timestring), "%lu", tim);
-	sess->server->p_ping (sess->server, to, timestring);
+	sess->server->p_ping (sess->server, buf, timestring);
 
 	return TRUE;
 }
 
 static int
-cmd_query (struct session *sess, char *tbuf, int parc, char *parv[])
+
+cmd_query (struct session *sess, char *cmd, char *buf)
 {
-	char *nick = parv[1];
+	char *nick;
+
+	split_cmd(&buf);
+	skip_white(&buf);
+	nick = buf;
+
 	if (*nick && !is_channel (sess->server, nick))
 	{
 		if (!find_dialog (sess->server, nick))
@@ -2216,21 +2572,25 @@ cmd_query (struct session *sess, char *tbuf, int parc, char *parv[])
 	return FALSE;
 }
 
-/* needs eol */
 static int
-cmd_quote (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_quote (struct session *sess, char *cmd, char *buf)
 {
-	char *raw = parv[1];
+	split_cmd(&buf);
+	skip_white(&buf);
 
-	return sess->server->p_raw (sess->server, raw);
+	return sess->server->p_raw (sess->server, buf);
 }
 
 static int
-cmd_reconnect (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_reconnect (struct session *sess, char *cmd, char *buf)
 {
 	int tmp = prefs.recon_delay;
 	GSList *list;
 	server *serv = sess->server;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	prefs.recon_delay = 0;
 
@@ -2278,40 +2638,43 @@ cmd_reconnect (struct session *sess, char *tbuf, int parc, char *parv[])
 	return TRUE;
 }
 
-/* needs EOL */
 static int
-cmd_recv (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_recv (struct session *sess, char *msg, char *buf)
 {
-	if (*parv[1])
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
 	{
-		sess->server->p_inline (sess->server, parv[1], strlen (parv[1]));
+		sess->server->p_inline (sess->server, buf, strlen (buf));
 		return TRUE;
 	}
 
 	return FALSE;
 }
 
-/* needs parv[1] to eol */
 static int
-cmd_say (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_say (struct session *sess, char *cmd, char *buf)
 {
-	char *speech = parv[1];
-	if (*speech)
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
 	{
-		handle_say (sess, speech, FALSE);
+		handle_say (sess, buf, FALSE);
 		return TRUE;
 	}
 	return FALSE;
 }
 
-/* needs parv[1] to eol */
 static int
-cmd_settab (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_settab (struct session *sess, char *cmd, char *buf)
 {
-	if (*parv[1])
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
 	{
+		char tbuf[1024];
 		strcpy (tbuf, sess->channel);
-		safe_strcpy (sess->channel, parv[1], CHANLEN);
+		safe_strcpy (sess->channel, buf, CHANLEN);
 		fe_set_channel (sess);
 		strcpy (sess->channel, tbuf);
 	}
@@ -2320,7 +2683,7 @@ cmd_settab (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_server (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_server (struct session *sess, char *cmd, char *buf)
 {
 	int offset = 0;
 	char *server_name;
@@ -2328,8 +2691,13 @@ cmd_server (struct session *sess, char *tbuf, int parc, char *parv[])
 	char *pass;
 	char *co;
 	server *serv = sess->server;
-#ifdef USE_OPENSSL
 	int use_ssl = FALSE;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
+#ifdef USE_OPENSSL
 
 	/* BitchX uses -ssl, mIRC uses -e, let's support both */
 	if (strcmp (parv[1], "-ssl") == 0 || strcmp (parv[1], "-e") == 0)
@@ -2426,10 +2794,17 @@ urlserv:
 	return TRUE;
 }
 
+/* TODO: /server supports -e, servchan doesn't */
 static int
-cmd_servchan (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_servchan (struct session *sess, char *cmd, char *buf)
 {
 	int offset = 0;
+	char *tmp;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	tmp=strdup(buf);
+	split_cmd_parv(buf,&parc,parv);
 
 #ifdef USE_OPENSSL
 	if (strcmp (parv[1], "-ssl") == 0)
@@ -2439,28 +2814,53 @@ cmd_servchan (struct session *sess, char *tbuf, int parc, char *parv[])
 	if (*parv[3 + offset])
 	{
 		safe_strcpy (sess->willjoinchannel, parv[3 + offset], CHANLEN);
-		return cmd_server (sess, tbuf, parc, parv);
+		free(tmp);
+		return cmd_server (sess, cmd, buf);
 	}
 
+	free(tmp);
 	return FALSE;
 }
 
-/* Fixme: needs parv[1] or parv[2] to eol */
 static int
-cmd_topic (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_topic (struct session *sess, char *cmd, char *buf)
 {
-	if (parv[1][0] && is_channel (sess->server, parv[1]))
-		sess->server->p_topic (sess->server, parv[1], parv[2]);
-	else
-		sess->server->p_topic (sess->server, sess->channel, parv[1]);
+	int parc;
+	char *parv[MAX_TOKENS];
+	char *tmp;
+
+	tmp=strdup(buf);
+	split_cmd_parv(buf,&parc,parv);
+
+	if (parv[1][0] && is_channel (sess->server, parv[1])) {
+		split_cmd(&buf); // skip the command
+		split_cmd(&buf); // skip the channel
+		skip_white(&buf);
+		sess->server->p_topic (sess->server, parv[1], buf);
+	}
+	else {
+		split_cmd(&buf); // skip the command
+		skip_white(&buf);
+		sess->server->p_topic (sess->server, sess->channel, buf);
+	}
+
+	free(tmp);
 	return TRUE;
 }
 
 static int
-cmd_unignore (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_unignore (struct session *sess, char *cmd, char *buf)
 {
-	char *mask = parv[1];
-	char *arg = parv[2];
+	char *mask;
+	char *arg;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
+	mask=parv[1];
+	arg=parv[2];
+	
 	if (*mask)
 	{
 		if (ignore_del (mask, NULL))
@@ -2474,24 +2874,27 @@ cmd_unignore (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_unload (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_unload (struct session *sess, char *cmd, char *buf)
 {
 #ifdef USE_PLUGIN
 	int len, by_file = FALSE;
 
-	len = strlen (parv[1]);
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	len = strlen (buf);
 #ifdef WIN32
-	if (len > 4 && strcasecmp (parv[1] + len - 4, ".dll") == 0)
+	if (len > 4 && strcasecmp (buf + len - 4, ".dll") == 0)
 #else
 #if defined(__hpux)
-	if (len > 3 && strcasecmp (parv[1] + len - 3, ".sl") == 0)
+	if (len > 3 && strcasecmp (buf + len - 3, ".sl") == 0)
 #else
-	if (len > 3 && strcasecmp (parv[1] + len - 3, ".so") == 0)
+	if (len > 3 && strcasecmp (buf + len - 3, ".so") == 0)
 #endif
 #endif
 		by_file = TRUE;
 
-	switch (plugin_kill (parv[1], by_file))
+	switch (plugin_kill (buf, by_file))
 	{
 	case 0:
 			PrintText (sess, _("No such plugin found.\n"));
@@ -2524,7 +2927,7 @@ userlist_cb (struct User *user, session *sess)
 }
 
 static int
-cmd_userlist (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_userlist (struct session *sess, char *cmd, char *buf)
 {
 	tree_foreach (sess->usertree, (tree_traverse_func *)userlist_cb, sess);
 	return TRUE;
@@ -2552,41 +2955,58 @@ wallchop_cb (struct User *user, multidata *data)
 	return TRUE;
 }
 
-/* needs parv_wol[1] to work */
-/* should use wallchops if server supports it */
 static int
-cmd_wallchop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_wallchop (struct session *sess, char *cmd, char *buf)
 {
 	multidata data;
+	char sent[1024];
 
-	if (!(*parv[1]))
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	if (!(*buf))
 		return FALSE;
 
-	strcpy (tbuf, "NOTICE ");
+#if 0
+	/* We need a way to detect if the server supports wallchops */
+	if (supports_wallchops) {
+	sprintf(sent,"WALLCHOPS %s :[@%s] %s",
+			sess->channel,
+			sess->channel,
+			buf);
+	return TRUE;
+	} else {
+#endif
 
-	data.reason = parv[1];
-	data.tbuf = tbuf;
+	strcpy (sent, "NOTICE ");
+
+	data.reason = buf;
+	data.tbuf = sent;
 	data.i = 0;
 	data.sess = sess;
 	tree_foreach (sess->usertree, (tree_traverse_func*)wallchop_cb, &data);
 
 	if (data.i)
 	{
-		sprintf (tbuf + strlen (tbuf),
-					" :[@%s] %s", sess->channel, parv[1]);
-		sess->server->p_raw (sess->server, tbuf);
+		sprintf (sent + strlen (sent),
+					" :[@%s] %s", sess->channel, buf);
+		sess->server->p_raw (sess->server, sent);
 	}
-
+#if 0
+	}
+#endif
 	return TRUE;
 }
 
-/* parv[1] needs to be parv_eol needs to work */
 static int
-cmd_wallchan (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_wallchan (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 
-	if (*parv[1])
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	if (*buf)
 	{
 		list = sess_list;
 		while (list)
@@ -2595,8 +3015,8 @@ cmd_wallchan (struct session *sess, char *tbuf, int parc, char *parv[])
 			if (sess->type == SESS_CHANNEL)
 			{
 				inbound_chanmsg (sess->server, NULL, sess->channel,
-									  sess->server->nick, parv[1], TRUE, FALSE);
-				sess->server->p_message (sess->server, sess->channel, parv[1]);
+									  sess->server->nick, buf, TRUE, FALSE);
+				sess->server->p_message (sess->server, sess->channel, buf);
 			}
 			list = list->next;
 		}
@@ -2606,9 +3026,13 @@ cmd_wallchan (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_hop (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_hop (struct session *sess, char *cmd, char *buf)
 {
 	int i = 1;
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -2616,7 +3040,7 @@ cmd_hop (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 1, i, '+', 'h', 0);
+			send_channel_modes (sess, parv, 1, i, '+', 'h');
 			return TRUE;
 		}
 		i++;
@@ -2624,9 +3048,13 @@ cmd_hop (struct session *sess, char *tbuf, int parc, char *parv[])
 }
 
 static int
-cmd_voice (struct session *sess, char *tbuf, int parc, char *parv[])
+cmd_voice (struct session *sess, char *cmd, char *buf)
 {
+	int parc;
+	char *parv[MAX_TOKENS];
 	int i = 1;
+
+	split_cmd_parv(buf,&parc,parv);
 
 	while (1)
 	{
@@ -2634,7 +3062,7 @@ cmd_voice (struct session *sess, char *tbuf, int parc, char *parv[])
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, tbuf, parv, 1, i, '+', 'v', 0);
+			send_channel_modes (sess, parv, 1, i, '+', 'v');
 			return TRUE;
 		}
 		i++;
@@ -2823,9 +3251,10 @@ find_internal_command (char *name)
 }
 
 static void
-help (session *sess, char *tbuf, char *helpcmd, int quiet)
+help (session *sess, char *helpcmd, int quiet)
 {
 	struct commands *cmd;
+	char tbuf[512];
 
 	if (plugin_show_help (sess, helpcmd))
 		return;
@@ -3162,10 +3591,16 @@ perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
 }
 
 static void
-user_command (session * sess, char *tbuf, char *cmd, int parc, char *parv[])
+user_command (session * sess, char *cmd, char *buf)
 {
+	char tbuf[512];
+	int parc;
+	char *parv[MAX_TOKENS];
+
+	split_cmd_parv(buf,&parc,parv);
+
 	if (!auto_insert (tbuf, 2048, cmd, parc, parv, "",
-							sess->channel, "", "", sess->server->nick, ""))
+			sess->channel, "", "", sess->server->nick, ""))
 	{
 		PrintText (sess, _("Bad arguments for user command.\n"));
 		return;
@@ -3215,7 +3650,7 @@ handle_say (session *sess, char *text, int check_spch)
 	//irc_split(text, &parc, parv);
 
 	/* a command of "" can be hooked for non-commands */
-	if (plugin_emit_command (sess, "", parc, parv))
+	if (plugin_emit_command (sess, "", text))
 		goto xit;
 
 	/* incase a plugin did /close */
@@ -3319,44 +3754,29 @@ handle_command (session *sess, char *cmd, int check_spch)
 	struct popup *pop;
 	int user_cmd = FALSE;
 	GSList *list;
-	int parc;
-	char *parv[MAX_TOKENS];
 	static int command_level = 0;
 	struct commands *int_cmd;
-	char pdibuf_static[1024];
-	char tbuf_static[4096];
-	char *pdibuf;
-	char *tbuf;
-	int len;
 	int ret = TRUE;
+	char command[512];
+	int i;
 
 	if (command_level > 99)
 	{
 		fe_message (_("Too many recursive usercommands, aborting."), FALSE);
 		return TRUE;
 	}
-	command_level++;
-	/* anything below MUST DEC command_level before returning */
+	command_level++; /* below here MUST DEC command_level before return */
 
-	len = strlen (cmd);
-	if (len >= sizeof (pdibuf_static))
-		pdibuf = malloc (len + 1);
-	else
-		pdibuf = pdibuf_static;
 
-	if ((len * 2) >= sizeof (tbuf_static))
-		tbuf = malloc ((len * 2) + 1);
-	else
-		tbuf = tbuf_static;
-
-	/* split the text into words and word_eol */
-	//process_data_init (pdibuf, cmd, word, word_eol, TRUE);
-	irc_split(NULL,cmd,&parc,parv);
-
+	/* find the command */
+	for(i=0;cmd[i] && cmd[i]!=' ';i++)
+		command[i]=cmd[i];
+	command[i]='\0';
+	
 	if (check_spch && prefs.perc_color)
 		check_special_chars (cmd, prefs.perc_ascii);
 
-	if (plugin_emit_command (sess, parv[0], parc, parv))
+	if (plugin_emit_command (sess, command, cmd))
 		goto xit;
 
 	/* incase a plugin did /close */
@@ -3368,9 +3788,9 @@ handle_command (session *sess, char *cmd, int check_spch)
 	while (list)
 	{
 		pop = (struct popup *) list->data;
-		if (!strcasecmp (pop->name, parv[0]))
+		if (!strcasecmp (pop->name, command))
 		{
-			user_command (sess, tbuf, pop->cmd, parc, parv);
+			user_command (sess, command, cmd);
 			user_cmd = TRUE;
 		}
 		list = list->next;
@@ -3380,7 +3800,7 @@ handle_command (session *sess, char *cmd, int check_spch)
 		goto xit;
 
 	/* now check internal commands */
-	int_cmd = find_internal_command (parv[0]);
+	int_cmd = find_internal_command (command);
 
 	if (int_cmd)
 	{
@@ -3392,10 +3812,10 @@ handle_command (session *sess, char *cmd, int check_spch)
 			notj_msg (sess);
 		} else
 		{
-			switch (int_cmd->callback (sess, tbuf, parc, parv))
+			switch (int_cmd->callback (sess, command, cmd))
 			{
 			case FALSE:
-				help (sess, tbuf, int_cmd->name, TRUE);
+				help (sess, int_cmd->name, TRUE);
 				break;
 			case 2:
 				ret = FALSE;
@@ -3413,12 +3833,6 @@ handle_command (session *sess, char *cmd, int check_spch)
 
 xit:
 	command_level--;
-
-	if (pdibuf != pdibuf_static)
-		free (pdibuf);
-
-	if (tbuf != tbuf_static)
-		free (tbuf);
 
 	return ret;
 }
@@ -3486,29 +3900,3 @@ handle_multiline (session *sess, char *cmd, int history, int nocommand)
 	}
 }
 
-/*void
-handle_multiline (session *sess, char *cmd, int history, int nocommand)
-{
-	char *cr;
-
-	cr = strchr (cmd, '\n');
-	if (cr)
-	{
-		while (1)
-		{
-			if (cr)
-				*cr = 0;
-			if (!handle_user_input (sess, cmd, history, nocommand))
-				return;
-			if (!cr)
-				break;
-			cmd = cr + 1;
-			if (*cmd == 0)
-				break;
-			cr = strchr (cmd, '\n');
-		}
-	} else
-	{
-		handle_user_input (sess, cmd, history, nocommand);
-	}
-}*/

@@ -532,9 +532,11 @@ xit:
 /* execute a plugged in command. Called from outbound.c */
 
 int
-plugin_emit_command (session *sess, char *name, int parc, char *parv[])
+plugin_emit_command (session *sess, char *name, char *buf)
 {
-	return plugin_hook_run (sess, name, parc, parv, HOOK_COMMAND);
+	char *parv[3] = { name, buf, "" };
+	
+	return plugin_hook_run (sess, name, 2, parv, HOOK_COMMAND);
 }
 
 /* got a server PRIVMSG, NOTICE, numeric etc... */
@@ -1363,9 +1365,8 @@ xchat_gettext (xchat_plugin *ph, const char *msgid)
 }
 
 void
-xchat_send_modes (xchat_plugin *ph, const char **targets, int ntargets, int modes_per_line, char sign, char mode)
+xchat_send_modes (xchat_plugin *ph, const char **targets, int ntargets, 
+		char sign, char mode)
 {
-	char tbuf[514];	/* modes.c needs 512 + null */
-
-	send_channel_modes (ph->context, tbuf, (char **)targets, 0, ntargets, sign, mode, modes_per_line);
+	send_channel_modes (ph->context, (char **)targets, 0, ntargets, sign, mode);
 }

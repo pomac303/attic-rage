@@ -125,7 +125,6 @@ banlist_unban (GtkWidget * wid, struct session *sess)
 	GtkTreeModel *model;
 	GtkTreeSelection *sel;
 	GtkTreeIter iter;
-	char tbuf[2048];
 	char **masks;
 	int num_sel, i;
 
@@ -165,7 +164,7 @@ banlist_unban (GtkWidget * wid, struct session *sess)
 	while (gtk_tree_model_iter_next (model, &iter));
 
 	/* and send to server */
-	send_channel_modes (sess, tbuf, masks, 0, i, '-', 'b', 0);
+	send_channel_modes (sess, masks, 0, i, '-', 'b');
 
 	/* now free everything, and refresh banlist */	
 	for (i=0; i < num_sel; i++)
