@@ -2111,8 +2111,8 @@ cmd_mode (rage_session *sess, char *cmd, char *buf)
 
 		sess->server->p_mode (sess->server, sess->channel, dest);
 	}	
-	else
-		sess->server->p_mode (sess->server, dest, ++ch);
+	else			/* check ch since it might be null */
+		sess->server->p_mode (sess->server, dest, ch ? ++ch : "");
 	return TRUE;
 }
 
