@@ -918,7 +918,7 @@ irc_server(session *sess, int parc, char *parv[])
 					NULL, NULL, 0);
 			break;
 		case M_PING:
-			tcp_sendf(sess->server, "PONG %s\r\n", parv[1]);
+			tcp_sendf(sess->server, "PONG %s\r\n", parv[2]);
 			break;
 		case M_ERROR:
 			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[1], NULL,
