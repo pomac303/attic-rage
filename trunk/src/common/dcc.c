@@ -1843,7 +1843,7 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 					fe_dcc_add (dcc);
 			}
 			sprintf (tbuf, "%lli", size);
-			len = strlen(tbuf);
+			len = strlen(tbuf) + 1;
 			snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 			EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
 						 file, tbuf, tbuf + len, 0);

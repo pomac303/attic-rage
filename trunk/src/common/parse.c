@@ -92,7 +92,7 @@ split_cmd(char **buf)
  * using command line rules
  */
 void
-split_cmd_parv(char *buf,int *parc, char *parv[])
+split_cmd_parv_n(char *buf,int *parc, char *parv[], int MAXTOKENS)
 {
 	int i=0;
 	*parc=0;
@@ -100,15 +100,17 @@ split_cmd_parv(char *buf,int *parc, char *parv[])
 	while(*buf) 
 	{
 		parv[(*parc)++]=split_cmd(&buf);
-		if (*parc>(MAX_TOKENS-1))
+		if (*parc>(MAXTOKENS-1))
 		{
 			parv[*parc]=buf;
 			break;
 		}
 	}
-	for(i=*parc;i<MAX_TOKENS;i++)
+	for(i=*parc;i<MAXTOKENS;i++)
 		parv[i]="";
 }
+/* this is defined in the include file. */
+/* #define split_cmd_parv(x, y, z)	split_cmd_parv_n(x, y, z, MAX_TOKENS) */
 
 /* Parses out an integer */
 int 

@@ -879,10 +879,8 @@ irc_server(session *sess, int parc, char *parv[])
 								sess,0);
 					/* DCC is handled in ctcp_handle aswell.
 					 * Note that the -1 in these 2 lines is essential since
-					 * the splitter starts at element 1. Also, fixing this 
-					 * pripperly is left as a excersise to Isomer. =)
-					 * FIXME: Isomer */
-					split_cmd_parv(parv[3], &parc2, parv + parc - 1);
+					 * the splitter starts at element 1. */
+					split_cmd_parv_n(parv[3], &parc2, parv + parc - 1, MAX_TOKENS - parc);
 					parc += parc2 -1;
 					ctcp_handle(sess, to, nick, text, parc, parv);
 				} else
