@@ -21,4 +21,8 @@ if DO_TCL
 tcldir = tcl
 endif
 
-SUBDIRS = . $(pythondir) $(perldir) $(tcldir)
+if DO_RUBY
+rubydir = ruby
+endif
+
+SUBDIRS = . $(pythondir) $(perldir) $(tcldir) $(rubydir)

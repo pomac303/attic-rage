@@ -5,6 +5,9 @@ CFLAGS=-g -Wall -O1 -fpic -I../../../src/common/
 ARCHDIR=`$(RUBY) -rrbconfig -e "puts Config::CONFIG['archdir']"`
 
 .SUFFIXES: .c .o .rb .h
+.PHONY: all clean
+
+all: rage-ruby.so
 
 .rb.h:
 	$(RUBY) ../scripts/embedify.rb $*.rb $*.h
