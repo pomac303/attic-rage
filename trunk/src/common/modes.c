@@ -104,8 +104,6 @@ int
 is_channel (server * serv, char *chan)
 {
 	char *ct = get_isupport(serv, "CHANTYPES");
-	if (!ct)
-		return 0;
 	if (strchr(ct, chan[0]))
 		return 1;
 	return 0;
