@@ -1,8 +1,9 @@
 RUBY=ruby
 CC=gcc
-CFLAGS=-g -Wall -Wimplicit -Wstrict-prototypes -Werror -shared -O2 -fpic -I../../../src/common/
+CFLAGS=-g -Wall -Wimplicit -Werror -shared -O2 -fpic -I../../../src/common/
 
 ARCHDIR=`$(RUBY) -rrbconfig -e "puts Config::CONFIG['archdir']"`
+LIBARG=`$(RUBY) -rrbconfig -e "puts Config::CONFIG['LIBRUBYARG_SHARED']"`
 
 .SUFFIXES: .c .o .rb .h
 .PHONY: all clean
@@ -16,7 +17,7 @@ all: rage-ruby.so
 	$(CC) $(CFLAGS) -c -I$(ARCHDIR) $*.c -o $*.o
 
 rage-ruby.so: rage-ruby.o rage-ruby-plugin.h
-	$(CC) -L$(ARCHDIR) $(CFLAGS) -shared -o rage-ruby.so rage-ruby.o -lruby
+	$(CC) -L$(ARCHDIR) $(CFLAGS) -shared -o rage-ruby.so rage-ruby.o $(LIBARG)
 
 install: rage-ruby.so
 	mkdir -p ~/.rage
