@@ -1012,9 +1012,8 @@ PARSE_FUNC(servermsg_part)
 
 PARSE_FUNC(servermsg_privmsg)
 {
-	char *to = parv[2];
-	size_t len;
-	int id = FALSE; /* identified */
+	char *to = parv[2], *p, *q, buf[512];
+	int id = FALSE, done_ctcp = 0; /* identified */
 	if (*to)
 	{
 		char *text;
@@ -1028,35 +1027,47 @@ PARSE_FUNC(servermsg_privmsg)
 			else if (*parv[3] == '-')
 				parv[3]++;
 		}
+		
 		text = parv[3];
-		len = strlen(text);
+		buf[0] = 0;
 
-		/* TODO: Not good enough */
-		if (text[0] == '\001' && text[len-1]=='\001') 
+		while (*text && (p = strchr(text, '\001')))
 		{
-			text[len-1]=0;
-			parv[3]++;
-			/* DCC is handled in ctcp_handle aswell. */
-			ctcp_handle(sess, to, nick, ip, parv[3], parc, parv);
-		} else
-		{
-			if (is_channel(sess->server,to))
+			if ((q = strchr(p+1, '\001')))
 			{
-				if (ignore_check(parv[0],IG_CHAN))
-					return 1;
-				inbound_chanmsg(sess->server, 
-						NULL, to, nick, 
-						parv[parc-1],
-						FALSE, id);
-			} else
-			{
-				if (ignore_check(parv[0], IG_PRIV))
-					return 1;
-				inbound_privmsg(sess->server, 
-						nick, ip,
-						parv[parc-1], 
-						id);
+				*p++ = 0;
+				*q++ = 0;
+				strncat(buf, text, sizeof(buf)-1);
+				ctcp_handle(sess, to, nick, parv[0], p);
+				text = q;
+				done_ctcp = 1;
 			}
+			else
+				break;
+		}
+		if (done_ctcp)
+		{
+			if (*text)
+			{
+				strncat(buf, text, sizeof(buf)-1);
+				text = buf;
+			}
+			else
+				return 0;
+		}	
+		if (is_channel(sess->server, to))
+		{
+			if (ignore_check(parv[0], IG_CHAN))
+				return 1;
+			inbound_chanmsg(sess->server, NULL, 
+					to, nick, text, FALSE, id);
+		}
+		else
+		{
+			if (ignore_check(parv[0], IG_PRIV))
+				return 1;
+			inbound_privmsg(sess->server, 
+					nick, ip, text, id);
 		}
 	}
 	return 0;

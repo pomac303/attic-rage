@@ -18,6 +18,8 @@
 
 #include "rage.h"
 
+#define CTCP_LEN 512
+
 static void
 ctcp_reply (rage_session *sess, char *tbuf, char *nick, int parc, char *parv[],
 				char *conf)
@@ -25,24 +27,10 @@ ctcp_reply (rage_session *sess, char *tbuf, char *nick, int parc, char *parv[],
 	conf = strdup (conf);
 	/* process %C %B etc */
 	check_special_chars (conf, TRUE);
-	auto_insert (tbuf, 2048, conf, parc, parv, "", "", parv[4],
+	auto_insert (tbuf, CTCP_LEN, conf, parc, parv, "", "", parv[1],
 					"" ,"", nick);
 	free (conf);
 	handle_command (sess, tbuf, FALSE);
-}
-
-static int
-ctcp_check (rage_session *sess, char *tbuf, char *nick, int parc, char *parv[], 
-		char *ctcp)
-{
-	int ret = 0;
-	struct popup *pop;
-
-	pop = (struct popup *) dict_find(ctcp_list, ctcp, &ret);
-
-	if (ret)
-		ctcp_reply (sess, tbuf, nick, parc, parv, pop->cmd);
-	return ret;
 }
 
 /* The fields are: level, weight, leak, limit and timestamp */
@@ -52,79 +40,76 @@ static throttle_t dcc_throttle_data = { 0, 34, 20, 100, 0};
 #define dcc_throttle gen_throttle(&dcc_throttle_data)
 
 void
-ctcp_handle (rage_session *sess, char *to, char *nick, char *ip,
-				 char *msg, int parc, char *parv[])
+ctcp_handle (rage_session *sess, char *to, char *nick, char *host, char *msg)
 {
-	char *po;
 	rage_session *chansess;
 	server *serv = sess->server;
-	char outbuf[1024];
-	char *tmp;
-	guint32 type = MAKE4UPPER(parv[3][0], parv[3][1], 
-			parv[3][2], parv[3][3]);
+	char outbuf[CTCP_LEN], buf[CTCP_LEN];
+	char *parv[MAX_TOKENS], *arg;
+	int parc, ret = 0;
+	struct popup *pop;
 
 	/* consider DCC and ACTION to be different from other CTCPs */
-	if (type == C_ACTION)
+	if (strncasecmp("ACTION", msg, 4) == 0)
 	{
 			inbound_action (sess, to, nick, msg + 7, FALSE);
 			return;
 	}
 
-	flood_check(nick,ip,sess->server,sess,0);
+	flood_check(nick, host, sess->server, sess, 0);
 
-	tmp = parv[3];
-	parv[3] = split_cmd(&tmp);
-	parv[4] = tmp;
-
-	if (type == D_DCC)
+	if ((arg = strchr(msg, ' ')))
+		arg++;
+	
+	if (strncasecmp("DCC ", msg, 3) == 0)
 	{
 		/* we don't allow dcc overrides.*/
-		if (!(dcc_throttle || ignore_check (parv[0], IG_DCC)))
-			handle_dcc (sess, nick, parv[4]);
+		if (!(dcc_throttle || ignore_check (host, IG_DCC)))
+			handle_dcc (sess, nick, arg);
 		return;
 	}
 	
-	if (ctcp_throttle || ignore_check (parv[0], IG_CTCP))
+	if (ctcp_throttle || ignore_check (host, IG_CTCP))
 		return;
 
-	if(!ctcp_check (sess, outbuf, nick, parc, parv, parv[3]))
+	strcpy(buf, msg); /* msg should always be less than 512 chars */
+	split_cmd_parv(buf, &parc, parv);
+	
+	pop = (struct popup *) dict_find(ctcp_list, parv[0], &ret);
+	if (ret)
+		ctcp_reply (sess, outbuf, nick, parc, parv, pop->cmd);
+	else
 	{
-		switch (type)
+		if ((strncasecmp("VERSION", msg, 4) == 0))
 		{
-			case C_VERSION:
-				if (!prefs.hidever)
-				{
-					snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION"-%s %s",
-							rage_svn_version, get_cpu_str ());
-					serv->p_nctcp (serv, nick, outbuf);
-				}
-				break;
-			case C_SOUND:
+			if (!prefs.hidever)
 			{
-				po = strchr (parv[4], '\001');
-				if (po)
-					po[0] = 0;
-				EMIT_SIGNAL (XP_TE_CTCPSND, sess->server->front_session, parv[4],
-								 nick, NULL, NULL, 0);
-				snprintf (outbuf, sizeof (outbuf), "%s/%s", prefs.sounddir, parv[4]);
-				if (strchr (parv[3], '/') == 0 && access (outbuf, R_OK) == 0)
+				snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION"-%s %s",
+						rage_svn_version, get_cpu_str ());
+				serv->p_nctcp (serv, nick, outbuf);
+			}
+		}
+		else if ((strncasecmp("SOUND", msg, 4) == 0))
+		{
+			EMIT_SIGNAL (XP_TE_CTCPSND, sess->server->front_session, parv[1],
+					nick, NULL, NULL, 0);
+			if (strchr(parv[1], '/'))
+			{
+				snprintf (outbuf, sizeof (outbuf), "%s/%s", prefs.sounddir, parv[1]);
+				if (access (outbuf, R_OK) == 0)
 				{
 					snprintf (outbuf, sizeof (outbuf), "%s %s/%s", prefs.soundcmd,
-								 prefs.sounddir, parv[4]);
+							prefs.sounddir, parv[4]);
 					xchat_exec (outbuf);
 				}
-				return;
 			}
+			return;
 		}
 	}
 
-	po = strchr (msg, '\001');
-	if (po)
-		po[0] = 0;
-
 	if (!is_channel (sess->server, to))
 		EMIT_SIGNAL (XP_TE_CTCPGEN, sess->server->front_session, msg, nick,
-						 NULL, NULL, 0);
+				NULL, NULL, 0);
 	else
 	{
 		chansess = find_channel (sess->server, to);

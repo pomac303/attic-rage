@@ -1353,20 +1353,28 @@ gcomp_nick_func (char *data)
 	return "";
 }
 
-int gen_throttle(throttle_t *td)
+inline int 
+gen_throttle(throttle_t *td)
+{
+	return gen_parm_throttle(&td->level, &td->weight, 
+			&td->leak, &td->limit, &td->ts);
+}
+
+int
+gen_parm_throttle(int *level, int *weight, int *leak, int *limit, time_t *ts)
 {
 	time_t tp = time(NULL);
 
-	if (td->ts == 0)
-		td->ts = tp;
+	if (*ts == 0)
+		*ts = tp;
 
-	td->level += td->weight;
-	td->level -= td->leak * (tp - td->ts);
-	td->ts = tp;
+	*level += *weight;
+	*level -= *leak * (tp - *ts);
+	*ts = tp;
 
-	if (td->level < 0) /* check for underflows */
-		td->level = 0;
-	if (td->level >= td->limit) /* too many events */
+	if (*level < 0) /* check for underflows */
+		*level = 0;
+	if (*level >= *limit) /* too many events */
 		return 1;
 	return 0;
 }

@@ -305,84 +305,48 @@ ignore_save ()
 }
 
 int
-flood_check (char *nick, char *ip, server *serv, rage_session *sess, int what)	/*0=ctcp  1=priv */
+flood_check (char *nick, char *host, server *serv, rage_session *sess, int what)	/*0=ctcp  1=priv */
 {
-	/*
-	   serv
-	   int ctcp_counter; 
-	   time_t ctcp_last_time;
-	   prefs
-	   unsigned int ctcp_number_limit;
-	   unsigned int ctcp_time_limit;
-	 */
-	char buf[512];
-	char real_ip[132];
-	int i;
-	time_t current_time;
-	current_time = time (NULL);
+	char buf[512], real_ip[132];
+	int flood = 0, value;
 
-	if (what == 0)
+	if (what == 0 )
 	{
-		if (serv->ctcp_last_time == 0)	/*first ctcp in this server */
+		value = 10;
+		if (prefs.ctcp_number_limit > 0 && gen_parm_throttle (&serv->ctcp_counter, &value, &value, 
+					&prefs.ctcp_number_limit, &serv->ctcp_last_time))
 		{
-			serv->ctcp_last_time = time (NULL);
-			serv->ctcp_counter++;
-		} else
-		{
-			if (difftime (current_time, serv->ctcp_last_time) < prefs.ctcp_time_limit)	/*if we got the ctcp in the seconds limit */
-			{
-				serv->ctcp_counter++;
-				if (serv->ctcp_counter == prefs.ctcp_number_limit)	/*if we reached the maximun numbers of ctcp in the seconds limits */
-				{
-					serv->ctcp_last_time = current_time;	/*we got the flood, restore all the vars for next one */
-					serv->ctcp_counter = 0;
-					for (i = 0; i < 128; i++)
-						if (ip[i] == '@')
-							break;
-					snprintf (real_ip, sizeof (real_ip), "*!*%s", &ip[i]);
-					/*ignore_add (char *mask, int priv, int noti, int chan,
-					   int ctcp, int invi, int unignore, int no_save) */
+			char *tmp = strchr(host, '@');
+			snprintf (real_ip, sizeof (real_ip), "*!*%s", tmp);
+			
+			serv->ctcp_counter = 0;
 
-					snprintf (buf, sizeof (buf),
-								 _("You are being CTCP flooded from %s, ignoring %s\n"),
-								 nick, real_ip);
-					PrintText (sess, buf);
-
-					/*FIXME: only ignore ctcp or all?, its ignoring ctcps for now */
-					ignore_add (real_ip, IG_CTCP);
-					return 0;
-				}
-			}
+			snprintf (buf, sizeof (buf),
+					_("You are being CTCP flooded from %s, ignoring %s\n"), 
+					nick, real_ip);
+			ignore_add (real_ip, IG_CTCP);
+			flood = 1;
 		}
-	} else
+	}
+	else
 	{
-		if (serv->msg_last_time == 0)
+		value = 1;
+		if (prefs.msg_number_limit > 0 && gen_parm_throttle (&serv->msg_counter, &value, &value, 
+					&prefs.msg_number_limit, &serv->msg_last_time))
 		{
-			serv->msg_last_time = time (NULL);
-			serv->ctcp_counter++;
-		} else
-		{
-			if (difftime (current_time, serv->msg_last_time) <
-				 prefs.msg_time_limit)
-			{
-				serv->msg_counter++;
-				if (serv->msg_counter == prefs.msg_number_limit)	/*if we reached the maximun numbers of ctcp in the seconds limits */
-				{
-					snprintf (buf, sizeof (buf),
-					 _("You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"),
-								 ip);
-					PrintText (sess, buf);
-					serv->msg_last_time = current_time;	/*we got the flood, restore all the vars for next one */
-					serv->msg_counter = 0;
-					/*ignore_add (char *mask, int priv, int noti, int chan,
-					   int ctcp, int invi, int unignore, int no_save) */
+			serv->msg_counter = 0;
 
-					/*FIXME: only ignore ctcp or all?, its ignoring ctcps for now */
-					prefs.autodialog = 0;
-					return 0;
-				}
-			}
+			snprintf (buf, sizeof (buf),
+					_("You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"), host);
+			prefs.autodialog = 0;
+			flood = 1;
 		}
+	}
+	
+	if (flood)
+	{
+		PrintText (sess, buf);
+		return 0;
 	}
 	return 1;
 }

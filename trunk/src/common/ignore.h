@@ -33,6 +33,6 @@ void ignore_load (void);
 void ignore_save (void);
 void ignore_gui_open (void);
 void ignore_gui_update (int level);
-int flood_check (char *nick, char *ip, server *serv, rage_session *sess, int what);
+int flood_check (char *nick, char *host, server *serv, rage_session *sess, int what);
 
 #endif

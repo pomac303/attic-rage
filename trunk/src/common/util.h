@@ -47,7 +47,8 @@ int waitline (int sok, char *buf, int bufsize, int use_recv);
 unsigned long make_ping_time (void);
 void download_move_to_completed_dir (char *dcc_dir, char *dcc_completed_dir, char *output_name, int dccpermissions);
 int mkdir_utf8 (char *dir);
-int gen_throttle(throttle_t *td);
+inline int gen_throttle(throttle_t *td);
+int gen_parm_throttle(int *level, int *weight, int *leak, int *limit, time_t *ts);
 int tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, int *pos, int meta);
 void tab_clean(void);
 
