@@ -373,10 +373,10 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	{
 		line = g_convert(buf, strlen(buf), serv->encoding, "UTF-8", 
 				NULL, &written, NULL);
-		t_utf8 = g_convert(target, strlen(target), serv->encoding, "UTF-8",
-				NULL, &written, NULL);
-		a_utf8 = g_convert(args, strlen(args), serv->encoding, "UTF-8",
-				NULL, &written, NULL);
+		t_utf8 = target ? g_convert(target, strlen(target), serv->encoding,
+				"UTF-8", NULL, &written, NULL) : NULL;
+		a_utf8 = args ? g_convert(args, strlen(args), serv->encoding, 
+				"UTF-8", NULL, &written, NULL) : NULL;
 	}
 
 	msg->msg = line ? line : g_strdup(buf);
