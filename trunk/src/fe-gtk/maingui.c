@@ -1335,7 +1335,7 @@ mg_link_irctab (rage_session *sess, int focus)
 static void
 mg_link_gentab (GtkWidget *tab)
 {
-/* XXX: What is this? */
+/* XXX: What is this? this is what is used for non channel windows */
 #if 0
 	GtkWidget *win, *box, *vbox;
 
