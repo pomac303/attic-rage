@@ -411,8 +411,13 @@ new_ircwindow (server *serv, char *name, int type, int focus)
 char *
 get_network (session *sess, gboolean fallback)
 {
+	char *name;
+
 	if (sess->server->network)
 		return ((ircnet *)sess->server->network)->name;
+	
+	if ((name = get_isupport(sess->server, "NETWORK")))
+		return name;
 
 	if (fallback)
 		return sess->server->servername;

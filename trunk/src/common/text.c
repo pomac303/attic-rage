@@ -207,9 +207,8 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 	int pathlen=510, c=0, mbl;
 
 	if (!rfc_casecmp (channame, servname))
-	{
 		channame = g_strdup ("server");
-	} else
+	else
 	{
 		sep = tmp = strdup (channame);
 		while (*tmp)
@@ -297,9 +296,6 @@ log_open_file (char *servname, char *channame, char *netname)
 	int fd;
 	time_t currenttime;
 
-	if (!netname)
-		netname = "NETWORK";
-
 	log_create_filename (buf, servname, channame, netname);
 #ifdef WIN32
 	fd = open (buf, O_CREAT | O_APPEND | O_WRONLY, S_IREAD|S_IWRITE);
@@ -323,14 +319,14 @@ log_open (session *sess)
 
 	log_close (sess);
 	sess->logfd = log_open_file (sess->server->servername, sess->channel,
-										  get_network (sess, FALSE));
+			get_network (sess, TRUE));
 
 	if (!log_error && sess->logfd == -1)
 	{
 		char message[512];
 		snprintf (message, sizeof (message),
 					_("* Can't open log file(s) for writing. Check the\n" \
-					  "  permissions on %s/xchatlogs"), get_xdir_utf8 ());
+					  "  permissions on %s/logs"), get_xdir_utf8 ());
 		fe_message (message, TRUE);
 
 		log_error = TRUE;
