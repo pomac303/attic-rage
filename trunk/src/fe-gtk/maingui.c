@@ -272,7 +272,7 @@ fe_set_title (rage_session *sess)
 	{
 	case SESS_DIALOG:
 		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]: %s %s @ %s",
-					 _("Dialog with"), rage_svn_version, sess->channel, sess->server->servername);
+					 rage_svn_version, _("Dialog with"), sess->channel, sess->server->servername);
 		break;
 	case SESS_SERVER:
 		snprintf (tbuf, sizeof (tbuf), "Rage ["VERSION"-%s]: %s @ %s",
