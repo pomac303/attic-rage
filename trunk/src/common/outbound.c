@@ -358,7 +358,7 @@ ban (session * sess, char *tbuf, char *mask, char *bantypestr, int deop)
 
 		mask = user->hostname;
 
-		at = strchr (mask, '@');	/* FIXME: utf8 */
+		at = g_utf8_strchr (mask, -1, '@');	/* is utf8 checking really needed? */
 		if (!at)
 			return;					  /* can't happen? */
 		*at = 0;
