@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-cs\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-20 05:26+0100\n"
+"POT-Creation-Date: 2004-12-23 05:59+0100\n"
 "PO-Revision-Date: 2004-03-28 19:13+0200\n"
 "Last-Translator: Eva Mikulcikova <evmi@seznam.cz>\n"
 "Language-Team: czech <cs@li.org>\n"
@@ -157,27 +157,27 @@ msgstr "Neznámý argument '%s' ignorován."
 msgid "No such plugin found.\n"
 msgstr "Plugin se nenašel.\n"
 
-#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Modul se odmítá odpojit.\n"
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3037
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <jméno> <akce>, přidá tlačítko pod seznam uživatelů"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3039
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <příkaz>, pošle příkaz do všech kanálů, ve kterých jste"
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3041
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <příkaz>, pošle příkaz na všechny servery, na kterých jste"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3042
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<důvod>], označí vás jako nepřítomného"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3044
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -187,19 +187,19 @@ msgstr ""
 "kanálu. Pokud už jsou přihlášení v kanálu, nevykopne je to (musíte být "
 "chanop)"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3046
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, vyčistí aktuální textové okno"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3047
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, zavře aktuální okno nebo záložku"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3049
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kód>, najde kód země, např. cz = Česko"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3051
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <přezdívka> <zpráva>, pošle zprávu CTCP přezdívka, obvyklé zprávy jsou "
 "VERSION a USERINFO"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3053
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, opustí aktuální kanál a hned se vrátí"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3055
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -229,7 +229,7 @@ msgstr ""
 "DCC CLOSE <typ> <přezdívka> <soubor>         příklad:\n"
 "         /dcc close send jan soubor.tar.gz"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3064
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -237,11 +237,11 @@ msgstr ""
 "DEHOP <přezdívka>, odstraní stav chanhalf-op pro přezdívku v aktuálním "
 "kanálu (vyžaduje chanop)"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3066
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <jméno>, odstraní tlačítko pod seznamem uživatelů"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3068
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -249,7 +249,7 @@ msgstr ""
 "DEOP <přezdívka>, odstraní stav chanop pro přezdívku v aktuálním kanálu "
 "(vyžaduje chanop)"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3070
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -257,19 +257,19 @@ msgstr ""
 "DEVOICE <přezdívka>, odstraní stav voice pro přezdívku v aktuálním kanálu "
 "(vyžaduje chanop)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3071
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, odpojí od serveru"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3072
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <přezdívka|hostitel|ip>, najde IP adresu uživatele"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3073
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <text>, Vytiskne text lokálně"
 
-#: src/common/outbound.c:3093
+#: src/common/outbound.c:3076
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -277,11 +277,11 @@ msgstr ""
 "EXEC [-o] <příkaz>, spustí příkaz. Pokud je použitý přepínač -o, výstup se "
 "posílá do aktuálního kanálu, jinak se vytiskne do aktuálního textového pole"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3078
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, pošle procesu SIGCONT"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3081
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -289,29 +289,29 @@ msgstr ""
 "EXECKILL [-9], zabije programy běžící v aktuálním sezení. Pokud je zadáno -"
 "9, pošle se signál SIGKILL"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3083
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, pošle procesu SIGSTOP"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3084
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, pošle procesu data na standardní vstup"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3088
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, vyčistí aktuální frontu serveru pro posílání"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3090
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <hostitel> [<port>], nastaví proxy na hostitele, port je standardně 23"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3096
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <přezdívka>, nastaví stav chanhalf-op pro přezdívku (vyžaduje chanop)"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3098
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -325,7 +325,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    možnosti - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3104
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -333,16 +333,16 @@ msgstr ""
 "INVITE <přezdívka> [<kanál>], pozve někoho do kanálu, standardně do "
 "aktuálního kanálu (vyžaduje chanop)"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3105
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanál>, přejde do kanálu"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3107
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <přezdívka>, vykopne přezdívku z aktuálního kanálu (vyžaduje chanop)"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3109
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -350,31 +350,31 @@ msgstr ""
 "KICKBAN <přezdívka>, zakáže a potom vykopne přezdívku z aktuálního kanálu "
 "(vyžaduje chanop)"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3112
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, vynutí novou kontrolu lag"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3114
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <řetězec>, hledá řetězec v textu."
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3116
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <soubor>, načítá skript Perl"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3118
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, hromadně zruší stav všech chanhalf-op v aktuálním kanálu (vyžaduje "
 "chanop)"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3120
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, hromadně zruší stav všech chanop v aktuálním kanálu (vyžaduje chanop)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3122
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -382,40 +382,40 @@ msgstr ""
 "ME <akce>, pošle akci do aktuálního kanálu (akce se píší ve třetí osobě, "
 "například /me skáče)"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3124
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, hromadně vykopne každého kromě vás z aktuálního kanálu (vyžaduje "
 "chanop)"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3127
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, hromadně nastaví stav všem uživatelům v aktuálním kanálu (vyžaduje "
 "chanop)"
 
-#: src/common/outbound.c:3145
+#: src/common/outbound.c:3128
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <přezdívka> <zpráva>, pošle soukromou zprávu"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3130
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, vypíše seznam přezdívek v aktuálním kanálu"
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3132
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <přezdívka> <zpráva>, pošle poznámku CTCP"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3133
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <hostitel> [<port>]"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3134
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <přezdívka>, nastaví vaši přezdívku"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3136
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -423,38 +423,38 @@ msgstr ""
 "NOTICE <přezdívka/kanál> <zpráva>, pošle poznámku. Poznámky jsou typem "
 "zprávy, na které by se mělo automaticky reagovat"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3138
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<přezdívka>], vypíše váš seznam upozornění, nebo někoho do tohoto "
 "seznamu přidá"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3140
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <přezdívka>, dá stav chanop přezdívce (vyžaduje chanop)"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3142
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<kanál>] [<důvod>], opustí kanál, standardně aktuální"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3144
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <přezdívka | kanál>, pošle CTCP ping na přezdívku nebo kanál"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3146
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <přezdívka>, otevře nové okno pro soukromé zprávy někomu"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3148
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<důvod>], odpojí se od aktuálního serveru"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3150
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <text>, pošle text tak jak je na server"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3153
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -464,7 +464,7 @@ msgstr ""
 "RECONNECT pro znovupřipojení k aktuálnímu serveru nebo jako /RECONNECT ALL "
 "pro znovupřipojení ke všem otevřeným serverům"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3156
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -474,30 +474,30 @@ msgstr ""
 "pro znovupřipojení k aktuálnímu serveru nebo jako /RECONNECT ALL pro "
 "znovupřipojení ke všem otevřeným serverům"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3158
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 "RECV <text>, odešle xchatu čistá data, jako kdyby byla přijata z irc serveru"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3159
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3161
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <text>, pošle text objektu v aktuálním okně"
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3164
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN [-ssl] <hostitel> <port> <kanál>, připojí se a navštíví kanál"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3167
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN <hostitel> <port> <kanál>, připojí se a navštíví kanál"
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3172
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -505,7 +505,7 @@ msgstr ""
 "SERVER [-ssl] <hostitel> [<port>] [<heslo>], připojí se na server, "
 "standardní port je 6667 pro obyčejná připojení, 9999 pro ssl připojení."
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3175
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -513,49 +513,49 @@ msgstr ""
 "/SERVER <hostitel> [<port>] [<heslo>], připojí se na server, standardní port "
 "je 6667"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3177
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <proměnná> [<hodnota>]"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3178
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3182
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<téma>], nastaví téma, pokud je zadáno, jinak zobrazí aktuální téma"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3184
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <maska> [<maska>...], zruší zákaz pro zadané masky."
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3185
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <maska> [QUIET]"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3186
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <soubor>, načítá plugin nebo skript"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3189
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <přezdívka>, přiřadí někomu stav voice (vyžaduje chanop)"
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3191
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <zpráva>, napíše zprávu do všech kanálů"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3193
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <zpráva>, pošle zprávu všem se stavem chanop v aktuálním kanálu"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3195
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -563,12 +563,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <zpráva>, pošle zprávu všem se stavem chanop v aktuálním kanálu"
 
-#: src/common/outbound.c:3257
+#: src/common/outbound.c:3241
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Použití: %s\n"
 
-#: src/common/outbound.c:3262
+#: src/common/outbound.c:3246
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -576,23 +576,23 @@ msgstr ""
 "\n"
 "Pro tento příkaz není žádná nápověda.\n"
 
-#: src/common/outbound.c:3268
+#: src/common/outbound.c:3252
 msgid "No such command.\n"
 msgstr "Neznámý příkaz.\n"
 
-#: src/common/outbound.c:3639
+#: src/common/outbound.c:3623
 msgid "Bad arguments for user command.\n"
 msgstr "Chybné argumenty pro uživatelský příkaz.\n"
 
-#: src/common/outbound.c:3801
+#: src/common/outbound.c:3785
 msgid "Too many recursive usercommands, aborting."
 msgstr "Příliš mnoho vnořených uživatelských příkazů, končím."
 
-#: src/common/outbound.c:3856
+#: src/common/outbound.c:3840
 msgid "Unknown Command. Try /help\n"
 msgstr "Neznámý příkaz. Zkuste použít /help\n"
 
-#: src/common/plugin.c:338 src/common/plugin.c:379
+#: src/common/plugin.c:339 src/common/plugin.c:379
 #, fuzzy
 msgid "No rage_plugin_init symbol; is this really an rage plugin?"
 msgstr "Nemůžu najít xchat_plugin_init symbol, je to opravdu plugin do xchatu?"
@@ -4309,24 +4309,24 @@ msgstr "Odstranit"
 msgid "Description"
 msgstr "Popis"
 
-#: src/fe-gtk/plugingui.c:127
+#: src/fe-gtk/plugingui.c:125
 msgid "Select a Plugin or Script to load"
 msgstr "Vyberte plugin nebo skript"
 
-#: src/fe-gtk/plugingui.c:199
+#: src/fe-gtk/plugingui.c:197
 #, fuzzy
 msgid "Rage: Plugins and Scripts"
 msgstr "X-Chat: Pluginy a skripty"
 
-#: src/fe-gtk/plugingui.c:205
+#: src/fe-gtk/plugingui.c:203
 msgid "_Load..."
 msgstr "_Načíst..."
 
-#: src/fe-gtk/plugingui.c:208
+#: src/fe-gtk/plugingui.c:206
 msgid "_UnLoad"
 msgstr "O_debrat"
 
-#: src/fe-gtk/plugingui.c:212
+#: src/fe-gtk/plugingui.c:210
 msgid "_Close"
 msgstr "_Zavřít"
 

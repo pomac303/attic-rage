@@ -31,7 +31,7 @@ patch-stamp:
 configure: configure-stamp
 configure-stamp:
 		CFLAGS="$(CFLAGS)" ./configure --prefix=/usr --sysconfdir=/etc --enable-ipv6  \
-		--enable-japanese-conv --disable-mmx --enable-openssl --enable-zvt --disable-ruby --disable-perl --disable-python --disable-tcl
+		--enable-japanese-conv --disable-mmx --enable-shm --enable-openssl --enable-zvt --disable-ruby --disable-perl --disable-python --disable-tcl
 		 touch configure-stamp
 # Disabled: --enable-python --enable-tcl=/usr/lib/tcl8.4 --enable-textfe
 build: configure-stamp patch-stamp build-stamp

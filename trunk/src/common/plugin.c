@@ -105,7 +105,6 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 	GSList *list, *next;
 	rage_hook *hook;
 	rage_deinit_func *deinit_func;
-	dict_iterator_t it;
 	int i;
 
 	/* fake plugin added by rage_plugingui_add() */
@@ -144,13 +143,9 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 #endif
 
 xit:
-	/* Non optimal since some functions has already walked the
-	 * by now, but it's the most generic implementation */
-	for (it=dict_first(plugin_list); it; it=iter_next(it))
-	{
-		if (pl == iter_data(it))
-			set_remove(plugin_list, iter_data(it), 0);
-	}
+	/* remove the plugin */
+	set_remove(plugin_list, pl, 0);
+
 	if (pl->filename)
 		free ((char *)pl->filename);
 	free (pl);

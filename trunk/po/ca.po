@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-12-20 05:26+0100\n"
+"POT-Creation-Date: 2004-12-23 05:59+0100\n"
 "PO-Revision-Date: 2004-08-14 12:42+0200\n"
 "Last-Translator: Ernest Adrogué Calveras <eadrogue@gmx.net>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -189,27 +189,27 @@ msgstr "S'ignora l'argument desconegut «%s»."
 msgid "No such plugin found.\n"
 msgstr "No existeix tal connector.\n"
 
-#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Aquest connector refusa ser descarregat.\n"
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3037
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nom> <acció>, afegeix un botó sota la llista d'usuaris"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3039
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <cmd>, envia una ordre a tots els canals on estigueu"
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3041
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <cmd>, envia una ordre a tots els servidors on estigueu"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3042
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<motiu>], marca el vostre sobrenom com a absent"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3044
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -219,19 +219,19 @@ msgstr ""
 "màscara. Si ja es troben el canal amb això no els fareu fora (necessiteu ser "
 "operador del canal)"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3046
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Esborra el text de la finestra actual"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3047
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Tanca la finestra o pestanya actual"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3049
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <codi>, cerca un codi de país, p.ex: au = Austràlia"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3051
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -239,11 +239,11 @@ msgstr ""
 "CTCP <sobrenom> <missatge>, envia el missatge CTCP a l'usuari indicat, els "
 "missatges més comuns són VERSION i USERINFO"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3053
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, surt i retorna immediatament al canal actual"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3055
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -262,7 +262,7 @@ msgstr ""
 "DCC CLOSE <tipus> <sobrenom> <fitxer>        exemple:\n"
 "         /dcc close send albanoguer fitxer.tar.gz"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3064
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -270,11 +270,11 @@ msgstr ""
 "DEHOP <sobrenom>, treu l'estatus de semi-operador del canal al sobrenom "
 "indicat (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3066
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <nom>, elimina un botó de sota la llista d'usuaris"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3068
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -282,7 +282,7 @@ msgstr ""
 "DEOP <sobrenom>, treu l'estatus d'operador del canal al sobrenom indicat "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3070
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -290,19 +290,19 @@ msgstr ""
 "DEVOICE <sobrenom>, treu l'estatus de veu al sobrenom indicat (necessiteu "
 "ser operador del canal)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3071
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Finalitza la connexió amb el servidor"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3072
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <sobrenom|màquina|ip>, Cerca l'adreça IP d'un usuari"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3073
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <text>, Escriu el text localment"
 
-#: src/common/outbound.c:3093
+#: src/common/outbound.c:3076
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -310,11 +310,11 @@ msgstr ""
 "EXEC [-o] <ordre>, executa l'ordre. Si useu l'argument -o s'enviarà l'eixida "
 "cap al canal actual, si no es mostrarà a la finestra de text actual"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3078
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, envia un senyal SIGCONT al procés"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3081
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -322,31 +322,31 @@ msgstr ""
 "EXECKILL [-9], mata un procés que s'estigui executant en la sessió actual. "
 "Si s'empreu -9 el senyal serà SIGKILL"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3083
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, envia un senyal SIGSTOP al procés"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3084
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, envia dades als processos en stdin (entrada estàndard)"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3088
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, neteja la cua d'enviaments al servidor actual"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3090
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <màquina> [<port>], usa el servidor intermedi indicat, el port per "
 "omissió és el 23"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3096
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <sobrenom>, dóna l'estatus d'operador de canal a l'usuari indicat "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3098
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -362,7 +362,7 @@ msgstr ""
 "              PRIV, CHAN, NOTI, CTCP, DCC, INVI\n"
 "    opcions - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3104
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -370,17 +370,17 @@ msgstr ""
 "INVITE <sobrenom> [<canal>], convida l'usuari indicat a un canal, per "
 "omissió al canal actual (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3122
+#: src/common/outbound.c:3105
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <canal>, entra al canal"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3107
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <sobrenom>, fa fora l'usuari indicat del canal actual (necessiteu ser "
 "operador del canal)"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3109
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -388,32 +388,32 @@ msgstr ""
 "KICKBAN <sobrenom>, bandeja l'usuari indicat després de fer-lo fora del "
 "canal (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3112
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, força una nova comprovació del retard"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3114
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <cadena>, cerca una cadena de text en el buffer"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3116
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fitxer>, carrega un connector o script"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3118
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, Treu l'estatus a tots els semi-operadors del canal en el canal "
 "actual (necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3120
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, Treu l'estatus a tots els operadors del canal en el canal actual "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3122
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -421,40 +421,40 @@ msgstr ""
 "ME <acció>, anuncia una acció al canal actual (les accions s'escriuen en "
 "tercera persona, com ara /me salta d'alegria)"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3124
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, Fa fora tots els usuaris del canal actual (necessiteu ser operador "
 "del canal)"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3127
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, Dóna l'estatus d'operador a tots els usuaris en el canal actual "
 "(necessiteu ser operador del canal)"
 
-#: src/common/outbound.c:3145
+#: src/common/outbound.c:3128
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <sobrenom> <missatge>, envia un missatge privat"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3130
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, Llista els usuaris que hi ha al canal actual"
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3132
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <sobrenom> <missatge>, Envia un avís per CTCP"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3133
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <nom_màquina> [<port>]"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3134
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <sobrenom>, canvia el vostre sobrenom"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3136
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -462,41 +462,41 @@ msgstr ""
 "NOTICE <sobrenom/canal> <missatge>, envia una avís. Els avisos són uns tipus "
 "de missatge que no haurien de generar respostes automàtiques"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3138
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<sobrenom>], mostra la vostra llista de notificació o hi afegeix a "
 "algú"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3140
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <sobrenom>, dóna l'estatus d'operador del canal a l'usuari (necessiteu "
 "ser operador del canal)"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3142
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<canal>] [<motiu>], deixa el canal, per omissió l'actual"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3144
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <sobrenom | canal>, envia un ping CTCP a l'usuari o canal indicat"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3146
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 "QUERY <sobrenom>, obre una finestra nova de missatges privats per a algú"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3148
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<motiu>], finalitza la connexió amb el servidor actual"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3150
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <text>, envia el text «en brut» cap al servidor"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3153
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -506,7 +506,7 @@ msgstr ""
 "amb /RECONNECT per així reconnectar-se al servidor actual o amb /RECONNECT "
 "ALL per a reconnectar-se a tots els servidors oberts"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3156
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -516,7 +516,7 @@ msgstr ""
 "RECONNECT per així reconnectar-se al servidor actual o amb /RECONNECT ALL "
 "per a reconnectar-se a tots els servidors oberts"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3158
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -524,23 +524,23 @@ msgstr ""
 "RECV <text>, envia dades «en brut» a l'X-Chat, com si foren rebudes des del "
 "servidor IRC"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3159
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3161
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <text>, envia el text a l'objecte a la finestra actual"
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3164
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN [-ssl] <màquina> <port> <canal>, connecta i entra en un canal"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3167
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN <màquina> <port> <canal>, connecta i entra en un canal"
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3172
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -549,7 +549,7 @@ msgstr ""
 "el port per omissió per a connexions normals és el 6667, i el 9999 per a "
 "connexions ssl"
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3175
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -557,49 +557,49 @@ msgstr ""
 "SERVER <màquina> [<port>] [<contrasenya>], connecta amb un servidor, el port "
 "per omissió és el 6667"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3177
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET [-quiet] <variable> [<valor>]"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3178
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3182
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr "TOPIC [<tòpic>], estableix o mostra el tema del canal actual"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3184
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <màscara> [<màscara>...], readmet els usuaris indicats al canal."
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3185
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <màscara> [QUIET]"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3186
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <fitxer>, desactiva un connector o script"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3189
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <sobrenom>, dóna l'estatus de veu a algú (necessiteu ser operador del "
 "canal)"
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3191
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <missatge>, escriu un missatge a tots els canals"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3193
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <missatge>, envia un missatge a tots els operadors del canal actual"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3195
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -607,12 +607,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <missatge>, envia un missatge a tots els operadors del canal actual"
 
-#: src/common/outbound.c:3257
+#: src/common/outbound.c:3241
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Sintaxi: %s\n"
 
-#: src/common/outbound.c:3262
+#: src/common/outbound.c:3246
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -620,23 +620,23 @@ msgstr ""
 "\n"
 "No hi ha ajuda disponible per a aquesta ordre.\n"
 
-#: src/common/outbound.c:3268
+#: src/common/outbound.c:3252
 msgid "No such command.\n"
 msgstr "No existeix tal ordre.\n"
 
-#: src/common/outbound.c:3639
+#: src/common/outbound.c:3623
 msgid "Bad arguments for user command.\n"
 msgstr "Els arguments per a l'ordre d'usuari no són vàlids.\n"
 
-#: src/common/outbound.c:3801
+#: src/common/outbound.c:3785
 msgid "Too many recursive usercommands, aborting."
 msgstr "Massa ordres d'usuari recursives, s'avorta."
 
-#: src/common/outbound.c:3856
+#: src/common/outbound.c:3840
 msgid "Unknown Command. Try /help\n"
 msgstr "Ordre desconeguda. Proveu /help\n"
 
-#: src/common/plugin.c:338 src/common/plugin.c:379
+#: src/common/plugin.c:339 src/common/plugin.c:379
 #, fuzzy
 msgid "No rage_plugin_init symbol; is this really an rage plugin?"
 msgstr ""
@@ -4360,24 +4360,24 @@ msgstr "Elimina"
 msgid "Description"
 msgstr "Descripció"
 
-#: src/fe-gtk/plugingui.c:127
+#: src/fe-gtk/plugingui.c:125
 msgid "Select a Plugin or Script to load"
 msgstr "Seleccioneu el connector o script a carregar"
 
-#: src/fe-gtk/plugingui.c:199
+#: src/fe-gtk/plugingui.c:197
 #, fuzzy
 msgid "Rage: Plugins and Scripts"
 msgstr "X-Chat: Connectors i scripts"
 
-#: src/fe-gtk/plugingui.c:205
+#: src/fe-gtk/plugingui.c:203
 msgid "_Load..."
 msgstr "_Carrega..."
 
-#: src/fe-gtk/plugingui.c:208
+#: src/fe-gtk/plugingui.c:206
 msgid "_UnLoad"
 msgstr "_Descarrega"
 
-#: src/fe-gtk/plugingui.c:212
+#: src/fe-gtk/plugingui.c:210
 msgid "_Close"
 msgstr "_Tanca"
 
