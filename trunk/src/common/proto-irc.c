@@ -403,7 +403,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 		}
 		case RPL_AWAY: /* 301 */
 			inbound_away(sess->server,parv[3],parv[4]);
-			break;
+			return;
 		case RPL_USERHOST: /* 302 */
 			/* Bletch this sucks */
 			if (sess->server->skip_next_userhost)
