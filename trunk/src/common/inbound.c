@@ -819,8 +819,7 @@ handle_netsplit(server *serv)
 				len += sprintf (buf + len, ", ");
 			g_free(tmp);
 		}
-		if (!sess->hide_join_part)
-			EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
+		EMIT_SIGNAL (XP_TE_NS_GONE, serv->front_session, buf, NULL, NULL, NULL, 0);
 	}
 	g_queue_free(serv->split_queue);
 	serv->split_queue = NULL;
