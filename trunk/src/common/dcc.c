@@ -377,7 +377,7 @@ dcc_write_chat (char *nick, char *text)
 	{
 		char *locale;
 		gsize loc_len;
-		int len;
+		size_t len;
 
 		len = strlen (text);
 
@@ -420,7 +420,7 @@ dcc_chat_line (struct DCC *dcc, char *line, char *tbuf)
 	char *utf;
 	char *conv;
 	int ret, i;
-	int len;
+	size_t len;
 	gsize utf_len;
 
 	len = strlen (line);
@@ -701,6 +701,8 @@ dcc_connect_finished (GIOChannel *source, GIOCondition condition, struct DCC *dc
 	}
 
 #ifdef WIN32
+	(void)addr; /* Not used on win32 */
+
 	if (condition & G_IO_ERR)
 	{
 		int len;
@@ -1752,7 +1754,7 @@ handle_dcc (struct session *sess, char *nick, int parc, char *parv[])
 			dcc->file = strdup (file);
 
 			dcc->destfile = g_malloc (strlen (prefs.dccdir) + strlen (nick) +
-											  strlen (file) + 4);
+					strlen (file) + 4);
 
 			strcpy (dcc->destfile, prefs.dccdir);
 			if (prefs.dccdir[strlen (prefs.dccdir) - 1] != '/')

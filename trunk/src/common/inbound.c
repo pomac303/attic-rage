@@ -196,7 +196,7 @@ SearchNick (char *text, char *nicks)
 	char *n;
 	char *p;
 	char *t;
-	int ns;
+	size_t ns;
 
 	if (nicks == NULL)
 		return 0;

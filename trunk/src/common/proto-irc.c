@@ -254,7 +254,7 @@ irc_ping (server *serv, char *to, char *timestring)
 static int
 irc_raw (server *serv, char *raw)
 {
-	int len;
+	size_t len;
 	char tbuf[4096];
 	if (*raw)
 	{
@@ -849,7 +849,7 @@ irc_server(session *sess, int parc, char *parv[])
 		case M_PRIVMSG:
 		{
 			char *to = parv[2];
-			int len;
+			size_t len;
 			int id = FALSE; /* identified */
 			if (*to)
 			{

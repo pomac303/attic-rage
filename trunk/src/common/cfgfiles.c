@@ -29,7 +29,7 @@ void
 list_addentry (GSList ** list, char *cmd, char *name)
 {
 	struct popup *pop;
-	int cmd_len = 1, name_len;
+	size_t cmd_len = 1, name_len;
 
 	if (cmd)
 		cmd_len = strlen (cmd) + 1;
@@ -51,7 +51,7 @@ list_addentry (GSList ** list, char *cmd, char *name)
 /* read it in from a buffer to our linked list */
 
 static void
-list_load_from_data (GSList ** list, char *ibuf, int size)
+list_load_from_data (GSList ** list, char *ibuf, size_t size)
 {
 	char cmd[384];
 	char name[128];
@@ -186,7 +186,7 @@ static int
 cfg_put_str (int fh, char *var, char *value)
 {
 	char buf[512];
-	int len;
+	size_t len;
 
 	snprintf (buf, sizeof buf, "%s = %s\n", var, value);
 	len = strlen (buf);
@@ -197,7 +197,7 @@ int
 cfg_put_color (int fh, int r, int g, int b, char *var)
 {
 	char buf[400];
-	int len;
+	size_t len;
 
 	snprintf (buf, sizeof buf, "%s = %04x %04x %04x\n", var, r, g, b);
 	len = strlen (buf);
@@ -208,7 +208,7 @@ int
 cfg_put_int (int fh, int value, char *var)
 {
 	char buf[400];
-	int len;
+	size_t len;
 
 	if (value == -1)
 		value = 1;
@@ -790,7 +790,8 @@ save_config (void)
 static void
 set_showval (session *sess, const struct prefs *var, char *tbuf)
 {
-	int len, dots, j;
+	int dots, j;
+	size_t len;
 	static const char *offon[] = { "OFF", "ON" };
 
 	len = strlen (var->name);

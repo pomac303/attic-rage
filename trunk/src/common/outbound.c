@@ -3590,7 +3590,7 @@ void
 check_special_chars (char *cmd, int do_ascii) /* check for %X */
 {
 	int occur = 0;
-	int len = strlen (cmd);
+	size_t len = strlen (cmd);
 	char *buf, *utf;
 	char tbuf[4];
 	int i = 0, j = 0;
@@ -3683,7 +3683,7 @@ typedef struct
 static int
 nick_comp_cb (struct User *user, nickdata *data)
 {
-	int lenu;
+	size_t lenu;
 
 	if (!rfc_ncasecmp (user->nick, data->nick, data->len))
 	{
@@ -3706,7 +3706,7 @@ nick_comp_cb (struct User *user, nickdata *data)
 static void
 perform_nick_completion (struct session *sess, char *cmd, char *tbuf)
 {
-	int len;
+	size_t len;
 	char *space = strchr (cmd, ' ');
 	if (space && space != cmd)
 	{
@@ -3777,7 +3777,7 @@ handle_say (session *sess, char *text, int check_spch)
 	char *pdibuf = pdibuf_static;
 	char *newcmd = newcmd_static;
 	char *tbuf = tbuf_static;
-	int len;
+	size_t len;
 	int newcmdlen = sizeof newcmd_static;
 
 	if (strcmp (sess->channel, "(lastlog)") == 0)

@@ -88,7 +88,8 @@ static int
 tcp_send_queue (server *serv)
 {
 	char *buf, *p;
-	int len, i, pri;
+	size_t len;
+	int i, pri;
 	GSList *list;
 	time_t now = time (0);
 
@@ -183,7 +184,7 @@ tcp_sendf (server *serv, char *fmt, ...)
 	va_list args;
 	/* keep this buffer in BSS */
 	static char send_buf[520];	/* good code hey (no it's not overflowable) */
-	int len;
+	size_t len;
 
 	va_start (args, fmt);
 	len = vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);

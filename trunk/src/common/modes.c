@@ -36,7 +36,8 @@ void
 send_channel_modes (session *sess, char *word[], int wpos, int end, 
 		char sign, char mode)
 {
-	int usable_modes, orig_len, len, wlen, i, max;
+	int usable_modes, i, max;
+	size_t orig_len, len, wlen;
 	server *serv = sess->server;
 	int modes_per_line;
 	char tbuf[503];
@@ -237,7 +238,7 @@ record_chan_mode (session *sess)/*, char sign, char mode, char *arg)*/
 static char *
 mode_cat (char *str, char *addition)
 {
-	int len;
+	size_t len;
 
 	if (str)
 	{
