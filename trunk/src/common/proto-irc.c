@@ -385,6 +385,23 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_ISUPPORT: /* 005 */
 			inbound_005(sess->server,parc,parv);
 			break;
+		case 290: /* CAPAB reply */
+		{
+			int i;
+			
+			/* initalize variables */
+			sess->server->have_idmsg = FALSE;
+
+			for (i = 2; i < parc; i++)
+			{
+				if (strcmp(parv[2], "IDENTIFY-MSG"))
+				{
+					sess->server->have_idmsg = TRUE;
+					break;
+				}
+			}
+			break;
+		}
 		case RPL_AWAY: /* 301 */
 			inbound_away(sess->server,parv[3],parv[4]);
 			break;

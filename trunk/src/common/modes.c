@@ -661,10 +661,6 @@ run_005 (server * serv)
 	
 	if((pre = get_isupport(serv, "NETWORK")))
 	{
-		/* if (serv->networkname)
-			free (serv->networkname);
-		serv->networkname = strdup (parv[w] + 8);*/
-		
 		if (serv->server_session->type == SESS_SERVER)
 		{
 			safe_strcpy (serv->server_session->channel, pre, CHANLEN);
@@ -695,4 +691,8 @@ run_005 (server * serv)
 			serv->bad_nick_prefixes = strdup (pre);
 		}
 	}
+
+	if(isupport(serv, "CAPAB")) /* after this we get a 290 numeric reply */
+		 tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
+
 }
