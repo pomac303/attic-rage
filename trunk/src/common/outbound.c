@@ -3267,12 +3267,45 @@ help (session *sess, char *helpcmd, int quiet)
 		PrintText (sess, _("No such command.\n"));
 }
 
-/* inserts %a, %c, %d etc into buffer. 
+/* auto_insert:
+ * dest: destination to write into
+ * destlen: length of dest buffer
+ * src: source format string
+ * parc: number of parv fields
+ * parv: parameter vector
+ * a: 
+ * c: channel?
+ * d: 
+ * h: 
+ * n: netname
+ * s: server
+ *
+ * inserts %a, %c, %d etc into buffer. 
  *   returns 2 on buffer overflow
- *   returns 1 on success                                                    *
- *   returns 0 on bad-args-for-user-command                                  *
- * - word/word_eol args might be NULL                                        *
- * - this beast is used for UserCommands, UserlistButtons and CTCP replies   */
+ *   returns 1 on success                                                   
+ *   returns 0 on bad-args-for-user-command                                
+ * - word/word_eol args might be NULL                                     
+ * - this beast is used for UserCommands, UserlistButtons and CTCP replies
+ *
+ * supported expandos:
+ *  %<num> 	parv[num] where num<100
+ *  %<num> 	Unicode charactor num where num>=100
+ *  %% 		literal %
+ *  %a		argument a
+ *  %c		channel
+ *  %d		argument d
+ *  %h		argumet h
+ *  %m		CPU string
+ *  %n		nick
+ *  %s		server
+ *  %t		time in unix seconds
+ *  %v		version string
+ *  %y		date in YYYYmmdd
+ *
+ *  $t 		literal tab
+ *
+ *  &<num> 	parv[num...]
+ */
 
 int
 auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[],

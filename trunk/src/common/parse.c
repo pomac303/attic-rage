@@ -110,6 +110,29 @@ split_cmd_parv(char *buf,int *parc, char *parv[])
 		parv[i]="";
 }
 
+/* Parses out an integer */
+int 
+split_int(char **buf)
+{
+	int sign=1;
+	int value=0;
+	switch (**buf) {
+		case '+':
+			sign=1;
+			(*buf)++;
+			break;
+		case '-':
+			sign=-1;
+			(*buf)++;
+			break;
+	}
+	while(**buf>='0' && **buf <='9') {
+		value=value*10 + **buf - '0';
+		(*buf)++;
+	}
+	return sign*value;
+}
+
 /* Join a parv string and return the result */
 char *
 paste_parv(char *buf, size_t buf_size, int first, int last, char *parv[])

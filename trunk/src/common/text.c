@@ -233,7 +233,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 		free (sep);
 	}
 
-	snprintf (buf, 512, "%s/ragelogs", get_xdir_fs ());
+	snprintf (buf, 512, "%s/logs", get_xdir_fs ());
 	if (access (buf, F_OK) != 0)
 #ifdef WIN32
 		mkdir (buf);
@@ -243,7 +243,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 	auto_insert (fn, sizeof (fn), prefs.logmask, 0, NULL, "", channame, "", "", netname, servname);
 	g_free (channame);
 
-	snprintf (buf, 512, "%s/ragelogs/%s", get_xdir_fs (), fn);
+	snprintf (buf, 512, "%s/logs/%s", get_xdir_fs (), fn);
 
  	/* The following code handles subdirectories in logpath and creates
  	 * them, if they don't exist. Useful with logmasks like "%c/%y.log" in
@@ -253,7 +253,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 
 	if (access (buf, F_OK) != 0)
 	{
-		snprintf (buf, 512, "%s/ragelogs/", get_xdir_fs ());
+		snprintf (buf, 512, "%s/logs/", get_xdir_fs ());
 		pathlen -= strlen(buf);
  
 		/* how many sub-directories do we have? */
@@ -523,8 +523,10 @@ PrintTextf (session *sess, char *format, ...)
    (int) numbers of bytes
    (char []) that number of byte to be memcpy'ed into the buffer
    }
-   1 =
+   1 = {
    (byte) number of varable to insert
+   (signed byte) width
+   }
    2 = end of buffer
 
    Each XP_TE_* signal is hard coded to call text_emit which calls
@@ -1287,6 +1289,7 @@ display_event (char *i, session *sess, int numargs, char **args)
 	size_t len;
 	int oi, ii;
 	char *ar, o[4096], d, a, done_all = FALSE;
+	int align;
 
 	oi = ii = len = d = a = 0;
 
@@ -1312,6 +1315,7 @@ display_event (char *i, session *sess, int numargs, char **args)
 			break;
 		case 1:
 			a = i[ii++];
+			align = (signed char)i[ii++];
 			if (a > numargs)
 			{
 				fprintf (stderr,
@@ -1326,8 +1330,27 @@ display_event (char *i, session *sess, int numargs, char **args)
 			} else
 			{
 				len = strlen (ar);
-				memcpy (&o[oi], ar, len);
-				oi += len;
+				/* if no alignment, or text is wider than field
+				 * then just display the field (fast path)
+				 */
+				if (align == 0 || len >= abs(align)) {
+					memcpy (&o[oi], ar, len);
+					oi += len;
+				} else {
+					/* negative alignments are leftaligned*/
+					if (align<0) {
+						memcpy(&o[oi],ar,len);
+						oi += len;
+						memset(&o[oi],' ',abs(align)-len);
+						oi += abs(align)-len;
+					/* positive alignments are right aligned*/
+					} else {
+						memset(&o[oi],' ',align-len);
+						oi += align-len;
+						memcpy(&o[oi],ar,len);
+						oi += len;
+					}
+				}
 			}
 			break;
 		case 2:
@@ -1366,6 +1389,8 @@ pevt_build_string (const char *input, char **output, int *max_arg)
 	char o[4096], d, *obuf, *i;
 	int oi, ii, max = -1, x;
 	size_t len;
+	int sign;
+	int align;
 
 	len = strlen (input);
 	i = malloc (len + 1);
@@ -1461,6 +1486,50 @@ pevt_build_string (const char *input, char **output, int *max_arg)
 
 			continue;
 		}
+		align = 0;
+		if (d == '(') 
+		{
+			if (ii == len)
+				goto align_error;
+			d = i[ii++];
+			if (d=='+') {
+				sign =1;
+				if (ii == len)
+					goto align_error;
+				d = i[ii++];
+			} else if (d=='-') {
+				sign = -1;
+				if (ii == len)
+					goto align_error;
+				d = i[ii++];
+			} else {
+				sign = 1;
+			}
+				
+			align=0;
+			while(d!=')') {
+				align=align*10+d-'0';
+				if (ii == len)
+					goto align_error;
+				d = i[ii++];
+			}
+
+			align*=sign;
+
+			/* Skip the closing ')' */
+			if (ii == len)
+				goto align_error;
+
+			d = i[ii++];
+
+
+			if (0) {
+align_error:
+				snprintf (o, sizeof(o), "Error, missing )\n");
+				fe_message(o, FALSE);
+				return 1;
+			}
+		}
 		if (d < '1' || d > '9')
 		{
 			snprintf (o, sizeof (o), "Error, invalid argument $%c\n", d);
@@ -1477,11 +1546,12 @@ pevt_build_string (const char *input, char **output, int *max_arg)
 			last->next = s;
 		last = s;
 		s->next = NULL;
-		s->data = malloc (2);
-		s->len = 2;
-		clen += 2;
+		s->len = 3;
+		s->data = malloc (s->len);
+		clen += s->len;
 		s->data[0] = 1;
 		s->data[1] = d - 1;
+		s->data[2] = (signed char)align;
 	}
 	if (oi > 0)
 	{
