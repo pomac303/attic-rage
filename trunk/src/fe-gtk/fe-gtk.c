@@ -92,23 +92,48 @@ fe_args (int argc, char *argv[])
 			printf (PACKAGE" "VERSION"-%s\n", rage_svn_version);
 			return 0;
 		}
+		if (!strcasecmp (argv[1], "-p"))
+		{
+#ifdef WIN32
+			/* see the chdir() below */
+			char *sl, *exe = strdup (argv[0]);
+			sl = strrchr (exe, '\\');
+			if (sl)
+			{
+				*sl = 0;
+				printf ("%s\\plugins\n", exe);
+			}
+#else
+			printf ("%s\n", RAGELIBDIR"/plugins");
+#endif
+			return 0;
+		}
+		if (!strcasecmp (argv[1], "-u"))
+		{
+			printf ("%s\n", get_xdir_fs ());
+			return 0;
+		}
 		if (!strcasecmp (argv[1], "-h") || !strcasecmp (argv[1], "--help"))
 		{
 			printf (PACKAGE" "VERSION"-%s\n"
 					"Usage: %s [OPTIONS]... [URL]\n\n", rage_svn_version,
 					argv[0]);
 			printf ("%s:\n"
-					"  -d,  --cfgdir %-11s %s\n"
 					"  -a,  --no-auto            %s\n"
+					"  -d,  --cfgdir %-11s %s\n"
 					"  -n,  --no-plugins         %s\n"
+					"  -p                        %s\n"
+					"  -u                        %s\n"
 					"  -v,  --version            %s\n\n"
 					"URL:\n"
 					"  irc://server:port/channel\n\n",
 						_("Options"),
+						_("don't auto connect"),
 						_("DIRECTORY"),
 						_("use a different config dir"),
-						_("don't auto connect"),
 						_("don't auto load any plugins"),
+						_("show plugin auto-load dir"),
+						_("show user config dir"),
 						_("show version information")
 					);
 			return 0;
@@ -700,3 +725,42 @@ fe_gui_info (rage_session *sess, int info_type)
 
 	return -1;
 }
+
+char *
+fe_get_inputbox_contents (rage_session *sess)
+{
+	/* not the current tab */
+	if (sess->res->input_text)
+		return sess->res->input_text;
+
+	/* current focused tab */
+	return GTK_ENTRY (sess->gui->input_box)->text;
+}
+
+void
+fe_set_inputbox_cursor (rage_session *sess, int delta, int pos)
+{
+	if (!sess->gui->is_tab || sess == current_tab)
+	{
+		if (delta)
+			pos += gtk_editable_get_position (GTK_EDITABLE (sess->gui->input_box));
+		gtk_editable_set_position (GTK_EDITABLE (sess->gui->input_box), pos);
+	} else
+	{
+		/* we don't support changing non-front tabs yet */
+	}
+}
+
+void
+fe_set_inputbox_contents (rage_session *sess, char *text)
+{
+	if (!sess->gui->is_tab || sess == current_tab)
+		gtk_entry_set_text (GTK_ENTRY (sess->gui->input_box), text);
+	else
+	{
+		if (sess->res->topic_text)
+			free (sess->res->topic_text);
+		sess->res->topic_text = strdup (text);
+	}
+}
+

@@ -337,6 +337,7 @@ set_server_defaults (server *serv)
 	}*/
 
 	serv->nickcount = 1;
+	serv->nickservtype = 0; /* XXX: This is also stupid.... keep for now */
 	serv->end_of_motd = FALSE;
 	serv->is_away = FALSE;
 	serv->bad_prefix = FALSE;

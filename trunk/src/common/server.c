@@ -764,7 +764,7 @@ waitline2 (GIOChannel *source, char *buf, int bufsize)
 
 #else
 
-#define waitline2(source,buf,size) waitline(serv->childread,buf,size)
+#define waitline2(source,buf,size) waitline(serv->childread,buf,size,0)
 
 #endif
 
@@ -819,88 +819,92 @@ server_read_child (GIOChannel *source, GIOCondition condition, server *serv)
 
 	switch (tbuf[0])
 	{
-	case '1':						  /* unknown host */
-		server_stopconnecting (serv);
-		closesocket (serv->sok4);
-#ifdef USE_IPV6
-		if (serv->sok6 != -1)
-			closesocket (serv->sok6);
-#endif
-		EMIT_SIGNAL (XP_TE_UKNHOST, sess, NULL, NULL, NULL, NULL, 0);
-		if (!servlist_cycle (serv))
-			if (prefs.autoreconnectonfail)
-				auto_reconnect (serv, FALSE, -1);
-		break;
-	case '2':						  /* connection failed */
-		waitline2 (source, tbuf, sizeof tbuf);
-		server_stopconnecting (serv);
-		closesocket (serv->sok4);
-#ifdef USE_IPV6
-		if (serv->sok6 != -1)
-			closesocket (serv->sok6);
-#endif
-		EMIT_SIGNAL (XP_TE_CONNFAIL, sess, errorstring (atoi (tbuf)), NULL,
-						 NULL, NULL, 0);
-		if (!servlist_cycle (serv))
-			if (prefs.autoreconnectonfail)
-				auto_reconnect (serv, FALSE, -1);
-		break;
-	case '3':						  /* gethostbyname finished */
-		waitline2 (source, host, sizeof host);
-		waitline2 (source, ip, sizeof ip);
-		waitline2 (source, outbuf, sizeof outbuf);
-		EMIT_SIGNAL (XP_TE_CONNECT, sess, host, ip, outbuf, NULL, 0);
-#ifdef WIN32
-		if (prefs.identd)
-		{
-			if (serv->network)
-				identd_start ((((ircnet *)serv->network)->user) ?
-									(((ircnet *)serv->network)->user) :
-									prefs.username);
-			else
-				identd_start (prefs.username);
-		}
-#else
-		snprintf (outbuf, sizeof (outbuf), "%s/auth/xchat_auth",
-					 g_get_home_dir ());
-		if (access (outbuf, X_OK) == 0)
-		{
-			snprintf (outbuf, sizeof (outbuf), "exec -d %s/auth/xchat_auth %s",
-						 g_get_home_dir (), prefs.username);
-			handle_command (serv->server_session, outbuf, FALSE);
-		}
-#endif
-		break;
-	case '4':						  /* success */
-		waitline2 (source, tbuf, sizeof (tbuf));
-		serv->sok = atoi (tbuf);
-#ifdef USE_IPV6
-		/* close the one we didn't end up using */
-		if (serv->sok == serv->sok4)
-			closesocket (serv->sok6);
-		else
+		/* XXX: What does this do? */
+		case '0':	/* print some text */
+			waitline2 (source, tbuf, sizeof tbuf);
+			PrintText (serv->server_session, tbuf);
+			break;
+		case '1':	/* unknown host */
+			server_stopconnecting (serv);
 			closesocket (serv->sok4);
+#ifdef USE_IPV6
+			if (serv->sok6 != -1)
+				closesocket (serv->sok6);
 #endif
-		server_connect_success (serv);
-		break;
-	case '5':						  /* prefs ip discovered */
-		waitline2 (source, tbuf, sizeof tbuf);
-		prefs.local_ip = inet_addr (tbuf);
-		break;
-	case '7':						  /* gethostbyname (prefs.hostname) failed */
-		sprintf (outbuf,
+			EMIT_SIGNAL (XP_TE_UKNHOST, sess, NULL, NULL, NULL, NULL, 0);
+			if (!servlist_cycle (serv))
+				if (prefs.autoreconnectonfail)
+					auto_reconnect (serv, FALSE, -1);
+			break;
+		case '2':	/* connection failed */
+			waitline2 (source, tbuf, sizeof tbuf);
+			server_stopconnecting (serv);
+			closesocket (serv->sok4);
+#ifdef USE_IPV6
+			if (serv->sok6 != -1)
+				closesocket (serv->sok6);
+#endif
+			EMIT_SIGNAL (XP_TE_CONNFAIL, sess, errorstring (atoi (tbuf)), NULL,
+							 NULL, NULL, 0);
+			if (!servlist_cycle (serv))
+				if (prefs.autoreconnectonfail)
+					auto_reconnect (serv, FALSE, -1);
+			break;
+		case '3':	/* gethostbyname finished */
+			waitline2 (source, host, sizeof host);
+			waitline2 (source, ip, sizeof ip);
+			waitline2 (source, outbuf, sizeof outbuf);
+			EMIT_SIGNAL (XP_TE_CONNECT, sess, host, ip, outbuf, NULL, 0);
+#ifdef WIN32
+			if (prefs.identd)
+			{
+				if (serv->network)
+					identd_start ((((ircnet *)serv->network)->user) ?
+							(((ircnet *)serv->network)->user) :
+							prefs.username);
+				else
+					identd_start (prefs.username);
+			}
+#else
+			snprintf (outbuf, sizeof (outbuf), "%s/auth/xchat_auth", g_get_home_dir ());
+			if (access (outbuf, X_OK) == 0)
+			{
+				snprintf (outbuf, sizeof (outbuf), "exec -d %s/auth/xchat_auth %s",
+						g_get_home_dir (), prefs.username);
+				handle_command (serv->server_session, outbuf, FALSE);
+			}
+#endif
+			break;
+		case '4':	/* success */
+			waitline2 (source, tbuf, sizeof (tbuf));
+			serv->sok = atoi (tbuf);
+#ifdef USE_IPV6
+			/* close the one we didn't end up using */
+			if (serv->sok == serv->sok4)
+				closesocket (serv->sok6);
+			else
+				closesocket (serv->sok4);
+#endif
+			server_connect_success (serv);
+			break;
+		case '5':	/* prefs ip discovered */
+			waitline2 (source, tbuf, sizeof tbuf);
+			prefs.local_ip = inet_addr (tbuf);
+			break;
+		case '7':	/* gethostbyname (prefs.hostname) failed */
+			sprintf (outbuf,
 					_("Cannot resolve hostname %s\nCheck your IP Settings!\n"),
 					prefs.hostname);
-		PrintText (sess, outbuf);
-		break;
-	case '8':
-		PrintText (sess, _("Proxy traversal failed.\n"));
-		server_disconnect (sess, FALSE, -1);
-		break;
-	case '9':
-		waitline2 (source, tbuf, sizeof tbuf);
-		EMIT_SIGNAL (XP_TE_SERVERLOOKUP, sess, tbuf, NULL, NULL, NULL, 0);
-		break;
+			PrintText (sess, outbuf);
+			break;
+		case '8':
+			PrintText (sess, _("Proxy traversal failed.\n"));
+			server_disconnect (sess, FALSE, -1);
+			break;
+		case '9':
+			waitline2 (source, tbuf, sizeof tbuf);
+			EMIT_SIGNAL (XP_TE_SERVERLOOKUP, sess, tbuf, NULL, NULL, NULL, 0);
+			break;
 	}
 
 	return TRUE;
@@ -1200,7 +1204,35 @@ base64_encode (char *to, char *from, unsigned int len)
 }
 
 static int
-traverse_http (int sok, char *serverAddr, int port)
+http_read_line (int print_fd, int sok, char *buf, int len)
+{
+#ifdef WIN32
+	/* make sure waitline() uses recv() or it'll fail on win32 */
+	len = waitline (sok, buf, len, FALSE);
+#else
+	len = waitline (sok, buf, len, TRUE);
+#endif
+	if (len >= 1)
+	{
+		/* print the message out (send it to the parent process) */
+		write (print_fd, "0\n", 2);
+
+		if (buf[len-1] == '\r')
+		{
+			buf[len-1] = '\n';
+			write (print_fd, buf, len);
+		} else
+		{
+			write (print_fd, buf, len);
+			write (print_fd, "\n", 1);
+		}
+	}
+	
+	return len;
+}
+
+static int
+traverse_http (int print_fd, int sok, char *serverAddr, int port)
 {
 	char buf[256];
 	char auth_data[128];
@@ -1219,27 +1251,24 @@ traverse_http (int sok, char *serverAddr, int port)
 	n += snprintf (buf+n, sizeof (buf)-n, "\r\n");
 	send (sok, buf, n, 0);
 
-	/* dont eat this, it's actually informative to display */
-#if 0
-	waitline (sok, buf, sizeof (buf)); /* FIXME: win32 cant read() sok */
+	n = http_read_line (print_fd, sok, buf, sizeof (buf));
 	/* "HTTP/1.0 200 OK" */
-	if (strlen (buf) < 12)
+	if (n < 12)
 		return 1;
 	if (memcmp (buf, "HTTP/", 5) || memcmp (buf + 9, "200", 3))
 		return 1;
-	for (;;)
+	while(TRUE)
 	{
 		/* read until blank line */
-		waitline (sok, buf, sizeof (buf));
-		if (!buf[0] || (buf[0] == '\r' && !buf[1]))
+		n = http_read_line (print_fd, sok, buf, sizeof (buf));
+		if (n < 1 || (n == 1 && buf[0] == '\n'))
 			break;
 	}
-#endif
 	return 0;
 }
 
 static int
-traverse_proxy (int sok, char *ip, int port)
+traverse_proxy (int print_fd, int sok, char *ip, int port)
 {
 	switch (prefs.proxy_type)
 	{
@@ -1250,7 +1279,7 @@ traverse_proxy (int sok, char *ip, int port)
 	case 3:
 		return traverse_socks5 (sok, ip, port);
 	case 4:
-		return traverse_http (sok, ip, port);
+		return traverse_http (print_fd, sok, ip, port);
 	}
 
 	return 1;
@@ -1346,15 +1375,15 @@ server_child (server * serv)
 		/* connect succeeded */
 		if (proxy_ip)
 		{
-			switch (traverse_proxy (sok, proxy_ip, port))
+			switch (traverse_proxy (serv->childwrite, sok, proxy_ip, port))
 			{
-			case 0:	/* success */
-				snprintf (buf, sizeof (buf), "4\n%d\n", sok);	/* success */
-				write (serv->childwrite, buf, strlen (buf));
-				break;
-			case 1:	/* socks traversal failed */
-				write (serv->childwrite, "8\n", 2);
-				break;
+				case 0:	/* success */
+					snprintf (buf, sizeof (buf), "4\n%d\n", sok);	/* success */
+					write (serv->childwrite, buf, strlen (buf));
+					break;
+				case 1:	/* socks traversal failed */
+					write (serv->childwrite, "8\n", 2);
+					break;
 			}
 		} else
 		{

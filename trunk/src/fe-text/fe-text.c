@@ -802,3 +802,14 @@ fe_gui_info (rage_session *sess, int info_type)
 void fe_confirm (const char *message, void (*yesproc)(void *), void (*noproc)(void *), void *ud)
 {
 }
+char *fe_get_inputbox_contents (struct session *sess)
+{
+	return NULL;
+}
+void fe_set_inputbox_contents (struct session *sess, char *text)
+{
+}
+void fe_set_inputbox_cursor (struct session *sess, int delta, int pos)
+{
+}
+

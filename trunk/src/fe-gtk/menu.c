@@ -44,9 +44,8 @@ struct mymenu
 	guint key;
 };
 
-
-void
-goto_url (char *url)
+static void
+goto_url_inner (char *url)
 {
 #ifdef USE_GNOME
 	gnome_url_show (url);
@@ -78,6 +77,27 @@ goto_url (char *url)
 	xchat_exec (tbuf);
 #endif
 #endif
+}
+
+void
+goto_url (char *url)
+{
+	char *loc;
+
+	if (prefs.utf8_locale)
+	{
+		goto_url_inner (url);
+		return;
+	}
+
+	/* the OS expects it in "locale" encoding. This makes it work on
+	 * unix systems that use ISO-8859-x and Win32. */
+	loc = g_locale_from_utf8 (url, -1, 0, 0, 0);
+	if (loc)
+	{
+		goto_url_inner (loc);
+		g_free (loc);
+	}
 }
 
 /* execute a userlistbutton/popupmenu command */
@@ -811,10 +831,15 @@ static void
 menu_newserver_tab (GtkWidget * wid, gpointer none)
 {
 	int old = prefs.tabchannels;
+	int oldf = prefs.newtabstofront;
 
 	prefs.tabchannels = 1;
+	/* force focus if setting is "only requested tabs" */
+	if (prefs.newtabstofront == 2)
+		prefs.newtabstofront = 1;
 	new_ircwindow (NULL, NULL, SESS_SERVER, 0);
 	prefs.tabchannels = old;
+	prefs.newtabstofront = oldf;
 }
 
 static void

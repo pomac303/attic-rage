@@ -40,6 +40,23 @@ irc_login (server *serv, char *user, char *realname)
 }
 
 static void
+irc_nickserv (server *serv, char *pass)
+{
+	/* FIXME: this is a merge, but the code is fscking stupid! */
+	switch (serv->nickservtype)
+	{
+		case 0:
+			tcp_sendf (serv, "PRIVMSG NickServ :identify %s\r\n", pass);
+			break;
+		case 1:
+			tcp_sendf (serv, "NICKSERV :identify %s\r\n", pass);
+			break;
+		case 2:
+			tcp_sendf (serv, "NS :identify %s\r\n", pass);
+	}
+}
+
+static void
 irc_join (server *serv, char *channel, char *key)
 {
 	if (key[0])
@@ -1003,6 +1020,7 @@ proto_fill_her_up (server *serv)
 	serv->p_quit = irc_quit;
 	serv->p_kick = irc_kick;
 	serv->p_part = irc_part;
+	serv->p_nickserv = irc_nickserv;
 	serv->p_join = irc_join;
 	serv->p_login = irc_login;
 	serv->p_join_info = irc_join_info;

@@ -5,7 +5,7 @@ CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 bin_PROGRAMS = rage
 
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \
-	-I $(top_srcdir)/src/common/
+	-I $(top_srcdir)/src/common/ -DRAGELIBDIR=\"$(libdir)\"
 
 rage_LDADD = ../common/libragecommon.a $(GUI_LIBS)
 

@@ -9,6 +9,7 @@ EXTRA_DIST = autogen.sh HACKING INSTALL.w32 faq.html rage.png \
 
 icon_DATA = rage.png
 icondir = $(datadir)/pixmaps
+ragelibdir = $(datadir)/plugins
 
 util_DATA = rage.desktop
 utildir = $(datadir)/applications

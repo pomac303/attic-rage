@@ -345,6 +345,7 @@ typedef struct server
 	void (*p_quit)(struct server *, char *reason);
 	void (*p_kick)(struct server *, char *channel, char *nick, char *reason);
 	void (*p_part)(struct server *, char *channel, char *reason);
+	void (*p_nickserv)(struct server *, char *pass);
 	void (*p_join)(struct server *, char *channel, char *key);
 	void (*p_login)(struct server *, char *user, char *realname);
 	void (*p_join_info)(struct server *, char *channel);
@@ -369,7 +370,7 @@ typedef struct server
 	int (*p_cmp)(const char *s1, const char *s2);
 
 	int port;
-	int sok;					/* is equal to sok4 or sok6 (the one we are using) */
+	int sok;				/* is equal to sok4 or sok6 (the one we are using) */
 	int sok4;				/* tcp4 socket */
 	int sok6;				/* tcp6 socket */
 	int id;					/* unique ID number (for plugin API) */
@@ -381,60 +382,61 @@ typedef struct server
 	int childwrite;
 	int childpid;
 	int iotag;
-	int recondelay_tag;				/* reconnect delay timeout */
-	char hostname[128];				/* real ip number */
+	int recondelay_tag;			/* reconnect delay timeout */
+	char hostname[128];			/* real ip number */
 	char servername[128];			/* what the server says is its name */
 	char password[86];
 	char nick[NICKLEN];
-	char linebuf[522];				/* RFC says 512 including \r\n */
+	char linebuf[522];			/* RFC says 512 including \r\n */
 	char *last_away_reason;
-	int pos;								/* current position in linebuf */
+	int pos;				/* current position in linebuf */
 	int nickcount;
+	int nickservtype;			/* 0=/MSG nickserv 1=/NICKSERV 2=/NS */
 
-	void *network;						/* points to entry in servlist.c or NULL! */
+	void *network;				/* points to entry in servlist.c or NULL! */
 
 	GSList *outbound_queue;
-	time_t next_send;						/* cptr->since in ircu */
-	time_t prev_now;					/* previous now-time */
-	int sendq_len;						/* queue size */
+	time_t next_send;			/* cptr->since in ircu */
+	time_t prev_now;			/* previous now-time */
+	int sendq_len;				/* queue size */
 
-	rage_session *front_session;	/* front-most window/tab */
-	rage_session *server_session;	/* server window/tab */
+	rage_session *front_session;		/* front-most window/tab */
+	rage_session *server_session;		/* server window/tab */
 
-	struct server_gui *gui;		  /* initialized by fe_new_server */
+	struct server_gui *gui;		  	/* initialized by fe_new_server */
 
-	unsigned int ctcp_counter;	  /*flood */
+	unsigned int ctcp_counter;	  	/*flood */
 	time_t ctcp_last_time;
 
-	unsigned int msg_counter;	  /*counts the msg tab opened in a certain time */
+	unsigned int msg_counter;	  	/*counts the msg tab opened in a certain time */
 	time_t msg_last_time;
 
-	/*time_t connect_time;*/				/* when did it connect? */
+	/*time_t connect_time;*/		/* when did it connect? */
 	time_t lag_sent;
-	time_t ping_recv;					/* when we last got a ping reply */
-	time_t away_time;					/* when we were marked away */
+	time_t ping_recv;			/* when we last got a ping reply */
+	time_t away_time;			/* when we were marked away */
 
-	char *encoding;					/* NULL for system */
+	char *encoding;				/* NULL for system */
 	dict_t isupport;
 
 	int motd_skipped:1;
 	unsigned int connected:1;
 	unsigned int connecting:1;
 	int no_login:1;
-	int skip_next_userhost:1;			/* used for "get my ip from server" */
+	int skip_next_userhost:1;		/* used for "get my ip from server" */
 	int inside_whois:1;
-	int doing_dns:1;				/* /dns has been done */
-	unsigned int end_of_motd:1;	/* end of motd reached (logged in) */
-	int sent_quit:1;				/* sent a QUIT already? */
+	int doing_dns:1;			/* /dns has been done */
+	unsigned int end_of_motd:1;		/* end of motd reached (logged in) */
+	int sent_quit:1;			/* sent a QUIT already? */
 	int use_listargs:1;			/* undernet and dalnet need /list >0,<10000 */
 	unsigned int is_away:1;
-	int reconnect_away:1;		/* whether to reconnect in is_away state */
-	int dont_use_proxy:1;		/* to proxy or not to proxy */
-	int bad_prefix:1;				/* gave us a bad PREFIX= 005 number */
+	int reconnect_away:1;			/* whether to reconnect in is_away state */
+	int dont_use_proxy:1;			/* to proxy or not to proxy */
+	int bad_prefix:1;			/* gave us a bad PREFIX= 005 number */
 	int use_who:1;				/* whether to use WHO command to get dcc_ip */
 #ifdef USE_OPENSSL
-	int use_ssl:1;					  /* is server SSL capable? */
-	int accept_invalid_cert:1;	  /* ignore result of server's cert. verify */
+	int use_ssl:1;				/* is server SSL capable? */
+	int accept_invalid_cert:1;		/* ignore result of server's cert. verify */
 #endif
 } server;
 

@@ -2518,6 +2518,25 @@ cmd_say (rage_session *sess, char *cmd, char *buf)
 }
 
 static int
+cmd_setcursor (rage_session *sess, char *cmd, char *buf)
+{
+	int delta = FALSE;
+
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	if (*buf)
+	{
+		if (buf[0] =='-' || buf[0]=='+')
+			delta = TRUE;
+		fe_set_inputbox_cursor (sess, delta, atoi (buf));
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static int
 cmd_settab (rage_session *sess, char *cmd, char *buf)
 {
 	split_cmd(&buf);
@@ -2533,6 +2552,21 @@ cmd_settab (rage_session *sess, char *cmd, char *buf)
 
 	return TRUE;
 }
+
+static int
+cmd_settext (rage_session *sess, char *cmd, char *buf)
+{
+	split_cmd(&buf);
+	skip_white(&buf);
+	if (*buf)
+	{
+		fe_set_inputbox_contents (sess, buf);
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
 
 static int
 cmd_server (rage_session *sess, char *cmd, char *buf)
@@ -3158,7 +3192,9 @@ static command commands[] = {
 	 N_("SERVER <host> [<port>] [<password>], connects to a server, the default port is 6667")},
 #endif
 	{"SET", cmd_set, 0, 0, N_("SET [-quiet] <variable> [<value>]")},
+	{"SETCURSOR", cmd_setcursor, 0, 0, N_("SETCURSOR [-|+]<position>")},
 	{"SETTAB", cmd_settab, 0, 0, 0},
+	{"SETTEXT", cmd_settext, 0, 0, 0},
 	{"TOPIC", cmd_topic, 1, 1,
 	 N_("TOPIC [<topic>], sets the topic if one is given, else shows the current topic")},
 	{"UNBAN", cmd_unban, 1, 1,
