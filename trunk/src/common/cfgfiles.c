@@ -542,6 +542,7 @@ const struct prefs vars[] = {
 
 	{"irc_auto_rejoin", P_OFFINT (autorejoin), TYPE_BOOL},
 	{"irc_mask_type", P_OFFINT (masktype), TYPE_INT},
+	{"irc_bom_prefix", P_OFFINT (bomprefix), TYPE_BOOL},
 	{"irc_conf_mode", P_OFFINT (confmode), TYPE_BOOL},
 	{"irc_extra_hilight", P_OFFSET (bluestring), TYPE_STR},
 	{"irc_hide_version", P_OFFINT (hidever), TYPE_BOOL},
@@ -723,6 +724,7 @@ load_config (void)
 	prefs.dcc_send_fillspaces = 1;
 	prefs.mainwindow_save = 1;
 	prefs.masktype = 2;
+	prefs.bomprefix = 0; /* OFF untill we fix the parser */
 	prefs.flash_hilight = 1;
 #ifdef WIN32
 	prefs.identd = 1;

@@ -379,7 +379,7 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	msg->type = type;
 	/* If line is non null and the default locale is not utf8, 
 	 * then the data got converted */
-	msg->utf8 = line ? 0 : 1;
+	msg->utf8 = prefs.bomprefix ? 0 : (line ? 0 : 1);
 
 	/* Calc on each line to know when to stop throttling... */
 	throttle = queue_throttle(serv);
@@ -552,8 +552,8 @@ server_inline (server *serv, char *line, size_t len)
 	/* Checks whether we're set to use UTF-8 charset */
 	if ((serv->encoding == NULL && prefs.utf8_locale) ||
 	    (serv->encoding != NULL &&
-		 (strcasecmp (serv->encoding, "utf8") == 0 ||
-		  strcasecmp (serv->encoding, "utf-8") == 0)))
+		 (strcasecmp (serv->encoding, "UTF8") == 0 ||
+		  strcasecmp (serv->encoding, "UTF-8") == 0)))
 	{
 		/* The user has the UTF-8 charset set, either via /charset
 		command or from his UTF-8 locale. Thus, we first try the
@@ -562,7 +562,8 @@ server_inline (server *serv, char *line, size_t len)
 
 		utf_line_allocated = text_validate (&line, &len);
 
-	} else
+	} 
+	else
 	{
 		/* Since the user has an explicit charset set, either
 		via /charset command or from his non-UTF8 locale,

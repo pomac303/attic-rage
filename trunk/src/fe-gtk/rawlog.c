@@ -113,15 +113,24 @@ fe_add_rawlog (server *serv, char *text, int len, int outbound)
 	if (!serv->gui->rawlog_window)
 		return;
 
-	new_text = malloc (len + 7);
+	new_text = g_malloc (len + 7);
 
-	len = sprintf (new_text, "\0033>>\017 %s", text);
 	if (outbound)
 	{
-		new_text[1] = '4';
-		new_text[2] = '<';
-		new_text[3] = '<';
+		char *line = NULL;
+		
+		if (strcasecmp(serv->encoding, "UTF-8") != 0 &&
+				strcasecmp(serv->encoding, "UTF8") != 0)
+			line = g_convert(buf, len, "UTF-8", serv->encoding,
+					NULL, &written, NULL);
+		
+		len = sprintf (new_text, "\0034<<\017 %s", line ? line : text);
+		g_free(line);
 	}
+	else
+		len = sprintf (new_text, "\0033>>\017 %s", text);
+	
 	gtk_xtext_append (GTK_XTEXT (serv->gui->rawlog_textlist)->buffer, new_text, len);
-	free (new_text);
+	g_free (new_text);
 }
+

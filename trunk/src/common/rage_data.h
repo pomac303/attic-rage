@@ -138,6 +138,7 @@ struct rageprefs
 	int tint_green;
 	int tint_blue;
 
+	int bomprefix;	/* BOM prefix utf8 lines? */
 	int away_timeout;
 	int away_size_max;
 	int paned_pos;
