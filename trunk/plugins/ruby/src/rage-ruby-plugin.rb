@@ -1,24 +1,24 @@
 # --------------------------------------------------------------------------
-# xchat-ruby-plugin.rb -- core XChat/Ruby interface definition
+# xchat-ruby-plugin.rb -- core Rage/Ruby interface definition
 # Copyright (C) 2003 Jamis Buck (jgb3@email.byu.edu)
 # --------------------------------------------------------------------------
-# This file is part of the XChat-Ruby plugin.
+# This file is part of the Rage-Ruby plugin.
 # 
-# The  XChat-Ruby  plugin  is  free software; you can redistribute it and/or
+# The  Rage-Ruby  plugin  is  free software; you can redistribute it and/or
 # modify  it  under the terms of the GNU General Public License as published
 # by  the  Free  Software  Foundation;  either  version 2 of the License, or
 # (at your option) any later version.
 # 
-# The  XChat-Ruby  plugin is distributed in the hope that it will be useful,
+# The  Rage-Ruby  plugin is distributed in the hope that it will be useful,
 # but   WITHOUT   ANY   WARRANTY;  without  even  the  implied  warranty  of
 # MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.   See  the  GNU
 # General Public License for more details.
 # 
 # You  should  have  received  a  copy  of  the  GNU  General Public License
-# along  with  the  XChat-Ruby  plugin;  if  not, write to the Free Software
+# along  with  the  Rage-Ruby  plugin;  if  not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 # --------------------------------------------------------------------------
-# These classes define the "core" XChat/Ruby interface for the plugin.  This
+# These classes define the "core" Rage/Ruby interface for the plugin.  This
 # entire  file  gets  converted  to  a  #define  in  a  header file (see the
 # 'embedify.rb'  script  in  the  scripts directory), and then gets embedded
 # in the plugin itself.
@@ -27,7 +27,7 @@
 # Date: June 2003
 # --------------------------------------------------------------------------
 
-$xchat_global_eval_binding = binding
+$rage_global_eval_binding = binding
 
 # Add some convenience methods to the Module class
 
@@ -62,7 +62,7 @@ class Module
     constants.each do |v|
       c = const_get(v.intern)
       # I'm not sure why the check on c.name is necessary, but for some reason, all classes
-      # are coming up, in all XChatRuby modules... :(  This just makes sure that no classes
+      # are coming up, in all RageRuby modules... :(  This just makes sure that no classes
       # are listed unless they are defined underneath THIS module.
       list.push c if c.class == Class && c.name =~ /#{self.name}/
     end
@@ -74,26 +74,26 @@ class Module
   # have no name and hence cannot be referenced other than by their handle.
 
   def Module.new_random_module
-    name = "XCHATRUBY_%08X" % [ rand( 0xFFFFFFFF ) ]
-    eval "module #{name} end; #{name}", $xchat_global_eval_binding
+    name = "RAGERUBY_%08X" % [ rand( 0xFFFFFFFF ) ]
+    eval "module #{name} end; #{name}", $rage_global_eval_binding
   end
 end
 
 
-# This is the module that contains all of the Ruby/XChat interface routines.  Plugins
+# This is the module that contains all of the Ruby/Rage interface routines.  Plugins
 # may include this module for easier access to the classes defined within it.
 
-module XChatRuby
+module RageRuby
 
   # A wrapper for a callback method.
   #   name:      the name of the callback
   #   pri:       the priority of the callback
   #   hook:      the callback itself
-  #   hook_id:   the XChatHook object for this hook
+  #   hook_id:   the RageHook object for this hook
   #   requester: the object that requested the hook be set.
   #   data:      custom data to be passed to the hook, when it is called.
 
-  class XChatRubyCallback
+  class RageRubyCallback
     attr_reader :name
     attr_reader :pri
     attr_reader :hook
@@ -116,7 +116,7 @@ module XChatRuby
   #   filename: the name of the file that was loaded
   #   handle:   the Module object that encapsulates the loaded file
 
-  class XChatRubyModule
+  class RageRubyModule
     attr_reader :filename
     attr_reader :handle
 
@@ -125,11 +125,11 @@ module XChatRuby
     end
   end
 
-  # This is a singleton that defines the core XChat/Ruby interface.  It keeps track
+  # This is a singleton that defines the core Rage/Ruby interface.  It keeps track
   # of all of the registered hooks of all of the loaded Ruby modules.  Loading and
   # unloading of Ruby modules is done via this interface.
 
-  class XChatRubyEnvironment
+  class RageRubyEnvironment
     @@command_hooks = []
     @@print_hooks = []
     @@server_hooks = []
@@ -141,12 +141,12 @@ module XChatRuby
 
     # if a plugin does not define a global 'load_plugin' method, this is the default.
     # It simply instantiates all classes in the module that inherit from
-    # XChatRubyPlugin.  This module function gets called when the module is loaded.
+    # RageRubyPlugin.  This module function gets called when the module is loaded.
 
     DEFAULT_LOAD_PLUGIN = <<-EOSTR
       def load_plugin
         classes.each do |c|
-          next if not c.ancestors.include? XChatRuby::XChatRubyPlugin
+          next if not c.ancestors.include? RageRuby::RageRubyPlugin
           c.new
         end
       end
@@ -159,33 +159,33 @@ module XChatRuby
     DEFAULT_UNLOAD_PLUGIN = <<-EOSTR
       def unload_plugin
         classes.each do |c|
-          next if not c.ancestors.include? XChatRuby::XChatRubyPlugin
+          next if not c.ancestors.include? RageRuby::RageRubyPlugin
           ObjectSpace.each_object( c ) { |obj| obj.unload_plugin }
         end
       end
     EOSTR
 
-    # This is called by the XChat-Ruby plugin itself when it is loaded, to initialize
+    # This is called by the Rage-Ruby plugin itself when it is loaded, to initialize
     # the environment.  It is guarded by a sentry, so it cannot be called more than once.
     # It initializes the ruby environment and creates the default "RB" plugin, with which
     # users can interact with the Ruby plugin.  Lastly, it attempts to load all .rb
-    # files in the user's xchat2 directory.
+    # files in the user's rage directory.
 
-    def XChatRubyEnvironment.register
+    def RageRubyEnvironment.register
       return if @@registered
       @@registered = true
 
       initialize_ruby_environment
 
-      @@rb_plugin = XChatRubyRBPlugin.new
+      @@rb_plugin = RageRubyRBPlugin.new
 
       load_ruby_plugins
     end
 
-    # This is called when the XChat-Ruby plugin gets unloaded.  It basically stops all
+    # This is called when the Rage-Ruby plugin gets unloaded.  It basically stops all
     # running ruby plugins and removes all hooks registered by a ruby plugin.
 
-    def XChatRubyEnvironment.unregister
+    def RageRubyEnvironment.unregister
       # unregister the RB plugin
       remove_hooks_for( @@rb_plugin )
 
@@ -193,10 +193,10 @@ module XChatRuby
       @@loaded_modules.each { |mod| mod.handle.unload_plugin }
 
       # now, make sure that any remaining hooks got unregistered
-      @@command_hooks.each { |hook| internal_xchat_unhook( hook.hook_id ) }
-      @@print_hooks.each { |hook| internal_xchat_unhook( hook.hook_id ) }
-      @@server_hooks.each { |hook| internal_xchat_unhook( hook.hook_id ) }
-      @@timer_hooks.each { |hook| internal_xchat_unhook( hook.hook_id ) }
+      @@command_hooks.each { |hook| internal_rage_unhook( hook.hook_id ) }
+      @@print_hooks.each { |hook| internal_rage_unhook( hook.hook_id ) }
+      @@server_hooks.each { |hook| internal_rage_unhook( hook.hook_id ) }
+      @@timer_hooks.each { |hook| internal_rage_unhook( hook.hook_id ) }
 
       @@command_hooks = []
       @@print_hooks = []
@@ -206,31 +206,31 @@ module XChatRuby
 
     # The following routines simply manage the registration of callback hooks.
 
-    def XChatRubyEnvironment.hook_command( name, priority, hook, help, requester, data = nil )
+    def RageRubyEnvironment.hook_command( name, priority, hook, help, requester, data = nil )
       add_new_hook( @@command_hooks, name, priority, hook, requester,
-                    internal_xchat_hook_command( name, priority, help ), data )
+                    internal_rage_hook_command( name, priority, help ), data )
     end
 
-    def XChatRubyEnvironment.hook_print( name, priority, hook, requester, data = nil )
+    def RageRubyEnvironment.hook_print( name, priority, hook, requester, data = nil )
       add_new_hook( @@print_hooks, name, priority,
-                    hook, requester, internal_xchat_hook_print( name, priority ), data )
+                    hook, requester, internal_rage_hook_print( name, priority ), data )
     end
 
-    def XChatRubyEnvironment.hook_server( name, priority, hook, requester, data = nil )
+    def RageRubyEnvironment.hook_server( name, priority, hook, requester, data = nil )
       add_new_hook( @@server_hooks, name, priority,
-                    hook, requester, internal_xchat_hook_server( name, priority ), data )
+                    hook, requester, internal_rage_hook_server( name, priority ), data )
     end
 
-    def XChatRubyEnvironment.hook_timer( timeout, hook, requester, data = nil )
+    def RageRubyEnvironment.hook_timer( timeout, hook, requester, data = nil )
       now = Time.now
       name = "#{now.to_i}+#{now.usec}"
-      add_new_hook( @@timer_hooks, name, 0, hook, requester, internal_xchat_hook_timer( name, timeout ), data )
+      add_new_hook( @@timer_hooks, name, 0, hook, requester, internal_rage_hook_timer( name, timeout ), data )
     end
 
     # This removes all registered hooks for the given requester.  It is typically called only by the
-    # unload_plugin method of XChatRubyPlugin.
+    # unload_plugin method of RageRubyPlugin.
 
-    def XChatRubyEnvironment.remove_hooks_for( requester )
+    def RageRubyEnvironment.remove_hooks_for( requester )
       @@command_hooks.find_all { |h| h.requester == requester } .each { |h| delete_hook( @@command_hooks, h ) }
       @@print_hooks.find_all { |h| h.requester == requester } .each { |h| delete_hook( @@print_hooks, h ) }
       @@server_hooks.find_all { |h| h.requester == requester } .each { |h| delete_hook( @@server_hooks, h ) }
@@ -239,7 +239,7 @@ module XChatRuby
 
     # This unregisters the given hook.
 
-    def XChatRubyEnvironment.unhook( hook_id )
+    def RageRubyEnvironment.unhook( hook_id )
       @@command_hooks.each do |h|
         if h.hook_id == hook_id
           delete_hook( @@command_hooks, h )
@@ -278,7 +278,7 @@ module XChatRuby
     # print( text, server, channel )
     #   Prints the given text to the tab/window for the given server and channel
 
-    def XChatRubyEnvironment.print( *args )
+    def RageRubyEnvironment.print( *args )
       return if args.length < 1
 
       ctx = nil
@@ -289,12 +289,12 @@ module XChatRuby
       end
 
       set_context( ctx ) if ctx != nil
-      internal_xchat_print( args[0].to_s )
+      internal_rage_print( args[0].to_s )
     end
 
     # Same as print (above), but appends a newline.
 
-    def XChatRubyEnvironment.puts( *args )
+    def RageRubyEnvironment.puts( *args )
       args.push "" if args.length == 0
       args[0] = args[0] + "\n"
       print( *args );
@@ -303,7 +303,7 @@ module XChatRuby
     # Loads the given file as a plugin.  If the filename is already loaded, it is unloaded
     # before proceeding, making this a safe way to reload a plugin.
 
-    def XChatRubyEnvironment.load_plugin( filename )
+    def RageRubyEnvironment.load_plugin( filename )
       unload_plugin( filename )
 
       mod = Module.new_random_module
@@ -319,7 +319,7 @@ module XChatRuby
         mod.module_eval DEFAULT_UNLOAD_PLUGIN
       end
 
-      @@loaded_modules.push XChatRubyModule.new( filename, mod )
+      @@loaded_modules.push RageRubyModule.new( filename, mod )
 
       mod.module_eval "module_function :load_plugin"
       mod.module_eval "module_function :unload_plugin"
@@ -329,7 +329,7 @@ module XChatRuby
     # Unloads the given plugin, if it is loaded.  Returns false if the plugin was
     # not loaded, and true if it was.
 
-    def XChatRubyEnvironment.unload_plugin( filename )
+    def RageRubyEnvironment.unload_plugin( filename )
       mod = @@loaded_modules.find { |m| m.filename == filename }
       return false if !mod
       mod.handle.unload_plugin
@@ -339,7 +339,7 @@ module XChatRuby
 
     # Prints the list of available ruby-based commands to the current tab/window.
 
-    def XChatRubyEnvironment.list_commands
+    def RageRubyEnvironment.list_commands
       puts "Loaded ruby commands:"
       i = 1
       @@command_hooks.each do |hook|
@@ -350,7 +350,7 @@ module XChatRuby
 
     # Prints the list of loaded ruby modules to the current tab/window.
 
-    def XChatRubyEnvironment.list_modules
+    def RageRubyEnvironment.list_modules
       if @@loaded_modules.length < 1
         puts "There are no loaded ruby modules."
       else
@@ -365,43 +365,43 @@ module XChatRuby
 
     # -- PRIVATE --------------------------------------------------------------
 
-    def XChatRubyEnvironment.add_new_hook( hooks, name, pri, hook, requester, id, data )
-      hooks.push XChatRubyCallback.new( name, pri, hook, id, requester, data )
+    def RageRubyEnvironment.add_new_hook( hooks, name, pri, hook, requester, id, data )
+      hooks.push RageRubyCallback.new( name, pri, hook, id, requester, data )
       hooks.sort! { |a,b| -( a.pri <=> b.pri ) }
       return id
     end
 
-    def XChatRubyEnvironment.delete_hook( hooks, hook )
-      internal_xchat_unhook( hook.hook_id )
+    def RageRubyEnvironment.delete_hook( hooks, hook )
+      internal_rage_unhook( hook.hook_id )
       hooks.delete hook
     end
 
-    def XChatRubyEnvironment.process_command_hook( name, words, words_eol )
+    def RageRubyEnvironment.process_command_hook( name, words, words_eol )
       return process_hook( @@command_hooks, name ) { |h| h.hook.call( words, words_eol, h.data ) }
     end
 
-    def XChatRubyEnvironment.process_print_hook( name, words )
+    def RageRubyEnvironment.process_print_hook( name, words )
       return process_hook( @@print_hooks, name ) { |h| h.hook.call( words, h.data ) }
     end
 
-    def XChatRubyEnvironment.process_server_hook( name, words, words_eol )
+    def RageRubyEnvironment.process_server_hook( name, words, words_eol )
       return process_hook( @@server_hooks, name ) { |h| h.hook.call( words, words_eol, h.data ) }
     end
 
-    def XChatRubyEnvironment.process_timer_hook( name )
+    def RageRubyEnvironment.process_timer_hook( name )
       return process_hook( @@timer_hooks, name ) { |h| h.hook.call( h.data ) }
     end
 
-    def XChatRubyEnvironment.process_hook( hooks, name )
-      how_to_return = XChatRubyPlugin::XCHAT_EAT_NONE
+    def RageRubyEnvironment.process_hook( hooks, name )
+      how_to_return = RageRubyPlugin::RAGE_EAT_NONE
 
       hooks.each do |hook|
         if hook.name.downcase == name.downcase
           begin
             case ( rc = yield hook )
-              when XChatRubyPlugin::XCHAT_EAT_ALL, XChatRubyPlugin::XCHAT_EAT_PLUGIN then
+              when RageRubyPlugin::RAGE_EAT_ALL, RageRubyPlugin::RAGE_EAT_PLUGIN then
                 return rc
-              when XChatRubyPlugin::XCHAT_EAT_XCHAT then
+              when RageRubyPlugin::RAGE_EAT_RAGE then
                 how_to_return = rc
             end
           rescue Exception => detail
@@ -414,8 +414,8 @@ module XChatRuby
       return how_to_return
     end
 
-    def XChatRubyEnvironment.initialize_ruby_environment
-      envfile = get_info( "xchatdir" ) + "/rubyenv"
+    def RageRubyEnvironment.initialize_ruby_environment
+      envfile = get_info( "ragedir" ) + "/rubyenv"
       begin
         File.open( envfile, "r" ) do |file|
           file.each do |line|
@@ -430,8 +430,8 @@ module XChatRuby
       end
     end
 
-    def XChatRubyEnvironment.load_ruby_plugins
-      envdir = get_info( "xchatdir" )
+    def RageRubyEnvironment.load_ruby_plugins
+      envdir = get_info( "ragedir" )
       Dir.foreach( envdir ) do |f|
         next if f !~ /\.rb$/
         begin
@@ -448,81 +448,81 @@ module XChatRuby
   end
 
 
-  # Encapsulates the functionality of the xchat_list API.  (See the XChat2 Plugin documentation
+  # Encapsulates the functionality of the rage_list API.  (See the Rage Plugin documentation
   # for more details.)
 
-  class XChatRubyList
+  class RageRubyList
     def initialize( name )
-      @listh = internal_xchat_list_get( name );
+      @listh = internal_rage_list_get( name );
     end
 
     def next
-      internal_xchat_list_next( @listh )
+      internal_rage_list_next( @listh )
     end
 
     def str( name )
-      internal_xchat_list_str( @listh, name )
+      internal_rage_list_str( @listh, name )
     end
 
     def int( name )
-      internal_xchat_list_int( @listh, name )
+      internal_rage_list_int( @listh, name )
     end
   end
 
 
-  # The base class for all XChat-Ruby plugins.  All plugins should inherit from this
+  # The base class for all Rage-Ruby plugins.  All plugins should inherit from this
   # class.  The 'initialize' for each plugin should be where all necessary hooks are
   # registered.  If any special functionality is needed when the plugin is unloaded,
   # the 'unload_plugin' method should be extended (but the child class should be sure
   # to call 'super', so that the default functionality is still executed.)
 
-  class XChatRubyPlugin
-    XCHAT_PRI_HIGHEST  = 127
-    XCHAT_PRI_HIGH     = 64
-    XCHAT_PRI_NORM     = 0
-    XCHAT_PRI_LOW      = -64
-    XCHAT_PRI_LOWEST   = -128
+  class RageRubyPlugin
+    RAGE_PRI_HIGHEST  = 127
+    RAGE_PRI_HIGH     = 64
+    RAGE_PRI_NORM     = 0
+    RAGE_PRI_LOW      = -64
+    RAGE_PRI_LOWEST   = -128
 
-    XCHAT_FD_READ      = 1
-    XCHAT_FD_WRITE     = 2
-    XCHAT_FD_EXCEPTION = 4
-    XCHAT_FD_NOTSOCKET = 8
+    RAGE_FD_READ      = 1
+    RAGE_FD_WRITE     = 2
+    RAGE_FD_EXCEPTION = 4
+    RAGE_FD_NOTSOCKET = 8
 
-    XCHAT_EAT_NONE     = 0
-    XCHAT_EAT_XCHAT    = 1
-    XCHAT_EAT_PLUGIN   = 2
-    XCHAT_EAT_ALL      = ( XCHAT_EAT_NONE | XCHAT_EAT_XCHAT | XCHAT_EAT_PLUGIN )
+    RAGE_EAT_NONE     = 0
+    RAGE_EAT_RAGE    = 1
+    RAGE_EAT_PLUGIN   = 2
+    RAGE_EAT_ALL      = ( RAGE_EAT_NONE | RAGE_EAT_RAGE | RAGE_EAT_PLUGIN )
 
     def unload_plugin
-      XChatRubyEnvironment.remove_hooks_for( self )
+      RageRubyEnvironment.remove_hooks_for( self )
     end
 
     def hook_command( name, priority, hook, help, data = nil )
-      XChatRubyEnvironment.hook_command( name, priority, hook, help, self, data )
+      RageRubyEnvironment.hook_command( name, priority, hook, help, self, data )
     end
 
     def hook_print( name, priority, hook, data = nil )
-      XChatRubyEnvironment.hook_print( name, priority, hook, self, data )
+      RageRubyEnvironment.hook_print( name, priority, hook, self, data )
     end
 
     def hook_server( name, priority, hook, data = nil )
-      XChatRubyEnvironment.hook_server( name, priority, hook, self, data )
+      RageRubyEnvironment.hook_server( name, priority, hook, self, data )
     end
 
     def hook_timer( timeout, hook, data = nil )
-      XChatRubyEnvironment.hook_timer( timeout, hook, self, data )
+      RageRubyEnvironment.hook_timer( timeout, hook, self, data )
     end
 
     def unhook( hook_id )
-      XChatRubyEnvironment.unhook( hook_id )
+      RageRubyEnvironment.unhook( hook_id )
     end
 
     def print( *args )
-      XChatRubyEnvironment.print( *args )
+      RageRubyEnvironment.print( *args )
     end
 
     def puts( *args )
-      XChatRubyEnvironment.puts( *args )
+      RageRubyEnvironment.puts( *args )
     end
 
     # Same as print (above), but formats the text with 'format' (below).
@@ -541,23 +541,23 @@ module XChatRuby
     end
 
     def command( command )
-      XChatRubyEnvironment.command( command )
+      RageRubyEnvironment.command( command )
     end
 
     def get_info( id )
-      XChatRubyEnvironment.get_info( id )
+      RageRubyEnvironment.get_info( id )
     end
 
     def get_prefs( name )
-      XChatRubyEnvironment.get_pres( name )
+      RageRubyEnvironment.get_pres( name )
     end
 
     def nickcmp( s1, s2 )
-      XChatRubyEnvironment.nickcmp( s1, s2 )
+      RageRubyEnvironment.nickcmp( s1, s2 )
     end
 
     def emit_print( event_name, *args )
-      XChatRubyEnvironment.emit_print( event_name, *args )
+      RageRubyEnvironment.emit_print( event_name, *args )
     end
 
     # these are the supported colors
@@ -686,9 +686,9 @@ module XChatRuby
   # This is the default "RB" plugin, which supports the "RB", "LOAD", and "UNLOAD" commands.
   # This is the means by which users will interact with the ruby plugin.
 
-  class XChatRubyRBPlugin < XChatRubyPlugin
+  class RageRubyRBPlugin < RageRubyPlugin
     def initialize
-      hook_command( "RB", XCHAT_PRI_NORM, method( :rb_command_hook ),
+      hook_command( "RB", RAGE_PRI_NORM, method( :rb_command_hook ),
                     "Usage: /RB LOAD    <filename> : load the given Ruby script as a plugin\n" +
                     "           UNLOAD  <filename> : unload the given Ruby script\n" +
                     "           COMMANDS           : show all registered Ruby-plugin commands\n" +
@@ -696,10 +696,10 @@ module XChatRuby
                     "           EXEC    <command>  : execute the given Ruby code\n" +
                     "           ABOUT              : describe this plugin" )
 
-      hook_command( "LOAD", XCHAT_PRI_NORM, method( :rb_load ),
+      hook_command( "LOAD", RAGE_PRI_NORM, method( :rb_load ),
                     "Usage: LOAD <file>, loads a plugin or script" )
 
-      hook_command( "UNLOAD", XCHAT_PRI_NORM, method( :rb_unload ),
+      hook_command( "UNLOAD", RAGE_PRI_NORM, method( :rb_unload ),
                     "Usage: UNLOAD <file>, unloads a plugin or script" )
     end
 
@@ -730,29 +730,29 @@ module XChatRuby
           puts "Unknown RB command: #{words[1]}"
       end
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_load( words, words_eol, data )
       f = words_eol[1]
-      return XCHAT_EAT_NONE if !f or f !~ /\.rb$/
+      return RAGE_EAT_NONE if !f or f !~ /\.rb$/
 
-      XChatRubyEnvironment.load_plugin f
+      RageRubyEnvironment.load_plugin f
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_unload( words, words_eol, data )
       f = words_eol[1]
-      return XCHAT_EAT_NONE if !f or f !~ /\.rb$/
+      return RAGE_EAT_NONE if !f or f !~ /\.rb$/
 
-      if !XChatRubyEnvironment.unload_plugin( f )
+      if !RageRubyEnvironment.unload_plugin( f )
         puts "The given plugin (#{f}) does not appear to be loaded."
       else
         puts "#{f} has been unloaded."
       end
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_command_load( words, words_eol, data )
@@ -760,10 +760,10 @@ module XChatRuby
       if !file
         puts "You must specify a file to load."
       else
-        XChatRubyEnvironment.load_plugin file
+        RageRubyEnvironment.load_plugin file
       end
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_command_unload( words, words_eol, data )
@@ -771,36 +771,36 @@ module XChatRuby
       if !file
         puts "You must specify a file to unload (it should be the same filename and path given in /rb list)."
       else
-        if !XChatRubyEnvironment.unload_plugin( file )
+        if !RageRubyEnvironment.unload_plugin( file )
           puts "The given plugin (#{file}) does not appear to be loaded."
         else
           puts "#{file} has been unloaded."
         end
       end
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_plugins_list( words, words_eol, data )
-      XChatRubyEnvironment.list_modules
+      RageRubyEnvironment.list_modules
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_command_list( words, words_eol, data )
-      XChatRubyEnvironment.list_commands
+      RageRubyEnvironment.list_commands
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_command_exec( words, words_eol, data )
       if !words_eol[2]
         puts "You must specify some ruby code to execute."
       else
-        eval words_eol[2], $xchat_global_binding, "(/rb exec)"
+        eval words_eol[2], $rage_global_binding, "(/rb exec)"
       end
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
 
     def rb_command_about( words, words_eol, data )
@@ -812,7 +812,7 @@ module XChatRuby
       puts format( "------------------------------------------------![bc(red)]*![cb]-" )
       puts
 
-      return XCHAT_EAT_ALL
+      return RAGE_EAT_ALL
     end
     
   end

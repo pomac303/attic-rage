@@ -15,7 +15,7 @@
  * General Public License for more details.
  * 
  * You  should  have  received  a  copy  of  the  GNU  General Public License
- * along  with  the  XChat-Ruby  plugin;  if  not, write to the Free Software
+ * along  with  the  Rage-Ruby  plugin;  if  not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * --------------------------------------------------------------------------
  * This is the glue code between the Ruby interpreter and the Rage plugin
@@ -62,7 +62,7 @@ static ID            static_rage_process_timer_hook;
 static void static_init_ruby_environment( void );
 
 /**
- * Initializes the XChat environment.
+ * Initializes the Rage environment.
  */
 static void static_init_rage_environment( rage_plugin *plugin_handle,
                                            char **plugin_name,
@@ -103,7 +103,7 @@ static VALUE static_ruby_rage_hook_timer( VALUE klass,
                                            VALUE timeout );
 
 /**
- * Ruby callback function for printing text to an XChat window.
+ * Ruby callback function for printing text to an Rage window.
  */
 static VALUE static_ruby_rage_print( VALUE klass,
                                       VALUE text );
@@ -128,7 +128,7 @@ static VALUE static_ruby_rage_find_context( VALUE klass,
                                              VALUE channel );
 
 /**
- * Ruby callback function for getting the current XChat context.
+ * Ruby callback function for getting the current Rage context.
  */
 static VALUE static_ruby_rage_get_context( VALUE klass );
 
@@ -145,7 +145,7 @@ static VALUE static_ruby_rage_get_prefs( VALUE klass,
                                           VALUE name );
 
 /**
- * Ruby callback function for setting the current XChat context.
+ * Ruby callback function for setting the current Rage context.
  */
 static VALUE static_ruby_rage_set_context( VALUE klass,
                                             VALUE ctx );
@@ -194,7 +194,7 @@ static VALUE static_ruby_rage_emit_print( int    argc,
                                            VALUE  klass );
 
 /**
- * XChat callbook hook for handling a custom command written
+ * Rage callbook hook for handling a custom command written
  * in Ruby.
  */
 static int static_ruby_custom_command_hook( int parv,
@@ -202,7 +202,7 @@ static int static_ruby_custom_command_hook( int parv,
                                             void *userdata );
 
 /**
- * XChat callbook hook for handling a custom print event
+ * Rage callbook hook for handling a custom print event
  * handler written in Ruby.
  */
 static int static_ruby_custom_print_hook( int parc,
@@ -210,7 +210,7 @@ static int static_ruby_custom_print_hook( int parc,
                                           void *userdata );
 
 /**
- * XChat callbook hook for handling a custom server event
+ * Rage callbook hook for handling a custom server event
  * handler written in Ruby.
  */
 static int static_ruby_custom_server_hook( int parc,
@@ -218,14 +218,14 @@ static int static_ruby_custom_server_hook( int parc,
                                            void *userdata );
 
 /**
- * XChat callbook hook for handling a custom timer event
+ * Rage callbook hook for handling a custom timer event
  * handler written in Ruby.
  */
 static int static_ruby_custom_timer_hook( void *userdata );
 
 /**
  * Callback for destroying a list when Ruby garbage collects
- * the associated XChatListInternal object.
+ * the associated RageListInternal object.
  */
 static void static_free_rage_list( rage_list *list );
 
@@ -241,24 +241,24 @@ static void static_init_ruby_environment( void )
   ruby_init();
 
   /* "EMBEDDED_STUFF" is a macro that contains all of the Ruby code needed to
-   * define the core XChat-Ruby interface.  Once this has been defined, all we
+   * define the core Rage-Ruby interface.  Once this has been defined, all we
    * need to do is extract the defined classes and add the C hooks to them.
    */
 
   rb_eval_string( RAGE_RUBY_PLUGIN );
 
-  static_rage_module = rb_eval_string( "XChatRuby" );
+  static_rage_module = rb_eval_string( "RageRuby" );
 
-  static_rage_klass = rb_eval_string( "XChatRuby::XChatRubyEnvironment" );
-  static_rage_list_klass = rb_eval_string( "XChatRuby::XChatRubyList" );
-  static_rage_hook_klass = rb_define_class( "XChatRuby::XChatRubyCallback", rb_cObject );
+  static_rage_klass = rb_eval_string( "RageRuby::RageRubyEnvironment" );
+  static_rage_list_klass = rb_eval_string( "RageRuby::RageRubyList" );
+  static_rage_hook_klass = rb_define_class( "RageRuby::RageRubyCallback", rb_cObject );
 
   static_rage_context_klass = rb_define_class_under( static_rage_module,
-                                                      "XChatContext",
+                                                      "RageContext",
                                                       rb_cObject );
 
   static_rage_list_internal_klass = rb_define_class_under( static_rage_module,
-                                                            "XChatListInternal",
+                                                            "RageListInternal",
                                                             rb_cObject );
 
   static_rage_process_command_hook = rb_intern( "process_command_hook" );
@@ -369,9 +369,9 @@ static void static_init_rage_environment( rage_plugin *plugin_handle,
                                            char **plugin_desc,
                                            char **plugin_version )
 {
-  *plugin_name = "XChat-Ruby";
-  *plugin_desc = "Allows the Ruby interpreter to be interactively called from XChat, "
-                 "and for XChat plugins to be written in Ruby.";
+  *plugin_name = "Rage-Ruby";
+  *plugin_desc = "Allows the Ruby interpreter to be interactively called from Rage, "
+                 "and for Rage plugins to be written in Ruby.";
   *plugin_version = "1.1";
 }
 
