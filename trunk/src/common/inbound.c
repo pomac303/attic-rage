@@ -720,7 +720,7 @@ inbound_join (server *serv, char *chan, char *user, char *ip)
 			user_node = add_name (sess, user, ip);
 			
 			if (sess->server->split_queue && 
-					(tmp = g_queue_find(sess->server->split_queue, user_node->nick)))
+					(tmp = g_queue_find(sess->server->split_queue, user)))
 			{
 				g_free(tmp->data);
 				g_queue_delete_link(sess->server->split_queue, tmp);
