@@ -937,8 +937,7 @@ gtk_xtext_realize (GtkWidget * widget)
 											GDK_GC_EXPOSURES | GDK_GC_SUBWINDOW);
 
 	/* for the separator bar (light) */
-	col.red = 0xffff; col.green = 0xffff; col.blue = 0xffff;
-	gdk_colormap_alloc_color (cmap, &col, FALSE, TRUE);
+	col.pixel = xtext->palette[XTEXT_MARKER];
 	gdk_gc_set_foreground (xtext->light_gc, &col);
 
 	/* for the separator bar (dark) */
