@@ -940,7 +940,7 @@ irc_server(session *sess, int parc, char *parv[])
 			int i=0;
 			line[0]='\0';
 			for(i=(is_server ? 1 : 0);i<parc;i++) {
-				strncat(line,sizeof(line),parv[i]);
+				strncat(line,parv[i],sizeof(line));
 			}
 			line[sizeof(line)-1]='\0';
 			if (is_server)
