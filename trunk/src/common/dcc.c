@@ -24,8 +24,6 @@
 
 #include "rage.h"
 
-typedef unsigned long long llu_t; /* for use with %llu format specifiers */
-
 static char *dcctypes[] = { "SEND", "RECV", "CHAT", "CHAT" };
 
 struct dccstat_info dccstat[] = {
@@ -121,8 +119,8 @@ dcc_calc_cps (struct DCC *dcc)
 
 		posdiff = pos - dcc->lastcpspos;
 		oldcps = dcc->cps;
-		dcc->cps = (int)((double) posdiff / timediff) * (int)(timediff / startdiff)
-			+ (int)(dcc->cps * (int)(1.0 - (int)(timediff / startdiff)));
+		dcc->cps = (int)((posdiff / timediff) * (timediff / startdiff)
+			+ (dcc->cps * (1 - (timediff / startdiff))));
 
 		*cpssum += dcc->cps - oldcps;
 	}
@@ -585,16 +583,16 @@ dcc_calc_average_cps (struct DCC *dcc)
 static void
 dcc_send_ack (struct DCC *dcc)
 {
-	gint64 pos;
 	/* send in 64-bit big endian */
 	if (dcc->size > 4294967295U)
 	{
-		pos = htonll(dcc->pos);
+		guint64 pos = htonll(dcc->pos);
 		send (dcc->sok, (char *) &pos, sizeof(pos), 0);
-	} else
+	}
+	else
 	{
-		pos = htonl(dcc->pos);
-		send (dcc->sok, (char *) &pos, 4, 0);
+		guint32 pos = g_htonl((guint32)dcc->pos);
+		send (dcc->sok, (char *) &pos, sizeof(int), 0);
 	}
 }
 
@@ -834,9 +832,9 @@ dcc_connect (struct DCC *dcc)
 					"DCC SEND \"%s\" %llu %d %llu %d" :
 					"DCC SEND %s %llu %d %llu %d", 
 					dcc->file,
-					(llu_t)dcc->addr, 
+					(guint64)dcc->addr, 
 					dcc->port,
-					(llu_t)dcc->size,
+					(guint64)dcc->size,
 					dcc->pasvid);
 		else
 			snprintf (tbuf, sizeof (tbuf), "DCC CHAT chat %lu %d %d",
@@ -931,7 +929,7 @@ static gboolean
 dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 {
 	int len;
-	off_t ack;
+	unsigned int ack;
 	char buf[16];
 	int sok = dcc->sok;
 
@@ -954,11 +952,14 @@ dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 	/* if file is larger than 4 gig, assume that the ack is 64 bit */
 	if(dcc->size > 4294967295U)
 	{
+		guint64 ack;
 		recv (sok, (char *) &ack, sizeof(ack), 0);
 		dcc->ack = ntohll (ack);
-	} else
+	}
+	else
 	{
-		recv (sok, (char *) &ack, 4, 0);
+		guint32 ack;
+		recv (sok, (char *) &ack, sizeof(ack), 0);
 		dcc->ack = ntohl (ack);
 	}
 
@@ -975,12 +976,10 @@ dcc_read_ack (GIOChannel *source, GIOCondition condition, struct DCC *dcc)
 		dcc_close (dcc, STAT_DONE, FALSE);
 		sprintf (buf, "%d", dcc->cps);
 		EMIT_SIGNAL (XP_TE_DCCSENDCOMP, dcc->serv->front_session,
-						 file_part (dcc->file), dcc->nick, buf, NULL, 0);
+				file_part (dcc->file), dcc->nick, buf, NULL, 0);
 	}
 	else if ((!dcc->fastsend) && (dcc->ack >= dcc->pos))
-	{
 		dcc_send_data (NULL, 0, (gpointer)dcc);
-	}
 
 	return TRUE;
 }
@@ -1217,7 +1216,7 @@ dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 	if (stat (file_fs, &st) != -1)
 	{
 		if (sizeof (st.st_size) > 4 && st.st_size > 4294967295U)
-			PrintText (sess, "Warning file is larger than 4 GB, most clients has problems with that.\n");
+			PrintText (sess, "Warning, the file you want to send is larger than 4GB and most clients can't handle this. Make sure that the other user either uses Rage as well or another client with 64bit file access.\n");
 		if (*file_part (file_fs) && !S_ISDIR (st.st_mode))
 		{
 			if (st.st_size > 0)
@@ -1261,14 +1260,14 @@ dcc_send (rage_session *sess, char *to, char *file, int maxcps, int passive)
 									"DCC SEND \"%s\" %lu %d %llu %d" :
 									"DCC SEND %s %lu %d %llu %d",
 									file_part (dcc->file), 199ul,
-									0, (llu_t) dcc->size, dcc->pasvid);
+									0, (guint64)dcc->size, dcc->pasvid);
 						} else
 						{
 							snprintf (outbuf, sizeof (outbuf), (havespaces) ?
 									"DCC SEND \"%s\" %lu %d %llu" :
 									"DCC SEND %s %lu %d %llu",
 									file_part (dcc->file), dcc->addr,
-									dcc->port, (llu_t) dcc->size);
+									dcc->port, (guint64)dcc->size);
 						}
 						sess->server->p_ctcp (sess->server, to, outbuf);
 
@@ -1572,7 +1571,7 @@ dcc_resume (struct DCC *dcc)
 		snprintf (tbuf, sizeof (tbuf) - 10, strchr (dcc->file, ' ') ?
 					  "DCC RESUME \"%s\" %d %llu" :
 					  "DCC RESUME %s %d %llu",
-					  dcc->file, dcc->port, (llu_t)dcc->resumable);
+					  dcc->file, dcc->port, (guint64)dcc->resumable);
 
 		if (dcc->pasvid)
  			sprintf (tbuf + strlen (tbuf), " %d", dcc->pasvid);
@@ -1722,7 +1721,7 @@ dcc_add_file (rage_session *sess, char *file, off_t size, int port, char *nick, 
 		else
 			fe_dcc_add (dcc);
 	}
-	sprintf (tbuf, "%llu", (llu_t)size);
+	sprintf (tbuf, "%llu", (guint64)size);
 	len = strlen(tbuf) +1;
 	snprintf (tbuf + len, 300, "%s:%d", net_ip (dcc->addr), dcc->port);
 	EMIT_SIGNAL (XP_TE_DCCSENDOFFER, sess->server->front_session, nick,
@@ -1804,18 +1803,18 @@ handle_dcc (rage_session *sess, char *nick, char *ctcp_data)
 								"DCC ACCEPT \"%s\" %d %llu %d" :
 								"DCC ACCEPT %s %d %llu %d",
 								file_part (dcc->file), port, 
-								(llu_t)dcc->resumable,
+								(guint64)dcc->resumable,
 								dcc->pasvid);
 					else
 						snprintf (tbuf, sizeof (tbuf), strchr (file_part (dcc->file), ' ') ?
 								"DCC ACCEPT \"%s\" %d %llu" :
 								"DCC ACCEPT %s %d %llu",
 								file_part (dcc->file), port, 
-								(llu_t)dcc->resumable);
+								(guint64)dcc->resumable);
 
 					dcc->serv->p_ctcp (dcc->serv, dcc->nick, tbuf);
 				}
-				sprintf (tbuf, "%llu", (llu_t) dcc->pos);
+				sprintf (tbuf, "%llu", (guint64)dcc->pos);
 				EMIT_SIGNAL (XP_TE_DCCRESUMEREQUEST, sess, nick,
 								 file_part (dcc->file), tbuf, NULL, 0);
 			}

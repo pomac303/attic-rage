@@ -28,14 +28,12 @@
 #define MEGABYTE (KILOBYTE * 1024)
 #define GIGABYTE (MEGABYTE * 1024)
 
-typedef unsigned long long llu_t;
-
-static void proper_unit (off_t size, char *buf, int buf_len)
+static void proper_unit (guint64 size, char *buf, int buf_len)
 {
 	if (size <= KILOBYTE)
-		snprintf (buf, buf_len, "%lluB", (llu_t)size);
+		snprintf (buf, buf_len, "%lluB", (guint64)size);
 	else if (size > KILOBYTE && size <= MEGABYTE)
-		snprintf (buf, buf_len, "%llukB", (llu_t)size / KILOBYTE);
+		snprintf (buf, buf_len, "%llukB", (guint64)size / KILOBYTE);
 	else if (size > MEGABYTE && size <= GIGABYTE)
 		snprintf (buf, buf_len, "%.2fMB", (double)(size / MEGABYTE));
 	else
@@ -148,10 +146,11 @@ dcc_prepare_row_send (struct DCC *dcc, char *col[])
 	{
 		to_go = (dcc->size - dcc->ack) / dcc->cps;
 		snprintf (eta, sizeof (eta), "%.2d:%.2d:%.2d",
-					 (int)(to_go / 3600), 
-					 (int)((to_go / 60) % 60), 
-					 (int)(to_go % 60));
-	} else
+				(int)(to_go / 3600), 
+				(int)((to_go / 60) % 60), 
+				(int)(to_go % 60));
+	}
+	else
 		strcpy (eta, "--:--:--");
 }
 
@@ -189,10 +188,11 @@ dcc_prepare_row_recv (struct DCC *dcc, char *col[])
 	{
 		to_go = (dcc->size - dcc->pos) / dcc->cps;
 		snprintf (eta, sizeof (eta), "%.2d:%.2d:%.2d",
-					 (int)(to_go / 3600), 
-					 (int)((to_go / 60) % 60), 
-					 (int)(to_go % 60));
-	} else
+				(int)(to_go / 3600), 
+				(int)((to_go / 60) % 60), 
+				(int)(to_go % 60));
+	}
+	else
 		strcpy (eta, "--:--:--");
 }
 
@@ -221,7 +221,7 @@ dcc_update_recv (struct DCC *dcc)
 
 	if (dccstat[dcc->dccstat].color != 1)
 		gtk_clist_set_foreground (GTK_CLIST (dccrwin.list), row,
-										  colors + dccstat[dcc->dccstat].color);
+				colors + dccstat[dcc->dccstat].color);
 
 	gtk_clist_thaw (GTK_CLIST (dccrwin.list));
 }
@@ -270,7 +270,7 @@ dcc_update_send (struct DCC *dcc)
 
 	if (dccstat[dcc->dccstat].color != 1)
 		gtk_clist_set_foreground (GTK_CLIST (dccswin.list), row,
-					 colors + dccstat[dcc->dccstat].color);
+				colors + dccstat[dcc->dccstat].color);
 
 	gtk_clist_thaw (GTK_CLIST (dccswin.list));
 }
@@ -303,8 +303,7 @@ dcc_update_recv_win (void)
 			gtk_clist_set_row_data (GTK_CLIST (dccrwin.list), row, dcc);
 			if (dccstat[dcc->dccstat].color != 1)
 				gtk_clist_set_foreground (GTK_CLIST (dccrwin.list), row,
-												  colors +
-												  dccstat[dcc->dccstat].color);
+						colors + dccstat[dcc->dccstat].color);
 			i++;
 		}
 		list = list->next;
@@ -323,14 +322,14 @@ dcc_info (struct DCC *dcc)
 	char tbuf[256];
 	snprintf (tbuf, 255, _("      File: %s\n"
 				 "   To/From: %s\n"
-				 "      Size: %lli\n"
+				 "      Size: %llu\n"
 				 "      Port: %d\n"
 				 " IP Number: %s\n"
 				 "Start Time: %s"
 				 "   Max CPS: %d\n"),
 				 dcc->file,
 				 dcc->nick,
-				 (llu_t)dcc->size,
+				 (guint64)dcc->size,
 				 dcc->port,
 				 net_ip (dcc->addr), 
 				 ctime (&dcc->starttime),
@@ -482,12 +481,12 @@ fe_dcc_open_recv_win (int passive)
 
 #ifdef USE_GNOME
 	dccrwin.list = gtkutil_clist_new (9, titles, vbox, GTK_POLICY_ALWAYS,
-												 recv_row_selected, 0,
-												 0, 0, GTK_SELECTION_SINGLE);
+			recv_row_selected, 0,
+			0, 0, GTK_SELECTION_SINGLE);
 #else
 	dccrwin.list = gtkutil_clist_new (8, titles, vbox, GTK_POLICY_ALWAYS,
-												 recv_row_selected, 0,
-												 0, 0, GTK_SELECTION_SINGLE);
+			recv_row_selected, 0,
+			0, 0, GTK_SELECTION_SINGLE);
 #endif
 	gtk_clist_set_column_width (GTK_CLIST (dccrwin.list), 0, 65);
 	gtk_clist_set_column_width (GTK_CLIST (dccrwin.list), 1, 100);
@@ -498,7 +497,7 @@ fe_dcc_open_recv_win (int passive)
 	gtk_clist_set_column_width (GTK_CLIST (dccrwin.list), 6, 60);
 	gtk_clist_set_column_width (GTK_CLIST (dccrwin.list), 7, 60);
 	gtk_clist_set_column_justification (GTK_CLIST (dccrwin.list), 4,
-													GTK_JUSTIFY_CENTER);
+			GTK_JUSTIFY_CENTER);
 
 	bbox = gtk_hbutton_box_new ();
 	gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_SPREAD);
@@ -506,11 +505,8 @@ fe_dcc_open_recv_win (int passive)
 	gtk_widget_show (bbox);
 
 	gtkutil_button (bbox, GTK_STOCK_CANCEL, 0, abort_clicked, 0, _("Abort"));
-
 	gtkutil_button (bbox, GTK_STOCK_APPLY, 0, accept_clicked, 0, _("Accept"));
-
 	gtkutil_button (bbox, GTK_STOCK_REFRESH, 0, resume_clicked, 0, _("Resume"));
-
 	gtkutil_button (bbox, GTK_STOCK_DIALOG_INFO, 0, info_clicked, 0, _("Info"));
 #ifdef USE_GNOME
 	gtkutil_button (bbox, GTK_STOCK_OPEN, 0, open_clicked, 0, _("Open"));
@@ -575,10 +571,10 @@ send_row_selected (GtkWidget * clist, gint row, gint column,
 		{
 			switch (dcc->dccstat)
 			{
-			case STAT_FAILED:
-			case STAT_ABORTED:
-			case STAT_DONE:
-				dcc_abort (dcc->serv->front_session, dcc);
+				case STAT_FAILED:
+				case STAT_ABORTED:
+				case STAT_DONE:
+					dcc_abort (dcc->serv->front_session, dcc);
 			}
 		}
 	}
@@ -776,13 +772,12 @@ fe_dcc_open_chat_win (int passive)
 		return TRUE;
 	}
 
-	dcccwin.window =
-			  mg_create_generic_tab ("dccchat", _("Rage: DCC Chat List"),
-						FALSE, TRUE, close_dcc_chat_window, NULL, 550, 180, &vbox, 0);
+	dcccwin.window = mg_create_generic_tab ("dccchat", _("Rage: DCC Chat List"),
+			FALSE, TRUE, close_dcc_chat_window, NULL, 550, 180, &vbox, 0);
 
 	dcccwin.list = gtkutil_clist_new (5, titles, vbox, GTK_POLICY_ALWAYS,
-												 chat_row_selected, 0,
-												 0, 0, GTK_SELECTION_BROWSE);
+			chat_row_selected, 0,
+			0, 0, GTK_SELECTION_BROWSE);
 	gtk_clist_set_column_width (GTK_CLIST (dcccwin.list), 0, 65);
 	gtk_clist_set_column_width (GTK_CLIST (dcccwin.list), 1, 100);
 	gtk_clist_set_column_width (GTK_CLIST (dcccwin.list), 2, 65);
@@ -818,7 +813,7 @@ fe_dcc_add (struct DCC *dcc)
 		gtk_clist_set_row_data (GTK_CLIST (dccrwin.list), row, dcc);
 		if (dccstat[dcc->dccstat].color != 1)
 			gtk_clist_set_foreground (GTK_CLIST (dccrwin.list), row,
-											  colors + dccstat[dcc->dccstat].color);
+					colors + dccstat[dcc->dccstat].color);
 		break;
 
 	case TYPE_SEND:
@@ -829,7 +824,7 @@ fe_dcc_add (struct DCC *dcc)
 		gtk_clist_set_row_data (GTK_CLIST (dccswin.list), row, dcc);
 		if (dccstat[dcc->dccstat].color != 1)
 			gtk_clist_set_foreground (GTK_CLIST (dccswin.list), row,
-											  colors + dccstat[dcc->dccstat].color);
+					colors + dccstat[dcc->dccstat].color);
 		break;
 
 	default: /* chat */
@@ -846,16 +841,16 @@ fe_dcc_update (struct DCC *dcc)
 {
 	switch (dcc->type)
 	{
-	case TYPE_SEND:
-		dcc_update_send (dcc);
-		break;
+		case TYPE_SEND:
+			dcc_update_send (dcc);
+			break;
 
-	case TYPE_RECV:
-		dcc_update_recv (dcc);
-		break;
+		case TYPE_RECV:
+			dcc_update_recv (dcc);
+			break;
 
-	default:
-		dcc_update_chat (dcc);
+		default:
+			dcc_update_chat (dcc);
 	}
 }
 
@@ -867,20 +862,20 @@ fe_dcc_remove (struct DCC *dcc)
 
 	switch (dcc->type)
 	{
-	case TYPE_SEND:
-		if (dccswin.window)
-			list = GTK_CLIST (dccswin.list);
-		break;
+		case TYPE_SEND:
+			if (dccswin.window)
+				list = GTK_CLIST (dccswin.list);
+			break;
 
-	case TYPE_RECV:
-		if (dccrwin.window)
-			list = GTK_CLIST (dccrwin.list);
-		break;
+		case TYPE_RECV:
+			if (dccrwin.window)
+				list = GTK_CLIST (dccrwin.list);
+			break;
 
-	default:	/* chat */
-		if (dcccwin.window)
-			list = GTK_CLIST (dcccwin.list);
-		break;
+		default:	/* chat */
+			if (dcccwin.window)
+				list = GTK_CLIST (dcccwin.list);
+			break;
 	}
 
 	if (list)
@@ -890,3 +885,4 @@ fe_dcc_remove (struct DCC *dcc)
 			gtk_clist_remove (list, row);
 	}
 }
+

@@ -33,13 +33,13 @@ struct DCC
 	int resume_errno;
 
 	GTimeVal lastcpstv, firstcpstv;
-	off_t lastcpspos;
+	guint64 lastcpspos;
 	int maxcps;
 
-	off_t size;
-	off_t resumable;
-	off_t ack;
-	off_t pos;
+	guint64 size;
+	guint64 resumable;
+	guint64 ack;
+	guint64 pos;
 	time_t starttime;
 	time_t offertime;
 	time_t lasttime;
