@@ -2577,7 +2577,9 @@ cmd_server (rage_session *sess, char *cmd, char *buf)
 	char *pass;
 	char *co;
 	server *serv = sess->server;
+#ifdef USE_OPENSSL
 	int use_ssl = FALSE;
+#endif
 	int parc;
 	char *parv[MAX_TOKENS];
 

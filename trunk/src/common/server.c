@@ -22,7 +22,9 @@ static void auto_reconnect (server *serv, int send_quit, int err);
 static void server_disconnect (rage_session * sess, int sendquit, int err);
 static int server_cleanup (server * serv);
 static void server_connect (server *serv, char *hostname, int port, int no_login);
+#ifdef USE_OPENSSL
 static rage_session *g_sess = NULL;
+#endif
 
 /* actually send to the socket. This might do a character translation or
    send via SSL */

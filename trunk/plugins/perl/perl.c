@@ -138,7 +138,7 @@ extern void boot_DynaLoader (pTHX_ CV* cv);
 static int
 execute_perl( SV *function, char *args)
 {
-	long count;
+	STRLEN count;
 	int ret_value = 1;
 	SV *sv;
 
