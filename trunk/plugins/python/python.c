@@ -1421,7 +1421,7 @@ Module_rage_get_prefs(PyObject *self, PyObject *args)
 			break;
 		case 2:
 		case 3: /* Is this even 64bit safe?! */
-			res = PyInt_FromLong((int)info);
+			res = PyInt_FromLong((long)info);
 			break;
 		default:
 			PyErr_Format(PyExc_RuntimeError,
