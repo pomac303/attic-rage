@@ -2,6 +2,9 @@
     ...
 */
 
+#ifndef RAGE_SSL_H
+#define RAGE_SSL_H
+
 struct cert_info {
     char subject[256];
     char *subject_word[12];
@@ -63,3 +66,5 @@ int _SSL_recv (SSL * ssl, char *buf, int len);
 #define	_SSL_get_ctx_x509_base64(a)	_SSL_get_ctx_obj_base64(a, 2)
 
 /*int _SSL_verify_x509(X509 *x509);*/
+
+#endif /* RAGE_SSL_H */

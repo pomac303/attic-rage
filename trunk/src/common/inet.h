@@ -1,5 +1,8 @@
 /* include stuff for internet */
 
+#ifndef RAGE_INET_H
+#define RAGE_INET_H
+
 #ifndef WIN32
 
 #ifdef WANTSOCKET
@@ -44,3 +47,5 @@
 #define sock_error WSAGetLastError
 
 #endif
+
+#endif /* RAGE_INET_H */
