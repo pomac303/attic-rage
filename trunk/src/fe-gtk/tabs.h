@@ -1,3 +1,6 @@
+#ifndef RAGE_TABS_H
+#define RAGE_TABS_H
+
 GtkWidget *tab_group_new (void *callback, void *compare, gboolean vertical, gboolean sorted);
 void tab_group_switch (GtkWidget *group, int relative, int num);
 void tab_group_cleanup (GtkWidget *group);
@@ -17,3 +20,5 @@ void tab_set_attrlist (GtkWidget *tab, PangoAttrList *list);
 #define FOCUS_NEW_ALL 1
 #define FOCUS_NEW_ONLY_ASKED 2
 #define FOCUS_NEW_NONE 0
+
+#endif /* RAGE_TABS_H */

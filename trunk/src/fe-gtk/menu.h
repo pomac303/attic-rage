@@ -1,3 +1,6 @@
+#ifndef RAGE_MENU_H
+#define RAGE_MENU_H
+
 GtkWidget *menu_create_main (void *accel_group, int bar, int away, int toplevel, GtkWidget **away_item, GtkWidget **user_menu);
 void menu_newshell_set_palette (session *sess);
 void menu_urlmenu (GdkEventButton * event, char *url);
@@ -11,3 +14,5 @@ void usermenu_update (void);
 GtkWidget *menu_toggle_item (char *label, GtkWidget *menu, void *callback, void *userdata, int state);
 GtkWidget *create_icon_menu (char *labeltext, void *stock_name, int is_stock);
 void menu_create (GtkWidget *menu, GSList *list, char *target, int check_path);
+
+#endif /* RAGE_MENU_H */

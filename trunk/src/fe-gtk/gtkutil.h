@@ -1,5 +1,5 @@
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreemodel.h>
+#ifndef RAGE_GTKUTIL_H
+#define RAGE_GTKUTIL_H
 
 typedef void (*filereqcallback) (void *, char *file);
 
@@ -33,3 +33,4 @@ gboolean gtkutil_treemodel_string_to_iter (GtkTreeModel *model, gchar *pathstr, 
 gboolean gtkutil_treeview_get_selected_iter (GtkTreeView *view, GtkTreeIter *iter_ret);
 gboolean gtkutil_treeview_get_selected (GtkTreeView *view, GtkTreeIter *iter_ret, ...);
 
+#endif /* RAGE_GTKUTIL_H */

@@ -1,3 +1,6 @@
+#ifndef RAGE_PALETTE_H
+#define RAGE_PALETTE_H
+
 extern GdkColor colors[];
 
 #define COL_MARK_FG 32
@@ -13,3 +16,5 @@ extern GdkColor colors[];
 void palette_alloc (GtkWidget * widget);
 void palette_load (void);
 void palette_save (void);
+
+#endif /* RAGE_PALETTE_H */

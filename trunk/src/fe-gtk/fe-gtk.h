@@ -55,6 +55,7 @@
 #include <gtk/gtkhbbox.h>
 #include <gtk/gtkliststore.h>
 #include <gtk/gtktreeview.h>
+#include <gtk/gtktreemodel.h>
 #include <gtk/gtktreeselection.h>
 #include <gtk/gtkcheckbutton.h>
 #include <gtk/gtkalignment.h>
