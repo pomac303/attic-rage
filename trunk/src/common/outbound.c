@@ -16,8 +16,50 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define _GNU_SOURCE	/* for memrchr, not used on Windows */
-#include "rage.h"
+#define _GNU_SOURCE	/* for memrchr */
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <limits.h>
+
+#define WANTSOCKET
+#define WANTARPA
+#include "inet.h"
+
+#ifndef WIN32
+#include <sys/wait.h>
+#endif
+
+#include <unistd.h>
+#include <time.h>
+#include <signal.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include "xchat.h"
+#include "plugin.h"
+#include "ignore.h"
+#include "util.h"
+#include "fe.h"
+#include "cfgfiles.h"			  /* get_xdir() */
+#include "network.h"				/* net_ip() */
+#include "modes.h"
+#include "notify.h"
+#include "proto-irc.h"
+#include "inbound.h"
+#include "text.h"
+#include "xchatc.h"
+#include "servlist.h"
+#include "server.h"
+#include "tree.h"
+#include "outbound.h"
+#include "dict.h"
+
+
+#ifdef USE_DEBUG
+extern int current_mem_usage;
+#endif
 
 static int cmd_server (session *sess, char *cmd, char *buf);
 static void help (session *sess, char *helpcmd, int quiet);
@@ -928,6 +970,10 @@ cmd_debug (struct session *sess, char *cmd, char *buf)
 				"current_tab: %p\n\n",
 				sess->server->front_session, current_tab);
 	PrintText (sess, tbuf);
+#ifdef USE_DEBUG
+	sprintf (tbuf, "current mem: %d\n\n", current_mem_usage);
+	PrintText (sess, tbuf);
+#endif  /* !MEMORY_DEBUG */
 
 	return TRUE;
 }
@@ -1648,10 +1694,11 @@ static int
 cmd_gate (struct session *sess, char *cmd, char *buf)
 {
 	char *server_name;
-	server *serv = sess->server;
 
 	split_cmd(&buf);
 	server_name=split_cmd(&buf);
+
+	server *serv = sess->server;
 
 	if (*server_name)
 	{

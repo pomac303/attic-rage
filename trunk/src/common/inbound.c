@@ -16,7 +16,33 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <time.h>
+
+#define WANTARPA
+#define WANTDNS
+#include "inet.h"
+
+#include "xchat.h"
+#include "util.h"
+#include "ignore.h"
+#include "fe.h"
+#include "modes.h"
+#include "notify.h"
+#include "outbound.h"
+#include "inbound.h"
+#include "server.h"
+#include "servlist.h"
+#include "text.h"
+#include "ctcp.h"
+#include "plugin.h"
+#include "xchatc.h"
+
 
 /* black n white(0/1) are bad colors for nicks, and we'll use color 2 for us */
 /* also light/dark gray (14/15) */

@@ -16,7 +16,17 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "xchat.h"
+#include "cfgfiles.h"
+#include "fe.h"
+#include "tree.h"
+#include "url.h"
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
+#endif
 
 void *url_tree = NULL;
 
@@ -72,11 +82,7 @@ url_find (char *urltext)
 {
 	int pos;
 
-#ifndef WIN32
 	if (tree_find (url_tree, urltext, (tree_cmp_func *)strcasecmp, NULL, &pos))
-#else
-	if(tree_find(url_tree, urltext, (tree_cmp_func *)strcmpi, NULL, &pos))
-#endif
 		return 1;
 	return 0;
 }
@@ -98,11 +104,7 @@ url_add (char *urltext)
 	}
 
 	if (!url_tree)
-#ifndef WIN32
 		url_tree = tree_new ((tree_cmp_func *)strcasecmp, NULL);
-#else
-		url_tree = tree_new ((tree_cmp_func *)strcmpi, NULL);
-#endif
 
 	tree_insert (url_tree, data);
 	fe_url_add (data);
@@ -119,21 +121,12 @@ url_check (char *buf)
 
 	while (po[0])
 	{
-#ifndef WIN32
 		if (strncasecmp (po, "http:", 5) == 0 ||
 			 strncasecmp (po, "www.", 4) == 0 ||
 			 strncasecmp (po, "ftp.", 4) == 0 ||
 			 strncasecmp (po, "ftp:", 4) == 0 ||
 			 strncasecmp (po, "irc://", 6) == 0 ||
 			 strncasecmp (po, "irc.", 4) == 0)
-#else
-		if(strncmpi(po, "http:", 5) == 0 ||
-			 strncmpi (po, "www.", 4) == 0 ||
-			 strncmpi (po, "ftp.", 4) == 0 ||
-			 strncmpi (po, "ftp:", 4) == 0 ||
-			 strncmpi (po, "irc://", 6) == 0 ||
-			 strncmpi (po, "irc.", 4) == 0)
-#endif
 			break;
 		po++;
 	}

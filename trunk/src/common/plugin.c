@@ -16,11 +16,28 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define PLUGIN_C
-/* Require plugin implementation header */
-typedef struct session xchat_context;
-#include "rage.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+#include <stdio.h>
 
+#include "xchat.h"
+#include "fe.h"
+#include "util.h"
+#include "outbound.h"
+#include "cfgfiles.h"
+#include "ignore.h"
+#include "modes.h"
+#include "notify.h"
+#include "text.h"
+#define PLUGIN_C
+typedef struct session xchat_context;
+#include "xchat-plugin.h"
+#include "plugin.h"
+#include "dict.h"
+
+
+#include "xchatc.h"
 
 /* the USE_PLUGIN define only removes libdl stuff */
 

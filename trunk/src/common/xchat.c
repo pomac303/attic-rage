@@ -32,8 +32,6 @@
 #include <signal.h>
 #endif
 
-#include "rage.h"
-/*
 #include "xchat.h"
 #include "fe.h"
 #include "util.h"
@@ -41,6 +39,7 @@
 #include "ignore.h"
 #include "xchat-plugin.h"
 #include "plugin.h"
+#include "plugin-timer.h"
 #include "notify.h"
 #include "server.h"
 #include "servlist.h"
@@ -48,14 +47,10 @@
 #include "text.h"
 #include "url.h"
 #include "xchatc.h"
-*/
-#include "plugin-timer.h"
 
 #ifdef USE_OPENSSL
-#if 0
 #include <openssl/ssl.h>		  /* SSL_() */
 #include "ssl.h"
-#endif
 #endif
 
 GSList *popup_list = 0;

@@ -16,7 +16,54 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+
+#define WANTSOCKET
+#define WANTARPA
+#include "inet.h"
+
+#ifndef WIN32
+#include <signal.h>
+#include <sys/wait.h>
+#else
+#include <winbase.h>
+#endif
+
+#include "xchat.h"
+#include "fe.h"
+#include "cfgfiles.h"
+#include "network.h"
+#include "notify.h"
+#include "xchatc.h"
+#include "inbound.h"
+#include "outbound.h"
+#include "text.h"
+#include "util.h"
+#include "url.h"
+#include "proto-irc.h"
+#include "servlist.h"
+#include "server.h"
+
+#ifdef USE_OPENSSL
+#include <openssl/ssl.h>		  /* SSL_() */
+#include <openssl/err.h>		  /* ERR_() */
+#include "ssl.h"
+#endif
+
+#ifdef WIN32
+#include "identd.c"
+#endif
+
+#ifdef USE_OPENSSL
+extern SSL_CTX *ctx;				  /* xchat.c */
+/* local variables */
+static struct session *g_sess = NULL;
+#endif
 
 static void auto_reconnect (server *serv, int send_quit, int err);
 static void server_disconnect (session * sess, int sendquit, int err);

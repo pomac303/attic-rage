@@ -35,7 +35,6 @@ EXTRA_DIST = makefile.msc \
 	url.h \
 	userlist.h \
 	util.h \
-	rage.h \
 	xchat.h \
 	xchatc.h \
 	xchat-plugin.h

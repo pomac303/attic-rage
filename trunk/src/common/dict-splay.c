@@ -14,7 +14,10 @@
  * GNU General Public License for more details.
  */
 
-#include "rage.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "dict.h"
 
 /*
  *    Create new dictionary.

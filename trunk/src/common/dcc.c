@@ -22,7 +22,38 @@
  * Jim Seymour (jseymour@LinxNet.com)
  */
 
-#include "rage.h"
+/* we only use 32 bits, but without this define, you get only 31! */
+#define _FILE_OFFSET_BITS 64
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+#define WANTSOCKET
+#define WANTARPA
+#define WANTDNS
+#include "inet.h"
+
+#ifdef WIN32
+#include <windows.h>
+#endif
+
+#include "xchat.h"
+#include "util.h"
+#include "fe.h"
+#include "outbound.h"
+#include "inbound.h"
+#include "network.h"
+#include "plugin.h"
+#include "server.h"
+#include "text.h"
+#include "url.h"
+#include "xchatc.h"
+
 
 static char *dcctypes[] = { "SEND", "RECV", "CHAT", "CHAT" };
 

@@ -3,7 +3,11 @@ This is used for quick userlist insertion and lookup. It's not really
 a tree, but it could be :)
 */
 
-#include "rage.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "tree.h"
 
 #define ARRAY_GROW 32
 
@@ -199,7 +203,7 @@ tree_insert (tree *t, void *key)
 	{
 		int new_size = t->array_size + ARRAY_GROW;
 
-		t->array = realloc(t->array, sizeof (void *) * new_size);
+		t->array = realloc (t->array, sizeof (void *) * new_size);
 		t->array_size = new_size;
 	}
 

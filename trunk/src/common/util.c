@@ -16,7 +16,226 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#define __APPLE_API_STRICT_CONFORMANCE
+
+#define _FILE_OFFSET_BITS 64
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#ifdef WIN32
+#include <sys/timeb.h>
+#include <process.h>
+#else
+#include <sys/types.h>
+#include <pwd.h>
+#include <sys/time.h>
+#include <sys/utsname.h>
+#endif
+#include <fcntl.h>
+#include <dirent.h>
+#include <errno.h>
+#include "xchat.h"
+#include "xchatc.h"
+#include <ctype.h>
+#include "util.h"
+#include "../../config.h"
+
+#include "inet.h"
+
+#if defined (USING_FREEBSD) || defined (__APPLE__)
+#include <sys/sysctl.h>
+#endif
+#ifdef SOCKS
+#include <socks.h>
+#endif
+
+#ifndef HAVE_SNPRINTF
+#define snprintf g_snprintf
+#endif
+
+#ifdef USE_DEBUG
+
+#undef free
+#undef malloc
+#undef realloc
+#undef strdup
+
+int current_mem_usage;
+
+struct mem_block
+{
+	char *file;
+	void *buf;
+	int size;
+	int line;
+	int total;
+	struct mem_block *next;
+};
+
+struct mem_block *mroot = NULL;
+
+void *
+xchat_malloc (int size, char *file, int line)
+{
+	void *ret;
+	struct mem_block *new;
+
+	current_mem_usage += size;
+	ret = malloc (size);
+	if (!ret)
+	{
+		printf ("Out of memory! (%d)\n", current_mem_usage);
+		exit (255);
+	}
+
+	new = malloc (sizeof (struct mem_block));
+	new->buf = ret;
+	new->size = size;
+	new->next = mroot;
+	new->line = line;
+	new->file = strdup (file);
+	mroot = new;
+
+	printf ("%s:%d Malloc'ed %d bytes, now \033[35m%d\033[m\n", file, line,
+				size, current_mem_usage);
+
+	return ret;
+}
+
+void *
+xchat_realloc (char *old, int len, char *file, int line)
+{
+	char *ret;
+
+	ret = xchat_malloc (len, file, line);
+	if (ret)
+	{
+		strcpy (ret, old);
+		xchat_free (old, file, line);
+	}
+	return ret;
+}
+
+void *
+xchat_strdup (char *str, char *file, int line)
+{
+	void *ret;
+	struct mem_block *new;
+	int size;
+
+	size = strlen (str) + 1;
+	current_mem_usage += size;
+	ret = malloc (size);
+	if (!ret)
+	{
+		printf ("Out of memory! (%d)\n", current_mem_usage);
+		exit (255);
+	}
+	strcpy (ret, str);
+
+	new = malloc (sizeof (struct mem_block));
+	new->buf = ret;
+	new->size = size;
+	new->next = mroot;
+	new->line = line;
+	new->file = strdup (file);
+	mroot = new;
+
+	printf ("%s:%d strdup (\"%-.40s\") size: %d, total: \033[35m%d\033[m\n",
+				file, line, str, size, current_mem_usage);
+
+	return ret;
+}
+
+void
+xchat_mem_list (void)
+{
+	struct mem_block *cur, *p;
+	GSList *totals = 0;
+	GSList *list;
+
+	cur = mroot;
+	while (cur)
+	{
+		list = totals;
+		while (list)
+		{
+			p = list->data;
+			if (p->line == cur->line &&
+					strcmp (p->file, cur->file) == 0)
+			{
+				p->total += p->size;
+				break;
+			}
+			list = list->next;
+		}
+		if (!list)
+		{
+			cur->total = cur->size;
+			totals = g_slist_prepend (totals, cur);
+		}
+		cur = cur->next;
+	}
+
+	fprintf (stderr, "file              line   size    num  total\n");  
+	list = totals;
+	while (list)
+	{
+		cur = list->data;
+		fprintf (stderr, "%-15.15s %6d %6d %6d %6d\n", cur->file, cur->line,
+					cur->size, cur->total/cur->size, cur->total);
+		list = list->next;
+	}
+}
+
+void
+xchat_free (void *buf, char *file, int line)
+{
+	struct mem_block *cur, *last;
+
+	if (buf == NULL)
+	{
+		printf ("%s:%d \033[33mTried to free NULL\033[m\n", file, line);
+		return;
+	}
+
+	last = NULL;
+	cur = mroot;
+	while (cur)
+	{
+		if (buf == cur->buf)
+			break;
+		last = cur;
+		cur = cur->next;
+	}
+	if (cur == NULL)
+	{
+		printf ("%s:%d \033[31mTried to free unknown block %lx!\033[m\n",
+				  file, line, (unsigned long) buf);
+		/*      abort(); */
+		free (buf);
+		return;
+	}
+	current_mem_usage -= cur->size;
+	printf ("%s:%d Free'ed %d bytes, usage now \033[35m%d\033[m\n",
+				file, line, cur->size, current_mem_usage);
+	if (last)
+		last->next = cur->next;
+	else
+		mroot = cur->next;
+	free (cur->file);
+	free (cur);
+}
+
+#define malloc(n) xchat_malloc(n, __FILE__, __LINE__)
+#define realloc(n, m) xchat_realloc(n, m, __FILE__, __LINE__)
+#define free(n) xchat_free(n, __FILE__, __LINE__)
+#define strdup(n) xchat_strdup(n, __FILE__, __LINE__)
+
+#endif /* MEMORY_DEBUG */
 
 char *
 file_part (char *file)
@@ -525,7 +744,6 @@ break_while:
 void
 for_files (char *dirname, char *mask, void callback (char *file))
 {
-#ifndef WIN32
 	DIR *dir;
 	struct dirent *ent;
 	char *buf;
@@ -548,7 +766,6 @@ for_files (char *dirname, char *mask, void callback (char *file))
 		}
 		closedir (dir);
 	}
-#endif
 }
 
 /*void
@@ -573,11 +790,7 @@ typedef struct
 static int
 country_compare (const void *a, const void *b)
 {
-#ifndef WIN32
 	return strcasecmp (a, ((Domain *)b)->code);
-#else
-	return strcmpi(a, ((Domain *)b)->code);
-#endif
 }
 
 char *

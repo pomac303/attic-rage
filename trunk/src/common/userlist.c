@@ -16,7 +16,18 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "xchat.h"
+#include "modes.h"
+#include "fe.h"
+#include "notify.h"
+#include "tree.h"
+#include "xchatc.h"
+#include "util.h"
+
 
 static int
 nick_cmp_az_ops (server *serv, struct User *user1, struct User *user2)

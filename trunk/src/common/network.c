@@ -18,8 +18,21 @@
 
 /* ipv4 and ipv6 networking functions with a common interface */
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#include "../../config.h"				  /* grab USE_IPV6 define */
+
+#define WANTSOCKET
+#define WANTARPA
+#define WANTDNS
+#include "inet.h"
+
 #define NETWORK_PRIVATE
-#include "rage.h"
+#include "network.h"
+
 
 /* ================== COMMON ================= */
 

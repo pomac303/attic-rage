@@ -16,7 +16,23 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#include "xchat.h"
+
+#include "cfgfiles.h"
+#include "fe.h"
+#include "server.h"
+#include "text.h"
+#include "xchatc.h"
+
+#include "servlist.h"
+
 
 struct defaultserver
 {
