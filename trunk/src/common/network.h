@@ -1,19 +1,7 @@
 #ifndef XCHAT_NETWORK_H
 #define XCHAT_NETWORK_H
 
-typedef struct netstore_
-{
-#ifdef NETWORK_PRIVATE
-#ifdef USE_IPV6
-	struct addrinfo *ip6_hostent;
-#else
-	struct hostent *ip4_hostent;
-	struct sockaddr_in addr;
-#endif
-#else
-	int _dummy;	/* some compilers don't like empty structs */
-#endif
-} netstore;
+typedef struct netstore_ netstore;
 
 #define MAX_HOSTNAME 128
 

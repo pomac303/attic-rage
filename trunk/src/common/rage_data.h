@@ -52,7 +52,6 @@
 #ifndef S_ISDIR
 #define	S_ISDIR(m)	((m) & _S_IFDIR)
 #endif
-#define NETWORK_PRIVATE
 #else									/* for unix */
 #define OFLAGS 0
 #endif

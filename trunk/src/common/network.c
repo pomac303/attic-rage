@@ -18,8 +18,17 @@
 
 /* ipv4 and ipv6 networking functions with a common interface */
 
-#define NETWORK_PRIVATE
 #include "rage.h"
+
+struct netstore_
+{
+#ifdef USE_IPV6
+	struct addrinfo *ip6_hostent;
+#else
+	struct hostent *ip4_hostent;
+	struct sockaddr_in addr;
+#endif
+};
 
 /* ================== COMMON ================= */
 
