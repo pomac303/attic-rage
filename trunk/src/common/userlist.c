@@ -17,6 +17,7 @@
  */
 
 #include "rage.h"
+#include <assert.h>
 
 static int
 nick_cmp_az_ops (server *serv, struct User *user1, struct User *user2)
@@ -457,3 +458,167 @@ userlist_double_list(rage_session *sess)
 	tree_foreach (sess->usertree_alpha, (tree_traverse_func *)double_cb, &list);
 	return list;
 }
+
+/** Add a user to a session */
+void rage_add_user(rage_session *sess, struct User *user)
+{
+	struct Membership *member;
+
+	member = (struct Membership *)malloc(sizeof(struct Membership));
+	member->prev_user = NULL;
+	member->next_user = user->members;
+	if (member->next_user)
+		member->next_user->prev_user = member;
+	user->members = member;
+
+	member->prev_session = NULL;
+	member->next_session = sess->members;
+	if (member->next_session)
+		member->next_session->prev_session = member;
+	sess->members = member;
+
+	member->op = 0;
+	member->hop = 0;
+	member->voice = 0;
+	member->away = 0;
+}
+
+/** Remove a user from a channel */
+void rage_del_user(rage_session *sess, struct User *user)
+{
+	struct Membership *member;
+	/* TODO: we can step down sess or user, which ever is faster */
+	for(member = sess->members; member!=NULL; member=member->next_session){
+		if (member->user == user) {
+			break;
+		}
+	}
+	/* If this fails then we're removing an item that doesn't exist */
+	assert (member->user == user);
+
+	/* Now unlink it from the sparse matrix */
+	if (member->prev_user)
+		member->prev_user->next_user = member->next_user;
+	if (member->next_user)
+		member->next_user->prev_user = member->prev_user;
+	if (member->prev_session)
+		member->prev_session->next_session = member->next_session;
+	if (member->next_session)
+		member->next_session->prev_session = member->prev_session;
+
+	/* Now, was this the last session for this user? */
+	if (member->user->members != NULL) {
+		free_user(member->user, NULL);
+	}
+}
+
+void foreach_membership_user(rage_session *sess, tree_traverse_func *func, 
+		void *data) {
+	struct Membership *member;
+	for(member = sess->members; member!=NULL; member=member->next_user) {
+		func(member,data);
+	}
+}
+
+void foreach_membership_sess(struct User *user, tree_traverse_func *func,
+		void *data) {
+	struct Membership *member;
+	for(member = user->members; member!=NULL; member=member->next_session) {
+		func(member,data);
+	}
+}
+
+/* Some examples */
+#if 0
+
+void nick_change_cb(struct Membership *mem, void *nick)
+{
+	send_message_to_session(mem->session,"Nick changed from %s to %s",
+			mem->user->nick,nick);
+}
+
+void nick_change(struct User *user,char *newnick)
+{
+	foreach_membership_sess(user, nick_change_cb, newnick);
+	strlcpy(user->nick,sizeof(user->nick),newnick);
+}
+
+void nick_quit_cb(struct Membership *mem, void *msg)
+{
+	send_message_to_session(mem->session,"User quit %s",(char*)msg);
+}
+
+void nick_quit(struct User *user, void *msg)
+{
+	foreach_membership_sess(user, nick_quit_cb, msg);
+	strlcpy(user->nick,sizeof(user->nick),msg);
+}
+
+typedef enum {SPLIT, JOIN, NONE} stack_type_t;
+
+void flush_stack(struct stack *stk)
+{
+	/* output the stack */
+	if (stk->which==JOIN) {
+		output_to_a_session_coz_Im_bored(stk->session,
+				"JOIN",stk->queue);
+	} else {
+		output_to_a_session_coz_Im_bored(stk->session,
+				"QUIT",stk->queue);
+	}
+}
+
+void append_to_stack(struct stack *stk, 
+		stack_type_t which,
+		struct Membership *mem,
+		char *msg)
+{
+	/* If it's a different join/part then flush() */
+	if (stk->which != which ||
+		 	( (msg == NULL && stk->msg != NULL)
+			||(msg != NULL && stk->msg == NULL)  
+			||(strcmp(msg,stk->msg)==0) )
+			) 
+			|| stk->session != mem->session) {
+		flush_stack(stk);
+		stk->which = NONE;
+	}
+
+	if (stk->which == NONE) {
+		stk->which = which;
+		if (stk->msg)
+			free(stk->msg);
+		if (msg)
+			stk->msg = strdup(msg);
+		else
+			stk->msg = NULL;
+
+		stk->session = mem->session;
+	}
+
+	push_stack(stk->queue,mem->user->nick);
+	
+}
+
+
+void nick_splitting_cb(struct Membership *mem, void *msg)
+{
+	append_to_stack(mem->sess->stack,SPLIT,mem,msg);
+}
+
+void nick_splitting(struct User *user, void *msg)
+{
+	foreach_membership_sess(user, nick_splitting_cb, msg);
+}
+
+void nick_joining_cb(struct Membership *mem, void *msg)
+{
+	append_to_stack(mem->sess->stack,JOIN,mem,NULL);
+}
+
+void nick_joining(struct User *user)
+{
+	foreach_membership_sess(user, nick_joining_cb, NULL);
+}
+
+#endif

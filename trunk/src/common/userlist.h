@@ -15,6 +15,22 @@ struct User
 	unsigned int voice:1;
 	unsigned int me:1;
 	unsigned int away:1;
+	struct Membership *members; /* Which sessions this user is */
+};
+
+struct Membership
+{
+	struct Membership *prev_user;
+	struct Membership *next_user;
+	struct Membership *prev_session;
+	struct Membership *next_session;	
+	struct User *user;
+	struct Session *session;
+	/* Flags */
+	unsigned int op:1;
+	unsigned int hop:1;
+	unsigned int voice:1;
+	unsigned int away:1;
 };
 
 #define USERACCESS_SIZE 12

@@ -283,6 +283,7 @@ struct rageprefs
 typedef struct rage_session
 {
 	struct server *server;
+	struct Membership *members;	/** Members on this session */
 	void *usertree_alpha;		/* pure alphabetical tree */
 	void *usertree;			/* ordered with Ops first */
 	struct User *me;		/* points to myself in the usertree */
