@@ -117,11 +117,12 @@ fe_add_rawlog (server *serv, char *text, int len, int outbound)
 
 	if (outbound)
 	{
+		gsize written;
 		char *line = NULL;
 		
 		if (strcasecmp(serv->encoding, "UTF-8") != 0 &&
 				strcasecmp(serv->encoding, "UTF8") != 0)
-			line = g_convert(buf, len, "UTF-8", serv->encoding,
+			line = g_convert(text, len, "UTF-8", serv->encoding,
 					NULL, &written, NULL);
 		
 		len = sprintf (new_text, "\0034<<\017 %s", line ? line : text);
