@@ -944,7 +944,6 @@ irc_server(session *sess, int parc, char *parv[])
 		{
 			time_t tp;
 			char line[5];
-			/* XXX: needs a text event */
 			/* parv[0] == source server
 			 * parv[3] == dest server
 			 * parv[4] == miliseconds
