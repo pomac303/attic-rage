@@ -232,7 +232,7 @@ cmd_allchannels (session *sess, char *cmd, char *buf)
 		sess = list->data;
 		if (sess->type == SESS_CHANNEL && sess->channel[0] && sess->server->connected)
 		{
-			handle_command (sess, parv[1], FALSE);
+			handle_command (sess, paste_parv(cmd, 512, 1, parc, parv), FALSE);
 		}
 		list = list->next;
 	}
@@ -258,7 +258,7 @@ cmd_allservers (struct session *sess, char *cmd, char *buf)
 	{
 		serv = list->data;
 		if (serv->connected)
-			handle_command (serv->front_session, parv[1], FALSE);
+			handle_command (serv->front_session, paste_parv(cmd, 512, 1, parc, parv), FALSE);
 		list = list->next;
 	}
 

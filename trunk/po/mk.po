@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-09 02:42+0200\n"
+"POT-Creation-Date: 2004-10-09 04:39+0200\n"
 "PO-Revision-Date: 2004-03-14 13:17+0100\n"
 "Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ufo@linux.net.mk>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: src/common/cfgfiles.c:406
+#: src/common/cfgfiles.c:433
 msgid "Cannot create ~/.xchat2"
 msgstr "Не можам да создадам ~/.xchat2"
 
-#: src/common/cfgfiles.c:726
+#: src/common/cfgfiles.c:753
 msgid "I'm busy"
 msgstr "Зафатен сум"
 
-#: src/common/cfgfiles.c:727
+#: src/common/cfgfiles.c:754
 msgid "Leaving"
 msgstr "Си одам"
 
-#: src/common/cfgfiles.c:773
+#: src/common/cfgfiles.c:800
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"
@@ -114,7 +114,7 @@ msgstr "Не си врзан. Пробај /server <host> [<порта>]\n"
 msgid "I need /bin/sh to run!\n"
 msgstr "Ми треба /bin/sh за да извршам!\n"
 
-#: src/common/outbound.c:1717
+#: src/common/outbound.c:1716
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -126,7 +126,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1750
+#: src/common/outbound.c:1749
 msgid ""
 "\n"
 "\n"
@@ -138,7 +138,7 @@ msgstr ""
 "Впиши /HELP <команда> за повеќе информации, или /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1751
+#: src/common/outbound.c:1750
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -148,36 +148,36 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1848
+#: src/common/outbound.c:1846
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Непознатиот аргумент '%s' е игнориран."
 
-#: src/common/outbound.c:2791
+#: src/common/outbound.c:2789
 msgid "No such plugin found.\n"
 msgstr "Не најдов таков додаток.\n"
 
-#: src/common/outbound.c:2796 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Тој додаток одбива да се исклучи. \n"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3054
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <име> <акција>, додава копче под корисничката листа"
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3056
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <командата>, испраќа команда до сите канали на коишто си"
 
-#: src/common/outbound.c:3060
+#: src/common/outbound.c:3058
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <командата>, испраќа команда на сите сервери на коишто си"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3059
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<причина>], те обележува како отсутен"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3061
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -186,20 +186,20 @@ msgstr ""
 "BAN <маска> [<тип>], ги банира сите кои што одговарат на маската на "
 "сегашниот канал. Ако се веќе на каналот ова не ги исфрла (треба оператор)"
 
-#: src/common/outbound.c:3065
+#: src/common/outbound.c:3063
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Го чисти прозорецот од текст"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3064
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Го затвора прозорецот/табот"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3066
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr ""
 "COUNTRY <кратенка>, ја наоѓа кратенката на земјата, пр: au = австралија"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3068
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <прекар> <порака>, испрати ја CTCP пораката до прекарот, вообичаени "
 "пораки се VERSION и USERINFO"
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3070
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, го напушта тековниот канал и се приклучува повторно"
 
-#: src/common/outbound.c:3074
+#: src/common/outbound.c:3072
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -229,7 +229,7 @@ msgstr ""
 "DCC CLOSE <тип> <прекар> <датотека>         пример:\n"
 "         /dcc close send johnsmith file.tar.gz"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3081
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -237,11 +237,11 @@ msgstr ""
 "DEHOP <прекар>, отстранува операторски статус од прекарот на тековниот канал "
 "(потребно е да имате операторски статус)"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3083
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <име>, брише копче под корисничката листа"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3085
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -249,7 +249,7 @@ msgstr ""
 "DEOP <прекар>, отстранува операторски статус од прекарот на тековниот канал "
 "(потребно е да имате операторски статус)"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3087
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -257,19 +257,19 @@ msgstr ""
 "DEVOICE <прекар>, отстранува глас од прекарот на тековниот канал (потребно е "
 "да имате операторски статус)"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3088
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Ја прекинува врската со серверот"
 
-#: src/common/outbound.c:3091
+#: src/common/outbound.c:3089
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <прекар|host|ip>, Пронаоѓа IP број на корисникот"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3090
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <text>, Печати текст локално"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3093
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -277,11 +277,11 @@ msgstr ""
 "EXEC [-o] <command>, ја извршува командата. Ако користите -o тогаш испраќате "
 "на тековниот канал"
 
-#: src/common/outbound.c:3097
+#: src/common/outbound.c:3095
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, го испраќа процесот SIGCONT"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3098
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -289,29 +289,29 @@ msgstr ""
 "EXECKILL [-9], убива извршена програма во тековната сесија. Ако -9 е даден "
 "тогаш процесот е SIGKILL'ed"
 
-#: src/common/outbound.c:3102
+#: src/common/outbound.c:3100
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, го испраќа процесот SIGSTOP"
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3101
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, испраќа податоци до stdin процесите"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3105
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, го испушта тековното чекање на серверот"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3107
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr "GATE <host> [<port>],proxy-јата преку host, стандардна порта 23"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3113
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <прекар> дава chanhalf-op статус на прекарот (потребен е операторски "
 "статус)"
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3115
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -325,7 +325,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    опции - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3121
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -333,17 +333,17 @@ msgstr ""
 "INVITE <прекар> [<канал>], кани некого на каналот, стандардно тоа е "
 "тековниот канал (потребен е операторски статус)"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3122
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <channel>, се приклучува на каналот"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3124
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <прекар>, го исфрла прекарот од тековниот канал (потребен е операторски "
 "статус)"
 
-#: src/common/outbound.c:3128
+#: src/common/outbound.c:3126
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -351,32 +351,32 @@ msgstr ""
 "KICKBAN <прекар>, го банира па потоа го исфрла прекарот од тековниот канал "
 "(потребен е операторски статус)"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3129
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, форсира проверка за лаг"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3131
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <стринг>, бара стринг во баферот"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3133
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <датотека>, вчитува додаток или скрипта"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3135
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, одзема опер. статус на сите оператори во тековниот канал (потребен е "
 "операторски статус)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3137
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, одзема опер. статус на сите оператори во тековниот канал (потребен е "
 "операторски статус)"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3139
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -384,38 +384,38 @@ msgstr ""
 "ME <акција>, ја испраќа акцијата на тековниот канал (акциите се испишани во "
 "трето лице, на пр. /me скокна)"
 
-#: src/common/outbound.c:3143
+#: src/common/outbound.c:3141
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, ги исфрла сите од каналот (потребен е операторски статус)"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3144
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, дава опер. статус на сите корисници во тековниот канал (потребен е "
 "операторски статус)"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3145
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <прекар> <порака>, испраќа приватна порака"
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3147
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, ги листа прекарите од тековниот канал"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3149
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <прекар> <порака>, испраќа CTCP забелешка"
 
-#: src/common/outbound.c:3152
+#: src/common/outbound.c:3150
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <hostname> [<порта>]"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3151
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <прекар>, го поставува прекарот"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3153
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -423,39 +423,39 @@ msgstr ""
 "NOTICE <прекар/канал> <порака>, испраќа забелешка. Забелешките се тип на "
 "пораки на кои што треба да реагирате"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3155
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<прекар>], ја покажува вашата листа за известување или додава некој "
 "на неа"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3157
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <прекар>, дава опер. статус на прекарот (потребен е операторски статус)"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3159
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<канал>] [<причина>], го напушта тековниот канал"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3161
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <прекар | канал>, CTCP го пингува прекарот или каналот"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3163
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <прекар>, отвора нов прозорец за приватен разговор со некого"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3165
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<причина>], се одврзува од тековниот сервер"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3167
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <текст>, праќа текст до серверот во суров формат"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3170
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -465,7 +465,7 @@ msgstr ""
 "со /RECONNECT за повторно врзување на истиот сервер или /RECONNECT ALL за "
 "врзување на сите отворени сервери"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3173
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -475,31 +475,31 @@ msgstr ""
 "RECONNECT за повторно врзување на истиот сервер или /RECONNECT ALL за "
 "врзување на сите отворени сервери"
 
-#: src/common/outbound.c:3177
+#: src/common/outbound.c:3175
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 "RECV <текст>, испраќа податоци до xchat, како да се испратени од irc сервер"
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3176
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3178
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <текст>, го испраќа текстот до објектот во тековниот прозорец"
 
-#: src/common/outbound.c:3183
+#: src/common/outbound.c:3181
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <host> <port> <channel>, се врзува и се приклучува на канал"
 
-#: src/common/outbound.c:3186
+#: src/common/outbound.c:3184
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN <host> <port> <channel>, се врзува и се приклучува на канал"
 
-#: src/common/outbound.c:3191
+#: src/common/outbound.c:3189
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -507,7 +507,7 @@ msgstr ""
 "SERVER [-ssl] <host> [<port>] [<password>], се врзува на сервер, "
 "стандардната порта за нормални врски е 6667, а 9999 е за ssl врски"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3192
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -515,44 +515,44 @@ msgstr ""
 "SERVER <host> [<port>] [<password>], се врзува на сервер, стандардната порта "
 "е 6667"
 
-#: src/common/outbound.c:3196
+#: src/common/outbound.c:3194
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <варијабла> [<вредност>]"
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3197
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr "TOPIC [<наслов>], поставува наслов на каналот"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3199
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <маска> [<маска>...], одбанира дадена маска."
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3200
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <маска> [QUIET]"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3201
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <име> исклучува додаток или скрипта"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3204
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <прекар>, дава глас некому (потребен е операторски статус)"
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3206
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <порака>, ја пишува пораката на сите канали"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3208
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <порака>, ја испраќа пораката на сите оператори на тековниот канал"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3210
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -560,12 +560,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <порака>, ја испраќа пораката на сите оператори на тековниот канал"
 
-#: src/common/outbound.c:3251
+#: src/common/outbound.c:3255
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Користење: %s\n"
 
-#: src/common/outbound.c:3256
+#: src/common/outbound.c:3260
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -573,19 +573,19 @@ msgstr ""
 "\n"
 "Не постои помош за таа команда.\n"
 
-#: src/common/outbound.c:3262
+#: src/common/outbound.c:3266
 msgid "No such command.\n"
 msgstr "Не постои таква команда.\n"
 
-#: src/common/outbound.c:3621
+#: src/common/outbound.c:3625
 msgid "Bad arguments for user command.\n"
 msgstr "Лош аргумент за корисничката команда.\n"
 
-#: src/common/outbound.c:3784
+#: src/common/outbound.c:3787
 msgid "Too many recursive usercommands, aborting."
 msgstr "Премногу рекурзивни кориснички команди, прекинувам."
 
-#: src/common/outbound.c:3848
+#: src/common/outbound.c:3845
 msgid "Unknown Command. Try /help\n"
 msgstr "Непозната команда. Пробај /help\n"
 
@@ -3296,43 +3296,43 @@ msgstr "*НОВ*"
 msgid "EDIT ME"
 msgstr "УРЕДИ МЕ"
 
-#: src/fe-gtk/editlist.c:282 src/fe-gtk/plugingui.c:49
+#: src/fe-gtk/editlist.c:277 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "Име"
 
-#: src/fe-gtk/editlist.c:283
+#: src/fe-gtk/editlist.c:278
 msgid "Command"
 msgstr "Команда"
 
-#: src/fe-gtk/editlist.c:310
+#: src/fe-gtk/editlist.c:314
 msgid "Move Up"
 msgstr "Помести горе"
 
-#: src/fe-gtk/editlist.c:314
+#: src/fe-gtk/editlist.c:318
 msgid "Move Dn"
 msgstr "Помести долу"
 
-#: src/fe-gtk/editlist.c:322
+#: src/fe-gtk/editlist.c:326
 msgid "Cancel"
 msgstr "Откажи"
 
-#: src/fe-gtk/editlist.c:326 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:330 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Сними"
 
-#: src/fe-gtk/editlist.c:334
+#: src/fe-gtk/editlist.c:338
 msgid "Add New"
 msgstr "Додади нов"
 
-#: src/fe-gtk/editlist.c:338 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
 msgid "Delete"
 msgstr "Избриши"
 
-#: src/fe-gtk/editlist.c:346
+#: src/fe-gtk/editlist.c:350
 msgid "Sort"
 msgstr "Подреди"
 
-#: src/fe-gtk/editlist.c:350
+#: src/fe-gtk/editlist.c:354
 msgid "Help"
 msgstr "Помош"
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0.2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-09 02:42+0200\n"
+"POT-Creation-Date: 2004-10-09 04:39+0200\n"
 "PO-Revision-Date: 2003-05-03 01:00+0900\n"
 "Last-Translator: Ryoichi INAGAKI <ryo1@bc.wakwak.com>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/common/cfgfiles.c:406
+#: src/common/cfgfiles.c:433
 msgid "Cannot create ~/.xchat2"
 msgstr "~/.xchat2を作成できません"
 
-#: src/common/cfgfiles.c:726
+#: src/common/cfgfiles.c:753
 msgid "I'm busy"
 msgstr "多忙です"
 
-#: src/common/cfgfiles.c:727
+#: src/common/cfgfiles.c:754
 #, fuzzy
 msgid "Leaving"
 msgstr "ラトビア"
 
-#: src/common/cfgfiles.c:773
+#: src/common/cfgfiles.c:800
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"
@@ -119,7 +119,7 @@ msgstr ""
 msgid "I need /bin/sh to run!\n"
 msgstr "実行には /bin/sh が必要です!\n"
 
-#: src/common/outbound.c:1717
+#: src/common/outbound.c:1716
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -131,7 +131,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1750
+#: src/common/outbound.c:1749
 msgid ""
 "\n"
 "\n"
@@ -143,7 +143,7 @@ msgstr ""
 "詳細は『/HELP <コマンド>』もしくは『/HELP -l』で参照して下さい.\n"
 "\n"
 
-#: src/common/outbound.c:1751
+#: src/common/outbound.c:1750
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -153,36 +153,36 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1848
+#: src/common/outbound.c:1846
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "不明な引数 '%s' を無視します."
 
-#: src/common/outbound.c:2791
+#: src/common/outbound.c:2789
 msgid "No such plugin found.\n"
 msgstr ""
 
-#: src/common/outbound.c:2796 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2794 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr ""
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3054
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <名前> <動作>, ユーザリストの下にボタンを加える"
 
-#: src/common/outbound.c:3058
+#: src/common/outbound.c:3056
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <コマンド>, 参加している全チャンネルへコマンドを送信する"
 
-#: src/common/outbound.c:3060
+#: src/common/outbound.c:3058
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <コマンド>, 入っている全サーバにコマンドを送信する"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3059
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<理由>], 離席状態にする"
 
-#: src/common/outbound.c:3063
+#: src/common/outbound.c:3061
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -192,29 +192,29 @@ msgstr ""
 "ンする. 既にチャンネルに参加しているニックに関しては効果がない (なるとが必"
 "要）"
 
-#: src/common/outbound.c:3065
+#: src/common/outbound.c:3063
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, 現在のテキストウィンドウの内容を消去する"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3064
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, 現在のウィンドウ／タブを閉じる"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3066
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <コード>, 国コードを検出, 例: au = オーストラリア"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3068
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
 msgstr ""
 
-#: src/common/outbound.c:3072
+#: src/common/outbound.c:3070
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, 現在のチャンネルを離れ, 直後に再参加する"
 
-#: src/common/outbound.c:3074
+#: src/common/outbound.c:3072
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -231,7 +231,7 @@ msgstr ""
 ">                        - 誰かに DCC CHATを提案するDCC CLOSE <種類> <ニック"
 "> <ファイル>     例:         /dcc close send kenji file.tar.gz"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3081
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -239,11 +239,11 @@ msgstr ""
 "DEHOP <ニック>, 現在のチャンネルの指定ニックから, ハーフなるとを剥奪する (な"
 "るとが必要)"
 
-#: src/common/outbound.c:3085
+#: src/common/outbound.c:3083
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <ボタン名>, ユーザリストの下のボタンを削除する"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3085
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -251,7 +251,7 @@ msgstr ""
 "DEOP <ニック>, 現在のチャンネルの指定ニックから, なるとを剥奪する(なるとが必"
 "要)"
 
-#: src/common/outbound.c:3089
+#: src/common/outbound.c:3087
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -259,19 +259,19 @@ msgstr ""
 "DEVOICE <ニック>, 現在のチャンネルの指定ニックから, 発言権を削除する (なると"
 "が必要)"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3088
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, サーバからの接続を切断する"
 
-#: src/common/outbound.c:3091
+#: src/common/outbound.c:3089
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <ニック名|ホスト|IP>, ユーザの IP アドレスを検索する"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3090
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO テキスト, テキストをローカル上に表示する"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3093
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -279,11 +279,11 @@ msgstr ""
 "EXEC [-o] <コマンド>, コマンドを実行する. -o フラグを利用すると 出力は現在の"
 "チャンネルへ送信する. それ以外は現在のテキスト・ボックスに表示する"
 
-#: src/common/outbound.c:3097
+#: src/common/outbound.c:3095
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, プロセスに対して SIGCONT を発行する"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3098
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -291,27 +291,27 @@ msgstr ""
 "EXECKILL [-9], 現在のプロセスに対してシグナルを発行する. -9 を指定した場合,プ"
 "ロセスは SIGKILL される"
 
-#: src/common/outbound.c:3102
+#: src/common/outbound.c:3100
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, プロセスに対して SIGSTOP を発行する"
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3101
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, プロセスの標準入力へデータを送信する"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3105
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, 現在サーバの送信キューをフラッシュする"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3107
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr "GATE <ホスト> [<ポート>], 指定ホストを通したプロキシ, 標準ポートは 23"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3113
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr "HOP <ニック>, 指定のニックにハーフなるとを与える (なるとが必要)"
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3115
 #, fuzzy
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
@@ -326,7 +326,7 @@ msgstr ""
 "             PRIV, CHAN, NOTI, CTCP, INVI, ALL\n"
 "    オプション - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3121
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -334,16 +334,16 @@ msgstr ""
 "INVITE <ニック> [<チャンネル>], 指定のチャンネルへ招待する, 標準では現在の"
 "チャンネル名 (なるとが必要)"
 
-#: src/common/outbound.c:3124
+#: src/common/outbound.c:3122
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <チャンネル>, チャンネルに参加する"
 
-#: src/common/outbound.c:3126
+#: src/common/outbound.c:3124
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <ニック>, 現在のチャンネルから, 指定のニックをキックする (なるとが必要)"
 
-#: src/common/outbound.c:3128
+#: src/common/outbound.c:3126
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -351,28 +351,28 @@ msgstr ""
 "KICKBAN <ニック>, 現在のチャンネルから, 指定のニックをキックして, さらにバン"
 "する (なるとが必要)"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3129
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, 新規ラグチェックを強制する"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3131
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <文字列>, バッファ中から文字列を検索する"
 
-#: src/common/outbound.c:3135
+#: src/common/outbound.c:3133
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <ファイル>, プラグインやスクリプトをロード"
 
-#: src/common/outbound.c:3137
+#: src/common/outbound.c:3135
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr "MDEHOP, 現在のチャンネルの全員のハーフなるとを剥奪する (なるとが必要)"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3137
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr "MDEOP, 現在のチャンネルの全員のなるとを剥奪する (なるとが必要)"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3139
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -380,36 +380,36 @@ msgstr ""
 "ME <行動>, 現在のチャンネルに対して, 指定の ACTION を送信する (行動は 『/me "
 "jumps』のように第3者側で書かれる)"
 
-#: src/common/outbound.c:3143
+#: src/common/outbound.c:3141
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, 現在のチャンネルの自分以外の全員をキックする (なるとが必要)"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3144
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr "MOP, 現在のチャンネルの全員になるとを与える (なるとが必要)"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3145
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <ニック> <メッセージ>, プリブを送信する"
 
-#: src/common/outbound.c:3149
+#: src/common/outbound.c:3147
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, 現在のチャンネルのニックリストを表示する"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3149
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <ニック> <メッセージ>, CTCP NOTICE を送信する"
 
-#: src/common/outbound.c:3152
+#: src/common/outbound.c:3150
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <ホスト名> [<ポート>]"
 
-#: src/common/outbound.c:3153
+#: src/common/outbound.c:3151
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <ニック>, 自分のニックを設定する"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3153
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -417,39 +417,39 @@ msgstr ""
 "NOTICE <ニック/チャンネル> <メッセージ>, NOTICE を送信する. NOTICE は自動的に"
 "応答されるメッセージである"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3155
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<ニック>], 自分の通知リストを表示する, または誰かをそれに追加する"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3157
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <ニック>, 指定のニックになるとを与える (なるとが必要)"
 
-#: src/common/outbound.c:3161
+#: src/common/outbound.c:3159
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 "PART [<チャンネル>]  [<理由>], チャンネルを去る. デフォルトでは現在のチャンネ"
 "ル"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3161
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <ニック | チャンネル>, ニックかチャンネルへ CTCP PING をかける"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3163
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <ニック>, 指定ニックとの新規プリブウィンドウを開く"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3165
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<理由>], 現在のサーバから, 接続を切断する"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3167
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <テキスト>, サーバへ生形式のテキストを送信する"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3170
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -459,7 +459,7 @@ msgstr ""
 "サーバに接続しなおすこともできるし、/RECONNECT ALLで開いているサーバすべてに"
 "接続しなおすこともできる"
 
-#: src/common/outbound.c:3175
+#: src/common/outbound.c:3173
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -469,32 +469,32 @@ msgstr ""
 "に接続しなおすこともできるし、/RECONNECT ALLで開いているサーバすべてに接続し"
 "なおすこともできる"
 
-#: src/common/outbound.c:3177
+#: src/common/outbound.c:3175
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3176
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3178
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <テキスト>, カレントウィンドウのオブジェクトへテキストを送信する"
 
-#: src/common/outbound.c:3183
+#: src/common/outbound.c:3181
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <ホスト> <ポート> <チャンネル>, 接続およびチャンネルへ参加す"
 "る"
 
-#: src/common/outbound.c:3186
+#: src/common/outbound.c:3184
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <ホスト> <ポート> <チャンネル>, 接続およびチャンネルへ参加する"
 
-#: src/common/outbound.c:3191
+#: src/common/outbound.c:3189
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -502,7 +502,7 @@ msgstr ""
 "SERVER [-ssl] <ホスト> [<ポート>] [<パスワード>], サーバへ接続する. 通常の接"
 "続では標準ポート番号は6667, ssl接続では994"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3192
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -510,39 +510,39 @@ msgstr ""
 "SERVER <ホスト> [<ポート>] [<パスワード>], サーバへ接続する. 標準ポート番号は"
 "6667"
 
-#: src/common/outbound.c:3196
+#: src/common/outbound.c:3194
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <変数> [<値>]"
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3197
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<トピック>], トピックを設定する. 引数がなければ現在のトピックを表示す"
 "る"
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3199
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3200
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr ""
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3201
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <プラグイン名>, プラグインまたはスクリプトをアンロードする"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3204
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <ニック>, 発言権を指定のニックへ与える (なるとが必要)"
 
-#: src/common/outbound.c:3208
+#: src/common/outbound.c:3206
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <メッセージ>, 全チャンネルへメッセージを送信する"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3208
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
@@ -550,7 +550,7 @@ msgstr ""
 "WALLCHOP <メッセージ>, 現在のチャンネルのなると保持者全員へメッセージを送信す"
 "る"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3210
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -559,12 +559,12 @@ msgstr ""
 "WALLCHOP <メッセージ>, 現在のチャンネルのなると保持者全員へメッセージを送信す"
 "る"
 
-#: src/common/outbound.c:3251
+#: src/common/outbound.c:3255
 #, c-format
 msgid "Usage: %s\n"
 msgstr "使い方: %s\n"
 
-#: src/common/outbound.c:3256
+#: src/common/outbound.c:3260
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -572,19 +572,19 @@ msgstr ""
 "\n"
 "このコマンドのヘルプは利用できません.\n"
 
-#: src/common/outbound.c:3262
+#: src/common/outbound.c:3266
 msgid "No such command.\n"
 msgstr "そのようなコマンドはありません.\n"
 
-#: src/common/outbound.c:3621
+#: src/common/outbound.c:3625
 msgid "Bad arguments for user command.\n"
 msgstr "ユーザコマンドに対して不正な引数を与えています.\n"
 
-#: src/common/outbound.c:3784
+#: src/common/outbound.c:3787
 msgid "Too many recursive usercommands, aborting."
 msgstr "ユーザコマンドの再帰が多すぎます.アボートします."
 
-#: src/common/outbound.c:3848
+#: src/common/outbound.c:3845
 msgid "Unknown Command. Try /help\n"
 msgstr "不明なコマンドです. 『/help』を実行してください\n"
 
@@ -3258,43 +3258,43 @@ msgstr "*新規*"
 msgid "EDIT ME"
 msgstr "*データ*"
 
-#: src/fe-gtk/editlist.c:282 src/fe-gtk/plugingui.c:49
+#: src/fe-gtk/editlist.c:277 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "名前"
 
-#: src/fe-gtk/editlist.c:283
+#: src/fe-gtk/editlist.c:278
 msgid "Command"
 msgstr "コマンド"
 
-#: src/fe-gtk/editlist.c:310
+#: src/fe-gtk/editlist.c:314
 msgid "Move Up"
 msgstr "上へ移動"
 
-#: src/fe-gtk/editlist.c:314
+#: src/fe-gtk/editlist.c:318
 msgid "Move Dn"
 msgstr "下へ移動"
 
-#: src/fe-gtk/editlist.c:322
+#: src/fe-gtk/editlist.c:326
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/fe-gtk/editlist.c:326 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
+#: src/fe-gtk/editlist.c:330 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "保存"
 
-#: src/fe-gtk/editlist.c:334
+#: src/fe-gtk/editlist.c:338
 msgid "Add New"
 msgstr "新規追加"
 
-#: src/fe-gtk/editlist.c:338 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
+#: src/fe-gtk/editlist.c:342 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
 msgid "Delete"
 msgstr "削除"
 
-#: src/fe-gtk/editlist.c:346
+#: src/fe-gtk/editlist.c:350
 msgid "Sort"
 msgstr "ソート"
 
-#: src/fe-gtk/editlist.c:350
+#: src/fe-gtk/editlist.c:354
 msgid "Help"
 msgstr "ヘルプ"
 
