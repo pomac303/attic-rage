@@ -104,36 +104,45 @@ text_word_check (char *word)
 
 	if ((word[0] == '@' || word[0] == '+' || word[0] == '^' || word[0] == '%' || word[0] == '*' ) && word[1] == '#')
 		return WORD_CHANNEL;
-
 	if ((word[0] == '#' || word[0] == '&') && word[1] != '#' && word[1] != 0)
 		return WORD_CHANNEL;
 
-	if (!strncasecmp (word, "irc.", 4) && word[4] != '.')
-		return WORD_URL;
-
-	if (!strncasecmp (word, "ftp.", 4) && word[4] != '.')
-		return WORD_URL;
-
-	if (!strncasecmp (word, "www.", 4) && word[4] != '.')
-		return WORD_URL;
-
-	if (!strncasecmp (word, "irc://", 6) && word[6] != 0)
-		return WORD_URL;
-
-	if (!strncasecmp (word, "ftp://", 6) && word[6] != 0)
-		return WORD_URL;
-
-	if (!strncasecmp (word, "http://", 7) && word[7] != 0)
-		return WORD_URL;
-
-	if (!strncasecmp (word, "file://", 7) && word[7] != 0)
-		return WORD_URL;
-
-	if (!strncasecmp (word, "https://", 8) && word[8] != 0)
-		return WORD_URL;
-
-	if (!strncasecmp (word, "gopher://", 9) && word[9] != 0)
-		return WORD_URL;
+	switch(word[0])
+	{
+		case 'f':
+		case 'F':
+			if (!strncasecmp (word, "ftp.", 4) && word[4] != '.')
+				return WORD_URL;
+			if (!strncasecmp (word, "ftp://", 6) && word[6] != 0)
+				return WORD_URL;
+			if (!strncasecmp (word, "file://", 7) && word[7] != 0)
+				return WORD_URL;
+			break;
+		case 'g':
+		case 'G':
+			if (!strncasecmp (word, "gopher://", 9) && word[9] != 0)
+				return WORD_URL;
+			break;
+		case 'h':
+		case 'H':
+			if (!strncasecmp (word, "http://", 7) && word[7] != 0)
+				return WORD_URL;
+			if (!strncasecmp (word, "https://", 8) && word[8] != 0)
+				return WORD_URL;
+			break;
+		case 'i':
+		case 'I':
+			if (!strncasecmp (word, "irc.", 4) && word[4] != '.')
+				return WORD_URL;
+			if (!strncasecmp (word, "irc://", 6) && word[6] != 0)
+				return WORD_URL;
+			break;
+		case 'w':
+		case 'W':
+			if (!strncasecmp (word, "www.", 4) && word[4] != '.')
+				return WORD_URL;
+			break;
+	}
 
 	if (( (word[0]=='@' || word[0]=='+') && find_name (sess, word+1)) || find_name (sess, word))
 		return WORD_NICK;
