@@ -46,6 +46,18 @@ clear_channel (rage_session *sess)
 
 	log_close (sess);
 
+	if (sess->stack_timer)
+	{
+		g_source_remove(sess->stack_timer);
+		sess->stack_timer = 0;
+	}
+	
+	if (sess->stack_join)
+	{
+		g_queue_free(sess->stack_join);
+		sess->stack_join = NULL;
+	}
+
 	if (sess->current_modes)
 	{
 		free (sess->current_modes);
@@ -641,6 +653,42 @@ inbound_topicnew (server *serv, char *nick, char *chan, char *topic)
 	}
 }
 
+int
+handle_mjoin(rage_session *sess)
+{
+	char buf[2048];
+	struct User *tmp = NULL;
+	int len;
+
+	if (g_queue_get_length(sess->stack_join) > 1)
+	{
+		while(!g_queue_is_empty(sess->stack_join))
+		{
+			len = 0;
+
+			while ((tmp = g_queue_pop_head(sess->stack_join)) &&
+					len <= (sizeof(buf) - (NICKLEN +3)))
+			{
+				len += sprintf (buf + len, "%s", tmp->nick);
+				if (!g_queue_is_empty(sess->stack_join))
+					len += sprintf (buf + len, ", ");
+			}
+			EMIT_SIGNAL (XP_TE_MJOIN, sess, sess->channel, buf, 
+					NULL, NULL, 0);
+		}
+	}
+	else
+	{
+		tmp = g_queue_pop_head(sess->stack_join);
+		EMIT_SIGNAL (XP_TE_JOIN, sess, tmp->nick, sess->channel, tmp->hostname, 
+				NULL, 0);
+	}
+	g_queue_free(sess->stack_join);
+	sess->stack_join = NULL;
+	sess->stack_timer = 0; /* Will be removed when we return FALSE */
+	return FALSE;
+}
+
 void
 inbound_join (server *serv, char *chan, char *user, char *ip)
 {
@@ -648,8 +696,18 @@ inbound_join (server *serv, char *chan, char *user, char *ip)
 	if (sess)
 	{
 		if (!sess->hide_join_part)
-			EMIT_SIGNAL (XP_TE_JOIN, sess, user, chan, ip, NULL, 0);
-		add_name (sess, user, ip);
+		{
+			if (sess->stack_timer)
+				g_source_remove(sess->stack_timer);
+			else
+				sess->stack_join = g_queue_new();
+			g_queue_push_head(sess->stack_join, add_name (sess, user, ip));
+			sess->stack_timer = g_timeout_add(500, 
+					(GSourceFunc)handle_mjoin, sess);
+			
+		}
+		else
+			add_name (sess, user, ip);
 	}
 }
 
@@ -731,7 +789,7 @@ set_server_name (struct server *serv, char *name)
 }
 
 int
-netsplit_gone(server *serv)
+handle_netsplit(server *serv)
 {
 	char buf[2048], *tmp;
 	int len;
@@ -812,7 +870,7 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 			{
 				if (serv->split_timer)
 					g_source_remove(serv->split_timer);
-				netsplit_gone(serv);
+				handle_netsplit(serv);
 			}
 
 			serv->split_queue = g_queue_new();
@@ -831,19 +889,19 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 		g_queue_push_head(serv->split_queue, g_strdup(nick));
 		if (serv->split_timer)
 			g_source_remove(serv->split_timer);
-		serv->split_timer = g_timeout_add(500, (GSourceFunc)netsplit_gone, serv);
+		serv->split_timer = g_timeout_add(500, (GSourceFunc)handle_netsplit, serv);
 	}
 
 	for (; list; list = list->next)
 	{
 		sess = (rage_session *) list->data;
-		if (!netsplit && sess->server == serv)
+		if (sess->server == serv)
 		{
  			if (sess == current_sess)
  				was_on_front_session = TRUE;
 			if (sub_name (sess, nick))
 			{
-				if (!sess->hide_join_part)
+				if (!netsplit || !sess->hide_join_part)
 					EMIT_SIGNAL (XP_TE_QUIT, sess, nick, reason, ip, NULL, 0);
 			}
 			else if (sess->type == SESS_DIALOG && 

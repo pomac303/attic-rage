@@ -353,7 +353,7 @@ sub_name (rage_session *sess, char *name)
 	return TRUE;
 }
 
-void
+struct User*
 add_name (rage_session *sess, char *name, char *hostname)
 {
 	struct User *user;
@@ -385,16 +385,19 @@ add_name (rage_session *sess, char *name, char *hostname)
 	/* duplicate? some broken servers trigger this */
 	if (row == -1)
 	{
+		struct User *tmp = find_name(sess, user->nick);
+		
 		if (user->hostname)
 			free (user->hostname);
 		free (user);
-		return;
+
+		return tmp; /* needed for the MJOIN code */
 	}
 
 	sess->total++;
 
 	/* most ircds don't support multiple modechars infront of the nickname
-      for /NAMES - though they should. */
+	 * for /NAMES - though they should. */
 	while (prefix_chars)
 	{
 		update_counts (sess, user, name[0], TRUE, 1);
@@ -407,6 +410,7 @@ add_name (rage_session *sess, char *name, char *hostname)
 
 	fe_userlist_insert (sess, user, row, FALSE);
 	fe_userlist_numbers (sess);
+	return user;
 }
 
 static int

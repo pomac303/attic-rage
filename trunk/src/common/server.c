@@ -1819,8 +1819,8 @@ server_connect (server *serv, char *hostname, int port, int no_login)
 
 #ifdef WIN32
 	CloseHandle (CreateThread (NULL, 0,
-										(LPTHREAD_START_ROUTINE)server_child,
-										serv, 0, (DWORD *)&pid));
+				(LPTHREAD_START_ROUTINE)server_child,
+				serv, 0, (DWORD *)&pid));
 #else
 	switch (pid = fork ())
 	{

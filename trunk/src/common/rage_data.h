@@ -282,35 +282,39 @@ struct rageprefs
 typedef struct rage_session
 {
 	struct server *server;
-	void *usertree_alpha;			/* pure alphabetical tree */
-	void *usertree;					/* ordered with Ops first */
-	struct User *me;					/* points to myself in the usertree */
+	void *usertree_alpha;		/* pure alphabetical tree */
+	void *usertree;			/* ordered with Ops first */
+	struct User *me;		/* points to myself in the usertree */
 	char channel[CHANLEN];
-	char waitchannel[CHANLEN];		  /* waiting to join this channel */
-	char willjoinchannel[CHANLEN];	  /* /join done for this channel */
-	char channelkey[64];			  /* XXX correct max length? */
-	int limit;						  /* channel user limit */
+	char waitchannel[CHANLEN];	/* waiting to join this channel */
+	char willjoinchannel[CHANLEN];	/* /join done for this channel */
+	char channelkey[64];		/* XXX correct max length? */
+	int limit;			/* channel user limit */
 	int logfd;
 
-	char lastnick[NICKLEN];			  /* last nick you /msg'ed */
+	char lastnick[NICKLEN];		/* last nick you /msg'ed */
+
+	/* Used for mass stacking */
+	GQueue *stack_join;
+	GQueue *stack_part;
+	guint stack_timer;
 
 	struct history history;
-
-	int ops;								/* num. of ops in channel */
-	int hops;						  /* num. of half-oped users */
-	int voices;							/* num. of voiced people */
-	int total;							/* num. of users in channel */
+	int ops;			/* num. of ops in channel */
+	int hops;			/* num. of half-oped users */
+	int voices;			/* num. of voiced people */
+	int total;			/* num. of users in channel */
 
 	char *quitreason;
 	char *topic;
-	char *current_modes;					/* free() me */
+	char *current_modes;		/* free() me */
 
 	int mode_timeout_tag;
 
 	struct rage_session *lastlog_sess;
 	struct nbexec *running_exec;
 
-	struct session_gui *gui;		/* initialized by fe_new_window */
+	struct session_gui *gui;	/* initialized by fe_new_window */
 	struct restore_gui *res;
 
 	int userlisthidden;
@@ -324,10 +328,10 @@ typedef struct rage_session
 	int end_of_names:1;
 	int doing_who:1;		/* /who sent on this channel */
 	/* these are in the bottom-right menu */
-	int hide_join_part:1;	/* hide join & part messages? */
-	int beep:1;				/* beep enabled? */
+	int hide_join_part:1;		/* hide join & part messages? */
+	int beep:1;			/* beep enabled? */
 	int color_paste:1;
-	int done_away_check:1;	/* done checking for away status changes */
+	int done_away_check:1;		/* done checking for away status changes */
 } rage_session;
 
 typedef struct server

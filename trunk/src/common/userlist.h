@@ -29,7 +29,7 @@ struct User *find_name_global (struct server *serv, char *name);
 void update_user_list (rage_session *sess);
 void clear_user_list (rage_session *sess);
 void free_userlist (rage_session *sess);
-void add_name (rage_session *sess, char *name, char *hostname);
+struct User* add_name (rage_session *sess, char *name, char *hostname);
 int sub_name (rage_session *sess, char *name);
 int change_nick (rage_session *sess, char *oldname, char *newname);
 void ul_update_entry (rage_session *sess, char *name, char mode, char sign);
