@@ -16,58 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
-#include <unistd.h>
-
-#ifdef WIN32
-#include <windows.h>
-#endif
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkcheckmenuitem.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtkimagemenuitem.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkmenu.h>
-#include <gtk/gtkmenubar.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkversion.h>
-#include <gdk/gdkkeysyms.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/cfgfiles.h"
-#include "../common/outbound.h"
-#include "../common/ignore.h"
-#include "../common/fe.h"
-#include "../common/server.h"
-#include "../common/util.h"
-#include "xtext.h"
-#include "about.h"
-#include "ascii.h"
-#include "banlist.h"
-#include "chanlist.h"
-#include "editlist.h"
-#include "fkeys.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "notifygui.h"
-#include "pixmaps.h"
-#include "rawlog.h"
-#include "palette.h"
-#include "plugingui.h"
-#include "search.h"
-#include "textgui.h"
-#include "urlgrab.h"
-#include "userlistgui.h"
-#include "menu.h"
 
 static GSList *submenu_list;
 

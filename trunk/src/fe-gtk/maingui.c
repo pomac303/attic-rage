@@ -16,50 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-
-#include <gtk/gtkarrow.h>
-#include <gtk/gtktogglebutton.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkhpaned.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkprogressbar.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtktable.h>
-#include <gtk/gtknotebook.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtkmessagedialog.h>
-#include <gtk/gtkcheckmenuitem.h>
-#include <gtk/gtkvscrollbar.h>
-
-#include "../common/xchat.h"
-#include "../common/fe.h"
-#include "../common/server.h"
-#include "../common/text.h"
-#include "../common/xchatc.h"
-#include "../common/outbound.h"
-#include "../common/inbound.h"
-#include "../common/plugin.h"
-#include "../common/modes.h"
 #include "fe-gtk.h"
-#include "banlist.h"
-#include "gtkutil.h"
-#include "palette.h"
-#include "maingui.h"
-#include "menu.h"
-#include "fkeys.h"
-#include "userlistgui.h"
-#include "tabs.h"
-#include "xtext.h"
 
 static void mg_create_entry (session *sess, GtkWidget *box);
 static void mg_link_irctab (session *sess, int focus);
@@ -70,7 +27,7 @@ static int ignore_chanmode = FALSE;
 static const char chan_flags[] = { 't', 'n', 's', 'i', 'p', 'm', 'l', 'k' };
 
 static GtkWidget *active_tab = NULL;	/* active tab - toggle button */
-GtkWidget *parent_window = NULL;			/* the master window */
+GtkWindow *parent_window = NULL;			/* the master window */
 
 GtkStyle *input_style;
 
@@ -2652,7 +2609,7 @@ mg_changui_new (session *sess, restore_gui *res, int tab, int focus)
 		sess->gui = gui;
 		mg_create_tabwindow (sess);
 		mg_gui = gui;
-		parent_window = gui->window;
+		parent_window = (GtkWindow *)gui->window;
 	} else
 	{
 		sess->gui = gui = mg_gui;

@@ -16,25 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkeditable.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkbutton.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
-#include "ascii.h"
-#include "maingui.h"
 
 static const unsigned char table[]=
 {

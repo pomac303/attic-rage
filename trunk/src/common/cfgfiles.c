@@ -16,21 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
-#include "xchat.h"
-#include "cfgfiles.h"
-#include "proto-irc.h"
-#include "util.h"
-#include "fe.h"
-#include "text.h"
-#include "xchatc.h"
+#include "rage.h"
 
 #ifdef WIN32
 #define XCHAT_DIR "Rage"

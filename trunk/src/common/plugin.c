@@ -16,28 +16,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-#include <stdio.h>
-
-#include "xchat.h"
-#include "fe.h"
-#include "util.h"
-#include "outbound.h"
-#include "cfgfiles.h"
-#include "ignore.h"
-#include "modes.h"
-#include "notify.h"
-#include "text.h"
 #define PLUGIN_C
+/* Require plugin implementation header */
 typedef struct session xchat_context;
-#include "xchat-plugin.h"
-#include "plugin.h"
-#include "dict.h"
+#include "rage.h"
 
-
-#include "xchatc.h"
 
 /* the USE_PLUGIN define only removes libdl stuff */
 
@@ -244,9 +227,11 @@ plugin_add (session *sess, char *filename, void *handle, void *init_func,
 		pl->xchat_command = xchat_command;
 		pl->xchat_commandf = xchat_commandf;
 		pl->xchat_nickcmp = xchat_nickcmp;
+#if 0 // ifdef PLUGIN_C
 		pl->xchat_set_context = xchat_set_context;
 		pl->xchat_find_context = xchat_find_context;
 		pl->xchat_get_context = xchat_get_context;
+#endif
 		pl->xchat_get_info = xchat_get_info;
 		pl->xchat_get_prefs = xchat_get_prefs;
 		pl->xchat_list_get = xchat_list_get;
@@ -1231,7 +1216,7 @@ xchat_list_int (xchat_plugin *ph, xchat_list *xlist, const char *name)
 {
 	guint32 hash = str_hash (name);
 	gpointer data = xlist->pos->data;
-	int tmp;
+	int tmp = 0;
 
 	switch (xlist->type)
 	{

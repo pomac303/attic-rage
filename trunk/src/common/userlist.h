@@ -1,5 +1,3 @@
-#include <time.h>
-
 #ifndef XCHAT_USERLIST_H
 #define XCHAT_USERLIST_H
 

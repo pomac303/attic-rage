@@ -257,7 +257,7 @@ xchat_OBJECTS = $(am_xchat_OBJECTS)
 xchat_DEPENDENCIES = ../common/libxchatcommon.a
 xchat_LDFLAGS =
 
-DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
+DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir) -I../common
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/about.Po ./$(DEPDIR)/ascii.Po \

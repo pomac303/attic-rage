@@ -16,36 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkmain.h>
-#include <gtk/gtkcontainer.h>
-#include <gtk/gtkdialog.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkwindow.h>
-
-#ifdef USE_XLIB
-#include <gdk/gdkx.h>
-#endif
-
-#include "../common/xchat.h"
-#include "../common/util.h"
-#include "palette.h"
-#include "pixmaps.h"
-#include "gtkutil.h"
-#include "about.h"
-
 
 #if 0 /*def USE_GNOME*/
 

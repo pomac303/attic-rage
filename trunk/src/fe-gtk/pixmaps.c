@@ -16,17 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-
 #include "fe-gtk.h"
-#include "../common/xchat.h"
-#include "gtkutil.h"
-
-#include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gdk-pixbuf/gdk-pixdata.h>
 
 #include "../pixmaps/inline_pngs.h"
 

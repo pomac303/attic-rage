@@ -1,7 +1,5 @@
 /* dcc.h */
 
-#include <time.h>						/* for time_t */
-
 #ifndef XCHAT_DCC_H
 #define XCHAT_DCC_H
 

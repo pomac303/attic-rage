@@ -44,12 +44,14 @@ struct _xchat_plugin
 	int (*xchat_nickcmp) (xchat_plugin *ph,
 	       const char *s1,
 	       const char *s2);
+#ifndef PLUGIN_C
 	int (*xchat_set_context) (xchat_plugin *ph,
 		   xchat_context *ctx);
 	xchat_context *(*xchat_find_context) (xchat_plugin *ph,
 		    const char *servname,
 		    const char *channel);
 	xchat_context *(*xchat_get_context) (xchat_plugin *ph);
+#endif
 	const char *(*xchat_get_info) (xchat_plugin *ph,
 		const char *id);
 	int (*xchat_get_prefs) (xchat_plugin *ph,

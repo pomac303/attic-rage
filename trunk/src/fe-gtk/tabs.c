@@ -1,26 +1,7 @@
-#define GTK_DISABLE_DEPRECATED
 
-#include <string.h>
-#include <stdlib.h>
-
-#include <gtk/gtkarrow.h>
-#include <gtk/gtkdnd.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtktogglebutton.h>
-#include <gtk/gtkwidget.h>
-#include <gtk/gtkcontainer.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkhseparator.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkviewport.h>
-#include <gtk/gtkvseparator.h>
+#include "fe-gtk.h"
 
 /* keep this code generic, don't include xchat.h! */
-
-#include "tabs.h"
-
 
 /* ignore "toggled" signal? */
 static int ignore_toggle = FALSE;

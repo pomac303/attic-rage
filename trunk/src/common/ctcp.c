@@ -16,24 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-#include "xchat.h"
-#include "cfgfiles.h"
-#include "util.h"
-#include "modes.h"
-#include "outbound.h"
-#include "ignore.h"
-#include "inbound.h"
-#include "dcc.h"
-#include "text.h"
-#include "ctcp.h"
-#include "server.h"
-#include "xchatc.h"
-
+#include "rage.h"
 
 static void
 ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],

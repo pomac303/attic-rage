@@ -2,49 +2,7 @@
  * Copyright (C) 2004 Peter Zelezny.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-#include <gtk/gtkversion.h>
-#include <gtk/gtkcheckbutton.h>
-#include <gtk/gtkcellrenderertext.h>
-#if GTK_CHECK_VERSION(2,4,0)
-#include <gtk/gtkcomboboxentry.h>
-#else
-#include <gtk/gtkcombo.h>
-#endif
-#include <gtk/gtkentry.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkhseparator.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkliststore.h>
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkmessagedialog.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtktable.h>
-#include <gtk/gtktogglebutton.h>
-#include <gtk/gtktree.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtkvbbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkwindow.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/servlist.h"
-#include "../common/cfgfiles.h"
-
 #include "fe-gtk.h"
-#include "gtkutil.h"
-#include "menu.h"
-#include "pixmaps.h"
-
 
 /* servlistgui.c globals */
 static GtkWidget *serverlist_win = NULL;
@@ -75,8 +33,12 @@ static GtkWidget *edit_tree;
 static ircnet *selected_net = NULL;
 static session *servlist_sess;
 
+/* prototypes */
 static void servlist_network_row_cb (GtkTreeSelection *sel, gpointer user_data);
 static GtkWidget *servlist_open_edit (GtkWidget *parent, ircnet *net);
+static void servlist_move_network (ircnet *net, int delta);
+static ircnet *servlist_find_selected_net (GtkTreeSelection *sel);
+static gboolean servlist_has_selection (GtkTreeView *tree);
 
 
 static const char *pages[]=
@@ -113,7 +75,10 @@ servlist_select_and_show (GtkTreeView *treeview, GtkTreeIter *iter,
 	if (path)
 	{
 		gtk_tree_view_scroll_to_cell (treeview, path, NULL, TRUE, 0.5, 0.5);
-		gtk_tree_view_set_cursor (treeview, path, NULL, FALSE);
+		gtk_tree_view_set_cursor (treeview, path, 
+		    gtk_tree_view_get_column (treeview, 0), FALSE);
+		gtk_tree_view_row_activated(treeview,path,
+		    gtk_tree_view_get_column (treeview, 0) );
 		gtk_tree_path_free (path);
 	}
 }
@@ -292,6 +257,62 @@ servlist_deletenetwork (ircnet *net)
 	servlist_select_and_show (GTK_TREE_VIEW (networks_tree), &iter,
 									  GTK_LIST_STORE (model));
 	servlist_network_row_cb (sel, NULL);
+}
+
+static void
+servlist_netup_cb (GtkWidget *item, ircnet *net)
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model = NULL;
+
+  if (!servlist_has_selection (GTK_TREE_VIEW (networks_tree)))
+    return;
+
+  net = selected_net;
+
+  servlist_move_network(net, -1);
+
+  servlist_select_and_show( GTK_TREE_VIEW (networks_tree), &iter, GTK_LIST_STORE (model) );
+}
+
+static void
+servlist_netdown_cb (GtkWidget *item, ircnet *net)
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  GtkTreeSelection *sel;
+  GtkTreePath *path;
+  GtkTreeView *treeview = GTK_TREE_VIEW (networks_tree);
+  ircnet *nett;
+
+  if (!selected_net)
+    return;
+
+  net = selected_net;
+
+  sel = gtk_tree_view_get_selection (treeview);
+  
+  nett = servlist_find_selected_net(sel);
+  printf("selected net: %s\n", nett->name);
+  if (!gtk_tree_selection_get_selected (sel , &model, &iter))
+    return;
+  
+  path = gtk_tree_model_get_path( GTK_TREE_MODEL(model), &iter);
+  nett = servlist_find_selected_net(sel);
+  printf("selected net: %s\n", nett->name);
+
+  servlist_move_network(net, 1);
+  nett = servlist_find_selected_net(sel);
+  printf("selected net: %s\n", nett->name);
+
+  // gtk_tree_model_get_iter_first (model, &iter);
+  gtk_tree_view_scroll_to_cell (treeview, path, NULL, TRUE, 0.5, 0.5);
+  gtk_tree_selection_select_iter (sel, &iter);
+  nett = servlist_find_selected_net(sel);
+  printf("selected net: %s\n", nett->name);
+  gtk_tree_view_set_cursor (treeview, path, gtk_tree_view_get_column (treeview, 0), FALSE);
+  nett = servlist_find_selected_net(sel);
+  printf("selected net: %s\n", nett->name);
 }
 
 static void
@@ -872,8 +893,10 @@ servlist_open_edit (GtkWidget *parent, ircnet *net)
 	GtkWidget *treeview_servers;
 	GtkWidget *vbuttonbox1;
 	GtkWidget *buttonadd;
-	GtkWidget *buttonremove;
-	GtkWidget *buttonedit;
+	GtkWidget *button_servlist_remove;
+	GtkWidget *button_servlist_up;
+	GtkWidget *button_servlist_down;
+	GtkWidget *button_servlist_edit;
 	GtkWidget *hseparator2;
 	GtkWidget *hbuttonbox4;
 	GtkWidget *button10;
@@ -1042,19 +1065,34 @@ servlist_open_edit (GtkWidget *parent, ircnet *net)
 	gtk_container_add (GTK_CONTAINER (vbuttonbox1), buttonadd);
 	GTK_WIDGET_SET_FLAGS (buttonadd, GTK_CAN_DEFAULT);
 
-	buttonremove = gtk_button_new_from_stock ("gtk-remove");
-	g_signal_connect (G_OBJECT (buttonremove), "clicked",
+	button_servlist_remove = gtk_button_new_from_stock ("gtk-remove");
+	g_signal_connect (G_OBJECT (button_servlist_remove), "clicked",
 							G_CALLBACK (servlist_deleteserver_cb), NULL);
-	gtk_widget_show (buttonremove);
-	gtk_container_add (GTK_CONTAINER (vbuttonbox1), buttonremove);
-	GTK_WIDGET_SET_FLAGS (buttonremove, GTK_CAN_DEFAULT);
+	gtk_widget_show (button_servlist_remove);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_remove);
+	GTK_WIDGET_SET_FLAGS (button_servlist_remove, GTK_CAN_DEFAULT);
+	
+	button_servlist_up = gtk_button_new_from_stock ("gtk-go-up");
+	g_signal_connect (G_OBJECT (button_servlist_up), "clicked",
+							G_CALLBACK (servlist_deleteserver_cb), NULL);
+	gtk_widget_show (button_servlist_up);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_up);
+	GTK_WIDGET_SET_FLAGS (button_servlist_up, GTK_CAN_DEFAULT);
+	
+	button_servlist_down = gtk_button_new_from_stock ("gtk-go-down");
+	g_signal_connect (G_OBJECT (button_servlist_down), "clicked",
+							G_CALLBACK (servlist_deleteserver_cb), NULL);
 
-	buttonedit = gtk_button_new_with_mnemonic (_("_Edit"));
-	g_signal_connect (G_OBJECT (buttonedit), "clicked",
+	gtk_widget_show (button_servlist_down);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_down);
+	GTK_WIDGET_SET_FLAGS (button_servlist_down, GTK_CAN_DEFAULT);
+
+	button_servlist_edit = gtk_button_new_with_mnemonic (_("_Edit"));
+	g_signal_connect (G_OBJECT (button_servlist_edit), "clicked",
 							G_CALLBACK (servlist_editserverbutton_cb), NULL);
-	gtk_widget_show (buttonedit);
-	gtk_container_add (GTK_CONTAINER (vbuttonbox1), buttonedit);
-	GTK_WIDGET_SET_FLAGS (buttonedit, GTK_CAN_DEFAULT);
+	gtk_widget_show (button_servlist_edit);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox1), button_servlist_edit);
+	GTK_WIDGET_SET_FLAGS (button_servlist_edit, GTK_CAN_DEFAULT);
 
 	hseparator2 = gtk_hseparator_new ();
 	gtk_widget_show (hseparator2);
@@ -1117,6 +1155,8 @@ servlist_open_networks (void)
 	GtkWidget *vbuttonbox2;
 	GtkWidget *button_add;
 	GtkWidget *button_remove;
+	GtkWidget *button_up;
+	GtkWidget *button_down;
 	GtkWidget *button_edit;
 	GtkWidget *button_sort;
 	GtkWidget *hseparator1;
@@ -1301,6 +1341,20 @@ servlist_open_networks (void)
 	gtk_widget_show (button_remove);
 	gtk_container_add (GTK_CONTAINER (vbuttonbox2), button_remove);
 	GTK_WIDGET_SET_FLAGS (button_remove, GTK_CAN_DEFAULT);
+	
+	button_up = gtk_button_new_from_stock ("gtk-go-up");
+	g_signal_connect (G_OBJECT (button_up), "clicked",
+							G_CALLBACK (servlist_netup_cb), 0);
+	gtk_widget_show (button_up);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox2), button_up);
+	GTK_WIDGET_SET_FLAGS (button_up, GTK_CAN_DEFAULT);
+	
+	button_down = gtk_button_new_from_stock ("gtk-go-down");
+	g_signal_connect (G_OBJECT (button_down), "clicked",
+							G_CALLBACK (servlist_netdown_cb), 0);
+	gtk_widget_show (button_down);
+	gtk_container_add (GTK_CONTAINER (vbuttonbox2), button_down);
+	GTK_WIDGET_SET_FLAGS (button_down, GTK_CAN_DEFAULT);
 
 	button_edit = gtk_button_new_with_mnemonic (_("_Edit..."));
 	g_signal_connect (G_OBJECT (button_edit), "clicked",

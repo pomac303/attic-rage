@@ -16,47 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>
-#include <ctype.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtklabel.h>
-#include <gtk/gtkeditable.h>
-#include <gtk/gtkmenu.h>
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkoptionmenu.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtknotebook.h>
-#include <gtk/gtkcheckbutton.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkvscrollbar.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/cfgfiles.h"
-#include "../common/userlist.h"
-#include "../common/outbound.h"
-#include "../common/util.h"
-#include "../common/text.h"
-#include "../common/plugin.h"
-#include <gdk/gdkkeysyms.h>
-#include "gtkutil.h"
-#include "menu.h"
-#include "xtext.h"
-#include "palette.h"
-#include "maingui.h"
-#include "textgui.h"
-#include "fkeys.h"
-
 
 static void replace_handle (GtkWidget * wid);
 void key_action_tab_clean (void);

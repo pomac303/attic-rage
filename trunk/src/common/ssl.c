@@ -19,14 +19,9 @@
 
 #include <openssl/ssl.h>		  /* SSL_() */
 #include <openssl/err.h>		  /* ERR_() */
-#include <time.h>					  /* asctime() */
-#include <string.h>				  /* strncpy() */
 #include "ssl.h"					  /* struct cert_info */
-#include "../../config.h"		  /* HAVE_SNPRINTF */
-
-#ifndef HAVE_SNPRINTF
-#define snprintf g_snprintf
-#endif
+#include <time.h>
+#include <string.h>
 
 /* globals */
 static struct chiper_info chiper_info;		/* static buffer for _SSL_get_cipher_info() */

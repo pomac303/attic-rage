@@ -16,35 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <time.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkcheckbutton.h>
-#include <gtk/gtktable.h>
-#include <gtk/gtkalignment.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkspinbutton.h>
-#include <gtk/gtkstock.h>
-#include <gdk/gdkkeysyms.h>
-#include <gtk/gtkhbbox.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/outbound.h"
-#include "../common/util.h"
-#include "gtkutil.h"
-#include "maingui.h"
-
 
 /**
  * Accepts a regex_t pointer and string to test it with 

@@ -16,22 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-#include "xchat.h"
-#include "ignore.h"
-#include "cfgfiles.h"
-#include "fe.h"
-#include "text.h"
-#include "util.h"
-#include "xchatc.h"
-
+#include "rage.h"
 
 int ignored_ctcp = 0;			  /* keep a count of all we ignore */
 int ignored_priv = 0;

@@ -16,30 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include "fe-gtk.h"
-
-#include <gtk/gtkstock.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvseparator.h>
-
-#include "../common/xchat.h"
-#include "../common/cfgfiles.h"
-#include "../common/xchatc.h"
-#include "../common/fe.h"
-#include "menu.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "editlist.h"
-
 
 static GtkWidget *editlist_gui_entry_name;
 static GtkWidget *editlist_gui_entry_cmd;

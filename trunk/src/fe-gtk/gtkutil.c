@@ -15,44 +15,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
-#define _FILE_OFFSET_BITS 64 /* allow selection of large files */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fcntl.h>
+
 #include "fe-gtk.h"
-
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkmessagedialog.h>
-#include <gtk/gtkwindow.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtktooltips.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkspinbutton.h>
-#include <gtk/gtkclipboard.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkcellrenderertoggle.h>
-#include <gtk/gtkversion.h>
-#if GTK_CHECK_VERSION(2,4,0)
-#include <gtk/gtkfilechooserdialog.h>
-#else
-#include <gtk/gtkfilesel.h>
-#endif
-
-#include "../common/xchat.h"
-#include "gtkutil.h"
-#include "pixmaps.h"
 
 /* gtkutil.c, just some gtk wrappers */
 
@@ -564,7 +528,7 @@ gtkutil_set_icon (GtkWidget *win)
 	gtk_window_set_icon (GTK_WINDOW (win), pix_xchat);
 }
 
-extern GtkWidget *parent_window;	/* maingui.c */
+extern GtkWindow *parent_window;	/* maingui.c */
 
 GtkWidget *
 gtkutil_window_new (char *title, char *role, int width, int height, int flags)

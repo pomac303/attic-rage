@@ -16,32 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <time.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-
-#include "../common/xchat.h"
-#include "../common/modes.h"
-#include "../common/outbound.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "banlist.h"
 
 /* model for the banlist tree */
 enum

@@ -16,9 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <string.h>
-#include <stdlib.h>
-#include "history.h"
+#include "rage.h"
 
 void
 history_add (struct history *his, char *text)

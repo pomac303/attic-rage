@@ -41,15 +41,15 @@ typedef struct _GtkXTextClass GtkXTextClass;
 typedef struct textentry textentry;
 
 typedef struct {
-	GtkXText *xtext;					/* attached to this widget */
+	GtkXText *xtext;		/* attached to this widget */
 
-	gfloat old_value;					/* last known adj->value */
+	gfloat old_value;		/* last known adj->value */
 	textentry *text_first;
 	textentry *text_last;
 	guint16 grid_offset[256];
 
-	textentry *last_ent_start;	  /* this basically describes the last rendered */
-	textentry *last_ent_end;	  /* selection. */
+	textentry *last_ent_start;	/* this basically describes the last rendered */
+	textentry *last_ent_end;	/* selection. */
 	int last_offset_start;
 	int last_offset_end;
 
@@ -57,14 +57,14 @@ typedef struct {
 
 	int pagetop_line;
 	int pagetop_subline;
-	textentry *pagetop_ent;			/* what's at xtext->adj->value */
+	textentry *pagetop_ent;		/* what's at xtext->adj->value */
 
 	int num_lines;
-	int indent;						  /* position of separator (pixels) from left */
+	int indent;			/* position of separator (pixels) from left */
 
 	textentry *marker_pos;
 
-	int window_width;				/* window size when last rendered. */
+	int window_width;		/* window size when last rendered. */
 	int window_height;
 
 	unsigned int time_stamp:1;

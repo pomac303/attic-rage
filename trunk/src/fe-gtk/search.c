@@ -16,25 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkentry.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkstock.h>
-
-#include "../common/xchat.h"
-#include "../common/util.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
-#include "xtext.h"
-#include "maingui.h"
-
 
 static void *last;	/* FIXME */
 

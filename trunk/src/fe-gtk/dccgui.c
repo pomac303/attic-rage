@@ -16,31 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <time.h>
-
-#define WANTSOCKET
-#define WANTARPA
-#include "../common/inet.h"
 #include "fe-gtk.h"
-
-#include <gtk/gtkclist.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkstock.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/fe.h"
-#include "../common/util.h"
-#include "../common/network.h"
-#include "gtkutil.h"
-#include "palette.h"
-#include "maingui.h"
 
 #ifdef USE_GNOME
 #include <libgnomevfs/gnome-vfs-mime-utils.h>

@@ -16,28 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <ctype.h>
-#include <time.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-
-#include "xchat.h"
-#include <glib/ghash.h>
-#include "cfgfiles.h"
-#include "plugin.h"
-#include "fe.h"
-#include "util.h"
-#include "outbound.h"
-#include "xchatc.h"
-#include "text.h"
-#ifdef WIN32
-#include <windows.h>
-#endif
+#include "rage.h"
 
 struct pevt_stage1
 {
@@ -1701,10 +1680,11 @@ sound_play (const char *file)
 		cmd = sound_find_command ();
 
 #ifdef WIN32
-		if (cmd == NULL || strcmp (cmd, "esdplay") == 0)
-		{
-			PlaySound (file_fs, NULL, SND_NODEFAULT|SND_FILENAME|SND_ASYNC);
-		} else
+		// TODO: bart (05/09/2004) commented this sound code out here
+		//if (cmd == NULL || strcmp (cmd, "esdplay") == 0)
+		//{
+		//	PlaySound (file_fs, NULL, SND_NODEFAULT|SND_FILENAME|SND_ASYNC);
+		//} else
 #endif
 		{
 			if (cmd)

@@ -18,34 +18,7 @@
 
 /* IRC RFC1459(+commonly used extensions) protocol implementation */
 
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <time.h>
-
-#include "xchat.h"
-
-#ifdef WIN32
-#include "inet.h"	/* for gethostname() */
-#endif
-
-#include "ctcp.h"
-#include "fe.h"
-#include "ignore.h"
-#include "inbound.h"
-#include "modes.h"
-#include "notify.h"
-#include "numeric.h"
-#include "plugin.h"
-#include "server.h"
-#include "text.h"
-#include "outbound.h"
-#include "util.h"
-#include "xchatc.h"
-
+#include "rage.h"
 
 static void
 irc_login (server *serv, char *user, char *realname)
@@ -966,7 +939,7 @@ irc_server(session *sess, int parc, char *parv[])
 		case M_RPONG:
 		{
 			time_t tp;
-			char *line[5];
+			char line[5];
 			/* XXX: needs a text event */
 			/* parv[0] == source server
 			 * parv[3] == dest server
@@ -974,7 +947,7 @@ irc_server(session *sess, int parc, char *parv[])
 			 * parv[5] == user added time, ie from client.
 			 */
 			tp = time(NULL);
-			snprintf(line, 5, "%li",  tp - atoi(parv[5]));
+			snprintf (line, sizeof (line), "%li",  tp - atoi(parv[5]));
 			EMIT_SIGNAL(XP_TE_RPONG, sess, parv[0], parv[3], parv[4], line, 0);
 			break;
 		}

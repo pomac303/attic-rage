@@ -16,45 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkmain.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkprogressbar.h>
-#include <gtk/gtkbox.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtktogglebutton.h>
-#include <gtk/gtkversion.h>
-
-#include "../common/xchat.h"
-#include "../common/fe.h"
-#include "../common/util.h"
-#include "../common/text.h"
-#include "../common/cfgfiles.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "pixmaps.h"
-#include "xtext.h"
-#include "palette.h"
-#include "menu.h"
-#include "notifygui.h"
-#include "textgui.h"
-#include "fkeys.h"
-#include "tabs.h"
-#include "urlgrab.h"
-
-#ifdef USE_XLIB
-#include <gdk/gdkx.h>
-#include <gtk/gtkinvisible.h>
-#endif
 
 
 GdkPixmap *channelwin_pix;

@@ -16,22 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 #include "fe-gtk.h"
-#include "palette.h"
-
-#include "../common/xchat.h"
-#include "../common/util.h"
-#include "../common/cfgfiles.h"
-
 
 GdkColor colors[] = {
 	/* colors for xtext */

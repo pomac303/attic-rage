@@ -16,32 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkscrolledwindow.h>
-
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkcellrenderertext.h>
-
-#include "../common/xchat.h"
-#include "../common/cfgfiles.h"
-#include "../common/url.h"
-#include "../common/tree.h"
-#include "gtkutil.h"
-#include "menu.h"
-#include "maingui.h"
-#include "urlgrab.h"
 
 /* model for the URL treeview */
 enum
@@ -149,7 +124,7 @@ url_button_save (void)
 }
 
 void
-fe_url_add (char *urltext)
+fe_url_add (const char *urltext)
 {
 	GtkListStore *store;
 	GtkTreeIter iter;

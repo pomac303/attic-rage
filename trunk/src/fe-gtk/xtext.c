@@ -21,6 +21,8 @@
  *
  */
 
+#include "fe-gtk.h"
+
 #define XCHAT							/* using xchat */
 #define TINT_VALUE 195				/* 195/255 of the brightness. */
 #define MOTION_MONITOR				/* URL hilights. */
@@ -34,42 +36,7 @@
 #define REFRESH_TIMEOUT 20
 #define WORDWRAP_LIMIT 24
 
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkselection.h>
-#include <gtk/gtkclipboard.h>
-#include <gtk/gtkversion.h>
-#include <gtk/gtkwindow.h>
-
-#ifdef XCHAT
-#include "../../config.h"			/* can define USE_XLIB here */
-#else
-#define USE_XLIB
-#endif
-
-#ifdef USE_XLIB
-#include <gdk/gdkx.h>
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#endif
-
-#ifdef USE_MMX
-#include "mmx_cmod.h"
-#endif
-
-#include "xtext.h"
-
 #define charlen(str) g_utf8_skip[*(guchar *)(str)]
-
-#ifdef WIN32
-#include <windows.h>
-#include <gdk/gdkwin32.h>
-#endif
 
 /* is delimiter */
 #define is_del(c) \
@@ -138,7 +105,7 @@ static int gtk_xtext_render_ents (GtkXText * xtext, textentry *, textentry *);
 static void gtk_xtext_recalc_widths (xtext_buffer *buf, int);
 static void gtk_xtext_fix_indent (xtext_buffer *buf);
 static int gtk_xtext_find_subline (GtkXText *xtext, textentry *ent, int line);
-static char *gtk_xtext_conv_color (unsigned char *text, int len, int *newlen);
+/* static char *gtk_xtext_conv_color (unsigned char *text, int len, int *newlen); */
 static unsigned char *
 gtk_xtext_strip_color (unsigned char *text, int len, unsigned char *outbuf,
 							  int *newlen, int *mb_ret);
@@ -521,12 +488,12 @@ backend_get_char_width (GtkXText *xtext, unsigned char *str, int *mbl_ret)
 
 /* simplified version of gdk_draw_layout_line_with_colors() */
 
-static void 
+	static void 
 xtext_draw_layout_line (GdkDrawable      *drawable,
-								GdkGC            *gc,
-								gint              x, 
-								gint              y,
-								PangoLayoutLine  *line)
+		GdkGC            *gc,
+		gint              x, 
+		gint              y,
+		PangoLayoutLine  *line)
 {
 	GSList *tmp_list = line->runs;
 	PangoRectangle logical_rect;
@@ -703,7 +670,7 @@ gtk_xtext_init (GtkXText * xtext)
 		static const gint n_targets = sizeof (targets) / sizeof (targets[0]);
 
 		gtk_selection_add_targets (GTK_WIDGET (xtext), GDK_SELECTION_PRIMARY,
-											targets, n_targets);
+				targets, n_targets);
 	}
 
 	if (getenv ("XCHAT_OVERDRAW"))
@@ -1423,9 +1390,9 @@ gtk_xtext_selection_down (GtkXText *xtext, textentry *start, textentry *end,
 }
 
 static void
-gtk_xtext_selection_render (GtkXText *xtext,
-									 textentry *start_ent, int start_offset,
-									 textentry *end_ent, int end_offset)
+gtk_xtext_selection_render (GtkXText *xtext, 
+		textentry *start_ent, int start_offset,
+		textentry *end_ent, int end_offset)
 {
 	textentry *ent;
 	int start, end;
@@ -1489,7 +1456,7 @@ lamejump:
 		}
 
 		xtext->jump_out_offset = end;
-		xtext->jump_in_offset = start;
+		xtext->jump_in_offset = 0; // start;
 		gtk_xtext_render_ents (xtext, ent, NULL);
 		xtext->jump_out_offset = 0;
 		xtext->jump_in_offset = 0;
@@ -1918,7 +1885,7 @@ gtk_xtext_motion_notify (GtkWidget * widget, GdkEventMotion * event)
 				if (!xtext->cursor_hand)
 				{
 					gdk_window_set_cursor (GTK_WIDGET (xtext)->window,
-											  		xtext->hand_cursor);
+							xtext->hand_cursor);
 					xtext->cursor_hand = TRUE;
 				}
 
@@ -1973,6 +1940,7 @@ gtk_xtext_set_clip_owner (GtkWidget * xtext, GdkEventButton * event)
 		gtk_clipboard_set_text (gtk_widget_get_clipboard (xtext, GDK_SELECTION_CLIPBOARD),
 										str, len);
 #endif
+		printf("xtext_clipboard: %s", str);
 		free (str);
 	}
 
@@ -2236,8 +2204,8 @@ gtk_xtext_selection_get_text (GtkXText *xtext, int *len_ret)
 
 static void
 gtk_xtext_selection_get (GtkWidget * widget,
-								 GtkSelectionData * selection_data_ptr,
-								 guint info, guint time)
+		GtkSelectionData * selection_data_ptr,
+		guint info, guint time)
 {
 	GtkXText *xtext = GTK_XTEXT (widget);
 	char *stripped;
@@ -2463,6 +2431,8 @@ gtk_xtext_strip_color (unsigned char *text, int len, unsigned char *outbuf,
 
 /* GeEkMaN: converts mIRC control codes to literal control codes */
 
+/* XXX: Not used? */
+/*
 static char *
 gtk_xtext_conv_color (unsigned char *text, int len, int *newlen)
 {
@@ -2522,9 +2492,9 @@ gtk_xtext_conv_color (unsigned char *text, int len, int *newlen)
 				j++;
 				i++;
 			} else
-			{
+			{ */
 				/* invalid utf8 safe guard */
-				if (i + mbl > len)
+/*				if (i + mbl > len)
 					mbl = len - i;
 				memcpy (new_str + j, text + i, mbl);
 				j += mbl;
@@ -2545,6 +2515,7 @@ gtk_xtext_conv_color (unsigned char *text, int len, int *newlen)
 
 	return new_str;
 }
+*/
 
 /* gives width of a string, excluding the mIRC codes */
 
@@ -2572,7 +2543,7 @@ gtk_xtext_render_flush (GtkXText * xtext, int x, int y, unsigned char *str,
 {
 	int str_width, dofill;
 	GdkDrawable *pix = NULL;
-	int dest_x, dest_y;
+	int dest_x = 0, dest_y = 0;
 
 	if (xtext->dont_render || len < 1)
 		return 0;
@@ -3064,10 +3035,10 @@ gtk_xtext_render_str (GtkXText * xtext, int y, textentry * ent,
 			int xx = MAX (x, xtext->clip_x);
 
 			xtext_draw_bg (xtext,
-								xx,	/* x */
-								y - xtext->font->ascent, /* y */
-				MIN (xtext->clip_x2 - xx, (win_width + MARGIN) - xx), /* width */
-								xtext->fontsize);		/* height */
+					xx,	/* x */
+					y - xtext->font->ascent, /* y */
+					MIN (xtext->clip_x2 - xx, (win_width + MARGIN) - xx), /* width */
+					xtext->fontsize);		/* height */
 		}
 	}
 
@@ -3873,7 +3844,7 @@ gtk_xtext_render_line (GtkXText * xtext, textentry * ent, int line,
 		y = (xtext->fontsize * line) + xtext->font->ascent - xtext->pixel_offset;
 		ent->mb = TRUE;
 		gtk_xtext_render_str (xtext, y, ent, time_str, stamp_size,
-									 win_width, 2, line, TRUE);
+				win_width, 2, line, TRUE);
 		ent->mb = tmp;
 		g_free (time_str);
 	}
@@ -3904,10 +3875,11 @@ gtk_xtext_render_line (GtkXText * xtext, textentry * ent, int line,
 		if (!subline)
 		{
 			if (!gtk_xtext_render_str (xtext, y, ent, str, len, win_width,
-												indent, line, FALSE))
+						indent, line, FALSE))
 			{
 				/* small optimization */
-				gtk_xtext_draw_marker (xtext, ent, y - xtext->fontsize * (taken + start_subline + 1));
+				gtk_xtext_draw_marker (xtext, ent, 
+						y - xtext->fontsize * (taken + start_subline + 1));
 				return ent->lines_taken - subline;
 			}
 		} else
@@ -4773,8 +4745,8 @@ gtk_xtext_append_entry (xtext_buffer *buf, textentry * ent)
 
 void
 gtk_xtext_append_indent (xtext_buffer *buf,
-								 unsigned char *left_text, int left_len,
-								 unsigned char *right_text, int right_len)
+		unsigned char *left_text, int left_len,
+		unsigned char *right_text, int right_len)
 {
 	textentry *ent;
 	unsigned char *str;

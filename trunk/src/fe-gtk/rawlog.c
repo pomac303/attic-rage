@@ -16,30 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvscrollbar.h>
-#include <gtk/gtkstock.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
-#include "palette.h"
-#include "maingui.h"
-#include "rawlog.h"
-#include "xtext.h"
-
 
 static void
 close_rawlog (GtkWidget *wid, server *serv)

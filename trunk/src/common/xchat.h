@@ -1,17 +1,17 @@
-#include "../../config.h"
-
-#include <glib/gslist.h>
-#include <glib/glist.h>
-#include <glib/gutils.h>
-#include <glib/giochannel.h>
-#include <glib/gstrfuncs.h>
-#include <time.h>			/* need time_t */
+/* NOTE: This file is DEPRECIATED.
+** Please do not add stuff to it.
+** This file will eventually become deleted.
+** Cheers,
+** Bart
+*/
 
 #ifndef XCHAT_H
 #define XCHAT_H
 
 #include "history.h"
-#include "dict.h"
+#ifndef WIN32
+#include "../../config.h"
+#endif
 
 #ifndef HAVE_SNPRINTF
 #define snprintf g_snprintf
@@ -19,17 +19,6 @@
 
 #ifndef HAVE_VSNPRINTF
 #define vsnprintf g_vsnprintf
-#endif
-
-#ifdef USE_DEBUG
-#define malloc(n) xchat_malloc(n, __FILE__, __LINE__)
-#define realloc(n, m) xchat_realloc(n, m, __FILE__, __LINE__)
-#define free(n) xchat_free(n, __FILE__, __LINE__)
-#define strdup(n) xchat_strdup(n, __FILE__, __LINE__)
-void *xchat_malloc (int size, char *file, int line);
-void *xchat_strdup (char *str, char *file, int line);
-void xchat_free (void *buf, char *file, int line);
-void *xchat_realloc (char *old, int len, char *file, int line);
 #endif
 
 #ifdef SOCKS

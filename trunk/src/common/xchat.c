@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -32,25 +31,14 @@
 #include <signal.h>
 #endif
 
-#include "xchat.h"
-#include "fe.h"
-#include "util.h"
-#include "cfgfiles.h"
-#include "ignore.h"
-#include "xchat-plugin.h"
-#include "plugin.h"
+#include "rage.h"
 #include "plugin-timer.h"
-#include "notify.h"
-#include "server.h"
-#include "servlist.h"
-#include "outbound.h"
-#include "text.h"
-#include "url.h"
-#include "xchatc.h"
 
 #ifdef USE_OPENSSL
+#if 0
 #include <openssl/ssl.h>		  /* SSL_() */
 #include "ssl.h"
+#endif
 #endif
 
 GSList *popup_list = 0;

@@ -16,36 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <time.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkscrolledwindow.h>
-
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkcellrenderertext.h>
-
-#include "../common/xchat.h"
-#include "../common/notify.h"
-#include "../common/cfgfiles.h"
-#include "../common/util.h"
-#include "../common/userlist.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "palette.h"
-#include "notifygui.h"
-
 
 /* model for the notify treeview */
 enum

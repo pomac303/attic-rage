@@ -1,5 +1,5 @@
 extern GtkStyle *input_style;
-extern GtkWidget *parent_window;
+extern GtkWindow *parent_window;
 
 void mg_changui_new (session *sess, restore_gui *res, int tab, int focus);
 void mg_update_xtext (GtkWidget *wid);

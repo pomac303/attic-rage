@@ -16,40 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkbox.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkdnd.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkcellrendererpixbuf.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkliststore.h>
-#include <gdk/gdkkeysyms.h>
-
-#include "../common/xchat.h"
-#include "../common/util.h"
-#include "../common/userlist.h"
-#include "../common/modes.h"
-#include "../common/notify.h"
-#include "../common/xchatc.h"
-#include "../common/dcc.h"
-#include "gtkutil.h"
-#include "palette.h"
-#include "maingui.h"
-#include "menu.h"
-#include "pixmaps.h"
-#include "userlistgui.h"
-
 
 GdkPixbuf *
 get_user_icon (server *serv, struct User *user)

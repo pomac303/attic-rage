@@ -2,54 +2,7 @@
  * Copyright (C) 2004 Peter Zelezny.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
-#include "../common/xchat.h"
-#include "../common/cfgfiles.h"
-#include "../common/text.h"
-#include "../common/userlist.h"
-#include "../common/xchatc.h"
 #include "fe-gtk.h"
-#include "gtkutil.h"
-#include "maingui.h"
-#include "palette.h"
-#include "pixmaps.h"
-
-#include <gtk/gtkcolorseldialog.h>
-#include <gtk/gtktable.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkmisc.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkalignment.h>
-#include <gtk/gtknotebook.h>
-#include <gtk/gtkframe.h>
-#include <gtk/gtkfontsel.h>
-#include <gtk/gtkcheckbutton.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkspinbutton.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtkhbbox.h>
-#include <gtk/gtkhseparator.h>
-#include <gtk/gtkmenu.h>
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkradiobutton.h>
-#include <gtk/gtkoptionmenu.h>
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreestore.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkhscale.h>
-#ifdef WIN32
-#include <windows.h>
-#endif
-
 
 GtkStyle *create_input_style (void);
 

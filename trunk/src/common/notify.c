@@ -16,25 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <time.h>
-
-#include "xchat.h"
-#include "notify.h"
-#include "cfgfiles.h"
-#include "fe.h"
-#include "server.h"
-#include "text.h"
-#include "util.h"
-#include "xchatc.h"
-#include "modes.h"
-
+#include "rage.h"
 
 GSList *notify_list = 0;
 int notify_tag = 0;

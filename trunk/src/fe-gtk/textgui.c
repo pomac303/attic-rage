@@ -16,33 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 #include "fe-gtk.h"
-
-#include <gtk/gtkclist.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtkvpaned.h>
-
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/cfgfiles.h"
-#include "../common/outbound.h"
-#include "../common/text.h"
-#include "gtkutil.h"
-#include "xtext.h"
-#include "maingui.h"
-#include "palette.h"
-#include "textgui.h"
 
 extern struct text_event te[];
 extern char *pntevts_text[];

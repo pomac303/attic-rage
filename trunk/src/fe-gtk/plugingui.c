@@ -16,34 +16,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define GTK_DISABLE_DEPRECATED
-
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
+#define PLUGIN_C 
 #include "fe-gtk.h"
-
-#include <gtk/gtkdialog.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkbox.h>
-#include <gtk/gtkscrolledwindow.h>
-
-#include <gtk/gtkliststore.h>
-#include <gtk/gtktreeview.h>
-#include <gtk/gtktreeselection.h>
-#include <gtk/gtkcellrenderertext.h>
-
-#include "../common/xchat.h"
-#define PLUGIN_C
-typedef struct session xchat_context;
-#include "../common/xchat-plugin.h"
-#include "../common/plugin.h"
-#include "../common/util.h"
-#include "../common/outbound.h"
-#include "../common/xchatc.h"
-#include "gtkutil.h"
+#include "plugin.h"
+#include "xchat-plugin.h"
 
 /* model for the plugin treeview */
 enum
