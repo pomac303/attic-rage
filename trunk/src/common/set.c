@@ -18,12 +18,9 @@
  * USA.
  */
 
-#define xmalloc(SIZE)	(g_malloc(SIZE))
-#define xfree(PTR)	(g_free(PTR))
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <glib.h>
 #include <set.h>
 #include <assert.h>
 
@@ -33,7 +30,7 @@ set_alloc(set_compare_f *compare, set_cleanup_f *cleanup)
     struct set *set;
 
     assert(compare != NULL);
-    set = xmalloc(sizeof(*set));
+    set = malloc(sizeof(*set));
     set->compare = compare;
     set->cleanup = cleanup;
     set->root = NULL;
@@ -112,7 +109,7 @@ set_dispose_node(struct set *set, struct set_node *node)
 {
     if (set->cleanup)
         set->cleanup(set_node_data(node));
-    xfree(node);
+    free(node);
 }
 
 void

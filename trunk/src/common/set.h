@@ -21,9 +21,6 @@
 #if !defined(SRVX_SET_H)
 #define SRVX_SET_H
 
-#define xmalloc(SIZE)   (g_malloc(SIZE))
-#define xfree(PTR)      (g_free(PTR))
-
 /** Element destruction function.  It must dereference any memory
  * pointed to by the data element pointed to, but must not free the
  * element itself.
@@ -54,7 +51,7 @@ struct set
 
 #define set_node(DATUM) (((struct set_node*)(DATUM))-1)
 #define set_node_data(NODE) ((void*)((NODE)+1))
-#define set_node_alloc(SIZE) ((struct set_node*)xmalloc(sizeof(struct set_node) + (SIZE)))
+#define set_node_alloc(SIZE) ((struct set_node*)malloc(sizeof(struct set_node) + (SIZE)))
 #define set_prev(NODE) ((NODE)->prev)
 #define set_next(NODE) ((NODE)->next)
 
