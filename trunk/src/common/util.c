@@ -55,7 +55,7 @@ path_part (char *file, char *path, int pathlen)
 char *				/* like strstr(), but nocase */
 nocasestrstr (const char *s, const char *wanted)
 {
-	register const int len = strlen (wanted);
+	register const size_t len = strlen (wanted);
 
 	if (len == 0)
 		return (char *)s;
@@ -109,7 +109,7 @@ errorstring (int err)
 									  MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),
 									  tbuf, sizeof (tbuf), NULL))
 			{
-				int len;
+				size_t len;
 				char *utf;
 
 				tbuf[sizeof (tbuf) - 1] = 0;
@@ -199,7 +199,7 @@ strip_color (char *text)
 	int nc = 0;
 	int i = 0;
 	int col = 0;
-	int len = strlen (text);
+	size_t len = strlen (text);
 	char *new_str = malloc (len + 2);
 
 	while (len > 0)
@@ -876,8 +876,8 @@ int my_poptParseArgvString(const char * s, int * argcPtr, char *** argvPtr) {
     int argvAlloced = POPT_ARGV_ARRAY_GROW_DELTA;
     char ** argv = malloc(sizeof(*argv) * argvAlloced);
     const char ** argv2;
-    int argc = 0;
-    int i, buflen;
+    int argc = 0, i;
+    size_t buflen;
 
     buflen = strlen(s) + 1;
 /*    bufStart = buf = alloca(buflen);*/
@@ -979,6 +979,7 @@ util_exec (char *cmd)
 		return pid;
 	}
 #else
+	(void)pid; /* Not used on win32 */
 	spawnvp (_P_DETACH, argv[0], argv);
 	free (argv);
 	return 0;
@@ -1172,7 +1173,7 @@ download_move_to_completed_dir (char *dcc_dir, char *dcc_completed_dir,
 
 	if (access (dl_dest, F_OK) == 0)
 	{
-		int destlen = strlen (dl_dest);
+		size_t destlen = strlen (dl_dest);
 		int i;
 		struct stat buf;
 

@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+CFLAGS+= -Wimplicit -Wstrict-prototypes
+
 SUBDIRS = po intl src plugins
 
 EXTRA_DIST = autogen.sh HACKING INSTALL.w32 faq.html xchat.png \

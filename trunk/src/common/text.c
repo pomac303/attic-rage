@@ -76,7 +76,7 @@ text_word_check (char *word)
 	session *sess = current_sess;
 	char *at, *dot;
 	int i, dots;
-	int len = strlen (word);
+	size_t len = strlen (word);
 
 	if(q3link(word))
 		return WORD_URL;
@@ -1055,7 +1055,8 @@ pevent_load_defaults (void)
 void
 pevent_make_pntevts (void)
 {
-	int i, m, len;
+	int i, m;
+	size_t len;
 	char out[1024];
 
 	for (i = 0; i < NUM_XP; i++)
@@ -1092,7 +1093,8 @@ pevent_make_pntevts (void)
 static void
 pevent_trigger_load (int *i_penum, char **i_text, char **i_snd)
 {
-	int penum = *i_penum, len;
+	int penum = *i_penum;
+	size_t len;
 	char *text = *i_text, *snd = *i_snd;
 
 	if (penum != -1 && text != NULL)
@@ -1240,7 +1242,8 @@ pevent_load (char *filename)
 static void
 pevent_check_all_loaded (void)
 {
-	int i, len;
+	int i;
+	size_t len;
 
 	for (i = 0; i < NUM_XP; i++)
 	{
@@ -1271,7 +1274,8 @@ load_text_events (void)
 static void
 display_event (char *i, session *sess, int numargs, char **args)
 {
-	int len, oi, ii;
+	size_t len;
+	int oi, ii;
 	char *ar, o[4096], d, a, done_all = FALSE;
 
 	oi = ii = len = d = a = 0;
@@ -1350,7 +1354,8 @@ pevt_build_string (const char *input, char **output, int *max_arg)
 	struct pevt_stage1 *s = NULL, *base = NULL, *last = NULL, *next;
 	int clen;
 	char o[4096], d, *obuf, *i;
-	int oi, ii, max = -1, len, x;
+	int oi, ii, max = -1, x;
+	size_t len;
 
 	len = strlen (input);
 	i = malloc (len + 1);

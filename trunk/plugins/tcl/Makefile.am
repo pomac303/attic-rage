@@ -1,3 +1,4 @@
+CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 EXTRA_DIST=makefile.msc printevents.h tclplugin.h README
 

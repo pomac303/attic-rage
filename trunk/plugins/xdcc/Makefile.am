@@ -1,3 +1,5 @@
+CFLAGS+= -Wimplicit -Wstrict-prototypes
+
 libdir = $(xchatdir)/plugins
 
 lib_LTLIBRARIES = xdcc.la

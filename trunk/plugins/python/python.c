@@ -197,7 +197,7 @@ typedef struct {
 /* Function declarations */
 
 static PyObject *Util_BuildList(char *word[]);
-static void Util_Autoload();
+static void Util_Autoload(void);
 static char *Util_Expand(char *filename);
 
 static int Callback_Command(char *word[], char *word_eol[], void *userdata);
@@ -205,7 +205,7 @@ static int Callback_Print(char *word[], void *userdata);
 static int Callback_Timer(void *userdata);
 static int Callback_ThreadTimer(void *userdata);
 
-static PyObject *XChatOut_New();
+static PyObject *XChatOut_New(void);
 static PyObject *XChatOut_write(PyObject *self, PyObject *args);
 static void XChatOut_dealloc(PyObject *self);
 
@@ -220,7 +220,7 @@ static PyObject *Context_FromServerAndChannel(char *server, char *channel);
 
 static PyObject *Plugin_New(char *filename, PyMethodDef *xchat_methods,
 			    PyObject *xcoobj);
-static PyObject *Plugin_GetCurrent();
+static PyObject *Plugin_GetCurrent(void);
 static PluginObject *Plugin_ByString(char *str);
 static Hook *Plugin_AddHook(int type, PyObject *plugin, PyObject *callback,
 			    PyObject *userdata, void *data);
@@ -250,11 +250,11 @@ static PyObject *Module_xchat_nickcmp(PyObject *self, PyObject *args);
 static void IInterp_Exec(char *command);
 static int IInterp_Cmd(char *word[], char *word_eol[], void *userdata);
 
-static void Command_PyList();
+static void Command_PyList(void);
 static void Command_PyLoad(char *filename);
 static void Command_PyUnload(char *name);
 static void Command_PyReload(char *name);
-static void Command_PyAbout();
+static void Command_PyAbout(void);
 static int Command_Py(char *word[], char *word_eol[], void *userdata);
 
 /* ===================================================================== */
@@ -325,7 +325,7 @@ Util_BuildList(char *word[])
 }
 
 static void
-Util_Autoload()
+Util_Autoload(void)
 {
 	char oldcwd[PATH_MAX];
 	const char *dir_name;
@@ -591,7 +591,7 @@ static int xchatout_buffer_size = 0;
 static int xchatout_buffer_pos = 0;
 
 static PyObject *
-XChatOut_New()
+XChatOut_New(void)
 {
 	XChatOutObject *xcoobj;
 	xcoobj = PyObject_New(XChatOutObject, &XChatOut_Type);
@@ -1160,7 +1160,7 @@ error:
 }
 
 static PyObject *
-Plugin_GetCurrent()
+Plugin_GetCurrent(void)
 {
 	PyObject *plugin;
 	plugin = PySys_GetObject("__plugin__");
@@ -1874,7 +1874,7 @@ IInterp_Cmd(char *word[], char *word_eol[], void *userdata)
 /* Python command handling */
 
 static void
-Command_PyList()
+Command_PyList(void)
 {
 	GSList *list;
 	list = plugin_list;
@@ -1941,7 +1941,7 @@ Command_PyReload(char *name)
 }
 
 static void
-Command_PyAbout()
+Command_PyAbout(void)
 {
 	xchat_print(ph, about);
 }
@@ -2097,7 +2097,7 @@ xchat_plugin_init(xchat_plugin *plugin_handle,
 }
 
 int
-xchat_plugin_deinit()
+xchat_plugin_deinit(void)
 {
 	GSList *list;
 

@@ -1,3 +1,5 @@
+CFLAGS+= -Wimplicit -Wstrict-prototypes
+
 EXTRA_DIST = makefile.msc
 
 libdir = $(xchatlibdir)/plugins

@@ -1,3 +1,4 @@
+CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 EXTRA_DIST=ignore.pl sample_script.pl xchat2-perldocs.html xchat2-perl.html makefile.msc
 

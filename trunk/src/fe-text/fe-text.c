@@ -16,21 +16,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "rage.h"
+
 #ifdef HAVE_STRINGS_H
 #include <strings.h>
 #endif
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <ctype.h>
-#include "../common/xchat.h"
-#include "../common/xchatc.h"
-#include "../common/outbound.h"
-#include "../common/util.h"
-#include "../common/fe.h"
 #include "fe-text.h"
 
 
@@ -142,12 +132,6 @@ fe_new_window (struct session *sess, int focus)
 	"\n\n");
 	fflush (stdout);
 	fflush (stdin);
-}
-
-static int
-get_stamp_str (time_t tim, char *dest, int size)
-{
-	return strftime (dest, size, prefs.stamp_format, localtime (&tim));
 }
 
 static int

@@ -1,5 +1,7 @@
 localedir = $(datadir)/locale
 
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+
 bin_PROGRAMS = xchat
 
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \

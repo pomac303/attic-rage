@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+
 noinst_LIBRARIES = libxchatcommon.a
 
 INCLUDES = $(COMMON_CFLAGS)
