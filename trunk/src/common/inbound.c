@@ -779,7 +779,8 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 		{
 			if (*p == '.')
 				tld = 0;
-			tld++;
+			else
+				tld++;
 		}
 			
 		if ((tld > 1) && (tld < 5))
@@ -794,9 +795,10 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 				}
 				if (*p == '.')
 					tld = 0;
-				tld++;
+				else
+					tld++;
 			}
-			if (!space && (tld > 1) && (tld < 5))
+			if (!space && (tld > 1) && (tld < 6))
 				netsplit = TRUE;
 		}
 
