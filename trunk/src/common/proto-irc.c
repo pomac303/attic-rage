@@ -894,11 +894,9 @@ irc_server(session *sess, int parc, char *parv[])
 					{
 						if (ignore_check(parv[0], IG_PRIV))
 							return;
-						inbound_chanmsg(sess->server, 
-								NULL,
+						inbound_privmsg(sess->server, 
 								nick, ip,
 								parv[parc-1], 
-								FALSE,
 								id);
 					}
 				}
