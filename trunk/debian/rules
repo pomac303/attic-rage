@@ -31,7 +31,7 @@ patch-stamp:
 configure: configure-stamp
 configure-stamp:
 		CFLAGS="$(CFLAGS)" ./configure --prefix=/usr --sysconfdir=/etc --enable-ipv6  \
-		--enable-japanese-conv --disable-mmx --enable-shm --enable-openssl --enable-zvt --disable-ruby --disable-perl --disable-python --disable-tcl
+		--enable-japanese-conv --disable-mmx --enable-openssl --enable-zvt
 		 touch configure-stamp
 # Disabled: --enable-python --enable-tcl=/usr/lib/tcl8.4 --enable-textfe
 build: configure-stamp patch-stamp build-stamp
@@ -72,7 +72,7 @@ install-stamp: build
 	dh_install
 	install -o root -g root -m 755 rage $(CURDIR)/debian/rage/usr/bin
 #	install -o root -g root -m 755 xchat-text $(CURDIR)/debian/xchat-text/usr/bin
-#	install -o root -g root -m 644 plugins/perl/*.pl $(CURDIR)/debian/xchat-common/usr/share/doc/xchat-common/scripts-perl/
+	install -o root -g root -m 644 plugins/perl/*.pl $(CURDIR)/debian/rage-common/usr/share/doc/rage-common/scripts-perl/
 	install -o root -g root -m 644 src/common/rage-plugin.h $(CURDIR)/debian/rage-common/usr/include/rage/
 	install -o root -g root -m 644 debian/rage_mini.xpm $(CURDIR)/debian/rage-common/usr/share/icons/
 	ln -s xchat-common $(CURDIR)/debian/rage/usr/share/doc/rage
