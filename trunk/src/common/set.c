@@ -20,6 +20,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <glib.h>
 #include <string.h>
 #include <set.h>
 #include <assert.h>
