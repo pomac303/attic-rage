@@ -817,7 +817,7 @@ irc_server(session *sess, int parc, char *parv[])
 			char *chan = parv[2];
 			char *reason = parv[3];
 
-			/* FIXME: sess->p_cmp ? */
+			/* If your nick matches exactly, then you parted */
 			if (!strcmp(nick,sess->server->nick))
 				inbound_upart(sess->server, chan, ip, reason);
 			else

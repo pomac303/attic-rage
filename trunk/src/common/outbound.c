@@ -1131,7 +1131,10 @@ mkickops_cb (struct User *user, multidata *data)
 	return TRUE;
 }
 
-/* XXX What is the syntax of this command? */
+/* XXX What is the syntax of this command? 
+ * Usage: MKICK, Mass kicks everyone except you in the current channel (needs chanop)
+ * Pretty lame actually....
+ */
 static int
 cmd_mkick (struct session *sess, char *cmd, char *buf)
 {
@@ -3364,10 +3367,7 @@ find_internal_command (char *name)
 {
 	int present;
 	/* the "-1" is to skip the NULL terminator */
-	/* XXX fix me, needs conversion to the new format */
 	return dict_find(rage_cmd_list, name, &present);
-//	return bsearch (name, xc_cmds, (sizeof (xc_cmds) /
-//				sizeof (xc_cmds[0])) - 1, sizeof (xc_cmds[0]), command_compare);
 }
 
 static void
