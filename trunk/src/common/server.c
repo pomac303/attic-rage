@@ -385,7 +385,7 @@ tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 	msg->type = type;
 	/* If line is non null and the default locale is not utf8, 
 	 * then the data got converted */
-	msg->utf8 = prefs.bomprefix ? 0 : (line ? 0 : 1);
+	msg->utf8 = prefs.bomprefix ? (line ? 0 : 1) : 0;
 
 	/* Calc on each line to know when to stop throttling... */
 	throttle = queue_throttle(serv);
