@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(src)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(xchat, 2.4.0)
+AM_INIT_AUTOMAKE(rage, 1.0.0.pre1)
 AM_MAINTAINER_MODE
 AC_PROG_CC
 AC_PROG_CPP
@@ -472,6 +472,8 @@ AM_CONDITIONAL(DO_PERL, test "x$perl" = "xyes")
 AM_CONDITIONAL(DO_PYTHON, test "x$python" = "xyes")
 AM_CONDITIONAL(DO_TCL, test "x$tcl" = "xyes")
 AM_CONDITIONAL(DO_PLUGIN, test "x$plugin" = "xyes")
+AC_MSG_CHECKING([for sanity])
+AC_MSG_RESULT([failed])
 
 dnl *********************************************************************
 dnl ** SOCKS5 ***********************************************************
@@ -662,7 +664,7 @@ po/Makefile.in
 ])
 
 echo
-echo xchat $VERSION
+echo rage $VERSION
 echo
 echo Building GTK+ Interface .... : $gtkfe
 echo Building TEXT Interface .... : $textfe

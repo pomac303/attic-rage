@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xchat 1.9.x\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-08-15 00:49+1000\n"
+"POT-Creation-Date: 2004-09-14 22:45+1200\n"
 "PO-Revision-Date: 2002-11-19 15:07+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -16,20 +16,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: src/common/cfgfiles.c:350
+#: src/common/cfgfiles.c:337
 msgid "Cannot create ~/.xchat2"
 msgstr "Ei suuda luua kataloogi ~/.xchat2"
 
-#: src/common/cfgfiles.c:667
+#: src/common/cfgfiles.c:656
 msgid "I'm busy"
 msgstr "On tegemist"
 
-#: src/common/cfgfiles.c:668
+#: src/common/cfgfiles.c:657
 #, fuzzy
 msgid "Leaving"
 msgstr "Läti"
 
-#: src/common/cfgfiles.c:714
+#: src/common/cfgfiles.c:703
 msgid ""
 "* Running IRC as root is stupid! You should\n"
 "  create a User Account and use that to login.\n"
@@ -37,84 +37,84 @@ msgstr ""
 "* root-kasutajana IRCus istuda on lollus! Sa peaks\n"
 "  looma tavakasutaja konto ja sellega sisse logima.\n"
 
-#: src/common/dcc.c:61
+#: src/common/dcc.c:30
 msgid "Waiting"
 msgstr "Ootamine"
 
-#: src/common/dcc.c:62
+#: src/common/dcc.c:31
 msgid "Active"
 msgstr "Aktiivne"
 
-#: src/common/dcc.c:63
+#: src/common/dcc.c:32
 msgid "Failed"
 msgstr "Ei õnnestunud"
 
-#: src/common/dcc.c:64
+#: src/common/dcc.c:33
 msgid "Done"
 msgstr "Valmis"
 
-#: src/common/dcc.c:65
+#: src/common/dcc.c:34
 msgid "Connect"
 msgstr "Ühenda"
 
-#: src/common/dcc.c:66
+#: src/common/dcc.c:35
 msgid "Aborted"
 msgstr "Katkestatud"
 
-#: src/common/dcc.c:1279
+#: src/common/dcc.c:1250
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "Puudub ligipääs failile %s\n"
 
-#: src/common/dcc.c:1874
+#: src/common/dcc.c:1844
 msgid "No active DCCs\n"
 msgstr "Ei ole ühtegi aktiivset DCCd\n"
 
-#: src/common/ignore.c:120 src/common/ignore.c:124 src/common/ignore.c:128
-#: src/common/ignore.c:132 src/common/ignore.c:136 src/common/ignore.c:140
-#: src/common/ignore.c:144
+#: src/common/ignore.c:105 src/common/ignore.c:109 src/common/ignore.c:113
+#: src/common/ignore.c:117 src/common/ignore.c:121 src/common/ignore.c:125
+#: src/common/ignore.c:129
 msgid "YES  "
 msgstr "JAH  "
 
-#: src/common/ignore.c:122 src/common/ignore.c:126 src/common/ignore.c:130
-#: src/common/ignore.c:134 src/common/ignore.c:138 src/common/ignore.c:142
-#: src/common/ignore.c:146
+#: src/common/ignore.c:107 src/common/ignore.c:111 src/common/ignore.c:115
+#: src/common/ignore.c:119 src/common/ignore.c:123 src/common/ignore.c:127
+#: src/common/ignore.c:131
 msgid "NO   "
 msgstr "EI   "
 
-#: src/common/ignore.c:373
+#: src/common/ignore.c:358
 #, c-format
 msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr ""
 
-#: src/common/ignore.c:398
+#: src/common/ignore.c:383
 #, c-format
 msgid "You are being MSG flooded from %s, setting autodialog OFF.\n"
 msgstr ""
 
-#: src/common/notify.c:400
+#: src/common/notify.c:383
 #, c-format
 msgid "  %-20s online\n"
 msgstr "  %-20s onlain\n"
 
-#: src/common/notify.c:402
+#: src/common/notify.c:385
 #, c-format
 msgid "  %-20s offline\n"
 msgstr "  %-20s offlain\n"
 
-#: src/common/outbound.c:70
+#: src/common/outbound.c:31
 msgid "No channel joined. Try /join #<channel>\n"
 msgstr "Pole ühinetud ühegi kanaliga. Proovi /join #<kanal>\n"
 
-#: src/common/outbound.c:76
+#: src/common/outbound.c:37
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr "Pole ühendatud. Proovi /server <host> [<port>]\n"
 
-#: src/common/outbound.c:1355
+#: src/common/outbound.c:1545
 msgid "I need /bin/sh to run!\n"
 msgstr "Vajan käivitamiseks programmi /bin/sh!\n"
 
-#: src/common/outbound.c:1596
+#: src/common/outbound.c:1816
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -126,7 +126,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1631
+#: src/common/outbound.c:1849
 msgid ""
 "\n"
 "\n"
@@ -138,7 +138,7 @@ msgstr ""
 "Rohkem infot saad käsuga /HELP <käsk>, või proovi /HELP -l\n"
 "\n"
 
-#: src/common/outbound.c:1632
+#: src/common/outbound.c:1850
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -148,36 +148,36 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1724
+#: src/common/outbound.c:1947
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Tundmatut parameetrit '%s' ignoreeriti."
 
-#: src/common/outbound.c:2474
+#: src/common/outbound.c:2895
 msgid "No such plugin found.\n"
 msgstr "Sellist pluginat ei leitud.\n"
 
-#: src/common/outbound.c:2479 src/fe-gtk/plugingui.c:186
+#: src/common/outbound.c:2900 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "See plugin ei taha end eemaldada.\n"
 
-#: src/common/outbound.c:2624
+#: src/common/outbound.c:3160
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nimi> <tegevus>, lisab kasutajate nimekirja alla uue nupu"
 
-#: src/common/outbound.c:2626
+#: src/common/outbound.c:3162
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <käsk>, saadab käsu kõikidele kanalitele, kus oled"
 
-#: src/common/outbound.c:2628
+#: src/common/outbound.c:3164
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <käsk>, saadab käsu kõikidele serverite, kus oled"
 
-#: src/common/outbound.c:2629
+#: src/common/outbound.c:3165
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<põhjus>], märgib sinu eemal olevaks"
 
-#: src/common/outbound.c:2631
+#: src/common/outbound.c:3167
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -187,19 +187,19 @@ msgstr ""
 "kanaliga liitumise. Kui mõni selline kasutaja on kanalil, see käsk ei viska "
 "neid automaatselt välja (selleks vajad chanop-õigusi)"
 
-#: src/common/outbound.c:2633
+#: src/common/outbound.c:3169
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Puhastab aktiivse tekstiakna"
 
-#: src/common/outbound.c:2634
+#: src/common/outbound.c:3170
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Sulgeb aktiivse tekstiakna"
 
-#: src/common/outbound.c:2637
+#: src/common/outbound.c:3172
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kood>, leiab koodi järgi riigi nime, näiteks ee = eesti"
 
-#: src/common/outbound.c:2639
+#: src/common/outbound.c:3174
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <kasutaja> <teade>, saadab kasutajale CTCP teate. Levinud teateid on "
 "näiteks VERSION ja USERINFO"
 
-#: src/common/outbound.c:2641
+#: src/common/outbound.c:3176
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, Lahkub aktiivsest kanalist ja naaseb kohe"
 
-#: src/common/outbound.c:2643
+#: src/common/outbound.c:3178
 #, fuzzy
 msgid ""
 "\n"
@@ -230,7 +230,7 @@ msgstr ""
 "DCC CLOSE <tüüp> <kasutaja> <fail>        näide:\n"
 "         /dcc close send toomas fail.tar.gz"
 
-#: src/common/outbound.c:2653
+#: src/common/outbound.c:3187
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -238,11 +238,11 @@ msgstr ""
 "DEHOP <kasutaja>, eemaldab aktiivse kanali kasutajalt chanhalf-op õiguse "
 "(vajab chanop õigust)"
 
-#: src/common/outbound.c:2655
+#: src/common/outbound.c:3189
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <nimi>, kustutab kasutajate nimekirja aluse nupu"
 
-#: src/common/outbound.c:2657
+#: src/common/outbound.c:3191
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -250,62 +250,62 @@ msgstr ""
 "DEOP <kasutaja>, eemaldab aktiivse kanali kasutajalt chanop õiguse (vajab "
 "chanop õigust)"
 
-#: src/common/outbound.c:2659
+#: src/common/outbound.c:3193
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:2660
+#: src/common/outbound.c:3194
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, katkestab ühenduse serveriga"
 
-#: src/common/outbound.c:2661
+#: src/common/outbound.c:3195
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <kasutaja|host|ip>, leiab kasutaja ip aadressi"
 
-#: src/common/outbound.c:2662
+#: src/common/outbound.c:3196
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <tekst>, väljastab teksti samas masinas"
 
-#: src/common/outbound.c:2665
+#: src/common/outbound.c:3199
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
 msgstr ""
 
-#: src/common/outbound.c:2667
+#: src/common/outbound.c:3201
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, saadab protsessile SIGCONT signaali"
 
-#: src/common/outbound.c:2670
+#: src/common/outbound.c:3204
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
 msgstr ""
 
-#: src/common/outbound.c:2672
+#: src/common/outbound.c:3206
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, saadab protsessile SIGSTOP signaali"
 
-#: src/common/outbound.c:2673
+#: src/common/outbound.c:3207
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr ""
 
-#: src/common/outbound.c:2677
+#: src/common/outbound.c:3211
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr ""
 
-#: src/common/outbound.c:2679
+#: src/common/outbound.c:3213
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 
-#: src/common/outbound.c:2685
+#: src/common/outbound.c:3219
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <kasutaja>, annab kasutajale chanhalf-op õiguse (vajab chanop õigust)"
 
-#: src/common/outbound.c:2687
+#: src/common/outbound.c:3221
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -314,7 +314,7 @@ msgid ""
 "    options - NOSAVE, QUIET"
 msgstr ""
 
-#: src/common/outbound.c:2694
+#: src/common/outbound.c:3227
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -322,43 +322,43 @@ msgstr ""
 "INVITE <kasutaja> [<kanal>], kutsub kasutaja kanalisse, vaikimisi "
 "aktiivsesse kanalisse (vajab chanop õigust)"
 
-#: src/common/outbound.c:2695
+#: src/common/outbound.c:3228
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanal>, ühineb kanaliga"
 
-#: src/common/outbound.c:2697
+#: src/common/outbound.c:3230
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <kasutaja>, viskab selle kasutaja kanalist välja (vajab chanop õigust)"
 
-#: src/common/outbound.c:2699
+#: src/common/outbound.c:3232
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
 msgstr ""
 
-#: src/common/outbound.c:2702
+#: src/common/outbound.c:3235
 msgid "LAGCHECK, forces a new lag check"
 msgstr ""
 
-#: src/common/outbound.c:2704
+#: src/common/outbound.c:3237
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <string>, otsib puhvrist stringi"
 
-#: src/common/outbound.c:2706
+#: src/common/outbound.c:3239
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fail>, laeb plugina või skripti"
 
-#: src/common/outbound.c:2709
+#: src/common/outbound.c:3241
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:2711
+#: src/common/outbound.c:3243
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:2713
+#: src/common/outbound.c:3245
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -366,104 +366,108 @@ msgstr ""
 "ME <tegevus>, saadab tegevuse aktiivsesse kanalisse (tegevused kirjutatakse "
 "kolmandas isikus, näiteks /me hüppab)"
 
-#: src/common/outbound.c:2715
+#: src/common/outbound.c:3247
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, viskab kanalist välja kõik peale sinu (vajab chanop õigust)"
 
-#: src/common/outbound.c:2718
+#: src/common/outbound.c:3250
 #, fuzzy
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr "MKICK, viskab kanalist välja kõik peale sinu (vajab chanop õigust)"
 
-#: src/common/outbound.c:2719
+#: src/common/outbound.c:3251
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <kasutaja> <sõnum>, saadab kasutajale privaatsõnumi"
 
-#: src/common/outbound.c:2722
+#: src/common/outbound.c:3253
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, näitab aktiivse kanali kasutajate nimekirja"
 
-#: src/common/outbound.c:2724
+#: src/common/outbound.c:3255
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <kasutaja> <sõnum>, saadab CTCP teate"
 
-#: src/common/outbound.c:2725
+#: src/common/outbound.c:3256
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <hostinimi> [<port>]"
 
-#: src/common/outbound.c:2726
+#: src/common/outbound.c:3257
 msgid "NICK <nickname>, sets your nick"
 msgstr ""
 
-#: src/common/outbound.c:2729
+#: src/common/outbound.c:3259
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
 msgstr ""
 
-#: src/common/outbound.c:2731
+#: src/common/outbound.c:3261
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 
-#: src/common/outbound.c:2733
+#: src/common/outbound.c:3263
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <kasutaja>, annab kasutajale chanop üigused (vajab chanop'i)"
 
-#: src/common/outbound.c:2735
+#: src/common/outbound.c:3265
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 
-#: src/common/outbound.c:2737
+#: src/common/outbound.c:3267
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr ""
 
-#: src/common/outbound.c:2739
+#: src/common/outbound.c:3269
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 
-#: src/common/outbound.c:2741
+#: src/common/outbound.c:3271
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<põhjus>], katkestab ühenduse serveriga"
 
-#: src/common/outbound.c:2743
+#: src/common/outbound.c:3273
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr ""
 
-#: src/common/outbound.c:2746
+#: src/common/outbound.c:3276
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
 "reconnect to all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:2749
+#: src/common/outbound.c:3279
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
 "all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:2751
+#: src/common/outbound.c:3281
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 
-#: src/common/outbound.c:2754
+#: src/common/outbound.c:3282
+msgid "RPING <server> [server], ping between servers"
+msgstr ""
+
+#: src/common/outbound.c:3284
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr ""
 
-#: src/common/outbound.c:2757
+#: src/common/outbound.c:3287
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:2760
+#: src/common/outbound.c:3290
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:2764
+#: src/common/outbound.c:3295
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -471,7 +475,7 @@ msgstr ""
 "SERVER [-ssl] <host> [<port>] [<salasõna>], loob serveriga ühenduse, "
 "vaikimisi port tavaliste ühenduste jaoks on 6667 ja 9999 ssl ühenduste jaoks"
 
-#: src/common/outbound.c:2767
+#: src/common/outbound.c:3298
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -479,48 +483,56 @@ msgstr ""
 "SERVER <host> [<port>] [<salasõna>], loob serveriga ühenduse, vaikimisi port "
 "on 6667"
 
-#: src/common/outbound.c:2769
+#: src/common/outbound.c:3300
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <muutuja> [<väärtus>]"
 
-#: src/common/outbound.c:2772
+#: src/common/outbound.c:3303
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr "TOPIC [<teema>]. määrab uue teema või näitab praegust"
 
-#: src/common/outbound.c:2774
+#: src/common/outbound.c:3305
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <mask> [<mask>...], võtab määratud maskidelt keelu maha."
 
-#: src/common/outbound.c:2775
+#: src/common/outbound.c:3306
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <mask> [QUIET]"
 
-#: src/common/outbound.c:2776
+#: src/common/outbound.c:3307
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <nimi>, eemaldab plugina või skripti"
 
-#: src/common/outbound.c:2779
+#: src/common/outbound.c:3310
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <kasutaja>, annab kasutajale voice staatuse (vajab chanop õigust)"
 
-#: src/common/outbound.c:2781
+#: src/common/outbound.c:3312
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <sõnum>, saadab sõnumi kõikidele kanalitele, kus oled"
 
-#: src/common/outbound.c:2783
+#: src/common/outbound.c:3314
+#, fuzzy
 msgid ""
-"WALLCHOP <message>, sends the message to all chanops on the current channel"
+"WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <sõnum>, saadab sõnumi kõigile aktiivse kanali chanop-idele"
 
-#: src/common/outbound.c:2816
+#: src/common/outbound.c:3316
+#, fuzzy
+msgid ""
+"WALLVOICES <message>, sends the message to all voiced users on the current "
+"channel"
+msgstr "WALLCHOP <sõnum>, saadab sõnumi kõigile aktiivse kanali chanop-idele"
+
+#: src/common/outbound.c:3355
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Kasutus: %s\n"
 
-#: src/common/outbound.c:2821
+#: src/common/outbound.c:3360
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -528,33 +540,33 @@ msgstr ""
 "\n"
 "Selle käsu kohta pole abimaterjale.\n"
 
-#: src/common/outbound.c:2827
+#: src/common/outbound.c:3366
 msgid "No such command.\n"
 msgstr "Sellist käsku pole olemas\n"
 
-#: src/common/outbound.c:3151
+#: src/common/outbound.c:3692
 msgid "Bad arguments for user command.\n"
 msgstr ""
 
-#: src/common/outbound.c:3315
+#: src/common/outbound.c:3855
 msgid "Too many recursive usercommands, aborting."
 msgstr ""
 
-#: src/common/outbound.c:3388
+#: src/common/outbound.c:3919
 msgid "Unknown Command. Try /help\n"
 msgstr "Tundmatu käsk. Proovi /help\n"
 
-#: src/common/plugin.c:359 src/common/plugin.c:400
+#: src/common/plugin.c:342 src/common/plugin.c:383
 msgid "No xchat_plugin_init symbol; is this really an xchat plugin?"
 msgstr ""
 "Ei leitud xchat_plugin_init sümbolit; oled sa ikka kindel, et see on xchati "
 "plugin?"
 
-#: src/common/server.c:586
+#: src/common/server.c:545
 msgid "Are you sure this is a SSL capable server and port?\n"
 msgstr ""
 
-#: src/common/server.c:933
+#: src/common/server.c:892
 #, c-format
 msgid ""
 "Cannot resolve hostname %s\n"
@@ -563,16 +575,16 @@ msgstr ""
 "Ei saa lahendada hostinime %s\n"
 "Palun kontrolli oma IP sätteid!\n"
 
-#: src/common/server.c:938
+#: src/common/server.c:897
 msgid "Proxy traversal failed.\n"
 msgstr ""
 
-#: src/common/servlist.c:642
+#: src/common/servlist.c:626
 #, c-format
 msgid "Cycling to next server in %s...\n"
 msgstr ""
 
-#: src/common/servlist.c:1050
+#: src/common/servlist.c:1034
 #, c-format
 msgid ""
 "Warning: \"%s\" character set is unknown. No conversion will be applied for "
@@ -580,342 +592,307 @@ msgid ""
 msgstr ""
 
 #: src/common/textevents.h:6
-#, fuzzy
-msgid "%C22*%O$t$1 added to notify list."
-msgstr "-%C10-%C11-%O$t$1 lisatud märguande nimekirja."
+msgid "%C0%B%171Notify%187%B$tNow watching nick $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:9
-#, fuzzy
-msgid "%C22*%O$t$1 Banlist:%C19 $4%C20 $2%C21 $3"
-msgstr "<%C10-%C11-%O$t$1 lahkus %C14(%O$2%O%C14)%O"
+msgid "%C0%B%171Ban List%B%187%B$t Ban for channel $1: $2 $3 $4"
+msgstr ""
 
 #: src/common/textevents.h:12
-#, fuzzy
-msgid "%C22*%O$tCannot join%C26 %B$1 %O(You are banned)."
-msgstr "-%C10-%C11-%O$tEi saa liituda kanaliga%C11 %B$1 %O(keelatud)."
+msgid "%C5%B%171Error%187%B%O$tYou are banned from channel $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:18
 #, fuzzy
-msgid "%C22*%O$t$1 is now known as $2"
+msgid "%C0%B%171Nick%187%B$t$1 is now known as $2%O"
 msgstr "-%C10-%C11-%O$t$1 kannab nüüd nime $2"
 
 #: src/common/textevents.h:21
 #, fuzzy
-msgid "%C18*$t$1%O $2"
+msgid "%C11*%O$t$1 $2%O"
 msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:24
 #, fuzzy
-msgid "%C21*%O$t%C21%B$1%O%C21 $2"
-msgstr "%C13*%O$t%C8%B$1%B%O $2%O"
+msgid "%C16*$t$1 $2%O"
+msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:27
 #, fuzzy
-msgid "%C22*%O$t$1 sets ban on $2"
+msgid "%C0%B%171Ban%187%B$t$1 sets ban on \"$2\".%O"
 msgstr "-%C10-%C11-%O$t$1 pani keelu maskile $2"
 
 #: src/common/textevents.h:30
 #, fuzzy
-msgid "%C22*%O$tChannel $1 created on $2"
+msgid "%C0%B%171Mode%187%B$tChannel $1 was created on $2.%O"
 msgstr "-%C10-%C11-%O$tKanal $1 loodi $2"
 
 #: src/common/textevents.h:33
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O removes channel half-operator status from%C26 $2"
+msgid ""
+"%C0%B%171DEHalf-OP%187%B$t$1 removes channel half-operator status from $2.%O"
 msgstr "-%C10-%C11-%O$t$1 võttis kasutajalt $2 kanali pool-operaatori võimu"
 
 #: src/common/textevents.h:36
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O removes channel operator status from%C26 $2"
+msgid "%C0%B%171DEOP%187%B$t$1 removes channel operator status from $2.%O"
 msgstr "-%C10-%C11-%O$t$1 võttis kasutajalt $2 kanali operaatori võimu"
 
 #: src/common/textevents.h:39
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O removes voice from%C26 $2"
+msgid "%C0%B%171Voice%187%B$t$1 removes voice from $2.%O"
 msgstr "-%C10-%C11-%O$t$1 võttis hääle kasutajalt $2"
 
 #: src/common/textevents.h:42
 #, fuzzy
-msgid "%C22*%O$t$1 sets exempt on $2"
+msgid "%C0%B%171Exempt%187%B$t$1 sets exempt on $2.%O"
 msgstr "-%C10-%C11-%O$t$1 pani keelu maskile $2"
 
 #: src/common/textevents.h:45
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O gives channel half-operator status to%C26 $2"
+msgid "%C0%B%171Half-OP%187%B$t$1 gives channel half-operator status to $2.%O"
 msgstr "-%C10-%C11-%O$t$1 tegi kasutaja $2 pool-operaatoriks"
 
 #: src/common/textevents.h:48
 #, fuzzy
-msgid "%C22*%O$t$1 sets invite on $2"
+msgid "%C0%B%171Invite%187%B$t$1 sets invite on $2.%O"
 msgstr "-%C10-%C11-%O$t$1 määras kutsumise $2 peale"
 
 #: src/common/textevents.h:51
-msgid "%UChannel          Users   Topic"
+msgid "%UChannel          Users   Topic%O"
 msgstr ""
 
-#: src/common/textevents.h:54
-#, fuzzy
-msgid "%C18%B%B$4$1%O%C18%O$t$2"
-msgstr "%C6<%O$1%C6>%O$t$2%O"
+#: src/common/textevents.h:54 src/common/textevents.h:402
+msgid "<$1>$t$2%O"
+msgstr ""
 
 #: src/common/textevents.h:57
 #, fuzzy
-msgid "%C22*%O$t$1 sets mode $2$3 $4"
+msgid "%C0%B%171Mode%187%B$t$1 sets mode $2$3 on $4.%O"
 msgstr "-%C10-%C11-%O$t$1 seadis kanalile $4 võtme $2$3"
 
 #: src/common/textevents.h:60
-#, fuzzy
-msgid "%C22*%O$t%C22Channel $1 modes: $2"
-msgstr "-%C10-%C11-%O$tKanali $1 seaded: $2"
+msgid "%C0%B%171Mode%187%B$tChannel modes for $1: $2%O"
+msgstr ""
 
 #: src/common/textevents.h:63
 #, fuzzy
-msgid "$4%C21%B$1%O$t%C21$2"
-msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+msgid "%C16<$1>$t$2%O"
+msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:66
-#, fuzzy
-msgid "%C28-%C29$1/$2%C28-%O$t$3"
-msgstr "%C12-%C13$1%C12-%O$t$2%O"
+msgid "%C16-$1-%O$t[to $2]%O $3%O"
+msgstr ""
 
 #: src/common/textevents.h:69
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O gives channel operator status to%C26 $2"
+msgid "%C0%B%171OP%187%B$t$1 gives channel operator status to $2%O"
 msgstr "-%C10-%C11-%O$t$1 tegi kasutaja $2 operaatoriks"
 
 #: src/common/textevents.h:72
 #, fuzzy
-msgid "%C22*%O$t$1 removes exempt on $2"
+msgid "%C0%B%171Exempt%187%B$t$1 removes exempt on $2%O"
 msgstr "-%C10-%C11-%O$t$1 eemaldas keelu maskilt $2"
 
 #: src/common/textevents.h:75
 #, fuzzy
-msgid "%C22*%O$t$1 removes invite on $2"
+msgid "%C0%B%171Invite%187%B$t$1 removes invite on $2%O"
 msgstr "-%C10-%C11-%O$t$1 eemaldas kutsumise $2 pealt"
 
 #: src/common/textevents.h:78
-#, fuzzy
-msgid "%C22*%O$t$1 removes channel keyword"
-msgstr "-%C10-%C11-%O$t$1 eemaldas kanalilt märksõna"
+msgid "%C0%B%171Mode%187%B$t$1 chages channel modes to no keyword.%O"
+msgstr ""
 
 #: src/common/textevents.h:81
-#, fuzzy
-msgid "%C22*%O$t$1 removes user limit"
-msgstr "-%C10-%C11-%O$t$1 eemaldas kasutajalimiidi"
+msgid "%C0%B%171Mode%187%B$t$1 changes channel mode to no user limit.%O"
+msgstr ""
 
 #: src/common/textevents.h:84
 #, fuzzy
-msgid "%C22*%O$t$1 sets channel keyword to $2"
+msgid "%C0%B%171Mode%187%B$t$1 sets channel keyword to \"$2\".%O"
 msgstr "-%C10-%C11-%O$t$1 seab kanali märksõnaks $2"
 
 #: src/common/textevents.h:87
-#, fuzzy
-msgid "%C22*%O$t$1 sets channel limit to $2"
-msgstr "-%C10-%C11-%O$t$1 seab kanali piiranguks $2"
+msgid "%C0%B%171Mode%187%B$t$1 changes channel modes limited to $2 user(s).%O"
+msgstr ""
 
 #: src/common/textevents.h:90
 #, fuzzy
-msgid "%C22*%O$t$1 removes ban on $2"
+msgid "%C0%B%171UnBan%187%B$t$1 removes ban on \"$2\"%O"
 msgstr "-%C10-%C11-%O$t$1 eemaldas keelu maskilt $2"
 
 #: src/common/textevents.h:93
 #, fuzzy
-msgid "%C22*%O$t%C26$1%O gives voice to%C26 $2"
+msgid "%C0%B%171Voice%187%B$t$1 gives voice to $2%O"
 msgstr "-%C10-%C11-%O$t$1 andis hääle kasutajale $2"
 
-#: src/common/textevents.h:96
+#: src/common/textevents.h:96 src/common/textevents.h:321
 #, fuzzy
-msgid "%C22*%O$t%C22Connected. Now logging in..."
+msgid "%C0%B%171Connect%187%B$tConnected. Now doing login...%O"
 msgstr "-%C10-%C11-%O$tÜhendatud. Login sisse.."
 
 #: src/common/textevents.h:99
-#, fuzzy
-msgid "%C22*%O$t%C22Connecting to $1 ($2) port $3%O..."
+msgid ""
+"%C0%B%171Connect%187%B$tAttempting connection to host to $1 ($2) on port "
+"$3...%O"
 msgstr ""
-"-%C10-%C11-%O$tÜhendan serveri %C11$1 %C14(%C11$2%C14)%C porti %C11$3%C.."
 
 #: src/common/textevents.h:102
 #, fuzzy
-msgid "%C21*%O$t%C21Connection failed. Error: $1"
+msgid "%C5%B%171Net-Error%187%B%O$tConnection failed. Error: $1%O"
 msgstr "-%C10-%C11-%O$tÜhendamine ebaõnnestus. Viga: $1"
 
 #: src/common/textevents.h:105
 #, fuzzy
-msgid "%C22*%O$tReceived a CTCP $1 from $2"
+msgid "%C4%B%171CTCP%187%B$tReceived CTCP \"$1\" from $2%O"
 msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2"
 
 #: src/common/textevents.h:108
 #, fuzzy
-msgid "%C22*%O$tReceived a CTCP $1 from $2 (to $3)"
+msgid "%C4%B%171CTCP%187%B$tReceived CTCP \"$1\" from $2 (to $3)"
 msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2 ($3-le)"
 
 #: src/common/textevents.h:111
-#, fuzzy
-msgid "%C19>%O$1%C19<%O$tCTCP $2"
-msgstr "%C3>%O$1%C3<%O$tCTCP $2%O"
+msgid "%C4%B%171CTCP%187%B$tSending CTCP \"$2\" to $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:114
-#, fuzzy
-msgid "%C22*%O$tReceived a CTCP Sound $1 from $2"
-msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP heli $1 kasutajalt $2"
+msgid "%C4%B%171Sound%187%B$t$2 [playing $1]%O"
+msgstr ""
 
 #: src/common/textevents.h:117
-#, fuzzy
-msgid "%C22*%O$tDCC CHAT to %C26$1%O aborted."
-msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+msgid "%C8%B%171DCC%187%B$tAborted DCC CHAT to $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:120
-#, fuzzy
-msgid "%C22*%O$tDCC CHAT connection established to %C26$1 %C30[%O$2%C30]"
+msgid "%C8%B%171DCC%187%B$tEstablished DCC CHAT connection to $1%O"
 msgstr ""
-"-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%C14]%"
-"O katkestati."
 
 #: src/common/textevents.h:123
-#, fuzzy
-msgid "%C22*%O$tDCC CHAT to %C26$1%O lost ($4)."
+msgid "%C8%B%171DCC%187%B$tChat failed. Connection to $1 ($2:$3) lost.%O"
 msgstr ""
-"-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%C14]%"
-"O katkestati."
 
 #: src/common/textevents.h:126
-#, fuzzy
-msgid "%C22*%O$tReceived a DCC CHAT offer from $1"
-msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2"
+msgid "%C8%B%171DCC%187%B$tGot DCC CHAT request from $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:129
-#, fuzzy
-msgid "%C22*%O$tOffering DCC CHAT to $1"
-msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2"
+msgid "%C8%B%171DCC%187%B$tSending DCC CHAT offer to $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:132
 #, fuzzy
-msgid "%C22*%O$tAlready offering CHAT to $1"
+msgid "%C8%B%171DCC%187%B$tAlready offering CHAT to $1.%O"
 msgstr "-%C10-%C11-%O$t$1 on juba kasutuses. Proovin nime $2.."
 
 #: src/common/textevents.h:135
 #, fuzzy
-msgid "%C22*%O$tDCC $1 connect attempt to%C26 $2%O failed (err=$3)."
+msgid "%C8%B%171DCC%187%B$tDCC $1 connection attempt to $2 failed (err=$3).%O"
 msgstr "-%C10-%C11-%O$tÜhendamine ebaõnnestus. Viga: $1"
 
 #: src/common/textevents.h:138
 #, fuzzy
-msgid "%C22*%O$tReceived '$1%O' from $2"
+msgid "%C8%B%171DCC%187%B$tReceived \"$1\" from $2.%O"
 msgstr "-%C10-%C11-%O$tVõtsime vastu '$1%O' kasutajalt $2"
 
 #: src/common/textevents.h:141
-#, c-format
-msgid "%C24,18 Type  To/From    Status  Size    Pos     File         "
+msgid "%C8,2 Type  To/From    Status  Size    Pos     File         %O"
 msgstr ""
 
 #: src/common/textevents.h:144
 msgid ""
-"%C22*%O$tReceived a malformed DCC request from %C26$1%O.%010%C22*%O"
-"$tContents of packet: $2"
+"%C8%B%171DCC%187%B$tGot malformed DCC request from $1.%O%010%C8%B%171DCC%187%"
+"B$tContents of packet: \"$2\".%O"
 msgstr ""
 
 #: src/common/textevents.h:147
-#, fuzzy
-msgid "%C22*%O$tOffering%C26 $1%O to%C26 $2"
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+msgid "%C8%B%171DCC%187%B$tOffering $1 to $2%O"
+msgstr ""
 
 #: src/common/textevents.h:150
 #, fuzzy
-msgid "%C22*%O$tNo such DCC offer."
+msgid "%C8%B%171DCC%187%B$tNo such DCC offer.%O"
 msgstr "-%C10-%C11-%O$tTundmatu DCC."
 
 #: src/common/textevents.h:153
-#, fuzzy
-msgid "%C22*%O$tDCC RECV%C26 $2%O to%C26 $1%O aborted."
-msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+msgid "%C8%B%171DCC%187%B$tAborted DCC RECV $2 from $1%O"
+msgstr ""
 
 #: src/common/textevents.h:156
-#, fuzzy
-msgid ""
-"%C22*%O$tDCC RECV%C26 $1%O from%C26 $3%O complete %C30[%C26$4%O cps%C30]%O."
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+msgid "%C8%B%171DCC%187%B$tReceive of file $1 from $3 completed, $4 cps.%O"
+msgstr ""
 
 #: src/common/textevents.h:159
-#, fuzzy
-msgid "%C22*%O$tDCC RECV connection established to%C26 $1 %C30[%O$2%C30]"
+msgid ""
+"%C8%B%171DCC%187%B$tEstablished DCC RECV connection for $3 from $1 ($2)%O"
 msgstr ""
-"-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%C14]%"
-"O katkestati."
 
 #: src/common/textevents.h:162
-#, fuzzy
-msgid "%C22*%O$tDCC RECV%C26 $1%O from%C26 $3%O failed ($4)."
-msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+msgid "%C8%B%171DCC%187%B$tReceive $1 failed. Connection to $3 lost.%O"
+msgstr ""
 
 #: src/common/textevents.h:165
-#, fuzzy
-msgid "%C22*%O$tDCC RECV: Cannot open $1 for writing ($2)."
+msgid "%C8%B%171DCC%187%B$tReceive Write error ($1).%O"
 msgstr ""
-"-%C10-%C11-%O$tDCC RECV: Ei suudetud avada faili $1 kirjutamiseks - "
-"katkestan."
 
 #: src/common/textevents.h:168
 #, fuzzy
 msgid ""
-"%C22*%O$tThe file%C26 $1%C already exists, saving it as%C26 $2%O instead."
+"%C8%B%171DCC%187%B$t A file named $1 already exists, saving it as $2 instead."
+"%O"
 msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
 
 #: src/common/textevents.h:171
-#, fuzzy
-msgid "%C22*%O$t%C26$1 %Ohas requested to resume%C26 $2 %Cfrom%C26 $3%C."
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+msgid ""
+"%C8%B%171DCC%187%B$tGot DCC RESUME request for SEND of file $2, position $3, "
+"from $1.%O"
+msgstr ""
 
 #: src/common/textevents.h:174
 #, fuzzy
-msgid "%C22*%O$tDCC SEND%C26 $2%O to%C26 $1%O aborted."
+msgid "%C8%B%171DCC%187%B$tDCC SEND of file $2 to $1 aborted.%O"
 msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
 
 #: src/common/textevents.h:177
-#, fuzzy
-msgid ""
-"%C22*%O$tDCC SEND%C26 $1%O to%C26 $2%O complete %C30[%C26$3%O cps%C30]%O."
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+msgid "%C8%B%171DCC%187%B$tDCC SEND of file $1 to $2 complete, $3 cps.%O"
+msgstr ""
 
 #: src/common/textevents.h:180
-#, fuzzy
-msgid "%C22*%O$tDCC SEND connection established to%C26 $1 %C30[%O$2%C30]"
+msgid "%C8%B%171DCC%187%B$tEstablished DCC SEND connection for $3 to $1 ($2)%O"
 msgstr ""
-"-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%C14]%"
-"O katkestati."
 
 #: src/common/textevents.h:183
-#, fuzzy
-msgid "%C22*%O$tDCC SEND%C26 $1%O to%C26 $2%O failed. $3"
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+msgid "%C8%B%171DCC%187%B$tSending $1 to $2 failed. Connection lost.%O"
+msgstr ""
 
 #: src/common/textevents.h:186
-#, fuzzy
-msgid "%C22*%O$t%C26$1 %Ohas offered%C26 $2 %O(%C26$3 %Obytes)"
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+msgid ""
+"%C8%B%171DCC%187%B$tGot DCC SEND request from $1: filename \"$2\", $3 bytes.%"
+"O"
+msgstr ""
 
 #: src/common/textevents.h:189
 #, fuzzy
-msgid "%C22*%O$tDCC $1%C26 $2 %Oto%C26 $3 %Cstalled - aborting."
+msgid "%C8%B%171DCC%187%B$tDCC $1 $2 to $3 is stalled - aborting.%O"
 msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
 
 #: src/common/textevents.h:192
 #, fuzzy
-msgid "%C22*%O$tDCC $1%C26 $2 %Oto%C26 $3 %Otimed out - aborting."
+msgid "%C8%B%171DCC%187%B$tDCC $1 $2 to $3 timed out - aborting.%O"
 msgstr "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
 
 #: src/common/textevents.h:195
-#, fuzzy
-msgid "%C22*%O$t$1 deleted from notify list."
-msgstr "-%C10-%C11-%O$t$1 kustutatud märguande nimekirjast."
+msgid "%C0%B%171Notify%187%B$tNick $1 is no longer watched.%O"
+msgstr ""
 
 #: src/common/textevents.h:198
-#, fuzzy
-msgid "%C22*%O$tDisconnected ($1)."
-msgstr "-%C10-%C11-%O$tÜhendus katkestatud ($1)."
+msgid "%C0%B%171Connect%187%B$tDisconnected.%O"
+msgstr ""
 
 #: src/common/textevents.h:201
 #, fuzzy
-msgid "%C22*%O$tFound your IP: [$1]"
+msgid "%C0%B%171IP%187%B$tFound your IP: $1%O"
 msgstr "-%C10-%C11-%O$tLeidsin su IP: [$1]"
 
 #: src/common/textevents.h:204
@@ -923,811 +900,812 @@ msgid "$1$t$2"
 msgstr ""
 
 #: src/common/textevents.h:207
-#, fuzzy
-msgid "%O%C26$1%O added to ignore list."
-msgstr "%O%C11$1%O lisatud ignoreeritavate nimekirja."
+msgid "%C0%B%171Ignore%187%B$tNow ignoring \"$1\".%O"
+msgstr ""
 
 #: src/common/textevents.h:210
-msgid "Ignore on %C26$1%O changed."
+msgid "%C0%B%171Ignore%187%B$tIgnore on \"$1\" changed.%O"
 msgstr ""
 
 #: src/common/textevents.h:213
-#, fuzzy, c-format
-msgid "%C24,18                                                              "
-msgstr "%C08,02                                                    %O"
+msgid "%C0%B%171Ignore%187%B$tEnd of /ignore list.%O"
+msgstr ""
 
 #: src/common/textevents.h:216
-#, fuzzy, c-format
-msgid "%C24,18 Hostmask                  PRIV NOTI CHAN CTCP DCC  INVI UNIG "
+#, fuzzy
+msgid ""
+"%C0%B%171Ignore%187%B%O$t%C08,02 Hostmask                  PRIV NOTI CHAN "
+"CTCP INVI UNIG %O"
 msgstr "%C08,02 Hostmask             PRIV NOTI CHAN CTCP INVI UNIG %O"
 
 #: src/common/textevents.h:219
-#, fuzzy
-msgid "%O%C26$1%O removed from ignore list."
-msgstr "%O%C11$1%O eemaldatud ignoreeritavate nimekirjast."
+msgid "%C0%B%171Ignore%187%B$tIgnore entry \"$1\" removed.%O"
+msgstr ""
 
 #: src/common/textevents.h:222
-msgid "  Ignore list is empty."
+msgid "%C0%B%171Ignore%187%B$tIgnore list is empty.%O"
 msgstr ""
 
 #: src/common/textevents.h:225
 #, fuzzy
-msgid "%C22*%O$tCannot join%C26 %B$1 %O(Channel is invite only)."
+msgid ""
+"%C5%B%171Error%187%B%O$tYou can't join $1; this channel is invite Only.%O"
 msgstr ""
 "-%C10-%C11-%O$tEi saa liituda kanaliga%C11 %B$1 %O(liitumine ainult "
 "kutsetega)."
 
 #: src/common/textevents.h:228
-#, fuzzy
-msgid "%C22*%O$tYou have been invited to%C26 $1%O by%C26 $2%C (%C26$3%C)"
-msgstr "-%C10-%C11-%O$t%C11$2%C kutsus sind kanalisse %C11$1%C (%C11$3%C)"
+msgid ""
+"event_text=%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 "
+"($3)%O"
+msgstr ""
 
 #: src/common/textevents.h:231
 #, fuzzy
-msgid "%C19*%O$t%C19%B$1 %B($3) has joined $2"
+msgid "%C0%B-->%B$t$1 ($3) has joined channel $2%O"
 msgstr "-%C10-%C11>%O$t%B$1%B %C14(%C10$3%C14)%C liitus kanaliga $2"
 
 #: src/common/textevents.h:234
-#, fuzzy
-msgid "%C22*%O$tCannot join%C26 %B$1 %O(Requires keyword)."
+msgid ""
+"%C5%B%171Error%187%B%O$tChannel $1 is keyword protected; you must specify "
+"the correct keyword.%O"
 msgstr ""
-"-%C10-%C11-%O$tEi saa liituda kanaliga%C11 %B$1 %O(kanal nõuab märksõna)."
 
 #: src/common/textevents.h:237
-#, fuzzy
-msgid "%C21*%O$t%C21$1 has kicked $2 from $3 ($4%O%C21)"
+msgid "%C0%B%171Kick%187%B$t$2 has been kicked out of channel $3 by $1: $4%O"
 msgstr ""
-"<%C10-%C11-%O$t$1 andis nätaka kasutajale $2 nii et see lendas kanalilt $3 "
-"($4%O)"
 
 #: src/common/textevents.h:240
 #, fuzzy
-msgid "%C22*%O$tYou have been killed by $1 ($2%O%C22)"
+msgid "%C0%B%171KILL%187%B$tYou have been killed by $1: $2%O"
 msgstr "-%C10-%C11-%O$t $1 ($2%O) tappis su."
 
 #: src/common/textevents.h:243
 #, fuzzy
-msgid "%C19>%O$1%C19<%O$t$2%O"
+msgid "%B>$1<%B$t$2%O"
 msgstr "%C3>%O$1%C3<%O$t$2%O"
 
 #: src/common/textevents.h:246
-#, fuzzy
-msgid "%C16*%O$t$1%O"
-msgstr "%C13*%O$t$1 $2%O"
+msgid "%C0%B%171MOTD%187%B$t$1%O"
+msgstr ""
 
 #: src/common/textevents.h:249
-#, fuzzy
-msgid "%C22*%O$t%C22MOTD Skipped."
-msgstr "-%C10-%C11-%O$tMOTD vahele jäetud."
+msgid "%C0%B%171MOTD%187%B$t(MOTD Skipped)%O"
+msgstr ""
 
 #: src/common/textevents.h:252
 #, fuzzy
-msgid "%C22*%O$t$1 already in use. Retrying with $2..."
+msgid ""
+"%C0%B%171Nick%187%B$tNickname $1 is already in use; retrying with $2...%O"
 msgstr "-%C10-%C11-%O$t$1 on juba kasutuses. Proovin nime $2.."
 
 #: src/common/textevents.h:255
-#, fuzzy
-msgid "%C22*%O$tNickname already in use. Use /NICK to try another."
+msgid "%C0%B%171Nick%187%B$tNickname is already in use.%O"
 msgstr ""
-"-%C10-%C11-%O$tSinu hüüdnimi on juba kasutuses. Proovi teist nime käsuga /"
-"NICK."
 
 #: src/common/textevents.h:258
 #, fuzzy
-msgid "%C22*%O$tNo such DCC."
+msgid "%C8%B%171DCC%187%B$tNo such DCC.%O"
 msgstr "-%C10-%C11-%O$tTundmatu DCC."
 
 #: src/common/textevents.h:261
 #, fuzzy
-msgid "%C22*%O$tNo process is currently running"
+msgid "%C0%B%171Process%187%B$tNo process is currently running.%O"
 msgstr "-%C10-%C11-%O$tTeadaannete nimekiri on tühi."
 
 #: src/common/textevents.h:264
 #, fuzzy
-msgid "%C28-%C29$1%C28-%O$t$2"
-msgstr "%C12-%C13$1%C12-%O$t$2%O"
+msgid "-%B$1%B-$t$2%O"
+msgstr "-%C10-%C11-%O$t$1%O"
 
 #: src/common/textevents.h:267
-#, fuzzy
-msgid "%C19>%O$1%C19<%O$t$2"
-msgstr "%C3>%O$1%C3<%O$t$2%O"
+msgid "}$1{$t$2"
+msgstr ""
 
 #: src/common/textevents.h:270
 #, fuzzy
-msgid "$tNotify list is empty."
+msgid "%C0%B%171Notify%187%B$tNotify list is empty.%O"
 msgstr "-%C10-%C11-%O$tTeadaannete nimekiri on tühi."
 
 #: src/common/textevents.h:273
-#, fuzzy
-msgid "%C24,18 %B  Notify List                           "
-msgstr "%C08,02                                                    %O"
+msgid "%C08,02 -- Notify List --------------- %O"
+msgstr ""
 
 #: src/common/textevents.h:276
 #, fuzzy
-msgid "%C22*%O$t$1 users in notify list."
+msgid "%C0%B%171Notify%187%B$t$1 users on notify list.%O"
 msgstr "-%C10-%C11-%O$t$1 kasutajat teadaannete nimekirjas."
 
 #: src/common/textevents.h:279
-#, fuzzy
-msgid "%C22*%O$tNotify: $1 is offline ($2)."
-msgstr "-%C10-%C11-%O$tTeadaanne: $1 on nüüd ühendatud ($2)."
+msgid "%C0%B%171Notify%187%B$tNick $1 ($2) is gone.%O"
+msgstr ""
 
 #: src/common/textevents.h:282
-#, fuzzy
-msgid "%C22*%O$tNotify: $1 is online ($2)."
-msgstr "-%C10-%C11-%O$tTeadaanne: $1 on nüüd ühendatud ($2)."
+msgid "%C0%B%171Notify%187%B$tDetected Nick $1 ($2).%O"
+msgstr ""
 
 #: src/common/textevents.h:288
 #, fuzzy
-msgid "%C23*%O$t%C23$1 (%O%C23$2) has left $3"
-msgstr "<%C10-%C11-%O$t$1 %C14(%O$2%C14)%C lahkus kanalilt $3"
+msgid "%C0%B<--%B$t$1 ($2) has left channel $3%O"
+msgstr "-%C10-%C11-%O$tSa lahkusid kanalilt $3"
 
 #: src/common/textevents.h:291
 #, fuzzy
-msgid "%C23*%O$t%C23$1 (%O%C23$2) has left $3 (%O%C23$4)"
-msgstr "<%C10-%C11-%O$t$1 %C14(%O$2%C14)%C lahkus kanalilt $3"
+msgid "%C0%B<--%B$t$1 ($2) has left channel $3 ($4).%O"
+msgstr "-%C10-%C11-%O$tSa lahkusid kanalilt $3"
 
 #: src/common/textevents.h:294
-#, fuzzy
-msgid "%C22*%O$tPing reply from $1: $2 second(s)"
-msgstr "-%C10-%C11-%O$tPingimise vastus kasutajalt $1 : $2 sekundit"
+msgid "%C4%B%171Pong%187%B$tGot PING response from $1: $2s%O"
+msgstr ""
 
 #: src/common/textevents.h:297
 #, fuzzy
-msgid "%C22*%O$tNo ping reply for $1 seconds, disconnecting."
+msgid "%C5%B%171Error%187%B%O$tNo ping reply for $1 seconds, disconnecting."
 msgstr "-%C10-%C11-%O$tPingimise vastus kasutajalt $1 : $2 sekundit"
 
 #: src/common/textevents.h:300
 #, fuzzy
-msgid "%C28*%C29$3$1%C28*$t%O$2"
-msgstr "%C12*%C13$1%C12*$t%O$2%O"
+msgid "%B*$1*%B$t$2%O"
+msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:303
 #, fuzzy
-msgid "%C18%B%B$3$1%O$t$2"
-msgstr "%C6<%O$1%C6>%O$t$2%O"
+msgid "%C16*$1*$t$2%O"
+msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:306
 #, fuzzy
-msgid "%C22*%O$tA process is already running"
+msgid "%C0%B%171Notify%187%B$tA process is already running.%O"
 msgstr "-%C10-%C11-%O$t$1 eemaldas kasutajalimiidi"
 
 #: src/common/textevents.h:309
-#, fuzzy
-msgid "%C23*%O$t%C23$1 has quit (%O%C23$2)"
-msgstr "<%C10-%C11-%O$t$1 lahkus %C14(%O$2%O%C14)%O"
+msgid "%C0%B%171Quit%187%B$t$1 has signed off ($2)%O"
+msgstr ""
 
 #: src/common/textevents.h:312
-#, fuzzy
-msgid "%C22*%O$t$1 sets modes%B %C30[%O$2%B%C30]"
-msgstr "-%C10-%C11-%O$t$1 määrab olekud%B %C14[%O$2%B%C14]%O"
+msgid "%C0%B%171Mode%187%B$t$1 sets mode(s): $2%O"
+msgstr ""
 
 #: src/common/textevents.h:315
-#, fuzzy
-msgid "%C28-%C29$1/Wallops%C28-%O$t$2"
-msgstr "%C12-%C13$1/Wallopid%C12-%O$t$2%O"
+msgid "%C0%B%171Wallops%187%B$t[$1] $2%O"
+msgstr ""
 
 #: src/common/textevents.h:318
 #, fuzzy
-msgid "%C22*%O$tLooking up IP number for%C26 $1%O..."
+msgid "%C0%B%171DNS%187%B$tLooking up IP number for $1 ($2)...%O"
 msgstr "-%C10-%C11-%O$tOtsin hosti %C11$1%C.."
 
-#: src/common/textevents.h:321
-#, fuzzy
-msgid "%C22*%O$t%C22Connected."
-msgstr "-%C10-%C11-%O$tÜhendatud."
-
-#: src/common/textevents.h:324 src/common/textevents.h:330
-#: src/common/textevents.h:333
-#, fuzzy
-msgid "%C22*%O$t$1"
-msgstr "%C13*%O$t$1 $2%O"
+#: src/common/textevents.h:324
+msgid "%C5%B%171Error%187%B%O$t$1%O"
+msgstr ""
 
 #: src/common/textevents.h:327
-#, fuzzy
-msgid "%C22*%O$t%C22Looking up $1"
-msgstr "-%C10-%C11-%O$tOtsin hosti %C11$1%C.."
+msgid "%C0%B%171Connect%187%B$tLooking up host \"$1\"...%O"
+msgstr ""
+
+#: src/common/textevents.h:330
+msgid "%C0%B%171Server%187%B$t[$2] $1%O"
+msgstr ""
+
+#: src/common/textevents.h:333
+msgid "%C0%B%171Server%187%B$t$1%O"
+msgstr ""
 
 #: src/common/textevents.h:336
 #, fuzzy
-msgid "%C22*%O$tStopped previous connection attempt (pid=$1)"
+msgid "%C0%B%171Connect%187%B$tStopped previous connection attempt (pid=$1)%O"
 msgstr "-%C10-%C11-%O$tKatkestasin eelmise ühenduskatse (pid=$1)"
 
 #: src/common/textevents.h:339
-#, fuzzy
-msgid "%C29*%O$t%C29Topic for $1%C %C29is: $2"
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+msgid "%C0%B%171Topic%187%B$tTopic for $1 is $2%O"
+msgstr ""
 
 #: src/common/textevents.h:342
-#, fuzzy
-msgid "%C29*%O$t%C29Topic for $1%C %C29set by $2%C %C29at $3"
-msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+msgid "%C0%B%171Topic%187%B$tTopic for channel $1 has been set by $2 on $3%O"
+msgstr ""
 
 #: src/common/textevents.h:345
-#, fuzzy
-msgid "%C22*%O$t$1 has changed the topic to: $2"
-msgstr "-%C10-%C11-%O$t$1 pani uue teema: $2%O"
+msgid "%C0%B%171Topic%187%B$t$1 sets topic to \"$2\"%O"
+msgstr ""
 
 #: src/common/textevents.h:348
 #, fuzzy
-msgid "%C22*%O$tUnknown host. Maybe you misspelled it?"
+msgid "%C5%B%171Error%187%B%O$tUnknown host. Maybe you misspelled it?%O"
 msgstr "-%C10-%C11-%O$tTundmatu server. Kas kirjutasid serveri nime õieti?"
 
 #: src/common/textevents.h:351
 #, fuzzy
-msgid "%C22*%O$tCannot join%C26 %B$1 %O(User limit reached)."
+msgid "%C5%B%171Error%187%B%O$tYou can't join $1; user limit reached.%O"
 msgstr ""
 "-%C10-%C11-%O$tEi saa liituda kanaliga %C11 %B$1 %O(kasutajalimiit "
 "saavutatud)."
 
 #: src/common/textevents.h:354
-#, fuzzy
-msgid "%C22*%O$t%C26Users on $1:%C $2"
-msgstr "-%C10-%C11-%O$t%C11Kasutajat kanalil $1:%C $2"
+msgid "%C0%B%171Names%187%B$tUsers on $1: $2%O"
+msgstr ""
 
 #: src/common/textevents.h:357
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %Cis away %C30(%O$2%O%C30)"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12] %Con eemal %C14(%O$2%O%C14)"
+msgid "%C0%B%171Whois%187%B$t$1 is away: $2%O"
+msgstr ""
 
-#: src/common/textevents.h:360 src/common/textevents.h:384
+#: src/common/textevents.h:360
 #, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28]%O $2"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+msgid "%C0%B%171Whois%187%B$t$1 $2%O"
+msgstr "%C13*%O$t$1 $2%O"
 
 #: src/common/textevents.h:363
 #, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %OEnd of WHOIS list."
+msgid "%C0%B%171Whois%187%B$tEnd of WHOIS list.%O"
 msgstr "-%C10-%C11-%O$t%C12[%O$1%C12] %CWHOIS nimekirja lõpp."
 
 #: src/common/textevents.h:366
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %O$2"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B $2"
+msgstr ""
 
 #: src/common/textevents.h:369
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %O$2%C27 $3"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B $2 $3"
+msgstr ""
 
 #: src/common/textevents.h:372
 #, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %Oreal user@host%C27 $2%O, real IP%C27 $3"
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B real user@host $2, real IP $3"
 msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O jõude %C11$2%O, liitus: %C11$3%O"
 
 #: src/common/textevents.h:375
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O jõude %C11$2%O"
+msgid "%C0%B%171Whois%187%B$tIdle: $2%O"
+msgstr ""
 
 #: src/common/textevents.h:378
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2%O, signon:%C26 $3"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O jõude %C11$2%O, liitus: %C11$3%O"
+msgid "%C0%B%171Whois%187%B$tIdle: $2, Connected since: $3%O"
+msgstr ""
 
 #: src/common/textevents.h:381
-#, fuzzy
-msgid "%C22*%O$t%C28[%O$1%C28] %C30(%O$2@$3%C30)%O: $4"
-msgstr "-%C10-%C11-%O$t%C12[%O$1%C12] %C14(%O$2@$3%C14) %O: $4%O"
+msgid "%C0%B%171Whois%187%B$tUser: $1 ($2@$3): $4%O"
+msgstr ""
+
+#: src/common/textevents.h:384
+msgid "%C0%B%171Whois%187%B$tServer: $2%O"
+msgstr ""
 
 #: src/common/textevents.h:387
 #, fuzzy
-msgid "%C19*%O$t%C19Now talking on $2"
-msgstr "-%C10-%C11>%O$t%BSa%B räägid kanalil %C11$2%O"
+msgid "%C0%B-->%B$tYou have joined channel $2%O"
+msgstr "-%C10-%C11-%O$tSa lahkusid kanalilt $3"
 
 #: src/common/textevents.h:390
-#, fuzzy, c-format
-msgid "%C23*$tYou have left channel $3"
+#, fuzzy
+msgid "%C0%B<--%B$tYou have left channel $3."
 msgstr "-%C10-%C11-%O$tSa lahkusid kanalilt $3"
 
 #: src/common/textevents.h:393
 #, fuzzy
-msgid "%C23*$tYou have left channel $3 (%O%C23$4%O%C23)"
+msgid "%C0%B<--%B$tYou have left channel $3 ($4).%O"
 msgstr "-%C10-%C11-%O$tSa lahkusid kanalilt $3"
 
 #: src/common/textevents.h:396
-#, fuzzy
-msgid "%C23*$tYou have been kicked from $2 by $3 ($4%O%C23)"
-msgstr "-%C10-%C11-%O$t$3 viskas sind välja kanalist $2 ($4%O)"
+msgid "%C0%B%171Kick%187%B$t$1 has been kicked out of channel $2 by $3: $4%O"
+msgstr ""
 
 #: src/common/textevents.h:399
-#, fuzzy
-msgid "%C22*%O$tYou've invited%C26 $1%O to%C26 $2%O (%C26$3%O)"
-msgstr "-%C10-%C11-%O$t%C11$2%C kutsus sind kanalisse %C11$1%C (%C11$3%C)"
-
-#: src/common/textevents.h:402
-#, fuzzy
-msgid "%C31%B%B$4$1%O$t%C30$2"
-msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+msgid "%C0%B%171Invite%187%B$tInviting $1 to channel $2.%O"
+msgstr ""
 
 #: src/common/textevents.h:405
 #, fuzzy
-msgid "%C22*%O$tYou are now known as $2"
+msgid "%C0%B%171Nick%187%B$tYou are now known as $2%O"
 msgstr "-%C10-%C11-%O$tSa kannad nime $2"
 
-#: src/common/text.c:207
+#: src/common/textevents.h:408
+msgid "%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O"
+msgstr ""
+
+#: src/common/textevents.h:411
+msgid "%C0%B%171List%187%B$t$1   $2   $3%O"
+msgstr ""
+
+#: src/common/text.c:195
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** LÕPETAN LOGIMISE %s\n"
 
-#: src/common/text.c:324
+#: src/common/text.c:312
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** ALUSTAN LOGIMIST %s\n"
 
-#: src/common/text.c:343
+#: src/common/text.c:331
 #, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
 "  permissions on %s/xchatlogs"
 msgstr ""
 
-#: src/common/text.c:558
+#: src/common/text.c:546
 #, fuzzy
 msgid "Left message"
 msgstr "Teade"
 
-#: src/common/text.c:559
+#: src/common/text.c:547
 #, fuzzy
 msgid "Right message"
 msgstr "Teade"
 
-#: src/common/text.c:563
+#: src/common/text.c:551
 msgid "The nick of the joining person"
 msgstr "Liituja kasutajanimi"
 
-#: src/common/text.c:564
+#: src/common/text.c:552
 msgid "The channel being joined"
 msgstr "Liitutav kanal"
 
-#: src/common/text.c:565 src/common/text.c:610 src/common/text.c:667
+#: src/common/text.c:553 src/common/text.c:598 src/common/text.c:655
 msgid "The host of the person"
 msgstr "Kasutaja host"
 
-#: src/common/text.c:569 src/common/text.c:574 src/common/text.c:581
-#: src/common/text.c:648 src/common/text.c:773 src/common/text.c:780
-#: src/common/text.c:785 src/common/text.c:790 src/common/text.c:795
-#: src/common/text.c:801 src/common/text.c:806 src/common/text.c:810
-#: src/common/text.c:815 src/common/text.c:821 src/common/text.c:867
-#: src/common/text.c:876 src/common/text.c:881 src/common/text.c:886
-#: src/common/text.c:895 src/common/text.c:906 src/common/text.c:913
-#: src/common/text.c:919 src/common/text.c:924 src/common/text.c:929
-#: src/common/text.c:936 src/common/text.c:942 src/common/text.c:948
-#: src/common/text.c:953 src/common/text.c:958 src/common/text.c:962
-#: src/common/text.c:968 src/common/text.c:976 src/common/text.c:1010
-#: src/common/text.c:1015
+#: src/common/text.c:557 src/common/text.c:562 src/common/text.c:569
+#: src/common/text.c:636 src/common/text.c:761 src/common/text.c:768
+#: src/common/text.c:773 src/common/text.c:778 src/common/text.c:783
+#: src/common/text.c:789 src/common/text.c:794 src/common/text.c:798
+#: src/common/text.c:803 src/common/text.c:809 src/common/text.c:855
+#: src/common/text.c:864 src/common/text.c:869 src/common/text.c:874
+#: src/common/text.c:883 src/common/text.c:894 src/common/text.c:901
+#: src/common/text.c:907 src/common/text.c:912 src/common/text.c:917
+#: src/common/text.c:924 src/common/text.c:930 src/common/text.c:936
+#: src/common/text.c:941 src/common/text.c:946 src/common/text.c:950
+#: src/common/text.c:956 src/common/text.c:964 src/common/text.c:998
+#: src/common/text.c:1003
 msgid "Nickname"
 msgstr "Kasutajanimi"
 
-#: src/common/text.c:570
+#: src/common/text.c:558
 msgid "The action"
 msgstr "Tegevus"
 
-#: src/common/text.c:575
+#: src/common/text.c:563
 msgid "The text"
 msgstr "Tekst"
 
-#: src/common/text.c:576
+#: src/common/text.c:564
 msgid "Mode char"
 msgstr ""
 
-#: src/common/text.c:577 src/common/text.c:650
+#: src/common/text.c:565 src/common/text.c:638
 #, fuzzy
 msgid "Identified text"
 msgstr "Tekstiinfo"
 
-#: src/common/text.c:582 src/common/text.c:638 src/common/text.c:644
-#: src/common/text.c:649
+#: src/common/text.c:570 src/common/text.c:626 src/common/text.c:632
+#: src/common/text.c:637
 msgid "The message"
 msgstr "Teade"
 
-#: src/common/text.c:586 src/common/text.c:654
+#: src/common/text.c:574 src/common/text.c:642
 msgid "Old nickname"
 msgstr "Endine nimi"
 
-#: src/common/text.c:587 src/common/text.c:655
+#: src/common/text.c:575 src/common/text.c:643
 msgid "New nickname"
 msgstr "Uus nimi"
 
-#: src/common/text.c:591
+#: src/common/text.c:579
 msgid "Nick of person who changed the topic"
 msgstr "Kasutaja, kes muutis teemat"
 
-#: src/common/text.c:592 src/common/text.c:598 src/fe-gtk/chanlist.c:599
-#: src/fe-gtk/chanlist.c:700
+#: src/common/text.c:580 src/common/text.c:586 src/common/text.c:1038
+#: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Teema"
 
-#: src/common/text.c:593 src/common/text.c:597 src/common/text.c:1030
-#: src/fe-gtk/chanlist.c:597 src/fe-gtk/chanlist.c:691
-#: src/fe-gtk/ignoregui.c:176
+#: src/common/text.c:581 src/common/text.c:585 src/common/text.c:1018
+#: src/common/text.c:1036 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Kanal"
 
-#: src/common/text.c:602 src/common/text.c:661
+#: src/common/text.c:590 src/common/text.c:649
 msgid "The nickname of the kicker"
 msgstr "Väljaviskaja nimi"
 
-#: src/common/text.c:603 src/common/text.c:659
+#: src/common/text.c:591 src/common/text.c:647
 msgid "The person being kicked"
 msgstr "Kasutaja, kes välja visati"
 
-#: src/common/text.c:604 src/common/text.c:611 src/common/text.c:615
-#: src/common/text.c:620 src/common/text.c:660 src/common/text.c:668
+#: src/common/text.c:592 src/common/text.c:599 src/common/text.c:603
+#: src/common/text.c:608 src/common/text.c:648 src/common/text.c:656
 msgid "The channel"
 msgstr "Kanal"
 
-#: src/common/text.c:605 src/common/text.c:662 src/common/text.c:669
+#: src/common/text.c:593 src/common/text.c:650 src/common/text.c:657
 msgid "The reason"
 msgstr "Põhjus"
 
-#: src/common/text.c:609 src/common/text.c:666
+#: src/common/text.c:597 src/common/text.c:654
 msgid "The nick of the person leaving"
 msgstr "Lahkuja nimi"
 
-#: src/common/text.c:616 src/common/text.c:622
+#: src/common/text.c:604 src/common/text.c:610
 msgid "The time"
 msgstr "Aeg"
 
-#: src/common/text.c:621
+#: src/common/text.c:609
 msgid "The creator"
 msgstr "Looja"
 
-#: src/common/text.c:626
+#: src/common/text.c:614
 msgid "Nick"
 msgstr "Nimi"
 
-#: src/common/text.c:627 src/common/text.c:882
+#: src/common/text.c:615 src/common/text.c:870
 msgid "Reason"
 msgstr "Põhjus"
 
-#: src/common/text.c:628 src/common/text.c:775 src/common/text.c:857
+#: src/common/text.c:616 src/common/text.c:763 src/common/text.c:845
 msgid "Host"
 msgstr "Host"
 
-#: src/common/text.c:632 src/common/text.c:637 src/common/text.c:642
+#: src/common/text.c:620 src/common/text.c:625 src/common/text.c:630
 msgid "Who it's from"
 msgstr "Kellelt see tuleb"
 
-#: src/common/text.c:633
+#: src/common/text.c:621
 msgid "The time in x.x format (see below)"
 msgstr "Aeg x.x formaadis (vaata allapoole)"
 
-#: src/common/text.c:643 src/common/text.c:685
+#: src/common/text.c:631 src/common/text.c:673
 msgid "The Channel it's going to"
 msgstr "Sihtkanal"
 
-#: src/common/text.c:673
+#: src/common/text.c:661
 msgid "The sound"
 msgstr "Heli"
 
-#: src/common/text.c:674 src/common/text.c:679 src/common/text.c:684
+#: src/common/text.c:662 src/common/text.c:667 src/common/text.c:672
 msgid "The nick of the person"
 msgstr "Inimese nimi"
 
-#: src/common/text.c:678 src/common/text.c:683
+#: src/common/text.c:666 src/common/text.c:671
 msgid "The CTCP event"
 msgstr "CTCP sündmus"
 
-#: src/common/text.c:689
+#: src/common/text.c:677
 msgid "The nick of the person who set the key"
 msgstr "Võtme seadnud kasutaja nimi"
 
-#: src/common/text.c:690
+#: src/common/text.c:678
 msgid "The key"
 msgstr "Võti"
 
-#: src/common/text.c:694
+#: src/common/text.c:682
 msgid "The nick of the person who set the limit"
 msgstr "Piirangu seadnud kasutaja nimi"
 
-#: src/common/text.c:695
+#: src/common/text.c:683
 msgid "The limit"
 msgstr "Piirang"
 
-#: src/common/text.c:699
+#: src/common/text.c:687
 msgid "The nick of the person who did the op'ing"
 msgstr "Oppija nimi"
 
-#: src/common/text.c:700
+#: src/common/text.c:688
 msgid "The nick of the person who has been op'ed"
 msgstr "Opitud kasutaja nimi"
 
-#: src/common/text.c:704
+#: src/common/text.c:692
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Poolopitud kasutaja nimi"
 
-#: src/common/text.c:705
+#: src/common/text.c:693
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Poolop'i teinud kasutaja"
 
-#: src/common/text.c:709
+#: src/common/text.c:697
 msgid "The nick of the person who did the voice'ing"
 msgstr "Voice'i teinud kasutaja"
 
-#: src/common/text.c:710
+#: src/common/text.c:698
 msgid "The nick of the person who has been voice'ed"
 msgstr "Voice saanud kasutaja nimi"
 
-#: src/common/text.c:714
+#: src/common/text.c:702
 msgid "The nick of the person who did the banning"
 msgstr ""
 
-#: src/common/text.c:715 src/common/text.c:742
+#: src/common/text.c:703 src/common/text.c:730
 msgid "The ban mask"
 msgstr "Keelu mask"
 
-#: src/common/text.c:719
+#: src/common/text.c:707
 msgid "The nick who removed the key"
 msgstr "Võtme eemaldanud kasutaja"
 
-#: src/common/text.c:723
+#: src/common/text.c:711
 msgid "The nick who removed the limit"
 msgstr "Piirangu eemaldanud kasutaja"
 
-#: src/common/text.c:727
+#: src/common/text.c:715
 msgid "The nick of the person of did the deop'ing"
 msgstr "Deop'i teinud kasutaja"
 
-#: src/common/text.c:728
+#: src/common/text.c:716
 msgid "The nick of the person who has been deop'ed"
 msgstr "Deop'itud kasutaja"
 
-#: src/common/text.c:731
+#: src/common/text.c:719
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Dehalfop'i teinud kasutaja"
 
-#: src/common/text.c:732
+#: src/common/text.c:720
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Dehalfop'itud kasutaja"
 
-#: src/common/text.c:736
+#: src/common/text.c:724
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Devoice'i teinud kasutaja"
 
-#: src/common/text.c:737
+#: src/common/text.c:725
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Devoice'tud kasutaja"
 
-#: src/common/text.c:741
+#: src/common/text.c:729
 msgid "The nick of the person of did the unban'ing"
 msgstr "Unban'i teinud kasutaja"
 
-#: src/common/text.c:746
+#: src/common/text.c:734
 msgid "The nick of the person who did the exempt"
 msgstr ""
 
-#: src/common/text.c:747 src/common/text.c:752
+#: src/common/text.c:735 src/common/text.c:740
 msgid "The exempt mask"
 msgstr ""
 
-#: src/common/text.c:751
+#: src/common/text.c:739
 msgid "The nick of the person removed the exempt"
 msgstr ""
 
-#: src/common/text.c:756
+#: src/common/text.c:744
 msgid "The nick of the person who did the invite"
 msgstr ""
 
-#: src/common/text.c:757 src/common/text.c:762
+#: src/common/text.c:745 src/common/text.c:750
 msgid "The invite mask"
 msgstr "Kutsete mask"
 
-#: src/common/text.c:761
+#: src/common/text.c:749
 msgid "The nick of the person removed the invite"
 msgstr "Kutse eemaldanud kasutaja"
 
-#: src/common/text.c:766
+#: src/common/text.c:754
 msgid "The nick of the person setting the mode"
 msgstr ""
 
-#: src/common/text.c:767
+#: src/common/text.c:755
 msgid "The mode's sign (+/-)"
 msgstr ""
 
-#: src/common/text.c:768
+#: src/common/text.c:756
 msgid "The mode letter"
 msgstr ""
 
-#: src/common/text.c:769
+#: src/common/text.c:757
 msgid "The channel it's being set on"
 msgstr ""
 
-#: src/common/text.c:774
+#: src/common/text.c:762
 msgid "Username"
 msgstr "kasutajanimi"
 
-#: src/common/text.c:776
+#: src/common/text.c:764
 msgid "Full name"
 msgstr "Täisnimi"
 
-#: src/common/text.c:781
+#: src/common/text.c:769
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr ""
 
-#: src/common/text.c:786
+#: src/common/text.c:774
 msgid "Server Information"
 msgstr "Serveri info"
 
-#: src/common/text.c:791 src/common/text.c:796
+#: src/common/text.c:779 src/common/text.c:784
 msgid "Idle time"
 msgstr ""
 
-#: src/common/text.c:797
+#: src/common/text.c:785
 msgid "Signon time"
 msgstr ""
 
-#: src/common/text.c:802
+#: src/common/text.c:790
 msgid "Away reason"
 msgstr "Eemaloleku põhjus"
 
-#: src/common/text.c:811 src/common/text.c:816 src/common/text.c:824
-#: src/common/text.c:1002
+#: src/common/text.c:799 src/common/text.c:804 src/common/text.c:812
+#: src/common/text.c:990
 msgid "Message"
 msgstr "Sõnum"
 
-#: src/common/text.c:817
+#: src/common/text.c:805
 #, fuzzy
 msgid "Account"
 msgstr "Võta vastu"
 
-#: src/common/text.c:822
+#: src/common/text.c:810
 #, fuzzy
 msgid "Real user@host"
 msgstr "Luba kasutajate nimekiri paanidena"
 
-#: src/common/text.c:823
+#: src/common/text.c:811
 msgid "Real IP"
 msgstr ""
 
-#: src/common/text.c:828 src/common/text.c:837 src/common/text.c:843
-#: src/common/text.c:1025
+#: src/common/text.c:816 src/common/text.c:825 src/common/text.c:831
+#: src/common/text.c:1013
 msgid "Channel Name"
 msgstr "kanali nimi"
 
-#: src/common/text.c:832 src/common/text.c:988 src/fe-gtk/textgui.c:338
+#: src/common/text.c:820 src/common/text.c:976 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Tekst"
 
-#: src/common/text.c:833 src/common/text.c:839 src/common/text.c:1026
+#: src/common/text.c:821 src/common/text.c:827 src/common/text.c:1014
 msgid "Server Name"
 msgstr "Serveri nimi"
 
-#: src/common/text.c:838
+#: src/common/text.c:826
 msgid "Nick of person who invited you"
 msgstr "Sind kutsunud kasutaja"
 
-#: src/common/text.c:844 src/fe-gtk/chanlist.c:598
+#: src/common/text.c:832 src/common/text.c:1037 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Kasutajad"
 
-#: src/common/text.c:848
+#: src/common/text.c:836
 msgid "Nickname in use"
 msgstr "Kasutajanimi on juba kasutusel"
 
-#: src/common/text.c:849
+#: src/common/text.c:837
 msgid "Nick being tried"
 msgstr ""
 
-#: src/common/text.c:853 src/common/text.c:889 src/common/text.c:900
-#: src/common/text.c:907 src/common/text.c:920 src/common/text.c:937
-#: src/common/text.c:1037 src/common/util.c:351
+#: src/common/text.c:841 src/common/text.c:877 src/common/text.c:888
+#: src/common/text.c:895 src/common/text.c:908 src/common/text.c:925
+#: src/common/text.c:1025 src/common/util.c:132
 msgid "Error"
 msgstr "Viga"
 
-#: src/common/text.c:858 src/common/text.c:992
+#: src/common/text.c:846 src/common/text.c:980
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:859 src/common/text.c:888
+#: src/common/text.c:847 src/common/text.c:876
 msgid "Port"
 msgstr "Port"
 
-#: src/common/text.c:863
+#: src/common/text.c:851
 msgid "PID"
 msgstr "PID"
 
-#: src/common/text.c:871
+#: src/common/text.c:859
 msgid "Channel name"
 msgstr "Kanali nimi"
 
-#: src/common/text.c:872 src/common/text.c:877
+#: src/common/text.c:860 src/common/text.c:865
 msgid "Modes string"
 msgstr ""
 
-#: src/common/text.c:887 src/common/text.c:925 src/common/text.c:930
-#: src/common/text.c:971
+#: src/common/text.c:875 src/common/text.c:913 src/common/text.c:918
+#: src/common/text.c:959
 msgid "IP address"
 msgstr "IP aadress"
 
-#: src/common/text.c:893 src/common/text.c:918
+#: src/common/text.c:881 src/common/text.c:906
 msgid "DCC Type"
 msgstr "DCC tüüp"
 
-#: src/common/text.c:894 src/common/text.c:899 src/common/text.c:904
-#: src/common/text.c:911 src/common/text.c:931 src/common/text.c:935
-#: src/common/text.c:941 src/common/text.c:947 src/common/text.c:954
-#: src/common/text.c:963 src/common/text.c:969
+#: src/common/text.c:882 src/common/text.c:887 src/common/text.c:892
+#: src/common/text.c:899 src/common/text.c:919 src/common/text.c:923
+#: src/common/text.c:929 src/common/text.c:935 src/common/text.c:942
+#: src/common/text.c:951 src/common/text.c:957
 msgid "Filename"
 msgstr "Faili nimi"
 
-#: src/common/text.c:905 src/common/text.c:912
+#: src/common/text.c:893 src/common/text.c:900
 msgid "Destination filename"
 msgstr ""
 
-#: src/common/text.c:914 src/common/text.c:943
+#: src/common/text.c:902 src/common/text.c:931
 msgid "CPS"
 msgstr ""
 
-#: src/common/text.c:949
+#: src/common/text.c:937
 msgid "Pathname"
 msgstr ""
 
-#: src/common/text.c:964 src/fe-gtk/dccgui.c:490 src/fe-gtk/dccgui.c:647
+#: src/common/text.c:952 src/fe-gtk/dccgui.c:466 src/fe-gtk/dccgui.c:623
 msgid "Position"
 msgstr "Positsioon"
 
-#: src/common/text.c:970 src/fe-gtk/dccgui.c:489 src/fe-gtk/dccgui.c:646
+#: src/common/text.c:958 src/fe-gtk/dccgui.c:465 src/fe-gtk/dccgui.c:622
 msgid "Size"
 msgstr "Suurus"
 
-#: src/common/text.c:975
+#: src/common/text.c:963
 msgid "DCC String"
 msgstr "DCC string"
 
-#: src/common/text.c:980
+#: src/common/text.c:968
 msgid "Number of notify items"
 msgstr ""
 
-#: src/common/text.c:984
+#: src/common/text.c:972
 msgid "Servername"
 msgstr "Serveri nimi"
 
-#: src/common/text.c:996
+#: src/common/text.c:984
 msgid "Old Filename"
 msgstr "Vana failinimi"
 
-#: src/common/text.c:997
+#: src/common/text.c:985
 msgid "New Filename"
 msgstr "Uus failinimi"
 
-#: src/common/text.c:1001
+#: src/common/text.c:989
 msgid "Receiver"
 msgstr "Vastuvõtja"
 
-#: src/common/text.c:1006
+#: src/common/text.c:994
 msgid "Hostmask"
 msgstr "Hosti mask"
 
-#: src/common/text.c:1011
+#: src/common/text.c:999
 msgid "Hostname"
 msgstr "Hosti nimi"
 
-#: src/common/text.c:1016
+#: src/common/text.c:1004
 msgid "The Packet"
 msgstr "Pakett"
 
-#: src/common/text.c:1020
+#: src/common/text.c:1008
 msgid "Seconds"
 msgstr "Sekundit"
 
-#: src/common/text.c:1024
+#: src/common/text.c:1012
 msgid "Nick of person who have been invited"
 msgstr ""
 
-#: src/common/text.c:1031
+#: src/common/text.c:1019
 msgid "Banmask"
 msgstr ""
 
-#: src/common/text.c:1032
+#: src/common/text.c:1020
 msgid "Who set the ban"
 msgstr ""
 
-#: src/common/text.c:1033
+#: src/common/text.c:1021
 msgid "Ban time"
 msgstr ""
 
-#: src/common/text.c:1073
+#: src/common/text.c:1029
+#, fuzzy
+msgid "Source Server"
+msgstr "Pole serverit"
+
+#: src/common/text.c:1030
+#, fuzzy
+msgid "Destination Server"
+msgstr "Server"
+
+#: src/common/text.c:1031
+#, fuzzy
+msgid "Ping time"
+msgstr "Wingate"
+
+#: src/common/text.c:1032
+#, fuzzy
+msgid "Client time diff"
+msgstr "Klient väljub"
+
+#: src/common/text.c:1075
 #, fuzzy, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1736,1430 +1714,1431 @@ msgstr ""
 "Viga sündmuse %s töötlemisel.\n"
 "Vaikeväärtuste laadimine"
 
-#: src/common/text.c:1707
+#: src/common/text.c:1714
 #, fuzzy, c-format
 msgid ""
 "Cannot read sound file:\n"
 "%s"
 msgstr "Sellest failist ei saa lugeda."
 
-#: src/common/util.c:295
+#: src/common/util.c:76
 msgid "Remote host closed socket"
 msgstr ""
 
-#: src/common/util.c:300
+#: src/common/util.c:81
 msgid "Connection refused"
 msgstr "Ühendusest keelduti"
 
-#: src/common/util.c:303
+#: src/common/util.c:84
 msgid "No route to host"
 msgstr ""
 
-#: src/common/util.c:305
+#: src/common/util.c:86
 msgid "Connection timed out"
 msgstr ""
 
-#: src/common/util.c:307
+#: src/common/util.c:88
 msgid "Cannot assign that address"
 msgstr ""
 
-#: src/common/util.c:309
+#: src/common/util.c:90
 msgid "Connection reset by peer"
 msgstr ""
 
-#: src/common/util.c:800
+#: src/common/util.c:587
 msgid "Andorra"
 msgstr "Andorra"
 
-#: src/common/util.c:801
+#: src/common/util.c:588
 msgid "United Arab Emirates"
 msgstr "Araabia Ühendemiraadid"
 
-#: src/common/util.c:802
+#: src/common/util.c:589
 msgid "Afghanistan"
 msgstr "Afganistaan"
 
-#: src/common/util.c:803
+#: src/common/util.c:590
 msgid "Antigua and Barbuda"
 msgstr "Antigua ja Barbuda"
 
-#: src/common/util.c:804
+#: src/common/util.c:591
 msgid "Anguilla"
 msgstr "Anguilla"
 
-#: src/common/util.c:805
+#: src/common/util.c:592
 msgid "Albania"
 msgstr "Albaania"
 
-#: src/common/util.c:806
+#: src/common/util.c:593
 msgid "Armenia"
 msgstr "Armeenia"
 
-#: src/common/util.c:807
+#: src/common/util.c:594
 msgid "Netherlands Antilles"
 msgstr "Hollandi antillid"
 
-#: src/common/util.c:808
+#: src/common/util.c:595
 msgid "Angola"
 msgstr "Angola"
 
-#: src/common/util.c:809
+#: src/common/util.c:596
 msgid "Antarctica"
 msgstr "Antarktika"
 
-#: src/common/util.c:810
+#: src/common/util.c:597
 msgid "Argentina"
 msgstr "Argentina"
 
-#: src/common/util.c:811
+#: src/common/util.c:598
 msgid "Reverse DNS"
 msgstr ""
 
-#: src/common/util.c:812
+#: src/common/util.c:599
 msgid "American Samoa"
 msgstr "Ameerika samoa"
 
-#: src/common/util.c:813
+#: src/common/util.c:600
 msgid "Austria"
 msgstr "Austria"
 
-#: src/common/util.c:814
+#: src/common/util.c:601
 msgid "Nato Fiel"
 msgstr ""
 
-#: src/common/util.c:815
+#: src/common/util.c:602
 msgid "Australia"
 msgstr "Austraalia"
 
-#: src/common/util.c:816
+#: src/common/util.c:603
 msgid "Aruba"
 msgstr "Aruba"
 
-#: src/common/util.c:817
+#: src/common/util.c:604
 msgid "Azerbaijan"
 msgstr "Aserbaidžaan"
 
-#: src/common/util.c:818
+#: src/common/util.c:605
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia ja Hertsegoviina"
 
-#: src/common/util.c:819
+#: src/common/util.c:606
 msgid "Barbados"
 msgstr "Barbados"
 
-#: src/common/util.c:820
+#: src/common/util.c:607
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#: src/common/util.c:821
+#: src/common/util.c:608
 msgid "Belgium"
 msgstr "Belgia"
 
-#: src/common/util.c:822
+#: src/common/util.c:609
 msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
-#: src/common/util.c:823
+#: src/common/util.c:610
 msgid "Bulgaria"
 msgstr "Bulgaaria"
 
-#: src/common/util.c:824
+#: src/common/util.c:611
 msgid "Bahrain"
 msgstr "Bahrein"
 
-#: src/common/util.c:825
+#: src/common/util.c:612
 msgid "Burundi"
 msgstr "Burundi"
 
-#: src/common/util.c:826
+#: src/common/util.c:613
 msgid "Businesses"
 msgstr ""
 
-#: src/common/util.c:827
+#: src/common/util.c:614
 msgid "Benin"
 msgstr "Benin"
 
-#: src/common/util.c:828
+#: src/common/util.c:615
 msgid "Bermuda"
 msgstr "Bermuda"
 
-#: src/common/util.c:829
+#: src/common/util.c:616
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
 
-#: src/common/util.c:830
+#: src/common/util.c:617
 msgid "Bolivia"
 msgstr "Boliivia"
 
-#: src/common/util.c:831
+#: src/common/util.c:618
 msgid "Brazil"
 msgstr "Brasiilia"
 
-#: src/common/util.c:832
+#: src/common/util.c:619
 msgid "Bahamas"
 msgstr "Bahama"
 
-#: src/common/util.c:833
+#: src/common/util.c:620
 msgid "Bhutan"
 msgstr "Bhutan"
 
-#: src/common/util.c:834
+#: src/common/util.c:621
 msgid "Bouvet Island"
 msgstr "Bouvet' saar"
 
-#: src/common/util.c:835
+#: src/common/util.c:622
 msgid "Botswana"
 msgstr "Botswana"
 
-#: src/common/util.c:836
+#: src/common/util.c:623
 msgid "Belarus"
 msgstr "Valgevene"
 
-#: src/common/util.c:837
+#: src/common/util.c:624
 msgid "Belize"
 msgstr "Belize"
 
-#: src/common/util.c:838
+#: src/common/util.c:625
 msgid "Canada"
 msgstr "Kanada"
 
-#: src/common/util.c:839
+#: src/common/util.c:626
 msgid "Cocos Islands"
 msgstr "Kookossaared"
 
-#: src/common/util.c:840
+#: src/common/util.c:627
 msgid "Central African Republic"
 msgstr "Kesk-Aafrika vabariik"
 
-#: src/common/util.c:841
+#: src/common/util.c:628
 msgid "Congo"
 msgstr "Kongo"
 
-#: src/common/util.c:842
+#: src/common/util.c:629
 msgid "Switzerland"
 msgstr "Šveits"
 
-#: src/common/util.c:843
+#: src/common/util.c:630
 #, fuzzy
 msgid "Cote d'Ivoire"
 msgstr "Elevandriluu rannik"
 
-#: src/common/util.c:844
+#: src/common/util.c:631
 msgid "Cook Islands"
 msgstr "Cooki saared"
 
-#: src/common/util.c:845
+#: src/common/util.c:632
 msgid "Chile"
 msgstr "Tšiili"
 
-#: src/common/util.c:846
+#: src/common/util.c:633
 msgid "Cameroon"
 msgstr "Kamerun"
 
-#: src/common/util.c:847
+#: src/common/util.c:634
 msgid "China"
 msgstr "Hiina"
 
-#: src/common/util.c:848
+#: src/common/util.c:635
 msgid "Colombia"
 msgstr "Kolumbia"
 
-#: src/common/util.c:849
+#: src/common/util.c:636
 msgid "Internic Commercial"
 msgstr ""
 
-#: src/common/util.c:850
+#: src/common/util.c:637
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: src/common/util.c:851
+#: src/common/util.c:638
 msgid "Former Czechoslovakia"
 msgstr "End. Tšehhoslovakkia"
 
-#: src/common/util.c:852
+#: src/common/util.c:639
 msgid "Cuba"
 msgstr "Kuuba"
 
-#: src/common/util.c:853
+#: src/common/util.c:640
 msgid "Cape Verde"
 msgstr "Cabo verde"
 
-#: src/common/util.c:854
+#: src/common/util.c:641
 msgid "Christmas Island"
 msgstr "Jõulusaar"
 
-#: src/common/util.c:855
+#: src/common/util.c:642
 msgid "Cyprus"
 msgstr "Küpros"
 
-#: src/common/util.c:856
+#: src/common/util.c:643
 msgid "Czech Republic"
 msgstr "Tšehhi"
 
-#: src/common/util.c:857
+#: src/common/util.c:644
 msgid "Germany"
 msgstr "Saksamaa"
 
-#: src/common/util.c:858
+#: src/common/util.c:645
 msgid "Djibouti"
 msgstr "Djibouti"
 
-#: src/common/util.c:859
+#: src/common/util.c:646
 msgid "Denmark"
 msgstr "Taani"
 
-#: src/common/util.c:860
+#: src/common/util.c:647
 msgid "Dominica"
 msgstr "Dominica"
 
-#: src/common/util.c:861
+#: src/common/util.c:648
 msgid "Dominican Republic"
 msgstr "Dominikaani vabariik"
 
-#: src/common/util.c:862
+#: src/common/util.c:649
 msgid "Algeria"
 msgstr "Alžeeria"
 
-#: src/common/util.c:863
+#: src/common/util.c:650
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: src/common/util.c:864
+#: src/common/util.c:651
 msgid "Educational Institution"
 msgstr "Haridusasutus"
 
-#: src/common/util.c:865
+#: src/common/util.c:652
 msgid "Estonia"
 msgstr "Eesti"
 
-#: src/common/util.c:866
+#: src/common/util.c:653
 msgid "Egypt"
 msgstr "Egiptus"
 
-#: src/common/util.c:867
+#: src/common/util.c:654
 msgid "Western Sahara"
 msgstr "Lääne-Sahara"
 
-#: src/common/util.c:868
+#: src/common/util.c:655
 msgid "Eritrea"
 msgstr "Eritrea"
 
-#: src/common/util.c:869
+#: src/common/util.c:656
 msgid "Spain"
 msgstr "Hispaania"
 
-#: src/common/util.c:870
+#: src/common/util.c:657
 msgid "Ethiopia"
 msgstr "Etioopia"
 
-#: src/common/util.c:871
+#: src/common/util.c:658
 msgid "Finland"
 msgstr "Soome"
 
-#: src/common/util.c:872
+#: src/common/util.c:659
 msgid "Fiji"
 msgstr "Fidži"
 
-#: src/common/util.c:873
+#: src/common/util.c:660
 msgid "Falkland Islands"
 msgstr "Falklandi saared"
 
-#: src/common/util.c:874
+#: src/common/util.c:661
 msgid "Micronesia"
 msgstr "Mikroneesia"
 
-#: src/common/util.c:875
+#: src/common/util.c:662
 msgid "Faroe Islands"
 msgstr "Fääri saared"
 
-#: src/common/util.c:876
+#: src/common/util.c:663
 msgid "France"
 msgstr "Prantsusmaa"
 
-#: src/common/util.c:877
+#: src/common/util.c:664
 msgid "France, Metropolitan"
 msgstr "Prantsusmaa, Metropolitan"
 
-#: src/common/util.c:878
+#: src/common/util.c:665
 msgid "Gabon"
 msgstr "Gabon"
 
-#: src/common/util.c:879
+#: src/common/util.c:666
 msgid "Great Britain"
 msgstr "Suurbritannia"
 
-#: src/common/util.c:880
+#: src/common/util.c:667
 msgid "Grenada"
 msgstr "Grenada"
 
-#: src/common/util.c:881
+#: src/common/util.c:668
 msgid "Georgia"
 msgstr "Gruusia"
 
-#: src/common/util.c:882
+#: src/common/util.c:669
 msgid "French Guiana"
 msgstr "Prantsuse Guajaana"
 
-#: src/common/util.c:883
+#: src/common/util.c:670
 msgid "British Channel Isles"
 msgstr "Briti Kanali Saared"
 
-#: src/common/util.c:884
+#: src/common/util.c:671
 msgid "Ghana"
 msgstr "Ghana"
 
-#: src/common/util.c:885
+#: src/common/util.c:672
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: src/common/util.c:886
+#: src/common/util.c:673
 msgid "Greenland"
 msgstr "Gröönimaa"
 
-#: src/common/util.c:887
+#: src/common/util.c:674
 msgid "Gambia"
 msgstr "Gambia"
 
-#: src/common/util.c:888
+#: src/common/util.c:675
 msgid "Guinea"
 msgstr "Guinea"
 
-#: src/common/util.c:889
+#: src/common/util.c:676
 msgid "Government"
 msgstr "Valitsus"
 
-#: src/common/util.c:890
+#: src/common/util.c:677
 msgid "Guadeloupe"
 msgstr "Guadeloupe"
 
-#: src/common/util.c:891
+#: src/common/util.c:678
 msgid "Equatorial Guinea"
 msgstr "Ekvatoriaal-Guinea"
 
-#: src/common/util.c:892
+#: src/common/util.c:679
 msgid "Greece"
 msgstr "Kreeka"
 
-#: src/common/util.c:893
+#: src/common/util.c:680
 #, fuzzy
 msgid "S. Georgia and S. Sandwich Isles"
 msgstr "L. Gruusia ja L. Sandwichi saared"
 
-#: src/common/util.c:894
+#: src/common/util.c:681
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: src/common/util.c:895
+#: src/common/util.c:682
 msgid "Guam"
 msgstr "Guam"
 
-#: src/common/util.c:896
+#: src/common/util.c:683
 msgid "Guinea-Bissau"
 msgstr "Guinea-Bissau"
 
-#: src/common/util.c:897
+#: src/common/util.c:684
 msgid "Guyana"
 msgstr "Guyana"
 
-#: src/common/util.c:898
+#: src/common/util.c:685
 msgid "Hong Kong"
 msgstr "Hong-Kong"
 
-#: src/common/util.c:899
+#: src/common/util.c:686
 msgid "Heard and McDonald Islands"
 msgstr "Heard ja McDonald"
 
-#: src/common/util.c:900
+#: src/common/util.c:687
 msgid "Honduras"
 msgstr "Honduras"
 
-#: src/common/util.c:901
+#: src/common/util.c:688
 msgid "Croatia"
 msgstr "Horvaatia"
 
-#: src/common/util.c:902
+#: src/common/util.c:689
 msgid "Haiti"
 msgstr "Haiti"
 
-#: src/common/util.c:903
+#: src/common/util.c:690
 msgid "Hungary"
 msgstr "Ungari"
 
-#: src/common/util.c:904
+#: src/common/util.c:691
 msgid "Indonesia"
 msgstr "Indoneesia"
 
-#: src/common/util.c:905
+#: src/common/util.c:692
 msgid "Ireland"
 msgstr "Iirimaa"
 
-#: src/common/util.c:906
+#: src/common/util.c:693
 msgid "Israel"
 msgstr "Iisrael"
 
-#: src/common/util.c:907
+#: src/common/util.c:694
 msgid "India"
 msgstr "India"
 
-#: src/common/util.c:908
+#: src/common/util.c:695
 #, fuzzy
 msgid "Informational"
 msgstr "Ülemaailmne"
 
-#: src/common/util.c:909
+#: src/common/util.c:696
 msgid "International"
 msgstr "Ülemaailmne"
 
-#: src/common/util.c:910
+#: src/common/util.c:697
 msgid "British Indian Ocean Territory"
 msgstr "Briti India ookeani ala"
 
-#: src/common/util.c:911
+#: src/common/util.c:698
 msgid "Iraq"
 msgstr "Iraak"
 
-#: src/common/util.c:912
+#: src/common/util.c:699
 msgid "Iran"
 msgstr "Iraan"
 
-#: src/common/util.c:913
+#: src/common/util.c:700
 msgid "Iceland"
 msgstr "Island"
 
-#: src/common/util.c:914
+#: src/common/util.c:701
 msgid "Italy"
 msgstr "Itaalia"
 
-#: src/common/util.c:915
+#: src/common/util.c:702
 msgid "Jamaica"
 msgstr "Jamaica"
 
-#: src/common/util.c:916
+#: src/common/util.c:703
 msgid "Jordan"
 msgstr "Jordaania"
 
-#: src/common/util.c:917
+#: src/common/util.c:704
 msgid "Japan"
 msgstr "Jaapan"
 
-#: src/common/util.c:918
+#: src/common/util.c:705
 msgid "Kenya"
 msgstr "Kenya"
 
-#: src/common/util.c:919
+#: src/common/util.c:706
 msgid "Kyrgyzstan"
 msgstr "Kõrgõzstan"
 
-#: src/common/util.c:920
+#: src/common/util.c:707
 msgid "Cambodia"
 msgstr "Kambodža"
 
-#: src/common/util.c:921
+#: src/common/util.c:708
 msgid "Kiribati"
 msgstr "Kiribati"
 
-#: src/common/util.c:922
+#: src/common/util.c:709
 msgid "Comoros"
 msgstr "Komoorid"
 
-#: src/common/util.c:923
+#: src/common/util.c:710
 msgid "St. Kitts and Nevis"
 msgstr "Saint Kitts ja Nevis"
 
-#: src/common/util.c:924
+#: src/common/util.c:711
 msgid "North Korea"
 msgstr "Põhja-Korea"
 
-#: src/common/util.c:925
+#: src/common/util.c:712
 msgid "South Korea"
 msgstr "Lõunda-Korea"
 
-#: src/common/util.c:926
+#: src/common/util.c:713
 msgid "Kuwait"
 msgstr "Kuveit"
 
-#: src/common/util.c:927
+#: src/common/util.c:714
 msgid "Cayman Islands"
 msgstr "Kaimanisaared"
 
-#: src/common/util.c:928
+#: src/common/util.c:715
 msgid "Kazakhstan"
 msgstr "Kasahstan"
 
-#: src/common/util.c:929
+#: src/common/util.c:716
 msgid "Laos"
 msgstr "Laos"
 
-#: src/common/util.c:930
+#: src/common/util.c:717
 msgid "Lebanon"
 msgstr "Liibanon"
 
-#: src/common/util.c:931
+#: src/common/util.c:718
 msgid "Saint Lucia"
 msgstr "Saint Lucia"
 
-#: src/common/util.c:932
+#: src/common/util.c:719
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#: src/common/util.c:933
+#: src/common/util.c:720
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
-#: src/common/util.c:934
+#: src/common/util.c:721
 msgid "Liberia"
 msgstr "Libeeria"
 
-#: src/common/util.c:935
+#: src/common/util.c:722
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#: src/common/util.c:936
+#: src/common/util.c:723
 msgid "Lithuania"
 msgstr "Leedu"
 
-#: src/common/util.c:937
+#: src/common/util.c:724
 msgid "Luxembourg"
 msgstr "Luksemburg"
 
-#: src/common/util.c:938
+#: src/common/util.c:725
 msgid "Latvia"
 msgstr "Läti"
 
-#: src/common/util.c:939
+#: src/common/util.c:726
 msgid "Libya"
 msgstr "Liibüa"
 
-#: src/common/util.c:940
+#: src/common/util.c:727
 msgid "Morocco"
 msgstr "Morocco"
 
-#: src/common/util.c:941
+#: src/common/util.c:728
 msgid "Monaco"
 msgstr "Monaco"
 
-#: src/common/util.c:942
+#: src/common/util.c:729
 msgid "Moldova"
 msgstr "Moldova"
 
-#: src/common/util.c:943
+#: src/common/util.c:730
 msgid "United States Medical"
 msgstr ""
 
-#: src/common/util.c:944
+#: src/common/util.c:731
 msgid "Madagascar"
 msgstr "Madagaskar"
 
-#: src/common/util.c:945
+#: src/common/util.c:732
 msgid "Marshall Islands"
 msgstr "Marshalli saared"
 
-#: src/common/util.c:946
+#: src/common/util.c:733
 msgid "Military"
 msgstr "Sõjaväeline"
 
-#: src/common/util.c:947
+#: src/common/util.c:734
 msgid "Macedonia"
 msgstr "Makedoonia"
 
-#: src/common/util.c:948
+#: src/common/util.c:735
 msgid "Mali"
 msgstr "Mali"
 
-#: src/common/util.c:949
+#: src/common/util.c:736
 msgid "Myanmar"
 msgstr "Myanmar"
 
-#: src/common/util.c:950
+#: src/common/util.c:737
 msgid "Mongolia"
 msgstr "Mongoolia"
 
-#: src/common/util.c:951
+#: src/common/util.c:738
 msgid "Macau"
 msgstr "Macau"
 
-#: src/common/util.c:952
+#: src/common/util.c:739
 msgid "Northern Mariana Islands"
 msgstr "Põhja-Mariaanid"
 
-#: src/common/util.c:953
+#: src/common/util.c:740
 msgid "Martinique"
 msgstr "Martinique"
 
-#: src/common/util.c:954
+#: src/common/util.c:741
 msgid "Mauritania"
 msgstr "Marutaania"
 
-#: src/common/util.c:955
+#: src/common/util.c:742
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#: src/common/util.c:956
+#: src/common/util.c:743
 msgid "Malta"
 msgstr "Malta"
 
-#: src/common/util.c:957
+#: src/common/util.c:744
 msgid "Mauritius"
 msgstr "Mauritius"
 
-#: src/common/util.c:958
+#: src/common/util.c:745
 msgid "Maldives"
 msgstr "Maldiivid"
 
-#: src/common/util.c:959
+#: src/common/util.c:746
 msgid "Malawi"
 msgstr "Malawi"
 
-#: src/common/util.c:960
+#: src/common/util.c:747
 msgid "Mexico"
 msgstr "Mehhiko"
 
-#: src/common/util.c:961
+#: src/common/util.c:748
 msgid "Malaysia"
 msgstr "Malaisia"
 
-#: src/common/util.c:962
+#: src/common/util.c:749
 msgid "Mozambique"
 msgstr "Mosambiik"
 
-#: src/common/util.c:963
+#: src/common/util.c:750
 msgid "Namibia"
 msgstr "Namiibia"
 
-#: src/common/util.c:964
+#: src/common/util.c:751
 msgid "New Caledonia"
 msgstr "Uus-Kaledoonia"
 
-#: src/common/util.c:965
+#: src/common/util.c:752
 msgid "Niger"
 msgstr "Niger"
 
-#: src/common/util.c:966
+#: src/common/util.c:753
 msgid "Internic Network"
 msgstr ""
 
-#: src/common/util.c:967
+#: src/common/util.c:754
 msgid "Norfolk Island"
 msgstr "Norfolk"
 
-#: src/common/util.c:968
+#: src/common/util.c:755
 msgid "Nigeria"
 msgstr "Nigeeria"
 
-#: src/common/util.c:969
+#: src/common/util.c:756
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#: src/common/util.c:970
+#: src/common/util.c:757
 msgid "Netherlands"
 msgstr "Holland"
 
-#: src/common/util.c:971
+#: src/common/util.c:758
 msgid "Norway"
 msgstr "Norra"
 
-#: src/common/util.c:972
+#: src/common/util.c:759
 msgid "Nepal"
 msgstr "Nepal"
 
-#: src/common/util.c:973
+#: src/common/util.c:760
 msgid "Nauru"
 msgstr "Nauru"
 
-#: src/common/util.c:974
+#: src/common/util.c:761
 msgid "Neutral Zone"
 msgstr "Neutraalne tsoon"
 
-#: src/common/util.c:975
+#: src/common/util.c:762
 msgid "Niue"
 msgstr "Niue"
 
-#: src/common/util.c:976
+#: src/common/util.c:763
 msgid "New Zealand"
 msgstr "Uus-Meremaa"
 
-#: src/common/util.c:977
+#: src/common/util.c:764
 msgid "Oman"
 msgstr "Omaan"
 
-#: src/common/util.c:978
+#: src/common/util.c:765
 msgid "Internic Non-Profit Organization"
 msgstr ""
 
-#: src/common/util.c:979
+#: src/common/util.c:766
 msgid "Panama"
 msgstr "Panama"
 
-#: src/common/util.c:980
+#: src/common/util.c:767
 msgid "Peru"
 msgstr "Peruu"
 
-#: src/common/util.c:981
+#: src/common/util.c:768
 msgid "French Polynesia"
 msgstr "Prantsuse Polüneesia"
 
-#: src/common/util.c:982
+#: src/common/util.c:769
 msgid "Papua New Guinea"
 msgstr "Paapua Uus-Guinea"
 
-#: src/common/util.c:983
+#: src/common/util.c:770
 msgid "Philippines"
 msgstr "Filipiinid"
 
-#: src/common/util.c:984
+#: src/common/util.c:771
 msgid "Pakistan"
 msgstr "Pakistan"
 
-#: src/common/util.c:985
+#: src/common/util.c:772
 msgid "Poland"
 msgstr "Poola"
 
-#: src/common/util.c:986
+#: src/common/util.c:773
 msgid "St. Pierre and Miquelon"
 msgstr "saint-Pierre ja Miquelon"
 
-#: src/common/util.c:987
+#: src/common/util.c:774
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
-#: src/common/util.c:988
+#: src/common/util.c:775
 msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
-#: src/common/util.c:989
+#: src/common/util.c:776
 msgid "Portugal"
 msgstr "Portugal"
 
-#: src/common/util.c:990
+#: src/common/util.c:777
 msgid "Palau"
 msgstr "Palau"
 
-#: src/common/util.c:991
+#: src/common/util.c:778
 msgid "Paraguay"
 msgstr "Paraguay"
 
-#: src/common/util.c:992
+#: src/common/util.c:779
 msgid "Qatar"
 msgstr "Katar"
 
-#: src/common/util.c:993
+#: src/common/util.c:780
 msgid "Reunion"
 msgstr "Reunion"
 
-#: src/common/util.c:994
+#: src/common/util.c:781
 msgid "Romania"
 msgstr "Rumeenia"
 
-#: src/common/util.c:995
+#: src/common/util.c:782
 msgid "Old School ARPAnet"
 msgstr ""
 
-#: src/common/util.c:996
+#: src/common/util.c:783
 msgid "Russian Federation"
 msgstr "Venemaa"
 
-#: src/common/util.c:997
+#: src/common/util.c:784
 msgid "Rwanda"
 msgstr "Ruanda"
 
-#: src/common/util.c:998
+#: src/common/util.c:785
 msgid "Saudi Arabia"
 msgstr "Saudi Araabia"
 
-#: src/common/util.c:999
+#: src/common/util.c:786
 msgid "Solomon Islands"
 msgstr "Saalomoni Saared"
 
-#: src/common/util.c:1000
+#: src/common/util.c:787
 msgid "Seychelles"
 msgstr "Seišellid"
 
-#: src/common/util.c:1001
+#: src/common/util.c:788
 msgid "Sudan"
 msgstr "Sudaan"
 
-#: src/common/util.c:1002
+#: src/common/util.c:789
 msgid "Sweden"
 msgstr "Rootsi"
 
-#: src/common/util.c:1003
+#: src/common/util.c:790
 msgid "Singapore"
 msgstr "Singapur"
 
-#: src/common/util.c:1004
+#: src/common/util.c:791
 msgid "St. Helena"
 msgstr "Saint Helena"
 
-#: src/common/util.c:1005
+#: src/common/util.c:792
 msgid "Slovenia"
 msgstr "Sloveenia"
 
-#: src/common/util.c:1006
+#: src/common/util.c:793
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "Teravmäed"
 
-#: src/common/util.c:1007
+#: src/common/util.c:794
 msgid "Slovak Republic"
 msgstr "Slovakkia Vabariik"
 
-#: src/common/util.c:1008
+#: src/common/util.c:795
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
-#: src/common/util.c:1009
+#: src/common/util.c:796
 msgid "San Marino"
 msgstr "San Marino"
 
-#: src/common/util.c:1010
+#: src/common/util.c:797
 msgid "Senegal"
 msgstr "Senegal"
 
-#: src/common/util.c:1011
+#: src/common/util.c:798
 msgid "Somalia"
 msgstr "Somaalia"
 
-#: src/common/util.c:1012
+#: src/common/util.c:799
 msgid "Suriname"
 msgstr "Surinam"
 
-#: src/common/util.c:1013
+#: src/common/util.c:800
 msgid "Sao Tome and Principe"
 msgstr "São Tomé ja Príncipe"
 
-#: src/common/util.c:1014
+#: src/common/util.c:801
 msgid "Former USSR"
 msgstr "Endine SSSR"
 
-#: src/common/util.c:1015
+#: src/common/util.c:802
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: src/common/util.c:1016
+#: src/common/util.c:803
 msgid "Syria"
 msgstr "Süüria"
 
-#: src/common/util.c:1017
+#: src/common/util.c:804
 msgid "Swaziland"
 msgstr "Svaasimaa"
 
-#: src/common/util.c:1018
+#: src/common/util.c:805
 msgid "Turks and Caicos Islands"
 msgstr "Turks ja Caicos"
 
-#: src/common/util.c:1019
+#: src/common/util.c:806
 msgid "Chad"
 msgstr "Tšaad"
 
-#: src/common/util.c:1020
+#: src/common/util.c:807
 msgid "French Southern Territories"
 msgstr "Prantsuse Lõunaalad"
 
-#: src/common/util.c:1021
+#: src/common/util.c:808
 msgid "Togo"
 msgstr "Togo"
 
-#: src/common/util.c:1022
+#: src/common/util.c:809
 msgid "Thailand"
 msgstr "Tai"
 
-#: src/common/util.c:1023
+#: src/common/util.c:810
 msgid "Tajikistan"
 msgstr "Tadžikistan"
 
-#: src/common/util.c:1024
+#: src/common/util.c:811
 msgid "Tokelau"
 msgstr "Tokelau"
 
-#: src/common/util.c:1025
+#: src/common/util.c:812
 msgid "Turkmenistan"
 msgstr "Türkmenistan"
 
-#: src/common/util.c:1026
+#: src/common/util.c:813
 msgid "Tunisia"
 msgstr "Tuneesia"
 
-#: src/common/util.c:1027
+#: src/common/util.c:814
 msgid "Tonga"
 msgstr "Tonga"
 
-#: src/common/util.c:1028
+#: src/common/util.c:815
 msgid "East Timor"
 msgstr "Ida-Timor"
 
-#: src/common/util.c:1029
+#: src/common/util.c:816
 msgid "Turkey"
 msgstr "Türgi"
 
-#: src/common/util.c:1030
+#: src/common/util.c:817
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ja Tobago"
 
-#: src/common/util.c:1031
+#: src/common/util.c:818
 msgid "Tuvalu"
 msgstr "Tuvalu"
 
-#: src/common/util.c:1032
+#: src/common/util.c:819
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#: src/common/util.c:1033
+#: src/common/util.c:820
 msgid "Tanzania"
 msgstr "Tansaania"
 
-#: src/common/util.c:1034
+#: src/common/util.c:821
 msgid "Ukraine"
 msgstr "Ukraina"
 
-#: src/common/util.c:1035
+#: src/common/util.c:822
 msgid "Uganda"
 msgstr "Uganda"
 
-#: src/common/util.c:1036
+#: src/common/util.c:823
 msgid "United Kingdom"
 msgstr "Ühendkuningriik"
 
-#: src/common/util.c:1037
+#: src/common/util.c:824
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: src/common/util.c:1038
+#: src/common/util.c:825
 msgid "United States of America"
 msgstr "Ameerika Ühendriigid"
 
-#: src/common/util.c:1039
+#: src/common/util.c:826
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: src/common/util.c:1040
+#: src/common/util.c:827
 msgid "Uzbekistan"
 msgstr "Usbekistan"
 
-#: src/common/util.c:1041
+#: src/common/util.c:828
 msgid "Vatican City State"
 msgstr ""
 
-#: src/common/util.c:1042
+#: src/common/util.c:829
 #, fuzzy
 msgid "St. Vincent and the Grenadines"
 msgstr "Saint Vincent ja Grenadiinid"
 
-#: src/common/util.c:1043
+#: src/common/util.c:830
 msgid "Venezuela"
 msgstr "Venetsueela"
 
-#: src/common/util.c:1044
+#: src/common/util.c:831
 msgid "British Virgin Islands"
 msgstr "Briti Neitsisaared"
 
-#: src/common/util.c:1045
+#: src/common/util.c:832
 msgid "US Virgin Islands"
 msgstr "Neitsisaared, USA"
 
-#: src/common/util.c:1046
+#: src/common/util.c:833
 msgid "Vietnam"
 msgstr "Vietnam"
 
-#: src/common/util.c:1047
+#: src/common/util.c:834
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: src/common/util.c:1048
+#: src/common/util.c:835
 msgid "Wallis and Futuna Islands"
 msgstr "Wallis ja Futuna"
 
-#: src/common/util.c:1049
+#: src/common/util.c:836
 msgid "Samoa"
 msgstr "Samoa"
 
-#: src/common/util.c:1050
+#: src/common/util.c:837
 msgid "Yemen"
 msgstr "Jeemen"
 
-#: src/common/util.c:1051
+#: src/common/util.c:838
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: src/common/util.c:1052
+#: src/common/util.c:839
 msgid "Yugoslavia"
 msgstr "Jugoslaavia"
 
-#: src/common/util.c:1053
+#: src/common/util.c:840
 msgid "South Africa"
 msgstr "Lõuna-Aafrika Vabariik"
 
-#: src/common/util.c:1054
+#: src/common/util.c:841
 msgid "Zambia"
 msgstr "Sambia"
 
-#: src/common/util.c:1055
+#: src/common/util.c:842
 msgid "Zaire"
 msgstr ""
 
-#: src/common/util.c:1056
+#: src/common/util.c:843
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
-#: src/common/util.c:1062 src/common/util.c:1072 src/fe-gtk/menu.c:513
-#: src/fe-gtk/menu.c:517 src/fe-gtk/menu.c:521 src/fe-gtk/menu.c:525
-#: src/fe-gtk/menu.c:529
+#: src/common/util.c:849 src/common/util.c:859 src/fe-gtk/menu.c:462
+#: src/fe-gtk/menu.c:466 src/fe-gtk/menu.c:470 src/fe-gtk/menu.c:474
+#: src/fe-gtk/menu.c:478
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: src/common/xchat.c:926
+#: src/common/xchat.c:916
 msgid "Direct client-to-client"
 msgstr ""
 
-#: src/common/xchat.c:927
+#: src/common/xchat.c:917
 #, fuzzy
 msgid "Send File"
 msgstr "Helifail: "
 
-#: src/common/xchat.c:928
+#: src/common/xchat.c:918
 msgid "Offer Chat"
 msgstr ""
 
-#: src/common/xchat.c:929
+#: src/common/xchat.c:919
 #, fuzzy
 msgid "Abort Chat"
 msgstr "X-Chati info"
 
-#: src/common/xchat.c:930 src/fe-gtk/plugingui.c:74
+#: src/common/xchat.c:920 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "Versioon"
 
-#: src/common/xchat.c:931
+#: src/common/xchat.c:921
 #, fuzzy
 msgid "Userinfo"
 msgstr "Kasutaja"
 
-#: src/common/xchat.c:932
+#: src/common/xchat.c:922
 #, fuzzy
 msgid "Clientinfo"
 msgstr "Klient väljub"
 
-#: src/common/xchat.c:933 src/common/xchat.c:967 src/common/xchat.c:1018
+#: src/common/xchat.c:923 src/common/xchat.c:957 src/common/xchat.c:1008
 msgid "Ping"
 msgstr ""
 
-#: src/common/xchat.c:934
+#: src/common/xchat.c:924
 #, fuzzy
 msgid "Time"
 msgstr "Aeg"
 
-#: src/common/xchat.c:935
+#: src/common/xchat.c:925
 #, fuzzy
 msgid "Finger"
 msgstr "Niger"
 
-#: src/common/xchat.c:936
+#: src/common/xchat.c:926
 #, fuzzy
 msgid "Oper"
 msgstr "Ava"
 
-#: src/common/xchat.c:937
+#: src/common/xchat.c:927
 msgid "Kill this user"
 msgstr ""
 
-#: src/common/xchat.c:938
+#: src/common/xchat.c:928
 #, fuzzy
 msgid "Mode"
 msgstr "Modereeritav"
 
-#: src/common/xchat.c:939
+#: src/common/xchat.c:929
 msgid "Give Ops"
 msgstr ""
 
-#: src/common/xchat.c:940
+#: src/common/xchat.c:930
 msgid "Take Ops"
 msgstr ""
 
-#: src/common/xchat.c:941
+#: src/common/xchat.c:931
 msgid "Give Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:942
+#: src/common/xchat.c:932
 msgid "Take Half-Ops"
 msgstr ""
 
-#: src/common/xchat.c:943
+#: src/common/xchat.c:933
 msgid "Give Voice"
 msgstr ""
 
-#: src/common/xchat.c:944
+#: src/common/xchat.c:934
 msgid "Take Voice"
 msgstr ""
 
-#: src/common/xchat.c:945
+#: src/common/xchat.c:935
 #, fuzzy
 msgid "Ignore"
 msgstr "Ära ignoreeri"
 
-#: src/common/xchat.c:946
+#: src/common/xchat.c:936
 #, fuzzy
 msgid "Ignore User"
 msgstr "Ignoreerimise mask:"
 
-#: src/common/xchat.c:947
+#: src/common/xchat.c:937
 #, fuzzy
 msgid "UnIgnore User"
 msgstr "Ära ignoreeri"
 
-#: src/common/xchat.c:948
+#: src/common/xchat.c:938
 #, fuzzy
 msgid "Kick/Ban"
 msgstr "Nimi"
 
-#: src/common/xchat.c:949 src/common/xchat.c:1001
+#: src/common/xchat.c:939 src/common/xchat.c:991
 #, fuzzy
 msgid "Kick"
 msgstr "Nimi"
 
-#: src/common/xchat.c:950 src/common/xchat.c:951 src/common/xchat.c:952
-#: src/common/xchat.c:953 src/common/xchat.c:954 src/common/xchat.c:1000
+#: src/common/xchat.c:940 src/common/xchat.c:941 src/common/xchat.c:942
+#: src/common/xchat.c:943 src/common/xchat.c:944 src/common/xchat.c:990
 #, fuzzy
 msgid "Ban"
 msgstr "Bhutan"
 
-#: src/common/xchat.c:955 src/common/xchat.c:956 src/common/xchat.c:957
-#: src/common/xchat.c:958
+#: src/common/xchat.c:945 src/common/xchat.c:946 src/common/xchat.c:947
+#: src/common/xchat.c:948
 #, fuzzy
 msgid "KickBan"
 msgstr "Nimi"
 
-#: src/common/xchat.c:959 src/fe-gtk/dccgui.c:535 src/fe-gtk/dccgui.c:683
+#: src/common/xchat.c:949 src/fe-gtk/dccgui.c:511 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "Info"
 
-#: src/common/xchat.c:960
+#: src/common/xchat.c:950
 #, fuzzy
 msgid "Who"
 msgstr "KesOn"
 
-#: src/common/xchat.c:961 src/common/xchat.c:1014
+#: src/common/xchat.c:951 src/common/xchat.c:1004
 msgid "WhoIs"
 msgstr "KesOn"
 
-#: src/common/xchat.c:962
+#: src/common/xchat.c:952
 msgid "DNS Lookup"
 msgstr ""
 
-#: src/common/xchat.c:963
+#: src/common/xchat.c:953
 #, fuzzy
 msgid "Trace"
 msgstr "Prantsusmaa"
 
-#: src/common/xchat.c:964
+#: src/common/xchat.c:954
 #, fuzzy
 msgid "UserHost"
 msgstr "Kasutajad"
 
-#: src/common/xchat.c:965
+#: src/common/xchat.c:955
 msgid "External"
 msgstr ""
 
-#: src/common/xchat.c:966
+#: src/common/xchat.c:956
 msgid "Traceroute"
 msgstr ""
 
-#: src/common/xchat.c:968
+#: src/common/xchat.c:958
 #, fuzzy
 msgid "Telnet"
 msgstr "Kustuta"
 
-#: src/common/xchat.c:969
+#: src/common/xchat.c:959
 #, fuzzy
 msgid "Open Dialog Window"
 msgstr "Ava dialoogiaknad automaatselt"
 
-#: src/common/xchat.c:981
+#: src/common/xchat.c:971
 #, fuzzy
 msgid "Disconnect"
 msgstr "Ühenda"
 
-#: src/common/xchat.c:982
+#: src/common/xchat.c:972
 #, fuzzy
 msgid "Reconnect"
 msgstr "Ühenda"
 
-#: src/common/xchat.c:983
+#: src/common/xchat.c:973
 #, fuzzy
 msgid "Leave Channel"
 msgstr "Lahku kanalist"
 
-#: src/common/xchat.c:984
+#: src/common/xchat.c:974
 #, fuzzy
 msgid "Join Channel..."
 msgstr "Liitu kanaliga"
 
-#: src/common/xchat.c:985
+#: src/common/xchat.c:975
 #, fuzzy
 msgid "Enter Channel to Join:"
 msgstr "Sihtkanal"
 
-#: src/common/xchat.c:986
+#: src/common/xchat.c:976
 #, fuzzy
 msgid "Server Links"
 msgstr "Serverite nimekiri..."
 
-#: src/common/xchat.c:987
+#: src/common/xchat.c:977
 #, fuzzy
 msgid "Ping Server"
 msgstr "Server"
 
-#: src/common/xchat.c:988
+#: src/common/xchat.c:978
 #, fuzzy
 msgid "Hide Version"
 msgstr "Versioon"
 
-#: src/common/xchat.c:998
+#: src/common/xchat.c:988
 #, fuzzy
 msgid "Op"
 msgstr "Ava"
 
-#: src/common/xchat.c:999
+#: src/common/xchat.c:989
 msgid "DeOp"
 msgstr ""
 
-#: src/common/xchat.c:1002
+#: src/common/xchat.c:992
 msgid "bye"
 msgstr ""
 
-#: src/common/xchat.c:1003
+#: src/common/xchat.c:993
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr ""
 
-#: src/common/xchat.c:1004
+#: src/common/xchat.c:994
 #, fuzzy
 msgid "Sendfile"
 msgstr "Helifail: "
 
-#: src/common/xchat.c:1005
+#: src/common/xchat.c:995
 msgid "Dialog"
 msgstr ""
 
-#: src/common/xchat.c:1015
+#: src/common/xchat.c:1005
 msgid "Send"
 msgstr "Saada"
 
-#: src/common/xchat.c:1016
+#: src/common/xchat.c:1006
 msgid "Chat"
 msgstr "Vestlus"
 
-#: src/common/xchat.c:1017 src/fe-gtk/banlist.c:314 src/fe-gtk/search.c:117
-#: src/fe-gtk/urlgrab.c:200
+#: src/common/xchat.c:1007 src/fe-gtk/banlist.c:288 src/fe-gtk/search.c:99
+#: src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "Puhasta"
 
-#: src/fe-gtk/about.c:102
-msgid "About X-Chat"
+#: src/fe-gtk/about.c:73
+#, fuzzy
+msgid "About Rage"
 msgstr "X-Chati info"
 
-#: src/fe-gtk/about.c:124
+#: src/fe-gtk/about.c:95
 msgid "A multiplatform IRC Client"
 msgstr ""
 
-#: src/fe-gtk/ascii.c:131
+#: src/fe-gtk/ascii.c:113
 #, fuzzy
 msgid "Character Chart"
 msgstr "Märgistik"
 
-#: src/fe-gtk/banlist.c:148 src/fe-gtk/banlist.c:232
+#: src/fe-gtk/banlist.c:122 src/fe-gtk/banlist.c:206
 msgid "You must select some bans."
 msgstr ""
 
-#: src/fe-gtk/banlist.c:248 src/fe-gtk/ignoregui.c:175
+#: src/fe-gtk/banlist.c:222 src/fe-gtk/ignoregui.c:145
 msgid "Mask"
 msgstr "Mask"
 
-#: src/fe-gtk/banlist.c:249 src/fe-gtk/dccgui.c:492
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:468
 msgid "From"
 msgstr "Kasutajalt"
 
-#: src/fe-gtk/banlist.c:250
+#: src/fe-gtk/banlist.c:224
 msgid "Date"
 msgstr "Kuupäev"
 
-#: src/fe-gtk/banlist.c:294
-#, c-format
-msgid "X-Chat: Ban List (%s)"
-msgstr ""
+#: src/fe-gtk/banlist.c:268
+#, fuzzy, c-format
+msgid "Rage: Ban List (%s)"
+msgstr "X-Chat: kanalid (%s)"
 
-#: src/fe-gtk/banlist.c:310
+#: src/fe-gtk/banlist.c:284
 msgid "Unban"
 msgstr ""
 
-#: src/fe-gtk/banlist.c:312
+#: src/fe-gtk/banlist.c:286
 msgid "Crop"
 msgstr ""
 
-#: src/fe-gtk/banlist.c:316
+#: src/fe-gtk/banlist.c:290
 msgid "Refresh"
 msgstr "Värskenda"
 
-#: src/fe-gtk/chanlist.c:120
+#: src/fe-gtk/chanlist.c:92
 #, c-format
 msgid "User and Channel Statistics: %d/%d Users on %d/%d Channels"
 msgstr "Kasutajate ja kanalite statistika: %d/%d kasutajat %d/%d kanalil"
 
-#: src/fe-gtk/chanlist.c:536
+#: src/fe-gtk/chanlist.c:508
 msgid "I can't save an empty list!"
 msgstr "Ei saa salvestada tühja nimekirja!"
 
-#: src/fe-gtk/chanlist.c:539 src/fe-gtk/menu.c:954
+#: src/fe-gtk/chanlist.c:511 src/fe-gtk/menu.c:903
 msgid "Select an output filename"
 msgstr "Vali väljundfaili nimi"
 
-#: src/fe-gtk/chanlist.c:607
-#, c-format
-msgid "X-Chat: Channel List (%s)"
+#: src/fe-gtk/chanlist.c:579
+#, fuzzy, c-format
+msgid "Rage: Channel List (%s)"
 msgstr "X-Chat: kanalid (%s)"
 
-#: src/fe-gtk/chanlist.c:622
+#: src/fe-gtk/chanlist.c:594
 msgid "List display options:"
 msgstr "Nimekirja kuva häälestus:"
 
-#: src/fe-gtk/chanlist.c:634
+#: src/fe-gtk/chanlist.c:606
 #, fuzzy
 msgid "Minimum Users:"
 msgstr "Minimaalselt kasutajaid: "
 
-#: src/fe-gtk/chanlist.c:649
+#: src/fe-gtk/chanlist.c:621
 #, fuzzy
 msgid "Maximum Users:"
 msgstr "Maksimaalselt kasutajaid: "
 
-#: src/fe-gtk/chanlist.c:664
+#: src/fe-gtk/chanlist.c:636
 #, fuzzy
 msgid "Regex Match:"
 msgstr "Regulaaravaldis: "
 
-#: src/fe-gtk/chanlist.c:685
+#: src/fe-gtk/chanlist.c:657
 msgid "Apply Match to:"
 msgstr ""
 
-#: src/fe-gtk/chanlist.c:709
+#: src/fe-gtk/chanlist.c:681
 msgid "Apply"
 msgstr "Proovi"
 
-#: src/fe-gtk/chanlist.c:751
+#: src/fe-gtk/chanlist.c:723
 msgid "Refresh the list"
 msgstr "Värskenda nimekiri"
 
-#: src/fe-gtk/chanlist.c:753
+#: src/fe-gtk/chanlist.c:725
 msgid "Save the list"
 msgstr "Salvesta nimekiri"
 
-#: src/fe-gtk/chanlist.c:755 src/fe-gtk/menu.c:756
+#: src/fe-gtk/chanlist.c:727 src/fe-gtk/menu.c:705
 msgid "Join Channel"
 msgstr "Liitu kanaliga"
 
-#: src/fe-gtk/dccgui.c:126
+#: src/fe-gtk/dccgui.c:102
 #, c-format
 msgid "Send file to %s"
 msgstr "Saada fail kasutajale %s"
 
-#: src/fe-gtk/dccgui.c:346
+#: src/fe-gtk/dccgui.c:322
 #, c-format
 msgid ""
 "      File: %s\n"
@@ -3176,11 +3155,11 @@ msgstr ""
 " IP aadr: %s\n"
 "Algusaeg: %s   Max C/S: %d\n"
 
-#: src/fe-gtk/dccgui.c:379
+#: src/fe-gtk/dccgui.c:355
 msgid "That file is not resumable."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:383
+#: src/fe-gtk/dccgui.c:359
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3188,161 +3167,164 @@ msgid ""
 "Resuming not possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:390
+#: src/fe-gtk/dccgui.c:366
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:394
+#: src/fe-gtk/dccgui.c:370
 msgid "Cannot resume the same file from two people."
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:481
+#: src/fe-gtk/dccgui.c:457
 msgid "MIME Type"
 msgstr "MIME tüüp"
 
-#: src/fe-gtk/dccgui.c:487 src/fe-gtk/dccgui.c:644 src/fe-gtk/dccgui.c:767
-#: src/fe-gtk/notifygui.c:110
+#: src/fe-gtk/dccgui.c:463 src/fe-gtk/dccgui.c:620 src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "Olek"
 
-#: src/fe-gtk/dccgui.c:488 src/fe-gtk/dccgui.c:645 src/fe-gtk/plugingui.c:75
+#: src/fe-gtk/dccgui.c:464 src/fe-gtk/dccgui.c:621 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "Fail"
 
-#: src/fe-gtk/dccgui.c:491 src/fe-gtk/dccgui.c:649
+#: src/fe-gtk/dccgui.c:467 src/fe-gtk/dccgui.c:625
 msgid "ETA"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:501
-msgid "X-Chat: File Receive List"
+#: src/fe-gtk/dccgui.c:477
+#, fuzzy
+msgid "Rage: File Receive List"
 msgstr "X-Chat: saabuvate failide nimekiri"
 
-#: src/fe-gtk/dccgui.c:529 src/fe-gtk/dccgui.c:682 src/fe-gtk/dccgui.c:797
+#: src/fe-gtk/dccgui.c:505 src/fe-gtk/dccgui.c:658 src/fe-gtk/dccgui.c:773
 msgid "Abort"
 msgstr "Katkesta"
 
-#: src/fe-gtk/dccgui.c:531 src/fe-gtk/dccgui.c:798
+#: src/fe-gtk/dccgui.c:507 src/fe-gtk/dccgui.c:774
 msgid "Accept"
 msgstr "Võta vastu"
 
-#: src/fe-gtk/dccgui.c:533
+#: src/fe-gtk/dccgui.c:509
 msgid "Resume"
 msgstr "Jätka"
 
-#: src/fe-gtk/dccgui.c:537
+#: src/fe-gtk/dccgui.c:513
 msgid "Open"
 msgstr "Ava"
 
-#: src/fe-gtk/dccgui.c:648
+#: src/fe-gtk/dccgui.c:624
 msgid "Ack"
 msgstr "Kviteering"
 
-#: src/fe-gtk/dccgui.c:650
+#: src/fe-gtk/dccgui.c:626
 msgid "To"
 msgstr "Kellele"
 
-#: src/fe-gtk/dccgui.c:660
-msgid "X-Chat: File Send List"
+#: src/fe-gtk/dccgui.c:636
+#, fuzzy
+msgid "Rage: File Send List"
 msgstr "X-Chat: saadetavate failide nimekiri"
 
-#: src/fe-gtk/dccgui.c:768
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "Kellele/Kellelt"
 
-#: src/fe-gtk/dccgui.c:769
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "Siia"
 
-#: src/fe-gtk/dccgui.c:770
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "Sinna"
 
-#: src/fe-gtk/dccgui.c:771
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "Algusaeg"
 
-#: src/fe-gtk/dccgui.c:781
-msgid "X-Chat: DCC Chat List"
+#: src/fe-gtk/dccgui.c:757
+#, fuzzy
+msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC vestluste nimekiri"
 
-#: src/fe-gtk/editlist.c:139
+#: src/fe-gtk/editlist.c:116
 msgid "*NEW*"
 msgstr "*UUS*"
 
-#: src/fe-gtk/editlist.c:140
+#: src/fe-gtk/editlist.c:117
 msgid "EDIT ME"
 msgstr "MUUDA MIND"
 
-#: src/fe-gtk/editlist.c:305 src/fe-gtk/plugingui.c:73
+#: src/fe-gtk/editlist.c:282 src/fe-gtk/plugingui.c:49
 msgid "Name"
 msgstr "Nimi"
 
-#: src/fe-gtk/editlist.c:306
+#: src/fe-gtk/editlist.c:283
 msgid "Command"
 msgstr "Käsklus"
 
-#: src/fe-gtk/editlist.c:333
+#: src/fe-gtk/editlist.c:310
 msgid "Move Up"
 msgstr "Liiguta üles"
 
-#: src/fe-gtk/editlist.c:337
+#: src/fe-gtk/editlist.c:314
 msgid "Move Dn"
 msgstr "Liiguta alla"
 
-#: src/fe-gtk/editlist.c:345
+#: src/fe-gtk/editlist.c:322
 msgid "Cancel"
 msgstr "Loobu"
 
-#: src/fe-gtk/editlist.c:349 src/fe-gtk/textgui.c:413 src/fe-gtk/urlgrab.c:204
+#: src/fe-gtk/editlist.c:326 src/fe-gtk/textgui.c:387 src/fe-gtk/urlgrab.c:179
 msgid "Save"
 msgstr "Salvesta"
 
-#: src/fe-gtk/editlist.c:357
+#: src/fe-gtk/editlist.c:334
 msgid "Add New"
 msgstr "Lisa uus"
 
-#: src/fe-gtk/editlist.c:361 src/fe-gtk/fkeys.c:744 src/fe-gtk/ignoregui.c:379
+#: src/fe-gtk/editlist.c:338 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:349
 msgid "Delete"
 msgstr "Kustuta"
 
-#: src/fe-gtk/editlist.c:369
+#: src/fe-gtk/editlist.c:346
 msgid "Sort"
 msgstr "Sorteeri"
 
-#: src/fe-gtk/editlist.c:373
+#: src/fe-gtk/editlist.c:350
 msgid "Help"
 msgstr "Abi"
 
-#: src/fe-gtk/fe-gtk.c:144
+#: src/fe-gtk/fe-gtk.c:106
 #, fuzzy
 msgid "Options"
 msgstr "Kanali häälestus"
 
-#: src/fe-gtk/fe-gtk.c:145
+#: src/fe-gtk/fe-gtk.c:107
 msgid "DIRECTORY"
 msgstr ""
 
-#: src/fe-gtk/fe-gtk.c:146
+#: src/fe-gtk/fe-gtk.c:108
 msgid "use a different config dir"
 msgstr ""
 
-#: src/fe-gtk/fe-gtk.c:147
+#: src/fe-gtk/fe-gtk.c:109
 #, fuzzy
 msgid "don't auto connect"
 msgstr "Ära ühenda automaatselt"
 
-#: src/fe-gtk/fe-gtk.c:148
+#: src/fe-gtk/fe-gtk.c:110
 msgid "don't auto load any plugins"
 msgstr ""
 
-#: src/fe-gtk/fe-gtk.c:149
+#: src/fe-gtk/fe-gtk.c:111
 #, fuzzy
 msgid "show version information"
 msgstr "Serveri info"
 
-#: src/fe-gtk/fe-gtk.c:234
+#: src/fe-gtk/fe-gtk.c:196
 #, fuzzy, c-format
 msgid ""
 "Failed to open font:\n"
@@ -3353,16 +3335,16 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:594
+#: src/fe-gtk/fe-gtk.c:556
 msgid "Search buffer is empty.\n"
 msgstr "Otsingu puhver on tühi.\n"
 
-#: src/fe-gtk/fe-gtk.c:671
+#: src/fe-gtk/fe-gtk.c:633
 #, c-format
 msgid "%d bytes"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:155
+#: src/fe-gtk/fkeys.c:114
 msgid ""
 "The Run Command action runs the data in Data 1 as if it has been typed into "
 "the entry box where you pressed the key sequence. Thus it can contain text "
@@ -3372,140 +3354,140 @@ msgid ""
 "text run then enter \\\\"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:157
+#: src/fe-gtk/fkeys.c:116
 msgid ""
 "The Change Page command switches between pages in the notebook. Set Data 1 "
 "to the page you want to switch to. If Data 2 is set to anything then the "
 "switch will be relative to the current position"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:159
+#: src/fe-gtk/fkeys.c:118
 msgid ""
 "The Insert in Buffer command will insert the contents of Data 1 into the "
 "entry where the key sequence was pressed at the current cursor position"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:161
+#: src/fe-gtk/fkeys.c:120
 msgid ""
 "The Scroll Page command scrolls the text widget up or down one page or one "
 "line. Set Data 1 to either Up, Down, +1 or -1."
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:163
+#: src/fe-gtk/fkeys.c:122
 msgid ""
 "The Set Buffer command sets the entry where the key sequence was entered to "
 "the contents of Data 1"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:165
+#: src/fe-gtk/fkeys.c:124
 msgid ""
 "The Last Command command sets the entry to contain the last command entered "
 "- the same as pressing up in a shell"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:167
+#: src/fe-gtk/fkeys.c:126
 msgid ""
 "The Next Command command sets the entry to contain the next command entered "
 "- the same as pressing down in a shell"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:169
+#: src/fe-gtk/fkeys.c:128
 msgid ""
 "This command changes the text in the entry to finish an incomplete nickname "
 "or command. If Data 1 is set then double-tabbing in a string will select the "
 "last nick, not the next"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:171
+#: src/fe-gtk/fkeys.c:130
 msgid ""
 "This command scrolls up and down through the list of nicks. If Data 1 is set "
 "to anything it will scroll up, else it scrolls down"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:173
+#: src/fe-gtk/fkeys.c:132
 msgid ""
 "This command checks the last word entered in the entry against the replace "
 "list and replaces it if it finds a match"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:175
+#: src/fe-gtk/fkeys.c:134
 msgid "This command moves the front tab left by one"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:177
+#: src/fe-gtk/fkeys.c:136
 msgid "This command moves the front tab right by one"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:179
+#: src/fe-gtk/fkeys.c:138
 msgid "This command moves the current tab family to the left"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:181
+#: src/fe-gtk/fkeys.c:140
 msgid "This command moves the current tab family to the right"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:183
+#: src/fe-gtk/fkeys.c:142
 msgid "Push input line into history but doesn't send to server"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:195
+#: src/fe-gtk/fkeys.c:154
 msgid "There was an error loading key bindings configuration"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:432 src/fe-gtk/fkeys.c:433 src/fe-gtk/fkeys.c:434
-#: src/fe-gtk/fkeys.c:435 src/fe-gtk/fkeys.c:717 src/fe-gtk/fkeys.c:723
-#: src/fe-gtk/fkeys.c:728 src/fe-gtk/maingui.c:905 src/fe-gtk/maingui.c:921
-#: src/fe-gtk/maingui.c:1064 src/fe-gtk/maingui.c:1117
-#: src/fe-gtk/maingui.c:2494
+#: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
+#: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:862 src/fe-gtk/maingui.c:878
+#: src/fe-gtk/maingui.c:1021 src/fe-gtk/maingui.c:1074
+#: src/fe-gtk/maingui.c:2451
 msgid "<none>"
 msgstr "<tühi>"
 
-#: src/fe-gtk/fkeys.c:681
+#: src/fe-gtk/fkeys.c:641
 msgid "Mod"
 msgstr ""
 
-#: src/fe-gtk/fkeys.c:682 src/fe-gtk/fkeys.c:777
+#: src/fe-gtk/fkeys.c:642 src/fe-gtk/fkeys.c:737
 msgid "Key"
 msgstr "Nupp"
 
-#: src/fe-gtk/fkeys.c:683
+#: src/fe-gtk/fkeys.c:643
 msgid "Action"
 msgstr "Tegevus"
 
-#: src/fe-gtk/fkeys.c:692
+#: src/fe-gtk/fkeys.c:652
 #, fuzzy
-msgid "X-Chat: Keyboard Shortcuts"
+msgid "Rage: Keyboard Shortcuts"
 msgstr "X-Chat: otsing"
 
-#: src/fe-gtk/fkeys.c:739
+#: src/fe-gtk/fkeys.c:699
 msgid "Add new"
 msgstr "Lisa uus"
 
-#: src/fe-gtk/fkeys.c:770
+#: src/fe-gtk/fkeys.c:730
 msgid "Shift"
 msgstr "Shift"
 
-#: src/fe-gtk/fkeys.c:772
+#: src/fe-gtk/fkeys.c:732
 msgid "Alt"
 msgstr "Alt"
 
-#: src/fe-gtk/fkeys.c:774
+#: src/fe-gtk/fkeys.c:734
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: src/fe-gtk/fkeys.c:781
+#: src/fe-gtk/fkeys.c:741
 msgid "Data 1"
 msgstr "Andmed 1"
 
-#: src/fe-gtk/fkeys.c:784
+#: src/fe-gtk/fkeys.c:744
 msgid "Data 2"
 msgstr "Andmed 2"
 
-#: src/fe-gtk/fkeys.c:827
+#: src/fe-gtk/fkeys.c:787
 msgid "Error opening keys config file\n"
 msgstr "Ei suudetud avada klahvide seadete faili\n"
 
-#: src/fe-gtk/fkeys.c:998
+#: src/fe-gtk/fkeys.c:958
 #, fuzzy, c-format
 msgid ""
 "Unknown keyname %s in key bindings config file\n"
@@ -3514,7 +3496,7 @@ msgstr ""
 "Tundmatu klahv %s on klahvi seoste failis\n"
 "Laadimine katkestati, palun paranda fail ~/.xchat/keybindings.conf\n"
 
-#: src/fe-gtk/fkeys.c:1036
+#: src/fe-gtk/fkeys.c:996
 #, fuzzy, c-format
 msgid ""
 "Unknown action %s in key bindings config file\n"
@@ -3523,7 +3505,7 @@ msgstr ""
 "Tundmatu tegevus %s on klahvi seoste failis\n"
 "Laadimine katkestati, palun paranda fail ~/.xchat/keybindings.conf\n"
 
-#: src/fe-gtk/fkeys.c:1057
+#: src/fe-gtk/fkeys.c:1017
 #, fuzzy, c-format
 msgid ""
 "Expecting Data line (beginning Dx{:|!}) but got:\n"
@@ -3536,7 +3518,7 @@ msgstr ""
 "\n"
 "Laadimine katkestati, palun paranda fail ~/.xchat/keybindings\n"
 
-#: src/fe-gtk/fkeys.c:1126
+#: src/fe-gtk/fkeys.c:1086
 #, fuzzy, c-format
 msgid ""
 "Key bindings config file is corrupt, load aborted\n"
@@ -3545,182 +3527,183 @@ msgstr ""
 "Tundmatu klahv %s on klahvi seoste failis\n"
 "Laadimine katkestati, palun paranda fail ~/.xchat/keybindings.conf\n"
 
-#: src/fe-gtk/gtkutil.c:154
+#: src/fe-gtk/gtkutil.c:118
 msgid "Cannot write to that file."
 msgstr "Sellese faili ei saa kirjutada."
 
-#: src/fe-gtk/gtkutil.c:156
+#: src/fe-gtk/gtkutil.c:120
 msgid "Cannot read that file."
 msgstr "Sellest failist ei saa lugeda."
 
-#: src/fe-gtk/ignoregui.c:117 src/fe-gtk/ignoregui.c:280
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:250
 msgid "That mask already exists."
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:177 src/fe-gtk/maingui.c:1573
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1530
 msgid "Private"
 msgstr "Privaatne"
 
-#: src/fe-gtk/ignoregui.c:178
+#: src/fe-gtk/ignoregui.c:148
 msgid "Notice"
 msgstr "Teated"
 
-#: src/fe-gtk/ignoregui.c:179
+#: src/fe-gtk/ignoregui.c:149
 msgid "CTCP"
 msgstr "CTCP"
 
-#: src/fe-gtk/ignoregui.c:180
+#: src/fe-gtk/ignoregui.c:150
 msgid "DCC"
 msgstr ""
 
-#: src/fe-gtk/ignoregui.c:181
+#: src/fe-gtk/ignoregui.c:151
 msgid "Invite"
 msgstr "Kutsumised"
 
-#: src/fe-gtk/ignoregui.c:182
+#: src/fe-gtk/ignoregui.c:152
 msgid "Unignore"
 msgstr "Ära ignoreeri"
 
-#: src/fe-gtk/ignoregui.c:300
+#: src/fe-gtk/ignoregui.c:270
 #, fuzzy
 msgid "Enter mask to ignore:"
 msgstr "Sihtkanal"
 
-#: src/fe-gtk/ignoregui.c:347
-msgid "X-Chat: Ignore list"
+#: src/fe-gtk/ignoregui.c:317
+#, fuzzy
+msgid "Rage: Ignore list"
 msgstr "X-Chat: ignoreeritavate nimekiri"
 
-#: src/fe-gtk/ignoregui.c:354
+#: src/fe-gtk/ignoregui.c:324
 msgid "Ignore Stats:"
 msgstr "Ignoreerimise statistika:"
 
-#: src/fe-gtk/ignoregui.c:362
+#: src/fe-gtk/ignoregui.c:332
 msgid "Channel:"
 msgstr "Kanalile:"
 
-#: src/fe-gtk/ignoregui.c:363
+#: src/fe-gtk/ignoregui.c:333
 msgid "Private:"
 msgstr "Privaatne:"
 
-#: src/fe-gtk/ignoregui.c:364
+#: src/fe-gtk/ignoregui.c:334
 msgid "Notice:"
 msgstr "Teateid:"
 
-#: src/fe-gtk/ignoregui.c:365
+#: src/fe-gtk/ignoregui.c:335
 msgid "CTCP:"
 msgstr "CTCP:"
 
-#: src/fe-gtk/ignoregui.c:366
+#: src/fe-gtk/ignoregui.c:336
 msgid "Invite:"
 msgstr "Kutsumisi:"
 
-#: src/fe-gtk/ignoregui.c:377 src/fe-gtk/menu.c:1259
+#: src/fe-gtk/ignoregui.c:347 src/fe-gtk/menu.c:1208
 msgid "New"
 msgstr "Lisa uus"
 
-#: src/fe-gtk/ignoregui.c:381
+#: src/fe-gtk/ignoregui.c:351
 #, fuzzy
 msgid "Delete All"
 msgstr "Kustuta"
 
-#: src/fe-gtk/maingui.c:318
+#: src/fe-gtk/maingui.c:275
 msgid "Dialog with"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:574
+#: src/fe-gtk/maingui.c:531
 #, c-format
 msgid "Topic for %s is: %s"
 msgstr "Kanali %s teema on: %s"
 
-#: src/fe-gtk/maingui.c:578
+#: src/fe-gtk/maingui.c:535
 msgid "No topic is set"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:974
+#: src/fe-gtk/maingui.c:931
 msgid "No other tabs open, quit xchat?"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1020
+#: src/fe-gtk/maingui.c:977
 msgid "Insert color code"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1069
+#: src/fe-gtk/maingui.c:1026
 #, fuzzy
 msgid "Beep on message"
 msgstr "Tee piiks sõnumi saabumisel"
 
-#: src/fe-gtk/maingui.c:1072
+#: src/fe-gtk/maingui.c:1029
 #, fuzzy
 msgid "Show join/part messages"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/maingui.c:1074
+#: src/fe-gtk/maingui.c:1031
 #, fuzzy
 msgid "Color paste"
 msgstr "Värviline asetamine"
 
-#: src/fe-gtk/maingui.c:1084
+#: src/fe-gtk/maingui.c:1041
 msgid "Go to"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1097 src/fe-gtk/menu.c:1281
+#: src/fe-gtk/maingui.c:1054 src/fe-gtk/menu.c:1230
 #, fuzzy
 msgid "Close Tab"
 msgstr "Sulge tööriistakast"
 
-#: src/fe-gtk/maingui.c:1100 src/fe-gtk/menu.c:1434
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1383
 msgid "Detach Tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1291
+#: src/fe-gtk/maingui.c:1248
 msgid "Some file transfers still active, quit xchat?"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1441 src/fe-gtk/maingui.c:1547
+#: src/fe-gtk/maingui.c:1398 src/fe-gtk/maingui.c:1504
 msgid "User limit must be a number!\n"
 msgstr "Kasutajapiirang peab olema number!\n"
 
-#: src/fe-gtk/maingui.c:1569
+#: src/fe-gtk/maingui.c:1526
 msgid "Topic Protection"
 msgstr "Teema kaitse"
 
-#: src/fe-gtk/maingui.c:1570
+#: src/fe-gtk/maingui.c:1527
 msgid "No outside messages"
 msgstr "Ära luba väljast teateid"
 
-#: src/fe-gtk/maingui.c:1571
+#: src/fe-gtk/maingui.c:1528
 msgid "Secret"
 msgstr "Salajane"
 
-#: src/fe-gtk/maingui.c:1572
+#: src/fe-gtk/maingui.c:1529
 msgid "Invite Only"
 msgstr "Ainult kutsetega"
 
-#: src/fe-gtk/maingui.c:1574
+#: src/fe-gtk/maingui.c:1531
 msgid "Moderated"
 msgstr "Modereeritav"
 
-#: src/fe-gtk/maingui.c:1575
+#: src/fe-gtk/maingui.c:1532
 msgid "Ban List"
 msgstr "Keelatute nimekiri"
 
-#: src/fe-gtk/maingui.c:1577
+#: src/fe-gtk/maingui.c:1534
 msgid "Keyword"
 msgstr "Märgusõna"
 
-#: src/fe-gtk/maingui.c:1589
+#: src/fe-gtk/maingui.c:1546
 msgid "User Limit"
 msgstr "Kasutajate piirang"
 
-#: src/fe-gtk/maingui.c:1605
+#: src/fe-gtk/maingui.c:1562
 msgid "Close this tab/window"
 msgstr "Sulge see sakk/aken"
 
-#: src/fe-gtk/maingui.c:1702
+#: src/fe-gtk/maingui.c:1659
 msgid "Show/Hide userlist"
 msgstr "Näita/peida kasutajate nimekiri"
 
-#: src/fe-gtk/maingui.c:1815
+#: src/fe-gtk/maingui.c:1772
 msgid ""
 "Unable to set transparent background!\n"
 "\n"
@@ -3728,83 +3711,84 @@ msgid ""
 "manager that is not currently supported.\n"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:2008
+#: src/fe-gtk/maingui.c:1965
 msgid "Enter new nickname:"
 msgstr "Sisesta uus hüüdnimi:"
 
-#: src/fe-gtk/menu.c:151
+#: src/fe-gtk/menu.c:100
 msgid "Host unknown"
 msgstr "Tundmatu host"
 
-#: src/fe-gtk/menu.c:512
+#: src/fe-gtk/menu.c:461
 #, c-format
 msgid "User: %s"
 msgstr "Kasutaja: %s"
 
-#: src/fe-gtk/menu.c:516
+#: src/fe-gtk/menu.c:465
 #, c-format
 msgid "Country: %s"
 msgstr "Riik: %s"
 
-#: src/fe-gtk/menu.c:520
+#: src/fe-gtk/menu.c:469
 #, c-format
 msgid "Realname: %s"
 msgstr "Päris nimi: %s"
 
-#: src/fe-gtk/menu.c:524
+#: src/fe-gtk/menu.c:473
 #, c-format
 msgid "Server: %s"
 msgstr "Server: %s"
 
-#: src/fe-gtk/menu.c:528
+#: src/fe-gtk/menu.c:477
 #, c-format
 msgid "Last Msg: %s"
 msgstr "Viimane sõnum: %s"
 
-#: src/fe-gtk/menu.c:613
+#: src/fe-gtk/menu.c:562
 msgid "Menu Bar"
 msgstr "Menüüriba"
 
-#: src/fe-gtk/menu.c:614
+#: src/fe-gtk/menu.c:563
 msgid "Topic Bar"
 msgstr "Teemariba"
 
-#: src/fe-gtk/menu.c:618 src/fe-gtk/setup.c:158
+#: src/fe-gtk/menu.c:567 src/fe-gtk/setup.c:111
 msgid "User List"
 msgstr "Kasutajate nimekiri"
 
-#: src/fe-gtk/menu.c:621
+#: src/fe-gtk/menu.c:570
 #, fuzzy
 msgid "Mode Buttons"
 msgstr "Dialooginupud..."
 
-#: src/fe-gtk/menu.c:627
+#: src/fe-gtk/menu.c:576
 #, fuzzy
 msgid "User List Buttons"
 msgstr "Kasutajate nimekirja nupud..."
 
-#: src/fe-gtk/menu.c:697 src/fe-gtk/urlgrab.c:202
+#: src/fe-gtk/menu.c:646 src/fe-gtk/urlgrab.c:177
 msgid "Copy selected URL"
 msgstr ""
 
-#: src/fe-gtk/menu.c:760
+#: src/fe-gtk/menu.c:709
 msgid "Part Channel"
 msgstr "Lahku kanalist"
 
-#: src/fe-gtk/menu.c:762
+#: src/fe-gtk/menu.c:711
 msgid "Cycle Channel"
 msgstr ""
 
-#: src/fe-gtk/menu.c:785
-msgid "X-Chat: User menu"
+#: src/fe-gtk/menu.c:734
+#, fuzzy
+msgid "Rage: User menu"
 msgstr "X-Chat: kasutja menüü"
 
-#: src/fe-gtk/menu.c:794
+#: src/fe-gtk/menu.c:743
 #, fuzzy
 msgid "Edit This Menu..."
 msgstr "Kasutaja menüü muutmine.."
 
-#: src/fe-gtk/menu.c:896
+#: src/fe-gtk/menu.c:845
 msgid ""
 "*WARNING*\n"
 "Auto accepting DCC to your home directory\n"
@@ -3816,11 +3800,11 @@ msgstr ""
 "on ohtlik ja ära kasutatav. Näiteks võin keegi\n"
 "saata sulle faili .bash_profile"
 
-#: src/fe-gtk/menu.c:1024
+#: src/fe-gtk/menu.c:973
 msgid "Settings saved."
 msgstr "Sätted salvestatud."
 
-#: src/fe-gtk/menu.c:1061
+#: src/fe-gtk/menu.c:1010
 msgid ""
 "User Commands - Special codes:\n"
 "\n"
@@ -3858,7 +3842,7 @@ msgstr ""
 "%2 oleks \"tere\"\n"
 "&2 oleks \"tere peeter\"."
 
-#: src/fe-gtk/menu.c:1076
+#: src/fe-gtk/menu.c:1025
 msgid ""
 "Userlist Buttons - Special codes:\n"
 "\n"
@@ -3880,7 +3864,7 @@ msgstr ""
 "%s  =  valitud kasutaja\n"
 "%t  =  kell/kuupäev\n"
 
-#: src/fe-gtk/menu.c:1085
+#: src/fe-gtk/menu.c:1034
 msgid ""
 "Dialog Buttons - Special codes:\n"
 "\n"
@@ -3902,7 +3886,7 @@ msgstr ""
 "%s  =  valitud kasutaja\n"
 "%t  =  kell/kuupäev\n"
 
-#: src/fe-gtk/menu.c:1094
+#: src/fe-gtk/menu.c:1043
 msgid ""
 "CTCP Replies - Special codes:\n"
 "\n"
@@ -3917,7 +3901,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/fe-gtk/menu.c:1104
+#: src/fe-gtk/menu.c:1053
 #, c-format
 msgid ""
 "URL Handlers - Special codes:\n"
@@ -3926,930 +3910,939 @@ msgid ""
 "\n"
 "Putting a ! infront of the command\n"
 "indicates it should be sent to a\n"
-"shell instead of X-Chat"
+"shell instead of Rage"
 msgstr ""
 
-#: src/fe-gtk/menu.c:1113
-msgid "X-Chat: User Defined Commands"
+#: src/fe-gtk/menu.c:1062
+#, fuzzy
+msgid "Rage: User Defined Commands"
 msgstr "X-Chat: kasutaja määratud käsud"
 
-#: src/fe-gtk/menu.c:1120
-msgid "X-Chat: Userlist Popup menu"
+#: src/fe-gtk/menu.c:1069
+#, fuzzy
+msgid "Rage: Userlist Popup menu"
 msgstr "X-Chat: kasutajate nimekirja aken"
 
-#: src/fe-gtk/menu.c:1127
-msgid "X-Chat: Replace"
+#: src/fe-gtk/menu.c:1076
+#, fuzzy
+msgid "Rage: Replace"
 msgstr "X-Chat: asenda"
 
-#: src/fe-gtk/menu.c:1134
-msgid "X-Chat: URL Handlers"
+#: src/fe-gtk/menu.c:1083
+#, fuzzy
+msgid "Rage: URL Handlers"
 msgstr "X-Chat: URLi käsitlejad"
 
-#: src/fe-gtk/menu.c:1153
-msgid "X-Chat: Userlist buttons"
+#: src/fe-gtk/menu.c:1102
+#, fuzzy
+msgid "Rage: Userlist buttons"
 msgstr "X-Chat: kasutajate nimekirja nupud"
 
-#: src/fe-gtk/menu.c:1160
-msgid "X-Chat: Dialog buttons"
+#: src/fe-gtk/menu.c:1109
+#, fuzzy
+msgid "Rage: Dialog buttons"
 msgstr "X-Chat: dialooginupud"
 
-#: src/fe-gtk/menu.c:1167
-msgid "X-Chat: CTCP Replies"
+#: src/fe-gtk/menu.c:1116
+#, fuzzy
+msgid "Rage: CTCP Replies"
 msgstr "X-Chat: CTCP vastused"
 
-#: src/fe-gtk/menu.c:1255
-#, fuzzy
-msgid "_X-Chat"
-msgstr "X-Chat"
+#: src/fe-gtk/menu.c:1204
+msgid "_Rage"
+msgstr ""
 
-#: src/fe-gtk/menu.c:1256
+#: src/fe-gtk/menu.c:1205
 msgid "Server List..."
 msgstr "Serverite nimekiri..."
 
-#: src/fe-gtk/menu.c:1260
+#: src/fe-gtk/menu.c:1209
 #, fuzzy
 msgid "Server Tab..."
 msgstr "Uus serveri sakk..."
 
-#: src/fe-gtk/menu.c:1261
+#: src/fe-gtk/menu.c:1210
 #, fuzzy
 msgid "Channel Tab..."
 msgstr "Uus kanali sakk..."
 
-#: src/fe-gtk/menu.c:1262
+#: src/fe-gtk/menu.c:1211
 #, fuzzy
 msgid "Server Window..."
 msgstr "Uus serveri aken..."
 
-#: src/fe-gtk/menu.c:1263
+#: src/fe-gtk/menu.c:1212
 #, fuzzy
 msgid "Channel Window..."
 msgstr "Uus kanali aken..."
 
-#: src/fe-gtk/menu.c:1268 src/fe-gtk/menu.c:1270
+#: src/fe-gtk/menu.c:1217 src/fe-gtk/menu.c:1219
 #, fuzzy
 msgid "Load Plugin or Script..."
 msgstr "Lae Perli skript.."
 
-#: src/fe-gtk/menu.c:1274
+#: src/fe-gtk/menu.c:1223
 msgid "New Shell Tab..."
 msgstr "Uus käsurea sakk..."
 
-#: src/fe-gtk/menu.c:1283
+#: src/fe-gtk/menu.c:1232
 msgid "Quit"
 msgstr "Välju"
 
-#: src/fe-gtk/menu.c:1285
+#: src/fe-gtk/menu.c:1234
 msgid "_IRC"
 msgstr ""
 
-#: src/fe-gtk/menu.c:1286
+#: src/fe-gtk/menu.c:1235
 msgid "Invisible"
 msgstr "Nähtamatu"
 
-#: src/fe-gtk/menu.c:1287
+#: src/fe-gtk/menu.c:1236
 msgid "Receive Wallops"
 msgstr "Võta vastu wallope"
 
-#: src/fe-gtk/menu.c:1288
+#: src/fe-gtk/menu.c:1237
 msgid "Receive Server Notices"
 msgstr "Võta vastu serveri teateid"
 
-#: src/fe-gtk/menu.c:1290
+#: src/fe-gtk/menu.c:1239
 msgid "Marked Away"
 msgstr "Eemal"
 
-#: src/fe-gtk/menu.c:1292
+#: src/fe-gtk/menu.c:1241
 #, fuzzy
 msgid "Auto Rejoin when Kicked"
 msgstr "Liitu automaatselt väljaviskamisel"
 
-#: src/fe-gtk/menu.c:1293
+#: src/fe-gtk/menu.c:1242
 #, fuzzy
 msgid "Auto Reconnect to Server"
 msgstr "Taasühenda serveriga automaatselt"
 
-#: src/fe-gtk/menu.c:1294
+#: src/fe-gtk/menu.c:1243
 msgid "Never-give-up ReConnect"
 msgstr "Ära anna taasühendamisel alla"
 
-#: src/fe-gtk/menu.c:1296
+#: src/fe-gtk/menu.c:1245
 msgid "Auto Open Dialog Windows"
 msgstr "Ava dialoogiaknad automaatselt"
 
-#: src/fe-gtk/menu.c:1297
+#: src/fe-gtk/menu.c:1246
 #, fuzzy
 msgid "Auto Accept Direct Chat"
 msgstr "Autoaktsepteeri DCC Vestlused"
 
-#: src/fe-gtk/menu.c:1298
+#: src/fe-gtk/menu.c:1247
 #, fuzzy
 msgid "Auto Accept Files"
 msgstr "Autoaktsepteeri DCC faili saatmised"
 
-#: src/fe-gtk/menu.c:1300
+#: src/fe-gtk/menu.c:1249
 #, fuzzy
 msgid "_Server"
 msgstr "Server"
 
-#: src/fe-gtk/menu.c:1302
+#: src/fe-gtk/menu.c:1251
 #, fuzzy
 msgid "S_ettings"
 msgstr "Sätted"
 
-#: src/fe-gtk/menu.c:1303
+#: src/fe-gtk/menu.c:1252
 msgid "Preferences..."
 msgstr "Häälestus..."
 
-#: src/fe-gtk/menu.c:1305
+#: src/fe-gtk/menu.c:1254
 msgid "Advanced"
 msgstr ""
 
-#: src/fe-gtk/menu.c:1306
+#: src/fe-gtk/menu.c:1255
 #, fuzzy
 msgid "Auto Replace..."
 msgstr "Asenda.."
 
-#: src/fe-gtk/menu.c:1307
+#: src/fe-gtk/menu.c:1256
 msgid "CTCP Replies..."
 msgstr "CTCP vastused..."
 
-#: src/fe-gtk/menu.c:1308
+#: src/fe-gtk/menu.c:1257
 msgid "Dialog Buttons..."
 msgstr "Dialooginupud..."
 
-#: src/fe-gtk/menu.c:1309
+#: src/fe-gtk/menu.c:1258
 msgid "Keyboard Shortcuts..."
 msgstr ""
 
-#: src/fe-gtk/menu.c:1310
+#: src/fe-gtk/menu.c:1259
 #, fuzzy
 msgid "Text Events..."
 msgstr "Juhtumiste tekstid..."
 
-#: src/fe-gtk/menu.c:1311
+#: src/fe-gtk/menu.c:1260
 msgid "URL Handlers..."
 msgstr "URLi käsitlejad..."
 
-#: src/fe-gtk/menu.c:1312
+#: src/fe-gtk/menu.c:1261
 msgid "User Commands..."
 msgstr "Kasutaja käsud...."
 
-#: src/fe-gtk/menu.c:1313
+#: src/fe-gtk/menu.c:1262
 msgid "Userlist Buttons..."
 msgstr "Kasutajate nimekirja nupud..."
 
-#: src/fe-gtk/menu.c:1314
+#: src/fe-gtk/menu.c:1263
 msgid "Userlist Popup..."
 msgstr "Kasutajate nimekirja popup..."
 
-#: src/fe-gtk/menu.c:1319
+#: src/fe-gtk/menu.c:1268
 msgid "Reload Settings"
 msgstr "Loe sätted uuesti"
 
-#: src/fe-gtk/menu.c:1321
+#: src/fe-gtk/menu.c:1270
 msgid "Save Settings now"
 msgstr "Salvesta sätted kohe"
 
-#: src/fe-gtk/menu.c:1322
+#: src/fe-gtk/menu.c:1271
 msgid "Save Settings on exit"
 msgstr "Salvesta sätted väljumisel"
 
-#: src/fe-gtk/menu.c:1325
+#: src/fe-gtk/menu.c:1274
 #, fuzzy
 msgid "_Window"
 msgstr "_Aknad"
 
-#: src/fe-gtk/menu.c:1326
+#: src/fe-gtk/menu.c:1275
 #, fuzzy
 msgid "Ban List..."
 msgstr "Keelatute nimekiri"
 
-#: src/fe-gtk/menu.c:1327
+#: src/fe-gtk/menu.c:1276
 #, fuzzy
 msgid "Channel List..."
 msgstr "Kanalite nimekirja aken..."
 
-#: src/fe-gtk/menu.c:1328
+#: src/fe-gtk/menu.c:1277
 #, fuzzy
 msgid "Character Chart..."
 msgstr "Märgistik"
 
-#: src/fe-gtk/menu.c:1329
+#: src/fe-gtk/menu.c:1278
 #, fuzzy
 msgid "Direct Chat..."
 msgstr "DCC vestluse aken..."
 
-#: src/fe-gtk/menu.c:1330
+#: src/fe-gtk/menu.c:1279
 #, fuzzy
 msgid "File Receive..."
 msgstr "Faili vastuvõtmise aken..."
 
-#: src/fe-gtk/menu.c:1331
+#: src/fe-gtk/menu.c:1280
 #, fuzzy
 msgid "File Send..."
 msgstr "Faili saatmise aken..."
 
-#: src/fe-gtk/menu.c:1332
+#: src/fe-gtk/menu.c:1281
 #, fuzzy
 msgid "Ignore List..."
 msgstr "Ignoreeritavate aken..."
 
-#: src/fe-gtk/menu.c:1333
+#: src/fe-gtk/menu.c:1282
 #, fuzzy
 msgid "Notify List..."
 msgstr "Teadete aken..."
 
-#: src/fe-gtk/menu.c:1334
+#: src/fe-gtk/menu.c:1283
 #, fuzzy
 msgid "Plugins and Scripts..."
 msgstr "Pluginate nimekiri"
 
-#: src/fe-gtk/menu.c:1335
+#: src/fe-gtk/menu.c:1284
 #, fuzzy
 msgid "Raw Log..."
 msgstr "Toorlogi aken..."
 
-#: src/fe-gtk/menu.c:1336
+#: src/fe-gtk/menu.c:1285
 #, fuzzy
 msgid "URL Grabber..."
 msgstr "URLipüüdja aken..."
 
-#: src/fe-gtk/menu.c:1338
+#: src/fe-gtk/menu.c:1287
 msgid "Reset Marker Line"
 msgstr ""
 
-#: src/fe-gtk/menu.c:1339
+#: src/fe-gtk/menu.c:1288
 #, fuzzy
 msgid "C_lear Text"
 msgstr "Tavaline tekst"
 
-#: src/fe-gtk/menu.c:1340
+#: src/fe-gtk/menu.c:1289
 #, fuzzy
 msgid "Search Text..."
 msgstr "Otsi puhvrist..."
 
-#: src/fe-gtk/menu.c:1341
+#: src/fe-gtk/menu.c:1290
 #, fuzzy
 msgid "Save Text..."
 msgstr "Juhtumiste tekstid..."
 
-#: src/fe-gtk/menu.c:1343
+#: src/fe-gtk/menu.c:1292
 msgid "_Help"
 msgstr "_Abi"
 
-#: src/fe-gtk/menu.c:1344
+#: src/fe-gtk/menu.c:1293
 #, fuzzy
 msgid "_Contents"
 msgstr "Ühenda"
 
-#: src/fe-gtk/menu.c:1346 src/fe-gtk/menu.c:1348
+#: src/fe-gtk/menu.c:1295 src/fe-gtk/menu.c:1297
 #, fuzzy
 msgid "_About"
 msgstr "Katkesta"
 
-#: src/fe-gtk/menu.c:1436
+#: src/fe-gtk/menu.c:1385
 msgid "Attach Tab"
 msgstr ""
 
-#: src/fe-gtk/notifygui.c:109
+#: src/fe-gtk/notifygui.c:80
 msgid "User"
 msgstr "Kasutaja"
 
-#: src/fe-gtk/notifygui.c:111
+#: src/fe-gtk/notifygui.c:82
 msgid "Server"
 msgstr "Server"
 
-#: src/fe-gtk/notifygui.c:112
+#: src/fe-gtk/notifygui.c:83
 msgid "Last Seen"
 msgstr "Viimati"
 
-#: src/fe-gtk/notifygui.c:149
+#: src/fe-gtk/notifygui.c:120
 msgid "Offline"
 msgstr "Offlain"
 
-#: src/fe-gtk/notifygui.c:169 src/fe-gtk/setup.c:198
+#: src/fe-gtk/notifygui.c:140 src/fe-gtk/setup.c:151
 msgid "Never"
 msgstr "Ei iialgi"
 
-#: src/fe-gtk/notifygui.c:187
+#: src/fe-gtk/notifygui.c:158
 msgid "Online"
 msgstr "Onlain"
 
-#: src/fe-gtk/notifygui.c:277
+#: src/fe-gtk/notifygui.c:248
 #, fuzzy
 msgid "Enter nickname to add:"
 msgstr "Sisesta uus hüüdnimi:"
 
-#: src/fe-gtk/notifygui.c:293
-msgid "X-Chat: Notify List"
+#: src/fe-gtk/notifygui.c:264
+#, fuzzy
+msgid "Rage: Notify List"
 msgstr "X-Chat: märguande nimekiri"
 
-#: src/fe-gtk/notifygui.c:306
+#: src/fe-gtk/notifygui.c:277
 msgid "Add"
 msgstr "Lisa"
 
-#: src/fe-gtk/notifygui.c:308
+#: src/fe-gtk/notifygui.c:279
 msgid "Remove"
 msgstr "Eemalda"
 
-#: src/fe-gtk/plugingui.c:76 src/fe-gtk/textgui.c:341
+#: src/fe-gtk/plugingui.c:52 src/fe-gtk/textgui.c:315
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: src/fe-gtk/plugingui.c:151
+#: src/fe-gtk/plugingui.c:127
 msgid "Select a Plugin or Script to load"
 msgstr "Vali laetav plugin või skript"
 
-#: src/fe-gtk/plugingui.c:223
+#: src/fe-gtk/plugingui.c:199
 #, fuzzy
-msgid "X-Chat: Plugins and Scripts"
+msgid "Rage: Plugins and Scripts"
 msgstr "X-Chati pluginad"
 
-#: src/fe-gtk/plugingui.c:229
+#: src/fe-gtk/plugingui.c:205
 msgid "_Load..."
 msgstr "_Lae..."
 
-#: src/fe-gtk/plugingui.c:232
+#: src/fe-gtk/plugingui.c:208
 msgid "_UnLoad"
 msgstr "_Eemalda"
 
-#: src/fe-gtk/plugingui.c:236
+#: src/fe-gtk/plugingui.c:212
 #, fuzzy
 msgid "_Close"
 msgstr "Sulge"
 
-#: src/fe-gtk/rawlog.c:78
+#: src/fe-gtk/rawlog.c:55
 msgid "Save rawlog"
 msgstr "Salvesta toorlog"
 
-#: src/fe-gtk/rawlog.c:94
-#, c-format
-msgid "X-Chat: Rawlog (%s)"
+#: src/fe-gtk/rawlog.c:71
+#, fuzzy, c-format
+msgid "Rage: Rawlog (%s)"
 msgstr "X-Chat: toorlogi (%s)"
 
-#: src/fe-gtk/rawlog.c:123
+#: src/fe-gtk/rawlog.c:100
 msgid "Clear rawlog"
 msgstr "Puhasta toorlogi"
 
-#: src/fe-gtk/rawlog.c:126
+#: src/fe-gtk/rawlog.c:103
 msgid "Save rawlog..."
 msgstr "Salvesta toorlogi..."
 
-#: src/fe-gtk/search.c:47
+#: src/fe-gtk/search.c:29
 msgid "The window you opened this Search for doesn't exist anymore."
 msgstr "Akent, mille jaoks see otsing avati, pole enam olemas."
 
-#: src/fe-gtk/search.c:91
-msgid "X-Chat: Search"
+#: src/fe-gtk/search.c:73
+#, fuzzy
+msgid "Rage: Search"
 msgstr "X-Chat: otsing"
 
-#: src/fe-gtk/search.c:100
+#: src/fe-gtk/search.c:82
 msgid "Find:"
 msgstr "Otsi:"
 
-#: src/fe-gtk/search.c:114
+#: src/fe-gtk/search.c:96
 msgid "Find"
 msgstr "Otsi"
 
-#: src/fe-gtk/search.c:119
+#: src/fe-gtk/search.c:101
 msgid "Close"
 msgstr "Sulge"
 
-#: src/fe-gtk/servlistgui.c:159 src/fe-gtk/servlistgui.c:257
+#: src/fe-gtk/servlistgui.c:124 src/fe-gtk/servlistgui.c:222
 msgid "New Network"
 msgstr "Uus võrk"
 
-#: src/fe-gtk/servlistgui.c:428
+#: src/fe-gtk/servlistgui.c:449
 #, c-format
 msgid "Really remove network \"%s\" and all its servers?"
 msgstr "kas tõesti soovid eemaldada võrgu \"%s\" ja kõik selle serverid?"
 
-#: src/fe-gtk/servlistgui.c:889
+#: src/fe-gtk/servlistgui.c:912
 #, fuzzy, c-format
-msgid "X-Chat: Edit %s"
+msgid "Rage: Edit %s"
 msgstr "X-Chat: Kirje muutmine"
 
-#: src/fe-gtk/servlistgui.c:908
+#: src/fe-gtk/servlistgui.c:931
 #, fuzzy, c-format
 msgid "Servers for %s"
 msgstr "Server: %s"
 
-#: src/fe-gtk/servlistgui.c:918
+#: src/fe-gtk/servlistgui.c:941
 msgid "Your Details"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:924
+#: src/fe-gtk/servlistgui.c:947
 #, fuzzy
 msgid "Use global user information"
 msgstr "Kasuta üldist kasutaja infot"
 
-#: src/fe-gtk/servlistgui.c:927 src/fe-gtk/servlistgui.c:1159
+#: src/fe-gtk/servlistgui.c:950 src/fe-gtk/servlistgui.c:1199
 #, fuzzy
 msgid "_Nick name:"
 msgstr "Hüüdnimi:"
 
-#: src/fe-gtk/servlistgui.c:931 src/fe-gtk/servlistgui.c:1180
+#: src/fe-gtk/servlistgui.c:954 src/fe-gtk/servlistgui.c:1220
 #, fuzzy
 msgid "_User name:"
 msgstr "kasutajanimi"
 
-#: src/fe-gtk/servlistgui.c:935
+#: src/fe-gtk/servlistgui.c:958
 #, fuzzy
 msgid "Real na_me:"
 msgstr "Pärisnimi:"
 
-#: src/fe-gtk/servlistgui.c:938
+#: src/fe-gtk/servlistgui.c:961
 #, fuzzy
 msgid "Connecting"
 msgstr "Ühenda"
 
-#: src/fe-gtk/servlistgui.c:944
+#: src/fe-gtk/servlistgui.c:967
 #, fuzzy
 msgid "Auto connect to this network at startup"
 msgstr "Ühenda automaatselt programmi käivitamisel"
 
-#: src/fe-gtk/servlistgui.c:946
+#: src/fe-gtk/servlistgui.c:969
 msgid "Use a proxy server"
 msgstr "Kasuta proxy serverit"
 
-#: src/fe-gtk/servlistgui.c:948
+#: src/fe-gtk/servlistgui.c:971
 msgid "Use SSL for all the servers on this network"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:953
+#: src/fe-gtk/servlistgui.c:976
 #, fuzzy
 msgid "Accept invalid SSL certificate"
 msgstr "Luba vigaseid sertifikaate"
 
-#: src/fe-gtk/servlistgui.c:959
+#: src/fe-gtk/servlistgui.c:982
 #, fuzzy
 msgid "C_hannels to join:"
 msgstr "Sihtkanal"
 
-#: src/fe-gtk/servlistgui.c:961
+#: src/fe-gtk/servlistgui.c:984
 msgid "Channels to join, separated by commas, but not spaces!"
 msgstr ""
 "Kanalite nimekiri, millega soovid ühineda. Kanaleid eralda komaga, aga mitte "
 "tühikuga!"
 
-#: src/fe-gtk/servlistgui.c:964
+#: src/fe-gtk/servlistgui.c:987
 #, fuzzy
 msgid "Connect command:"
 msgstr "Ühendamise käsk:"
 
-#: src/fe-gtk/servlistgui.c:966
+#: src/fe-gtk/servlistgui.c:989
 msgid ""
 "Extra command to execute after connecting. If you need more than one, set "
 "this to LOAD -e <filename>, where <filename> is a text-file full of commands "
 "to execute."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:969
+#: src/fe-gtk/servlistgui.c:992
 #, fuzzy
 msgid "Nickserv password:"
 msgstr "Serveri parool:"
 
-#: src/fe-gtk/servlistgui.c:974
+#: src/fe-gtk/servlistgui.c:997
 #, fuzzy
 msgid "Server password:"
 msgstr "Serveri parool:"
 
-#: src/fe-gtk/servlistgui.c:976
+#: src/fe-gtk/servlistgui.c:999
 msgid "Password for the server, if in doubt, leave blank."
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:979
+#: src/fe-gtk/servlistgui.c:1002
 #, fuzzy
 msgid "Character set:"
 msgstr "Märgistik"
 
-#: src/fe-gtk/servlistgui.c:1052
+#: src/fe-gtk/servlistgui.c:1090
 msgid "_Edit"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1133
-msgid "X-Chat: Server List"
+#: src/fe-gtk/servlistgui.c:1173
+#, fuzzy
+msgid "Rage: Server List"
 msgstr "X-Chat: serverite nimekiri"
 
-#: src/fe-gtk/servlistgui.c:1166
+#: src/fe-gtk/servlistgui.c:1206
 #, fuzzy
 msgid "Second choice:"
 msgstr "Helifail: "
 
-#: src/fe-gtk/servlistgui.c:1173
+#: src/fe-gtk/servlistgui.c:1213
 msgid "Third choice:"
 msgstr ""
 
-#: src/fe-gtk/servlistgui.c:1187
+#: src/fe-gtk/servlistgui.c:1227
 #, fuzzy
 msgid "Rea_l name:"
 msgstr "Pärisnimi:"
 
-#: src/fe-gtk/servlistgui.c:1274
+#: src/fe-gtk/servlistgui.c:1314
 #, fuzzy
 msgid "Skip server list on startup"
 msgstr "Ära näita serverite nimekirja käivitumisel"
 
-#: src/fe-gtk/servlistgui.c:1305
+#: src/fe-gtk/servlistgui.c:1359
 #, fuzzy
 msgid "_Edit..."
 msgstr "_Lae..."
 
-#: src/fe-gtk/servlistgui.c:1312
+#: src/fe-gtk/servlistgui.c:1366
 #, fuzzy
 msgid "_Sort"
 msgstr "Sorteeri"
 
-#: src/fe-gtk/servlistgui.c:1328
+#: src/fe-gtk/servlistgui.c:1382
 msgid "C_onnect"
 msgstr "Ü_henda"
 
-#: src/fe-gtk/servlistgui.c:1337
+#: src/fe-gtk/servlistgui.c:1391
 #, fuzzy
 msgid "Connect in new tab"
 msgstr "Ühenda uude _sakki"
 
-#: src/fe-gtk/setup.c:94
+#: src/fe-gtk/setup.c:47
 #, fuzzy
 msgid "Text Box Appearance"
 msgstr "Välimus"
 
-#: src/fe-gtk/setup.c:95
+#: src/fe-gtk/setup.c:48
 msgid "Font:"
 msgstr "Kirjatüüp:"
 
-#: src/fe-gtk/setup.c:96
+#: src/fe-gtk/setup.c:49
 msgid "Background image:"
 msgstr "Taustapilt:"
 
-#: src/fe-gtk/setup.c:97
+#: src/fe-gtk/setup.c:50
 msgid "Scrollback lines:"
 msgstr "Tagasikeritavate ridade arv:"
 
-#: src/fe-gtk/setup.c:98
+#: src/fe-gtk/setup.c:51
 msgid "Transparent background"
 msgstr "Läbipaistev taust"
 
-#: src/fe-gtk/setup.c:99
+#: src/fe-gtk/setup.c:52
 #, fuzzy
 msgid "Indent nick names"
 msgstr "Joonda nimed"
 
-#: src/fe-gtk/setup.c:100
+#: src/fe-gtk/setup.c:53
 #, fuzzy
 msgid "Make nick names right-justified"
 msgstr "Joondab nimed paremale"
 
-#: src/fe-gtk/setup.c:101
+#: src/fe-gtk/setup.c:54
 #, fuzzy
 msgid "Tint (shade) transparency"
 msgstr "Läbipaistvuse toon"
 
-#: src/fe-gtk/setup.c:102
+#: src/fe-gtk/setup.c:55
 #, fuzzy
 msgid "Colored nick names"
 msgstr "Värvilised nimed"
 
-#: src/fe-gtk/setup.c:103
+#: src/fe-gtk/setup.c:56
 msgid "Give each person on IRC a different color"
 msgstr ""
 
-#: src/fe-gtk/setup.c:104
+#: src/fe-gtk/setup.c:57
 #, fuzzy
 msgid "Strip mIRC colors"
 msgstr "Eemalda MIRC värvid"
 
-#: src/fe-gtk/setup.c:105
+#: src/fe-gtk/setup.c:58
 #, fuzzy
 msgid "Show marker line"
 msgstr "Näita ainult ühe korra"
 
-#: src/fe-gtk/setup.c:106
+#: src/fe-gtk/setup.c:59
 msgid "Insert a red line after the last read text."
 msgstr ""
 
-#: src/fe-gtk/setup.c:107
+#: src/fe-gtk/setup.c:60
 #, fuzzy
 msgid "Tint Settings"
 msgstr "CTCP sätted"
 
-#: src/fe-gtk/setup.c:108
+#: src/fe-gtk/setup.c:61
 msgid "Red:"
 msgstr "Punane:"
 
-#: src/fe-gtk/setup.c:109
+#: src/fe-gtk/setup.c:62
 msgid "Green:"
 msgstr "Roheline:"
 
-#: src/fe-gtk/setup.c:110
+#: src/fe-gtk/setup.c:63
 msgid "Blue:"
 msgstr "Sinine:"
 
-#: src/fe-gtk/setup.c:112 src/fe-gtk/setup.c:311
+#: src/fe-gtk/setup.c:65 src/fe-gtk/setup.c:264
 #, fuzzy
 msgid "Time Stamps"
 msgstr "Lisa tekstile aeg"
 
-#: src/fe-gtk/setup.c:113
+#: src/fe-gtk/setup.c:66
 msgid "Time stamp format:"
 msgstr "Kellaaja formaat:"
 
-#: src/fe-gtk/setup.c:114
+#: src/fe-gtk/setup.c:67
 msgid "See strftime manpage for details."
 msgstr ""
 
-#: src/fe-gtk/setup.c:115
+#: src/fe-gtk/setup.c:68
 #, fuzzy
 msgid "Enable time stamps"
 msgstr "Lisa logidesse kellaaeg"
 
-#: src/fe-gtk/setup.c:122
+#: src/fe-gtk/setup.c:75
 #, fuzzy
 msgid "Nick Completion"
 msgstr "Hüüdnime lõpetamise suffiks:"
 
-#: src/fe-gtk/setup.c:123
+#: src/fe-gtk/setup.c:76
 msgid "Automatic nick completion"
 msgstr "Automaatne hüüdnime lõpetamine"
 
-#: src/fe-gtk/setup.c:124
+#: src/fe-gtk/setup.c:77
 msgid "Completes nick names without using the TAB key"
 msgstr ""
 
-#: src/fe-gtk/setup.c:125
+#: src/fe-gtk/setup.c:78
 msgid "Nick completion suffix:"
 msgstr "Hüüdnime lõpetamise suffiks:"
 
-#: src/fe-gtk/setup.c:127
+#: src/fe-gtk/setup.c:80
 #, fuzzy
 msgid "Input Box Codes"
 msgstr "Sisestuskast"
 
-#: src/fe-gtk/setup.c:128
+#: src/fe-gtk/setup.c:81
 #, c-format
 msgid "Interpret %nnn as an ASCII value"
 msgstr "Tõlgenda %nnn kui ASCII koodi"
 
-#: src/fe-gtk/setup.c:129
+#: src/fe-gtk/setup.c:82
 msgid "Interpret %C, %B as Color, Bold etc"
 msgstr ""
 
-#: src/fe-gtk/setup.c:131
+#: src/fe-gtk/setup.c:84
 #, fuzzy
 msgid "Input Box Appearance"
 msgstr "Välimus"
 
-#: src/fe-gtk/setup.c:132 src/fe-gtk/setup.c:162
+#: src/fe-gtk/setup.c:85 src/fe-gtk/setup.c:115
 #, fuzzy
 msgid "Use the Text box font and colors"
 msgstr "Kasuta tekstikasti kirjatüüpi"
 
-#: src/fe-gtk/setup.c:139
+#: src/fe-gtk/setup.c:92
 msgid "Off"
 msgstr "Ära"
 
-#: src/fe-gtk/setup.c:140
+#: src/fe-gtk/setup.c:93
 msgid "Graph"
 msgstr "Graafik"
 
-#: src/fe-gtk/setup.c:141
+#: src/fe-gtk/setup.c:94
 msgid "Info text"
 msgstr "Tekstiinfo"
 
-#: src/fe-gtk/setup.c:142
+#: src/fe-gtk/setup.c:95
 msgid "Both"
 msgstr "Mõlemad"
 
-#: src/fe-gtk/setup.c:148
+#: src/fe-gtk/setup.c:101
 msgid "A-Z, Ops first"
 msgstr "A-Z, opid ees"
 
-#: src/fe-gtk/setup.c:149
+#: src/fe-gtk/setup.c:102
 msgid "A-Z"
 msgstr "A-Z"
 
-#: src/fe-gtk/setup.c:150
+#: src/fe-gtk/setup.c:103
 msgid "Z-A, Ops last"
 msgstr "Z-A, opid taga"
 
-#: src/fe-gtk/setup.c:151
+#: src/fe-gtk/setup.c:104
 msgid "Z-A"
 msgstr "Z-A"
 
-#: src/fe-gtk/setup.c:152
+#: src/fe-gtk/setup.c:105
 msgid "Unsorted"
 msgstr "Sorteerimata"
 
-#: src/fe-gtk/setup.c:159
+#: src/fe-gtk/setup.c:112
 #, fuzzy
 msgid "User list sorted by:"
 msgstr "Kasutajate sorteerimise alus:"
 
-#: src/fe-gtk/setup.c:160
+#: src/fe-gtk/setup.c:113
 #, fuzzy
 msgid "Show hostnames in user list"
 msgstr "Näita kanali kasutajate nimekirjas liikmete hosti"
 
-#: src/fe-gtk/setup.c:161
+#: src/fe-gtk/setup.c:114
 #, fuzzy
 msgid "User list buttons enabled"
 msgstr "Kasutajate nimekirja nupud lubatud"
 
-#: src/fe-gtk/setup.c:163
+#: src/fe-gtk/setup.c:116
 #, fuzzy
 msgid "Resizable user list"
 msgstr "Luba kasutajate nimekiri paanidena"
 
-#: src/fe-gtk/setup.c:165
+#: src/fe-gtk/setup.c:118
 #, fuzzy
 msgid "Away tracking"
 msgstr "Eemaloleku põhjus"
 
-#: src/fe-gtk/setup.c:166
+#: src/fe-gtk/setup.c:119
 msgid "Enable away tracking"
 msgstr ""
 
-#: src/fe-gtk/setup.c:167
+#: src/fe-gtk/setup.c:120
 #, fuzzy
 msgid "On channels smaller than:"
 msgstr "Ava kanalid:"
 
-#: src/fe-gtk/setup.c:169
+#: src/fe-gtk/setup.c:122
 msgid "Action Upon Double Click"
 msgstr ""
 
-#: src/fe-gtk/setup.c:170
+#: src/fe-gtk/setup.c:123
 #, fuzzy
 msgid "Execute command:"
 msgstr "Ühendamise käsk:"
 
-#: src/fe-gtk/setup.c:172
+#: src/fe-gtk/setup.c:125
 msgid "Extra Gadgets"
 msgstr ""
 
-#: src/fe-gtk/setup.c:173
+#: src/fe-gtk/setup.c:126
 msgid "Lag meter:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:174
+#: src/fe-gtk/setup.c:127
 msgid "Throttle meter:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:181
+#: src/fe-gtk/setup.c:134
 msgid "Windows"
 msgstr "Aknad"
 
-#: src/fe-gtk/setup.c:182 src/fe-gtk/setup.c:206 src/fe-gtk/setup.c:1456
+#: src/fe-gtk/setup.c:135 src/fe-gtk/setup.c:159 src/fe-gtk/setup.c:1409
 msgid "Tabs"
 msgstr "Sakid"
 
-#: src/fe-gtk/setup.c:188
+#: src/fe-gtk/setup.c:141
 msgid "Bottom"
 msgstr "All"
 
-#: src/fe-gtk/setup.c:189
+#: src/fe-gtk/setup.c:142
 msgid "Top"
 msgstr "Üleval"
 
-#: src/fe-gtk/setup.c:190
+#: src/fe-gtk/setup.c:143
 msgid "Left"
 msgstr "Vasakul"
 
-#: src/fe-gtk/setup.c:191
+#: src/fe-gtk/setup.c:144
 msgid "Right"
 msgstr "Paremal"
 
-#: src/fe-gtk/setup.c:192
+#: src/fe-gtk/setup.c:145
 msgid "Hidden"
 msgstr "Peidus"
 
-#: src/fe-gtk/setup.c:199
+#: src/fe-gtk/setup.c:152
 #, fuzzy
 msgid "Always"
 msgstr "Eemal"
 
-#: src/fe-gtk/setup.c:200
+#: src/fe-gtk/setup.c:153
 msgid "Only requested tabs"
 msgstr ""
 
-#: src/fe-gtk/setup.c:207
+#: src/fe-gtk/setup.c:160
 #, fuzzy
 msgid "Open an extra tab for server messages"
 msgstr "Ava sakk serveri sõnumite jaoks"
 
-#: src/fe-gtk/setup.c:208
+#: src/fe-gtk/setup.c:161
 #, fuzzy
 msgid "Open an extra tab for server notices"
 msgstr "Ava sakk serveri teadete jaoks"
 
-#: src/fe-gtk/setup.c:209
+#: src/fe-gtk/setup.c:162
 msgid "Small tabs"
 msgstr ""
 
-#: src/fe-gtk/setup.c:210
+#: src/fe-gtk/setup.c:163
 #, fuzzy
 msgid "Sort tabs in alphabetical order"
 msgstr "Kuva sakid:"
 
-#: src/fe-gtk/setup.c:211
+#: src/fe-gtk/setup.c:164
 msgid "Focus new tabs:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:212
+#: src/fe-gtk/setup.c:165
 #, fuzzy
 msgid "Shorten tab labels to:"
 msgstr "Kuva sakid:"
 
-#: src/fe-gtk/setup.c:212
+#: src/fe-gtk/setup.c:165
 #, fuzzy
 msgid "letters."
 msgstr "Palett.."
 
-#: src/fe-gtk/setup.c:214
+#: src/fe-gtk/setup.c:167
 #, fuzzy
 msgid "Tabs Location"
 msgstr "Tegevus"
 
-#: src/fe-gtk/setup.c:215
+#: src/fe-gtk/setup.c:168
 msgid "Show tabs at:"
 msgstr "Kuva sakid:"
 
-#: src/fe-gtk/setup.c:217
+#: src/fe-gtk/setup.c:170
 #, fuzzy
 msgid "Tabs or Windows"
 msgstr "Aknad"
 
-#: src/fe-gtk/setup.c:218
+#: src/fe-gtk/setup.c:171
 msgid "Open channels in:"
 msgstr "Ava kanalid:"
 
-#: src/fe-gtk/setup.c:219
+#: src/fe-gtk/setup.c:172
 msgid "Open dialogs in:"
 msgstr "Ava dialoogid:"
 
-#: src/fe-gtk/setup.c:220
+#: src/fe-gtk/setup.c:173
 msgid "Open utilities in:"
 msgstr "Ava utiliidid:"
 
-#: src/fe-gtk/setup.c:220
+#: src/fe-gtk/setup.c:173
 msgid "Open DCC, Ignore, Notify etc, in tabs or windows?"
 msgstr ""
 
-#: src/fe-gtk/setup.c:227
+#: src/fe-gtk/setup.c:180
 msgid "Files and Directories"
 msgstr ""
 
-#: src/fe-gtk/setup.c:228
+#: src/fe-gtk/setup.c:181
 msgid "Download files to:"
 msgstr "Allalaetud failid pane:"
 
-#: src/fe-gtk/setup.c:229
+#: src/fe-gtk/setup.c:182
 msgid "Move completed files to:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:230
+#: src/fe-gtk/setup.c:183
 #, fuzzy
 msgid "Save nick name in filenames"
 msgstr "Salvesta hüüdnimi failinimedesse"
 
-#: src/fe-gtk/setup.c:231
+#: src/fe-gtk/setup.c:184
 #, fuzzy
 msgid "Convert spaces to underscore before sending"
 msgstr "Asenda tühikud alakriipsuga"
 
-#: src/fe-gtk/setup.c:233
+#: src/fe-gtk/setup.c:186
 #, fuzzy
 msgid "Network Settings"
 msgstr "Loe sätted uuesti"
 
-#: src/fe-gtk/setup.c:234
+#: src/fe-gtk/setup.c:187
 msgid "DCC IP address:"
 msgstr "DCC IP aadress:"
 
-#: src/fe-gtk/setup.c:235
+#: src/fe-gtk/setup.c:188
 #, fuzzy
 msgid "Claim you are at this address when offering files."
 msgstr "(Väida, failide pakkumisel, et sul on see aadress)."
 
-#: src/fe-gtk/setup.c:236
+#: src/fe-gtk/setup.c:189
 msgid "First DCC send port:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:237
+#: src/fe-gtk/setup.c:190
 msgid "Last DCC send port:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:238
+#: src/fe-gtk/setup.c:191
 msgid "(Leave ports at zero for full range)."
 msgstr ""
 
-#: src/fe-gtk/setup.c:239
+#: src/fe-gtk/setup.c:192
 #, fuzzy
 msgid "Get my address from the IRC server"
 msgstr "Võta mu IP aadress IRC serverilt"
 
-#: src/fe-gtk/setup.c:240
+#: src/fe-gtk/setup.c:193
 #, fuzzy
 msgid ""
 "Asks the IRC server for your real address. Use this if you have a 192.168.*."
@@ -4858,549 +4851,862 @@ msgstr ""
 "Oma tõeslise aadressi teada saamiseks, kasuta enda peal käsku /WHOIS. Kasuta "
 "seda juhul, kui sul on 192.168.*.* aadress!"
 
-#: src/fe-gtk/setup.c:242
+#: src/fe-gtk/setup.c:195
 msgid "Maximum File Transfer Speeds (bytes per second)"
 msgstr ""
 
-#: src/fe-gtk/setup.c:243
+#: src/fe-gtk/setup.c:196
 msgid "One upload:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:244 src/fe-gtk/setup.c:246
+#: src/fe-gtk/setup.c:197 src/fe-gtk/setup.c:199
 #, fuzzy
 msgid "Maximum speed for one transfer"
 msgstr "Ühe edastamise max. kiirus"
 
-#: src/fe-gtk/setup.c:245
+#: src/fe-gtk/setup.c:198
 msgid "One download:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:247
+#: src/fe-gtk/setup.c:200
 msgid "All uploads combined:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:248 src/fe-gtk/setup.c:250
+#: src/fe-gtk/setup.c:201 src/fe-gtk/setup.c:203
 #, fuzzy
 msgid "Maximum speed for all files"
 msgstr "Maksimaalne kiirus kogu liikluse jaoks"
 
-#: src/fe-gtk/setup.c:249
+#: src/fe-gtk/setup.c:202
 msgid "All downloads combined:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:257
+#: src/fe-gtk/setup.c:210
 #, fuzzy
 msgid "Default Messages"
 msgstr "Vaikimisi väljumise põhjendus:"
 
-#: src/fe-gtk/setup.c:258
+#: src/fe-gtk/setup.c:211
 #, fuzzy
 msgid "Quit:"
 msgstr "Välju"
 
-#: src/fe-gtk/setup.c:259
+#: src/fe-gtk/setup.c:212
 #, fuzzy
 msgid "Leave channel:"
 msgstr "Lahku kanalist"
 
-#: src/fe-gtk/setup.c:260
+#: src/fe-gtk/setup.c:213
 #, fuzzy
 msgid "Away:"
 msgstr "Eemal"
 
-#: src/fe-gtk/setup.c:262
+#: src/fe-gtk/setup.c:215
 msgid "Away"
 msgstr "Eemal"
 
-#: src/fe-gtk/setup.c:263
+#: src/fe-gtk/setup.c:216
 msgid "Announce away messages"
 msgstr "Teata eemalolekust"
 
-#: src/fe-gtk/setup.c:264
+#: src/fe-gtk/setup.c:217
 msgid "Announce your away messages to all channels"
 msgstr "Teata enda eemalolekust kõigil kanalitel"
 
-#: src/fe-gtk/setup.c:265
+#: src/fe-gtk/setup.c:218
 msgid "Show away once"
 msgstr "Näita ainult ühe korra"
 
-#: src/fe-gtk/setup.c:265
+#: src/fe-gtk/setup.c:218
 msgid "Show identical away messages only once"
 msgstr ""
 
-#: src/fe-gtk/setup.c:266
+#: src/fe-gtk/setup.c:219
 msgid "Automatically unmark away"
 msgstr "Võta eemalolek automaatselt maha"
 
-#: src/fe-gtk/setup.c:266
+#: src/fe-gtk/setup.c:219
 msgid "Unmark yourself as away before sending messages"
 msgstr "Enne sõnumi saatmist võta endalt eemalolek maha"
 
-#: src/fe-gtk/setup.c:269
+#: src/fe-gtk/setup.c:222
 msgid "(Can be a text file relative to ~/.xchat2/)."
 msgstr ""
 
-#: src/fe-gtk/setup.c:271
+#: src/fe-gtk/setup.c:224
 msgid "(Can be a text file relative to config dir)."
 msgstr ""
 
-#: src/fe-gtk/setup.c:275
+#: src/fe-gtk/setup.c:228
 #, fuzzy
 msgid "Alerts"
 msgstr "Alt"
 
-#: src/fe-gtk/setup.c:277
+#: src/fe-gtk/setup.c:230
 #, fuzzy
 msgid "Flash taskbar on highlighted messages"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:279
+#: src/fe-gtk/setup.c:232
 #, fuzzy
 msgid "Beep on highlighted messages"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:280
+#: src/fe-gtk/setup.c:233
 msgid "Extra words to highlight on:"
 msgstr "Esiletõstetavad sõnad:"
 
-#: src/fe-gtk/setup.c:281
+#: src/fe-gtk/setup.c:234
 msgid "(Separate multiple words with commas)."
 msgstr "(Eralda erinevad sõnad komaga)."
 
-#: src/fe-gtk/setup.c:282
+#: src/fe-gtk/setup.c:235
 msgid "Beep on private messages"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:283
+#: src/fe-gtk/setup.c:236
 msgid "Beep on channel messages"
 msgstr "Tee kanali sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:290
+#: src/fe-gtk/setup.c:243
 #, fuzzy
 msgid "Advanced Settings"
 msgstr "Loe sätted uuesti"
 
-#: src/fe-gtk/setup.c:291
+#: src/fe-gtk/setup.c:244
 msgid "Auto reconnect delay:"
 msgstr "Ooteaeg enne autoühendust:"
 
-#: src/fe-gtk/setup.c:292
+#: src/fe-gtk/setup.c:245
 msgid "Display MODEs in raw form"
 msgstr ""
 
-#: src/fe-gtk/setup.c:293
+#: src/fe-gtk/setup.c:246
 msgid "Whois on notify"
 msgstr ""
 
-#: src/fe-gtk/setup.c:293
+#: src/fe-gtk/setup.c:246
 msgid "Sends a /WHOIS when a user comes online in your notify list"
 msgstr ""
 
-#: src/fe-gtk/setup.c:294
+#: src/fe-gtk/setup.c:247
 #, fuzzy
 msgid "Hide join and part messages"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:294
+#: src/fe-gtk/setup.c:247
 #, fuzzy
 msgid "Hide channel join/part messages by default"
 msgstr "Tee privaatse sõnumi kättesaamisel piiksu"
 
-#: src/fe-gtk/setup.c:295
+#: src/fe-gtk/setup.c:248
 #, fuzzy
 msgid "Auto Open DCC Windows"
 msgstr "Ava dialoogiaknad automaatselt"
 
-#: src/fe-gtk/setup.c:296
+#: src/fe-gtk/setup.c:249
 #, fuzzy
 msgid "Send window"
 msgstr "Helifail: "
 
-#: src/fe-gtk/setup.c:297
+#: src/fe-gtk/setup.c:250
 #, fuzzy
 msgid "Receive window"
 msgstr "Vastuvõtja"
 
-#: src/fe-gtk/setup.c:298
+#: src/fe-gtk/setup.c:251
 #, fuzzy
 msgid "Chat window"
 msgstr "Uus kanali aken..."
 
-#: src/fe-gtk/setup.c:306 src/fe-gtk/setup.c:1461
+#: src/fe-gtk/setup.c:259 src/fe-gtk/setup.c:1414
 msgid "Logging"
 msgstr "Logimine"
 
-#: src/fe-gtk/setup.c:307
+#: src/fe-gtk/setup.c:260
 msgid "Enable logging of conversations"
 msgstr "Luba vestluste logimine"
 
-#: src/fe-gtk/setup.c:308
+#: src/fe-gtk/setup.c:261
 msgid "Log filename mask:"
 msgstr "Logi failinime mask:"
 
-#: src/fe-gtk/setup.c:309
+#: src/fe-gtk/setup.c:262
 #, c-format
 msgid "(%s=Server %c=Channel %n=Network)."
 msgstr "(%s=server %c=kanal %n=võrk)."
 
-#: src/fe-gtk/setup.c:312
+#: src/fe-gtk/setup.c:265
 msgid "Insert timestamps in logs"
 msgstr "Lisa logidesse kellaaeg"
 
-#: src/fe-gtk/setup.c:313
+#: src/fe-gtk/setup.c:266
 msgid "Log timestamp format:"
 msgstr "Logi kellaaja formaat:"
 
-#: src/fe-gtk/setup.c:314
+#: src/fe-gtk/setup.c:267
 msgid "(See strftime manpage for details)."
 msgstr ""
 
-#: src/fe-gtk/setup.c:321
+#: src/fe-gtk/setup.c:274
 msgid "(Disabled)"
 msgstr "(Keelatud)"
 
-#: src/fe-gtk/setup.c:322
+#: src/fe-gtk/setup.c:275
 msgid "Wingate"
 msgstr "Wingate"
 
-#: src/fe-gtk/setup.c:323
+#: src/fe-gtk/setup.c:276
 msgid "Socks4"
 msgstr "Socks4"
 
-#: src/fe-gtk/setup.c:324
+#: src/fe-gtk/setup.c:277
 msgid "Socks5"
 msgstr "Socks5"
 
-#: src/fe-gtk/setup.c:325
+#: src/fe-gtk/setup.c:278
 msgid "HTTP"
 msgstr "HTTP"
 
-#: src/fe-gtk/setup.c:331
+#: src/fe-gtk/setup.c:284
 #, fuzzy
 msgid "Your Address"
 msgstr "IP aadress"
 
-#: src/fe-gtk/setup.c:332
+#: src/fe-gtk/setup.c:285
 #, fuzzy
 msgid "Bind to:"
 msgstr "Otsi:"
 
-#: src/fe-gtk/setup.c:333
+#: src/fe-gtk/setup.c:286
 msgid "(Only useful for computers with multiple addresses)."
 msgstr "(Kasulik ainult arvutitele, millel on mitu aadressi)."
 
-#: src/fe-gtk/setup.c:335
+#: src/fe-gtk/setup.c:288
 #, fuzzy
 msgid "Proxy Server"
 msgstr "Proxy server:"
 
-#: src/fe-gtk/setup.c:336
+#: src/fe-gtk/setup.c:289
 #, fuzzy
 msgid "Hostname:"
 msgstr "Hosti nimi"
 
-#: src/fe-gtk/setup.c:337
+#: src/fe-gtk/setup.c:290
 #, fuzzy
 msgid "Username:"
 msgstr "kasutajanimi"
 
-#: src/fe-gtk/setup.c:338
+#: src/fe-gtk/setup.c:291
 #, fuzzy
 msgid "Password:"
 msgstr "Serveri parool:"
 
-#: src/fe-gtk/setup.c:339
+#: src/fe-gtk/setup.c:292
 #, fuzzy
 msgid "Port:"
 msgstr "Port"
 
-#: src/fe-gtk/setup.c:340
+#: src/fe-gtk/setup.c:293
 #, fuzzy
 msgid "Type:"
 msgstr "DCC tüüp"
 
-#: src/fe-gtk/setup.c:342
+#: src/fe-gtk/setup.c:295
 msgid "Authenticate to the proxy server (HTTP and Socks5)"
 msgstr ""
 
-#: src/fe-gtk/setup.c:565
+#: src/fe-gtk/setup.c:518
 #, fuzzy
 msgid "(disabled)"
 msgstr "(Keelatud)"
 
-#: src/fe-gtk/setup.c:566
+#: src/fe-gtk/setup.c:519
 msgid "A star (*)"
 msgstr ""
 
-#: src/fe-gtk/setup.c:567
+#: src/fe-gtk/setup.c:520
 msgid "A red star (*)"
 msgstr ""
 
-#: src/fe-gtk/setup.c:568
+#: src/fe-gtk/setup.c:521
 #, fuzzy
 msgid "Underlined"
 msgstr "Joonitult"
 
-#: src/fe-gtk/setup.c:665
+#: src/fe-gtk/setup.c:618
 #, fuzzy
 msgid "Select an Image File"
 msgstr "Vali väljundfaili nimi"
 
-#: src/fe-gtk/setup.c:712
+#: src/fe-gtk/setup.c:665
 msgid "Select font"
 msgstr "Vali kirjatüüp"
 
-#: src/fe-gtk/setup.c:786
+#: src/fe-gtk/setup.c:739
 msgid "Browse..."
 msgstr "Vali..."
 
-#: src/fe-gtk/setup.c:903
+#: src/fe-gtk/setup.c:856
 msgid "Mark identified users with:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:905
+#: src/fe-gtk/setup.c:858
 msgid "Mark not-identified users with:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:968
+#: src/fe-gtk/setup.c:921
 msgid "Select color"
 msgstr "Vali värv"
 
-#: src/fe-gtk/setup.c:1048
+#: src/fe-gtk/setup.c:1001
 #, fuzzy
 msgid "Text Colors"
 msgstr "Värvid"
 
-#: src/fe-gtk/setup.c:1050
+#: src/fe-gtk/setup.c:1003
 msgid "mIRC colors:"
 msgstr "mIRC värvid:"
 
-#: src/fe-gtk/setup.c:1058
+#: src/fe-gtk/setup.c:1011
 #, fuzzy
 msgid "Extra colors:"
 msgstr "mIRC värvid:"
 
-#: src/fe-gtk/setup.c:1066 src/fe-gtk/setup.c:1071
+#: src/fe-gtk/setup.c:1019 src/fe-gtk/setup.c:1024
 msgid "Foreground:"
 msgstr "Tekst:"
 
-#: src/fe-gtk/setup.c:1067 src/fe-gtk/setup.c:1072
+#: src/fe-gtk/setup.c:1020 src/fe-gtk/setup.c:1025
 msgid "Background:"
 msgstr "Taust:"
 
-#: src/fe-gtk/setup.c:1069
+#: src/fe-gtk/setup.c:1022
 #, fuzzy
 msgid "Marking Text"
 msgstr "Tavaline tekst"
 
-#: src/fe-gtk/setup.c:1074
+#: src/fe-gtk/setup.c:1027
 #, fuzzy
 msgid "Interface Colors"
 msgstr "Kasutajaliides"
 
-#: src/fe-gtk/setup.c:1076
+#: src/fe-gtk/setup.c:1029
 #, fuzzy
 msgid "New data:"
 msgstr "Uued andmed:"
 
-#: src/fe-gtk/setup.c:1077
+#: src/fe-gtk/setup.c:1030
 #, fuzzy
 msgid "Marker line:"
 msgstr "Näita ainult ühe korra"
 
-#: src/fe-gtk/setup.c:1078
+#: src/fe-gtk/setup.c:1031
 #, fuzzy
 msgid "New message:"
 msgstr "Uus sõnum:"
 
-#: src/fe-gtk/setup.c:1079
+#: src/fe-gtk/setup.c:1032
 msgid "Away user:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:1080
+#: src/fe-gtk/setup.c:1033
 msgid "Highlight:"
 msgstr "Esiletõstetud:"
 
-#: src/fe-gtk/setup.c:1176 src/fe-gtk/textgui.c:337
+#: src/fe-gtk/setup.c:1129 src/fe-gtk/textgui.c:311
 msgid "Event"
 msgstr "Sündmus"
 
-#: src/fe-gtk/setup.c:1182
+#: src/fe-gtk/setup.c:1135
 #, fuzzy
 msgid "Sound file"
 msgstr "Helifail: "
 
-#: src/fe-gtk/setup.c:1217
+#: src/fe-gtk/setup.c:1170
 #, fuzzy
 msgid "Select a sound file"
 msgstr "Vali väljundfaili nimi"
 
-#: src/fe-gtk/setup.c:1289
+#: src/fe-gtk/setup.c:1242
 msgid "Sound playing method:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:1297
+#: src/fe-gtk/setup.c:1250
 msgid "External sound playing _program:"
 msgstr ""
 
-#: src/fe-gtk/setup.c:1315
+#: src/fe-gtk/setup.c:1268
 msgid "_External program"
 msgstr ""
 
-#: src/fe-gtk/setup.c:1325
+#: src/fe-gtk/setup.c:1278
 #, fuzzy
 msgid "_Automatic"
 msgstr "Antarktika"
 
-#: src/fe-gtk/setup.c:1338
+#: src/fe-gtk/setup.c:1291
 #, fuzzy
 msgid "Sound files _directory:"
 msgstr "Allalaetud failid pane:"
 
-#: src/fe-gtk/setup.c:1377
+#: src/fe-gtk/setup.c:1330
 #, fuzzy
 msgid "Sound file:"
 msgstr "Helifail: "
 
-#: src/fe-gtk/setup.c:1392
+#: src/fe-gtk/setup.c:1345
 #, fuzzy
 msgid "_Browse..."
 msgstr "Vali..."
 
-#: src/fe-gtk/setup.c:1403
+#: src/fe-gtk/setup.c:1356
 #, fuzzy
 msgid "_Play"
 msgstr "Palau"
 
-#: src/fe-gtk/setup.c:1452
+#: src/fe-gtk/setup.c:1405
 msgid "Interface"
 msgstr "Kasutajaliides"
 
-#: src/fe-gtk/setup.c:1453
+#: src/fe-gtk/setup.c:1406
 msgid "Text box"
 msgstr "Tekstikast"
 
-#: src/fe-gtk/setup.c:1454
+#: src/fe-gtk/setup.c:1407
 msgid "Input box"
 msgstr "Sisestuskast"
 
-#: src/fe-gtk/setup.c:1455
+#: src/fe-gtk/setup.c:1408
 msgid "User list"
 msgstr "Kasutajate nimekiri"
 
-#: src/fe-gtk/setup.c:1457
+#: src/fe-gtk/setup.c:1410
 msgid "Colors"
 msgstr "Värvid"
 
-#: src/fe-gtk/setup.c:1459
+#: src/fe-gtk/setup.c:1412
 msgid "Chatting"
 msgstr "Vestlemine"
 
-#: src/fe-gtk/setup.c:1460
+#: src/fe-gtk/setup.c:1413
 msgid "General"
 msgstr "Üldine"
 
-#: src/fe-gtk/setup.c:1462
+#: src/fe-gtk/setup.c:1415
 msgid "Sound"
 msgstr "Heli"
 
-#: src/fe-gtk/setup.c:1465
+#: src/fe-gtk/setup.c:1418
 msgid "Network"
 msgstr "Võrk"
 
-#: src/fe-gtk/setup.c:1466
+#: src/fe-gtk/setup.c:1419
 msgid "Network setup"
 msgstr "Võrgu häälestus"
 
-#: src/fe-gtk/setup.c:1467
+#: src/fe-gtk/setup.c:1420
 msgid "File transfers"
 msgstr "Failide edastus"
 
-#: src/fe-gtk/setup.c:1574
+#: src/fe-gtk/setup.c:1527
 msgid "Categories"
 msgstr "Kategooriad"
 
-#: src/fe-gtk/setup.c:1704
+#: src/fe-gtk/setup.c:1657
 msgid "Some settings were changed that require a restart to take full effect."
 msgstr ""
 
-#: src/fe-gtk/setup.c:1732
-msgid "X-Chat: Preferences"
+#: src/fe-gtk/setup.c:1685
+#, fuzzy
+msgid "Rage: Preferences"
 msgstr "X-Chat: häälestus"
 
-#: src/fe-gtk/textgui.c:160
+#: src/fe-gtk/textgui.c:134
 msgid "There was an error parsing the string"
 msgstr "Viga stringi töötlemisel"
 
-#: src/fe-gtk/textgui.c:168
+#: src/fe-gtk/textgui.c:142
 #, c-format
 msgid "This signal is only passed %d args, $%d is invalid"
 msgstr ""
 
-#: src/fe-gtk/textgui.c:276 src/fe-gtk/textgui.c:299
+#: src/fe-gtk/textgui.c:250 src/fe-gtk/textgui.c:273
 msgid "Print Texts File"
 msgstr ""
 
-#: src/fe-gtk/textgui.c:340
+#: src/fe-gtk/textgui.c:314
 msgid "$ Number"
 msgstr "$ number"
 
-#: src/fe-gtk/textgui.c:350
+#: src/fe-gtk/textgui.c:324
 msgid "Edit Events"
 msgstr "Muuda sündmuseid"
 
-#: src/fe-gtk/textgui.c:418
+#: src/fe-gtk/textgui.c:392
 msgid "Save As"
 msgstr "Salvesta kui"
 
-#: src/fe-gtk/textgui.c:423
+#: src/fe-gtk/textgui.c:397
 msgid "Load From"
 msgstr "Lae"
 
-#: src/fe-gtk/textgui.c:428
+#: src/fe-gtk/textgui.c:402
 msgid "Test All"
 msgstr "Testi kõike"
 
-#: src/fe-gtk/urlgrab.c:97
+#: src/fe-gtk/urlgrab.c:72
 msgid "URL"
 msgstr ""
 
-#: src/fe-gtk/urlgrab.c:147
+#: src/fe-gtk/urlgrab.c:122
 msgid "Select a file to save to"
 msgstr "Vali fail, kuhu salvestada"
 
-#: src/fe-gtk/urlgrab.c:187
-msgid "X-Chat: URL Grabber"
+#: src/fe-gtk/urlgrab.c:162
+#, fuzzy
+msgid "Rage: URL Grabber"
 msgstr "X-Chat: URLipüüdja"
 
-#: src/fe-gtk/urlgrab.c:200
+#: src/fe-gtk/urlgrab.c:175
 #, fuzzy
 msgid "Clear list"
 msgstr "Kasutajate nimekiri"
 
-#: src/fe-gtk/urlgrab.c:202
+#: src/fe-gtk/urlgrab.c:177
 msgid "Copy"
 msgstr ""
 
-#: src/fe-gtk/urlgrab.c:204
+#: src/fe-gtk/urlgrab.c:179
 #, fuzzy
 msgid "Save list to a file"
 msgstr "Sellese faili ei saa kirjutada."
 
-#: src/fe-gtk/userlistgui.c:108
+#: src/fe-gtk/userlistgui.c:75
 #, c-format
 msgid "%d ops, %d total"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 added to notify list."
+#~ msgstr "-%C10-%C11-%O$t$1 lisatud märguande nimekirja."
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 Banlist:%C19 $4%C20 $2%C21 $3"
+#~ msgstr "<%C10-%C11-%O$t$1 lahkus %C14(%O$2%O%C14)%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$tCannot join%C26 %B$1 %O(You are banned)."
+#~ msgstr "-%C10-%C11-%O$tEi saa liituda kanaliga%C11 %B$1 %O(keelatud)."
+
+#, fuzzy
+#~ msgid "%C18*$t$1%O $2"
+#~ msgstr "%C13*%O$t$1 $2%O"
+
+#, fuzzy
+#~ msgid "%C21*%O$t%C21%B$1%O%C21 $2"
+#~ msgstr "%C13*%O$t%C8%B$1%B%O $2%O"
+
+#, fuzzy
+#~ msgid "%C18%B%B$4$1%O%C18%O$t$2"
+#~ msgstr "%C6<%O$1%C6>%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C22Channel $1 modes: $2"
+#~ msgstr "-%C10-%C11-%O$tKanali $1 seaded: $2"
+
+#, fuzzy
+#~ msgid "$4%C21%B$1%O$t%C21$2"
+#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C28-%C29$1/$2%C28-%O$t$3"
+#~ msgstr "%C12-%C13$1%C12-%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 removes channel keyword"
+#~ msgstr "-%C10-%C11-%O$t$1 eemaldas kanalilt märksõna"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 removes user limit"
+#~ msgstr "-%C10-%C11-%O$t$1 eemaldas kasutajalimiidi"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 sets channel limit to $2"
+#~ msgstr "-%C10-%C11-%O$t$1 seab kanali piiranguks $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C22Connecting to $1 ($2) port $3%O..."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tÜhendan serveri %C11$1 %C14(%C11$2%C14)%C porti %C11$3%C.."
+
+#, fuzzy
+#~ msgid "%C19>%O$1%C19<%O$tCTCP $2"
+#~ msgstr "%C3>%O$1%C3<%O$tCTCP $2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$tReceived a CTCP Sound $1 from $2"
+#~ msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP heli $1 kasutajalt $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC CHAT to %C26$1%O aborted."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC CHAT connection established to %C26$1 %C30[%O$2%C30]"
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%"
+#~ "C14]%O katkestati."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC CHAT to %C26$1%O lost ($4)."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%"
+#~ "C14]%O katkestati."
+
+#, fuzzy
+#~ msgid "%C22*%O$tReceived a DCC CHAT offer from $1"
+#~ msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$tOffering DCC CHAT to $1"
+#~ msgstr "-%C10-%C11-%O$tVõtsin vastu CTCP $1 kasutajalt $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$tOffering%C26 $1%O to%C26 $2"
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC RECV%C26 $2%O to%C26 $1%O aborted."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+
+#, fuzzy
+#~ msgid ""
+#~ "%C22*%O$tDCC RECV%C26 $1%O from%C26 $3%O complete %C30[%C26$4%O cps%C30]%"
+#~ "O."
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC RECV connection established to%C26 $1 %C30[%O$2%C30]"
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%"
+#~ "C14]%O katkestati."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC RECV%C26 $1%O from%C26 $3%O failed ($4)."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC $1 %C11$2 %Ckasutajale %C11$3 %Caegus - katkestan."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC RECV: Cannot open $1 for writing ($2)."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC RECV: Ei suudetud avada faili $1 kirjutamiseks - "
+#~ "katkestan."
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C26$1 %Ohas requested to resume%C26 $2 %Cfrom%C26 $3%C."
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+
+#, fuzzy
+#~ msgid ""
+#~ "%C22*%O$tDCC SEND%C26 $1%O to%C26 $2%O complete %C30[%C26$3%O cps%C30]%O."
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC SEND connection established to%C26 $1 %C30[%O$2%C30]"
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tDCC CHAT ebaõnnestus. Ühendus kastuajaga $1 %C14[%O$2:$3%"
+#~ "C14]%O katkestati."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDCC SEND%C26 $1%O to%C26 $2%O failed. $3"
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C26$1 %Ohas offered%C26 $2 %O(%C26$3 %Obytes)"
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 deleted from notify list."
+#~ msgstr "-%C10-%C11-%O$t$1 kustutatud märguande nimekirjast."
+
+#, fuzzy
+#~ msgid "%C22*%O$tDisconnected ($1)."
+#~ msgstr "-%C10-%C11-%O$tÜhendus katkestatud ($1)."
+
+#, fuzzy
+#~ msgid "%O%C26$1%O added to ignore list."
+#~ msgstr "%O%C11$1%O lisatud ignoreeritavate nimekirja."
+
+#, fuzzy
+#~ msgid ""
+#~ "%C24,18                                                              "
+#~ msgstr "%C08,02                                                    %O"
+
+#, fuzzy
+#~ msgid "%O%C26$1%O removed from ignore list."
+#~ msgstr "%O%C11$1%O eemaldatud ignoreeritavate nimekirjast."
+
+#, fuzzy
+#~ msgid "%C22*%O$tYou have been invited to%C26 $1%O by%C26 $2%C (%C26$3%C)"
+#~ msgstr "-%C10-%C11-%O$t%C11$2%C kutsus sind kanalisse %C11$1%C (%C11$3%C)"
+
+#, fuzzy
+#~ msgid "%C22*%O$tCannot join%C26 %B$1 %O(Requires keyword)."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tEi saa liituda kanaliga%C11 %B$1 %O(kanal nõuab märksõna)."
+
+#, fuzzy
+#~ msgid "%C21*%O$t%C21$1 has kicked $2 from $3 ($4%O%C21)"
+#~ msgstr ""
+#~ "<%C10-%C11-%O$t$1 andis nätaka kasutajale $2 nii et see lendas kanalilt "
+#~ "$3 ($4%O)"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C22MOTD Skipped."
+#~ msgstr "-%C10-%C11-%O$tMOTD vahele jäetud."
+
+#, fuzzy
+#~ msgid "%C22*%O$tNickname already in use. Use /NICK to try another."
+#~ msgstr ""
+#~ "-%C10-%C11-%O$tSinu hüüdnimi on juba kasutuses. Proovi teist nime käsuga /"
+#~ "NICK."
+
+#, fuzzy
+#~ msgid "%C28-%C29$1%C28-%O$t$2"
+#~ msgstr "%C12-%C13$1%C12-%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C19>%O$1%C19<%O$t$2"
+#~ msgstr "%C3>%O$1%C3<%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C24,18 %B  Notify List                           "
+#~ msgstr "%C08,02                                                    %O"
+
+#, fuzzy
+#~ msgid "%C22*%O$tNotify: $1 is offline ($2)."
+#~ msgstr "-%C10-%C11-%O$tTeadaanne: $1 on nüüd ühendatud ($2)."
+
+#, fuzzy
+#~ msgid "%C22*%O$tNotify: $1 is online ($2)."
+#~ msgstr "-%C10-%C11-%O$tTeadaanne: $1 on nüüd ühendatud ($2)."
+
+#, fuzzy
+#~ msgid "%C23*%O$t%C23$1 (%O%C23$2) has left $3"
+#~ msgstr "<%C10-%C11-%O$t$1 %C14(%O$2%C14)%C lahkus kanalilt $3"
+
+#, fuzzy
+#~ msgid "%C23*%O$t%C23$1 (%O%C23$2) has left $3 (%O%C23$4)"
+#~ msgstr "<%C10-%C11-%O$t$1 %C14(%O$2%C14)%C lahkus kanalilt $3"
+
+#, fuzzy
+#~ msgid "%C22*%O$tPing reply from $1: $2 second(s)"
+#~ msgstr "-%C10-%C11-%O$tPingimise vastus kasutajalt $1 : $2 sekundit"
+
+#, fuzzy
+#~ msgid "%C28*%C29$3$1%C28*$t%O$2"
+#~ msgstr "%C12*%C13$1%C12*$t%O$2%O"
+
+#, fuzzy
+#~ msgid "%C18%B%B$3$1%O$t$2"
+#~ msgstr "%C6<%O$1%C6>%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C23*%O$t%C23$1 has quit (%O%C23$2)"
+#~ msgstr "<%C10-%C11-%O$t$1 lahkus %C14(%O$2%O%C14)%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 sets modes%B %C30[%O$2%B%C30]"
+#~ msgstr "-%C10-%C11-%O$t$1 määrab olekud%B %C14[%O$2%B%C14]%O"
+
+#, fuzzy
+#~ msgid "%C28-%C29$1/Wallops%C28-%O$t$2"
+#~ msgstr "%C12-%C13$1/Wallopid%C12-%O$t$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C22Connected."
+#~ msgstr "-%C10-%C11-%O$tÜhendatud."
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1"
+#~ msgstr "%C13*%O$t$1 $2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C22Looking up $1"
+#~ msgstr "-%C10-%C11-%O$tOtsin hosti %C11$1%C.."
+
+#, fuzzy
+#~ msgid "%C29*%O$t%C29Topic for $1%C %C29is: $2"
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema on %C11$2%O"
+
+#, fuzzy
+#~ msgid "%C29*%O$t%C29Topic for $1%C %C29set by $2%C %C29at $3"
+#~ msgstr "-%C10-%C11-%O$tKanali %C11$1%C teema pani %C11$2%C  %C11$3%O paiku"
+
+#, fuzzy
+#~ msgid "%C22*%O$t$1 has changed the topic to: $2"
+#~ msgstr "-%C10-%C11-%O$t$1 pani uue teema: $2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C26Users on $1:%C $2"
+#~ msgstr "-%C10-%C11-%O$t%C11Kasutajat kanalil $1:%C $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28] %Cis away %C30(%O$2%O%C30)"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12] %Con eemal %C14(%O$2%O%C14)"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28]%O $2"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28] %O$2"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28] %O$2%C27 $3"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O $2"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O jõude %C11$2%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28]%O idle%C26 $2%O, signon:%C26 $3"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%O jõude %C11$2%O, liitus: %C11$3%O"
+
+#, fuzzy
+#~ msgid "%C22*%O$t%C28[%O$1%C28] %C30(%O$2@$3%C30)%O: $4"
+#~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12] %C14(%O$2@$3%C14) %O: $4%O"
+
+#, fuzzy
+#~ msgid "%C19*%O$t%C19Now talking on $2"
+#~ msgstr "-%C10-%C11>%O$t%BSa%B räägid kanalil %C11$2%O"
+
+#, fuzzy
+#~ msgid "%C23*$tYou have been kicked from $2 by $3 ($4%O%C23)"
+#~ msgstr "-%C10-%C11-%O$t$3 viskas sind välja kanalist $2 ($4%O)"
+
+#, fuzzy
+#~ msgid "%C22*%O$tYou've invited%C26 $1%O to%C26 $2%O (%C26$3%O)"
+#~ msgstr "-%C10-%C11-%O$t%C11$2%C kutsus sind kanalisse %C11$1%C (%C11$3%C)"
+
+#, fuzzy
+#~ msgid "%C31%B%B$4$1%O$t%C30$2"
+#~ msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+
+#, fuzzy
+#~ msgid "_X-Chat"
+#~ msgstr "X-Chat"
 
 #~ msgid "X-Chat: Edit Key Bindings"
 #~ msgstr "X-Chat: muuda klahvide seoseid"
 
 #~ msgid "Key Bindings..."
 #~ msgstr "Klahviseosed..."
-
-#, fuzzy
-#~ msgid "%C18*%O%C18$t$1 $2%O"
-#~ msgstr "%C13*%O$t$1 $2%O"
 
 #, fuzzy
 #~ msgid "-%C26-%C27-%O$t%C28[%O$1%C28] %O$2%C27 $3%O"
@@ -5455,9 +5761,6 @@ msgstr ""
 
 #~ msgid "Networks"
 #~ msgstr "Võrgud"
-
-#~ msgid "-%C10-%C11-%O$t$1%O"
-#~ msgstr "-%C10-%C11-%O$t$1%O"
 
 #~ msgid "-%C10-%C11-%O$t%C12[%O$1%C12]%C $2"
 #~ msgstr "-%C10-%C11-%O$t%C12[%O$1%C12]%C $2"
@@ -5799,9 +6102,6 @@ msgstr ""
 
 #~ msgid "No Channel"
 #~ msgstr "Pole kanalit"
-
-#~ msgid "No Server"
-#~ msgstr "Pole serverit"
 
 #~ msgid "Is Tab"
 #~ msgstr "On sakk"
