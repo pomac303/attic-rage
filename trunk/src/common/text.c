@@ -1032,6 +1032,12 @@ static char *pevt_rpong_help[] = {
 	N_("Client time diff"),
 };
 
+static char *pevt_chanlist_help[] = {
+	N_("Channel"),
+	N_("Users"),
+	N_("Topic"),
+};
+
 #include "textevents.h"
 
 static void

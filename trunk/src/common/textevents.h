@@ -406,4 +406,7 @@ N_("%C0%B%171Nick%187%B$tYou are now known as $2%O")},
 
 {"RPong Message", pevt_rpong_help, 4, 
 N_("%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O")},
+
+{"Channel List", pevt_chanlist_help, 3, 
+N_("%C0%B%171List%187%B$t$1   $2   $3%O")},
 };

@@ -530,11 +530,11 @@ irc_numeric(session *sess, int parc, char *parv[])
 				fe_add_chan_list(sess->server,
 						parv[3],parv[4],
 						parv[5]);
-			else /* TODO: Why isn't this a signal? */
-				PrintTextf(sess->server->server_session,
-						"%-16s %-7d %s\017\n",
-						parv[3],atoi(parv[4]),
-						parv[5]);
+			else
+				EMIT_SIGNAL(XP_TE_CHANLIST, 
+						sess->server->server_session,
+						parv[3], parv[4],
+						parv[5], NULL, 0);
 			return;
 		case RPL_LISTEND: /* 323 */
 			if (!fe_is_chanwindow(sess->server))

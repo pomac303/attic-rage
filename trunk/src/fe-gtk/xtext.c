@@ -1940,7 +1940,6 @@ gtk_xtext_set_clip_owner (GtkWidget * xtext, GdkEventButton * event)
 		gtk_clipboard_set_text (gtk_widget_get_clipboard (xtext, GDK_SELECTION_CLIPBOARD),
 										str, len);
 #endif
-		printf("xtext_clipboard: %s", str);
 		free (str);
 	}
 
@@ -4937,8 +4936,6 @@ gtk_xtext_buffer_show (GtkXText *xtext, xtext_buffer *buf, int render)
 
 	if (xtext->buffer == buf)
 		return;
-
-/*printf("text_buffer_show: xtext=%p buffer=%p\n", xtext, buf);*/
 
 	if (xtext->add_io_tag)
 	{

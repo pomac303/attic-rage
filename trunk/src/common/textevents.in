@@ -807,3 +807,10 @@ XP_TE_RPONG
 pevt_rpong_help
 %C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O
 4
+
+Channel List
+XP_TE_CHANLIST
+pevt_chanlist_help
+%C0%B%171List%187%B$t$1   $2   $3%O
+3
+
