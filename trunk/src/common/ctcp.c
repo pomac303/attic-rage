@@ -51,13 +51,6 @@ static throttle_t ctcp_throttle_data = { 0, 34, 10, 100, 0 };
 static throttle_t dcc_throttle_data = { 0, 34, 20, 100, 0};
 #define dcc_throttle gen_throttle(&dcc_throttle_data)
 
-#define MAKE4(ch0, ch1, ch2, ch3)       (guint32)(ch0 | (ch1 << 8) | (ch2 << 16) | (ch3 << 24))
-
-#define M_DCC		MAKE4('D','C','C',' ')
-#define M_VERSION	MAKE4('V','E','R','S')
-#define M_ACTION	MAKE4('A','C','T','I')
-#define M_SOUND		MAKE4('S','O','U','N')
-
 void
 ctcp_handle (session *sess, char *to, char *nick, char *ip,
 				 char *msg, int parc, char *parv[])
@@ -67,11 +60,11 @@ ctcp_handle (session *sess, char *to, char *nick, char *ip,
 	server *serv = sess->server;
 	char outbuf[1024];
 	char *tmp;
-	guint32 type = MAKE4(toupper(parv[3][0]), toupper(parv[3][1]), 
-			toupper(parv[3][2]), toupper(parv[3][3]));
+	guint32 type = MAKE4UPPER(parv[3][0], parv[3][1], 
+			parv[3][2], parv[3][3]);
 
 	/* consider DCC and ACTION to be different from other CTCPs */
-	if (type == M_ACTION)
+	if (type == C_ACTION)
 	{
 			inbound_action (sess, to, nick, msg + 7, FALSE);
 			return;
@@ -83,7 +76,7 @@ ctcp_handle (session *sess, char *to, char *nick, char *ip,
 	parv[3] = split_cmd(&tmp);
 	parv[4] = tmp;
 
-	if (type == M_DCC)
+	if (type == D_DCC)
 	{
 		/* we don't allow dcc overrides.*/
 		if (!(dcc_throttle || ignore_check (parv[0], IG_DCC)))
@@ -98,7 +91,7 @@ ctcp_handle (session *sess, char *to, char *nick, char *ip,
 	{
 		switch (type)
 		{
-			case M_VERSION:
+			case C_VERSION:
 				if (!prefs.hidever)
 				{
 					snprintf (outbuf, sizeof (outbuf), "VERSION Rage "VERSION" %s",
@@ -106,7 +99,7 @@ ctcp_handle (session *sess, char *to, char *nick, char *ip,
 					serv->p_nctcp (serv, nick, outbuf);
 				}
 				break;
-			case M_SOUND:
+			case C_SOUND:
 			{
 				po = strchr (parv[4], '\001');
 				if (po)

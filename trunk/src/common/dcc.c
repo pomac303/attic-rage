@@ -1607,11 +1607,6 @@ dcc_deny_chat (void *ud)
 	dcc_abort (dcc->serv->front_session, dcc);
 }
 
-#define M_CHAT		MAKE4('C','H','A','T')
-#define M_RESUME	MAKE4('R','E','S','U')
-#define M_ACCEPT	MAKE4('A','C','C','E')
-#define M_SEND		MAKE4('S','E','N','D')
-
 void
 handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 {
@@ -1631,7 +1626,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 	switch(MAKE4(toupper(type[0]),toupper(type[1]),
 				toupper(type[2]),toupper(type[3])))
 	{
-		case M_CHAT:
+		case D_CHAT:
 		{
 			port = atoi (parv[3]);
 			addr = strtoul (parv[2], NULL, 10);
@@ -1686,7 +1681,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 			}
 			return;
 		}
-		case M_RESUME:
+		case D_RESUME:
 		{
 			port = atoi (parv[2]);
 
@@ -1730,7 +1725,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 			}
 			return;
 		}
-		case M_ACCEPT:
+		case D_ACCEPT:
 		{
 			port = atoi (parv[2]);
 			dcc = find_dcc_from_port (port, TYPE_RECV);
@@ -1738,7 +1733,7 @@ handle_dcc (struct session *sess, char *nick, char *ctcp_data)
 				dcc_connect (dcc);
 			return;
 		}
-		case M_SEND:
+		case D_SEND:
 		{
 			char *file = file_part (parv[1]);
 			int psend = 0;

@@ -287,26 +287,6 @@ channel_date (session *sess, char *chan, char *timestr)
 	EMIT_SIGNAL (XP_TE_CHANDATE, sess, chan, tim, NULL, NULL, 0);
 }
 
-#define MAKE4(ch0, ch1, ch2, ch3)       (guint32)(ch0 | (ch1 << 8) | (ch2 << 16) | (ch3 << 24))
-
-#define M_PRIVMSG       MAKE4('P','R','I','V')
-#define M_NOTICE        MAKE4('N','O','T','I')
-#define M_JOIN          MAKE4('J','O','I','N')
-#define M_PART          MAKE4('P','A','R','T')
-#define M_QUIT          MAKE4('Q','U','I','T')
-#define M_KICK          MAKE4('K','I','C','K')
-#define M_QUIT          MAKE4('Q','U','I','T')
-#define M_KILL          MAKE4('K','I','L','L')
-#define M_NICK          MAKE4('N','I','C','K')
-#define M_MODE          MAKE4('M','O','D','E')
-#define M_TOPIC         MAKE4('T','O','P','I')
-#define M_ERROR         MAKE4('E','R','R','O')
-#define M_WALL          MAKE4('W','A','L','L')
-#define M_PING          MAKE4('P','I','N','G')
-#define M_PONG          MAKE4('P','O','N','G')
-#define M_RPONG		MAKE4('R','P','O','N')
-#define M_INVITE        MAKE4('I','N','V','I')
-
 /* Splits "buf" up into parv/parc */
 void 
 irc_split(server *serv,char *buf,int *parc,char *parv[])
@@ -783,7 +763,7 @@ irc_server(session *sess, int parc, char *parv[])
 		is_server = 0;
 	}
 
-	switch(MAKE4(parv[1][0],parv[1][1],parv[1][2],parv[1][3])) {
+	switch(MAKE4UPPER(parv[1][0],parv[1][1],parv[1][2],parv[1][3])) {
 		case M_INVITE:
 			if (throttle_invite || ignore_check(parv[0], IG_INVI))
 				return;

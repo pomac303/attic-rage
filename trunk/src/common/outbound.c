@@ -198,7 +198,9 @@ cmd_addbutton (struct session *sess, char *cmd, char *buf)
 {
 	char *parv[MAX_TOKENS];
 	int parc;
+	
 	split_cmd_parv(buf,&parc,parv);
+
 	if (*parv[1] && *parv[2])
 	{
 		if (sess->type == SESS_DIALOG)
@@ -219,12 +221,10 @@ static int
 cmd_allchannels (session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
-	int parc;
-	char *parv[MAX_TOKENS];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	if (!*parv[1])
+	if (!*buf)
 		return FALSE;
 
 	while (list)
@@ -232,7 +232,7 @@ cmd_allchannels (session *sess, char *cmd, char *buf)
 		sess = list->data;
 		if (sess->type == SESS_CHANNEL && sess->channel[0] && sess->server->connected)
 		{
-			handle_command (sess, paste_parv(cmd, 512, 1, parc, parv), FALSE);
+			handle_command (sess, buf, FALSE);
 		}
 		list = list->next;
 	}
@@ -245,12 +245,10 @@ cmd_allservers (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list;
 	server *serv;
-	int parc;
-	char *parv[MAX_TOKENS];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	if (!*parv[1])
+	if (!*buf)
 		return FALSE;
 
 	list = serv_list;
@@ -258,7 +256,7 @@ cmd_allservers (struct session *sess, char *cmd, char *buf)
 	{
 		serv = list->data;
 		if (serv->connected)
-			handle_command (serv->front_session, paste_parv(cmd, 512, 1, parc, parv), FALSE);
+			handle_command (serv->front_session, buf, FALSE);
 		list = list->next;
 	}
 
@@ -304,9 +302,7 @@ cmd_away (struct session *sess, char *cmd, char *buf)
 			sprintf (send, "me is back (gone %.2d:%.2d:%.2d)", gone / 3600,
 						(gone / 60) % 60, gone % 60);
 		} else
-		{
 			sprintf (send, "me is away: %s", reason);
-		}
 
 		list = sess_list;
 		while (list)
@@ -459,12 +455,9 @@ cmd_ban (struct session *sess, char *cmd, char *buf)
 	mask=parv[1];
 
 	if (*mask)
-	{
 		ban (sess, send, mask, parv[2], 0);
-	} else
-	{
+	else
 		sess->server->p_mode (sess->server, sess->channel, "+b");	/* banlist */
-	}
 
 	return TRUE;
 }
@@ -497,12 +490,10 @@ cmd_charset (struct session *sess, char *cmd, char *buf)
 {
 	server *serv = sess->server;
 	const char *locale = NULL;
-	int parc;
-	char *parv[MAX_TOKENS];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	if (!parv[1][0])
+	if (!buf[0])
 	{
 		g_get_charset (&locale);
 		PrintTextf (sess, "Current charset: %s\n",
@@ -510,16 +501,14 @@ cmd_charset (struct session *sess, char *cmd, char *buf)
 		return TRUE;
 	}
 
-	if (servlist_check_encoding (parv[1]))
+	if (servlist_check_encoding (buf))
 	{
 		if (serv->encoding)
 			free (serv->encoding);
-		serv->encoding = strdup (parv[1]);
-		PrintTextf (sess, "Charset changed to: %s\n", parv[1]);
+		serv->encoding = strdup (buf);
+		PrintTextf (sess, "Charset changed to: %s\n", buf);
 	} else
-	{
-		PrintTextf (sess, "\0034Unknown charset:\017 %s\n", parv[1]);
-	}
+		PrintTextf (sess, "\0034Unknown charset:\017 %s\n", buf);
 
 	return TRUE;
 }
@@ -528,15 +517,10 @@ static int
 cmd_clear (struct session *sess, char *cmd, char *buf)
 {
 	GSList *list = sess_list;
-	char *reason;
-	int parc;
-	char *parv[MAX_TOKENS];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	reason = parv[1];
-
-	if (strncasecmp (reason, "all", 3) == 0)
+	if (strncasecmp (buf, "all", 3) == 0)
 	{
 		while (list)
 		{
@@ -545,10 +529,9 @@ cmd_clear (struct session *sess, char *cmd, char *buf)
 				fe_text_clear (list->data);
 			list = list->next;
 		}
-	} else
-	{
-		fe_text_clear (sess);
 	}
+	else
+		fe_text_clear (sess);
 
 	return TRUE;
 }
@@ -572,7 +555,8 @@ cmd_close (struct session *sess, char *cmd, char *buf)
 			if (sess->type == SESS_DIALOG)
 				fe_close_window (sess);
 		}
-	} else
+	}
+	else
 	{
 		if (*parv[1])
 			sess->quitreason = parv[1];
@@ -594,6 +578,7 @@ cmd_ctcp (struct session *sess, char *cmd, char *buf)
 	msg=buf;
 	if (*to)
 	{
+		/* FIXME: broken? */
 		if (*msg)
 		{
 			unsigned char *cmd = (unsigned char *)msg;
@@ -626,18 +611,13 @@ cmd_ctcp (struct session *sess, char *cmd, char *buf)
 static int
 cmd_country (struct session *sess, char *cmd, char *buf)
 {
-	char *code;
-	int parc;
-	char *parv[MAX_TOKENS];
 	char tbuf[500];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	code = parv[1];
-
-	if (*code)
+	if (*buf)
 	{
-		sprintf (tbuf, "%s = %s\n", code, country (code));
+		sprintf (tbuf, "%s = %s\n", buf, country (buf));
 		PrintText (sess, tbuf);
 		return TRUE;
 	}
@@ -649,10 +629,6 @@ cmd_cycle (struct session *sess, char *cmd, char *buf)
 {
 	char *key = sess->channelkey;
 	char *chan = sess->channel;
-	int parc;
-	char *parv[MAX_TOKENS];
-
-	split_cmd_parv(buf,&parc,parv);
 
 	if (*chan && sess->type == SESS_CHANNEL)
 	{
@@ -667,68 +643,62 @@ cmd_dcc (struct session *sess, char *cmd, char *buf)
 {
 	int goodtype;
 	struct DCC *dcc = 0;
-	char *type;
+	int type, passive = 0;
 	int parc;
 	char *parv[MAX_TOKENS];
 
 	split_cmd_parv(buf,&parc,parv);
 
-	type = parv[1];
+	type = MAKE4UPPER(parv[1][0], parv[1][1], parv[1][2], parv[1][3]);
 
-	if (*type)
+	switch(type)
 	{
-		if (!strcasecmp (type, "HELP"))
+		case D_HELP:
 			return FALSE;
-		if (!strcasecmp (type, "CLOSE"))
-		{
-			if (*parv[2] && *parv[2])
+		case D_CLOSE:
+			if (!(*parv[2] && *parv[3]))
+				return FALSE;
+			type = MAKE4UPPER(parv[2][0], parv[2][1], parv[2][2], parv[2][3]);
+			goodtype = 0;
+			switch(type)
 			{
-				goodtype = 0;
-				if (!strcasecmp (parv[2], "SEND"))
-				{
+				case D_SEND:
 					dcc = find_dcc (parv[3], parv[2], TYPE_SEND);
 					dcc_abort (sess, dcc);
 					goodtype = TRUE;
-				}
-				if (!strcasecmp (parv[2], "GET"))
-				{
+					break;
+				case D_GET:
 					dcc = find_dcc (parv[3], parv[2], TYPE_RECV);
 					dcc_abort (sess, dcc);
 					goodtype = TRUE;
-				}
-				if (!strcasecmp (parv[2], "CHAT"))
-				{
+					break;
+				case D_CHAT:
 					dcc = find_dcc (parv[3], "", TYPE_CHATRECV);
 					if (!dcc)
 						dcc = find_dcc (parv[3], "", TYPE_CHATSEND);
 					dcc_abort (sess, dcc);
 					goodtype = TRUE;
-				}
-
-				if (!goodtype)
-					return FALSE;
-
-				if (!dcc)
-					EMIT_SIGNAL (XP_TE_NODCC, sess, NULL, NULL, NULL, NULL, 0);
-
-				return TRUE;
-
+					break;
 			}
-			return FALSE;
-		}
-		if (!strcasecmp (type, "CHAT"))
+
+			if (!goodtype)
+				return FALSE;
+
+			if (!dcc)
+				EMIT_SIGNAL (XP_TE_NODCC, sess, NULL, NULL, NULL, NULL, 0);
+
+			return TRUE;
+		case D_CHAT:
 		{
 			char *nick = parv[2];
 			if (*nick)
 				dcc_chat (sess, nick);
 			return TRUE;
 		}
-		if (!strcasecmp (type, "LIST"))
-		{
+		case D_LIST:
 			dcc_show_list (sess);
 			return TRUE;
-		}
-		if (!strcasecmp (type, "GET"))
+		case D_GET:
 		{
 			char *nick = parv[2];
 			char *file = parv[3];
@@ -736,7 +706,8 @@ cmd_dcc (struct session *sess, char *cmd, char *buf)
 			{
 				if (*nick)
 					dcc_get_nick (sess, nick);
-			} else
+			}
+			else
 			{
 				dcc = find_dcc (nick, file, TYPE_RECV);
 				if (dcc)
@@ -746,11 +717,12 @@ cmd_dcc (struct session *sess, char *cmd, char *buf)
 			}
 			return TRUE;
 		}
-		if ((!strcasecmp (type, "SEND")) || (!strcasecmp (type, "PSEND")))
+		case D_PSEND:
+			passive = 1;
+		case D_SEND:
 		{
 			int i = 2, maxcps;
 			char *nick, *file;
-			int passive = (!strcasecmp(type, "PSEND")) ? 1 : 0;
 
 			nick = parv[i];
 			if (!*nick)
@@ -785,8 +757,9 @@ cmd_dcc (struct session *sess, char *cmd, char *buf)
 
 			return TRUE;
 		}
-	} else
-		dcc_show_list (sess);
+		default:
+			dcc_show_list (sess);
+	}
 	return TRUE;
 }
 
@@ -796,11 +769,7 @@ cmd_debug (struct session *sess, char *cmd, char *buf)
 	struct session *s;
 	struct server *v;
 	GSList *list = sess_list;
-	int parc;
-	char *parv[MAX_TOKENS];
 	char tbuf[512];
-
-	split_cmd_parv(buf,&parc,parv);
 
 	PrintText (sess, "Session   T Channel    WaitChan  WillChan  Server\n");
 	while (list)
@@ -926,10 +895,6 @@ cmd_mdehop (struct session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->hops);
 	multidata data;
-	int parc;
-	char *parv[MAX_TOKENS];
-
-	split_cmd_parv(buf,&parc,parv);
 
 	data.nicks = nicks;
 	data.i = 0;
@@ -956,10 +921,6 @@ cmd_mdeop (struct session *sess, char *cmd, char *buf)
 {
 	char **nicks = malloc (sizeof (char *) * sess->ops);
 	multidata data;
-	int parc;
-	char *parv[MAX_TOKENS];
-
-	split_cmd_parv(buf,&parc,parv);
 
 	data.nicks = nicks;
 	data.i = 0;
@@ -1045,32 +1006,27 @@ cmd_dns (struct session *sess, char *cmd, char *buf)
 	PrintText (sess, "DNS is not implemented in Windows.\n");
 	return TRUE;
 #else
-	char *nick;
 	struct User *user;
-	int parc;
-	char *parv[MAX_TOKENS];
 	char tbuf[512];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
-	nick = parv[1];
-
-	if (*nick)
+	if (*buf)
 	{
-		if (strchr (nick, '.') == NULL)
+		if (strchr (buf, '.') == NULL)
 		{
-			user = find_name (sess, nick);
+			user = find_name (sess, buf);
 			if (user && user->hostname)
-			{
 				do_dns (sess, user->nick, user->hostname);
-			} else
+			else
 			{
-				sess->server->p_get_ip (sess->server, nick);
+				sess->server->p_get_ip (sess->server, buf);
 				sess->server->doing_dns = TRUE;
 			}
-		} else
+		}
+		else
 		{
-			sprintf (tbuf, "exec -d %s %s", prefs.dnsprogram, nick);
+			sprintf (tbuf, "exec -d %s %s", prefs.dnsprogram, buf);
 			handle_command (sess, tbuf, FALSE);
 		}
 		return TRUE;
@@ -1148,10 +1104,8 @@ static int
 cmd_execk (struct session *sess, char *cmd, char *buf)
 {
 	int r;
-	int parc;
-	char *parv[MAX_TOKENS];
 
-	split_cmd_parv(buf,&parc,parv);
+	split_cmd(&buf);
 
 	exec_check_process (sess);
 	if (sess->running_exec == NULL)
@@ -1159,7 +1113,7 @@ cmd_execk (struct session *sess, char *cmd, char *buf)
 		EMIT_SIGNAL (XP_TE_NOCHILD, sess, NULL, NULL, NULL, NULL, 0);
 		return FALSE;
 	}
-	if (strcmp (parv[1], "-9") == 0)
+	if (strcmp (buf, "-9") == 0)
 		r = kill (sess->running_exec->childpid, SIGKILL);
 	else
 		r = kill (sess->running_exec->childpid, SIGTERM);
@@ -1656,35 +1610,35 @@ cmd_getstr (struct session *sess, char *cmd, char *buf)
 static int
 cmd_gui (struct session *sess, char *cmd, char *buf)
 {
+	unsigned int type;
 	int parc;
 	char *parv[MAX_TOKENS];
 
 	split_cmd_parv(buf,&parc,parv);
 
-	if (!strcasecmp (parv[1], "HIDE"))
+	type = MAKE4UPPER(parv[1][0], parv[1][1], parv[1][2], parv[1][3]);
+	switch(type)
 	{
-		fe_ctrl_gui (sess, 0, 0);
-	} else if (!strcasecmp (parv[1], "SHOW"))
-	{
-		fe_ctrl_gui (sess, 1, 0);
-	} else if (!strcasecmp (parv[1], "FOCUS"))
-	{
-		fe_ctrl_gui (sess, 2, 0);
-	} else if (!strcasecmp (parv[1], "FLASH"))
-	{
-		fe_ctrl_gui (sess, 3, 0);
-	} else if (!strcasecmp (parv[1], "COLOR"))
-	{
-		fe_ctrl_gui (sess, 4, atoi (parv[2]));
-	} else if (!strcasecmp (parv[1], "ICONIFY"))
-	{
-		fe_ctrl_gui (sess, 5, 0);
-	} else
-	{
-		return FALSE;
+		case G_HIDE:
+			fe_ctrl_gui (sess, 0, 0);
+			return TRUE;
+		case G_SHOW:
+			fe_ctrl_gui (sess, 1, 0);
+			return TRUE;
+		case G_FOCUS:
+			fe_ctrl_gui (sess, 2, 0);
+			return TRUE;
+		case G_FLASH:
+			fe_ctrl_gui (sess, 3, 0);
+			return TRUE;
+		case G_COLOR:
+			fe_ctrl_gui (sess, 4, atoi (parv[2]));
+			return TRUE;
+		case G_ICONIFY:
+			fe_ctrl_gui (sess, 5, 0);
+			return TRUE;
 	}
-
-	return TRUE;
+	return FALSE;
 }
 
 static int
@@ -1704,9 +1658,8 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 		longfmt = 1;
 
 	if (*helpcmd && !longfmt)
-	{
 		help (sess, helpcmd, FALSE);
-	} else
+	else
 	{
 		struct popup *pop;
 		dict_iterator_t it;
@@ -1728,7 +1681,8 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 				PrintText (sess, buf);
 			}
 			buf[0] = 0;
-		} else
+		}
+		else
 		{
 			for (it = dict_first(rage_cmd_list); it; it=iter_next(it))
 			{
@@ -1739,7 +1693,8 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 				{
 					t = 1;
 					strcat (buf, "\n  ");
-				} else
+				}
+				else
 					for (j = 0; j < (10 - strlen (cmd->name)); j++)
 						strcat (buf, " ");
 			}
@@ -1760,7 +1715,8 @@ cmd_help (struct session *sess, char *cmd, char *buf)
 				strcat (buf, "\n");
 				PrintText (sess, buf);
 				strcpy (buf, "  ");
-			} else
+			} 
+			else
 			{
 				if (strlen (pop->name) < 10)
 				{
@@ -1821,30 +1777,41 @@ cmd_ignore (struct session *sess, char *cmd, char *buf)
 			}
 			return TRUE;
 		}
-		if (!strcasecmp (parv[i], "UNIGNORE"))
-			type |= IG_UNIG;
-		else if (!strcasecmp (parv[i], "ALL"))
-			type |= IG_PRIV | IG_NOTI | IG_CHAN | IG_CTCP | IG_INVI | IG_DCC;
-		else if (!strcasecmp (parv[i], "PRIV"))
-			type |= IG_PRIV;
-		else if (!strcasecmp (parv[i], "NOTI"))
-			type |= IG_NOTI;
-		else if (!strcasecmp (parv[i], "CHAN"))
-			type |= IG_CHAN;
-		else if (!strcasecmp (parv[i], "CTCP"))
-			type |= IG_CTCP;
-		else if (!strcasecmp (parv[i], "INVI"))
-			type |= IG_INVI;
-		else if (!strcasecmp (parv[i], "QUIET"))
-			quiet = 1;
-		else if (!strcasecmp (parv[i], "NOSAVE"))
-			type |= IG_NOSAVE;
-		else if (!strcasecmp (parv[i], "DCC"))
-			type |= IG_DCC;
-		else
+		switch(MAKE4UPPER(parv[i][0], parv[i][1], parv[i][2], parv[i][3]))
 		{
-			sprintf (tbuf, _("Unknown arg '%s' ignored."), parv[i]);
-			PrintText (sess, tbuf);
+			case I_UNIGNORE:
+				type |= IG_UNIG;
+				break;
+			case I_ALL:
+				type |= IG_PRIV | IG_NOTI | IG_CHAN | IG_CTCP | IG_INVI | IG_DCC;
+				break;
+			case I_PRIV:
+				type |= IG_PRIV;
+				break;
+			case I_NOTI:
+				type |= IG_NOTI;
+				break;
+			case I_CHAN:
+				type |= IG_CHAN;
+				break;
+			case I_CTCP:
+				type |= IG_CTCP;
+				break;
+			case I_INVI:
+				type |= IG_INVI;
+				break;
+			case I_QUIET:
+				quiet = 1;
+				break;
+			case I_NOSAVE:
+				type |= IG_NOSAVE;
+				break;
+			case I_DCC:
+				type |= IG_DCC;
+				break;
+			default:
+				sprintf (tbuf, _("Unknown arg '%s' ignored."), parv[i]);
+				PrintText (sess, tbuf);
 		}
 		i++;
 	}
@@ -1936,7 +1903,8 @@ cmd_kickban (struct session *sess, char *cmd, char *buf)
 		{
 			ban (sess, tbuf, nick, reason, (user && user->op));
 			reason[0] = 0;
-		} else
+		}
+		else
 			ban (sess, tbuf, nick, "", (user && user->op));
 
 		sess->server->p_kick (sess->server, sess->channel, nick, reason);
@@ -2102,7 +2070,8 @@ cmd_me (struct session *sess, char *cmd, char *buf)
 	{
 		/* print it to screen */
 		inbound_action (sess, sess->channel, sess->server->nick, act, TRUE);
-	} else
+	}
+	else
 	{
 		/* DCC CHAT failed, try through server */
 		if (sess->server->connected)
@@ -2110,16 +2079,14 @@ cmd_me (struct session *sess, char *cmd, char *buf)
 			sess->server->p_action (sess->server, sess->channel, act);
 			/* print it to screen */
 			inbound_action (sess, sess->channel, sess->server->nick, act, TRUE);
-		} else
-		{
-			notc_msg (sess);
 		}
+		else
+			notc_msg (sess);
 	}
 
 	return TRUE;
 }
 
-/* TODO: add cmd_umode */
 static int
 cmd_mode (struct session *sess, char *cmd, char *buf)
 {
@@ -2259,14 +2226,13 @@ cmd_names (struct session *sess, char *cmd, char *buf)
 static int
 cmd_nctcp (struct session *sess, char *cmd, char *buf)
 {
-	int parc;
-	char *parv[MAX_TOKENS];
-
-	split_cmd_parv(buf,&parc,parv);
-
-	if (*parv[2])
+	char *target;
+	split_cmd(&buf);
+	target = split_cmd(&buf);
+	
+	if(*buf)
 	{
-		sess->server->p_nctcp (sess->server, parv[1], paste_parv(cmd, 512, 2, parc, parv));
+		sess->server->p_nctcp (sess->server, target, buf);
 		return TRUE;
 	}
 	return FALSE;
@@ -3821,12 +3787,10 @@ handle_command (session *sess, char *cmd, int check_spch)
 	if (int_cmd)
 	{
 		if (int_cmd->needserver && !sess->server->connected)
-		{
 			notc_msg (sess);
-		} else if (int_cmd->needchannel && !sess->channel[0])
-		{
+		else if (int_cmd->needchannel && !sess->channel[0])
 			notj_msg (sess);
-		} else
+		else
 		{
 			switch (int_cmd->callback (sess, command, cmd))
 			{
@@ -3838,7 +3802,8 @@ handle_command (session *sess, char *cmd, int check_spch)
 				goto xit;
 			}
 		}
-	} else
+	}
+	else
 	{
 		/* unknown command, just send it to the server and hope */
 		if (!sess->server->connected)

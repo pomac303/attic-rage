@@ -13,6 +13,68 @@
 #define _LARGEFILE_SOURCE
 #define _GNU_SOURCE
 
+/* Common make4 */
+#define MAKE4(ch0, ch1, ch2, ch3)       (guint32)(ch0 | (ch1 << 8) | (ch2 << 16) | (ch3 << 24))
+#define MAKE4UPPER(ch0, ch1, ch2, ch3)  (guint32)(toupper(ch0) | (toupper(ch1) << 8) | \
+		(toupper(ch2) << 16) | (toupper(ch3) << 24))
+
+/* For ircd parsing */
+#define M_PRIVMSG       MAKE4('P','R','I','V')
+#define M_NOTICE        MAKE4('N','O','T','I')
+#define M_JOIN          MAKE4('J','O','I','N')
+#define M_PART          MAKE4('P','A','R','T')
+#define M_QUIT          MAKE4('Q','U','I','T')
+#define M_KICK          MAKE4('K','I','C','K')
+#define M_QUIT          MAKE4('Q','U','I','T')
+#define M_KILL          MAKE4('K','I','L','L')
+#define M_NICK          MAKE4('N','I','C','K')
+#define M_MODE          MAKE4('M','O','D','E')
+#define M_TOPIC         MAKE4('T','O','P','I')
+#define M_ERROR         MAKE4('E','R','R','O')
+#define M_WALL          MAKE4('W','A','L','L')
+#define M_PING          MAKE4('P','I','N','G')
+#define M_PONG          MAKE4('P','O','N','G')
+#define M_RPONG         MAKE4('R','P','O','N')
+#define M_INVITE        MAKE4('I','N','V','I')
+
+/* For ctcp parsing */
+#define C_VERSION	MAKE4('V','E','R','S')
+#define C_ACTION	MAKE4('A','C','T','I')
+#define C_SOUND		MAKE4('S','O','U','N')
+
+/* For dcc parsing */
+#define D_DCC		MAKE4('D','C','C',' ')
+#define D_CHAT		MAKE4('C','H','A','T')
+#define D_RESUME	MAKE4('R','E','S','U')
+#define D_ACCEPT	MAKE4('A','C','C','E')
+#define D_SEND		MAKE4('S','E','N','D')
+#define D_PSEND		MAKE4('P','S','E','N')
+#define D_CLOSE		MAKE4('C','L','O','S')
+#define D_LIST		MAKE4('L','I','S','T')
+#define D_HELP		MAKE4('H','E','L','P')
+#define D_GET		MAKE4('G','E','T','\0')
+
+/* For cmd_gui in src/common/outbound.c */
+#define G_HIDE		MAKE4('H','I','D','E')
+#define G_SHOW		MAKE4('S','H','O','W')
+#define G_FOCUS		MAKE4('F','O','C','U')
+#define G_FLASH		MAKE4('F','L','A','S')
+#define G_COLOR		MAKE4('C','O','L','O')
+#define G_ICONIFY	MAKE4('I','C','O','N')
+
+/* For ignore command parsing in src/common/outbound.c */
+#define I_UNIGNORE	MAKE4('U','N','I','G')
+#define I_ALL		MAKE4('A','L','L','\0')
+#define I_PRIV		MAKE4('P','R','I','V')
+#define I_NOTI		MAKE4('N','O','T','I')
+#define I_CHAN		MAKE4('C','H','A','N')
+#define I_CTCP		MAKE4('C','T','C','P')
+#define I_INVI		MAKE4('I','N','V','I')
+#define I_QUIET		MAKE4('Q','U','I','E')
+#define I_NOSAVE	MAKE4('N','O','S','A')
+#define I_DCC		MAKE4('D','C','C','\0')
+
+
 /* Include standard C includes */
 #include <stdlib.h>
 #include <string.h>
