@@ -144,7 +144,12 @@ paste_parv(char *buf, size_t buf_size, int first, int last, char *parv[])
 	*lp='\0';
 
 	for(i=first;i<last && lp<(buf+buf_size);i++)
-		lp+=snprintf(lp,(gulong)buf_size-(lp-buf),"%s ",parv[i]);
+	{
+		if (i < last)
+			lp+=snprintf(lp,(gulong)buf_size-(lp-buf),"%s ",parv[i]);
+		else
+			lp+=snprintf(lp,(gulong)buf_size-(lp-buf),"%s",parv[i]);
+	}
 	return buf;
 }
 		

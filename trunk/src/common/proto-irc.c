@@ -359,6 +359,10 @@ irc_numeric(session *sess, int parc, char *parv[])
 		case RPL_ISUPPORT: /* 005 */
 			inbound_005(sess->server,parc,parv);
 			break;
+		case 271: /* RPL_SILENCE ? */
+			EMIT_SIGNAL(XP_TE_SILENCE, sess->server->server_session, 
+					parv[3], NULL, NULL, NULL, 0);
+			return;
 		case 290: /* CAPAB reply */
 		{
 			int i;
@@ -938,17 +942,26 @@ irc_server(session *sess, int parc, char *parv[])
 			EMIT_SIGNAL(XP_TE_SERVERERROR, sess, parv[2], NULL,
 					NULL, NULL, 0);
 			break;
+		case M_SILENCE:
+			EMIT_SIGNAL(XP_TE_SILENCE, sess, parv[2], NULL, 
+					NULL, NULL, 0);
+			break;
 		default:
 		{
 			char line[512];
-			paste_parv(line, sizeof(line), 3, parc, parv);
 
 			if (is_server)
+			{
+				paste_parv(line, sizeof(line), 3, parc, parv);
 				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
 						parv[0], parv[1], NULL, 0);
+			}
 			else
+			{
+				paste_parv(line, sizeof(line), 1, parc, parv);
 				EMIT_SIGNAL(XP_TE_GARBAGE, sess, line,
 						NULL, NULL, NULL, 0);
+			}
 		}
 	}
 }

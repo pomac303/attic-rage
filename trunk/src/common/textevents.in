@@ -823,6 +823,11 @@ pevt_gen_help
 Garbage
 XP_TE_GARBAGE
 pevt_gen_help
-%C0%B&171Garbage%187%B$t$1%O
+%C0%B%171Garbage%187%B$t$1%O
 1
 
+Silence
+XP_TE_SILENCE
+pevt_silence_help
+%C0%B%171Silence%187%B$t$1%O
+1

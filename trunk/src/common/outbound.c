@@ -3314,7 +3314,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 						dest += utf_len;
 					}
 					src += 3;
-				} else
+				}
+				else
 				{
 					if (parv)
 					{
@@ -3333,7 +3334,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 						dest += strlen (dest);
 					}
 				}
-			} else
+			}
+			else
 			{
 				if (src[0] == '&')
 					goto lamecode;
@@ -3391,7 +3393,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 
 			}
 			src++;
-		} else
+		} 
+		else
 		{
 			utf_len = g_utf8_skip[src[0]];
 
@@ -3404,7 +3407,8 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 				dest[0] = src[0];
 				dest++;
 				src++;
-			} else
+			} 
+			else
 			{
 				memcpy (dest, src, utf_len);
 				dest += utf_len;
@@ -3748,6 +3752,8 @@ handle_command (session *sess, char *cmd, int check_spch)
 	char command[512];
 	int i;
 
+	printf("cmd: %s\n", cmd);
+
 	if (command_level > 99)
 	{
 		fe_message (_("Too many recursive usercommands, aborting."), FALSE);
@@ -3760,6 +3766,8 @@ handle_command (session *sess, char *cmd, int check_spch)
 	for(i=0;cmd[i] && cmd[i]!=' ';i++)
 		command[i]=cmd[i];
 	command[i]='\0';
+
+	printf("cmd: %s\n", cmd);
 	
 	if (check_spch && prefs.perc_color)
 		check_special_chars (cmd, prefs.perc_ascii);
@@ -3782,9 +3790,7 @@ handle_command (session *sess, char *cmd, int check_spch)
 		goto xit;
 
 	/* now check internal commands */
-	int_cmd = find_internal_command (command);
-
-	if (int_cmd)
+	if ((int_cmd = find_internal_command (command)))
 	{
 		if (int_cmd->needserver && !sess->server->connected)
 			notc_msg (sess);

@@ -414,5 +414,8 @@ N_("%C0%B%171List%187%B$t$(-16)1   $(-7)2 $3%O")},
 N_("%C0%B%171Who%187%B$t$1%O")},
 
 {"Garbage", pevt_gen_help, 1, 
-N_("%C0%B&171Garbage%187%B$t$1%O")},
+N_("%C0%B%171Garbage%187%B$t$1%O")},
+
+{"Silence", pevt_silence_help, 1, 
+N_("%C0%B%171Silence%187%B$t$1%O")},
 };

@@ -36,6 +36,7 @@
 #define M_PONG          MAKE4('P','O','N','G')
 #define M_RPONG         MAKE4('R','P','O','N')
 #define M_INVITE        MAKE4('I','N','V','I')
+#define M_SILENCE	MAKE4('S','I','L','E')
 
 /* For ctcp parsing */
 #define C_VERSION	MAKE4('V','E','R','S')

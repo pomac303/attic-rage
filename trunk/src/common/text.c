@@ -1045,6 +1045,10 @@ static char *pevt_gen_help[] = {
 	N_("the message"),
 };
 
+static char *pevt_silence_help[] = {
+	N_("the hostmask"),
+};
+
 #include "textevents.h"
 
 static void

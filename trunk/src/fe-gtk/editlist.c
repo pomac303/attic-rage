@@ -157,12 +157,10 @@ editlist_gui_save (GtkWidget * igad)
 		close (fh);
 		gtk_widget_destroy (editlist_gui_window);
 		if (editlist_list == replace_list)
-		{
 			list_loadconf (editlist_file, &replace_list, 0);
-		} else if (editlist_list == popup_list)
-		{
+		else if (editlist_list == popup_list)
 			list_loadconf (editlist_file, &popup_list, 0);
-		} else if (editlist_list == button_list)
+		else if (editlist_list == button_list)
 		{
 			GSList *list = sess_list;
 			struct session *sess;
@@ -173,7 +171,8 @@ editlist_gui_save (GtkWidget * igad)
 				fe_buttons_update (sess);
 				list = list->next;
 			}
-		} else if (editlist_list == dlgbutton_list)
+		}
+		else if (editlist_list == dlgbutton_list)
 		{
 			GSList *list = sess_list;
 			struct session *sess;
@@ -184,22 +183,21 @@ editlist_gui_save (GtkWidget * igad)
 				fe_dlgbuttons_update (sess);
 				list = list->next;
 			}
-		} else if (strcmp(editlist_file, "ctcpreply.conf") == 0)
-		{
+		} 
+		else if (strcmp(editlist_file, "ctcpreply.conf") == 0)
 			splay_loadconf (editlist_file, &ctcp_list, 0);
-		} else if (strcmp(editlist_file, "commands.conf") == 0)
-		{
+		else if (strcmp(editlist_file, "commands.conf") == 0)
 			splay_loadconf (editlist_file, &command_list, 0);
-		} else if (editlist_list == usermenu_list)
+		else if (editlist_list == usermenu_list)
 		{
 			list_loadconf (editlist_file, &usermenu_list, 0);
 			usermenu_update ();
-		} else
-		{
-			list_loadconf (editlist_file, &urlhandler_list, 0);
 		}
+		else
+			list_loadconf (editlist_file, &urlhandler_list, 0);
 		/* free old data */
 		list_free (&editlist_list);
+		editlist_list = NULL;
 	}
 }
 
@@ -287,7 +285,7 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 		editlist_list = list;
 	else if (dict)
 	{
-		for (it=dict_first(ctcp_list); it; it=iter_next(it))
+		for (it=dict_first(dict); it; it=iter_next(it))
 			editlist_list = g_slist_prepend(editlist_list, iter_data(it));
 		editlist_list = g_slist_reverse(editlist_list);
 	}
@@ -298,12 +296,12 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 
 	editlist_gui_window =
 			  mg_create_generic_tab (wmclass, title, TRUE, FALSE,
-											 editlist_gui_close, NULL, 450, 250, &vbox, 0);
+					  editlist_gui_close, NULL, 450, 250, &vbox, 0);
 
 	editlist_gui_list = gtkutil_clist_new (2, titles, vbox, GTK_POLICY_ALWAYS,
-														editlist_gui_row_selected, 0,
-														editlist_gui_row_unselected, 0,
-														GTK_SELECTION_BROWSE);
+			editlist_gui_row_selected, 0,
+			editlist_gui_row_unselected, 0,
+			GTK_SELECTION_BROWSE);
 	gtk_clist_set_column_width (GTK_CLIST (editlist_gui_list), 0, 90);
 
 	hbox = gtk_hbox_new (0, 2);
@@ -311,11 +309,11 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 	gtk_widget_show (hbox);
 
 	button = gtkutil_button (hbox, GTK_STOCK_GO_UP, 0, editlist_gui_moveup,
-									 0, _("Move Up"));
+			0, _("Move Up"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtkutil_button (hbox, GTK_STOCK_GO_DOWN, 0, editlist_gui_movedown,
-									 0, _("Move Dn"));
+			0, _("Move Dn"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtk_vseparator_new ();
@@ -323,11 +321,11 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 	gtk_widget_show (button);
 
 	button = gtkutil_button (hbox, GTK_STOCK_CANCEL, 0, gtkutil_destroy,
-									 editlist_gui_window, _("Cancel"));
+			editlist_gui_window, _("Cancel"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtkutil_button (hbox, GTK_STOCK_SAVE, 0, editlist_gui_save,
-									 0, _("Save"));
+			0, _("Save"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	hbox = gtk_hbox_new (0, 2);
@@ -335,11 +333,11 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 	gtk_widget_show (hbox);
 
 	button = gtkutil_button (hbox, GTK_STOCK_ADD, 0, editlist_gui_addnew,
-									 0, _("Add New"));
+			0, _("Add New"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtkutil_button (hbox, GTK_STOCK_REMOVE, 0, editlist_gui_delete,
-									 0, _("Delete"));
+			0, _("Delete"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtk_vseparator_new ();
@@ -347,11 +345,11 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 	gtk_widget_show (button);
 
 	button = gtkutil_button (hbox, GTK_STOCK_SORT_ASCENDING, 0, editlist_gui_sort,
-									 0, _("Sort"));
+			0, _("Sort"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	button = gtkutil_button (hbox, GTK_STOCK_HELP, 0, editlist_gui_help,
-									 0, _("Help"));
+			0, _("Help"));
 	gtk_widget_set_usize (button, 100, 0);
 
 	if (!help)
@@ -364,13 +362,13 @@ editlist_gui_open (GSList * list, dict_t dict, char *title, char *wmclass, char 
 	editlist_gui_entry_name = gtk_entry_new_with_max_length (82);
 	gtk_widget_set_usize (editlist_gui_entry_name, 96, 0);
 	gtk_signal_connect (GTK_OBJECT (editlist_gui_entry_name), "changed",
-							  GTK_SIGNAL_FUNC (editlist_gui_handle_name), 0);
+			GTK_SIGNAL_FUNC (editlist_gui_handle_name), 0);
 	gtk_box_pack_start (GTK_BOX (hbox), editlist_gui_entry_name, 0, 0, 0);
 	gtk_widget_show (editlist_gui_entry_name);
 
 	editlist_gui_entry_cmd = gtk_entry_new_with_max_length (255);
 	gtk_signal_connect (GTK_OBJECT (editlist_gui_entry_cmd), "changed",
-							  GTK_SIGNAL_FUNC (editlist_gui_handle_cmd), 0);
+			GTK_SIGNAL_FUNC (editlist_gui_handle_cmd), 0);
 	gtk_container_add (GTK_CONTAINER (hbox), editlist_gui_entry_cmd);
 	gtk_widget_show (editlist_gui_entry_cmd);
 
