@@ -14,6 +14,5 @@ int plugin_emit_print (rage_session *sess, int parc, char *parv[]);
 int plugin_emit_dummy_print (rage_session *sess, char *name);
 GList* plugin_command_list(GList *tmp_list);
 int plugin_show_help (rage_session *sess, char *cmd);
-void setup_plugin_commands(void);
 
 #endif

@@ -174,7 +174,7 @@ set_remove(struct set *set, void *datum, int no_dispose)
 {
     struct set_node *new_root, *old_root;
 
-    if (!set || !set->root /*|| set_splay(set, datum) */)
+    if (!set || !set->root || set_splay(set, datum))
         return 0;
 
     old_root = set->root;

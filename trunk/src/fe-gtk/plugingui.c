@@ -71,7 +71,7 @@ plugingui_close (GtkWidget * wid, gpointer a)
 	plugin_window = NULL;
 }
 
-extern dict_t plugin_list;
+extern GSList *plugin_list;
 
 void
 fe_pluginlist_update (void)
@@ -80,7 +80,7 @@ fe_pluginlist_update (void)
 	GtkTreeView *view;
 	GtkListStore *store;
 	GtkTreeIter iter;
-	dict_iterator_t it;
+	GSList *list;
 
 	if (!plugin_window)
 		return;
@@ -89,9 +89,9 @@ fe_pluginlist_update (void)
 	store = GTK_LIST_STORE (gtk_tree_view_get_model (view));
 	gtk_list_store_clear (store);
 
-	for (it = dict_first(plugin_list); it; it=iter_next(it))
+	for (list = plugin_list; list; list = list->next)
 	{
-		pl = iter_data(it);
+		pl = list->data;
 		if (pl->version[0] != 0)
 		{
 			gtk_list_store_append (store, &iter);

@@ -71,16 +71,10 @@ enum
 	HOOK_DELETED	/* marked for deletion, ALWAYS LAST! */
 };
 
-dict_t plugin_list = NULL;	/* export for plugingui.c */
+GSList *plugin_list = NULL;	/* export for plugingui.c */
 static GSList *hook_list[HOOK_DELETED];
 
 extern const struct prefs vars[];	/* cfgfiles.c */
-
-void
-setup_plugin_commands(void)
-{
-	plugin_list = dict_new();
-}
 
 /* 31 bit string hash function */
 
@@ -144,7 +138,7 @@ plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 
 xit:
 	/* remove the plugin */
-	set_remove(plugin_list, pl, 0);
+	plugin_list = g_slist_remove(plugin_list, pl);
 
 	if (pl->filename)
 		free ((char *)pl->filename);
@@ -174,7 +168,7 @@ plugin_list_add (rage_context *ctx, char *filename, const char *name,
 	pl->deinit_callback = deinit_func;
 	pl->fake = fake;
 
-	dict_cmd_insert(plugin_list, pl->name, pl);
+	plugin_list = g_slist_prepend (plugin_list, pl);
 
 	return pl;
 }
@@ -275,11 +269,11 @@ int
 plugin_kill (char *name, int by_filename)
 {
 	rage_plugin *pl;
-	dict_iterator_t it;
+	GSList *list;
 
-	for (it=dict_first(plugin_list); it; it=iter_next(it))
+	for (list = plugin_list; list; list = list->next)
 	{
-		pl = iter_data(it);
+		pl = list->data;
 		/* static-plugins (plugin-timer.c) have a NULL filename */
 		if ((by_filename && pl->filename && strcasecmp (name, pl->filename) == 0) ||
 				(by_filename && pl->filename && 
@@ -305,13 +299,16 @@ void
 plugin_kill_all (void)
 {
 	rage_plugin *pl;
-	dict_iterator_t it;
+	GSList *list, *next;
 
-	for (it=dict_first(plugin_list); it; it=iter_next(it))
+	list = plugin_list;
+	while (list)
 	{
-		pl = iter_data(it);
+		pl = list->data;
+		next = list->next;
 		if (!pl->fake)
 			plugin_free (pl, TRUE, FALSE);
+		list = next;
 	}
 }
 

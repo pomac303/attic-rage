@@ -109,7 +109,7 @@ dict_capab_insert(struct set *set, char *key)
 void
 dict_cmd_insert(struct set *set, char *key, char *value)
 {
-	struct rage_dict_data *data;
+	struct rage_dict_data *data = NULL;
 	struct set_node *node;
 
 	if (!key)
@@ -143,6 +143,9 @@ dict_numeric_insert(struct set *set, int *numeric, char *value)
 {
 	struct rage_numeric_data *data;
 	struct set_node *node;
+
+	if (!numeric)
+		return;
 
 	data = set_find(set, &numeric);
 
@@ -199,10 +202,7 @@ dict_numeric_find(struct set *set, int *numeric, int *found)
 void
 dict_remove(struct set *set, char *key)
 {
-	void *data = set_find(set, &key);
-
-	if (data)
-		set_remove(set, data, 0);
+	set_remove(set, &key, 0);
 }	
 
 /* iter_key gets the key data from the node */

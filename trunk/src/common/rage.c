@@ -829,7 +829,6 @@ xchat_init (void)
 		prefs.utf8_locale = TRUE;
 
 	setup_parser();
-	setup_plugin_commands();
 	setup_commands();
 	load_text_events ();
 	sound_load ();
