@@ -313,14 +313,11 @@ flood_check (char *nick, char *host, server *serv, rage_session *sess, int what)
 	if (what == 0 )
 	{
 		value = 10;
-		if (prefs.ctcp_number_limit > 0 && gen_parm_throttle (&serv->ctcp_counter, &value, &value, 
-					&prefs.ctcp_number_limit, &serv->ctcp_last_time))
+		if (prefs.ctcp_number_limit > 0 && 
+				queue_count(serv, nick, 2) > prefs.ctcp_number_limit) 
 		{
 			char *tmp = strchr(host, '@');
 			snprintf (real_ip, sizeof (real_ip), "*!*%s", tmp);
-			
-			serv->ctcp_counter = 0;
-
 			snprintf (buf, sizeof (buf),
 					_("You are being CTCP flooded from %s, ignoring %s\n"), 
 					nick, real_ip);

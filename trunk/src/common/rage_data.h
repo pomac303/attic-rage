@@ -8,6 +8,7 @@
 #ifndef XCHAT_H
 #define XCHAT_H
 
+#include <glib.h>
 #include "history.h"
 #ifndef WIN32
 #include "../../config.h"
@@ -395,7 +396,13 @@ typedef struct server
 
 	void *network;				/* points to entry in servlist.c or NULL! */
 
-	GSList *outbound_queue;
+	/* things relating to the queue including leaky bucket
+	 * throttling and the timer. */
+	time_t queue_time;
+	int queue_level;
+	guint queue_timer;
+	GQueue *out_queue[3];
+	
 	time_t next_send;			/* cptr->since in ircu */
 	time_t prev_now;			/* previous now-time */
 	int sendq_len;				/* queue size */

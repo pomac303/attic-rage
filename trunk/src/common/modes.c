@@ -679,7 +679,7 @@ run_005 (server * serv)
 	}
 	
 	if((pre = get_isupport(serv, "NAMESX")))
-		tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
+		send_command (serv, NULL, "PROTOCTL NAMESX\r\n");
 	
 	if((pre = get_isupport(serv, "NETWORK")))
 	{
@@ -691,6 +691,6 @@ run_005 (server * serv)
 	}
 	
 	if(isupport(serv, "CAPAB")) /* after this we get a 290 numeric reply */
-		 tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
+		 send_command (serv, NULL, "CAPAB IDENTIFY-MSG\r\n");
 
 }

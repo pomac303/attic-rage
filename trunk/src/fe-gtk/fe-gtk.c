@@ -595,7 +595,7 @@ fe_set_throttle (server *serv)
 	float per;
 	char tbuf[64];
 
-	per = (float) serv->sendq_len / 1024.0;
+	per = (float) serv->sendq_len / 20.0;
 	if (per > 1.0)
 		per = 1.0;
 
@@ -604,7 +604,7 @@ fe_set_throttle (server *serv)
 		sess = list->data;
 		if (sess->server == serv)
 		{
-			snprintf (tbuf, sizeof (tbuf) - 1, _("%d bytes"), serv->sendq_len);
+			snprintf (tbuf, sizeof (tbuf) - 1, _("%d lines"), serv->sendq_len);
 
 			if (!sess->gui->is_tab || current_tab == sess)
 			{

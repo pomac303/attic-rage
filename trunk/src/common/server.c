@@ -18,6 +18,17 @@
 
 #include "rage.h"
 
+enum {
+	QUEUE_COMMAND, QUEUE_MESSAGE, QUEUE_REPLY, QUEUE_NOTICE,
+	QUEUE_CMESSAGE, QUEUE_CNOTICE
+};
+
+typedef struct queued_msg {
+	char *msg;
+	char *target;
+	int len;
+} queued_msg;
+
 static void auto_reconnect (server *serv, int send_quit, int err);
 static void server_disconnect (rage_session * sess, int sendquit, int err);
 static int server_cleanup (server * serv);
@@ -26,177 +37,375 @@ static void server_connect (server *serv, char *hostname, int port, int no_login
 static rage_session *g_sess = NULL;
 #endif
 
-/* actually send to the socket. This might do a character translation or
-   send via SSL */
+struct it_check_data { char *old_target; char *new_target; };
 
-static int
-tcp_send_real (server *serv, char *buf, int len)
+/* Iterator used to change the target for all data that should go to
+ * the old target */
+static void
+queue_rename_target_it(gpointer data, gpointer user_data)
 {
-	int ret;
-	char *locale;
-	gsize loc_len;
-
-	fe_add_rawlog (serv, buf, len, TRUE);
-
-	if (serv->encoding == NULL)	/* system */
+	queued_msg *msg = (queued_msg *)data;
+	struct it_check_data *it = (struct it_check_data *)user_data;
+	if (msg->target && strcasecmp(msg->target, it->old_target) == 0)
 	{
-		locale = NULL;
-		if (!prefs.utf8_locale)
-		{
-			const gchar *charset;
-
-			g_get_charset (&charset);
-			locale = g_convert_with_fallback (buf, len, charset, "UTF-8",
-														 "?", 0, &loc_len, 0);
-		}
-	} else
-	{
-		locale = g_convert_with_fallback (buf, len, serv->encoding, "UTF-8",
-													 "?", 0, &loc_len, 0);
+		g_free(msg->target);
+		msg->target = g_strdup(it->new_target);
 	}
-
-	if (locale)
-	{
-		len = loc_len;
-#ifdef USE_OPENSSL
-		if (!serv->ssl)
-			ret = send (serv->sok, locale, len, 0);
-		else
-			ret = _SSL_send (serv->ssl, locale, len);
-#else
-		ret = send (serv->sok, locale, len, 0);
-#endif
-		g_free (locale);
-	} else
-	{
-#ifdef USE_OPENSSL
-		if (!serv->ssl)
-			ret = send (serv->sok, buf, len, 0);
-		else
-			ret = _SSL_send (serv->ssl, buf, len);
-#else
-		ret = send (serv->sok, buf, len, 0);
-#endif
-	}
-
-	return ret;
 }
 
-/* new throttling system, uses the same method as the Undernet
-   ircu2.10 server; under test, a 200-line paste didn't flood
-   off the client */
-
-static int
-tcp_send_queue (server *serv)
+/* Change target for all data matching the old target */
+void
+queue_target_change(server *serv, char *old_target, char *new_target)
 {
-	char *buf, *p;
-	size_t len;
-	int i, pri;
-	GSList *list;
-	time_t now = time (0);
-
-	/* did the server close since the timeout was added? */
-	if (!is_server (serv))
-		return 0;
-
-	/* first try priority 1 entries */
-	pri = 1;
-	while (pri >= 0)
+	struct it_check_data it = {old_target, new_target};
+	int i;
+	
+	for (i = 0; i < 3; i++)
 	{
-		list = serv->outbound_queue;
-		while (list)
-		{
-			buf = (char *) list->data;
-			if (buf[0] == pri)
-			{
-				buf++;	/* skip the priority byte */
-				len = strlen (buf);
-
-				if (serv->next_send < now)
-					serv->next_send = now;
-				if (serv->next_send - now >= 10)
-				{
-					/* check for clock skew */
-					if (now >= serv->prev_now)
-						return 1;		  /* don't remove the timeout handler */
-					/* it is skewed, reset to something sane */
-					serv->next_send = now;
-				}
-
-				for (p = buf, i = (int)len; i && *p != ' '; p++, i--);
-				serv->next_send += (2 + i / 120);
-				serv->sendq_len -= (int)len;
-				serv->prev_now = now;
-				fe_set_throttle (serv);
-
-				tcp_send_real (serv, buf, (int)len);
-
-				buf--;
-				serv->outbound_queue = g_slist_remove (serv->outbound_queue, buf);
-				free (buf);
-				list = serv->outbound_queue;
-			} else
-			{
-				list = list->next;
-			}
-		}
-		/* now try pri 0 */
-		pri--;
+		if (!g_queue_is_empty(serv->out_queue[i])) /* ->length > 0) */
+			g_queue_foreach(serv->out_queue[i], 
+					queue_rename_target_it, &it);
 	}
-	return 0;						  /* remove the timeout handler */
+}
+
+struct it_remove_data {	GQueue *queue; char *target; };
+
+/* Iterator used to remove all data to a specific target */
+static void
+queue_remove_target_it(gpointer data, gpointer user_data)
+{
+	queued_msg *msg = (queued_msg *)data;
+	struct it_remove_data *it = (struct it_remove_data *)user_data;
+	
+	if (msg->target && strcasecmp(msg->target, it->target) == 0)
+		g_queue_remove(it->queue, data);
+}
+
+/* Remove all queued data for a specific target */
+void
+queue_remove_target(server *serv, char *target)
+{
+	struct it_remove_data it = {NULL, target};
+	int i;
+	
+	for (i = 0; i < 3; i++)
+	{
+		if (!g_queue_is_empty(serv->out_queue[i])) /* ->length > 0) */
+		{
+			it.queue = serv->out_queue[i];
+			g_queue_foreach(serv->out_queue[i],
+					queue_remove_target_it, &it);
+		}
+	}
+}
+
+void
+queue_clean_it(gpointer data, gpointer user_data)
+{
+	GQueue *q = (GQueue *)user_data;
+	queued_msg *msg = (queued_msg *)data;
+
+	g_queue_remove(q, data);
+	g_free(msg->target);
+	g_free(msg->msg);
+	g_free(msg);
+}
+
+void
+queue_clean(server *serv)
+{
+	int i;
+	
+	for (i = 0; i < 3; i++)
+	{
+		if (!g_queue_is_empty(serv->out_queue[i]))
+			g_queue_foreach(serv->out_queue[i],
+					queue_clean_it, serv->out_queue[i]);
+	}
+}
+
+struct it_count_data {char *target; int count; };
+
+void
+queue_count_it(gpointer data, gpointer user_data)
+{
+	queued_msg *msg = (queued_msg *)data;
+	struct it_count_data *it = (struct it_count_data *)user_data;
+	
+	if (msg->target && strcasecmp(msg->target, it->target) == 0)
+		it->count++;
 }
 
 int
-tcp_send_len (server *serv, char *buf, int len)
+queue_count(server *serv, char *target, int queue)
 {
-	char *dbuf;
-	int noqueue = !serv->outbound_queue;
+	struct it_count_data it = {target, 0 };
 
-	if (!prefs.throttle)
-		return tcp_send_real (serv, buf, len);
-
-	dbuf = malloc (len + 2);	/* first byte is the priority */
-	dbuf[0] = 1;	/* pri 1 for most things */
-	memcpy (dbuf + 1, buf, len);
-	dbuf[len + 1] = 0;
-
-	/* privmsg and notice get a lower priority */
-	if (strncasecmp (dbuf + 1, "PRIVMSG", 7) == 0 ||
-		 strncasecmp (dbuf + 1, "NOTICE", 6) == 0)
-		dbuf[0] = 0;
-
-	serv->outbound_queue = g_slist_append (serv->outbound_queue, dbuf);
-	serv->sendq_len += len; /* tcp_send_queue uses strlen */
-
-	if (tcp_send_queue (serv) && noqueue)
-		g_timeout_add (500, (GSourceFunc)tcp_send_queue, serv);
-
-	return 1;
+	if (!g_queue_is_empty(serv->out_queue[queue]))
+		g_queue_foreach(serv->out_queue[queue],
+				queue_count_it, &it);
+	return it.count;
 }
 
-/*int
-tcp_send (server *serv, char *buf)
+/* actually send to the socket. This might do a character translation or
+   send via SSL */
+static int
+tcp_send_data (server *serv, queued_msg *msg)
 {
-	return tcp_send_len (serv, buf, strlen (buf));
-}*/
+	int ret;
+
+#ifdef USE_OPENSSL
+	if (serv->ssl)
+		ret = _SSL_send (serv->ssl, msg->msg, msg->len);
+	else
+#endif
+		ret = send (serv->sok, msg->msg, msg->len, 0);
+	/* Free the message */
+	g_free (msg->msg);
+	g_free (msg->target);
+	g_free (msg);
+	return ret;
+}
+
+inline void
+set_queue_len(server *serv)
+{
+	int i, value = 0;
+	for (i = 0; i < 3; i++)
+		value += serv->out_queue[i]->length;
+	serv->sendq_len = value;
+	printf("Value is now: %i\n", value);
+	fe_set_throttle (serv);
+}
+
+int
+tcp_send_queue(server *serv)
+{
+	queued_msg *msg;
+	int i;
+
+	set_queue_len(serv);
+
+	if (!is_server (serv))
+		queue_clean(serv);
+	else
+	{
+		for (i = 0; i < 3; i++)
+		{
+			if (!g_queue_is_empty(serv->out_queue[i])) /* ->length > 0) */
+			{
+				msg = (queued_msg *)g_queue_pop_head(serv->out_queue[i]);
+				tcp_send_data(serv, msg);
+				return TRUE;
+			}
+		}
+	}
+	/* Tell others that there is no queue */
+	serv->queue_timer = 0;
+	serv->sendq_len = 0;
+	/* Lets stop the timer by returning false */
+	return FALSE;
+}
+
+inline static int
+queue_throttle(server *serv)
+{
+	time_t tp = time(NULL);
+
+	if (serv->queue_time == 0)
+	{
+		serv->queue_time = tp;
+		serv->queue_level = 0;
+	}
+
+	serv->queue_level += 10;
+	serv->queue_level -= 5 * (tp - serv->queue_time);
+
+	serv->queue_time = tp;
+
+	if (serv->queue_level < 0) /* check for underflows */
+		serv->queue_level = 0;
+	if (serv->queue_level >= 50)
+		return 1;
+	return 0;
+}
 
 void
-tcp_sendf (server *serv, char *fmt, ...)
+tcp_queue_data (server *serv, int type, char *target, char *channel, char *buf)
+{
+	queued_msg *msg = g_malloc(sizeof(queued_msg));
+	gsize written, len = g_utf8_strlen(buf, 520);
+	gchar *line = NULL;
+	int throttle;
+
+	if (!prefs.utf8_locale)
+	{
+		if (serv->encoding == NULL)
+			g_get_charset((const char **)&serv->encoding);
+			
+		line = g_convert(buf, len, serv->encoding, "UTF-8", NULL, &written, NULL);
+	}
+
+	if (type == QUEUE_COMMAND)
+		msg->msg = line ? line : g_strdup(buf);
+	else
+	{
+		char tmp[520];
+		char *txt = line ? line : buf;
+
+		switch(type)
+		{
+			case QUEUE_MESSAGE:
+				snprintf(tmp, sizeof(tmp)-1, "PRIVMSG %s :%s%s", target, 
+						line ? "" : "\xEF\xBB\xBF", txt);
+				break;
+			case QUEUE_NOTICE:
+				type = QUEUE_MESSAGE;
+			case QUEUE_REPLY:
+				snprintf(tmp, sizeof(tmp)-1, "NOTICE %s :%s%s", target,
+						line ? "" : "\xEF\xBB\xBF", txt);
+				break;
+			case QUEUE_CMESSAGE:
+				type = QUEUE_MESSAGE;
+				snprintf(tmp, sizeof(tmp)-1, "CMESSAGE %s %s :%s%s", target,
+						channel, line ? "" : "\xEF\xBB\xBF", txt);
+				break;
+			case QUEUE_CNOTICE:
+				type = QUEUE_MESSAGE;
+				snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s", target,
+						channel, line ? "" : "\xEF\xBB\xBF", txt);
+		}
+		tmp[sizeof(tmp)] = 0;
+		g_free(line);
+		msg->msg = g_strdup(tmp);
+	}
+	msg->target = target ? g_strdup(target) : NULL;
+	msg->len = strlen(msg->msg);
+
+	/* Add line to the rawlog ui */
+	fe_add_rawlog (serv, buf, msg->len, TRUE);
+
+	/* Calc on each line to know when to stop throttling... */
+	throttle = queue_throttle(serv);
+
+	if (serv->queue_timer || throttle)
+	{
+		g_queue_push_tail(serv->out_queue[type], msg);
+		if (!serv->queue_timer)
+			serv->queue_timer = g_timeout_add(2000, (GSourceFunc)tcp_send_queue, serv);
+	}
+	else
+		tcp_send_data(serv, msg);
+}
+
+/* Inline wrapper functions */
+inline void send_command(server *serv, char *target, char *buf)
+{ tcp_queue_data (serv, QUEUE_COMMAND, target, NULL, buf); }
+
+inline void send_message(server *serv, char *target, char *buf)
+{ tcp_queue_data (serv, QUEUE_MESSAGE, target, NULL, buf); }
+
+inline void send_cmessage(server *serv, char *target, char *channel, char *buf)
+{ tcp_queue_data (serv, QUEUE_CMESSAGE, target, channel, buf); }
+
+inline void send_notice(server *serv, char *target, char *buf)
+{ tcp_queue_data (serv, QUEUE_NOTICE, target, NULL, buf); }
+
+inline void send_cnotice(server *serv, char *target, char *channel, char *buf)
+{ tcp_queue_data (serv, QUEUE_CNOTICE, target, channel, buf); }
+
+inline void send_reply(server *serv, char *target, char *buf)
+{ tcp_queue_data (serv, QUEUE_REPLY, target, NULL, buf); }
+
+void
+send_commandf(server *serv, char *target, char *fmt, ...)
 {
 	va_list args;
-	/* keep this buffer in BSS */
-	static char send_buf[520];	/* good code hey (no it's not overflowable) */
-	size_t len;
-
+	char send_buf[520];
+	
 	va_start (args, fmt);
-	len = vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
 	va_end (args);
 
 	send_buf[sizeof (send_buf) - 1] = '\0';
-	if (len < 0 || len > (sizeof (send_buf) - 1))
-		len = strlen (send_buf);
+	
+	tcp_queue_data (serv, QUEUE_COMMAND, target, NULL, send_buf);
+}
 
-	tcp_send_len (serv, send_buf, (int)len);
+void
+send_messagef(server *serv, char *target, char *fmt, ...)
+{
+	va_list args;
+	char send_buf[520];
+
+	va_start (args, fmt);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	va_end (args);
+
+	send_buf[sizeof (send_buf) - 1] = '\0';
+
+	tcp_queue_data (serv, QUEUE_MESSAGE, target, NULL, send_buf);
+}
+
+void
+send_cmessagef(server *serv, char *target, char *channel, char *fmt, ...)
+{
+	va_list args;
+	char send_buf[520];
+
+	va_start (args, fmt);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	va_end (args);
+
+	send_buf[sizeof (send_buf) - 1] = '\0';
+
+	tcp_queue_data (serv, QUEUE_CMESSAGE, target, channel, send_buf);
+}
+
+void
+send_noticef(server *serv, char *target, char *fmt, ...)
+{
+	va_list args;
+	char send_buf[520];
+
+	va_start (args, fmt);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	va_end (args);
+
+	send_buf[sizeof (send_buf) - 1] = '\0';
+	
+	tcp_queue_data (serv, QUEUE_NOTICE, target, NULL, send_buf);
+}
+
+void
+send_cnoticef(server *serv, char *target, char *channel, char *fmt, ...)
+{
+	va_list args;
+	char send_buf[520];
+
+	va_start (args, fmt);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	va_end (args);
+
+	send_buf[sizeof (send_buf) - 1] = '\0';
+
+	tcp_queue_data (serv, QUEUE_CNOTICE, target, channel, send_buf);
+}
+
+
+void
+send_replyf(server *serv, char *target, char *fmt, ...)
+{
+	va_list args;
+	char send_buf[520];
+
+	va_start (args, fmt);
+	vsnprintf (send_buf, sizeof (send_buf) - 1, fmt, args);
+	va_end (args);
+	
+	send_buf[sizeof (send_buf) - 1] = '\0';
+	
+	tcp_queue_data (serv, QUEUE_REPLY, target, NULL, send_buf);
 }
 
 static int
@@ -266,14 +475,17 @@ server_inline (server *serv, char *line, size_t len)
 			{
 				err = NULL;
 				retry = FALSE;
-				utf_line_allocated = g_convert_with_fallback (conv_line, conv_len, "UTF-8", encoding, "?", &read_len, &utf_len, &err);
+				utf_line_allocated = g_convert_with_fallback (conv_line, conv_len,
+						"UTF-8", encoding, "?", &read_len, &utf_len, &err);
 				if (err != NULL)
 				{
 					if (err->code == G_CONVERT_ERROR_ILLEGAL_SEQUENCE)
 					{
 						/* Make our best bet by removing the erroneous char.
-						   This will work for casual 8-bit strings with non-standard chars. */
-						memmove (conv_line + read_len, conv_line + read_len + 1, conv_len - read_len -1);
+						 * This will work for casual 8-bit strings with 
+						 * non-standard chars. */
+						memmove (conv_line + read_len, conv_line + read_len + 1,
+								conv_len - read_len -1);
 						conv_len--;
 						retry = TRUE;
 					}
@@ -284,7 +496,7 @@ server_inline (server *serv, char *line, size_t len)
 			g_free (conv_line);
 
 			/* If any conversion has occured at all. Conversion might fail
-			due to errors other than invalid sequences, e.g. unknown charset. */
+			 * due to errors other than invalid sequences, e.g. unknown charset. */
 			if (utf_line_allocated != NULL)
 			{
 				line = utf_line_allocated;
@@ -739,7 +951,7 @@ auto_reconnect (server *serv, int send_quit, int err)
 static void
 server_flush_queue (server *serv)
 {
-	list_free (&serv->outbound_queue);
+	queue_clean(serv);
 	serv->sendq_len = 0;
 	fe_set_throttle (serv);
 }
@@ -1508,6 +1720,14 @@ server_connect (server *serv, char *hostname, int port, int no_login)
 
 void server_fill_her_up (server *serv)
 {
+	int i;
+
+	for (i = 0; i < 3; i++)
+	{
+		if(!serv->out_queue[i])
+			serv->out_queue[i] = g_queue_new();
+	}
+	
 	serv->connect = server_connect;
 	serv->disconnect = server_disconnect;
 	serv->cleanup = server_cleanup;

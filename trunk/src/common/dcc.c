@@ -170,7 +170,7 @@ void
 dcc_check_timeouts (void)
 {
 	struct DCC *dcc;
-	time_t tim = time (0);
+	time_t tim = time (NULL);
 	GSList *next, *list = dcc_list;
 
 	while (list)
