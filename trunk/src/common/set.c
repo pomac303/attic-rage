@@ -30,7 +30,7 @@ set_alloc(set_compare_f *compare, set_cleanup_f *cleanup)
     struct set *set;
 
     assert(compare != NULL);
-    set = malloc(sizeof(*set));
+    set = g_malloc(sizeof(*set));
     set->compare = compare;
     set->cleanup = cleanup;
     set->root = NULL;
@@ -109,7 +109,7 @@ set_dispose_node(struct set *set, struct set_node *node)
 {
     if (set->cleanup)
         set->cleanup(set_node_data(node));
-    free(node);
+    g_free(node);
 }
 
 void

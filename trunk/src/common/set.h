@@ -51,7 +51,7 @@ struct set
 
 #define set_node(DATUM) (((struct set_node*)(DATUM))-1)
 #define set_node_data(NODE) ((void*)((NODE)+1))
-#define set_node_alloc(SIZE) ((struct set_node*)malloc(sizeof(struct set_node) + (SIZE)))
+#define set_node_alloc(SIZE) ((struct set_node*)g_malloc(sizeof(struct set_node) + (SIZE)))
 #define set_prev(NODE) ((NODE)->prev)
 #define set_next(NODE) ((NODE)->next)
 

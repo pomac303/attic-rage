@@ -145,6 +145,12 @@ void *DBUG_strdup (char *str, char *file, int line);
 void DBUG_free (void *buf, char *file, int line);
 void *DBUG_realloc (char *old, int len, char *file, int line);
 /* don't forget to link with debug.c */
+#else
+#undef strdup
+#define malloc g_malloc
+#define realloc g_realloc
+#define free g_free
+#define strdup g_strdup
 #endif
 
 #include "dict.h"

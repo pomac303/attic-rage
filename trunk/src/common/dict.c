@@ -121,7 +121,7 @@ dict_cmd_insert(struct set *set, char *key, char *value)
 	if(data)
 	{
 		if(data->value)
-			free(data->value);
+			g_free(data->value);
 		data->value = value;
 	}
 	else
