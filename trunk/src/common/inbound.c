@@ -741,7 +741,7 @@ netsplit_gone(server *serv)
 		len = 0;
 		
 		while ((tmp = g_queue_pop_head(serv->split_queue)) && 
-				len <= (sizeof(buf) - (NICKLEN +1)))
+				len <= (sizeof(buf) - (NICKLEN +3)))
 		{
 			len += sprintf (buf + len, "%s", tmp);
 			if (!g_queue_is_empty(serv->split_queue))
@@ -767,56 +767,65 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 	int netsplit = FALSE;
 	char *seperator, *p;
 
-	if (serv->split_reason && strcmp(serv->split_reason, reason) == 0)
+	if (serv->split_reason && (strcmp(serv->split_reason, reason) == 0))
 		netsplit = TRUE;
 	else if ((seperator = strchr(reason, ' ')))
 	{
 		int tld = 0, space = FALSE;
 
 		*seperator = 0;
-			
-		for (p = reason; *p; p++)
+
+		if((p = strchr(reason, '.')))
 		{
-			if (*p == '.')
-				tld = 0;
-			else
-				tld++;
-		}
-			
-		if ((tld > 1) && (tld < 5))
-		{
-			p = seperator;
 			for (p++; *p; p++)
 			{
-				if (*p == ' ')
-				{
-					space = TRUE;
-					break;
-				}
 				if (*p == '.')
 					tld = 0;
 				else
 					tld++;
 			}
-			if (!space && (tld > 1) && (tld < 6))
-				netsplit = TRUE;
+			if ((tld > 1) && (tld < 5))
+			{
+				tld = 0;
+				if ((p = strchr(seperator, '.')))
+				{
+					for (p++; *p; p++)
+					{
+						if (*p == ' ')
+						{
+							space = TRUE;
+							break;
+						}
+						if (*p == '.')
+							tld = 0;
+						else
+							tld++;
+					}
+					if (!space && (tld > 1) && (tld < 6))
+						netsplit = TRUE;
+				}
+			}
 		}
-
-		if (serv->split_queue)
-		{
-			if (serv->split_timer)
-				g_source_remove(serv->split_timer);
-			netsplit_gone(serv);
-		}
-
-		serv->split_queue = g_queue_new();
 
 		if (netsplit)
-			EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, seperator+1, 
-					NULL, NULL, 0);
-		*seperator = ' ';
+		{	
+			if (serv->split_queue)
+			{
+				if (serv->split_timer)
+					g_source_remove(serv->split_timer);
+				netsplit_gone(serv);
+			}
+
+			serv->split_queue = g_queue_new();
+
+			EMIT_SIGNAL (XP_TE_NS_START, serv->front_session, reason, 
+					seperator+1, NULL, NULL, 0);
 			
-		serv->split_reason = g_strdup(reason);
+			*seperator = ' ';
+			serv->split_reason = g_strdup(reason);
+		}
+		else
+			*seperator = ' ';
 	}
 	if (netsplit)
 	{
