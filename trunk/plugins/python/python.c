@@ -51,6 +51,7 @@
  *
  */
 
+#include "Python.h"
 #include <glib.h>
 #include <string.h>
 #include <unistd.h>
@@ -59,7 +60,6 @@
 #include <dirent.h>
 
 #include "rage-plugin.h"
-#include "Python.h"
 #include "structmember.h"
 #include "pythread.h"
 
@@ -196,12 +196,12 @@ typedef struct {
 /* ===================================================================== */
 /* Function declarations */
 
-static PyObject *Util_BuildList(char *word[]);
+static PyObject *Util_BuildList(int parc, char *parv[]);
 static void Util_Autoload(void);
 static char *Util_Expand(char *filename);
 
-static int Callback_Command(char *word[], char *word_eol[], void *userdata);
-static int Callback_Print(char *word[], void *userdata);
+static int Callback_Command(int parc, char *parv[], void *userdata);
+static int Callback_Print(int parc, char *parv[], void *userdata);
 static int Callback_Timer(void *userdata);
 static int Callback_ThreadTimer(void *userdata);
 
@@ -248,14 +248,14 @@ static PyObject *Module_xchat_get_lists(PyObject *self, PyObject *args);
 static PyObject *Module_xchat_nickcmp(PyObject *self, PyObject *args);
 
 static void IInterp_Exec(char *command);
-static int IInterp_Cmd(char *word[], char *word_eol[], void *userdata);
+static int IInterp_Cmd(int parc, char *word[], void *userdata);
 
 static void Command_PyList(void);
 static void Command_PyLoad(char *filename);
 static void Command_PyUnload(char *name);
 static void Command_PyReload(char *name);
 static void Command_PyAbout(void);
-static int Command_Py(char *word[], char *word_eol[], void *userdata);
+static int Command_Py(int parc, char *parv[], void *userdata);
 
 /* ===================================================================== */
 /* Static declarations and definitions */
@@ -300,20 +300,17 @@ Copyright (c) 2002-2003  Gustavo Niemeyer <niemeyer@conectiva.com>\n\
 /* Utility functions */
 
 static PyObject *
-Util_BuildList(char *word[])
+Util_BuildList(int parc, char *parv[])
 {
 	PyObject *list;
-	int listsize = 0;
 	int i;
-	while (word[listsize] && word[listsize][0])
-		listsize++;
-	list = PyList_New(listsize);
+	list = PyList_New(parc);
 	if (list == NULL) {
                 PyErr_Print();
 		return NULL;
 	}
-	for (i = 0; i != listsize; i++) {
-		PyObject *o = PyString_FromString(word[i]);
+	for (i = 0; i != parc; i++) {
+		PyObject *o = PyString_FromString(parv[i]);
 		if (o == NULL) {
 			Py_DECREF(list);
 			PyErr_Print();
@@ -412,31 +409,23 @@ Util_ReleaseThread(PyThreadState *tstate)
  * the load function, and the hooks for interactive interpreter. */
 
 static int
-Callback_Command(char *word[], char *word_eol[], void *userdata)
+Callback_Command(int parc,char *parv[], void *userdata)
 {
 	Hook *hook = (Hook *) userdata;
 	PyObject *retobj;
-	PyObject *word_list, *word_eol_list;
+	PyObject *word_list;
 	int ret = 0;
 
 	BEGIN_PLUGIN(hook->plugin);
 
-	word_list = Util_BuildList(word+1);
+	word_list = Util_BuildList(parc,parv);
 	if (word_list == NULL) {
 		END_PLUGIN(hook->plugin);
 		return 0;
 	}
-	word_eol_list = Util_BuildList(word_eol+1);
-	if (word_eol_list == NULL) {
-		Py_DECREF(word_list);
-		END_PLUGIN(hook->plugin);
-		return 0;
-	}
-
-	retobj = PyObject_CallFunction(hook->callback, "(OOO)", word_list,
-				       word_eol_list, hook->userdata);
+	retobj = PyObject_CallFunction(hook->callback, "(OO)", word_list,
+				       hook->userdata);
 	Py_DECREF(word_list);
-	Py_DECREF(word_eol_list);
 
 	if (retobj == Py_None) {
 		ret = XCHAT_EAT_NONE;
@@ -456,74 +445,25 @@ Callback_Command(char *word[], char *word_eol[], void *userdata)
 /* No Callback_Server() here. We use Callback_Command() as well. */
 
 static int
-Callback_Print(char *word[], void *userdata)
+Callback_Print(int parc, char *parv[], void *userdata)
 {
 	Hook *hook = (Hook *) userdata;
 	PyObject *retobj;
 	PyObject *word_list;
-	PyObject *word_eol_list;
-	char **word_eol;
-	char *word_eol_raw;
-	int listsize = 0;
-	int next = 0;
-	int i;
 	int ret = 0;
-
-	/* Cut off the message identifier. */
-	word += 1;
-
-	/* XChat doesn't provide a word_eol for print events, so we
-	 * build our own here. */
-	while (word[listsize] && word[listsize][0])
-		listsize++;
-	word_eol = (char **) g_malloc(sizeof(char*)*listsize+1);
-	if (word_eol == NULL) {
-		xchat_print(ph, "Not enough memory to alloc word_eol "
-				"for python plugin callback.");
-		return 0;
-	}
-	/* First build a word clone, but NULL terminated. */
-	memcpy(word_eol, word, listsize*sizeof(char*));
-	word_eol[listsize] = NULL;
-	/* Then join it. */
-	word_eol_raw = g_strjoinv(" ", word_eol);
-	if (word_eol_raw == NULL) {
-		xchat_print(ph, "Not enough memory to alloc word_eol_raw "
-				"for python plugin callback.");
-		return 0;
-	}
-	/* And rebuild the real word_eol. */
-	for (i = 0; i != listsize; i++) {
-		word_eol[i] = word_eol_raw+next;
-		next += strlen(word[i])+1;
-	}
-	word_eol[i] = "";
 
 	BEGIN_PLUGIN(hook->plugin);
 
-	word_list = Util_BuildList(word);
+	word_list = Util_BuildList(parc,parv);
 	if (word_list == NULL) {
-		g_free(word_eol_raw);
-		g_free(word_eol);
-		END_PLUGIN(hook->plugin);
-		return 0;
-	}
-	word_eol_list = Util_BuildList(word_eol);
-	if (word_eol_list == NULL) {
-		g_free(word_eol_raw);
-		g_free(word_eol);
-		Py_DECREF(word_list);
 		END_PLUGIN(hook->plugin);
 		return 0;
 	}
 
-	retobj = PyObject_CallFunction(hook->callback, "(OOO)", word_list,
-				       word_eol_list, hook->userdata);
+	retobj = PyObject_CallFunction(hook->callback, "(OO)", word_list,
+				       hook->userdata);
 	Py_DECREF(word_list);
-	Py_DECREF(word_eol_list);
 
-	g_free(word_eol_raw);
-	g_free(word_eol);
 	if (retobj == Py_None) {
 		ret = XCHAT_EAT_NONE;
 		Py_DECREF(retobj);
@@ -1405,6 +1345,7 @@ Module_xchat_get_info(PyObject *self, PyObject *args)
 	return PyString_FromString(info);
 }
 
+/* My god this sucks */
 static PyObject *
 Module_xchat_get_prefs(PyObject *self, PyObject *args)
 {
@@ -1426,7 +1367,7 @@ Module_xchat_get_prefs(PyObject *self, PyObject *args)
 			res = PyString_FromString((char*)info);
 			break;
 		case 2:
-		case 3:
+		case 3: /* Is this even 64bit safe?! */
 			res = PyInt_FromLong((int)info);
 			break;
 		default:
@@ -1857,15 +1798,30 @@ fail:
 }
 
 static int
-IInterp_Cmd(char *word[], char *word_eol[], void *userdata)
+IInterp_Cmd(int parc, char *parv[], void *userdata)
 {
 	char *channel = (char *) xchat_get_info(ph, "channel");
+	int len=0;
+	char *buf;
+	int i;
 	g_return_val_if_fail(channel != NULL, 0);
+	for(i=0;i<parc;i++) {
+		len+=strlen(parv[i])+1; /* for the ' ' or '\0' */
+	}
+	buf=malloc(len);
+	*buf='\0'; /* start off \0 terminated */
+	for(i=0;i<parc;i++) {
+		if (i!=0)
+			strcat(buf," ");
+		strcat(buf,parv[i]);
+	}
 	if (channel[0] == '>' && strcmp(channel, ">>python<<") == 0) {
-		xchat_printf(ph, ">>> %s\n", word_eol[1]);
-		IInterp_Exec(word_eol[1]);
+		xchat_printf(ph, ">>> %s\n", buf);
+		IInterp_Exec(buf);
+		free(buf);
 		return 1;
 	}
+	free(buf);
 	return 0;
 }
 
@@ -1947,7 +1903,7 @@ Command_PyAbout(void)
 }
 
 static int
-Command_Py(char *word[], char *word_eol[], void *userdata)
+Command_Py(int parc, char *word[], void *userdata)
 {
 	char *cmd = word[2];
 	int ok = 0;
@@ -1957,7 +1913,7 @@ Command_Py(char *word[], char *word_eol[], void *userdata)
 	} else if (strcasecmp(cmd, "EXEC") == 0) {
 		if (word[3][0]) {
 			ok = 1;
-			IInterp_Exec(word_eol[3]);
+			IInterp_Exec(word[3]); /* FIXME */
 		}
 	} else if (strcasecmp(cmd, "LOAD") == 0) {
 		if (word[3][0]) {
@@ -1987,7 +1943,7 @@ Command_Py(char *word[], char *word_eol[], void *userdata)
 }
 
 static int
-Command_Load(char *word[], char *word_eol[], void *userdata)
+Command_Load(int parc, char *word[], void *userdata)
 {
 	int len = strlen(word[2]);
 	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {
@@ -1998,7 +1954,7 @@ Command_Load(char *word[], char *word_eol[], void *userdata)
 }
 
 static int
-Command_Unload(char *word[], char *word_eol[], void *userdata)
+Command_Unload(int parc, char *word[], void *userdata)
 {
 	int len = strlen(word[2]);
 	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {

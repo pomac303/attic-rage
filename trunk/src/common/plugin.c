@@ -16,20 +16,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#define PLUGIN_C
 /* Require plugin implementation header */
-typedef struct session xchat_context;
 #include "rage.h"
 
 
-/* the USE_PLUGIN define only removes libdl stuff */
-
-#ifdef USE_PLUGIN
 #ifdef USE_GMODULE
 #include <gmodule.h>
 #else
 #include <dlfcn.h>
-#endif
 #endif
 
 #define DEBUG(x) {x;}

@@ -2,8 +2,6 @@
 #ifndef XCHAT_PLUGIN_H
 #define XCHAT_PLUGIN_H
 
-#ifdef USE_PLUGIN
-
 #define XCHAT_IFACE_MAJOR	1
 #define XCHAT_IFACE_MINOR	9
 #define XCHAT_IFACE_MICRO	11
@@ -34,7 +32,11 @@ extern "C" {
 typedef struct _xchat_plugin xchat_plugin;
 typedef struct _xchat_list xchat_list;
 typedef struct _xchat_hook xchat_hook;
-typedef struct _xchat_context xchat_context;
+#ifdef RAGE_INTERNAL
+typedef struct session xchat_context;
+#else
+typedef struct _rage_dummy_context xchat_context;
+#endif
 
 typedef int (xchat_cmd_cb) (int parc, char *parv[], void *user_data);
 typedef int (xchat_serv_cb) (int parc, char *parv[], void *user_data);
@@ -339,5 +341,4 @@ xchat_send_modes (xchat_plugin *ph,
 
 #include "plugin-timer.h"
 
-#endif
 #endif
