@@ -2268,7 +2268,7 @@ cmd_nctcp (struct session *sess, char *cmd, char *buf)
 
 	if (*parv[2])
 	{
-		sess->server->p_nctcp (sess->server, parv[1], parv[2]);
+		sess->server->p_nctcp (sess->server, parv[1], paste_parv(cmd, 512, 2, parc, parv));
 		return TRUE;
 	}
 	return FALSE;
