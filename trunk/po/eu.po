@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-09-14 22:45+1200\n"
+"POT-Creation-Date: 2004-09-14 21:31+0200\n"
 "PO-Revision-Date: 2004-08-08 22:51+0200\n"
 "Last-Translator: Mikel Olasagasti <hey_neken@mundurat.net>\n"
 "Language-Team: Basque <translation-team-eu@lists.sourceforge.net>\n"
@@ -110,11 +110,11 @@ msgstr ""
 msgid "Not connected. Try /server <host> [<port>]\n"
 msgstr ""
 
-#: src/common/outbound.c:1545
+#: src/common/outbound.c:1446
 msgid "I need /bin/sh to run!\n"
 msgstr "/bin/sh behar dut abiatzeko!\n"
 
-#: src/common/outbound.c:1816
+#: src/common/outbound.c:1717
 msgid ""
 "\n"
 "Commands Available:\n"
@@ -126,7 +126,7 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1849
+#: src/common/outbound.c:1750
 msgid ""
 "\n"
 "\n"
@@ -137,7 +137,7 @@ msgstr ""
 "\n"
 "Idatzi /HELP <komandoa> informazio gehiagorako, edo /HELP -l\n"
 
-#: src/common/outbound.c:1850
+#: src/common/outbound.c:1751
 msgid ""
 "User defined commands:\n"
 "\n"
@@ -147,68 +147,68 @@ msgstr ""
 "\n"
 "  "
 
-#: src/common/outbound.c:1947
+#: src/common/outbound.c:1848
 #, c-format
 msgid "Unknown arg '%s' ignored."
 msgstr "Argumentu ezezaguna '%s', ezikusia."
 
-#: src/common/outbound.c:2895
+#: src/common/outbound.c:2796
 msgid "No such plugin found.\n"
 msgstr ""
 
-#: src/common/outbound.c:2900 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2801 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Plugin hori kargatzeari uko egiten ari da.\n"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3061
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr ""
 "ADDBUTTON <izena> <ekintza>, botoi bat gehitzen du erabiltzaile zerrendaren "
 "azpian"
 
-#: src/common/outbound.c:3162
+#: src/common/outbound.c:3063
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <komandoa>, zauden kanal guztietara komando bat bidaltzen du"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3065
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <cmd>, zauden zerbitzari guztietara komando bat bidaltzen du"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3066
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<arrazoia>], aldendua jartzen zaitu"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3068
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
 "chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3070
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, uneko testu leihoa garbitzen du"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3071
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, uneko leiho/fitxa itxitzen du"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3073
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr ""
 "COUNTRY <kodea>, herrialde kode bat aurkitzen du, adib.: au = australia"
 
-#: src/common/outbound.c:3174
+#: src/common/outbound.c:3075
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
 msgstr ""
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3077
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr ""
 
-#: src/common/outbound.c:3178
+#: src/common/outbound.c:3079
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -219,18 +219,18 @@ msgid ""
 "         /dcc close send johnsmith file.tar.gz"
 msgstr ""
 
-#: src/common/outbound.c:3187
+#: src/common/outbound.c:3088
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3189
+#: src/common/outbound.c:3090
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr ""
 "DELBUTTON <izena>, erabiltzaile zerrendaren azpitik botoi bat ezabatzen du"
 
-#: src/common/outbound.c:3191
+#: src/common/outbound.c:3092
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -238,7 +238,7 @@ msgstr ""
 "DEOP <ezizena>, uneko kanalean chanop egoera kentzen dio aukeratutako "
 "ezizenari (chanop egoera behar da)"
 
-#: src/common/outbound.c:3193
+#: src/common/outbound.c:3094
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -246,55 +246,55 @@ msgstr ""
 "DEVOICE <ezizena>, uneko kanalean voice egoera kentzen dio aukeratutako "
 "ezizenari <chanop egoera behar da>"
 
-#: src/common/outbound.c:3194
+#: src/common/outbound.c:3095
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, zerbitzaritik deskonektatzen da"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3096
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <ezizena|ostalaria|ip-a>, erabiltzaile baten IPa aurkitzen du"
 
-#: src/common/outbound.c:3196
+#: src/common/outbound.c:3097
 msgid "ECHO <text>, Prints text locally"
 msgstr ""
 
-#: src/common/outbound.c:3199
+#: src/common/outbound.c:3100
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
 msgstr ""
 
-#: src/common/outbound.c:3201
+#: src/common/outbound.c:3102
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr ""
 
-#: src/common/outbound.c:3204
+#: src/common/outbound.c:3105
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
 msgstr ""
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3107
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr ""
 
-#: src/common/outbound.c:3207
+#: src/common/outbound.c:3108
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr ""
 
-#: src/common/outbound.c:3211
+#: src/common/outbound.c:3112
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr ""
 
-#: src/common/outbound.c:3213
+#: src/common/outbound.c:3114
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 
-#: src/common/outbound.c:3219
+#: src/common/outbound.c:3120
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3221
+#: src/common/outbound.c:3122
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -303,237 +303,237 @@ msgid ""
 "    options - NOSAVE, QUIET"
 msgstr ""
 
-#: src/common/outbound.c:3227
+#: src/common/outbound.c:3128
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3228
+#: src/common/outbound.c:3129
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanala>, kanalera sartzen da"
 
-#: src/common/outbound.c:3230
+#: src/common/outbound.c:3131
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <ezizena>, uneko kanaletik aukeratutako ezizena kanporatzen du (kanalop-"
 "a behar da)"
 
-#: src/common/outbound.c:3232
+#: src/common/outbound.c:3133
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3235
+#: src/common/outbound.c:3136
 msgid "LAGCHECK, forces a new lag check"
 msgstr ""
 
-#: src/common/outbound.c:3237
+#: src/common/outbound.c:3138
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr ""
 
-#: src/common/outbound.c:3239
+#: src/common/outbound.c:3140
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fitxategia>, plugin edo skript bat kargatzen du"
 
-#: src/common/outbound.c:3241
+#: src/common/outbound.c:3142
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3243
+#: src/common/outbound.c:3144
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3245
+#: src/common/outbound.c:3146
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
 msgstr ""
 
-#: src/common/outbound.c:3247
+#: src/common/outbound.c:3148
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3250
+#: src/common/outbound.c:3151
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3251
+#: src/common/outbound.c:3152
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <nick> <mezua>, mezu pribatu bat bidaltzen du"
 
-#: src/common/outbound.c:3253
+#: src/common/outbound.c:3154
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr ""
 
-#: src/common/outbound.c:3255
+#: src/common/outbound.c:3156
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr ""
 
-#: src/common/outbound.c:3256
+#: src/common/outbound.c:3157
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr ""
 
-#: src/common/outbound.c:3257
+#: src/common/outbound.c:3158
 msgid "NICK <nickname>, sets your nick"
 msgstr ""
 
-#: src/common/outbound.c:3259
+#: src/common/outbound.c:3160
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
 msgstr ""
 
-#: src/common/outbound.c:3261
+#: src/common/outbound.c:3162
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 
-#: src/common/outbound.c:3263
+#: src/common/outbound.c:3164
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3265
+#: src/common/outbound.c:3166
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 
-#: src/common/outbound.c:3267
+#: src/common/outbound.c:3168
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr ""
 
-#: src/common/outbound.c:3269
+#: src/common/outbound.c:3170
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 
-#: src/common/outbound.c:3271
+#: src/common/outbound.c:3172
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr ""
 
-#: src/common/outbound.c:3273
+#: src/common/outbound.c:3174
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr ""
 
-#: src/common/outbound.c:3276
+#: src/common/outbound.c:3177
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
 "reconnect to all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3279
+#: src/common/outbound.c:3180
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
 "all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3281
+#: src/common/outbound.c:3182
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 
-#: src/common/outbound.c:3282
+#: src/common/outbound.c:3183
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3284
+#: src/common/outbound.c:3185
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <testua>, uneko leihoko objektuari testua bidaltzen dio"
 
-#: src/common/outbound.c:3287
+#: src/common/outbound.c:3188
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3290
+#: src/common/outbound.c:3191
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3295
+#: src/common/outbound.c:3196
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
 msgstr ""
 
-#: src/common/outbound.c:3298
+#: src/common/outbound.c:3199
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
 msgstr ""
 
-#: src/common/outbound.c:3300
+#: src/common/outbound.c:3201
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <bariablea> [<balorea>]"
 
-#: src/common/outbound.c:3303
+#: src/common/outbound.c:3204
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<gaia>], zerbait ematen bada gaia hori ezartzen du, bestela uneko "
 "gaia erakusten du"
 
-#: src/common/outbound.c:3305
+#: src/common/outbound.c:3206
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 "UNBAN <maskara> [<maskara>...], espezifikatutako maskarei debekua kentzen die"
 
-#: src/common/outbound.c:3306
+#: src/common/outbound.c:3207
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <maskara> [IXILIK]"
 
-#: src/common/outbound.c:3307
+#: src/common/outbound.c:3208
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <izena>, plugin edo skript-a deskargatzen du"
 
-#: src/common/outbound.c:3310
+#: src/common/outbound.c:3211
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <ezizena>, ahots egoera ematen dio norbaiti (chanop-a behar da)"
 
-#: src/common/outbound.c:3312
+#: src/common/outbound.c:3213
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <mezua>, mezua kanal guztietan idazten du"
 
-#: src/common/outbound.c:3314
+#: src/common/outbound.c:3215
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <mezua>, uneko kanaleko chanop guztiei mezua bidaltzen die"
 
-#: src/common/outbound.c:3316
+#: src/common/outbound.c:3217
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <mezua>, uneko kanaleko chanop guztiei mezua bidaltzen die"
 
-#: src/common/outbound.c:3355
+#: src/common/outbound.c:3256
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Erabilera: %s\n"
 
-#: src/common/outbound.c:3360
+#: src/common/outbound.c:3261
 msgid ""
 "\n"
 "No help available on that command.\n"
 msgstr ""
 
-#: src/common/outbound.c:3366
+#: src/common/outbound.c:3267
 msgid "No such command.\n"
 msgstr ""
 
-#: src/common/outbound.c:3692
+#: src/common/outbound.c:3593
 msgid "Bad arguments for user command.\n"
 msgstr "Argumentu akastunak erabiltzaile komandoentzat.\n"
 
-#: src/common/outbound.c:3855
+#: src/common/outbound.c:3756
 msgid "Too many recursive usercommands, aborting."
 msgstr ""
 
-#: src/common/outbound.c:3919
+#: src/common/outbound.c:3820
 msgid "Unknown Command. Try /help\n"
 msgstr "Komando ezezaguna. Saiatu /help ekin\n"
 
@@ -1142,6 +1142,16 @@ msgstr ""
 msgid "%C0%B%171List%187%B$t$1   $2   $3%O"
 msgstr ""
 
+#: src/common/textevents.h:414
+#, fuzzy
+msgid "%C0%B%171Who%187%B$t$1%O"
+msgstr "%C22*%O$tZure IPa aurkitu da: [$1]"
+
+#: src/common/textevents.h:417
+#, fuzzy
+msgid "%C0%B&171Garbage%187%B$t$1%O"
+msgstr "%C22*%O$tZure IPa aurkitu da: [$1]"
+
 #: src/common/text.c:195
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
@@ -1642,14 +1652,19 @@ msgstr "Debekuaren denbora"
 msgid "Client time diff"
 msgstr "Bezeroaren informazioa"
 
-#: src/common/text.c:1075
+#: src/common/text.c:1042
+#, fuzzy
+msgid "the message"
+msgstr "Mezua"
+
+#: src/common/text.c:1079
 #, c-format
 msgid ""
 "Error parsing event %s.\n"
 "Loading default."
 msgstr ""
 
-#: src/common/text.c:1714
+#: src/common/text.c:1718
 #, c-format
 msgid ""
 "Cannot read sound file:\n"

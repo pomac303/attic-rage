@@ -38,3 +38,15 @@
 
 #14 - Event theming
   (Isomer)
+
+#15 - DCC queue, Set max simultaneus dccs to one user. Also allows us to add dirs
+to be sent.
+
+#16 - CTCP/DCC Throtteling.
+  (pomac)
+
+#17 - New channel/user db structure.
+
+#18 - Add formating to the SIGNAL text system.
+
+#19 - Propper flood detection system, ffs. =)
