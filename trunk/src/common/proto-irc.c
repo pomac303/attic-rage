@@ -737,9 +737,8 @@ irc_numeric(session *sess, int parc, char *parv[])
 
 	line[0]='\0';
 	for(i=2;i<parc;i++) {
-		strncpy(line,parv[i],sizeof(line));
+		snprintf(line,sizeof(line),"*s %s %s",line,parv[i]);
 	}
-	line[sizeof(line)-1]='\0'; /* strncpy doesn't always null terminate */
 
 	EMIT_SIGNAL(XP_TE_SERVTEXT, tmp, line, 
 			parv[0], parv[1], NULL, 0);
@@ -940,9 +939,8 @@ irc_server(session *sess, int parc, char *parv[])
 			int i=0;
 			line[0]='\0';
 			for(i=(is_server ? 1 : 0);i<parc;i++) {
-				strncat(line,parv[i],sizeof(line));
+				snprintf(line,sizeof(line),"*s %s %s",line,parv[i]);
 			}
-			line[sizeof(line)-1]='\0';
 			if (is_server)
 				EMIT_SIGNAL(XP_TE_SERVTEXT, sess, line,
 						sess->server->servername,
