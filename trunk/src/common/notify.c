@@ -33,6 +33,7 @@
 #include "text.h"
 #include "util.h"
 #include "xchatc.h"
+#include "modes.h"
 
 
 GSList *notify_list = 0;

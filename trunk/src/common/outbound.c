@@ -626,7 +626,7 @@ cmd_unban (struct session *sess, char *cmd, char *buf)
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, parv, 2, i, '-', 'b');
+			send_channel_modes (sess, parv, 1, i, '-', 'b');
 			return TRUE;
 		}
 		i++;
@@ -1017,7 +1017,7 @@ cmd_dehop (struct session *sess, char *cmd, char *buf)
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, parv, 2, i, '-', 'h');
+			send_channel_modes (sess, parv, 1, i, '-', 'h');
 			return TRUE;
 		}
 		i++;
@@ -1039,7 +1039,7 @@ cmd_deop (struct session *sess, char *cmd, char *buf)
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, parv, 2, i, '-', 'o');
+			send_channel_modes (sess, parv, 1, i, '-', 'o');
 			return TRUE;
 		}
 		i++;
@@ -1166,7 +1166,7 @@ cmd_devoice (struct session *sess, char *cmd, char *buf)
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, parv, 2, i, '-', 'v');
+			send_channel_modes (sess, parv, 1, i, '-', 'v');
 			return TRUE;
 		}
 		i++;
@@ -2514,7 +2514,7 @@ cmd_op (struct session *sess, char *cmd, char *buf)
 		{
 			if (i == 1)
 				return FALSE;
-			send_channel_modes (sess, parv, 2, i, '+', 'o');
+			send_channel_modes (sess, parv, 1, i, '+', 'o');
 			return TRUE;
 		}
 		i++;
