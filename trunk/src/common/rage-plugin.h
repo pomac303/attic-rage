@@ -48,6 +48,9 @@ typedef int (xchat_deinit_func) (xchat_plugin *);
 
 struct _xchat_plugin
 {
+	/* parv[0] the command
+	 * parv[1] the entire line
+	 */
 	xchat_hook *(*xchat_hook_command) (xchat_plugin *ph,
 		    const char *name,
 		    int pri,

@@ -1905,30 +1905,49 @@ Command_PyAbout(void)
 static int
 Command_Py(int parc, char *word[], void *userdata)
 {
-	char *cmd = word[2];
+	char cmd[32];
 	int ok = 0;
+	char *p;
+	int i;
+	char debug_buf[512];
+
+	p=word[1];
+	while(*p && *p!=' ')p++;
+	i=0;
+	while(*p && *p==' ')p++;
+	while(*p && *p!=' ' && i<sizeof(cmd)-1) {
+		cmd[i++]=*p;
+		p++;
+	}
+	cmd[i]='\0';
+	while(*p && *p==' ')p++;
+
+	snprintf(debug_buf,sizeof(debug_buf),"[%s] <- [%s][%s][%s]",
+		cmd,word[0],word[1],word[2]);
+	xchat_print(ph,debug_buf);
+
 	if (strcasecmp(cmd, "LIST") == 0) {
 		ok = 1;
 		Command_PyList();
 	} else if (strcasecmp(cmd, "EXEC") == 0) {
-		if (word[3][0]) {
+		if (p) {
 			ok = 1;
-			IInterp_Exec(word[3]); /* FIXME */
+			IInterp_Exec(p); /* FIXME */
 		}
 	} else if (strcasecmp(cmd, "LOAD") == 0) {
-		if (word[3][0]) {
+		if (p) {
 			ok = 1;
-			Command_PyLoad(word[3]);
+			Command_PyLoad(p);
 		}
 	} else if (strcasecmp(cmd, "UNLOAD") == 0) {
-		if (word[3][0]) {
+		if (p) {
 			ok = 1;
-			Command_PyUnload(word[3]);
+			Command_PyUnload(p);
 		}
 	} else if (strcasecmp(cmd, "RELOAD") == 0) {
-		if (word[3][0]) {
+		if (p) {
 			ok = 1;
-			Command_PyReload(word[3]);
+			Command_PyReload(p);
 		}
 	} else if (strcasecmp(cmd, "CONSOLE") == 0) {
 		ok = 1;
