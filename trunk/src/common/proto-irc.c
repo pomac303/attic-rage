@@ -172,7 +172,8 @@ irc_message (server *serv, char *channel, char *text)
 {
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cmsg */
-	if (!is_channel(serv, channel) && serv->front_session->me->op
+	if (!is_channel(serv, channel) && serv->front_session->me 
+			&& serv->front_session->me->op
 			&& isupport(serv, "CPRIVMSG")
 			&& find_name(serv->front_session, channel))
 	{
@@ -194,7 +195,8 @@ irc_notice (server *serv, char *channel, char *text)
 {
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cnotice */
-	if (!is_channel(serv, channel) && serv->front_session->me->op 
+	if (!is_channel(serv, channel) && serv->front_session->me->op
+			&& serv->front_session->me->op
 			&& isupport(serv, "CNOTICE")
 			&& find_name(serv->front_session, channel))
 	{
