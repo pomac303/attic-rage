@@ -1038,6 +1038,10 @@ static char *pevt_chanlist_help[] = {
 	N_("Topic"),
 };
 
+static char *pevt_who_help[] = {
+	N_("the message"),
+};
+
 #include "textevents.h"
 
 static void

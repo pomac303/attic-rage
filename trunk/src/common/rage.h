@@ -101,6 +101,7 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 #include "notify.h"
 #include "tree.h"
 #include "numeric.h"
+#include "parse.h"
 
 /* Extra addons */
 /* OpenSSL */

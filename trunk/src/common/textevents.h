@@ -409,4 +409,7 @@ N_("%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O")},
 
 {"Channel List", pevt_chanlist_help, 3, 
 N_("%C0%B%171List%187%B$t$1   $2   $3%O")},
+
+{"Who Reply", pevt_who_help, 1, 
+N_("%C0%B%171Who%187%B$t$1%O")},
 };

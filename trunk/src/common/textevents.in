@@ -814,3 +814,8 @@ pevt_chanlist_help
 %C0%B%171List%187%B$t$1   $2   $3%O
 3
 
+Who Reply
+XP_TE_WHO
+pevt_who_help
+%C0%B%171Who%187%B$t$1%O
+1
