@@ -30,6 +30,7 @@
 #include <pwd.h>
 //#include <sys/time.h>
 #include <sys/utsname.h>
+#include <dirent.h>
 #endif
 
 /* Require glib */
