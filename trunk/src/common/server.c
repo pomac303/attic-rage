@@ -400,11 +400,16 @@ server_read (GIOChannel *source, GIOCondition condition, server *serv)
 		}
 
 		i = 0;
-
 		lbuf[len] = 0;
-
+		
 		while (i < len)
 		{
+			if (serv->pos == 0 && lbuf[i] != ':')
+			{
+				snprintf(serv->linebuf, sizeof(serv->linebuf), ":%s ", serv->servername);
+				serv->pos = strlen(serv->linebuf);
+			}
+			
 			switch (lbuf[i])
 			{
 			case '\r':
