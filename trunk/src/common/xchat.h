@@ -100,7 +100,7 @@ struct xchatprefs
 	char nick3[NICKLEN];
 	char realname[127];
 	char username[127];
-	char nick_suffix[4];			/* Only ever holds a one-character string. */
+	char nick_suffix[4];				  /* Only ever holds a one-character string. */
 	char awayreason[256];
 	char quitreason[256];
 	char partreason[256];
@@ -448,14 +448,14 @@ typedef struct server
 
 typedef int (*cmd_callback) (struct session * sess, char *cmd, char *buf);
 
-struct commands
+typedef struct command
 {
 	char *name;
 	cmd_callback callback;
 	char needserver;
 	char needchannel;
 	char *help;
-};
+} command;
 
 struct away_msg
 {
