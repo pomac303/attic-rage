@@ -449,7 +449,6 @@ AM_CONDITIONAL(DO_GTK, test "x$gtkfe" = "xyes")
 AM_CONDITIONAL(DO_PERL, test "x$perl" = "xyes")
 AM_CONDITIONAL(DO_PYTHON, test "x$python" = "xyes")
 AM_CONDITIONAL(DO_RUBY, test "x$ruby" = "xyes")
-AM_CONDITIONAL(DO_TCL, test "x$tcl" = "xyes")
 AM_CONDITIONAL(DO_PLUGIN, test "x$plugin" = "xyes")
 AC_MSG_CHECKING([for sanity])
 AC_MSG_RESULT([failed])
@@ -637,7 +636,6 @@ src/pixmaps/Makefile
 plugins/Makefile
 plugins/python/Makefile
 plugins/perl/Makefile
-plugins/tcl/Makefile
 plugins/ruby/Makefile
 intl/Makefile
 po/Makefile.in
@@ -649,7 +647,7 @@ echo
 echo Building GTK+ Interface .... : $gtkfe
 echo Building TEXT Interface .... : $textfe
 echo
-echo PLUGINS: Perl: $perl Python: $python TCL: $tcl Ruby: $ruby
+echo PLUGINS: Perl: $perl Python: $python Ruby: $ruby
 echo
 echo mmx tinting ......... : $mmx
 echo XShm tinting ........ : $shm\	plugin interface .... : $plugin

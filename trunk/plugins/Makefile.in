@@ -55,7 +55,7 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	uninstall-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = . python perl tcl ruby
+DIST_SUBDIRS = . python perl ruby
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALLOCA = @ALLOCA@
@@ -233,9 +233,8 @@ EXTRA_DIST = plugin20.html Make.plugin plugin-conf.in \
 
 @DO_PYTHON_TRUE@pythondir = python
 @DO_PERL_TRUE@perldir = perl
-@DO_TCL_TRUE@tcldir = tcl
 @DO_RUBY_TRUE@rubydir = ruby
-SUBDIRS = . $(pythondir) $(perldir) $(tcldir) $(rubydir)
+SUBDIRS = . $(pythondir) $(perldir) $(rubydir)
 all: all-recursive
 
 .SUFFIXES:
