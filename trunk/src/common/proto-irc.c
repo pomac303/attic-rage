@@ -29,17 +29,16 @@ irc_login (server *serv, char *user, char *realname)
 	char hostname[128];
 
 	if (serv->password[0])
-		send_commandf (serv, NULL, "PASS %s\r\n", serv->password);
+		send_commandf (serv, NULL, "PASS %s", serv->password);
 
 	gethostname (hostname, sizeof (hostname) - 1);
 	hostname[sizeof (hostname) - 1] = 0;
 	if (hostname[0] == 0)
 		strcpy (hostname, "0");
 
-	send_commandf (serv, NULL, 
-			"NICK %s\r\n"
-			"USER %s %s %s :%s\r\n",
-			serv->nick, user, hostname, serv->servername, realname);
+	send_commandf (serv, NULL, "NICK %s", serv->nick);
+	send_commandf (serv, NULL, "USER %s %s %s :%s",
+			user, hostname, serv->servername, realname);
 }
 
 static void
@@ -50,13 +49,13 @@ irc_nickserv (server *serv, char *pass)
 	{
 		case 0:
 			send_commandf (serv, "NickServ", 
-					"PRIVMSG NickServ :identify %s\r\n", pass);
+					"PRIVMSG NickServ :identify %s", pass);
 			break;
 		case 1:
-			send_commandf (serv, NULL, "NICKSERV :identify %s\r\n", pass);
+			send_commandf (serv, NULL, "NICKSERV :identify %s", pass);
 			break;
 		case 2:
-			send_commandf (serv, NULL, "NS :identify %s\r\n", pass);
+			send_commandf (serv, NULL, "NS :identify %s", pass);
 	}
 }
 
@@ -64,78 +63,79 @@ static void
 irc_join (server *serv, char *channel, char *key)
 {
 	if (key[0])
-		send_commandf (serv, channel, "JOIN %s %s\r\n", channel, key);
+		send_commandf (serv, channel, "JOIN %s %s", channel, key);
 	else
-		send_commandf (serv, channel, "JOIN %s\r\n", channel);
+		send_commandf (serv, channel, "JOIN %s", channel);
 }
 
 static void
 irc_part (server *serv, char *channel, char *reason)
 {
 	if (reason[0])
-		send_commandf (serv, NULL, "PART %s :%s\r\n", channel, reason);
+		send_commandf (serv, NULL, "PART %s :%s", channel, reason);
 	else
-		send_commandf (serv, NULL, "PART %s\r\n", channel);
+		send_commandf (serv, NULL, "PART %s", channel);
 }
 
 static void
 irc_quit (server *serv, char *reason)
 {
 	if (reason[0])
-		send_commandf (serv, NULL, "QUIT :%s\r\n", reason);
+		send_commandf (serv, NULL, "QUIT :%s", reason);
 	else
-		send_command (serv, NULL, "QUIT\r\n");
+		send_command (serv, NULL, "QUIT");
 }
 
 static void
 irc_set_back (server *serv)
 {
-	send_command (serv, NULL, "AWAY\r\n");
+	send_command (serv, NULL, "AWAY");
 }
 
 static void
 irc_set_away (server *serv, char *reason)
 {
-	send_commandf (serv, NULL, "AWAY :%s\r\n", reason);
+	send_commandf (serv, NULL, "AWAY :%s", reason);
 }
 
 static void
 irc_ctcp (server *serv, char *to, char *msg)
 {
-	send_messagef (serv, to, "\001%s\001\r\n", msg);
+	send_messagef (serv, to, "\001%s\001", msg);
 }
 
 static void
 irc_nctcp (server *serv, char *to, char *msg)
 {
-	send_replyf (serv, to, "\001%s\001\r\n", msg);
+	send_replyf (serv, to, "\001%s\001", msg);
 }
 
 static void
 irc_cycle (server *serv, char *channel, char *key)
 {
-	send_commandf (serv, NULL, "PART %s\r\nJOIN %s %s\r\n", channel, channel, key);
+	send_commandf (serv, NULL, "PART %s", channel);
+	send_commandf (serv, NULL, "JOIN %s %s", channel, key);
 }
 
 static void
 irc_kick (server *serv, char *channel, char *nick, char *reason)
 {
 	if (reason[0])
-		send_commandf (serv, nick, "KICK %s %s :%s\r\n", channel, nick, reason);
+		send_commandf (serv, nick, "KICK %s %s :%s", channel, nick, reason);
 	else
-		send_commandf (serv, nick, "KICK %s %s\r\n", channel, nick);
+		send_commandf (serv, nick, "KICK %s %s", channel, nick);
 }
 
 static void
 irc_invite (server *serv, char *channel, char *nick)
 {
-	send_commandf (serv, nick, "INVITE %s %s\r\n", nick, channel);
+	send_commandf (serv, nick, "INVITE %s %s", nick, channel);
 }
 
 static void
 irc_mode (server *serv, char *target, char *mode)
 {
-	send_commandf (serv, target, "MODE %s %s\r\n", target, mode);
+	send_commandf (serv, target, "MODE %s %s", target, mode);
 }
 
 /* find channel info when joined */
@@ -143,7 +143,7 @@ irc_mode (server *serv, char *target, char *mode)
 static void
 irc_join_info (server *serv, char *channel)
 {
-	send_commandf (serv, channel, "MODE %s\r\n", channel);
+	send_commandf (serv, channel, "MODE %s", channel);
 }
 
 /* initiate userlist retreival */
@@ -151,7 +151,7 @@ irc_join_info (server *serv, char *channel)
 static void
 irc_user_list (server *serv, char *channel)
 {
-	send_commandf (serv, channel, "WHO %s\r\n", channel);
+	send_commandf (serv, channel, "WHO %s", channel);
 }
 
 /* userhost */
@@ -159,22 +159,22 @@ irc_user_list (server *serv, char *channel)
 static void
 irc_userhost (server *serv, char *nick)
 {
-	send_commandf (serv, nick, "USERHOST %s\r\n", nick);
+	send_commandf (serv, nick, "USERHOST %s", nick);
 }
 
 static void
 irc_away_status (server *serv, char *channel)
 {
 	if (isupport(serv, "WHOX"))
-		send_commandf (serv, channel, "WHO %s %%ctnf,152\r\n", channel);
+		send_commandf (serv, channel, "WHO %s %%ctnf,152", channel);
 	else
-		send_commandf (serv, channel, "WHO %s\r\n", channel);
+		send_commandf (serv, channel, "WHO %s", channel);
 }
 
 /*static void
 irc_get_ip (server *serv, char *nick)
 {
-	tcp__nomatch__sendf (serv, "WHO %s\r\n", nick);
+	tcp__nomatch__sendf (serv, "WHO %s", nick);
 }*/
 
 
@@ -186,7 +186,7 @@ static void
 irc_user_whois (server *serv, char *nicks)
 {
 	/* FIXME: should this be fixed in a better way? */
-	send_commandf (serv, NULL, "WHOIS %s\r\n", nicks);
+	send_commandf (serv, NULL, "WHOIS %s", nicks);
 }
 
 static void
@@ -196,15 +196,15 @@ irc_message (server *serv, char *channel, char *text)
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cmsg */
 	if (isupport(serv, "CPRIVMSG") && find_ctarget(serv, targetchan, channel))
-		send_cmessagef (serv, channel, targetchan, "%s\r\n", text);
+		send_cmessagef (serv, channel, targetchan, "%s", text);
 	else
-		send_messagef (serv, channel, "%s\r\n", text);
+		send_messagef (serv, channel, "%s", text);
 }
 
 static void
 irc_action (server *serv, char *channel, char *act)
 {
-	send_messagef (serv, channel, "\001ACTION %s\001\r\n", act);
+	send_messagef (serv, channel, "\001ACTION %s\001", act);
 }
 
 static void
@@ -214,20 +214,20 @@ irc_notice (server *serv, char *channel, char *text)
 	/* Make sure it's not a channel then check if the front session
 	 * has whats needed for cnotice */
 	if (isupport(serv, "CNOTICE") && find_ctarget(serv, targetchan, channel))
-		send_cnoticef (serv, channel, targetchan, "%s\r\n", text);
+		send_cnoticef (serv, channel, targetchan, "%s", text);
 	else
-		send_noticef (serv, channel, "%s\r\n", text);
+		send_noticef (serv, channel, "%s", text);
 }
 
 static void
 irc_topic (server *serv, char *channel, char *topic)
 {
 	if (!topic) /* Used by fe-gtk to clear a topic. */
-		send_commandf (serv, channel, "TOPIC %s :\r\n", channel);
+		send_commandf (serv, channel, "TOPIC %s :", channel);
 	else if (topic[0])
-		send_commandf (serv, channel, "TOPIC %s :%s\r\n", channel, topic);
+		send_commandf (serv, channel, "TOPIC %s :%s", channel, topic);
 	else
-		send_commandf (serv, channel, "TOPIC %s\r\n", channel);
+		send_commandf (serv, channel, "TOPIC %s", channel);
 }
 
 static void
@@ -235,54 +235,45 @@ irc_list_channels (server *serv, char *arg)
 {
 	if (arg[0])
 	{
-		send_commandf (serv, NULL, "LIST %s\r\n", arg);
+		send_commandf (serv, NULL, "LIST %s", arg);
 		return;
 	}
 
 	if (serv->use_listargs)
 								/* 1234567890123456 */
-		send_command (serv, NULL, "LIST >0,<10000\r\n");
+		send_command (serv, NULL, "LIST >0,<10000");
 	else
-		send_command (serv, NULL, "LIST\r\n");
+		send_command (serv, NULL, "LIST");
 }
 
 static void
 irc_names (server *serv, char *channel)
 {
-	send_commandf (serv, channel, "NAMES %s\r\n", channel);
+	send_commandf (serv, channel, "NAMES %s", channel);
 }
 
 static void
 irc_change_nick (server *serv, char *new_nick)
 {
-	send_commandf (serv, NULL, "NICK %s\r\n", new_nick);
+	send_commandf (serv, NULL, "NICK %s", new_nick);
 }
 
 static void
 irc_ping (server *serv, char *to, char *timestring)
 {
 	if (*to)
-		send_messagef (serv, to, "\001PING %s\001\r\n", timestring);
+		send_messagef (serv, to, "\001PING %s\001", timestring);
 	else
-		send_commandf (serv, NULL, "PING %s\r\n", timestring);
+		send_commandf (serv, NULL, "PING %s", timestring);
 }
 
 static int
 irc_raw (server *serv, char *raw)
 {
-	char tbuf[1024];
+	/* FIXME: should most likley split lines */
 	if (*raw)
 	{
-/*		len = strlen (raw);
-		if (len < sizeof (tbuf) - 3)
-		{ */
-			snprintf (tbuf, sizeof (tbuf), "%s\r\n", raw);
-			send_command (serv, NULL, tbuf);
-/* pomcode		} else  // disabled for now
-		{
-			tcp__nomatch__send_len (serv, raw, (int)len);
-			tcp__nomatch__send_len (serv, "\r\n", 2);
-		} */
+		send_commandf (serv, NULL, "%s", raw);
 		return TRUE;
 	}
 	return FALSE;
@@ -1127,7 +1118,7 @@ PARSE_FUNC(servermsg_wallops)
 
 PARSE_FUNC(servermsg_ping)
 {
-	send_commandf (sess->server, NULL, "PONG %s\r\n", parv[2]);
+	send_commandf (sess->server, NULL, "PONG %s", parv[2]);
 	return 0;
 }
 

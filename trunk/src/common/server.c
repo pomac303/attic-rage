@@ -178,23 +178,23 @@ tcp_send_data (server *serv, queued_msg *msg)
 	switch (msg->type)
 	{
 		case QUEUE_COMMAND:
-			snprintf(tmp, sizeof(tmp)-1, "%s", msg->msg);
+			snprintf(tmp, sizeof(tmp)-1, "%s\r\n", msg->msg);
 			break;
 		case QUEUE_MESSAGE:
-			snprintf(tmp, sizeof(tmp)-1, "PRIVMSG %s :%s%s", msg->target,
+			snprintf(tmp, sizeof(tmp)-1, "PRIVMSG %s :%s%s\r\n", msg->target,
 					 msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_NOTICE:
 		case QUEUE_REPLY:
-			snprintf(tmp, sizeof(tmp)-1, "NOTICE %s :%s%s", msg->target,
+			snprintf(tmp, sizeof(tmp)-1, "NOTICE %s :%s%s\r\n", msg->target,
 					msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_CMESSAGE:
-			snprintf(tmp, sizeof(tmp)-1, "CPRIVMSG %s %s :%s%s", msg->target,
+			snprintf(tmp, sizeof(tmp)-1, "CPRIVMSG %s %s :%s%s\r\n", msg->target,
 					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 			break;
 		case QUEUE_CNOTICE:
-			snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s", msg->target,
+			snprintf(tmp, sizeof(tmp)-1, "CNOTICE %s %s :%s%s\r\n", msg->target,
 					msg->args, msg->utf8 ? "\xEF\xBB\xBF" : "", msg->msg);
 	}
 	/* free data that isn't used anymore */
@@ -282,9 +282,9 @@ void
 tcp_queue_data (server *serv, int type, char *target, char *args, char *buf)
 {
 	queued_msg *msg = g_malloc(sizeof(queued_msg));
-	gsize written, len = g_utf8_strlen(buf, 520);
+	gsize written;
 	gchar *line = NULL;
-	int throttle;
+	int throttle, len = strlen(buf);
 
 	if (!prefs.utf8_locale)
 	{
