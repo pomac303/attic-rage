@@ -506,6 +506,8 @@ handle_mode (server * serv, int parc, char *parv[],
 		sess = serv->front_session;
 		using_front_tab = TRUE;
 	}
+	else
+		check_mjoin(sess);
 
 	if (prefs.raw_modes && !numeric_324)
 	{
@@ -571,8 +573,8 @@ handle_mode (server * serv, int parc, char *parv[],
 				argstr = parv[arg + offset];
 			}
 			handle_single_mode (&mr, sign, *modes, nick, chan,
-									  argstr, numeric_324 || prefs.raw_modes,
-									  numeric_324);
+					argstr, numeric_324 || prefs.raw_modes,
+					numeric_324);
 		}
 
 		modes++;

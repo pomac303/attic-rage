@@ -47,6 +47,7 @@ void queue_remove_target(server *serv, char *target, int queue);
 #define queue_remove_replies(serv, target) queue_remove_target(serv, target, QUEUE_REPLY)
 int queue_count(server *serv, char *target, int queue);
 void queue_kill(server *serv);
+void check_mjoin(rage_session *sess);
 
 void server_fill_her_up (server *serv);
 

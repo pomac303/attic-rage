@@ -578,14 +578,19 @@ server_inline (server *serv, char *line, size_t len)
 		errnoeous octets till the string is convertable in the
 		said charset. */
 
-		const char *encoding = NULL;
 
-		if (serv->encoding != NULL)
-			encoding = serv->encoding;
-		else
+		if (serv->encoding == NULL)
+		{
+			const char *encoding;
 			g_get_charset (&encoding);
+			serv->encoding = g_strdup (encoding);
+			encoding = serv->encoding;
+		}
 
-		if (encoding != NULL)
+		/* If the text is valid utf8, why convert?
+		 * CAUTION: can this cause trouble with some unheard of
+		 * charsets? */
+		if (!g_utf8_validate (line, len, 0))
 		{
 			char *conv_line; /* holds a copy of the original string */
 			int conv_len; /* tells g_convert how much of line to convert */
@@ -604,7 +609,7 @@ server_inline (server *serv, char *line, size_t len)
 				err = NULL;
 				retry = FALSE;
 				utf_line_allocated = g_convert_with_fallback (conv_line, conv_len,
-						"UTF-8", encoding, "?", &read_len, &utf_len, &err);
+						"UTF-8", serv->encoding, "?", &read_len, &utf_len, &err);
 				if (err != NULL)
 				{
 					if (err->code == G_CONVERT_ERROR_ILLEGAL_SEQUENCE)

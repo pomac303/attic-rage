@@ -689,6 +689,18 @@ handle_mjoin(rage_session *sess)
 	return FALSE;
 }
 
+/* FIXME: There has to be a better way but currently i'm at a loss to what
+ * it would be... */
+void
+check_mjoin (rage_session *sess)
+{
+	if (sess->stack_timer)
+	{
+		g_source_remove(sess->stack_timer);
+		handle_mjoin(sess);
+	}
+}
+
 void
 inbound_join (server *serv, char *chan, char *user, char *ip)
 {
@@ -730,6 +742,7 @@ inbound_kick (server *serv, char *chan, char *user, char *kicker, char *reason)
 	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
+		check_mjoin(sess);
 		EMIT_SIGNAL (XP_TE_KICK, sess, kicker, user, chan, reason, 0);
 		sub_name (sess, user);
 	}
@@ -741,6 +754,7 @@ inbound_part (server *serv, char *chan, char *user, char *ip, char *reason)
 	rage_session *sess = find_channel (serv, chan);
 	if (sess)
 	{
+		check_mjoin(sess);
 		if (!sess->hide_join_part)
 		{
 			if (*reason)
@@ -911,6 +925,7 @@ inbound_quit (server *serv, char *nick, char *ip, char *reason)
 		sess = (rage_session *) list->data;
 		if (sess->server == serv)
 		{
+			check_mjoin(sess);
  			if (sess == current_sess)
  				was_on_front_session = TRUE;
 			if (sub_name (sess, nick))
