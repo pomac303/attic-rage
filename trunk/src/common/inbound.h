@@ -8,7 +8,7 @@ void inbound_part (server *serv, char *chan, char *user, char *ip, char *reason)
 void inbound_upart (server *serv, char *chan, char *ip, char *reason);
 void inbound_ukick (server *serv, char *chan, char *kicker, char *reason);
 void inbound_kick (server *serv, char *chan, char *user, char *kicker, char *reason);
-void inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int id);
+void inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int server_notice, int id);
 void inbound_quit (server *serv, char *nick, char *ip, char *reason);
 void inbound_topicnew (server *serv, char *nick, char *chan, char *topic);
 void inbound_join (server *serv, char *chan, char *user, char *ip);

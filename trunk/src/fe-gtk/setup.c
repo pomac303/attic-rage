@@ -158,7 +158,8 @@ static const setting tabs_settings[] =
 {
 	{ST_HEADER,	N_("Tabs"),0,0,0},
 	{ST_TOGGLE, N_("Open an extra tab for server messages"), P_OFFINTNL(use_server_tab), 0, 0, 0},
-	{ST_TOGGLE, N_("Open an extra tab for server notices"), P_OFFINTNL(notices_tabs), 0, 0, 0},
+	{ST_TOGGLE, N_("Open an extra tab for common notices"), P_OFFINTNL(notices_tab), 0, 0, 0},
+	{ST_TOGGLE, N_("Open an extra tab for server notices"), P_OFFINTNL(snotices_tab), 0, 0, 0},
 	{ST_TOGGLE, N_("Small tabs"), P_OFFINTNL(tab_small), 0, 0, 0},
 	{ST_TOGGLE, N_("Sort tabs in alphabetical order"), P_OFFINTNL(tab_sort), 0, 0, 0},
 	{ST_MENU,	N_("Focus new tabs:"), P_OFFINTNL(newtabstofront), 0, focusnewtabsmenu, 0},

@@ -816,11 +816,11 @@ find_session_from_type (int type, server *serv)
 }
 
 void
-inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int id)
+inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int server_notice, int id)
 {
 	char *po,*ptr=to;
 	session *sess = 0;
-	int server_notice = FALSE;
+	int new_session = 0;
 
 	if (is_channel (serv, ptr))
 		sess = find_channel (serv, ptr);
@@ -837,45 +837,57 @@ inbound_notice (server *serv, char *to, char *nick, char *msg, char *ip, int id)
 		sess = find_channel (serv, ptr);
 	}
 
-	if (strcmp (nick, ip) == 0)
-		server_notice = TRUE;
-
 	if (!sess)
 	{
+		register unsigned int oldh = 0;
 		ptr = 0;
-		if (prefs.notices_tabs)
+		if (prefs.snotices_tab && server_notice)
 		{
-			int stype = server_notice ? SESS_SNOTICES : SESS_NOTICES;
-			sess = find_session_from_type (stype, serv);
+			sess = find_session_from_type (SESS_SNOTICES, serv);
 			if (!sess)
 			{
-				register unsigned int oldh = prefs.hideuserlist;
+				oldh = prefs.hideuserlist;
 				prefs.hideuserlist = 1;
-				if (stype == SESS_NOTICES)
-					sess = new_ircwindow (serv, "(notices)", SESS_NOTICES, 0);
-				else
-					sess = new_ircwindow (serv, "(snotices)", SESS_SNOTICES, 0);
-				prefs.hideuserlist = oldh;
-				fe_set_channel (sess);
-				fe_set_title (sess);
-				fe_set_nonchannel (sess, FALSE);
-				clear_user_list (sess);
-				if (prefs.logging)
-					log_open (sess);
+				sess = new_ircwindow (serv, "(snotices)", SESS_SNOTICES, 0);
+				new_session = 1;
 			}
 			/* Avoid redundancy with some Undernet notices */
 			if (!strncmp (msg, "*** Notice -- ", 14))
 				msg += 14;
-		} else
-		{
-			sess = find_session_from_nick (nick, serv);
 		}
+		else if (prefs.notices_tab && !server_notice)
+		{
+			sess = find_session_from_type (SESS_NOTICES, serv);
+			if (!sess)
+			{
+				oldh = prefs.hideuserlist;
+				prefs.hideuserlist = 1;
+				sess = new_ircwindow (serv, "(notices)", SESS_NOTICES, 0);
+				new_session = 1;
+			}
+		}
+		if (new_session)
+		{
+			prefs.hideuserlist = oldh;
+			fe_set_channel (sess);
+			fe_set_title (sess);
+			fe_set_nonchannel (sess, FALSE);
+			clear_user_list (sess);
+			if (prefs.logging)
+				log_open (sess);
+		}
+		(void)oldh;
+		
 		if (!sess)
 		{
 			if (server_notice)	
 				sess = serv->server_session;
 			else
-				sess = serv->front_session;
+			{
+				sess = find_session_from_nick (nick, serv);
+				if (!sess)
+					sess = serv->front_session;
+			}
 		}
 	}
 

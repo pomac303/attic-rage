@@ -232,7 +232,8 @@ struct xchatprefs
 	unsigned int away_track;
 	unsigned int userhost;
 	unsigned int use_server_tab;
-	unsigned int notices_tabs;
+	unsigned int snotices_tab;
+	unsigned int notices_tab;
 	unsigned int style_namelistgad;
 	unsigned int style_inputbox;
 	unsigned int windows_as_tabs;
