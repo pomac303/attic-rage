@@ -755,11 +755,11 @@ fe_dcc_open_chat_win (int passive)
 	return FALSE;
 }
 void
-fe_userlist_hide (session * sess)
+fe_userlist_hide (rage_session * sess)
 {
 }
 void
-fe_lastlog (session * sess, session * lastlog_sess, char *sstr)
+fe_lastlog (rage_session * sess, rage_session * lastlog_sess, char *sstr)
 {
 }
 void
@@ -775,7 +775,7 @@ fe_set_away (server *serv)
 {
 }
 void
-fe_serverlist_open (session *sess)
+fe_serverlist_open (rage_session *sess)
 {
 }
 void
@@ -791,11 +791,11 @@ fe_idle_add (void *func, void *data)
 {
 }
 void
-fe_ctrl_gui (session *sess, int action, int arg)
+fe_ctrl_gui (rage_session *sess, int action, int arg)
 {
 }
 int
-fe_gui_info (session *sess, int info_type)
+fe_gui_info (rage_session *sess, int info_type)
 {
 	return -1;
 }

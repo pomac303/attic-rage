@@ -1,4 +1,4 @@
-/* X-Chat
+/* Rage network layer
  * Copyright (C) 2001 Peter Zelezny.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -19,6 +19,8 @@
 /* ipv4 and ipv6 networking functions with a common interface */
 
 #include "rage.h"
+
+#define MAX_HOSTNAME 128
 
 struct netstore_
 {

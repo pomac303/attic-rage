@@ -1,9 +1,22 @@
-#ifndef XCHAT_NETWORK_H
-#define XCHAT_NETWORK_H
+#ifndef RAGE_NETWORK_H
+#define RAGE_NETWORK_H
+
+/* TODO: Replace this crap interface with a decent one.
+ *
+ * If the OS does not define struct addrinfo, this header should do
+ * so, or define an equivalent.  It should provide asynchronous
+ * versions of getaddrinfo() and getnameinfo() functions from RFC 2553
+ * (and a corresponding freeaddrinfo() function).  Non-IPv6-capable
+ * platforms should probably not return IPv6 addresses from the async
+ * version of getaddrinfo().
+ *
+ * Because Windows is lame, it is simplest to make non-Windows OSes
+ * "#define closesocket(X) close(X)" and use closesocket() to close
+ * socket FDs.  net_connect(), net_bind() and net_sockets() would be
+ * replaced with calls directly to the corresponding OS function.
+ */
 
 typedef struct netstore_ netstore;
-
-#define MAX_HOSTNAME 128
 
 netstore *net_store_new (void);
 void net_store_destroy (netstore *ns);
