@@ -41,6 +41,7 @@
 #include <glib/giochannel.h>
 #include <glib/gstrfuncs.h>
 #include <glib/ghash.h>
+#include <glib/gcompletion.h>
 #ifndef HAVE_SNPRINTF
 #define snprintf g_snprintf
 #endif

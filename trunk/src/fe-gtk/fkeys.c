@@ -19,7 +19,6 @@
 #include "fe-gtk.h"
 
 static void replace_handle (GtkWidget * wid);
-void key_action_tab_clean (void);
 
 /***************** Key Binding Code ******************/
 
@@ -258,7 +257,7 @@ key_handle_key_press (GtkWidget *wid, GdkEventKey *evt, session *sess)
 		kb = kb->next;
 	}
 	if (keyval == GDK_space)
-		key_action_tab_clean ();
+		tab_clean ();
 
 	/* check if it's a return or enter */
 	/* ---handled by the "activate" signal in maingui.c */
@@ -1286,312 +1285,23 @@ key_action_history_down (GtkWidget * wid, GdkEventKey * ent, char *d1,
 	return 2;
 }
 
-/* old data that we reuse */
-static struct gcomp_data old_gcomp;
-
-/* work on the data, ie return only channels */
-static int
-double_chan_cb (session *lsess, GList **list)
-{
-	if (lsess->type == SESS_CHANNEL)
-		*list = g_list_prepend(*list, lsess->channel);
-	return TRUE;
-}
-
-/* convert a slist -> list. */
-static GList *
-chanlist_double_list (GSList *inlist)
-{
-	GList *list = NULL;
-	g_slist_foreach(inlist, (GFunc)double_chan_cb, &list);
-	return list;
-}
-
-/* handle commands */
-static int
-double_cmd_cb (struct popup *pop, GList **list)
-{
-	*list = g_list_prepend(*list, pop->name);
-	return TRUE;
-}
-
-/* convert a slist -> list. */
-static GList *
-cmdlist_double_list (GSList *inlist)
-{
-	GList *list = NULL;
-	g_slist_foreach (inlist, (GFunc)double_cmd_cb, &list);
-	return list;
-}
-
-static char *
-gcomp_nick_func (char *data)
-{
-	if (data)
-		return ((struct User *)data)->nick;
-	return "";
-}
-
-void
-key_action_tab_clean(void)
-{
-	if (old_gcomp.elen)
-	{
-		old_gcomp.data[0] = 0;
-		old_gcomp.elen = 0;
-	}
-}
-
-/* Used in the followig completers */
-#define COMP_BUF 2048
-
 static int
 key_action_tab_comp (GtkWidget *t, GdkEventKey *entry, char *d1, char *d2,
 							struct session *sess)
 {
-	int len = 0, elen = 0, cursor_pos, ent_start = 0, comp = 0, found = 0,
-	    prefix_len, skip_len = 0, is_nick, is_cmd = 0;
-	char buf[COMP_BUF], ent[CHANLEN], *postfix = NULL, *result, *ch;
-	GList *list = NULL, *tmp_list = NULL;
-	const char *text;
-	GCompletion *gcomp = NULL;
+	char buf[2048];
+	int pos, ret;
 
 	/* force the IM Context to reset */
 	gtk_editable_set_editable (GTK_EDITABLE (t), FALSE);
 	gtk_editable_set_editable (GTK_EDITABLE (t), TRUE);
-
-	text = GTK_ENTRY (t)->text;
-	if (text[0] == 0)
-		return 1;
-
-	len = g_utf8_strlen (text, -1); /* must be null terminated */
-
-	cursor_pos = gtk_editable_get_position (GTK_EDITABLE (t));
-
-	buf[0] = 0; /* make sure we don't get garbage in the buffer */
-
-	/* handle "nick: " or "nick " or "#channel "*/
-	ch = g_utf8_find_prev_char(text, g_utf8_offset_to_pointer(text,cursor_pos));
-	if (ch && ch[0] == ' ')
-	{
-		skip_len++;
-		ch = g_utf8_find_prev_char(text, ch);
-		if (!ch)
-			return 2;
-
-		cursor_pos = g_utf8_pointer_to_offset(text, ch);
-		if (cursor_pos && (g_utf8_get_char_validated(ch, -1) == ':' || 
-					g_utf8_get_char_validated(ch, -1) == ',' ||
-					g_utf8_get_char_validated(ch, -1) == prefs.nick_suffix[0]))
-		{
-			skip_len++;
-		}
-		else
-			cursor_pos = g_utf8_pointer_to_offset(text, g_utf8_offset_to_pointer(ch, 1));
-	}
-
-	comp = skip_len;
 	
-	/* store the text following the cursor for reinsertion later */
-	if ((cursor_pos + skip_len) < len)
-		postfix = g_utf8_offset_to_pointer(text, cursor_pos + skip_len);
+	ret = tab_comp(sess, GTK_ENTRY (t)->text, buf, sizeof(buf), &pos, d1 && d1[0]); 
 
-	for (ent_start = cursor_pos; ; --ent_start)
-	{
-		if (ent_start == 0)
-			break;
-		ch = g_utf8_offset_to_pointer(text, ent_start - 1);
-		if (ch && ch[0] == ' ')
-			break;
-	}
-
-	if (ent_start == 0 && text[0] == prefs.cmdchar[0])
-	{
-		ent_start++;
-		is_cmd = 1;
-	}
-	
-	prefix_len = ent_start;
-	elen = cursor_pos - ent_start;
-
-	g_utf8_strncpy (ent, g_utf8_offset_to_pointer (text, prefix_len), elen);
-
-	is_nick = (ent[0] == '#' || ent[0] == '&' || is_cmd) ? 0 : 1;
-	
-	if (sess->type == SESS_DIALOG && is_nick)
-	{
-		/* tab in a dialog completes the other person's name */
-		if (rfc_ncasecmp (sess->channel, ent, elen) == 0)
-		{
-			result =  sess->channel;
-			is_nick = 0;
-		}
-		else
-			return 2;
-	}
-	else
-	{
-		if (is_nick)
-		{
-			gcomp = g_completion_new((GCompletionFunc)gcomp_nick_func);
-			tmp_list = userlist_double_list(sess); /* create a temp list so we can free the memory */
-		}
-		else
-		{
-			gcomp = g_completion_new (NULL);
-			if (is_cmd)
-			{
-				tmp_list = cmdlist_double_list (command_list);
-				tmp_list = get_command_list(tmp_list);
-				tmp_list = plugin_command_list(tmp_list);
-			}
-			else
-				tmp_list = chanlist_double_list (sess_list);
-		}
-		tmp_list = g_list_reverse(tmp_list); /* make the comp entries turn up in the right order */
-		g_completion_set_compare (gcomp, (GCompletionStrncmpFunc)rfc_ncasecmp);
-		if (tmp_list)
-		{
-			g_completion_add_items (gcomp, tmp_list);
-			g_list_free (tmp_list);
-		}
-
-		if (comp && !(rfc_ncasecmp(old_gcomp.data, ent, old_gcomp.elen) == 0))
-		{
-			key_action_tab_clean ();
-			comp = 0;
-		}
-	
-#if GLIB_CHECK_VERSION(2,4,0)
-		list = g_completion_complete_utf8 (gcomp, comp ? old_gcomp.data : ent, &result);
-#else
-		list = g_completion_complete (gcomp, comp ? old_gcomp.data : ent, &result);
-#endif
-		
-		if (result == NULL) /* No matches found */
-		{
-			g_completion_free(gcomp);
-			return 2;
-		}
-
-		if (comp) /* existing completion */
-		{
-			while(list) /* find the current entry */
-			{
-				if(rfc_ncasecmp(list->data, ent, elen) == 0)
-				{
-					found = 1;
-					break;
-				}
-				list = list->next;
-			}
-
-			if (found)
-			{
-				if (!(d1 && d1[0])) /* not holding down shift */
-				{
-					if (g_list_next(list) == NULL)
-						list = g_list_first(list);
-					else
-						list = g_list_next(list);
-				}
-				else
-				{
-					if (g_list_previous(list) == NULL)
-						list = g_list_last(list);
-					else
-						list = g_list_previous(list);
-				}
-				g_free(result);
-				result = (char*)list->data;
-			}
-			else
-			{
-				g_free(result);
-				g_completion_free(gcomp);
-				return 2;
-			}
-		}
-		else
-		{
-			strcpy(old_gcomp.data, ent);
-			old_gcomp.elen = elen;
-
-			/* Get the first nick and put out the data for future nickcompletes */
-			if (prefs.completion_amount && g_list_length (list) <= prefs.completion_amount)
-			{
-				g_free(result);
-				result = (char*)list->data;
-			}
-			else
-			{
-				/* bash style completion */
-				if (g_list_next(list) != NULL)
-				{
-					if (strlen (result) > elen) /* the largest common prefix is larger than nick, change the data */
-					{
-						if (prefix_len)
-							g_utf8_strncpy (buf, text, prefix_len);
-						strncat (buf, result, COMP_BUF - prefix_len);
-						cursor_pos = strlen (buf);
-						g_free(result);
-#if !GLIB_CHECK_VERSION(2,4,0)
-						g_utf8_validate (buf, -1, (const gchar **)&result);
-						(*result) = 0;
-#endif
-						if (postfix)
-						{
-							strcat (buf, " ");
-							strncat (buf, postfix, COMP_BUF - cursor_pos -1);
-						}
-						gtk_entry_set_text (GTK_ENTRY (t), buf);
-						gtk_editable_set_position (GTK_EDITABLE (t), g_utf8_pointer_to_offset(buf, buf + cursor_pos));
-						buf[0] = 0;
-					}
-					else
-						g_free(result);
-					while (list)
-					{
-						len = strlen (buf);	/* current buffer */
-						elen = strlen (list->data);	/* next item to add */
-						if (len + elen + 2 >= COMP_BUF) /* +2 is space + null */
-						{
-							PrintText (sess, buf);
-							buf[0] = 0;
-							len = 0;
-						}
-						strcpy (buf + len, (char *) list->data);
-						strcpy (buf + len + elen, " ");
-						list = list->next;
-					}
-					PrintText (sess, buf);
-					g_completion_free(gcomp);
-					return 2;
-				}
-				/* Only one matching entry */
-				g_free(result);
-				result = list->data;
-			}
-		}
-	}
-	
-	if(result)
-	{
-		if (prefix_len)
-			g_utf8_strncpy(buf, text, prefix_len);
-		strncat (buf, result, COMP_BUF - (prefix_len + 3)); /* make sure nicksuffix and space fits */
-		if(!prefix_len && is_nick)
-			strcat (buf, &prefs.nick_suffix[0]);
-		strcat (buf, " ");
-		cursor_pos = strlen (buf);
-		if (postfix)
-			strncat (buf, postfix, COMP_BUF - cursor_pos - 2);
-		gtk_entry_set_text (GTK_ENTRY (t), buf);
-		gtk_editable_set_position (GTK_EDITABLE (t), g_utf8_pointer_to_offset(buf, buf + cursor_pos));
-	}
-	if (gcomp)
-		g_completion_free(gcomp);
-	return 2;
+	gtk_entry_set_text (GTK_ENTRY (t), buf);
+	gtk_editable_set_position (GTK_EDITABLE (t), 
+			g_utf8_pointer_to_offset(buf, buf + pos));
+	return ret;
 }
 #undef COMP_BUF
 
