@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xchat 1.9.x\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-18 04:21+0200\n"
+"POT-Creation-Date: 2004-10-22 22:40+0200\n"
 "PO-Revision-Date: 2002-11-19 15:07+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -89,7 +89,7 @@ msgstr ""
 
 #: src/common/ignore.c:372
 #, c-format
-msgid "You are being MSG flooded from %s, setting autodialog OFF.\n"
+msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr ""
 
 #: src/common/notify.c:383
@@ -153,31 +153,31 @@ msgstr ""
 msgid "Unknown arg '%s' ignored."
 msgstr "Tundmatut parameetrit '%s' ignoreeriti."
 
-#: src/common/outbound.c:2755
+#: src/common/outbound.c:2761
 msgid "No such plugin found.\n"
 msgstr "Sellist pluginat ei leitud.\n"
 
-#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2766 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "See plugin ei taha end eemaldada.\n"
 
-#: src/common/outbound.c:3020
+#: src/common/outbound.c:3026
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <nimi> <tegevus>, lisab kasutajate nimekirja alla uue nupu"
 
-#: src/common/outbound.c:3022
+#: src/common/outbound.c:3028
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <käsk>, saadab käsu kõikidele kanalitele, kus oled"
 
-#: src/common/outbound.c:3024
+#: src/common/outbound.c:3030
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <käsk>, saadab käsu kõikidele serverite, kus oled"
 
-#: src/common/outbound.c:3025
+#: src/common/outbound.c:3031
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<põhjus>], märgib sinu eemal olevaks"
 
-#: src/common/outbound.c:3027
+#: src/common/outbound.c:3033
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -187,19 +187,19 @@ msgstr ""
 "kanaliga liitumise. Kui mõni selline kasutaja on kanalil, see käsk ei viska "
 "neid automaatselt välja (selleks vajad chanop-õigusi)"
 
-#: src/common/outbound.c:3029
+#: src/common/outbound.c:3035
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Puhastab aktiivse tekstiakna"
 
-#: src/common/outbound.c:3030
+#: src/common/outbound.c:3036
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Sulgeb aktiivse tekstiakna"
 
-#: src/common/outbound.c:3032
+#: src/common/outbound.c:3038
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kood>, leiab koodi järgi riigi nime, näiteks ee = eesti"
 
-#: src/common/outbound.c:3034
+#: src/common/outbound.c:3040
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -207,11 +207,11 @@ msgstr ""
 "CTCP <kasutaja> <teade>, saadab kasutajale CTCP teate. Levinud teateid on "
 "näiteks VERSION ja USERINFO"
 
-#: src/common/outbound.c:3036
+#: src/common/outbound.c:3042
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, Lahkub aktiivsest kanalist ja naaseb kohe"
 
-#: src/common/outbound.c:3038
+#: src/common/outbound.c:3044
 #, fuzzy
 msgid ""
 "\n"
@@ -230,7 +230,7 @@ msgstr ""
 "DCC CLOSE <tüüp> <kasutaja> <fail>        näide:\n"
 "         /dcc close send toomas fail.tar.gz"
 
-#: src/common/outbound.c:3047
+#: src/common/outbound.c:3053
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -238,11 +238,11 @@ msgstr ""
 "DEHOP <kasutaja>, eemaldab aktiivse kanali kasutajalt chanhalf-op õiguse "
 "(vajab chanop õigust)"
 
-#: src/common/outbound.c:3049
+#: src/common/outbound.c:3055
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <nimi>, kustutab kasutajate nimekirja aluse nupu"
 
-#: src/common/outbound.c:3051
+#: src/common/outbound.c:3057
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -250,62 +250,62 @@ msgstr ""
 "DEOP <kasutaja>, eemaldab aktiivse kanali kasutajalt chanop õiguse (vajab "
 "chanop õigust)"
 
-#: src/common/outbound.c:3053
+#: src/common/outbound.c:3059
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3060
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, katkestab ühenduse serveriga"
 
-#: src/common/outbound.c:3055
+#: src/common/outbound.c:3061
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <kasutaja|host|ip>, leiab kasutaja ip aadressi"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3062
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <tekst>, väljastab teksti samas masinas"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3065
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
 msgstr ""
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3067
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, saadab protsessile SIGCONT signaali"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3070
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
 msgstr ""
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3072
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, saadab protsessile SIGSTOP signaali"
 
-#: src/common/outbound.c:3067
+#: src/common/outbound.c:3073
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr ""
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3077
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr ""
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3079
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 
-#: src/common/outbound.c:3079
+#: src/common/outbound.c:3085
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <kasutaja>, annab kasutajale chanhalf-op õiguse (vajab chanop õigust)"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3087
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -314,7 +314,7 @@ msgid ""
 "    options - NOSAVE, QUIET"
 msgstr ""
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3093
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -322,43 +322,43 @@ msgstr ""
 "INVITE <kasutaja> [<kanal>], kutsub kasutaja kanalisse, vaikimisi "
 "aktiivsesse kanalisse (vajab chanop õigust)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3094
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanal>, ühineb kanaliga"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3096
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <kasutaja>, viskab selle kasutaja kanalist välja (vajab chanop õigust)"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3098
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3101
 msgid "LAGCHECK, forces a new lag check"
 msgstr ""
 
-#: src/common/outbound.c:3097
+#: src/common/outbound.c:3103
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <string>, otsib puhvrist stringi"
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3105
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <fail>, laeb plugina või skripti"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3107
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3109
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3111
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -366,108 +366,108 @@ msgstr ""
 "ME <tegevus>, saadab tegevuse aktiivsesse kanalisse (tegevused kirjutatakse "
 "kolmandas isikus, näiteks /me hüppab)"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3113
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, viskab kanalist välja kõik peale sinu (vajab chanop õigust)"
 
-#: src/common/outbound.c:3110
+#: src/common/outbound.c:3116
 #, fuzzy
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr "MKICK, viskab kanalist välja kõik peale sinu (vajab chanop õigust)"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3117
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <kasutaja> <sõnum>, saadab kasutajale privaatsõnumi"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3119
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, näitab aktiivse kanali kasutajate nimekirja"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3121
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <kasutaja> <sõnum>, saadab CTCP teate"
 
-#: src/common/outbound.c:3116
+#: src/common/outbound.c:3122
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <hostinimi> [<port>]"
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3123
 msgid "NICK <nickname>, sets your nick"
 msgstr ""
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3125
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
 msgstr ""
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3127
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3129
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <kasutaja>, annab kasutajale chanop üigused (vajab chanop'i)"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3131
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3133
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr ""
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3135
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr ""
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3137
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<põhjus>], katkestab ühenduse serveriga"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3139
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr ""
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3142
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
 "reconnect to all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3145
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
 "all the open servers"
 msgstr ""
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3147
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
 msgstr ""
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3148
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3150
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr ""
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3153
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3156
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3161
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -475,7 +475,7 @@ msgstr ""
 "SERVER [-ssl] <host> [<port>] [<salasõna>], loob serveriga ühenduse, "
 "vaikimisi port tavaliste ühenduste jaoks on 6667 ja 9999 ssl ühenduste jaoks"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3164
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -483,56 +483,56 @@ msgstr ""
 "SERVER <host> [<port>] [<salasõna>], loob serveriga ühenduse, vaikimisi port "
 "on 6667"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3166
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <muutuja> [<väärtus>]"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3169
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr "TOPIC [<teema>]. määrab uue teema või näitab praegust"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3171
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <mask> [<mask>...], võtab määratud maskidelt keelu maha."
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3172
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <mask> [QUIET]"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3173
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <nimi>, eemaldab plugina või skripti"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3176
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <kasutaja>, annab kasutajale voice staatuse (vajab chanop õigust)"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3178
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <sõnum>, saadab sõnumi kõikidele kanalitele, kus oled"
 
-#: src/common/outbound.c:3174
+#: src/common/outbound.c:3180
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <sõnum>, saadab sõnumi kõigile aktiivse kanali chanop-idele"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3182
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <sõnum>, saadab sõnumi kõigile aktiivse kanali chanop-idele"
 
-#: src/common/outbound.c:3221
+#: src/common/outbound.c:3227
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Kasutus: %s\n"
 
-#: src/common/outbound.c:3226
+#: src/common/outbound.c:3232
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -540,23 +540,23 @@ msgstr ""
 "\n"
 "Selle käsu kohta pole abimaterjale.\n"
 
-#: src/common/outbound.c:3232
+#: src/common/outbound.c:3238
 msgid "No such command.\n"
 msgstr "Sellist käsku pole olemas\n"
 
-#: src/common/outbound.c:3595
+#: src/common/outbound.c:3608
 msgid "Bad arguments for user command.\n"
 msgstr ""
 
-#: src/common/outbound.c:3757
+#: src/common/outbound.c:3770
 msgid "Too many recursive usercommands, aborting."
 msgstr ""
 
-#: src/common/outbound.c:3812
+#: src/common/outbound.c:3825
 msgid "Unknown Command. Try /help\n"
 msgstr "Tundmatu käsk. Proovi /help\n"
 
-#: src/common/plugin.c:342 src/common/plugin.c:383
+#: src/common/plugin.c:336 src/common/plugin.c:377
 msgid "No xchat_plugin_init symbol; is this really an xchat plugin?"
 msgstr ""
 "Ei leitud xchat_plugin_init sümbolit; oled sa ikka kindel, et see on xchati "
@@ -935,10 +935,9 @@ msgstr ""
 "kutsetega)."
 
 #: src/common/textevents.h:228
-msgid ""
-"event_text=%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 "
-"($3)%O"
-msgstr ""
+#, fuzzy
+msgid "%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O"
+msgstr "-%C10-%C11-%O$t $1 ($2%O) tappis su."
 
 #: src/common/textevents.h:231
 #, fuzzy
@@ -1740,7 +1739,7 @@ msgstr ""
 "Viga sündmuse %s töötlemisel.\n"
 "Vaikeväärtuste laadimine"
 
-#: src/common/text.c:1793
+#: src/common/text.c:1797
 #, fuzzy, c-format
 msgid ""
 "Cannot read sound file:\n"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-18 04:24+0200\n"
+"POT-Creation-Date: 2004-10-22 22:40+0200\n"
 "PO-Revision-Date: 2004-03-14 18:28+0100\n"
 "Last-Translator: Jure Cuhalev <gandalf@owca.info>\n"
 "Language-Team: Slovenian <translation-team-sl@lists.sourceforge.net>\n"
@@ -85,8 +85,8 @@ msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr "%s vas zasipa s CTCP podatki, spregledujem %s\n"
 
 #: src/common/ignore.c:372
-#, c-format
-msgid "You are being MSG flooded from %s, setting autodialog OFF.\n"
+#, fuzzy, c-format
+msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr "%s vas zasipa z MSG, izklapljam samodejno odpiranje pogovornih oken.\n"
 
 #: src/common/notify.c:383
@@ -150,31 +150,31 @@ msgstr ""
 msgid "Unknown arg '%s' ignored."
 msgstr "Neznan argument '%s' spregledan."
 
-#: src/common/outbound.c:2755
+#: src/common/outbound.c:2761
 msgid "No such plugin found.\n"
 msgstr "Ta dodatek ne obstaja.\n"
 
-#: src/common/outbound.c:2760 src/fe-gtk/plugingui.c:162
+#: src/common/outbound.c:2766 src/fe-gtk/plugingui.c:162
 msgid "That plugin is refusing to unload.\n"
 msgstr "Ta plugin zavrača odstranitev.\n"
 
-#: src/common/outbound.c:3020
+#: src/common/outbound.c:3026
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <ime> <dejanje>, doda gumb v seznam uporabnikov"
 
-#: src/common/outbound.c:3022
+#: src/common/outbound.c:3028
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <ukaz>, izvede ukaz na vseh kanalih, na katerih ste prisotni"
 
-#: src/common/outbound.c:3024
+#: src/common/outbound.c:3030
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <ukaz>, pošlje ukaz vsem strežnikom, na katerih ste"
 
-#: src/common/outbound.c:3025
+#: src/common/outbound.c:3031
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<razlog>], nastavi vašo odsotnost"
 
-#: src/common/outbound.c:3027
+#: src/common/outbound.c:3033
 msgid ""
 "BAN <mask> [<bantype>], bans everyone matching the mask from the current "
 "channel. If they are already on the channel this doesn't kick them (needs "
@@ -184,19 +184,19 @@ msgstr ""
 "ustrezajo maski. Če so že na kanalu, jih ta ukaz ne brcne iz kanala "
 "(potrebuje status op)"
 
-#: src/common/outbound.c:3029
+#: src/common/outbound.c:3035
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, počisti besedilo v trenutnem oknu"
 
-#: src/common/outbound.c:3030
+#: src/common/outbound.c:3036
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, zapre trenutno okno/zavihek"
 
-#: src/common/outbound.c:3032
+#: src/common/outbound.c:3038
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <koda>, poišče ime države, npr: si = Slovenija"
 
-#: src/common/outbound.c:3034
+#: src/common/outbound.c:3040
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -204,11 +204,11 @@ msgstr ""
 "CTCP <vzdevek> <sporočilo>, pošlje sporočilo CTCP vzdevku, pogosti sporočili "
 "sta VERSION in USERINFO"
 
-#: src/common/outbound.c:3036
+#: src/common/outbound.c:3042
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, zapusti trenutni kanal in se takoj vrne nazaj"
 
-#: src/common/outbound.c:3038
+#: src/common/outbound.c:3044
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -226,43 +226,43 @@ msgstr ""
 "DCC CLOSE <vrsta> <vzdevek> <datoteka>         primer:\n"
 "          /dcc close send janeznovak datoteka.tar.gz"
 
-#: src/common/outbound.c:3047
+#: src/common/outbound.c:3053
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
 msgstr ""
 "DEHOP <vzdevek>, odstrani status polovični-op vzdevku (potrebuje status op)"
 
-#: src/common/outbound.c:3049
+#: src/common/outbound.c:3055
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <ime>, izbriše gumb s seznama uporabnikov"
 
-#: src/common/outbound.c:3051
+#: src/common/outbound.c:3057
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
 msgstr "DEOP <vzdevek>, odstrani status op vzdevku (potrebuje status op)"
 
-#: src/common/outbound.c:3053
+#: src/common/outbound.c:3059
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
 msgstr ""
 "DEVOICE <vzdevek>, odstrai glasovni privilegij vzdevku (potrebuje status op)"
 
-#: src/common/outbound.c:3054
+#: src/common/outbound.c:3060
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, prekine povezavo s strežnikom"
 
-#: src/common/outbound.c:3055
+#: src/common/outbound.c:3061
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <vzdevek|gostitelj|ip>, poišče uporabnikovo številko IP"
 
-#: src/common/outbound.c:3056
+#: src/common/outbound.c:3062
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <besedilio>, lokalno izpiše besedilo"
 
-#: src/common/outbound.c:3059
+#: src/common/outbound.c:3065
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -270,11 +270,11 @@ msgstr ""
 "EXEC [-o] <ukaz>, izvede ukaz. Če uporabite stikalo -o, je rezultat izpisan "
 "na trenutnem kanalu, v nasprotnem primeru pa v trenutnem besedilnem polju"
 
-#: src/common/outbound.c:3061
+#: src/common/outbound.c:3067
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, procesu pošlje SIGCONT"
 
-#: src/common/outbound.c:3064
+#: src/common/outbound.c:3070
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -282,29 +282,29 @@ msgstr ""
 "EXECKILL [-9], ubije delujoči proces v trenutni seji. Če uporabite stikalo -"
 "9, je procesu poslan SIGKILL"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3072
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, procesu pošlje SIGSTOP"
 
-#: src/common/outbound.c:3067
+#: src/common/outbound.c:3073
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, pošlje podatke vhodnemu toku procesa"
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3077
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FULSHQ, odpošlje čakajočo vrsto sporočil za strežnik"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3079
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <gostitelj> [<vrata>], preusmeri skozi gostitelja, privzeta vrata so 23"
 
-#: src/common/outbound.c:3079
+#: src/common/outbound.c:3085
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <vzdevek>, vzdevku dodeli status polovični-op (potrebuje status op)"
 
-#: src/common/outbound.c:3081
+#: src/common/outbound.c:3087
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -318,7 +318,7 @@ msgstr ""
 "           PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    možnosti - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3087
+#: src/common/outbound.c:3093
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -326,16 +326,16 @@ msgstr ""
 "INVITE <vzdevek> [<kanal>], povabi vzdevek na kanal, privzeto na trenutni "
 "kanal (potrebuje status op)"
 
-#: src/common/outbound.c:3088
+#: src/common/outbound.c:3094
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanal>, pridruži se kanalu"
 
-#: src/common/outbound.c:3090
+#: src/common/outbound.c:3096
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <vzdevek>, brcne vzdevek iz trenutnega kanala (potrebuje status op)"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3098
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -343,31 +343,31 @@ msgstr ""
 "KICKBAN <vzdevek>, nastavi prepoved in brcne osebo iz kanala (potrebuje "
 "status op)"
 
-#: src/common/outbound.c:3095
+#: src/common/outbound.c:3101
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, zažene preverjanje časovnega zamika"
 
-#: src/common/outbound.c:3097
+#: src/common/outbound.c:3103
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <niz>, išče besedilni niz v oknu"
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3105
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <datoteka>, naloži dodatek ali skripto"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3107
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, masovno odvzame vse polovične statuse op na trenutnem kanalu "
 "(potrebuje status op)"
 
-#: src/common/outbound.c:3103
+#: src/common/outbound.c:3109
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, množično odvzame status op na trenutnem kanalu (potrebuje status op)"
 
-#: src/common/outbound.c:3105
+#: src/common/outbound.c:3111
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -375,39 +375,39 @@ msgstr ""
 "ME <dejanje>, pošlje dejanje v trenutno kanal (dejanja so izpisana v tretji "
 "osebi, npr. /me skače)"
 
-#: src/common/outbound.c:3107
+#: src/common/outbound.c:3113
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK, množično brcne vse, razen vas, na trenutnem kanalu (potrebuje status "
 "op)"
 
-#: src/common/outbound.c:3110
+#: src/common/outbound.c:3116
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, množično odvzame status op na trenutnem kanalu (potrebuje status op)"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3117
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <vzdevek> <sporočilo>, pošlje zasebno sporočilo"
 
-#: src/common/outbound.c:3113
+#: src/common/outbound.c:3119
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, izpiše seznam vzdevkov na trenutnem kanalu"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3121
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <vzdevek> <sporočilo>, pošlje obvestilo CTCP"
 
-#: src/common/outbound.c:3116
+#: src/common/outbound.c:3122
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <gostitelj> [<vrata>]"
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3123
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <vzdevek>, nastavi vaš vzdevek"
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3125
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -415,39 +415,39 @@ msgstr ""
 "NOTICE <vzdevek/kanal> <sporočilo>, pošlje obvestilo. To je vrsta sporočila, "
 "na katerega je možen samodejen odziv"
 
-#: src/common/outbound.c:3121
+#: src/common/outbound.c:3127
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<vzdevek>], doda vzdevek v vaš seznam za obveščanje ali pa ga izpiše"
 
-#: src/common/outbound.c:3123
+#: src/common/outbound.c:3129
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <vzdevek>, vzdevku podeli status operateja (op) kanala (potrebuje status "
 "op)"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3131
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<kanal>] [<razlog>], zapusti kanal, privzeto trenutnega"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3133
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <vzdevek | kanal>, pošlje CTCP ping vzdevku ali kanalu"
 
-#: src/common/outbound.c:3129
+#: src/common/outbound.c:3135
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <vzdevek>, odpre novo okno za zasebni pogovor"
 
-#: src/common/outbound.c:3131
+#: src/common/outbound.c:3137
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<razlog]>, prekine povezavo s trenutnim strežnikom"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3139
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <besedilo>, strežniku pošlje besedilo v surovi obliki"
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3142
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -457,7 +457,7 @@ msgstr ""
 "kot /RECONNECT za ponovitev povezave na trenutni strežnik ali kot /RECONNECT "
 "ALL za ponovitev povezave na vse odprte strežnike"
 
-#: src/common/outbound.c:3139
+#: src/common/outbound.c:3145
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -467,7 +467,7 @@ msgstr ""
 "RECONNECT za ponovitev povezave na trenutni strežnik ali kot /RECONNECT ALL "
 "za ponovitev povezave na vse odprte strežnike"
 
-#: src/common/outbound.c:3141
+#: src/common/outbound.c:3147
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -475,27 +475,27 @@ msgstr ""
 "RECV <besedilo>, pošlje surove podatke xchatu, kot da bi bili sprejeti od "
 "strežnika IRC"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3148
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3150
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <besedilo>, pošlje besedilo predmetu v trenutnem oknu"
 
-#: src/common/outbound.c:3147
+#: src/common/outbound.c:3153
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <gostitelj> <vrata> <kanal>, poveže se na strežnik in se "
 "pridruži kanalu"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3156
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <gostitelj> <vrata> <kanal>, poveže se na strežnik in se pridruži "
 "kanalu"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3161
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -503,7 +503,7 @@ msgstr ""
 "SERVER [-ssl] <gostitelj> [<vrata>] [<geslo>], poveže se na strežnik, "
 "privzeta vrata za navadne povezave so 6667 in 9999 za povezave SSL"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3164
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -511,58 +511,58 @@ msgstr ""
 "SERVER <gostitelj> [<vrata>] [<geslo>], poveže se na strežnik, privzeta "
 "vrata so 6667"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3166
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <spremenljivka> [<vrednost>]"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3169
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<tema>], če je tema podana, jo nastavi, v nasprotnem primeru pokaže "
 "trenutno"
 
-#: src/common/outbound.c:3165
+#: src/common/outbound.c:3171
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <maska> [<maska> ...], odstrani prepoved za določene maske."
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3172
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <maska> [QUIET]"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3173
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "LOAD <datoteka>, prekine dodatek ali skripto"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3176
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <vzdevek>, dodeli glasovni privilegij vzdevku (potrebuje status op)"
 
-#: src/common/outbound.c:3172
+#: src/common/outbound.c:3178
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <sporočilo>, pošlje sporočilo na vse kanale"
 
-#: src/common/outbound.c:3174
+#: src/common/outbound.c:3180
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <sporočilo>, pošlje sporočilo vsem operaterjem kanala"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3182
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <sporočilo>, pošlje sporočilo vsem operaterjem kanala"
 
-#: src/common/outbound.c:3221
+#: src/common/outbound.c:3227
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Uporaba:%s\n"
 
-#: src/common/outbound.c:3226
+#: src/common/outbound.c:3232
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -570,23 +570,23 @@ msgstr ""
 "\n"
 "Na to temo ni na voljo pomoči.\n"
 
-#: src/common/outbound.c:3232
+#: src/common/outbound.c:3238
 msgid "No such command.\n"
 msgstr "Ta ukaz ne obstaja.\n"
 
-#: src/common/outbound.c:3595
+#: src/common/outbound.c:3608
 msgid "Bad arguments for user command.\n"
 msgstr "Napačne opcije za uporabnikov ukaz.\n"
 
-#: src/common/outbound.c:3757
+#: src/common/outbound.c:3770
 msgid "Too many recursive usercommands, aborting."
 msgstr "Preveč agresivnih ukazov, opuščam."
 
-#: src/common/outbound.c:3812
+#: src/common/outbound.c:3825
 msgid "Unknown Command. Try /help\n"
 msgstr "Neznan ukaz. Poskusite /help\n"
 
-#: src/common/plugin.c:342 src/common/plugin.c:383
+#: src/common/plugin.c:336 src/common/plugin.c:377
 msgid "No xchat_plugin_init symbol; is this really an xchat plugin?"
 msgstr "Ni xchat_plugin_init simbola; je to res xchat plugin?"
 
@@ -978,10 +978,9 @@ msgstr ""
 "na povabilo)."
 
 #: src/common/textevents.h:228
-msgid ""
-"event_text=%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 "
-"($3)%O"
-msgstr ""
+#, fuzzy
+msgid "%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O"
+msgstr "-%C10-%C11-%O$t$1ˇ($2%O) vas je ubil"
 
 #: src/common/textevents.h:231
 #, fuzzy
@@ -1785,7 +1784,7 @@ msgstr ""
 "Napaka pri izvajanju dogodka %s.\n"
 "Nalagam privzeto"
 
-#: src/common/text.c:1793
+#: src/common/text.c:1797
 #, c-format
 msgid ""
 "Cannot read sound file:\n"

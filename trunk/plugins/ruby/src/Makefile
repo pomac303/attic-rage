@@ -26,4 +26,6 @@ install: rage-ruby.so
 clean:
 	rm -f *.so *.o rage-ruby-plugin.h
 
+distclean: clean
+
 rage-ruby.o: rage-ruby-plugin.h
