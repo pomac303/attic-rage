@@ -1,9 +1,38 @@
-- Move more of the fe-* code to common.
+#1 - Move more of the fe-* code to common.
 
-- Generalized fe-api, make the fe-* codesize minimal.
+#2 - Generalized fe-api, make the fe-* codesize minimal.
   (add ncurses, win32 ui)
 
-- Ability to connect to a existing session.
+#3 - Ability to connect to a existing session.
 
-- General cleanups.
+#4 - General cleanups.
 
+#5 - Fix the plugin api to meet the new internal API
+  Add ruby support?
+  (Isomer)
+
+#6 - Add ui in xchat to modify scripts on the fly.
+
+#7 - Write some useful plugins using the API demonstrating it's features,
+  and flexibility to be distributed with Rage
+
+  Maybe a fully fledged !find "client"
+  Maybe move some hardcoded things into plugins (eg, /mop,/mdeop etc)
+
+#8 -  Move the hook code to a map<hook_name,list<hooks>>
+
+#9 - Look at the http://xchat-gnome.navi.cx/ people, perhaps get them onboard?
+
+#10 - UTF8 BOM support?
+  (Isomer)
+ 
+#11 - Profile code and look for obvious bottlenecks.
+
+#12 - 005 needs to be a map<005name,value>
+
+#13 - once 005 update is done, add support for WALLCHOPS, WALLVOICES, CPRIVMSG,
+  CNOTICE.
+  (Isomer)
+
+#14 - Event theming
+  (Isomer)
