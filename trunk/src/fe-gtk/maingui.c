@@ -1873,8 +1873,6 @@ mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
 
 	if (!gui->is_tab)
 	{
-#if 0
-		/* XXX: where should this be? */
 		if ((sess->type == SESS_SERVER && prefs.tabchannels) ||
 				(sess->type == SESS_CHANNEL && prefs.tabchannels) ||
 				(sess->type == SESS_DIALOG && prefs.privmsgtab) ||
@@ -1882,10 +1880,9 @@ mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
 				(sess->type == SESS_SNOTICES && prefs.snotices_tab))
 		{
 			/* if it should be a tab, it is in a detached state */
-			gtkutil_button (box, GTK_STOCK_REDO, _("Attach/Detach this tab"),
+			gtkutil_button (gui->topic_bar, GTK_STOCK_REDO, _("Attach/Detach this tab"),
 					mg_link_cb, NULL, 0);
 		}
-#endif
 		sess->res->tab = gtk_toggle_button_new_with_label (NULL);
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (sess->res->tab), TRUE);
 		gtk_box_pack_start (GTK_BOX (gui->topic_bar), sess->res->tab, 0, 0, 0);
@@ -2663,9 +2660,9 @@ mg_create_generic_tab (char *name, char *title, int force_toplevel,
 		hbox = gtk_hbox_new (FALSE, 0);
 		gtk_box_pack_start (GTK_BOX (vbox), hbox, 0, 0, 0);
 		gtkutil_button (hbox, GTK_STOCK_CLOSE, _("Close this tab/window"),
-				mg_x_click_cb, userdata, 0);
+				mg_x_click_cb, tab, 0);
 		gtkutil_button (hbox, GTK_STOCK_REDO, _("Attach/Detach this tab"),
-				mg_link_cb, userdata, 0);
+				mg_link_cb, tab, 0);
 		gtk_widget_show (hbox);
 	}
 
