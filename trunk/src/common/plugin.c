@@ -246,7 +246,7 @@ plugin_add (session *sess, char *filename, void *handle, void *init_func,
 #ifdef WIN32
 		pl->xchat_read_fd = (void *) xchat_read_fd;
 #else
-		pl->xchat_read_fd = xchat_dummy;
+		pl->xchat_read_fd = (void *) xchat_dummy;
 #endif
 		pl->xchat_list_time = xchat_list_time;
 		pl->xchat_gettext = xchat_gettext;

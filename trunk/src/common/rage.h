@@ -158,6 +158,8 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 #define WANTDNS
 #include "inet.h"
 
+#define RAGE_INTERNAL
+
 /* Include common includes */
 /* Bletch! */
 #include "rage-plugin.h"

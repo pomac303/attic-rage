@@ -34,9 +34,7 @@ extern "C" {
 typedef struct _xchat_plugin xchat_plugin;
 typedef struct _xchat_list xchat_list;
 typedef struct _xchat_hook xchat_hook;
-#ifndef PLUGIN_C
 typedef struct _xchat_context xchat_context;
-#endif
 
 typedef int (xchat_cmd_cb) (int parc, char *parv[], void *user_data);
 typedef int (xchat_serv_cb) (int parc, char *parv[], void *user_data);
@@ -45,34 +43,33 @@ typedef int (xchat_fd_cb) (int fd, int flags, void *user_data);
 typedef int (xchat_timer_cb) (void *user_data);
 typedef int (xchat_init_func) (xchat_plugin *, char **, char **, char **, char *);
 typedef int (xchat_deinit_func) (xchat_plugin *);
-#ifndef PLUGIN_C
+
 struct _xchat_plugin
 {
-	/* these are only used on win32 */
 	xchat_hook *(*xchat_hook_command) (xchat_plugin *ph,
 		    const char *name,
 		    int pri,
-		    int (*callback) (char *word[], char *word_eol[], void *user_data),
+		    xchat_cmd_cb *callb,
 		    const char *help_text,
 		    void *userdata);
 	xchat_hook *(*xchat_hook_server) (xchat_plugin *ph,
 		   const char *name,
 		   int pri,
-		   int (*callback) (char *word[], char *word_eol[], void *user_data),
+		   xchat_serv_cb *callb,
 		   void *userdata);
 	xchat_hook *(*xchat_hook_print) (xchat_plugin *ph,
 		  const char *name,
 		  int pri,
-		  int (*callback) (int parc, char *parv[], void *user_data),
+		  xchat_print_cb *callb,
 		  void *userdata);
 	xchat_hook *(*xchat_hook_timer) (xchat_plugin *ph,
 		  int timeout,
-		  int (*callback) (void *user_data),
+		  xchat_timer_cb *callb,
 		  void *userdata);
 	xchat_hook *(*xchat_hook_fd) (xchat_plugin *ph,
 		   int fd,
 		   int flags,
-		   int (*callback) (int fd, int flags, void *user_data),
+		   xchat_fd_cb *callb,
 		   void *userdata);
 	void *(*xchat_unhook) (xchat_plugin *ph,
 	      xchat_hook *hook);
@@ -88,7 +85,7 @@ struct _xchat_plugin
 	       const char *s1,
 	       const char *s2);
 	int (*xchat_set_context) (xchat_plugin *ph,
-		   xchat_context *ctx);
+		xchat_context *ctx);
 	xchat_context *(*xchat_find_context) (xchat_plugin *ph,
 		    const char *servname,
 		    const char *channel);
@@ -135,12 +132,32 @@ struct _xchat_plugin
 	void (*xchat_send_modes) (xchat_plugin *ph,
 		  const char **targets,
 		  int ntargets,
-		  int modes_per_line,
 		  char sign,
 		  char mode);
-};
+/* These are things used internally by rage, you shouldn't modify them,
+ * They are only defined if RAGE_INTERNAL is defined (which should only
+ * be defined internally to rage 
+ */
+#ifdef RAGE_INTERNAL
+	/* Dummy padding to deal with version skew */
+	void *(*xchat_dummy6) (xchat_plugin *ph);
+	void *(*xchat_dummy5) (xchat_plugin *ph);
+	void *(*xchat_dummy4) (xchat_plugin *ph);
+	void *(*xchat_dummy3) (xchat_plugin *ph);
+	void *(*xchat_dummy2) (xchat_plugin *ph);
+	void *(*xchat_dummy1) (xchat_plugin *ph);
+	/* PRIVATE FIELDS! */
+	void *handle;		/* from dlopen */
+	char *filename;	/* loaded from */
+	char *name;
+	char *desc;
+	char *version;
+	session *context;
+	void *deinit_callback;	/* pointer to xchat_plugin_deinit */
+	unsigned int fake:1;		/* fake plugin. Added by xchat_plugingui_add() */
+	
 #endif
-
+};
 
 xchat_hook *
 xchat_hook_command (xchat_plugin *ph,
@@ -201,7 +218,7 @@ int
 xchat_nickcmp (xchat_plugin *ph,
 	       const char *s1,
 	       const char *s2);
-#ifndef PLUGIN_C
+
 int
 xchat_set_context (xchat_plugin *ph,
 		   xchat_context *ctx);
@@ -213,7 +230,7 @@ xchat_find_context (xchat_plugin *ph,
 
 xchat_context *
 xchat_get_context (xchat_plugin *ph);
-#endif
+
 const char *
 xchat_get_info (xchat_plugin *ph,
 		const char *id);
