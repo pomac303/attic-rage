@@ -51,7 +51,7 @@ N_("%C22*%O$t$1 sets invite on $2")},
 N_("%UChannel          Users   Topic")},
 
 {"Channel Message", pevt_chanmsg_help, 4, 
-N_("%C18%B%B$4$1%O%C18%O$t$2")},
+N_("%C34%B%B$4$1%O%C34%O$t$2")},
 
 {"Channel Mode Generic", pevt_chanmodegen_help, 4, 
 N_("%C22*%O$t$1 sets mode $2$3 $4")},
@@ -330,7 +330,7 @@ N_("%C22*%O$t%C22Looking up $1")},
 N_("%C22*%O$t$1")},
 
 {"Server Text", pevt_servertext_help, 2, 
-N_("%C22*%O$t$1")},
+N_("%C22$2%O$t$1")},
 
 {"Stop Connection", pevt_sconnect_help, 1, 
 N_("%C22*%O$tStopped previous connection attempt (pid=$1)")},
@@ -399,7 +399,7 @@ N_("%C23*$tYou have been kicked from $2 by $3 ($4%O%C23)")},
 N_("%C22*%O$tYou've invited%C26 $1%O to%C26 $2%O (%C26$3%O)")},
 
 {"Your Message", pevt_chanmsg_help, 4, 
-N_("%C31%B%B$4$1%O$t%C30$2")},
+N_("%C34%B%B$4$1%O$t%C34,35$2")},
 
 {"Your Nick Changing", pevt_uchangenick_help, 2, 
 N_("%C22*%O$tYou are now known as $2")},

@@ -33,9 +33,9 @@
 #include "xchatc.h"
 
 #ifdef WIN32
-#define XCHAT_DIR "X-Chat 2"
+#define XCHAT_DIR "Rage"
 #else
-#define XCHAT_DIR ".xchat2"
+#define XCHAT_DIR ".rage"
 #endif
 #define DEF_FONT "Monospace 9"
 
@@ -360,7 +360,7 @@ default_file (void)
 	if (!dfile)
 	{
 		dfile = malloc (strlen (get_xdir_fs ()) + 12);
-		sprintf (dfile, "%s/xchat.conf", get_xdir_fs ());
+		sprintf (dfile, "%s/rage.conf", get_xdir_fs ());
 	}
 	return dfile;
 }

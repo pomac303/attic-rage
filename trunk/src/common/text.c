@@ -245,7 +245,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 		free (sep);
 	}
 
-	snprintf (buf, 512, "%s/xchatlogs", get_xdir_fs ());
+	snprintf (buf, 512, "%s/ragelogs", get_xdir_fs ());
 	if (access (buf, F_OK) != 0)
 #ifdef WIN32
 		mkdir (buf);
@@ -255,7 +255,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 	auto_insert (fn, sizeof (fn), prefs.logmask, 0, NULL, "", channame, "", "", netname, servname);
 	g_free (channame);
 
-	snprintf (buf, 512, "%s/xchatlogs/%s", get_xdir_fs (), fn);
+	snprintf (buf, 512, "%s/ragelogs/%s", get_xdir_fs (), fn);
 
  	/* The following code handles subdirectories in logpath and creates
  	 * them, if they don't exist. Useful with logmasks like "%c/%y.log" in
@@ -265,7 +265,7 @@ log_create_filename (char *buf, char *servname, char *channame, char *netname)
 
 	if (access (buf, F_OK) != 0)
 	{
-		snprintf (buf, 512, "%s/xchatlogs/", get_xdir_fs ());
+		snprintf (buf, 512, "%s/ragelogs/", get_xdir_fs ());
 		pathlen -= strlen(buf);
  
 		/* how many sub-directories do we have? */

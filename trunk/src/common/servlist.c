@@ -129,7 +129,7 @@ static const struct defaultserver def[] =
 	{"Buzzpot", 0},
 	{0,			"irc.chatspike.net"},
 
-	{"ChatJunkies",	0, "#xchat"},
+	{"ChatJunkies",	0},
 	{0,			"irc.chatjunkies.org"},
 	{0,			"nl.chatjunkies.org"},
 
@@ -447,7 +447,7 @@ static const struct defaultserver def[] =
 	{"TopGamers",	0},
 	{0,			"irc.topgamers.net"},
 
-	{"UnderNet",	0},
+	{"UnderNet",	0, "#rageirc" },
 	{0,			"us.undernet.org"},
 	{0,			"eu.undernet.org"},
 
@@ -835,7 +835,7 @@ servlist_load_defaults (void)
 #endif
 			if (def[i].channel)
 				net->autojoin = strdup (def[i].channel);
-			if (!strcmp (def[i].network, "ChatJunkies"))
+			if (!strcmp (def[i].network, "UnderNet"))
 				prefs.slist_select = j;
 			j++;
 		} else

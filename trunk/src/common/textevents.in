@@ -97,7 +97,7 @@ pevt_generic_none_help
 Channel Message
 XP_TE_CHANMSG
 pevt_chanmsg_help
-%C18%B%B$4$1%O%C18%O$t$2
+%C34%B%B$4$1%O%C34%O$t$2
 4
 
 Channel Mode Generic
@@ -655,7 +655,7 @@ pevt_servertext_help
 Server Text
 XP_TE_SERVTEXT
 pevt_servertext_help
-%C22*%O$t$1
+%C22$2%O$t$1
 2
 
 Stop Connection
@@ -793,7 +793,7 @@ pevt_uinvite_help
 Your Message
 XP_TE_UCHANMSG
 pevt_chanmsg_help
-%C31%B%B$4$1%O$t%C30$2
+%C34%B%B$4$1%O$t%C34,35$2
 4
 
 Your Nick Changing

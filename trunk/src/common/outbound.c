@@ -319,15 +319,17 @@ split_cmd(char **buf)
 void 
 split_cmd_parv(char *buf,int *parc, char *parv[])
 {
+	int i=0;
 	*parc=0;
 	while(*buf) {
 		parv[(*parc)++]=split_cmd(&buf);
-		if (*parc>=(MAX_TOKENS-1)) {
+		if (*parc>(MAX_TOKENS-1)) {
 			parv[*parc]=buf;
+			break;
 		}
-		else
-			parv[*parc]="\0";
 	}
+	for(i=*parc;i<MAX_TOKENS;i++)
+		parv[i]="";
 }
 
 static int
