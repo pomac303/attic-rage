@@ -10,5 +10,6 @@ void handle_mode (server *serv, int parc, char *parv[], char *nick, int numeric_
 void send_channel_modes (session *sess, char *parv[], int start, int end, char sign, char mode);
 char *get_isupport(server * serv, char *value);
 int isupport(server * serv, char *value);
+void run_005(server * serv);
 
 #endif

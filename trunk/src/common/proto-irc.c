@@ -378,6 +378,12 @@ irc_numeric(session *sess, int parc, char *parv[])
 	switch(atoi(parv[1])) {
 		case RPL_WELCOME:  /* 001 */
 			inbound_login_start(sess,parv[2],parv[0]);
+			if (sess->server->isupport)
+				dict_delete(sess->server->isupport);
+			sess->server->isupport = dict_new();
+
+			dict_set_free_keys(sess->server->isupport, g_free);
+			dict_set_free_data(sess->server->isupport, g_free);
 			/* PTnet code not ported */
 			break;
 		case RPL_MYINFO: /* 004 */
@@ -626,7 +632,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 		}
 
 		case RPL_WHOSPCRPL: /* 354 */
-			if (strcmp(parv[3],"152"))
+			if (strcmp(parv[3],"152") == 0)
 			{
 				int away = 0;
 				session *who_sess = find_channel(sess->server, parv[4]);
@@ -685,6 +691,7 @@ irc_numeric(session *sess, int parc, char *parv[])
 
 		case RPL_ENDOFMOTD: /* 376 */
 		case ERR_NOMOTD: /* 422 */
+			run_005(sess->server);
 			inbound_login_end(sess,parv[parc-1]);
 			return;
 

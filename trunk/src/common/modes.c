@@ -594,7 +594,7 @@ int
 isupport(server * serv, char *value)
 {
 	int found;
-
+	
 	dict_find(serv->isupport, value, &found);
 	return found;
 }
@@ -607,14 +607,8 @@ inbound_005 (server * serv, int parc, char *parv[])
 	int w;
 	char *pre;
 
-	if (serv->isupport)
-		dict_delete(serv->isupport);
-	serv->isupport = dict_new();
-
-	dict_set_free_keys(serv->isupport, g_free);
-	dict_set_free_data(serv->isupport, g_free);
-
 	w = 3;
+	parc--; 
 	while (w < parc && *parv[w])
 	{
 		pre = strchr(parv[w], '=');
@@ -625,25 +619,35 @@ inbound_005 (server * serv, int parc, char *parv[])
 			pre[0] = '=';
 		w++;
 	}
+}
+
+void
+run_005 (server * serv)
+{
+	char *pre;
 
 	if((isupport(serv, "CAPAB"))) /* wait for numeric 290 */
 		tcp_send_len (serv, "CAPAB IDENTIFY-MSG\r\n", 20);
-	else if((pre = get_isupport(serv, "CASEMAPPING")))
+	
+	if((pre = get_isupport(serv, "CASEMAPPING")))
 	{
 		if (strcmp (pre, "ascii") == 0)
 			serv->p_cmp = (void *)strcasecmp;
 	}
-	else if((pre = get_isupport(serv, "CHANMODES")))
+	
+	if((pre = get_isupport(serv, "CHANMODES")))
 	{
 		free (serv->chanmodes);
 		serv->chanmodes = strdup(pre);
 	}
-	else if((pre = get_isupport(serv, "CHANTYPES")))
+	
+	if((pre = get_isupport(serv, "CHANTYPES")))
 	{
 		free (serv->chantypes);
 		serv->chantypes = strdup(pre);
 	}
-	else if((pre = get_isupport(serv, "CHARSET")))
+	
+	if((pre = get_isupport(serv, "CHARSET")))
 	{
 		if (strcasecmp (pre, "UTF-8") == 0)
 		{
@@ -652,11 +656,14 @@ inbound_005 (server * serv, int parc, char *parv[])
 			serv->encoding = strdup(pre);
 		}
 	}
-	else if((pre = get_isupport(serv, "MODES")))
+	
+	if((pre = get_isupport(serv, "MODES")))
 		serv->modes_per_line = atoi (pre);
-	else if((pre = get_isupport(serv, "NAMESX")))
+	
+	if((pre = get_isupport(serv, "NAMESX")))
 		tcp_send_len (serv, "PROTOCTL NAMESX\r\n", 17);
-	else if((pre = get_isupport(serv, "NETWORK")))
+	
+	if((pre = get_isupport(serv, "NETWORK")))
 	{
 		/* if (serv->networkname)
 			free (serv->networkname);
@@ -668,7 +675,8 @@ inbound_005 (server * serv, int parc, char *parv[])
 			fe_set_channel (serv->server_session);
 		}
 	}
-	else if((pre = get_isupport(serv, "PREFIX")))
+	
+	if((pre = get_isupport(serv, "PREFIX")))
 	{
 		char *new;
 		

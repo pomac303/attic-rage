@@ -87,14 +87,14 @@ enum
 {
 	HOOK_COMMAND,	/* /command */
 	HOOK_SERVER,	/* PRIVMSG, NOTICE, numerics */
-	HOOK_PRINT,		/* All print events */
-	HOOK_TIMER,		/* timeouts */
-	HOOK_FD,			/* sockets & fds */
-	HOOK_DELETED	/* marked for deletion */
+	HOOK_PRINT,	/* All print events */
+	HOOK_TIMER,	/* timeouts */
+	HOOK_FD,	/* sockets & fds */
+	HOOK_DELETED	/* marked for deletion, ALWAYS LAST! */
 };
 
 dict_t plugin_list = NULL;	/* export for plugingui.c */
-static GSList *hook_list = NULL;
+static GSList *hook_list[HOOK_DELETED];
 
 extern const struct prefs vars[];	/* cfgfiles.c */
 
@@ -127,6 +127,7 @@ plugin_free (xchat_plugin *pl, int do_deinit, int allow_refuse)
 	GSList *list, *next;
 	xchat_hook *hook;
 	xchat_deinit_func *deinit_func;
+	int i;
 
 	/* fake plugin added by xchat_plugingui_add() */
 	if (pl->fake)
@@ -141,14 +142,17 @@ plugin_free (xchat_plugin *pl, int do_deinit, int allow_refuse)
 	}
 
 	/* remove all of this plugin's hooks */
-	list = hook_list;
-	while (list)
+	for (i = 0; i < HOOK_DELETED; i++);
 	{
-		hook = list->data;
-		next = list->next;
-		if (hook->pl == pl)
-			xchat_unhook (NULL, hook);
-		list = next;
+		list = hook_list[i];
+		while (list)
+		{
+			hook = list->data;
+			next = list->next;
+			if (hook->pl == pl)
+				xchat_unhook (NULL, hook);
+			list = next;
+		}
 	}
 
 #ifdef USE_PLUGIN
@@ -474,7 +478,7 @@ plugin_hook_run (session *sess, char *name, int parc, char *parv[], int type)
 	xchat_hook *hook;
 	int ret, eat = 0;
 
-	list = hook_list;
+	list = hook_list[type];
 	while (1)
 	{
 		list = plugin_hook_find (list, type, name);
@@ -514,14 +518,14 @@ plugin_hook_run (session *sess, char *name, int parc, char *parv[], int type)
 
 xit:
 	/* really remove deleted hooks now */
-	list = hook_list;
+	list = hook_list[type];
 	while (list)
 	{
 		hook = list->data;
 		next = list->next;
 		if (hook->type == HOOK_DELETED)
 		{
-			hook_list = g_slist_remove (hook_list, hook);
+			hook_list[type] = g_slist_remove (hook_list[type], hook);
 			free (hook);
 		}
 		list = next;
@@ -581,7 +585,7 @@ plugin_timeout_cb (xchat_hook *hook)
 	ret = ((xchat_timer_cb *)hook->callback) (hook->userdata);
 
 	/* the callback might have already unhooked it! */
-	if (!g_slist_find (hook_list, hook))
+	if (!g_slist_find (hook_list[hook->type], hook))
 		return 0;
 
 	if (ret == 0)
@@ -601,19 +605,20 @@ plugin_insert_hook (xchat_hook *new_hook)
 	GSList *list;
 	xchat_hook *hook;
 
-	list = hook_list;
+	list = hook_list[new_hook->type];
 	while (list)
 	{
 		hook = list->data;
-		if (hook->type == new_hook->type && hook->pri <= new_hook->pri)
+		if (hook->pri <= new_hook->pri)
 		{
-			hook_list = g_slist_insert_before (hook_list, list, new_hook);
+			hook_list[new_hook->type] = 
+				g_slist_insert_before (hook_list[new_hook->type], list, new_hook);
 			return;
 		}
 		list = list->next;
 	}
 
-	hook_list = g_slist_append (hook_list, new_hook);
+	hook_list[new_hook->type] = g_slist_append (hook_list[new_hook->type], new_hook);
 }
 
 static gboolean
@@ -666,13 +671,12 @@ GList *
 plugin_command_list(GList *tmp_list)
 {
 	xchat_hook *hook;
-	GSList *list = hook_list;
+	GSList *list = hook_list[HOOK_COMMAND];
 
 	while (list)
 	{
 		hook = list->data;
-		if (hook->type == HOOK_COMMAND)
-			tmp_list = g_list_prepend(tmp_list, hook->name);
+		tmp_list = g_list_prepend(tmp_list, hook->name);
 		list = list->next;
 	}
 	return tmp_list;
@@ -687,12 +691,11 @@ plugin_show_help (session *sess, char *cmd)
 	/* show all help commands */
 	if (cmd == NULL)
 	{
-		list = hook_list;
+		list = hook_list[HOOK_COMMAND];
 		while (list)
 		{
 			hook = list->data;
-			if (hook->type == HOOK_COMMAND)
-				PrintText (sess, hook->name);
+			PrintText (sess, hook->name);
 			list = list->next;
 		}
 		return 1;
@@ -720,7 +723,7 @@ void *
 xchat_unhook (xchat_plugin *ph, xchat_hook *hook)
 {
 	/* perl.c trips this */
-	if (hook->type == HOOK_DELETED || !g_slist_find (hook_list, hook))
+	if (hook->type == HOOK_DELETED || !g_slist_find (hook_list[hook->type], hook))
 		return NULL;
 
 	if (hook->type == HOOK_TIMER && hook->tag != 0)

@@ -2963,7 +2963,29 @@ wallchop_cb (struct User *user, multidata *data)
 }
 
 static int
-cmd_wallchop (struct session *sess, char *cmd, char *buf)
+wallvoices_cb (struct User *user, multidata *data)
+{
+	if (user->voice)
+	{
+		if (data->i)
+			strcat (data->tbuf, ",");
+		strcat (data->tbuf, user->nick);
+		data->i++;
+	}
+	if (data->i == 5)
+	{
+		data->i = 0;
+		sprintf (data->tbuf + strlen (data->tbuf),
+				" :[@%s] %s", data->sess->channel, data->reason);
+		data->sess->server->p_raw (data->sess->server, data->tbuf);
+		strcpy (data->tbuf, "NOTICE ");
+	}
+
+	return TRUE;
+}
+
+static int
+cmd_wallchops (struct session *sess, char *cmd, char *buf)
 {
 	multidata data;
 	char sent[1024];
@@ -2974,34 +2996,71 @@ cmd_wallchop (struct session *sess, char *cmd, char *buf)
 	if (!(*buf))
 		return FALSE;
 
-#if 0
-	/* We need a way to detect if the server supports wallchops */
-	if (supports_wallchops) {
-	sprintf(sent,"WALLCHOPS %s :[@%s] %s",
-			sess->channel,
-			sess->channel,
-			buf);
-	return TRUE;
-	} else {
-#endif
-
-	strcpy (sent, "NOTICE ");
-
-	data.reason = buf;
-	data.tbuf = sent;
-	data.i = 0;
-	data.sess = sess;
-	tree_foreach (sess->usertree, (tree_traverse_func*)wallchop_cb, &data);
-
-	if (data.i)
+	/* XXX: Local notice needed aswell */
+	if (isupport(sess->server, "WALLCHOPS"))
 	{
-		sprintf (sent + strlen (sent),
-					" :[@%s] %s", sess->channel, buf);
+		sprintf(sent,"WALLCHOPS %s :[@%s] %s",
+				sess->channel,
+				sess->channel,
+				buf);
 		sess->server->p_raw (sess->server, sent);
+		return TRUE;
+	} else 
+	{
+		strcpy (sent, "NOTICE ");
+
+		data.reason = buf;
+		data.tbuf = sent;
+		data.i = 0;
+		data.sess = sess;
+		tree_foreach (sess->usertree, (tree_traverse_func*)wallchop_cb, &data);
+
+		if (data.i)
+		{
+			sprintf (sent + strlen (sent),
+						" :[@%s] %s", sess->channel, buf);
+			sess->server->p_raw (sess->server, sent);
+		}
 	}
-#if 0
+	return TRUE;
+}
+
+static int
+cmd_wallvoices (struct session *sess, char *cmd, char *buf)
+{
+	multidata data;
+	char sent[1024];
+
+	split_cmd(&buf);
+	skip_white(&buf);
+
+	if (!(*buf))
+		return FALSE;
+
+	if (isupport(sess->server, "WALLVOICES"))
+	{
+		sprintf(sent,"WALLCHOPS %s :[@%s] %s",
+				sess->channel,
+				sess->channel,
+				buf);
+		return TRUE;
+	} else
+	{
+		strcpy (sent, "NOTICE ");
+
+		data.reason = buf;
+		data.tbuf = sent;
+		data.i = 0;
+		data.sess = sess;
+		tree_foreach (sess->usertree, (tree_traverse_func*)wallvoices_cb, &data);
+
+		if (data.i)
+		{
+			sprintf (sent + strlen (sent),
+					" :[@%s] %s", sess->channel, buf);
+			sess->server->p_raw (sess->server, sent);
+		}
 	}
-#endif
 	return TRUE;
 }
 
@@ -3263,8 +3322,10 @@ static struct commands splay_voice = {"VOICE", cmd_voice, 1, 1,
 	 N_("VOICE <nick>, gives voice status to someone (needs chanop)")};
 static struct commands splay_wallchan = {"WALLCHAN", cmd_wallchan, 1, 1,
 	 N_("WALLCHAN <message>, writes the message to all channels")};
-static struct commands splay_wallchop = {"WALLCHOP", cmd_wallchop, 1, 1,
-	 N_("WALLCHOP <message>, sends the message to all chanops on the current channel")};
+static struct commands splay_wallchops = {"WALLCHOPS", cmd_wallchops, 1, 1,
+	 N_("WALLCHOPS <message>, sends the message to all chanops on the current channel")};
+static struct commands splay_wallvoices = {"WALLVOICES", cmd_wallvoices, 1, 1,
+	N_("WALLVOICES <message>, sends the message to all voiced users on the current channel")};
 
 void
 setup_commands(void)
@@ -3352,7 +3413,8 @@ setup_commands(void)
 	add_command(&splay_userlist);
 	add_command(&splay_voice);
 	add_command(&splay_wallchan);
-	add_command(&splay_wallchop);
+	add_command(&splay_wallchops);
+	add_command(&splay_wallvoices);
 }
 
 
