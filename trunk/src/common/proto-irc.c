@@ -176,7 +176,6 @@ irc_message (server *serv, char *channel, char *text)
 			&& find_name(serv->front_session, channel)
 			&& isupport(serv, "CPRIVMSG"))
 	{
-		fprintf(stderr, "+++ CPRIVMSG +++\n");
 		tcp_sendf (serv, "CPRIVMSG %s %s :%s\r\n", channel, 
 				serv->front_session->channel, text);
 	}
@@ -199,7 +198,6 @@ irc_notice (server *serv, char *channel, char *text)
 			&& find_name(serv->front_session, channel)
 			&& isupport(serv, "CNOTICE"))
 	{
-		fprintf(stderr, "+++ CNOTICE +++\n");
 		tcp_sendf (serv, "CNOTICE %s %s :%s\r\n", channel, 
 				serv->front_session->channel, text);
 	}
