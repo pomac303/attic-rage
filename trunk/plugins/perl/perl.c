@@ -1,5 +1,7 @@
-/* X-Chat 2.0 PERL Plugin
+/* Rage PERL Plugin
  * Copyright (C) 1998-2002 Peter Zelezny.
+ *
+ * Forked from the excellent Xchat 2 code base.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +37,7 @@
 #include "rage-plugin.h"
 
 
-static xchat_plugin *ph; /* plugin handle */
+static rage_plugin *ph; /* plugin handle */
 
 
 static int perl_load_file (char *script_name);
@@ -71,9 +73,9 @@ perl_auto_load (void)
 	const char *xdir;
 
 	/* get the dir in local filesystem encoding (what opendir() expects!) */
-	xdir = xchat_get_info (ph, "xchatdirfs");
-	if (!xdir)	/* xchatdirfs is new for 2.0.9, will fail on older */
-		xdir = xchat_get_info (ph, "xchatdir");
+	xdir = rage_get_info (ph, "ragedirfs");
+	if (!xdir)	/* ragedirfs is new for 2.0.9, will fail on older */
+		xdir = rage_get_info (ph, "ragedir");
 	dir = opendir (xdir);
 	if (dir)
 	{
@@ -115,7 +117,7 @@ typedef struct
   SV *callback;
   SV *userdata;
   HookType type;
-  xchat_hook *hook;
+  rage_hook *hook;
   
 } HookData;
 
@@ -153,10 +155,10 @@ execute_perl( SV *function, char *args)
 
 	sv = GvSV(gv_fetchpv("@", TRUE, SVt_PV));
 	if (SvTRUE(sv)) {
-/* 		xchat_printf(ph, "Perl error: %s\n", SvPV(sv, count)); */
+/* 		rage_printf(ph, "Perl error: %s\n", SvPV(sv, count)); */
 	  POPs; /* remove undef from the top of the stack */
 	} else if (count != 1) {
-		xchat_printf(ph, "Perl error: expected 1 value from %s, "
+		rage_printf(ph, "Perl error: expected 1 value from %s, "
 						 "got: %d\n", function, count);
 	} else {
 		ret_value = POPi;
@@ -188,17 +190,17 @@ timer_cb (void *userdata)
 	SPAGAIN;
 	if (SvTRUE (ERRSV))
 	{
-		xchat_printf (ph, "Error in timer callback %s",
+		rage_printf (ph, "Error in timer callback %s",
 				SvPV_nolen (ERRSV));
 		POPs; /* remove undef from the top of the stack */
-		retVal = XCHAT_EAT_ALL;
+		retVal = RAGE_EAT_ALL;
 	}
 	else
 	{
 		if (count != 1)
 		{
-			xchat_print (ph, "Timer handler should only return 1 value." );
-			retVal = XCHAT_EAT_NONE;
+			rage_print (ph, "Timer handler should only return 1 value." );
+			retVal = RAGE_EAT_NONE;
 		}
 		else
 		{
@@ -252,7 +254,7 @@ server_cb (int parc, char *parv[], void *userdata)
 	}
 
 	
-/* 	xchat_printf (ph, */
+/* 	rage_printf (ph, */
 /* 			"Recieved %d words in server callback", av_len (wd)); */
 	PUSHMARK (SP);
 	XPUSHs (newRV_noinc ((SV*) wd));
@@ -263,17 +265,17 @@ server_cb (int parc, char *parv[], void *userdata)
 	SPAGAIN;
 	if (SvTRUE (ERRSV))
 	{
-		xchat_printf (ph, "Error in server callback %s",
+		rage_printf (ph, "Error in server callback %s",
 				SvPV_nolen (ERRSV));
 		POPs; /* remove undef from the top of the stack */
-		retVal = XCHAT_EAT_NONE;
+		retVal = RAGE_EAT_NONE;
 	}
 	else
 	{
 		if (count != 1)
 		{
-			xchat_print (ph, "Server handler should only return 1 value.");
-			retVal = XCHAT_EAT_NONE;
+			rage_print (ph, "Server handler should only return 1 value.");
+			retVal = RAGE_EAT_NONE;
 		}
 		else
 		{
@@ -315,7 +317,7 @@ command_cb (int parc, char* parv[], void *userdata)
 	}
 
 	
-/* 	xchat_printf (ph, "Recieved %d words in command callback", */
+/* 	rage_printf (ph, "Recieved %d words in command callback", */
 /* 			av_len (wd)); */
 	PUSHMARK (SP);
 	XPUSHs (newRV_noinc ((SV*)wd));
@@ -326,17 +328,17 @@ command_cb (int parc, char* parv[], void *userdata)
 	SPAGAIN;
 	if (SvTRUE (ERRSV))
 	{
-		xchat_printf (ph, "Error in command callback %s",
+		rage_printf (ph, "Error in command callback %s",
 				SvPV_nolen (ERRSV));
 		POPs; /* remove undef from the top of the stack */
-		retVal = XCHAT_EAT_NONE;
+		retVal = RAGE_EAT_NONE;
 	}
 	else
 	{
 		if (count != 1)
 		{
-			xchat_print (ph, "Command handler should only return 1 value.");
-			retVal = XCHAT_EAT_NONE;
+			rage_print (ph, "Command handler should only return 1 value.");
+			retVal = RAGE_EAT_NONE;
 		}
 		else
 		{
@@ -377,7 +379,7 @@ print_cb (int parc, char *parv[], void *userdata)
 		av_push (wd, newSVpv (parv[count], 0));
 	}
 	
-/* 	xchat_printf (ph, "Recieved %d words in print callback", av_len (wd)); */
+/* 	rage_printf (ph, "Recieved %d words in print callback", av_len (wd)); */
 	PUSHMARK (SP);
 	XPUSHs (newRV_noinc ((SV*)wd));
 	XPUSHs (data->userdata);
@@ -387,17 +389,17 @@ print_cb (int parc, char *parv[], void *userdata)
 	SPAGAIN;
 	if (SvTRUE (ERRSV))
 	{
-		xchat_printf (ph, "Error in print callback %s",
+		rage_printf (ph, "Error in print callback %s",
 			       SvPV_nolen(ERRSV));
 		POPs; /* remove undef from the top of the stack */
-		retVal = XCHAT_EAT_NONE;
+		retVal = RAGE_EAT_NONE;
 	}
 	else
 	{
 		if (count != 1)
 		{
-			xchat_print (ph, "Print handler should only return 1 value.");
-			retVal = XCHAT_EAT_NONE;
+			rage_print (ph, "Print handler should only return 1 value.");
+			retVal = RAGE_EAT_NONE;
 		}
 		else
 		{
@@ -415,20 +417,20 @@ print_cb (int parc, char *parv[], void *userdata)
 
 /* custom IRC perl functions for scripting */
 
-/* Xchat::register (scriptname, version, desc, shutdowncallback,)
+/* Rage::register (scriptname, version, desc, shutdowncallback,)
  *  all scripts should call this at startup
  *
  */
 
-static XS (XS_Xchat_register)
+static XS (XS_Rage_register)
 {
 	char *name, *ver, *desc;
 	SV *callback;
 	PerlScript *scp;
 	dXSARGS;
 	if (items < 2 || items > 4) {
-		xchat_printf (ph,
-		"Usage: Xchat::register(scriptname, version, [desc,[shutdowncallback]])");
+		rage_printf (ph,
+		"Usage: Rage::register(scriptname, version, [desc,[shutdowncallback]])");
 	} else {
 		name = SvPV_nolen (ST (0));
 		ver = SvPV_nolen (ST (1));
@@ -457,7 +459,7 @@ static XS (XS_Xchat_register)
 		scp->shutdowncallback = sv_mortalcopy (callback);
 		SvREFCNT_inc (scp->shutdowncallback);
 		/* FIXME: no filename */
-		scp->gui_entry = xchat_plugingui_add (ph, scp->name, scp->name,
+		scp->gui_entry = rage_plugingui_add (ph, scp->name, scp->name,
 															scp->desc, scp->version, NULL);
 	  
 		perl_list = g_slist_prepend (perl_list, scp);
@@ -467,23 +469,23 @@ static XS (XS_Xchat_register)
 }
 
 
-/* Xchat::print(output) */
-static XS (XS_Xchat_print)
+/* Rage::print(output) */
+static XS (XS_Rage_print)
 {
   
 	char *text = NULL;
 
 	dXSARGS;
 	if (items != 1 ) {
-		xchat_print (ph, "Usage: Xchat::_print(text)");
+		rage_print (ph, "Usage: Rage::_print(text)");
 	} else {
 		text = SvPV_nolen (ST (0));
-		xchat_print (ph, text);
+		rage_print (ph, text);
 	}
 	XSRETURN_EMPTY;
 }
 
-static XS (XS_Xchat_emit_print)
+static XS (XS_Rage_emit_print)
 {
 	char *event_name;
 	int RETVAL;
@@ -491,7 +493,7 @@ static XS (XS_Xchat_emit_print)
 
 	dXSARGS;
 	if (items < 1) {
-		xchat_print (ph, "Usage: Xchat::emit_print(event_name, ...)");
+		rage_print (ph, "Usage: Rage::emit_print(event_name, ...)");
 	} else {
 		event_name = (char *)SvPV_nolen (ST (0));
 		RETVAL = 0;
@@ -506,28 +508,28 @@ static XS (XS_Xchat_emit_print)
 		/*		switch  (items) {*/
 		switch (count) {
 		case 1:
-			RETVAL = xchat_emit_print (ph, event_name, NULL);
+			RETVAL = rage_emit_print (ph, event_name, NULL);
 			break;
 		case 2:
-			RETVAL = xchat_emit_print (ph, event_name,
+			RETVAL = rage_emit_print (ph, event_name,
 							SvPV_nolen (ST (1)),
 							NULL);
 			break;
 		case 3:
-			RETVAL = xchat_emit_print (ph, event_name,
+			RETVAL = rage_emit_print (ph, event_name,
 							SvPV_nolen (ST (1)), 
 							SvPV_nolen (ST (2)),
 							NULL);
 			break;
 		case 4:
-	       		RETVAL = xchat_emit_print (ph, event_name,
+	       		RETVAL = rage_emit_print (ph, event_name,
 						  SvPV_nolen (ST (1)), 
 						  SvPV_nolen (ST (2)),
 						  SvPV_nolen (ST (3)),
 						  NULL);
 		       break;
 		case 5:
-			RETVAL = xchat_emit_print (ph, event_name,
+			RETVAL = rage_emit_print (ph, event_name,
 						  SvPV_nolen (ST (1)), 
 						  SvPV_nolen (ST (2)),
 						  SvPV_nolen (ST (3)),
@@ -540,16 +542,16 @@ static XS (XS_Xchat_emit_print)
 		XSRETURN_IV(RETVAL);
     }
 }
-static XS (XS_Xchat_get_info)
+static XS (XS_Rage_get_info)
 {
 	dXSARGS;
 	if (items != 1) {
-	  xchat_print (ph, "Usage: Xchat::get_info(id)");
+	  rage_print (ph, "Usage: Rage::get_info(id)");
 	} else {
 		SV *	id = ST (0);
 		const char *	RETVAL;
 	  
-		RETVAL = xchat_get_info (ph, SvPV_nolen (id));
+		RETVAL = rage_get_info (ph, SvPV_nolen (id));
 		if (RETVAL == NULL) {
 		      XSRETURN_UNDEF;
 		}
@@ -557,17 +559,17 @@ static XS (XS_Xchat_get_info)
 	}
 }
 
-static XS (XS_Xchat_get_prefs)
+static XS (XS_Rage_get_prefs)
 {
 	const char *str;
 	int integer;
 	dXSARGS;
 	if(items != 1) {
-		xchat_print (ph, "Usage: Xchat::get_prefs(name)");
+		rage_print (ph, "Usage: Rage::get_prefs(name)");
 	} else {
 	  
 	  
-		switch (xchat_get_prefs
+		switch (rage_get_prefs
 				(ph, SvPV_nolen (ST (0)), &str, &integer)) {
 		case 0:
 			XSRETURN_UNDEF;
@@ -588,22 +590,22 @@ static XS (XS_Xchat_get_prefs)
 	}
 }
 
-/* Xchat::_hook_server(name, priority, callback, [userdata]) */
-static XS (XS_Xchat_hook_server)
+/* Rage::_hook_server(name, priority, callback, [userdata]) */
+static XS (XS_Rage_hook_server)
 {
 
 	SV *	name;
 	int	pri;
 	SV *	callback;
 	SV *	userdata;
-	xchat_hook *	RETVAL;
+	rage_hook *	RETVAL;
 	HookData *data;
 
 	dXSARGS;
 
 	if (items != 4) {
-		xchat_print (ph,
-				"Usage: Xchat::_hook_server(name, priority, callback, userdata)");
+		rage_print (ph,
+				"Usage: Rage::_hook_server(name, priority, callback, userdata)");
 	} else {
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
@@ -621,7 +623,7 @@ static XS (XS_Xchat_hook_server)
 		SvREFCNT_inc (data->callback);
 		data->userdata = sv_mortalcopy (userdata);
 		SvREFCNT_inc (data->userdata);
-		RETVAL = xchat_hook_server (ph, SvPV_nolen (name), pri,
+		RETVAL = rage_hook_server (ph, SvPV_nolen (name), pri,
 						server_cb, data);
 		hook_list = g_slist_append (hook_list, RETVAL);
 
@@ -629,21 +631,21 @@ static XS (XS_Xchat_hook_server)
 	}
 }
 
-/* Xchat::_hook_command(name, priority, callback, help_text, userdata) */
-static XS(XS_Xchat_hook_command)
+/* Rage::_hook_command(name, priority, callback, help_text, userdata) */
+static XS(XS_Rage_hook_command)
 {
 	SV *name;
 	int pri;
 	SV *callback;
 	char *help_text;
 	SV *userdata;
-	xchat_hook *RETVAL;
+	rage_hook *RETVAL;
 	HookData *data;
 	
 	dXSARGS;
 	
 	if (items != 5) {
-		xchat_print (ph, "Usage: Xchat::_hook_command(name, priority, callback, help_text, userdata)");
+		rage_print (ph, "Usage: Rage::_hook_command(name, priority, callback, help_text, userdata)");
 	} else {
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
@@ -663,7 +665,7 @@ static XS(XS_Xchat_hook_command)
 		SvREFCNT_inc (data->callback);
 		data->userdata = sv_mortalcopy (userdata);
 		SvREFCNT_inc (data->userdata);
-		RETVAL = xchat_hook_command (ph, SvPV_nolen (name), pri,
+		RETVAL = rage_hook_command (ph, SvPV_nolen (name), pri,
 						command_cb, help_text, data);
 		hook_list = g_slist_append (hook_list, RETVAL);
 
@@ -672,20 +674,20 @@ static XS(XS_Xchat_hook_command)
 
 }
 
-/* Xchat::_hook_print(name, priority, callback, [userdata]) */
-static XS (XS_Xchat_hook_print)
+/* Rage::_hook_print(name, priority, callback, [userdata]) */
+static XS (XS_Rage_hook_print)
 {
 
 	SV *	name;
 	int	pri;
 	SV *	callback;
 	SV *	userdata;
-	xchat_hook *	RETVAL;
+	rage_hook *	RETVAL;
 	HookData *data;
 	dXSARGS;
 	if (items != 4) {
-		xchat_print (ph,
-				"Usage: Xchat::_hook_print(name, priority, callback, userdata)");
+		rage_print (ph,
+				"Usage: Rage::_hook_print(name, priority, callback, userdata)");
 	} else {
 		name = ST (0);
 		pri = (int)SvIV(ST (1));
@@ -705,7 +707,7 @@ static XS (XS_Xchat_hook_print)
 		SvREFCNT_inc (data->callback);
 		data->userdata = sv_mortalcopy (userdata);
 		SvREFCNT_inc (data->userdata);
-		RETVAL = xchat_hook_print (ph, SvPV_nolen (name), pri,
+		RETVAL = rage_hook_print (ph, SvPV_nolen (name), pri,
 						print_cb, data);
 		hook_list = g_slist_append (hook_list, RETVAL);
 
@@ -713,20 +715,20 @@ static XS (XS_Xchat_hook_print)
 	}
 }
 
-/* Xchat::_hook_timer(timeout, callback, [userdata]) */
-static XS (XS_Xchat_hook_timer)
+/* Rage::_hook_timer(timeout, callback, [userdata]) */
+static XS (XS_Rage_hook_timer)
 {
 	int	timeout;
 	SV *	callback;
 	SV *	userdata;
-	xchat_hook * RETVAL;
+	rage_hook * RETVAL;
 	HookData *data;
 
 	dXSARGS;
 
 	if (items != 3) {
-		xchat_print (ph,
-		"Usage: Xchat::_hook_timer(timeout, callback, userdata)");
+		rage_print (ph,
+		"Usage: Rage::_hook_timer(timeout, callback, userdata)");
 	} else {
 		timeout = (int)SvIV(ST (0));
 		callback = ST (1);
@@ -743,7 +745,7 @@ static XS (XS_Xchat_hook_timer)
 		SvREFCNT_inc (data->callback);
 		data->userdata = sv_mortalcopy (userdata);
 		SvREFCNT_inc (data->userdata);
-		RETVAL = xchat_hook_timer (ph, timeout, timer_cb, data);
+		RETVAL = rage_hook_timer (ph, timeout, timer_cb, data);
 		data->hook = RETVAL;
 		hook_list = g_slist_append (hook_list, RETVAL);
 
@@ -751,20 +753,20 @@ static XS (XS_Xchat_hook_timer)
 	}
 }
 
-static XS(XS_Xchat_unhook)
+static XS(XS_Rage_unhook)
 {
-	xchat_hook *	hook;
+	rage_hook *	hook;
 	HookData *userdata;
 	int retCount = 0;
 	dXSARGS;
 	if (items != 1) {
-		xchat_print (ph, "Usage: Xchat::unhook(hook)");
+		rage_print (ph, "Usage: Rage::unhook(hook)");
 	} else {
 	  if(looks_like_number(ST (0))) {
-		 hook = INT2PTR(xchat_hook *,SvIV(ST (0)));
+		 hook = INT2PTR(rage_hook *,SvIV(ST (0)));
 		 
 		 if(g_slist_find( hook_list, hook ) != NULL ) {
-			userdata = (HookData*)xchat_unhook (ph, hook);
+			userdata = (HookData*)rage_unhook (ph, hook);
 			hook_list = g_slist_remove (hook_list, hook);
 			if (userdata->name) {
 			  SvREFCNT_dec (userdata->name);
@@ -785,31 +787,31 @@ static XS(XS_Xchat_unhook)
 	}
 }
 
-/* Xchat::_command(command) */
-static XS (XS_Xchat_command)
+/* Rage::_command(command) */
+static XS (XS_Rage_command)
 {
 	char *cmd = NULL;
 
 	dXSARGS;
 	if (items != 1 ) {
-		xchat_print (ph, "Usage: Xchat::_command(command)");
+		rage_print (ph, "Usage: Rage::_command(command)");
 	} else {
 		cmd = SvPV_nolen (ST (0));
-		xchat_command (ph, cmd);
+		rage_command (ph, cmd);
 
 	}
 	XSRETURN_EMPTY;
 }
 
-static XS (XS_Xchat_find_context)
+static XS (XS_Rage_find_context)
 {
 	char * server = NULL;
 	char * chan = NULL;
-	xchat_context * RETVAL;
+	rage_context * RETVAL;
 
 	dXSARGS;
 	if (items > 2)
-		xchat_print (ph, "Usage: Xchat::find_context ([channel, [server]])");
+		rage_print (ph, "Usage: Rage::find_context ([channel, [server]])");
 	{
 
 	switch (items)
@@ -822,8 +824,8 @@ static XS (XS_Xchat_find_context)
 		/* otherwise leave it as null */
 		if (SvTRUE (ST (0)) || SvNIOK (ST (0))) {
 			chan = SvPV_nolen (ST (0));
-/* 			xchat_printf( ph, "XSUB - find_context( %s, NULL )", chan ); */
-		} /* else { xchat_print( ph, "XSUB - find_context( NULL, NULL )" ); } */
+/* 			rage_printf( ph, "XSUB - find_context( %s, NULL )", chan ); */
+		} /* else { rage_print( ph, "XSUB - find_context( NULL, NULL )" ); } */
 		/* chan is already NULL */
 		break;
 	case 2: /* server and channel */
@@ -831,70 +833,70 @@ static XS (XS_Xchat_find_context)
 		/* otherwise leave it as NULL */
 		if (SvTRUE (ST (0)) || SvNIOK (ST (0)) ) {
 			chan = SvPV_nolen (ST (0));
-/* 			xchat_printf( ph, "XSUB - find_context( %s, NULL )", SvPV_nolen(ST(0) )); */
-		} /* else { xchat_print( ph, "XSUB - 2 arg NULL chan" ); } */
+/* 			rage_printf( ph, "XSUB - find_context( %s, NULL )", SvPV_nolen(ST(0) )); */
+		} /* else { rage_print( ph, "XSUB - 2 arg NULL chan" ); } */
 		/* change server value only if it is true or 0 */
 		/* otherwise leave it as NULL */
 		if (SvTRUE (ST (1)) || SvNIOK (ST (1)) ){
 			server = SvPV_nolen (ST (1));
-/* 			xchat_printf( ph, "XSUB - find_context( NULL, %s )", SvPV_nolen(ST(1) )); */
-		}/*  else { xchat_print( ph, "XSUB - 2 arg NULL server" ); } */
+/* 			rage_printf( ph, "XSUB - find_context( NULL, %s )", SvPV_nolen(ST(1) )); */
+		}/*  else { rage_print( ph, "XSUB - 2 arg NULL server" ); } */
 
 		break;
 	}
 
-	RETVAL = xchat_find_context (ph, server, chan);
+	RETVAL = rage_find_context (ph, server, chan);
 	if (RETVAL != NULL)
 	{
-/*  		xchat_print (ph, "XSUB - context found"); */
+/*  		rage_print (ph, "XSUB - context found"); */
 		XSRETURN_IV(PTR2UV(RETVAL));
 	}
 	else
 	{
- /* 		xchat_print (ph, "XSUB - context not found"); */
+ /* 		rage_print (ph, "XSUB - context not found"); */
 		XSRETURN_UNDEF;
 	}
 	}
 }
 
-static XS (XS_Xchat_get_context)
+static XS (XS_Rage_get_context)
 {
 	dXSARGS;
 	if (items != 0) {
-		xchat_print (ph, "Usage: Xchat::get_context()");
+		rage_print (ph, "Usage: Rage::get_context()");
 	} else {
-		XSRETURN_IV(PTR2UV(xchat_get_context (ph)));
+		XSRETURN_IV(PTR2UV(rage_get_context (ph)));
 	}
 }
 
-static XS (XS_Xchat_set_context)
+static XS (XS_Rage_set_context)
 {
-	xchat_context *ctx;
+	rage_context *ctx;
 	dXSARGS;
 	if (items != 1) {
-		xchat_print (ph, "Usage: Xchat::set_context(ctx)");
+		rage_print (ph, "Usage: Rage::set_context(ctx)");
 	} else {
-		ctx = INT2PTR(xchat_context *,SvIV(ST (0)));
-		XSRETURN_IV((IV)xchat_set_context (ph, ctx));
+		ctx = INT2PTR(rage_context *,SvIV(ST (0)));
+		XSRETURN_IV((IV)rage_set_context (ph, ctx));
 	}
 }
 
-static XS (XS_Xchat_nickcmp)
+static XS (XS_Rage_nickcmp)
 {
 	dXSARGS;
 	if (items != 2) {
-		xchat_print (ph, "Usage: Xchat::nickcmp(s1, s2)");
+		rage_print (ph, "Usage: Rage::nickcmp(s1, s2)");
 	} else {
-		XSRETURN_IV((IV)xchat_nickcmp (ph, SvPV_nolen (ST (0)),
+		XSRETURN_IV((IV)rage_nickcmp (ph, SvPV_nolen (ST (0)),
 					 SvPV_nolen (ST (1))));
 	}
 }
 
-static XS (XS_Xchat_get_list)
+static XS (XS_Rage_get_list)
 {
 	SV *	name;
 	HV * hash;
-	xchat_list *list;
+	rage_list *list;
 	const char ** fields;
 	const char *field;
 	int i = 0; /* field index */
@@ -903,13 +905,13 @@ static XS (XS_Xchat_get_list)
 	dXSARGS;
 
 	if (items != 1) {
-		xchat_print (ph, "Usage: Xchat::get_list(name)");
+		rage_print (ph, "Usage: Rage::get_list(name)");
 	} else {
 		SP -= items;  /*remove the argument list from the stack*/
 
 		name = ST (0);
 	
-		list = xchat_list_get (ph, SvPV_nolen (name));
+		list = rage_list_get (ph, SvPV_nolen (name));
 	  
 		if (list == NULL) {
 			XSRETURN_EMPTY;
@@ -918,27 +920,27 @@ static XS (XS_Xchat_get_list)
 		context = GIMME_V;
 
 		if( context == G_SCALAR ) {
-		  while (xchat_list_next (ph, list)) {
+		  while (rage_list_next (ph, list)) {
 			 count++;
 		  }
-		  xchat_list_free (ph, list);
+		  rage_list_free (ph, list);
 		  XSRETURN_IV((IV)count);
 		}
 	  
-		fields = xchat_list_fields (ph, SvPV_nolen (name));
-		while (xchat_list_next (ph, list)) {
+		fields = rage_list_fields (ph, SvPV_nolen (name));
+		while (rage_list_next (ph, list)) {
 			i = 0;
 			hash = newHV ();
 			sv_2mortal ((SV*) hash);
 			while (fields[i] != NULL) {
 				switch (fields[i][0]) {
 				case 's':
-					field = xchat_list_str (ph, list, fields[i]+1);
+					field = rage_list_str (ph, list, fields[i]+1);
 					if (field != NULL)
 					{
 						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 										newSVpvn (field, strlen (field)), 0);
-/* 					xchat_printf (ph, */
+/* 					rage_printf (ph, */
 /* 						"string: %s - %d - %s",  */
 /* 						fields[i]+1, */
 /* 						strlen(fields[i]+1), */
@@ -947,7 +949,7 @@ static XS (XS_Xchat_get_list)
 					} else {
 						hv_store (hash, fields[i]+1, strlen (fields[i]+1),
 									&PL_sv_undef, 0);
-/* 					xchat_printf (ph, */
+/* 					rage_printf (ph, */
 /* 						"string: %s - %d - undef",  */
 /* 							fields[i]+1, */
 /* 							strlen(fields[i]+1) */
@@ -955,22 +957,22 @@ static XS (XS_Xchat_get_list)
 					}
 					break;
 				case 'p':
-/* 				xchat_printf (ph, "pointer: %s", fields[i]+1); */
+/* 				rage_printf (ph, "pointer: %s", fields[i]+1); */
 					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
-								newSVuv(PTR2UV ( xchat_list_str (ph, list,
+								newSVuv(PTR2UV ( rage_list_str (ph, list,
 																				fields[i]+1)
 									)), 0);
 					break;
 				case 'i': 
 					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
-								newSVuv (xchat_list_int (ph, list, fields[i]+1)), 0);
-/* 				xchat_printf (ph, "int: %s - %d",fields[i]+1, */
-/* 				       xchat_list_int (ph, list, fields[i]+1) */
+								newSVuv (rage_list_int (ph, list, fields[i]+1)), 0);
+/* 				rage_printf (ph, "int: %s - %d",fields[i]+1, */
+/* 				       rage_list_int (ph, list, fields[i]+1) */
 /* 						); */
 					break;
 				case 't':
 					hv_store (hash, fields[i]+1, strlen (fields[i]+1),
-								newSVnv(xchat_list_time(ph,list,fields[i]+1)), 0);
+								newSVnv(rage_list_time(ph,list,fields[i]+1)), 0);
 					break;
 				}
 				i++;
@@ -979,7 +981,7 @@ static XS (XS_Xchat_get_list)
 		XPUSHs(newRV_noinc ((SV*)hash));
 		
 	}
-	xchat_list_free (ph, list);
+	rage_list_free (ph, list);
 
 	PUTBACK;
 	return;
@@ -1005,10 +1007,10 @@ compat_execute_perl (char *function, char *args)
 
 	sv = GvSV(gv_fetchpv("@", TRUE, SVt_PV));
 	if (SvTRUE(sv)) {
-		xchat_printf(ph, "Perl error: %s\n", SvPV(sv, count));
+		rage_printf(ph, "Perl error: %s\n", SvPV(sv, count));
 		POPs;
 	} else if (count != 1) {
-		xchat_printf(ph, "Perl error: expected 1 value from %s, "
+		rage_printf(ph, "Perl error: expected 1 value from %s, "
 						 "got: %d\n", function, count);
 	} else {
 		ret_value = POPi;
@@ -1072,17 +1074,17 @@ perl_print_cb (char *word[], void *perl_callback)
 
 	if (SvTRUE (ERRSV))
 	{
-		xchat_printf( ph, "Error in print callback %s",
+		rage_printf( ph, "Error in print callback %s",
 		SvPV_nolen(ERRSV) );
 		POPs;
-		retVal = XCHAT_EAT_NONE;
+		retVal = RAGE_EAT_NONE;
 	} else
 	{
 		if (count != 1)
 		{
-			xchat_print (ph,
+			rage_print (ph,
 				"Print handler should only return 1 value.");
-			retVal = XCHAT_EAT_XCHAT;
+			retVal = RAGE_EAT_RAGE;
 		} else
 		{
 			retVal = POPi;
@@ -1112,7 +1114,7 @@ static XS (XS_IRC_register)
 	dXSARGS;
 	
 	if (items != 4) {
-	     xchat_print (ph,
+	     rage_print (ph,
 	"Usage: IRC::register(scriptname, version, shutdowncallback, desc)");
 		XSRETURN_EMPTY;
 	} else {
@@ -1128,7 +1130,7 @@ static XS (XS_IRC_register)
 		scp->shutdowncallback = sv_mortalcopy (callback);
 		SvREFCNT_inc( scp->shutdowncallback );
 		/* FIXME: no filename */
-		scp->gui_entry = xchat_plugingui_add (ph, scp->name,
+		scp->gui_entry = rage_plugingui_add (ph, scp->name,
 							scp->name, scp->desc,
 							  scp->version, NULL);
 
@@ -1151,7 +1153,7 @@ static XS (XS_IRC_print)
 	for (i = 0; i < items; ++i)
 	{
 		output = SvPV_nolen (ST (i));
-		xchat_print (ph, output);
+		rage_print (ph, output);
 	}
 
 	XSRETURN_EMPTY;
@@ -1177,13 +1179,13 @@ static XS (XS_IRC_print_with_channel)
 			server = NULL;
 	}
 
-	old_ctx = xchat_get_context (ph);
-	ctx = xchat_find_context (ph, server, SvPV_nolen (ST (1)));
+	old_ctx = rage_get_context (ph);
+	ctx = rage_find_context (ph, server, SvPV_nolen (ST (1)));
 	if (ctx)
 	{
-		xchat_set_context (ph, ctx);
-		xchat_print (ph, SvPV_nolen (ST (0)));
-		xchat_set_context (ph, old_ctx);
+		rage_set_context (ph, ctx);
+		rage_print (ph, SvPV_nolen (ST (0)));
+		rage_set_context (ph, old_ctx);
 		XSRETURN_YES;
 	}
 
@@ -1194,21 +1196,21 @@ static XS (XS_IRC_get_info)
 {
 	char *ret;
 	static const char *ids[] = {"version", "nick", "channel", "server",
-				 "xchatdir", NULL, "network", "host", "topic"};
+				 "ragedir", NULL, "network", "host", "topic"};
 	int i;
 	dXSARGS;
 
 	i = SvIV (ST (0));
 	if( items != 1 ) {
-		xchat_print (ph, "Usage: IRC::get_info(id)");
+		rage_print (ph, "Usage: IRC::get_info(id)");
 		XSRETURN_EMPTY;
 	} else {
 		if (i < 9 && i >= 0 && i != 5) {
-			ret = (char *)xchat_get_info (ph, ids[i]);
+			ret = (char *)rage_get_info (ph, ids[i]);
 		} else {
 			switch (i) {
 				case 5:
-					if (xchat_get_info (ph, "away")) {
+					if (rage_get_info (ph, "away")) {
 						XST_mIV (0, 1);
 					} else {
 						XST_mIV (0, 0);
@@ -1238,10 +1240,10 @@ static XS (XS_IRC_get_prefs)
 	dXSARGS;
 
 	if( items != 1 ) {
-		xchat_print (ph, "Usage: IRC::get_prefs(name)");
+		rage_print (ph, "Usage: IRC::get_prefs(name)");
 		XSRETURN_EMPTY;
 	}
-	switch (xchat_get_prefs (ph, SvPV_nolen (ST (0)), &str, &integer))
+	switch (rage_get_prefs (ph, SvPV_nolen (ST (0)), &str, &integer))
 	{
 	case 0:
 		XST_mPV (0, "Unknown variable");
@@ -1272,7 +1274,7 @@ static XS (XS_IRC_add_message_handler)
 	dXSARGS;
 
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::add_message_handler(message,callback)");
 	} else {
 		tmp = strdup (SvPV_nolen (ST (1)));
@@ -1280,7 +1282,7 @@ static XS (XS_IRC_add_message_handler)
 		if (strcasecmp (name, "inbound") == 0) {
 			name = "RAW LINE";
 		}
-		hook = xchat_hook_server (ph, name, XCHAT_PRI_NORM, perl_server_cb,
+		hook = rage_hook_server (ph, name, RAGE_PRI_NORM, perl_server_cb,
 									tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
@@ -1298,15 +1300,15 @@ static XS (XS_IRC_add_command_handler)
 	dXSARGS;
 
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::add_command_handler(command,callback)");
 	} else {
 		tmp = strdup (SvPV_nolen (ST (1)));
 
 		/* use perl_server_cb when it's a "" hook, so that it gives
 		   word_eol[1] as the arg, instead of word_eol[2] */
-		hook = xchat_hook_command (ph, SvPV_nolen (ST (0)),
-						XCHAT_PRI_NORM,
+		hook = rage_hook_command (ph, SvPV_nolen (ST (0)),
+						RAGE_PRI_NORM,
 						SvPV_nolen (ST (0))[0] == 0 ? 
 					perl_server_cb : perl_command_cb,
 								NULL, tmp);
@@ -1326,13 +1328,13 @@ static XS (XS_IRC_add_print_handler)
 	dXSARGS;
 
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::add_print_handler(event,callback)");
 	} else {
 		tmp = strdup (SvPV_nolen (ST (1)));
 
-		hook = xchat_hook_print (ph, SvPV_nolen (ST (0)),
-						XCHAT_PRI_NORM,
+		hook = rage_hook_print (ph, SvPV_nolen (ST (0)),
+						RAGE_PRI_NORM,
 						perl_print_cb, tmp);
 
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
@@ -1346,10 +1348,10 @@ static XS (XS_IRC_add_timeout_handler)
 	dXSARGS;
 
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::add_timeout_handler(interval,callback)");
 	} else {
-		hook = xchat_hook_timer (ph, SvIV (ST (0)), perl_timer_cb,
+		hook = rage_hook_timer (ph, SvIV (ST (0)), perl_timer_cb,
 						strdup (SvPV_nolen (ST (1))));
 		compat_hook_list = g_slist_prepend (compat_hook_list, hook);
 	}
@@ -1363,9 +1365,9 @@ static XS (XS_IRC_send_raw)
 	dXSARGS;
 	
 	if( items != 1 ) {
-		xchat_print (ph, "Usage: IRC::send_raw(message)");
+		rage_print (ph, "Usage: IRC::send_raw(message)");
 	} else {
-		xchat_commandf (ph, "quote %s", SvPV_nolen (ST (0)));
+		rage_commandf (ph, "quote %s", SvPV_nolen (ST (0)));
 	}
 	XSRETURN_EMPTY;
 }
@@ -1373,34 +1375,34 @@ static XS (XS_IRC_send_raw)
 static XS (XS_IRC_channel_list)
 {
 	int i = 0;
-	xchat_list *list;
-	xchat_context *old = xchat_get_context (ph);
+	rage_list *list;
+	rage_context *old = rage_get_context (ph);
 	
 	dXSARGS;
 	
 	if( items != 0 ) {
-		xchat_print (ph, "Usage: IRC::channel_list()");
+		rage_print (ph, "Usage: IRC::channel_list()");
 		XSRETURN_EMPTY;
 	} else {
-		list = xchat_list_get (ph, "channels");
+		list = rage_list_get (ph, "channels");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
-				XST_mPV (i, xchat_list_str
+			while (rage_list_next (ph, list)) {
+				XST_mPV (i, rage_list_str
 							(ph, list, "channel"));
 				i++;
-				XST_mPV (i, xchat_list_str
+				XST_mPV (i, rage_list_str
 							(ph, list, "server"));
 				i++;
-				xchat_set_context (ph,
-					(xchat_context *) xchat_list_str (ph, list, "context"));
-				XST_mPV (i, xchat_get_info (ph, "nick"));
+				rage_set_context (ph,
+					(rage_context *) rage_list_str (ph, list, "context"));
+				XST_mPV (i, rage_get_info (ph, "nick"));
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
-		xchat_set_context (ph, old);
+		rage_set_context (ph, old);
 
 		XSRETURN (i);
 	}
@@ -1409,22 +1411,22 @@ static XS (XS_IRC_channel_list)
 static XS (XS_IRC_server_list)
 {
 	int i = 0;
-	xchat_list *list;
+	rage_list *list;
 	dXSARGS;
 
 	if( items != 0 ) {
-		xchat_print (ph, "Usage: IRC::server_list()");
+		rage_print (ph, "Usage: IRC::server_list()");
 		XSRETURN_EMPTY;
 	} else {
-		list = xchat_list_get (ph, "channels");
+		list = rage_list_get (ph, "channels");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
-				XST_mPV (i, xchat_list_str
+			while (rage_list_next (ph, list)) {
+				XST_mPV (i, rage_list_str
 							(ph, list, "server"));
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
 		XSRETURN (i);
@@ -1434,24 +1436,24 @@ static XS (XS_IRC_server_list)
 static XS (XS_IRC_ignore_list)
 {
 	int i = 0, flags;
-	xchat_list *list;
+	rage_list *list;
 	
 	dXSARGS;
 
 	if( items != 0 ) {
-		xchat_print (ph, "Usage: IRC::ignore_list()");
+		rage_print (ph, "Usage: IRC::ignore_list()");
 		XSRETURN_EMPTY;
 	} else {
-		list = xchat_list_get (ph, "ignore");
+		list = rage_list_get (ph, "ignore");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
+			while (rage_list_next (ph, list)) {
 			/* Make sure there is room on the stack */
 				EXTEND(SP, i + 10);
 
-				XST_mPV (i, xchat_list_str (ph, list, "mask"));
+				XST_mPV (i, rage_list_str (ph, list, "mask"));
 				i++;
 
-				flags = xchat_list_int (ph, list, "flags");
+				flags = rage_list_int (ph, list, "flags");
 
 				XST_mIV (i, flags & 1);
 				i++;
@@ -1469,7 +1471,7 @@ static XS (XS_IRC_ignore_list)
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
 		XSRETURN (i);
@@ -1534,32 +1536,32 @@ static XS (XS_IRC_notify_list)
 static XS (XS_IRC_user_info)
 {
 	dXSARGS;
-	xchat_list *list;
+	rage_list *list;
 	int i = 0;
 	const char *nick;
 	const char *find_nick;
 	const char *host, *prefix;
 
 	if( items > 1 ) {
-		xchat_print (ph, "Usage: IRC::user_info([nick])");
+		rage_print (ph, "Usage: IRC::user_info([nick])");
 		XSRETURN_EMPTY;
 	} else {
 		find_nick = SvPV_nolen (ST (0));
 		if (find_nick[0] == 0) {
-			find_nick = xchat_get_info (ph, "nick");
+			find_nick = rage_get_info (ph, "nick");
 		}
 
-		list = xchat_list_get (ph, "users");
+		list = rage_list_get (ph, "users");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
-				nick = xchat_list_str (ph, list, "nick");
+			while (rage_list_next (ph, list)) {
+				nick = rage_list_str (ph, list, "nick");
 
-				if (xchat_nickcmp (ph, 
+				if (rage_nickcmp (ph, 
 					(char *)nick, (char *)find_nick) == 0)
 				{
 					XST_mPV (i, nick);
 					i++;
-					host = xchat_list_str (ph, list,
+					host = rage_list_str (ph, list,
 								"host");
 					if (!host) {
 						host = "FETCHING";
@@ -1567,7 +1569,7 @@ static XS (XS_IRC_user_info)
 					XST_mPV (i, host);
 					i++;
 
-					prefix = xchat_list_str
+					prefix = rage_list_str
 							(ph, list, "prefix");
 
 					XST_mIV (i,(prefix[0] == '@') ? 1 : 0);
@@ -1576,12 +1578,12 @@ static XS (XS_IRC_user_info)
 					XST_mIV (i,(prefix[0] == '+') ? 1 : 0);
 					i++;
 
-					xchat_list_free (ph, list);
+					rage_list_free (ph, list);
 					XSRETURN (4);
 				}
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 		
 		XSRETURN (0);
@@ -1631,36 +1633,36 @@ static XS (XS_IRC_user_list)
 	const char *prefix;
 	int i = 0;
 	dXSARGS;
-	xchat_list *list;
-	xchat_context *ctx, *old = xchat_get_context (ph);
+	rage_list *list;
+	rage_context *ctx, *old = rage_get_context (ph);
 
 	if( items > 2 ) {
-		xchat_print (ph, "Usage: IRC::user_list(channel,server)");
+		rage_print (ph, "Usage: IRC::user_list(channel,server)");
 		XSRETURN_EMPTY;
 	} else {
-		ctx = xchat_find_context (ph, SvPV_nolen (ST (1)),
+		ctx = rage_find_context (ph, SvPV_nolen (ST (1)),
 							SvPV_nolen (ST (0)));
 		if (!ctx) {
 			XSRETURN (0);
 		}
-		xchat_set_context (ph, ctx);
+		rage_set_context (ph, ctx);
 
-		list = xchat_list_get (ph, "users");
+		list = rage_list_get (ph, "users");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
+			while (rage_list_next (ph, list)) {
 				/* Make sure there is room on the stack */
 				EXTEND(SP, i + 9);
 
-				XST_mPV (i, xchat_list_str (ph, list, "nick"));
+				XST_mPV (i, rage_list_str (ph, list, "nick"));
 				i++;
-				host = xchat_list_str (ph, list, "host");
+				host = rage_list_str (ph, list, "host");
 				if (!host) {
 					host = "FETCHING";
 				}
 				XST_mPV (i, host);
 				i++;
 
-				prefix = xchat_list_str (ph, list, "prefix");
+				prefix = rage_list_str (ph, list, "prefix");
 
 				XST_mIV (i, (prefix[0] == '@') ? 1 : 0);
 				i++;
@@ -1670,10 +1672,10 @@ static XS (XS_IRC_user_list)
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
-		xchat_set_context (ph, old);
+		rage_set_context (ph, old);
 
 		XSRETURN (i);
 	}
@@ -1682,54 +1684,54 @@ static XS (XS_IRC_user_list)
 static XS (XS_IRC_dcc_list)
 {
 	int i = 0;
-	xchat_list *list;
+	rage_list *list;
 	const char *file;
 	int type;
 
 	dXSARGS;
 	if( items != 0 ) {
-		xchat_print (ph, "Usage: IRC::dcc_list()");
+		rage_print (ph, "Usage: IRC::dcc_list()");
 		XSRETURN_EMPTY;
 	} else {
-		list = xchat_list_get (ph, "dcc");
+		list = rage_list_get (ph, "dcc");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
+			while (rage_list_next (ph, list)) {
 				/* Make sure there is room on the stack */
 				EXTEND (SP, i + 11);
 
-				XST_mPV (i, xchat_list_str (ph, list, "nick"));
+				XST_mPV (i, rage_list_str (ph, list, "nick"));
 				i++;
 
-				file = xchat_list_str (ph, list, "file");
+				file = rage_list_str (ph, list, "file");
 				if (!file) {
 					file = "";
 				}
 
 				XST_mPV (i, file);
 				i++;
-				XST_mIV (i, xchat_list_int (ph, list, "type"));
+				XST_mIV (i, rage_list_int (ph, list, "type"));
 				i++;
-				XST_mIV (i, xchat_list_int
+				XST_mIV (i, rage_list_int
 							(ph, list, "status"));
 				i++;
-				XST_mIV (i, xchat_list_int (ph, list, "cps"));
+				XST_mIV (i, rage_list_int (ph, list, "cps"));
 				i++;
-				XST_mIV (i, xchat_list_int (ph, list, "size"));
+				XST_mIV (i, rage_list_int (ph, list, "size"));
 				i++;
-				type = xchat_list_int (ph, list, "type");
+				type = rage_list_int (ph, list, "type");
 				if (type == 0) {
-					XST_mIV (i, xchat_list_int
+					XST_mIV (i, rage_list_int
 							(ph, list, "pos"));
 				} else {
-					XST_mIV (i, xchat_list_int
+					XST_mIV (i, rage_list_int
 							(ph, list, "resume"));
 				}
 
 				i++;
-				XST_mIV (i, xchat_list_int
+				XST_mIV (i, rage_list_int
 						(ph, list, "address32"));
 				i++;
-				file = xchat_list_str (ph, list, "destfile");
+				file = rage_list_str (ph, list, "destfile");
 				if (!file)
 					file = "";
 
@@ -1737,14 +1739,14 @@ static XS (XS_IRC_dcc_list)
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
 		XSRETURN (i);
 	}
 }
 
-/* run internal xchat command */
+/* run internal rage command */
 /* IRC::command(command) */
 static XS (XS_IRC_command)
 {
@@ -1752,14 +1754,14 @@ static XS (XS_IRC_command)
 	dXSARGS;
 
 	if( items != 1 ) {
-		xchat_print (ph, "Usage: IRC::command(command)");
+		rage_print (ph, "Usage: IRC::command(command)");
 	} else {
 		cmd = SvPV_nolen (ST (0));
 		if (cmd[0] == '/') {
 			/* skip the forward slash */
-			xchat_command (ph, cmd + 1);
+			rage_command (ph, cmd + 1);
 		} else {
-			xchat_commandf (ph, "say %s", cmd);
+			rage_commandf (ph, "say %s", cmd);
 		}
 	}
 	XSRETURN_EMPTY;
@@ -1774,23 +1776,23 @@ static XS (XS_IRC_command_with_server)
 	dXSARGS;
 
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::command_with_server(command,server)");
 		XSRETURN_EMPTY;
 	} else {
 		cmd = SvPV_nolen (ST (0));
-		old_ctx = xchat_get_context (ph);
-		ctx = xchat_find_context (ph, SvPV_nolen (ST (1)), NULL);
+		old_ctx = rage_get_context (ph);
+		ctx = rage_find_context (ph, SvPV_nolen (ST (1)), NULL);
 		if (ctx) {
-			xchat_set_context (ph, ctx);
+			rage_set_context (ph, ctx);
 
 			if (cmd[0] == '/') {
 				/* skip the forward slash */
-				xchat_command (ph, cmd + 1);
+				rage_command (ph, cmd + 1);
 			} else {
-				xchat_commandf (ph, "say %s", cmd);
+				rage_commandf (ph, "say %s", cmd);
 			}
-			xchat_set_context (ph, old_ctx);
+			rage_set_context (ph, old_ctx);
 			XSRETURN_YES;
 		}
 
@@ -1817,19 +1819,19 @@ static XS (XS_IRC_command_with_channel)
 			server = NULL;
 	}
 
-	old_ctx = xchat_get_context (ph);
-	ctx = xchat_find_context (ph, server, SvPV_nolen (ST (1)));
+	old_ctx = rage_get_context (ph);
+	ctx = rage_find_context (ph, server, SvPV_nolen (ST (1)));
 	if (ctx)
 	{
-		xchat_set_context (ph, ctx);
+		rage_set_context (ph, ctx);
 
 		if (cmd[0] == '/')
 			/* skip the forward slash */
-			xchat_command (ph, cmd + 1);
+			rage_command (ph, cmd + 1);
 		else
-			xchat_commandf (ph, "say %s", cmd);
+			rage_commandf (ph, "say %s", cmd);
 
-		xchat_set_context (ph, old_ctx);
+		rage_set_context (ph, old_ctx);
 		XSRETURN_YES;
 	}
 
@@ -1849,31 +1851,31 @@ static XS (XS_IRC_user_list_short)
 	const char *host;
 	int i = 0;
 	
-	xchat_list *list;
-	xchat_context *ctx, *old = xchat_get_context (ph);
+	rage_list *list;
+	rage_context *ctx, *old = rage_get_context (ph);
 
 	dXSARGS;
 	
 	if( items != 2 ) {
-		xchat_print (ph,
+		rage_print (ph,
 			"Usage: IRC::user_list_short(channel,server)");
 		XSRETURN_EMPTY;
 	} else {
-		ctx = xchat_find_context (ph, SvPV_nolen (ST (1)), SvPV_nolen (ST (0)));
+		ctx = rage_find_context (ph, SvPV_nolen (ST (1)), SvPV_nolen (ST (0)));
 		if (!ctx) {
 			XSRETURN (0);
 		}
-		xchat_set_context (ph, ctx);
+		rage_set_context (ph, ctx);
 
-		list = xchat_list_get (ph, "users");
+		list = rage_list_get (ph, "users");
 		if (list) {
-			while (xchat_list_next (ph, list)) {
+			while (rage_list_next (ph, list)) {
 				/* Make sure there is room on the stack */
 				EXTEND(SP, i + 5);
 
-				XST_mPV (i, xchat_list_str (ph, list, "nick"));
+				XST_mPV (i, rage_list_str (ph, list, "nick"));
 				i++;
-				host = xchat_list_str (ph, list, "host");
+				host = rage_list_str (ph, list, "host");
 				if (!host) {
 					host = "FETCHING";
 				}
@@ -1881,10 +1883,10 @@ static XS (XS_IRC_user_list_short)
 				i++;
 			}
 
-			xchat_list_free (ph, list);
+			rage_list_free (ph, list);
 		}
 
-		xchat_set_context (ph, old);
+		rage_set_context (ph, old);
 
 		XSRETURN (i);
 	}
@@ -1896,7 +1898,7 @@ static XS (XS_IRC_perl_script_list)
 	GSList *handler;
 	dXSARGS;
 	if (items != 0) {
-		xchat_print (ph, "Usage: IRC::perl_script_list()");
+		rage_print (ph, "Usage: IRC::perl_script_list()");
 	} else {
 	  handler = perl_list;
 	  while (handler) {
@@ -1928,22 +1930,22 @@ xs_init (pTHX)
 	   scripts by the 'use perlmod;' construction*/
 	newXS ("DynaLoader::boot_DynaLoader", boot_DynaLoader, file);
 	/* load up all the custom IRC perl functions */
-	newXS("Xchat::register", XS_Xchat_register, "Xchat");
-	newXS("Xchat::_hook_server", XS_Xchat_hook_server, "Xchat");
-	newXS("Xchat::_hook_command", XS_Xchat_hook_command, "Xchat");
-	newXS("Xchat::_hook_print", XS_Xchat_hook_print, "Xchat");
-	newXS("Xchat::_hook_timer", XS_Xchat_hook_timer, "Xchat");
-	newXS("Xchat::unhook", XS_Xchat_unhook, "Xchat");
-	newXS("Xchat::_print", XS_Xchat_print, "Xchat");
-	newXS("Xchat::_command", XS_Xchat_command, "Xchat");
-	newXS("Xchat::find_context", XS_Xchat_find_context, "Xchat");
-	newXS("Xchat::get_context", XS_Xchat_get_context, "Xchat");
-	newXS("Xchat::set_context", XS_Xchat_set_context, "Xchat");
-	newXS("Xchat::get_info", XS_Xchat_get_info, "Xchat");
-	newXS("Xchat::get_prefs", XS_Xchat_get_prefs, "Xchat");
-	newXS("Xchat::emit_print", XS_Xchat_emit_print, "Xchat");
-	newXS("Xchat::nickcmp", XS_Xchat_nickcmp, "Xchat");
-	newXS("Xchat::get_list", XS_Xchat_get_list, "Xchat");
+	newXS("Rage::register", XS_Rage_register, "Rage");
+	newXS("Rage::_hook_server", XS_Rage_hook_server, "Rage");
+	newXS("Rage::_hook_command", XS_Rage_hook_command, "Rage");
+	newXS("Rage::_hook_print", XS_Rage_hook_print, "Rage");
+	newXS("Rage::_hook_timer", XS_Rage_hook_timer, "Rage");
+	newXS("Rage::unhook", XS_Rage_unhook, "Rage");
+	newXS("Rage::_print", XS_Rage_print, "Rage");
+	newXS("Rage::_command", XS_Rage_command, "Rage");
+	newXS("Rage::find_context", XS_Rage_find_context, "Rage");
+	newXS("Rage::get_context", XS_Rage_get_context, "Rage");
+	newXS("Rage::set_context", XS_Rage_set_context, "Rage");
+	newXS("Rage::get_info", XS_Rage_get_info, "Rage");
+	newXS("Rage::get_prefs", XS_Rage_get_prefs, "Rage");
+	newXS("Rage::emit_print", XS_Rage_emit_print, "Rage");
+	newXS("Rage::nickcmp", XS_Rage_nickcmp, "Rage");
+	newXS("Rage::get_list", XS_Rage_get_list, "Rage");
 	
 #ifdef OLD_PERL
 	/* for old interface compatibility */
@@ -1973,21 +1975,21 @@ xs_init (pTHX)
 	newXS ("IRC::user_list_short", XS_IRC_user_list_short, "IRC");
 	newXS ("IRC::perl_script_list", XS_IRC_perl_script_list, "IRC");
 #endif
-	stash = get_hv ("Xchat::", TRUE);
+	stash = get_hv ("Rage::", TRUE);
 	if(stash == NULL ) {
 	  exit(1);
 	}
 
-	newCONSTSUB (stash, "PRI_HIGHEST", newSViv (XCHAT_PRI_HIGHEST));
-	newCONSTSUB (stash, "PRI_HIGH", newSViv (XCHAT_PRI_HIGH));
-	newCONSTSUB (stash, "PRI_NORM", newSViv (XCHAT_PRI_NORM));
-	newCONSTSUB (stash, "PRI_LOW", newSViv (XCHAT_PRI_LOW));
-	newCONSTSUB (stash, "PRI_LOWEST", newSViv (XCHAT_PRI_LOWEST));
+	newCONSTSUB (stash, "PRI_HIGHEST", newSViv (RAGE_PRI_HIGHEST));
+	newCONSTSUB (stash, "PRI_HIGH", newSViv (RAGE_PRI_HIGH));
+	newCONSTSUB (stash, "PRI_NORM", newSViv (RAGE_PRI_NORM));
+	newCONSTSUB (stash, "PRI_LOW", newSViv (RAGE_PRI_LOW));
+	newCONSTSUB (stash, "PRI_LOWEST", newSViv (RAGE_PRI_LOWEST));
 	
-	newCONSTSUB (stash, "EAT_NONE", newSViv (XCHAT_EAT_NONE));
-	newCONSTSUB (stash, "EAT_XCHAT", newSViv (XCHAT_EAT_XCHAT));
-	newCONSTSUB (stash, "EAT_PLUGIN", newSViv (XCHAT_EAT_PLUGIN));
-	newCONSTSUB (stash, "EAT_ALL", newSViv (XCHAT_EAT_ALL));
+	newCONSTSUB (stash, "EAT_NONE", newSViv (RAGE_EAT_NONE));
+	newCONSTSUB (stash, "EAT_RAGE", newSViv (RAGE_EAT_RAGE));
+	newCONSTSUB (stash, "EAT_PLUGIN", newSViv (RAGE_EAT_PLUGIN));
+	newCONSTSUB (stash, "EAT_ALL", newSViv (RAGE_EAT_ALL));
 
 }
 
@@ -2007,25 +2009,25 @@ perl_init (void)
 	     the file conents. This allows to have a realy local $/
 	     without introducing temp variables to hold the old
 	     value. Just a question of style:) 
-	     We also redefine the $SIG{__WARN__} handler to have XChat
+	     We also redefine the $SIG{__WARN__} handler to have Rage
 	     printing warnings in the main window. (TheHobbit)*/
 
 "BEGIN {\n"
-"  $INC{'Xchat.pm'} = 'DUMMY';\n"
+"  $INC{'Rage.pm'} = 'DUMMY';\n"
 "}\n"
 "\n"
 "{\n"
-"  package Xchat;\n"
+"  package Rage;\n"
 "  use base qw(Exporter);\n"
 "  our @EXPORT = (qw(PRI_HIGHEST PRI_HIGH PRI_NORM PRI_LOW PRI_LOWEST),\n"
-"					  qw(EAT_NONE EAT_XCHAT EAT_PLUGIN EAT_ALL),\n"
+"					  qw(EAT_NONE EAT_RAGE EAT_PLUGIN EAT_ALL),\n"
 "					 );\n"
 "  our @EXPORT_OK = (qw(register hook_server hook_command hook_print),\n"
 "						  qw(hook_timer unhook print command find_context),\n"
 "						  qw(get_context set_context get_info get_prefs emit_print),\n"
 "						  qw(nickcmp get_list),\n"
 "						  qw(PRI_HIGHEST PRI_HIGH PRI_NORM PRI_LOW PRI_LOWEST),\n"
-"						  qw(EAT_NONE EAT_XCHAT EAT_PLUGIN EAT_ALL),\n"
+"						  qw(EAT_NONE EAT_RAGE EAT_PLUGIN EAT_ALL),\n"
 "						 );\n"
 "  our %EXPORT_TAGS = ( all => [\n"
 "										 qw(register hook_server hook_command),\n"
@@ -2034,12 +2036,12 @@ perl_init (void)
 "										 qw(get_info get_prefs emit_print nickcmp),\n"
 "										 qw(get_list),\n"
 "										 qw(PRI_HIGHEST PRI_HIGH PRI_NORM PRI_LOW),\n"
-"										 qw(PRI_LOWEST EAT_NONE EAT_XCHAT EAT_PLUGIN),\n"
+"										 qw(PRI_LOWEST EAT_NONE EAT_RAGE EAT_PLUGIN),\n"
 "										 qw(EAT_ALL),\n"
 "										],\n"
 "							  contants => [\n"
 "												qw(PRI_HIGHEST PRI_HIGH PRI_NORM PRI_LOW),\n"
-"												qw(PRI_LOWEST EAT_NONE EAT_XCHAT),\n"
+"												qw(PRI_LOWEST EAT_NONE EAT_RAGE),\n"
 "												qw(EAT_PLUGIN EAT_ALL),\n"
 "											  ],\n"
 "							  hooks => [\n"
@@ -2054,14 +2056,14 @@ perl_init (void)
 "							);\n"
 "\n"
 "}\n"
-"sub Xchat::hook_server {\n"
+"sub Rage::hook_server {\n"
 "  return undef unless @_ >= 2;\n"
 "  \n"
 "  my $message = shift;\n"
 "  my $callback = shift;\n"
 "  my $options = shift;\n"
 "  \n"
-"  my ($priority, $data) = ( Xchat::PRI_NORM, undef );\n"
+"  my ($priority, $data) = ( Rage::PRI_NORM, undef );\n"
 "  \n"
 "  if ( ref( $options ) eq 'HASH' ) {\n"
 "	 if ( exists( $options->{priority} ) && defined( $options->{priority} ) ) {\n"
@@ -2072,18 +2074,18 @@ perl_init (void)
 "    }\n"
 "  }\n"
 "  \n"
-"  return Xchat::_hook_server( $message, $priority, $callback, $data);\n"
+"  return Rage::_hook_server( $message, $priority, $callback, $data);\n"
 "\n"
 "}\n"
 "\n"
-"sub Xchat::hook_command {\n"
+"sub Rage::hook_command {\n"
 "  return undef unless @_ >= 2;\n"
 "\n"
 "  my $command = shift;\n"
 "  my $callback = shift;\n"
 "  my $options = shift;\n"
 "\n"
-"  my ($priority, $help_text, $data) = ( Xchat::PRI_NORM, '', undef );\n"
+"  my ($priority, $help_text, $data) = ( Rage::PRI_NORM, '', undef );\n"
 "\n"
 "  if ( ref( $options ) eq 'HASH' ) {\n"
 "    if ( exists( $options->{priority} ) && defined( $options->{priority} ) ) {\n"
@@ -2097,19 +2099,19 @@ perl_init (void)
 "    }\n"
 "  }\n"
 "\n"
-"  return Xchat::_hook_command( $command, $priority, $callback, $help_text,\n"
+"  return Rage::_hook_command( $command, $priority, $callback, $help_text,\n"
 "			       $data);\n"
 "\n"
 "}\n"
 "\n"
-"sub Xchat::hook_print {\n"
+"sub Rage::hook_print {\n"
 "  return undef unless @_ >= 2;\n"
 "\n"
 "  my $event = shift;\n"
 "  my $callback = shift;\n"
 "  my $options = shift;\n"
 "\n"
-"  my ($priority, $data) = ( Xchat::PRI_NORM, undef );\n"
+"  my ($priority, $data) = ( Rage::PRI_NORM, undef );\n"
 "\n"
 "  if ( ref( $options ) eq 'HASH' ) {\n"
 "    if ( exists( $options->{priority} ) && defined( $options->{priority} ) ) {\n"
@@ -2120,12 +2122,12 @@ perl_init (void)
 "    }\n"
 "  }\n"
 "\n"
-"  return Xchat::_hook_print( $event, $priority, $callback, $data);\n"
+"  return Rage::_hook_print( $event, $priority, $callback, $data);\n"
 "\n"
 "}\n"
 "\n"
 "\n"
-"sub Xchat::hook_timer {\n"
+"sub Rage::hook_timer {\n"
 "  return undef unless @_ >= 2;\n"
 "\n"
 "  my $timeout = shift;\n"
@@ -2137,11 +2139,11 @@ perl_init (void)
 "    $data = $data->{data};\n"
 "  }\n"
 "\n"
-"  return Xchat::_hook_timer( $timeout, $callback, $data );\n"
+"  return Rage::_hook_timer( $timeout, $callback, $data );\n"
 "\n"
 "}\n"
 "\n"
-"sub Xchat::print {\n"
+"sub Rage::print {\n"
 "\n"
 "  my $text = shift @_;\n"
 "  if( ref( $text ) eq 'ARRAY' ) {\n"
@@ -2156,30 +2158,30 @@ perl_init (void)
 "  if( @_ >= 1 ) {\n"
 "    my $channel = shift @_;\n"
 "	 my $server = shift @_;\n"
-"    my $old_ctx = Xchat::get_context();\n"
-"    my $ctx = Xchat::find_context( $channel, $server );\n"
+"    my $old_ctx = Rage::get_context();\n"
+"    my $ctx = Rage::find_context( $channel, $server );\n"
 "    \n"
 "    if( $ctx ) {\n"
-"      Xchat::set_context( $ctx );\n"
-"      Xchat::_print( $text );\n"
-"      Xchat::set_context( $old_ctx );\n"
+"      Rage::set_context( $ctx );\n"
+"      Rage::_print( $text );\n"
+"      Rage::set_context( $old_ctx );\n"
 "      return 1;\n"
 "    } else {\n"
 "      return 0;\n"
 "    }\n"
 "  } else {\n"
-"    Xchat::_print( $text );\n"
+"    Rage::_print( $text );\n"
 "    return 1;\n"
 "  }\n"
 "\n"
 "}\n"
 "\n"
-"sub Xchat::printf {\n"
+"sub Rage::printf {\n"
 "  my $format = shift;\n"
-"  Xchat::print( sprintf( $format, @_ ) );\n"
+"  Rage::print( sprintf( $format, @_ ) );\n"
 "}\n"
 "\n"
-"sub Xchat::command {\n"
+"sub Rage::command {\n"
 "\n"
 "  my $command = shift;\n"
 "  my @commands;\n"
@@ -2190,35 +2192,35 @@ perl_init (void)
 "  }\n"
 "  if( @_ >= 1 ) {\n"
 "    my ($channel, $server) = @_;\n"
-"    my $old_ctx = Xchat::get_context();\n"
-"    my $ctx = Xchat::find_context( $channel, $server );\n"
+"    my $old_ctx = Rage::get_context();\n"
+"    my $ctx = Rage::find_context( $channel, $server );\n"
 "\n"
 "    if( $ctx ) {\n"
-"      Xchat::set_context( $ctx );\n"
-"      Xchat::_command( $_ ) foreach @commands;\n"
-"      Xchat::set_context( $old_ctx );\n"
+"      Rage::set_context( $ctx );\n"
+"      Rage::_command( $_ ) foreach @commands;\n"
+"      Rage::set_context( $old_ctx );\n"
 "      return 1;\n"
 "    } else {\n"
 "      return 0;\n"
 "    }\n"
 "  } else {\n"
-"    Xchat::_command( $_ ) foreach @commands;\n"
+"    Rage::_command( $_ ) foreach @commands;\n"
 "    return 1;\n"
 "  }\n"
 "\n"
 "}\n"
 "\n"
-"sub Xchat::commandf {\n"
+"sub Rage::commandf {\n"
 "  my $format = shift;\n"
-"  Xchat::command( sprintf( $format, @_ ) );\n"
+"  Rage::command( sprintf( $format, @_ ) );\n"
 "}\n"
 "\n"
-"sub Xchat::user_info {\n"
-"  my $nick = shift @_ || Xchat::get_info( \"nick\" );\n"
+"sub Rage::user_info {\n"
+"  my $nick = shift @_ || Rage::get_info( \"nick\" );\n"
 "  my $user;\n"
 "\n"
-"  for(Xchat::get_list( \"users\" ) ) {\n"
-"	 if( Xchat::nickcmp( $_->{nick}, $nick ) == 0 ) {\n"
+"  for(Rage::get_list( \"users\" ) ) {\n"
+"	 if( Rage::nickcmp( $_->{nick}, $nick ) == 0 ) {\n"
 "		$user = $_;\n"
 "		last;\n"
 "	 }\n"
@@ -2226,19 +2228,19 @@ perl_init (void)
 "  return $user;\n"
 "}\n"
 "\n"
-"sub Xchat::context_info {\n"
+"sub Rage::context_info {\n"
 "  my $ctx = shift @_;\n"
-"  my $old_ctx = Xchat::get_context;\n"
+"  my $old_ctx = Rage::get_context;\n"
 "  my @fields = (qw(away channel host network nick server topic version),\n"
-"					 qw(win_status xchatdir xchatdirfs),\n"
+"					 qw(win_status ragedir ragedirfs),\n"
 "					);\n"
 "\n"
-"  Xchat::set_context( $ctx );\n"
+"  Rage::set_context( $ctx );\n"
 "  my %info;\n"
 "  for my $field ( @fields ) {\n"
-"	 $info{$field} = Xchat::get_info( $field );\n"
+"	 $info{$field} = Rage::get_info( $field );\n"
 "  }\n"
-"  Xchat::set_context( $old_ctx );\n"
+"  Rage::set_context( $old_ctx );\n"
 "\n"
 "  return %info if wantarray;\n"
 "  return \\%info;\n"
@@ -2247,18 +2249,18 @@ perl_init (void)
 "$SIG{__WARN__} = sub {\n"
 "  local $, = \"\\n\";\n"
 "  my ($package, $file, $line, $sub) = caller(1);\n"
-"  Xchat::print( \"Warning from ${sub}.\" );\n"
-"  Xchat::print( @_ );\n"
+"  Rage::print( \"Warning from ${sub}.\" );\n"
+"  Rage::print( @_ );\n"
 "};\n"
 "\n"
-"sub Xchat::Embed::load {\n"
+"sub Rage::Embed::load {\n"
 "  my $file = shift @_;\n"
 "\n"
 "  if( open FH, $file ) {\n"
 "	 my $data = do {local $/; <FH>};\n"
 "	 close FH;\n"
 "\n"
-"# 	 my $package = Xchat::Embed::valid_package( $file );\n"
+"# 	 my $package = Rage::Embed::valid_package( $file );\n"
 "# 	 if( $data =~ m/^\\s*package .*?;/m ) {\n"
 "# 		$data =~ s/^\\s*package .*?;/package $package;/m;\n"
 "# 	 } else {\n"
@@ -2268,20 +2270,20 @@ perl_init (void)
 "\n"
 "	 if( $@ ) {\n"
 "		# something went wrong\n"
-"		Xchat::print( \"Error loading '$file':\\n$@\n\" );\n"
+"		Rage::print( \"Error loading '$file':\\n$@\n\" );\n"
 "		return 1;\n"
 "	 }\n"
 "\n"
 "  } else {\n"
 "\n"
-"	 Xchat::print( \"Error opening '$file': $!\\n\" );\n"
+"	 Rage::print( \"Error opening '$file': $!\\n\" );\n"
 "	 return 2;\n"
 "  }\n"
 "\n"
 "  return 0;\n"
 "}\n"
 "\n"
-"# sub Xchat::Embed::valid_package {\n"
+"# sub Rage::Embed::valid_package {\n"
 "\n"
 "#   my $string = shift @_;\n"
 "#   $string =~ s/\\.pl$//i;\n"
@@ -2291,7 +2293,7 @@ perl_init (void)
 "\n"
 "#   # Dress it up as a real package name\n"
 "#   $string =~ s|/|::|g;\n"
-"#   return \"Xchat::Embed\" . $string;\n"
+"#   return \"Rage::Embed\" . $string;\n"
 "# }\n"
 
 
@@ -2316,7 +2318,7 @@ perl_init (void)
 	perl_construct (my_perl);
 
 	warn = 0;
-	xchat_get_prefs (ph, "perl_warnings", NULL, &warn);
+	rage_get_prefs (ph, "perl_warnings", NULL, &warn);
 	if (warn)
 		perl_parse (my_perl, xs_init, 4, perl_args, NULL);
 	else
@@ -2357,7 +2359,7 @@ perl_load_file (char *script_name)
 		perl_init ();
 	}
 
-	return execute_perl (sv_2mortal (newSVpv ("Xchat::Embed::load", 0)),
+	return execute_perl (sv_2mortal (newSVpv ("Rage::Embed::load", 0)),
 								  script_name);
 	
 }
@@ -2394,7 +2396,7 @@ perl_end (void)
 		if (SvTRUE (scp->shutdowncallback)) {
 			execute_perl (scp->shutdowncallback, "");
 		}
-		xchat_plugingui_remove (ph, scp->gui_entry);
+		rage_plugingui_remove (ph, scp->gui_entry);
 		free (scp->name);
 		free (scp->version);
 		free (scp->desc);
@@ -2411,7 +2413,7 @@ perl_end (void)
 
 	while (hook_list)
 	{
-		tmp = xchat_unhook (ph, hook_list->data);
+		tmp = rage_unhook (ph, hook_list->data);
 		if (tmp) {
 			free (tmp);
 
@@ -2422,7 +2424,7 @@ perl_end (void)
 #ifdef OLD_PERL
 	while (compat_hook_list)
 	{
-		tmp = xchat_unhook (ph, compat_hook_list->data);
+		tmp = rage_unhook (ph, compat_hook_list->data);
 		if (tmp)
 			free(tmp);
 		compat_hook_list = g_slist_remove (compat_hook_list, compat_hook_list->data);
@@ -2435,7 +2437,7 @@ perl_command_unloadall (char *word[], char *word_eol[], void *userdata)
 {
 	perl_end ();
 
-	return XCHAT_EAT_XCHAT;
+	return RAGE_EAT_RAGE;
 }
 
 static int
@@ -2444,7 +2446,7 @@ perl_command_reloadall (char *word[], char *word_eol[], void *userdata)
 	perl_end ();
 	perl_auto_load ();
 
-	return XCHAT_EAT_XCHAT;
+	return RAGE_EAT_RAGE;
 }
 
 static int
@@ -2459,8 +2461,8 @@ perl_command_unload (char *word[], char *word_eol[], void *userdata)
 	if (len > 3 && strcasecmp (".pl", word[2] + len - 3) == 0)
 	{
 		/* if only unloading was possible with this shitty interface */
-		xchat_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
-		return XCHAT_EAT_XCHAT;
+		rage_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
+		return RAGE_EAT_RAGE;
 	}
 
 	/* try it by script name */
@@ -2470,13 +2472,13 @@ perl_command_unload (char *word[], char *word_eol[], void *userdata)
 		scp = list->data;
 		if (strcasecmp (scp->name, word[2]) == 0)
 		{
-			xchat_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
-			return XCHAT_EAT_XCHAT;
+			rage_print (ph, "Unloading individual perl scripts is not supported.\nYou may use /UNLOADALL to unload all Perl scripts.\n");
+			return RAGE_EAT_RAGE;
 		}
 		list = list->next;
 	}
 
-	return XCHAT_EAT_NONE;
+	return RAGE_EAT_NONE;
 }
 
 static int
@@ -2492,16 +2494,16 @@ perl_command_load (char *word[], char *word_eol[], void *userdata)
 		switch (perl_load_file (file))
 		{
 		case 1:
-			xchat_print (ph, "Error compiling script\n");
+			rage_print (ph, "Error compiling script\n");
 			break;
 		case 2:
-			xchat_print (ph, "Error Loading file\n");
+			rage_print (ph, "Error Loading file\n");
 		}
 		free (file);
-		return XCHAT_EAT_XCHAT;
+		return RAGE_EAT_RAGE;
 	}
 
-	return XCHAT_EAT_NONE;
+	return RAGE_EAT_NONE;
 }
 
 
@@ -2511,7 +2513,7 @@ static int initialized = 0;
 static int reinit_tried = 0;
 
 int
-xchat_plugin_init (xchat_plugin *plugin_handle,
+rage_plugin_init (rage_plugin *plugin_handle,
 				char **plugin_name, char **plugin_desc, char **plugin_version,
 				char *arg)
 {
@@ -2519,7 +2521,7 @@ xchat_plugin_init (xchat_plugin *plugin_handle,
 	
 	if (initialized != 0)
 	{
-		xchat_print (ph, "Perl interface already loaded\n");
+		rage_print (ph, "Perl interface already loaded\n");
 		reinit_tried++;
 		return 0;
 	}
@@ -2529,23 +2531,23 @@ xchat_plugin_init (xchat_plugin *plugin_handle,
 	*plugin_version = VERSION;
 	*plugin_desc = "Perl scripting interface";
 
-	xchat_hook_command (ph, "load", XCHAT_PRI_NORM, perl_command_load, 0, 0);
-	xchat_hook_command (ph, "unload", XCHAT_PRI_NORM, perl_command_unload, 0,
+	rage_hook_command (ph, "load", RAGE_PRI_NORM, perl_command_load, 0, 0);
+	rage_hook_command (ph, "unload", RAGE_PRI_NORM, perl_command_unload, 0,
 							  0);
-	xchat_hook_command (ph, "unloadall", XCHAT_PRI_NORM, perl_command_unloadall,
+	rage_hook_command (ph, "unloadall", RAGE_PRI_NORM, perl_command_unloadall,
 							  0, 0);
-	xchat_hook_command (ph, "reloadall", XCHAT_PRI_NORM, perl_command_reloadall,
+	rage_hook_command (ph, "reloadall", RAGE_PRI_NORM, perl_command_reloadall,
 							  0, 0);
 
 	perl_auto_load ();
 
-	xchat_print (ph, "Perl interface loaded\n");
+	rage_print (ph, "Perl interface loaded\n");
 
 	return 1;
 }
 
 int
-xchat_plugin_deinit (xchat_plugin *plugin_handle)
+rage_plugin_deinit (rage_plugin *plugin_handle)
 {
 	if (reinit_tried)
 	{
@@ -2555,7 +2557,7 @@ xchat_plugin_deinit (xchat_plugin *plugin_handle)
 
 	perl_end ();
 
-	xchat_print (plugin_handle, "Perl interface unloaded\n");
+	rage_print (plugin_handle, "Perl interface unloaded\n");
 
 	return 1;
 }

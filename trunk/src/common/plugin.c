@@ -1,5 +1,7 @@
-/* X-Chat
+/* Rage
  * Copyright (C) 2002 Peter Zelezny.
+ *
+ * Forked from the great work by Peter Zelezny on XChat.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,9 +31,9 @@
 #define DEBUG(x) {x;}
 
 /* crafted to be an even 32 bytes */
-struct _xchat_hook
+struct _rage_hook
 {
-	xchat_plugin *pl;	/* the plugin to which it belongs */
+	rage_plugin *pl;	/* the plugin to which it belongs */
 	char *name;			/* "xdcc" */
 	void *callback;	/* pointer to xdcc_callback */
 	char *help_text;	/* help_text for commands only */
@@ -41,7 +43,7 @@ struct _xchat_hook
 	int pri;	/* fd */	/* priority / fd for HOOK_FD only */
 };
 
-struct _xchat_list
+struct _rage_list
 {
 	int type;			/* LIST_* */
 	GSList *pos;		/* current pos */
@@ -99,14 +101,14 @@ str_hash (const char *key)
 /* unload a plugin and remove it from our linked list */
 
 static int
-plugin_free (xchat_plugin *pl, int do_deinit, int allow_refuse)
+plugin_free (rage_plugin *pl, int do_deinit, int allow_refuse)
 {
 	GSList *list, *next;
-	xchat_hook *hook;
-	xchat_deinit_func *deinit_func;
+	rage_hook *hook;
+	rage_deinit_func *deinit_func;
 	int i;
 
-	/* fake plugin added by xchat_plugingui_add() */
+	/* fake plugin added by rage_plugingui_add() */
 	if (pl->fake)
 		goto xit;
 
@@ -127,7 +129,7 @@ plugin_free (xchat_plugin *pl, int do_deinit, int allow_refuse)
 			hook = list->data;
 			next = list->next;
 			if (hook->pl == pl)
-				xchat_unhook (NULL, hook);
+				rage_unhook (NULL, hook);
 			list = next;
 		}
 	}
@@ -155,14 +157,14 @@ xit:
 	return TRUE;
 }
 
-static xchat_plugin *
-plugin_list_add (xchat_context *ctx, char *filename, const char *name,
+static rage_plugin *
+plugin_list_add (rage_context *ctx, char *filename, const char *name,
 					  const char *desc, const char *version, void *handle,
 					  void *deinit_func, int fake)
 {
-	xchat_plugin *pl;
+	rage_plugin *pl;
 
-	pl = malloc (sizeof (xchat_plugin));
+	pl = malloc (sizeof (rage_plugin));
 	pl->handle = handle;
 	pl->filename = filename;
 	pl->context = ctx;
@@ -178,14 +180,14 @@ plugin_list_add (xchat_context *ctx, char *filename, const char *name,
 }
 
 static void *
-xchat_dummy (xchat_plugin *ph)
+rage_dummy (rage_plugin *ph)
 {
 	return NULL;
 }
 
 #ifdef WIN32
 static int
-xchat_read_fd (xchat_plugin *ph, GIOChannel *source, char *buf, int *len)
+rage_read_fd (rage_plugin *ph, GIOChannel *source, char *buf, int *len)
 {
 	return g_io_channel_read (source, buf, *len, len);
 }
@@ -197,7 +199,7 @@ void
 plugin_add (rage_session *sess, char *filename, void *handle, void *init_func,
 				void *deinit_func, char *arg, int fake)
 {
-	xchat_plugin *pl;
+	rage_plugin *pl;
 	char *file;
 
 	file = NULL;
@@ -210,52 +212,52 @@ plugin_add (rage_session *sess, char *filename, void *handle, void *init_func,
 	if (!fake)
 	{
 		/* win32 uses these because it doesn't have --export-dynamic! */
-		pl->xchat_hook_command = xchat_hook_command;
-		pl->xchat_hook_server = xchat_hook_server;
-		pl->xchat_hook_print = xchat_hook_print;
-		pl->xchat_hook_timer = xchat_hook_timer;
-		pl->xchat_hook_fd = xchat_hook_fd;
-		pl->xchat_unhook = xchat_unhook;
-		pl->xchat_print = xchat_print;
-		pl->xchat_printf = xchat_printf;
-		pl->xchat_command = xchat_command;
-		pl->xchat_commandf = xchat_commandf;
-		pl->xchat_nickcmp = xchat_nickcmp;
+		pl->rage_hook_command = rage_hook_command;
+		pl->rage_hook_server = rage_hook_server;
+		pl->rage_hook_print = rage_hook_print;
+		pl->rage_hook_timer = rage_hook_timer;
+		pl->rage_hook_fd = rage_hook_fd;
+		pl->rage_unhook = rage_unhook;
+		pl->rage_print = rage_print;
+		pl->rage_printf = rage_printf;
+		pl->rage_command = rage_command;
+		pl->rage_commandf = rage_commandf;
+		pl->rage_nickcmp = rage_nickcmp;
 #if 0 // #ifdef PLUGIN_C /* FIXME: why? */
-		pl->xchat_set_context = xchat_set_context;
-		pl->xchat_find_context = xchat_find_context;
-		pl->xchat_get_context = xchat_get_context;
+		pl->rage_set_context = rage_set_context;
+		pl->rage_find_context = rage_find_context;
+		pl->rage_get_context = rage_get_context;
 #endif
-		pl->xchat_get_info = xchat_get_info;
-		pl->xchat_get_prefs = xchat_get_prefs;
-		pl->xchat_list_get = xchat_list_get;
-		pl->xchat_list_free = xchat_list_free;
-		pl->xchat_list_fields = xchat_list_fields;
-		pl->xchat_list_str = xchat_list_str;
-		pl->xchat_list_next = xchat_list_next;
-		pl->xchat_list_int = xchat_list_int;
-		pl->xchat_plugingui_add = xchat_plugingui_add;
-		pl->xchat_plugingui_remove = xchat_plugingui_remove;
-		pl->xchat_emit_print = xchat_emit_print;
+		pl->rage_get_info = rage_get_info;
+		pl->rage_get_prefs = rage_get_prefs;
+		pl->rage_list_get = rage_list_get;
+		pl->rage_list_free = rage_list_free;
+		pl->rage_list_fields = rage_list_fields;
+		pl->rage_list_str = rage_list_str;
+		pl->rage_list_next = rage_list_next;
+		pl->rage_list_int = rage_list_int;
+		pl->rage_plugingui_add = rage_plugingui_add;
+		pl->rage_plugingui_remove = rage_plugingui_remove;
+		pl->rage_emit_print = rage_emit_print;
 #ifdef WIN32
-		pl->xchat_read_fd = (void *) xchat_read_fd;
+		pl->rage_read_fd = (void *) rage_read_fd;
 #else
-		pl->xchat_read_fd = (void *) xchat_dummy;
+		pl->rage_read_fd = (void *) rage_dummy;
 #endif
-		pl->xchat_list_time = xchat_list_time;
-		pl->xchat_gettext = xchat_gettext;
-		pl->xchat_send_modes = xchat_send_modes;
+		pl->rage_list_time = rage_list_time;
+		pl->rage_gettext = rage_gettext;
+		pl->rage_send_modes = rage_send_modes;
 
-		/* incase new plugins are loaded on older xchat */
-		pl->xchat_dummy6 = xchat_dummy;
-		pl->xchat_dummy5 = xchat_dummy;
-		pl->xchat_dummy4 = xchat_dummy;
-		pl->xchat_dummy3 = xchat_dummy;
-		pl->xchat_dummy2 = xchat_dummy;
-		pl->xchat_dummy1 = xchat_dummy;
+		/* incase new plugins are loaded on older rage */
+		pl->rage_dummy6 = rage_dummy;
+		pl->rage_dummy5 = rage_dummy;
+		pl->rage_dummy4 = rage_dummy;
+		pl->rage_dummy3 = rage_dummy;
+		pl->rage_dummy2 = rage_dummy;
+		pl->rage_dummy1 = rage_dummy;
 
-		/* run xchat_plugin_init, if it returns 0, close the plugin */
-		if (((xchat_init_func *)init_func) (pl, &pl->name, &pl->desc, &pl->version, arg) == 0)
+		/* run rage_plugin_init, if it returns 0, close the plugin */
+		if (((rage_init_func *)init_func) (pl, &pl->name, &pl->desc, &pl->version, arg) == 0)
 		{
 			plugin_free (pl, FALSE, FALSE);
 			return;
@@ -272,7 +274,7 @@ plugin_add (rage_session *sess, char *filename, void *handle, void *init_func,
 int
 plugin_kill (char *name, int by_filename)
 {
-	xchat_plugin *pl;
+	rage_plugin *pl;
 	dict_iterator_t it;
 
 	for (it=dict_first(plugin_list); it; it=iter_next(it))
@@ -301,7 +303,7 @@ plugin_kill (char *name, int by_filename)
 void
 plugin_kill_all (void)
 {
-	xchat_plugin *pl;
+	rage_plugin *pl;
 	dict_iterator_t it;
 
 	for (it=dict_first(plugin_list); it; it=iter_next(it))
@@ -320,8 +322,8 @@ char *
 plugin_load (rage_session *sess, char *filename, char *arg)
 {
 	void *handle;
-	xchat_init_func *init_func;
-	xchat_deinit_func *deinit_func;
+	rage_init_func *init_func;
+	rage_deinit_func *deinit_func;
 
 #ifdef USE_GMODULE
 	/* load the plugin */
@@ -329,15 +331,15 @@ plugin_load (rage_session *sess, char *filename, char *arg)
 	if (handle == NULL)
 		return (char *)g_module_error ();
 
-	/* find the init routine xchat_plugin_init */
-	if (!g_module_symbol (handle, "xchat_plugin_init", (gpointer *)&init_func))
+	/* find the init routine rage_plugin_init */
+	if (!g_module_symbol (handle, "rage_plugin_init", (gpointer *)&init_func))
 	{
 		g_module_close (handle);
-		return _("No xchat_plugin_init symbol; is this really an xchat plugin?");
+		return _("No rage_plugin_init symbol; is this really an rage plugin?");
 	}
 
 	/* find the plugin's deinit routine, if any */
-	if (!g_module_symbol (handle, "xchat_plugin_deinit", (gpointer *)&deinit_func))
+	if (!g_module_symbol (handle, "rage_plugin_deinit", (gpointer *)&deinit_func))
 		deinit_func = NULL;
 
 #else
@@ -368,17 +370,17 @@ plugin_load (rage_session *sess, char *filename, char *arg)
 		return (char *)dlerror ();
 	dlerror ();		/* Clear any existing error */
 
-	/* find the init routine xchat_plugin_init */
-	init_func = dlsym (handle, "xchat_plugin_init");
+	/* find the init routine rage_plugin_init */
+	init_func = dlsym (handle, "rage_plugin_init");
 	error = (char *)dlerror ();
 	if (error != NULL)
 	{
 		dlclose (handle);
-		return _("No xchat_plugin_init symbol; is this really an xchat plugin?");
+		return _("No rage_plugin_init symbol; is this really an rage plugin?");
 	}
 
 	/* find the plugin's deinit routine, if any */
-	deinit_func = dlsym (handle, "xchat_plugin_deinit");
+	deinit_func = dlsym (handle, "rage_plugin_deinit");
 	error = (char *)dlerror ();
 #endif
 
@@ -412,10 +414,10 @@ plugin_auto_load (rage_session *sess)
 	for_files (get_xdir_fs (), "*.dll", plugin_auto_load_cb);
 #else
 #if defined(__hpux)
-	for_files (XCHATLIBDIR"/plugins", "*.sl", plugin_auto_load_cb);
+	for_files (RAGELIBDIR"/plugins", "*.sl", plugin_auto_load_cb);
 	for_files (get_xdir_fs (), "*.sl", plugin_auto_load_cb);
 #else
-	for_files (XCHATLIBDIR"/plugins", "*.so", plugin_auto_load_cb);
+	for_files (RAGELIBDIR"/plugins", "*.so", plugin_auto_load_cb);
 	for_files (get_xdir_fs (), "*.so", plugin_auto_load_cb);
 #endif
 #endif
@@ -426,7 +428,7 @@ plugin_auto_load (rage_session *sess)
 static GSList *
 plugin_hook_find (GSList *list, int type, char *name)
 {
-	xchat_hook *hook;
+	rage_hook *hook;
 
 	while (list)
 	{
@@ -454,7 +456,7 @@ static int
 plugin_hook_run (rage_session *sess, char *name, int parc, char *parv[], int type)
 {
 	GSList *list, *next;
-	xchat_hook *hook;
+	rage_hook *hook;
 	int ret, eat = 0;
 
 	list = hook_list[type];
@@ -472,24 +474,24 @@ plugin_hook_run (rage_session *sess, char *name, int parc, char *parv[], int typ
 		switch (type)
 		{
 		case HOOK_COMMAND:
-			ret = ((xchat_cmd_cb *)hook->callback) (parc, parv, hook->userdata);
+			ret = ((rage_cmd_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		case HOOK_SERVER:
-			ret = ((xchat_serv_cb *)hook->callback) (parc, parv, hook->userdata);
+			ret = ((rage_serv_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		default: /*case HOOK_PRINT:*/
-			ret = ((xchat_print_cb *)hook->callback) (parc, parv, hook->userdata);
+			ret = ((rage_print_cb *)hook->callback) (parc, parv, hook->userdata);
 			break;
 		}
 
-		if ((ret & XCHAT_EAT_XCHAT) && (ret & XCHAT_EAT_PLUGIN))
+		if ((ret & RAGE_EAT_RAGE) && (ret & RAGE_EAT_PLUGIN))
 		{
 			eat = 1;
 			goto xit;
 		}
-		if (ret & XCHAT_EAT_PLUGIN)
+		if (ret & RAGE_EAT_PLUGIN)
 			goto xit;	/* stop running plugins */
-		if (ret & XCHAT_EAT_XCHAT)
+		if (ret & RAGE_EAT_RAGE)
 			eat = 1;	/* eventually we'll return 1, but continue running plugins */
 
 		list = next;
@@ -553,7 +555,7 @@ plugin_emit_dummy_print (rage_session *sess, char *name)
 }
 
 static int
-plugin_timeout_cb (xchat_hook *hook)
+plugin_timeout_cb (rage_hook *hook)
 {
 	int ret;
 
@@ -561,7 +563,7 @@ plugin_timeout_cb (xchat_hook *hook)
 	hook->pl->context = current_sess;
 
 	/* call the plugin's timeout function */
-	ret = ((xchat_timer_cb *)hook->callback) (hook->userdata);
+	ret = ((rage_timer_cb *)hook->callback) (hook->userdata);
 
 	/* the callback might have already unhooked it! */
 	if (!g_slist_find (hook_list[hook->type], hook))
@@ -570,7 +572,7 @@ plugin_timeout_cb (xchat_hook *hook)
 	if (ret == 0)
 	{
 		hook->tag = 0;	/* avoid fe_timeout_remove, returning 0 is enough! */
-		xchat_unhook (hook->pl, hook);
+		rage_unhook (hook->pl, hook);
 	}
 
 	return ret;
@@ -579,10 +581,10 @@ plugin_timeout_cb (xchat_hook *hook)
 /* insert a hook into hook_list according to its priority */
 
 static void
-plugin_insert_hook (xchat_hook *new_hook)
+plugin_insert_hook (rage_hook *new_hook)
 {
 	GSList *list;
-	xchat_hook *hook;
+	rage_hook *hook;
 
 	list = hook_list[new_hook->type];
 	while (list)
@@ -601,31 +603,31 @@ plugin_insert_hook (xchat_hook *new_hook)
 }
 
 static gboolean
-plugin_fd_cb (GIOChannel *source, GIOCondition condition, xchat_hook *hook)
+plugin_fd_cb (GIOChannel *source, GIOCondition condition, rage_hook *hook)
 {
 	int flags = 0;
-	typedef int (xchat_fd_cb2) (int fd, int flags, void *user_data, GIOChannel *);
+	typedef int (rage_fd_cb2) (int fd, int flags, void *user_data, GIOChannel *);
 
 	if (condition & G_IO_IN)
-		flags |= XCHAT_FD_READ;
+		flags |= RAGE_FD_READ;
 	if (condition & G_IO_OUT)
-		flags |= XCHAT_FD_WRITE;
+		flags |= RAGE_FD_WRITE;
 	if (condition & G_IO_PRI)
-		flags |= XCHAT_FD_EXCEPTION;
+		flags |= RAGE_FD_EXCEPTION;
 
-	return ((xchat_fd_cb2 *)hook->callback) (hook->pri, flags, hook->userdata, source);
+	return ((rage_fd_cb2 *)hook->callback) (hook->pri, flags, hook->userdata, source);
 }
 
 /* allocate and add a hook to our list. Used for all 4 types */
 
-static xchat_hook *
-plugin_add_hook (xchat_plugin *pl, int type, int pri, const char *name,
+static rage_hook *
+plugin_add_hook (rage_plugin *pl, int type, int pri, const char *name,
 					  const  char *help_text, void *callb, int timeout, void *userdata)
 {
-	xchat_hook *hook;
+	rage_hook *hook;
 
-	hook = malloc (sizeof (xchat_hook));
-	memset (hook, 0, sizeof (xchat_hook));
+	hook = malloc (sizeof (rage_hook));
+	memset (hook, 0, sizeof (rage_hook));
 
 	hook->type = type;
 	hook->pri = pri;
@@ -649,7 +651,7 @@ plugin_add_hook (xchat_plugin *pl, int type, int pri, const char *name,
 GList *
 plugin_command_list(GList *tmp_list)
 {
-	xchat_hook *hook;
+	rage_hook *hook;
 	GSList *list = hook_list[HOOK_COMMAND];
 
 	while (list)
@@ -665,7 +667,7 @@ int
 plugin_show_help (rage_session *sess, char *cmd)
 {
 	GSList *list;
-	xchat_hook *hook;
+	rage_hook *hook;
 
 	/* show all help commands */
 	if (cmd == NULL)
@@ -699,7 +701,7 @@ plugin_show_help (rage_session *sess, char *cmd)
 /* ========================================================= */
 
 void *
-xchat_unhook (xchat_plugin *ph, xchat_hook *hook)
+rage_unhook (rage_plugin *ph, rage_hook *hook)
 {
 	/* perl.c trips this */
 	if (hook->type == HOOK_DELETED || !g_slist_find (hook_list[hook->type], hook))
@@ -721,40 +723,40 @@ xchat_unhook (xchat_plugin *ph, xchat_hook *hook)
 	return hook->userdata;
 }
 
-xchat_hook *
-xchat_hook_command (xchat_plugin *ph, const char *name, int pri,
-		xchat_cmd_cb *callb, const char *help_text, void *userdata)
+rage_hook *
+rage_hook_command (rage_plugin *ph, const char *name, int pri,
+		rage_cmd_cb *callb, const char *help_text, void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_COMMAND, pri, name, help_text, callb, 0,
 									userdata);
 }
 
-xchat_hook *
-xchat_hook_server (xchat_plugin *ph, const char *name, int pri,
-				 xchat_serv_cb *callb, void *userdata)
+rage_hook *
+rage_hook_server (rage_plugin *ph, const char *name, int pri,
+				 rage_serv_cb *callb, void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_SERVER, pri, name, 0, callb, 0, userdata);
 }
 
-xchat_hook *
-xchat_hook_print (xchat_plugin *ph, const char *name, int pri,
-						xchat_print_cb *callb, void *userdata)
+rage_hook *
+rage_hook_print (rage_plugin *ph, const char *name, int pri,
+						rage_print_cb *callb, void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_PRINT, pri, name, 0, callb, 0, userdata);
 }
 
-xchat_hook *
-xchat_hook_timer (xchat_plugin *ph, int timeout, xchat_timer_cb *callb,
+rage_hook *
+rage_hook_timer (rage_plugin *ph, int timeout, rage_timer_cb *callb,
 					   void *userdata)
 {
 	return plugin_add_hook (ph, HOOK_TIMER, 0, 0, 0, callb, timeout, userdata);
 }
 
-xchat_hook *
-xchat_hook_fd (xchat_plugin *ph, int fd, int flags,
-					xchat_fd_cb *callb, void *userdata)
+rage_hook *
+rage_hook_fd (rage_plugin *ph, int fd, int flags,
+					rage_fd_cb *callb, void *userdata)
 {
-	xchat_hook *hook;
+	rage_hook *hook;
 
 	hook = plugin_add_hook (ph, HOOK_FD, 0, 0, 0, callb, 0, userdata);
 	hook->pri = fd;
@@ -765,11 +767,11 @@ xchat_hook_fd (xchat_plugin *ph, int fd, int flags,
 }
 
 void
-xchat_print (xchat_plugin *ph, const char *text)
+rage_print (rage_plugin *ph, const char *text)
 {
 	if (!is_session (ph->context))
 	{
-		DEBUG(PrintTextf(0, "%s\txchat_print called without a valid context.\n", ph->name));
+		DEBUG(PrintTextf(0, "%s\trage_print called without a valid context.\n", ph->name));
 		return;
 	}
 
@@ -777,7 +779,7 @@ xchat_print (xchat_plugin *ph, const char *text)
 }
 
 void
-xchat_printf (xchat_plugin *ph, const char *format, ...)
+rage_printf (rage_plugin *ph, const char *format, ...)
 {
 	va_list args;
 	char *buf;
@@ -786,17 +788,17 @@ xchat_printf (xchat_plugin *ph, const char *format, ...)
 	buf = g_strdup_vprintf (format, args);
 	va_end (args);
 
-	xchat_print (ph, buf);
+	rage_print (ph, buf);
 	g_free (buf);
 }
 
 void
-xchat_command (xchat_plugin *ph, const char *command)
+rage_command (rage_plugin *ph, const char *command)
 {
 	char *buf;
 	if (!is_session (ph->context))
 	{
-		DEBUG(PrintTextf(0, "%s\txchat_command called without a valid context.\n", ph->name));
+		DEBUG(PrintTextf(0, "%s\trage_command called without a valid context.\n", ph->name));
 		return;
 	}
 
@@ -806,7 +808,7 @@ xchat_command (xchat_plugin *ph, const char *command)
 }
 
 void
-xchat_commandf (xchat_plugin *ph, const char *format, ...)
+rage_commandf (rage_plugin *ph, const char *format, ...)
 {
 	va_list args;
 	char *buf;
@@ -815,24 +817,24 @@ xchat_commandf (xchat_plugin *ph, const char *format, ...)
 	buf = g_strdup_vprintf (format, args);
 	va_end (args);
 
-	xchat_command (ph, buf);
+	rage_command (ph, buf);
 	g_free (buf);
 }
 
 int
-xchat_nickcmp (xchat_plugin *ph, const char *s1, const char *s2)
+rage_nickcmp (rage_plugin *ph, const char *s1, const char *s2)
 {
 	return ((rage_session *)ph->context)->server->p_cmp (s1, s2);
 }
 
-xchat_context *
-xchat_get_context (xchat_plugin *ph)
+rage_context *
+rage_get_context (rage_plugin *ph)
 {
 	return ph->context;
 }
 
 int
-xchat_set_context (xchat_plugin *ph, xchat_context *context)
+rage_set_context (rage_plugin *ph, rage_context *context)
 {
 	if (is_session (context))
 	{
@@ -842,8 +844,8 @@ xchat_set_context (xchat_plugin *ph, xchat_context *context)
 	return 0;
 }
 
-xchat_context *
-xchat_find_context (xchat_plugin *ph, const char *servname, const char *channel)
+rage_context *
+rage_find_context (rage_plugin *ph, const char *servname, const char *channel)
 {
 	GSList *slist, *clist;
 	server *serv;
@@ -886,14 +888,14 @@ xchat_find_context (xchat_plugin *ph, const char *servname, const char *channel)
 }
 
 const char *
-xchat_get_info (xchat_plugin *ph, const char *id)
+rage_get_info (rage_plugin *ph, const char *id)
 {
 	rage_session *sess;
 
 	sess = ph->context;
 	if (!is_session (sess))
 	{
-		DEBUG(PrintTextf(0, "%s\txchat_get_info called without a valid context.\n", ph->name));
+		DEBUG(PrintTextf(0, "%s\trage_get_info called without a valid context.\n", ph->name));
 		return NULL;
 	}
 
@@ -914,7 +916,7 @@ xchat_get_info (xchat_plugin *ph, const char *id)
 		return fe_get_inputbox_contents (sess);
 
 	case 0x325acab5:	/* libdirfs */
-		return XCHATLIBDIR;
+		return RAGELIBDIR;
 
 	case 0x6de15a2e:	/* network */
 		return get_network (sess, FALSE);
@@ -942,10 +944,10 @@ xchat_get_info (xchat_plugin *ph, const char *id)
 		}
 		return NULL;
 
-	case 0xdd9b1abd:	/* xchatdir */
+	case 0xdd9b1abd:	/* ragedir */
 		return get_xdir_utf8 ();
 
-	case 0xe33f6c4a:	/* xchatdirfs */
+	case 0xe33f6c4a:	/* ragedirfs */
 		return get_xdir_fs ();
 	}
 
@@ -953,7 +955,7 @@ xchat_get_info (xchat_plugin *ph, const char *id)
 }
 
 int
-xchat_get_prefs (xchat_plugin *ph, const char *name, const char **string, int *integer)
+rage_get_prefs (rage_plugin *ph, const char *name, const char **string, int *integer)
 {
 	int i = 0;
 
@@ -987,12 +989,12 @@ xchat_get_prefs (xchat_plugin *ph, const char *name, const char **string, int *i
 	return 0;
 }
 
-xchat_list *
-xchat_list_get (xchat_plugin *ph, const char *name)
+rage_list *
+rage_list_get (rage_plugin *ph, const char *name)
 {
-	xchat_list *list;
+	rage_list *list;
 
-	list = malloc (sizeof (xchat_list));
+	list = malloc (sizeof (rage_list));
 	list->pos = NULL;
 
 	switch (str_hash (name))
@@ -1035,7 +1037,7 @@ xchat_list_get (xchat_plugin *ph, const char *name)
 }
 
 void
-xchat_list_free (xchat_plugin *ph, xchat_list *xlist)
+rage_list_free (rage_plugin *ph, rage_list *xlist)
 {
 	if (xlist->type == LIST_USERS)
 		g_slist_free (xlist->head);
@@ -1043,7 +1045,7 @@ xchat_list_free (xchat_plugin *ph, xchat_list *xlist)
 }
 
 int
-xchat_list_next (xchat_plugin *ph, xchat_list *xlist)
+rage_list_next (rage_plugin *ph, rage_list *xlist)
 {
 	if (xlist->next == NULL)
 		return 0;
@@ -1065,7 +1067,7 @@ xchat_list_next (xchat_plugin *ph, xchat_list *xlist)
 }
 
 const char **
-xchat_list_fields (xchat_plugin *ph, const char *name)
+rage_list_fields (rage_plugin *ph, const char *name)
 {
 	static const char *dcc_fields[] =
 	{
@@ -1115,7 +1117,7 @@ xchat_list_fields (xchat_plugin *ph, const char *name)
 }
 
 time_t
-xchat_list_time (xchat_plugin *ph, xchat_list *xlist, const char *name)
+rage_list_time (rage_plugin *ph, rage_list *xlist, const char *name)
 {
 	guint32 hash = str_hash (name);
 /*	gpointer data = xlist->pos->data;*/
@@ -1140,7 +1142,7 @@ xchat_list_time (xchat_plugin *ph, xchat_list *xlist, const char *name)
 }
 
 const char *
-xchat_list_str (xchat_plugin *ph, xchat_list *xlist, const char *name)
+rage_list_str (rage_plugin *ph, rage_list *xlist, const char *name)
 {
 	guint32 hash = str_hash (name);
 	gpointer data = xlist->pos->data;
@@ -1213,7 +1215,7 @@ xchat_list_str (xchat_plugin *ph, xchat_list *xlist, const char *name)
 }
 
 int
-xchat_list_int (xchat_plugin *ph, xchat_list *xlist, const char *name)
+rage_list_int (rage_plugin *ph, rage_list *xlist, const char *name)
 {
 	guint32 hash = str_hash (name);
 	gpointer data = xlist->pos->data;
@@ -1301,7 +1303,7 @@ xchat_list_int (xchat_plugin *ph, xchat_list *xlist, const char *name)
 }
 
 void *
-xchat_plugingui_add (xchat_plugin *ph, const char *filename,
+rage_plugingui_add (rage_plugin *ph, const char *filename,
 							const char *name, const char *desc,
 							const char *version, char *reserved)
 {
@@ -1315,7 +1317,7 @@ xchat_plugingui_add (xchat_plugin *ph, const char *filename,
 }
 
 void
-xchat_plugingui_remove (xchat_plugin *ph, void *handle)
+rage_plugingui_remove (rage_plugin *ph, void *handle)
 {
 #ifdef USE_PLUGIN
 	plugin_free (handle, FALSE, FALSE);
@@ -1323,7 +1325,7 @@ xchat_plugingui_remove (xchat_plugin *ph, void *handle)
 }
 
 int
-xchat_emit_print (xchat_plugin *ph, const char *event_name, ...)
+rage_emit_print (rage_plugin *ph, const char *event_name, ...)
 {
 	va_list args;
 	char *argv[4] = {NULL, NULL, NULL, NULL};
@@ -1349,15 +1351,15 @@ xchat_emit_print (xchat_plugin *ph, const char *event_name, ...)
 }
 
 char *
-xchat_gettext (xchat_plugin *ph, const char *msgid)
+rage_gettext (rage_plugin *ph, const char *msgid)
 {
-	/* so that plugins can use xchat's internal gettext strings. */
+	/* so that plugins can use rage's internal gettext strings. */
 	/* e.g. The EXEC plugin uses this on Windows. */
 	return _(msgid);
 }
 
 void
-xchat_send_modes (xchat_plugin *ph, const char **targets, int ntargets, 
+rage_send_modes (rage_plugin *ph, const char **targets, int ntargets, 
 		char sign, char mode)
 {
 	send_channel_modes (ph->context, (char **)targets, 0, ntargets, sign, mode);

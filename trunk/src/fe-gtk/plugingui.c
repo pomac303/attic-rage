@@ -76,7 +76,7 @@ extern GSList *plugin_list;
 void
 fe_pluginlist_update (void)
 {
-	xchat_plugin *pl;
+	rage_plugin *pl;
 	GSList *list;
 	GtkTreeView *view;
 	GtkListStore *store;

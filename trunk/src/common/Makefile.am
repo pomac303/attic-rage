@@ -76,4 +76,4 @@ textevents: make-te textevents.in
 	./make-te < textevents.in > textevents.h 2> textenums.h
 
 plugin.o: $(srcdir)/plugin.c $(srcdir)/rage-plugin.h $(srcdir)/cfgfiles.h
-	$(COMPILE) -DXCHATLIBDIR=\"$(ragelibdir)\" -c $(srcdir)/plugin.c
+	$(COMPILE) -DRAGELIBDIR=\"$(ragelibdir)\" -c $(srcdir)/plugin.c

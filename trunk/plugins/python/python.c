@@ -1,9 +1,11 @@
 /*
 * Copyright (c) 2002-2003  Gustavo Niemeyer <niemeyer@conectiva.com>
 *
-* XChat Python Plugin Interface
+* Rage Python Plugin Interface
 *
-* Xchat Python Plugin Interface is free software; you can redistribute
+* Derived from the XChat Python interface
+*
+* Rage Python Plugin Interface is free software; you can redistribute
 * it and/or modify it under the terms of the GNU General Public License
 * as published by the Free Software Foundation; either version 2 of the
 * License, or (at your option) any later version.
@@ -23,31 +25,31 @@
  *
  * The python interpreter has a global interpreter lock. Any thread
  * executing must acquire it before working with data accessible from
- * python code. Here we must also care about xchat not being
- * thread-safe. We do this by using an xchat lock, which protects
- * xchat instructions from being executed out of time (when this
+ * python code. Here we must also care about rage not being
+ * thread-safe. We do this by using an rage lock, which protects
+ * rage instructions from being executed out of time (when this
  * plugin is not "active").
  *
- * When xchat calls python code:
+ * When rage calls python code:
  *   - Change the current_plugin for the executing plugin;
- *   - Release xchat lock
+ *   - Release rage lock
  *   - Acquire the global interpreter lock
  *   - Make the python call
  *   - Release the global interpreter lock
- *   - Acquire xchat lock
+ *   - Acquire rage lock
  *
- * When python code calls xchat:
+ * When python code calls rage:
  *   - Release the global interpreter lock
- *   - Acquire xchat lock
+ *   - Acquire rage lock
  *   - Restore context, if necessary
- *   - Make the xchat call
- *   - Release xchat lock
+ *   - Make the rage call
+ *   - Release rage lock
  *   - Acquire the global interpreter lock
  *
  * Inside a timer, so that individual threads have a chance to run:
- *   - Release xchat lock
+ *   - Release rage lock
  *   - Go ahead threads. Have a nice time!
- *   - Acquire xchat lock
+ *   - Acquire rage lock
  *
  */
 
@@ -68,7 +70,7 @@
 #define VERSION "0.2"
 
 #ifdef WIN32
-#undef WITH_THREAD /* Thread support locks up xchat on Win32. */
+#undef WITH_THREAD /* Thread support locks up rage on Win32. */
 #endif
 
 #define NONE 0
@@ -76,47 +78,47 @@
 #define RESTORE_CONTEXT 2
 
 #ifdef WITH_THREAD
-#define ACQUIRE_XCHAT_LOCK() PyThread_acquire_lock(xchat_lock, 1)
-#define RELEASE_XCHAT_LOCK() PyThread_release_lock(xchat_lock)
-#define BEGIN_XCHAT_CALLS(x) \
+#define ACQUIRE_RAGE_LOCK() PyThread_acquire_lock(rage_lock, 1)
+#define RELEASE_RAGE_LOCK() PyThread_release_lock(rage_lock)
+#define BEGIN_RAGE_CALLS(x) \
 	do { \
 		PyObject *calls_plugin = NULL; \
 		PyThreadState *calls_thread; \
 		if ((x) & RESTORE_CONTEXT) \
 			calls_plugin = Plugin_GetCurrent(); \
 		calls_thread = PyEval_SaveThread(); \
-		ACQUIRE_XCHAT_LOCK(); \
+		ACQUIRE_RAGE_LOCK(); \
 		if (!((x) & ALLOW_THREADS)) { \
 			PyEval_RestoreThread(calls_thread); \
 			calls_thread = NULL; \
 		} \
 		if (calls_plugin) \
-			xchat_set_context(ph, \
+			rage_set_context(ph, \
 				Plugin_GetContext(calls_plugin)); \
 		while (0)
-#define END_XCHAT_CALLS() \
-		RELEASE_XCHAT_LOCK(); \
+#define END_RAGE_CALLS() \
+		RELEASE_RAGE_LOCK(); \
 		if (calls_thread) \
 			PyEval_RestoreThread(calls_thread); \
 	} while(0)
 #else
-#define ACQUIRE_XCHAT_LOCK()
-#define RELEASE_XCHAT_LOCK()
-#define BEGIN_XCHAT_CALLS(x)
-#define END_XCHAT_CALLS()
+#define ACQUIRE_RAGE_LOCK()
+#define RELEASE_RAGE_LOCK()
+#define BEGIN_RAGE_CALLS(x)
+#define END_RAGE_CALLS()
 #endif
 
 #define BEGIN_PLUGIN(plg) \
 	do { \
-	xchat_context *begin_plugin_ctx = xchat_get_context(ph); \
-	RELEASE_XCHAT_LOCK(); \
+	rage_context *begin_plugin_ctx = rage_get_context(ph); \
+	RELEASE_RAGE_LOCK(); \
 	Plugin_AcquireThread(plg); \
 	Plugin_SetContext(plg, begin_plugin_ctx); \
 	} while (0)
 #define END_PLUGIN(plg) \
 	do { \
 	Plugin_ReleaseThread(plg); \
-	ACQUIRE_XCHAT_LOCK(); \
+	ACQUIRE_RAGE_LOCK(); \
 	} while (0)
 
 #define Plugin_Swap(x) \
@@ -150,7 +152,7 @@
 #define Plugin_SetContext(x, y) \
 	((PluginObject *)(x))->context = (y);
 
-#define HOOK_XCHAT  1
+#define HOOK_RAGE  1
 #define HOOK_UNLOAD 2
 
 /* ===================================================================== */
@@ -159,11 +161,11 @@
 typedef struct {
 	PyObject_HEAD
 	int softspace; /* We need it for print support. */
-} XChatOutObject;
+} RageOutObject;
 
 typedef struct {
 	PyObject_HEAD
-	xchat_context *context;
+	rage_context *context;
 } ContextObject;
 
 typedef struct {
@@ -180,7 +182,7 @@ typedef struct {
 	char *description;
 	GSList *hooks;
 	PyThreadState *tstate;
-	xchat_context *context;
+	rage_context *context;
 	void *gui;
 } PluginObject;
 
@@ -189,7 +191,7 @@ typedef struct {
 	PyObject *plugin;
 	PyObject *callback;
 	PyObject *userdata;
-	void *data; /* A handle, when type == HOOK_XCHAT */
+	void *data; /* A handle, when type == HOOK_RAGE */
 } Hook;
 
 
@@ -205,9 +207,9 @@ static int Callback_Print(int parc, char *parv[], void *userdata);
 static int Callback_Timer(void *userdata);
 static int Callback_ThreadTimer(void *userdata);
 
-static PyObject *XChatOut_New(void);
-static PyObject *XChatOut_write(PyObject *self, PyObject *args);
-static void XChatOut_dealloc(PyObject *self);
+static PyObject *RageOut_New(void);
+static PyObject *RageOut_write(PyObject *self, PyObject *args);
+static void RageOut_dealloc(PyObject *self);
 
 static void Context_dealloc(PyObject *self);
 static PyObject *Context_set(ContextObject *self, PyObject *args);
@@ -215,10 +217,10 @@ static PyObject *Context_command(ContextObject *self, PyObject *args);
 static PyObject *Context_prnt(ContextObject *self, PyObject *args);
 static PyObject *Context_get_info(ContextObject *self, PyObject *args);
 static PyObject *Context_get_list(ContextObject *self, PyObject *args);
-static PyObject *Context_FromContext(xchat_context *context);
+static PyObject *Context_FromContext(rage_context *context);
 static PyObject *Context_FromServerAndChannel(char *server, char *channel);
 
-static PyObject *Plugin_New(char *filename, PyMethodDef *xchat_methods,
+static PyObject *Plugin_New(char *filename, PyMethodDef *rage_methods,
 			    PyObject *xcoobj);
 static PyObject *Plugin_GetCurrent(void);
 static PluginObject *Plugin_ByString(char *str);
@@ -227,25 +229,25 @@ static Hook *Plugin_AddHook(int type, PyObject *plugin, PyObject *callback,
 static void Plugin_RemoveHook(PyObject *plugin, Hook *hook);
 static void Plugin_RemoveAllHooks(PyObject *plugin);
 
-static PyObject *Module_xchat_command(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_prnt(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_get_context(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_find_context(PyObject *self, PyObject *args,
+static PyObject *Module_rage_command(PyObject *self, PyObject *args);
+static PyObject *Module_rage_prnt(PyObject *self, PyObject *args);
+static PyObject *Module_rage_get_context(PyObject *self, PyObject *args);
+static PyObject *Module_rage_find_context(PyObject *self, PyObject *args,
 					   PyObject *kwargs);
-static PyObject *Module_xchat_get_info(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_hook_command(PyObject *self, PyObject *args,
+static PyObject *Module_rage_get_info(PyObject *self, PyObject *args);
+static PyObject *Module_rage_hook_command(PyObject *self, PyObject *args,
 					   PyObject *kwargs);
-static PyObject *Module_xchat_hook_server(PyObject *self, PyObject *args,
+static PyObject *Module_rage_hook_server(PyObject *self, PyObject *args,
 					  PyObject *kwargs);
-static PyObject *Module_xchat_hook_print(PyObject *self, PyObject *args,
+static PyObject *Module_rage_hook_print(PyObject *self, PyObject *args,
 					 PyObject *kwargs);
-static PyObject *Module_xchat_hook_timer(PyObject *self, PyObject *args,
+static PyObject *Module_rage_hook_timer(PyObject *self, PyObject *args,
 					 PyObject *kwargs);
-static PyObject *Module_xchat_unhook(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_get_info(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_get_list(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_get_lists(PyObject *self, PyObject *args);
-static PyObject *Module_xchat_nickcmp(PyObject *self, PyObject *args);
+static PyObject *Module_rage_unhook(PyObject *self, PyObject *args);
+static PyObject *Module_rage_get_info(PyObject *self, PyObject *args);
+static PyObject *Module_rage_get_list(PyObject *self, PyObject *args);
+static PyObject *Module_rage_get_lists(PyObject *self, PyObject *args);
+static PyObject *Module_rage_nickcmp(PyObject *self, PyObject *args);
 
 static void IInterp_Exec(char *command);
 static int IInterp_Cmd(int parc, char *word[], void *userdata);
@@ -261,21 +263,21 @@ static int Command_Py(int parc, char *parv[], void *userdata);
 /* Static declarations and definitions */
 
 staticforward PyTypeObject Plugin_Type;
-staticforward PyTypeObject XChatOut_Type;
+staticforward PyTypeObject RageOut_Type;
 staticforward PyTypeObject Context_Type;
 staticforward PyTypeObject ListItem_Type;
 
 static PyThreadState *main_tstate = NULL;
 static void *thread_timer = NULL;
 
-static xchat_plugin *ph;
+static rage_plugin *ph;
 static GSList *plugin_list = NULL;
 
 static PyObject *interp_plugin = NULL;
-static PyObject *xchatout = NULL;
+static PyObject *rageout = NULL;
 
 #ifdef WITH_THREAD
-static PyThread_type_lock xchat_lock = NULL;
+static PyThread_type_lock rage_lock = NULL;
 #endif
 
 static char *usage = "\
@@ -331,10 +333,10 @@ Util_Autoload(void)
 	if (getcwd(oldcwd, PATH_MAX) == NULL)
 		return;
 	/* we need local filesystem encoding for chdir, opendir etc */
-	dir_name = xchat_get_info(ph, "xchatdirfs");
-	/* fallback for pre-2.0.9 xchat */
+	dir_name = rage_get_info(ph, "ragedirfs");
+	/* fallback for pre-2.0.9 rage */
 	if (!dir_name)
-		dir_name = xchat_get_info(ph, "xchatdir");
+		dir_name = rage_get_info(ph, "ragedir");
 	if (chdir(dir_name) != 0)
 		return;
 	dir = opendir(".");
@@ -381,8 +383,8 @@ Util_Expand(char *filename)
 		return expanded;
 	g_free(expanded);
 
-	/* Check if ~/.xchat2/<filename> exists. */
-	expanded = g_build_filename(xchat_get_info(ph, "xchatdir"),
+	/* Check if ~/.rage/<filename> exists. */
+	expanded = g_build_filename(rage_get_info(ph, "ragedir"),
 				    filename, NULL);
 	if (g_file_test(expanded, G_FILE_TEST_EXISTS))
 		return expanded;
@@ -428,7 +430,7 @@ Callback_Command(int parc,char *parv[], void *userdata)
 	Py_DECREF(word_list);
 
 	if (retobj == Py_None) {
-		ret = XCHAT_EAT_NONE;
+		ret = RAGE_EAT_NONE;
 		Py_DECREF(retobj);
 	} else if (retobj) {
 		ret = PyInt_AsLong(retobj);
@@ -465,7 +467,7 @@ Callback_Print(int parc, char *parv[], void *userdata)
 	Py_DECREF(word_list);
 
 	if (retobj == Py_None) {
-		ret = XCHAT_EAT_NONE;
+		ret = RAGE_EAT_NONE;
 		Py_DECREF(retobj);
 	} else if (retobj) {
 		ret = PyInt_AsLong(retobj);
@@ -513,44 +515,44 @@ Callback_Timer(void *userdata)
 static int
 Callback_ThreadTimer(void *userdata)
 {
-	RELEASE_XCHAT_LOCK();
+	RELEASE_RAGE_LOCK();
 	usleep(1);
-	ACQUIRE_XCHAT_LOCK();
+	ACQUIRE_RAGE_LOCK();
 	return 1;
 }
 #endif
 
 /* ===================================================================== */
-/* XChatOut object */
+/* RageOut object */
 
 /* We keep this information global, so we can reset it when the
  * deinit function is called. */
 /* XXX This should be somehow bound to the printing context. */
-static char *xchatout_buffer = NULL;
-static int xchatout_buffer_size = 0;
-static int xchatout_buffer_pos = 0;
+static char *rageout_buffer = NULL;
+static int rageout_buffer_size = 0;
+static int rageout_buffer_pos = 0;
 
 static PyObject *
-XChatOut_New(void)
+RageOut_New(void)
 {
-	XChatOutObject *xcoobj;
-	xcoobj = PyObject_New(XChatOutObject, &XChatOut_Type);
+	RageOutObject *xcoobj;
+	xcoobj = PyObject_New(RageOutObject, &RageOut_Type);
 	if (xcoobj != NULL)
 		xcoobj->softspace = 0;
 	return (PyObject *) xcoobj;
 }
 
 static void
-XChatOut_dealloc(PyObject *self)
+RageOut_dealloc(PyObject *self)
 {
 	self->ob_type->tp_free((PyObject *)self);
 }
 
 /* This is a little bit complex because we have to buffer data
- * until a \n is received, since xchat breaks the line automatically.
+ * until a \n is received, since rage breaks the line automatically.
  * We also crop the last \n for this reason. */
 static PyObject *
-XChatOut_write(PyObject *self, PyObject *args)
+RageOut_write(PyObject *self, PyObject *args)
 {
 	int new_buffer_pos, data_size, print_limit, add_space;
 	char *data, *pos;
@@ -560,89 +562,89 @@ XChatOut_write(PyObject *self, PyObject *args)
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
-	if (((XChatOutObject *)self)->softspace) {
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
+	if (((RageOutObject *)self)->softspace) {
 		add_space = 1;
-		((XChatOutObject *)self)->softspace = 0;
+		((RageOutObject *)self)->softspace = 0;
 	} else {
 		add_space = 0;
 	}
-	if (xchatout_buffer_size-xchatout_buffer_pos < data_size+add_space) {
+	if (rageout_buffer_size-rageout_buffer_pos < data_size+add_space) {
 		char *new_buffer;
 		/* This buffer grows whenever needed, and does not
 		 * shrink. If we ever implement unloading of the
 		 * python interface, we must find some way to free
 		 * this buffer as well. */
-		xchatout_buffer_size += data_size*2+16;
-		new_buffer = g_realloc(xchatout_buffer, xchatout_buffer_size);
+		rageout_buffer_size += data_size*2+16;
+		new_buffer = g_realloc(rageout_buffer, rageout_buffer_size);
 		if (new_buffer == NULL) {
-			xchat_print(ph, "Not enough memory to print");
+			rage_print(ph, "Not enough memory to print");
 			/* The system is out of resources. Let's help. */
-			g_free(xchatout_buffer);
-			xchatout_buffer = NULL;
-			xchatout_buffer_size = 0;
-			xchatout_buffer_pos = 0;
+			g_free(rageout_buffer);
+			rageout_buffer = NULL;
+			rageout_buffer_size = 0;
+			rageout_buffer_pos = 0;
 			/* Return something valid, since we have
 			 * already warned the user, and he probably
 			 * won't be able to notice this exception. */
 			goto exit;
 		}
-		xchatout_buffer = new_buffer;
+		rageout_buffer = new_buffer;
 	}
-	memcpy(xchatout_buffer+xchatout_buffer_pos, data, data_size);
-	print_limit = new_buffer_pos = xchatout_buffer_pos+data_size;
-	pos = xchatout_buffer+print_limit;
+	memcpy(rageout_buffer+rageout_buffer_pos, data, data_size);
+	print_limit = new_buffer_pos = rageout_buffer_pos+data_size;
+	pos = rageout_buffer+print_limit;
 	if (add_space && *(pos-1) != '\n') {
 		*pos = ' ';
 		*(pos+1) = 0;
 		new_buffer_pos++;
 	}
-	while (*pos != '\n' && print_limit > xchatout_buffer_pos) {
+	while (*pos != '\n' && print_limit > rageout_buffer_pos) {
 		pos--;
 		print_limit--;
 	}
 	if (*pos == '\n') {
 		/* Crop it, inserting the string limiter there. */
 		*pos = 0;
-		xchat_print(ph, xchatout_buffer);
+		rage_print(ph, rageout_buffer);
 		if (print_limit < new_buffer_pos) {
 			/* There's still data to be printed. */
 			print_limit += 1; /* Include the limiter. */
-			xchatout_buffer_pos = new_buffer_pos-print_limit;
-			memmove(xchatout_buffer, xchatout_buffer+print_limit,
-				xchatout_buffer_pos);
+			rageout_buffer_pos = new_buffer_pos-print_limit;
+			memmove(rageout_buffer, rageout_buffer+print_limit,
+				rageout_buffer_pos);
 		} else {
-			xchatout_buffer_pos = 0;
+			rageout_buffer_pos = 0;
 		}
 	} else {
-		xchatout_buffer_pos = new_buffer_pos;
+		rageout_buffer_pos = new_buffer_pos;
 	}
 
 exit:
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 	Py_INCREF(Py_None);
 	return Py_None;
 }
 
-#define OFF(x) offsetof(XChatOutObject, x)
+#define OFF(x) offsetof(RageOutObject, x)
 
-static PyMemberDef XChatOut_members[] = {
+static PyMemberDef RageOut_members[] = {
 	{"softspace", T_INT, OFF(softspace), 0},
 	{0}
 };
 
-static PyMethodDef XChatOut_methods[] = {
-	{"write", XChatOut_write, METH_VARARGS},
+static PyMethodDef RageOut_methods[] = {
+	{"write", RageOut_write, METH_VARARGS},
 	{NULL, NULL}
 };
 
-statichere PyTypeObject XChatOut_Type = {
+statichere PyTypeObject RageOut_Type = {
 	PyObject_HEAD_INIT(NULL)
 	0,			/*ob_size*/
-	"xchat.XChatOut",	/*tp_name*/
-	sizeof(XChatOutObject),	/*tp_basicsize*/
+	"rage.RageOut",	/*tp_name*/
+	sizeof(RageOutObject),	/*tp_basicsize*/
 	0,			/*tp_itemsize*/
-	XChatOut_dealloc,	/*tp_dealloc*/
+	RageOut_dealloc,	/*tp_dealloc*/
 	0,			/*tp_print*/
 	0,			/*tp_getattr*/
 	0,			/*tp_setattr*/
@@ -665,8 +667,8 @@ statichere PyTypeObject XChatOut_Type = {
         0,                      /*tp_weaklistoffset*/
         0,                      /*tp_iter*/
         0,                      /*tp_iternext*/
-        XChatOut_methods,       /*tp_methods*/
-        XChatOut_members,       /*tp_members*/
+        RageOut_methods,       /*tp_methods*/
+        RageOut_members,       /*tp_members*/
         0,                      /*tp_getset*/
         0,                      /*tp_base*/
         0,                      /*tp_dict*/
@@ -705,10 +707,10 @@ Context_command(ContextObject *self, PyObject *args)
 	char *text;
 	if (!PyArg_ParseTuple(args, "s:command", &text))
 		return NULL;
-	BEGIN_XCHAT_CALLS(ALLOW_THREADS);
-	xchat_set_context(ph, self->context);
-	xchat_command(ph, text);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(ALLOW_THREADS);
+	rage_set_context(ph, self->context);
+	rage_command(ph, text);
+	END_RAGE_CALLS();
 	Py_INCREF(Py_None);
 	return Py_None;
 }
@@ -719,10 +721,10 @@ Context_prnt(ContextObject *self, PyObject *args)
 	char *text;
 	if (!PyArg_ParseTuple(args, "s:prnt", &text))
 		return NULL;
-	BEGIN_XCHAT_CALLS(ALLOW_THREADS);
-	xchat_set_context(ph, self->context);
-	xchat_print(ph, text);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(ALLOW_THREADS);
+	rage_set_context(ph, self->context);
+	rage_print(ph, text);
+	END_RAGE_CALLS();
 	Py_INCREF(Py_None);
 	return Py_None;
 }
@@ -739,12 +741,12 @@ Context_emit_print(ContextObject *self, PyObject *args)
 			      &argv[3], &argv[4], &argv[5],
 			      &argv[6], &argv[7], &argv[8]))
 		return NULL;
-	BEGIN_XCHAT_CALLS(ALLOW_THREADS);
-	xchat_set_context(ph, self->context);
-	res = xchat_emit_print(ph, name, argv[0], argv[1], argv[2],
+	BEGIN_RAGE_CALLS(ALLOW_THREADS);
+	rage_set_context(ph, self->context);
+	res = rage_emit_print(ph, name, argv[0], argv[1], argv[2],
 					 argv[3], argv[4], argv[5],
 					 argv[6], argv[7], argv[8]);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 	return PyInt_FromLong(res);
 }
 
@@ -755,10 +757,10 @@ Context_get_info(ContextObject *self, PyObject *args)
 	char *name;
 	if (!PyArg_ParseTuple(args, "s:get_info", &name))
 		return NULL;
-	BEGIN_XCHAT_CALLS(NONE);
-	xchat_set_context(ph, self->context);
-	info = xchat_get_info(ph, name);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(NONE);
+	rage_set_context(ph, self->context);
+	info = rage_get_info(ph, name);
+	END_RAGE_CALLS();
 	if (info == NULL) {
 		Py_INCREF(Py_None);
 		return Py_None;
@@ -770,10 +772,10 @@ static PyObject *
 Context_get_list(ContextObject *self, PyObject *args)
 {
 	PyObject *plugin = Plugin_GetCurrent();
-	xchat_context *saved_context = Plugin_GetContext(plugin);
+	rage_context *saved_context = Plugin_GetContext(plugin);
 	PyObject *ret;
 	Plugin_SetContext(plugin, self->context);
-	ret = Module_xchat_get_list((PyObject*)self, args);
+	ret = Module_rage_get_list((PyObject*)self, args);
 	Plugin_SetContext(plugin, saved_context);
 	return ret;
 }
@@ -791,7 +793,7 @@ static PyMethodDef Context_methods[] = {
 statichere PyTypeObject Context_Type = {
 	PyObject_HEAD_INIT(NULL)
 	0,			/*ob_size*/
-	"xchat.Context",	/*tp_name*/
+	"rage.Context",	/*tp_name*/
 	sizeof(ContextObject),	/*tp_basicsize*/
 	0,			/*tp_itemsize*/
 	Context_dealloc,        /*tp_dealloc*/
@@ -833,7 +835,7 @@ statichere PyTypeObject Context_Type = {
 };
 
 static PyObject *
-Context_FromContext(xchat_context *context)
+Context_FromContext(rage_context *context)
 {
 	ContextObject *ctxobj = PyObject_New(ContextObject, &Context_Type);
 	if (ctxobj != NULL)
@@ -845,10 +847,10 @@ static PyObject *
 Context_FromServerAndChannel(char *server, char *channel)
 {
 	ContextObject *ctxobj;
-	xchat_context *context;
-	BEGIN_XCHAT_CALLS(NONE);
-	context = xchat_find_context(ph, server, channel);
-	END_XCHAT_CALLS();
+	rage_context *context;
+	BEGIN_RAGE_CALLS(NONE);
+	context = rage_find_context(ph, server, channel);
+	END_RAGE_CALLS();
 	if (context == NULL)
 		return NULL;
 	ctxobj = PyObject_New(ContextObject, &Context_Type);
@@ -887,7 +889,7 @@ ListItem_repr(PyObject *self)
 statichere PyTypeObject ListItem_Type = {
 	PyObject_HEAD_INIT(NULL)
 	0,			/*ob_size*/
-	"xchat.ListItem",	/*tp_name*/
+	"rage.ListItem",	/*tp_name*/
 	sizeof(ListItemObject),	/*tp_basicsize*/
 	0,			/*tp_itemsize*/
 	ListItem_dealloc,	/*tp_dealloc*/
@@ -953,36 +955,36 @@ ListItem_New(const char *listname)
 	o = PyObject_GetAttrString(m, "__module_" #x "__"); \
 	if (o == NULL) { \
 		if (force) { \
-			xchat_print(ph, "Module has no __module_" #x "__ " \
+			rage_print(ph, "Module has no __module_" #x "__ " \
 					"defined"); \
 			goto error; \
 		} \
 		plugin->x = g_strdup(""); \
 	} else {\
 		if (!PyString_Check(o)) { \
-			xchat_print(ph, "Variable __module_" #x "__ " \
+			rage_print(ph, "Variable __module_" #x "__ " \
 					"must be a string"); \
 			goto error; \
 		} \
 		plugin->x = g_strdup(PyString_AsString(o)); \
 		if (plugin->x == NULL) { \
-			xchat_print(ph, "Not enough memory to allocate " #x); \
+			rage_print(ph, "Not enough memory to allocate " #x); \
 			goto error; \
 		} \
 	}
 
 static PyObject *
-Plugin_New(char *filename, PyMethodDef *xchat_methods, PyObject *xcoobj)
+Plugin_New(char *filename, PyMethodDef *rage_methods, PyObject *xcoobj)
 {
 	PluginObject *plugin = NULL;
 	PyObject *m, *o;
-	char *argv[] = {"<xchat>", 0};
+	char *argv[] = {"<rage>", 0};
 
 	if (filename) {
 		char *old_filename = filename;
 		filename = Util_Expand(filename);
 		if (filename == NULL) {
-			xchat_printf(ph, "File not found: %s", old_filename);
+			rage_printf(ph, "File not found: %s", old_filename);
 			return NULL;
 		}
 	}
@@ -990,7 +992,7 @@ Plugin_New(char *filename, PyMethodDef *xchat_methods, PyObject *xcoobj)
 	/* Allocate plugin structure. */
 	plugin = PyObject_New(PluginObject, &Plugin_Type);
 	if (plugin == NULL) {
-		xchat_print(ph, "Can't create plugin object");
+		rage_print(ph, "Can't create plugin object");
 		goto error;
 	}
 
@@ -999,45 +1001,45 @@ Plugin_New(char *filename, PyMethodDef *xchat_methods, PyObject *xcoobj)
 	Plugin_SetFilename(plugin, NULL);
 	Plugin_SetDescription(plugin, NULL);
 	Plugin_SetHooks(plugin, NULL);
-	Plugin_SetContext(plugin, xchat_get_context(ph));
+	Plugin_SetContext(plugin, rage_get_context(ph));
 
 	/* Start a new interpreter environment for this plugin. */
 	PyEval_AcquireLock();
 	plugin->tstate = Py_NewInterpreter();
 	if (plugin->tstate == NULL) {
-		xchat_print(ph, "Can't create interpreter state");
+		rage_print(ph, "Can't create interpreter state");
 		goto error;
 	}
 
 	PySys_SetArgv(1, argv);
 	PySys_SetObject("__plugin__", (PyObject *) plugin);
 
-	/* Set stdout and stderr to xchatout. */
+	/* Set stdout and stderr to rageout. */
 	Py_INCREF(xcoobj);
 	PySys_SetObject("stdout", xcoobj);
 	Py_INCREF(xcoobj);
 	PySys_SetObject("stderr", xcoobj);
 
-	/* Add xchat module to the environment. */
-	m = Py_InitModule("xchat", xchat_methods);
+	/* Add rage module to the environment. */
+	m = Py_InitModule("rage", rage_methods);
 	if (m == NULL) {
-		xchat_print(ph, "Can't create xchat module");
+		rage_print(ph, "Can't create rage module");
 		goto error;
 	}
 
-	PyModule_AddIntConstant(m, "EAT_NONE", XCHAT_EAT_NONE);
-	PyModule_AddIntConstant(m, "EAT_XCHAT", XCHAT_EAT_XCHAT);
-	PyModule_AddIntConstant(m, "EAT_PLUGIN", XCHAT_EAT_PLUGIN);
-	PyModule_AddIntConstant(m, "EAT_ALL", XCHAT_EAT_ALL);
-	PyModule_AddIntConstant(m, "PRI_HIGHEST", XCHAT_PRI_HIGHEST);
-	PyModule_AddIntConstant(m, "PRI_HIGH", XCHAT_PRI_HIGH);
-	PyModule_AddIntConstant(m, "PRI_NORM", XCHAT_PRI_NORM);
-	PyModule_AddIntConstant(m, "PRI_LOW", XCHAT_PRI_LOW);
-	PyModule_AddIntConstant(m, "PRI_LOWEST", XCHAT_PRI_LOWEST);
+	PyModule_AddIntConstant(m, "EAT_NONE", RAGE_EAT_NONE);
+	PyModule_AddIntConstant(m, "EAT_RAGE", RAGE_EAT_RAGE);
+	PyModule_AddIntConstant(m, "EAT_PLUGIN", RAGE_EAT_PLUGIN);
+	PyModule_AddIntConstant(m, "EAT_ALL", RAGE_EAT_ALL);
+	PyModule_AddIntConstant(m, "PRI_HIGHEST", RAGE_PRI_HIGHEST);
+	PyModule_AddIntConstant(m, "PRI_HIGH", RAGE_PRI_HIGH);
+	PyModule_AddIntConstant(m, "PRI_NORM", RAGE_PRI_NORM);
+	PyModule_AddIntConstant(m, "PRI_LOW", RAGE_PRI_LOW);
+	PyModule_AddIntConstant(m, "PRI_LOWEST", RAGE_PRI_LOWEST);
 
 	o = Py_BuildValue("(ii)", VERSION_MAJOR, VERSION_MINOR);
 	if (o == NULL) {
-		xchat_print(ph, "Can't create version tuple");
+		rage_print(ph, "Can't create version tuple");
 		goto error;
 	}
 	PyObject_SetAttrString(m, "__version__", o);
@@ -1053,14 +1055,14 @@ Plugin_New(char *filename, PyMethodDef *xchat_methods, PyObject *xcoobj)
 		/* Open the plugin file. */
 		fp = fopen(plugin->filename, "r");
 		if (fp == NULL) {
-			xchat_printf(ph, "Can't open file %s: %s\n",
+			rage_printf(ph, "Can't open file %s: %s\n",
 				     filename, strerror(errno));
 			goto error;
 		}
 
 		/* Run the plugin. */
 		if (PyRun_SimpleFile(fp, plugin->filename) != 0) {
-			xchat_printf(ph, "Error loading module %s\n",
+			rage_printf(ph, "Error loading module %s\n",
 				     plugin->filename);
 			fclose(fp);
 			goto error;
@@ -1070,13 +1072,13 @@ Plugin_New(char *filename, PyMethodDef *xchat_methods, PyObject *xcoobj)
 		m = PyDict_GetItemString(PyImport_GetModuleDict(),
 					 "__main__");
 		if (m == NULL) {
-			xchat_print(ph, "Can't get __main__ module");
+			rage_print(ph, "Can't get __main__ module");
 			goto error;
 		}
 		GET_MODULE_DATA(name, 1);
 		GET_MODULE_DATA(version, 0);
 		GET_MODULE_DATA(description, 0);
-		plugin->gui = xchat_plugingui_add(ph, plugin->filename,
+		plugin->gui = rage_plugingui_add(ph, plugin->filename,
 						  plugin->name,
 						  plugin->description,
 						  plugin->version, NULL);
@@ -1163,11 +1165,11 @@ Plugin_RemoveHook(PyObject *plugin, Hook *hook)
 	list = g_slist_find(Plugin_GetHooks(plugin), hook);
 	if (list) {
 		/* Ok, unhook it. */
-		if (hook->type == HOOK_XCHAT) {
-			/* This is an xchat hook. Unregister it. */
-			BEGIN_XCHAT_CALLS(NONE);
-			xchat_unhook(ph, (xchat_hook*)hook->data);
-			END_XCHAT_CALLS();
+		if (hook->type == HOOK_RAGE) {
+			/* This is an rage hook. Unregister it. */
+			BEGIN_RAGE_CALLS(NONE);
+			rage_unhook(ph, (rage_hook*)hook->data);
+			END_RAGE_CALLS();
 		}
 		Plugin_SetHooks(plugin,
 				g_slist_remove(Plugin_GetHooks(plugin),
@@ -1184,11 +1186,11 @@ Plugin_RemoveAllHooks(PyObject *plugin)
 	GSList *list = Plugin_GetHooks(plugin);
 	while (list) {
 		Hook *hook = (Hook *) list->data;
-		if (hook->type == HOOK_XCHAT) {
-			/* This is an xchat hook. Unregister it. */
-			BEGIN_XCHAT_CALLS(NONE);
-			xchat_unhook(ph, (xchat_hook*)hook->data);
-			END_XCHAT_CALLS();
+		if (hook->type == HOOK_RAGE) {
+			/* This is an rage hook. Unregister it. */
+			BEGIN_RAGE_CALLS(NONE);
+			rage_unhook(ph, (rage_hook*)hook->data);
+			END_RAGE_CALLS();
 		}
 		Py_DECREF(hook->callback);
 		Py_DECREF(hook->userdata);
@@ -1219,7 +1221,7 @@ Plugin_Delete(PyObject *plugin)
 		list = list->next;
 	}
 	Plugin_RemoveAllHooks(plugin);
-	xchat_plugingui_remove(ph, ((PluginObject *)plugin)->gui);
+	rage_plugingui_remove(ph, ((PluginObject *)plugin)->gui);
 	Py_DECREF(plugin);
 	Py_EndInterpreter(tstate);
 }
@@ -1237,7 +1239,7 @@ Plugin_dealloc(PluginObject *self)
 statichere PyTypeObject Plugin_Type = {
 	PyObject_HEAD_INIT(NULL)
 	0,			/*ob_size*/
-	"xchat.Plugin",		/*tp_name*/
+	"rage.Plugin",		/*tp_name*/
 	sizeof(PluginObject),	/*tp_basicsize*/
 	0,			/*tp_itemsize*/
 	(destructor)Plugin_dealloc, /*tp_dealloc*/
@@ -1280,36 +1282,36 @@ statichere PyTypeObject Plugin_Type = {
 
 
 /* ===================================================================== */
-/* XChat module */
+/* Rage module */
 
 static PyObject *
-Module_xchat_command(PyObject *self, PyObject *args)
+Module_rage_command(PyObject *self, PyObject *args)
 {
 	char *text;
 	if (!PyArg_ParseTuple(args, "s:command", &text))
 		return NULL;
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
-	xchat_command(ph, text);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
+	rage_command(ph, text);
+	END_RAGE_CALLS();
 	Py_INCREF(Py_None);
 	return Py_None;
 }
 
 static PyObject *
-Module_xchat_prnt(PyObject *self, PyObject *args)
+Module_rage_prnt(PyObject *self, PyObject *args)
 {
 	char *text;
 	if (!PyArg_ParseTuple(args, "s:prnt", &text))
 		return NULL;
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
-	xchat_print(ph, text);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
+	rage_print(ph, text);
+	END_RAGE_CALLS();
 	Py_INCREF(Py_None);
 	return Py_None;
 }
 
 static PyObject *
-Module_xchat_emit_print(PyObject *self, PyObject *args)
+Module_rage_emit_print(PyObject *self, PyObject *args)
 {
 	char *argv[10];
 	char *name;
@@ -1320,24 +1322,24 @@ Module_xchat_emit_print(PyObject *self, PyObject *args)
 			      &argv[3], &argv[4], &argv[5],
 			      &argv[6], &argv[7], &argv[8]))
 		return NULL;
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
-	res = xchat_emit_print(ph, name, argv[0], argv[1], argv[2],
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT|ALLOW_THREADS);
+	res = rage_emit_print(ph, name, argv[0], argv[1], argv[2],
 					 argv[3], argv[4], argv[5],
 					 argv[6], argv[7], argv[8]);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 	return PyInt_FromLong(res);
 }
 
 static PyObject *
-Module_xchat_get_info(PyObject *self, PyObject *args)
+Module_rage_get_info(PyObject *self, PyObject *args)
 {
 	const char *info;
 	char *name;
 	if (!PyArg_ParseTuple(args, "s:get_info", &name))
 		return NULL;
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT);
-	info = xchat_get_info(ph, name);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT);
+	info = rage_get_info(ph, name);
+	END_RAGE_CALLS();
 	if (info == NULL) {
 		Py_INCREF(Py_None);
 		return Py_None;
@@ -1347,7 +1349,7 @@ Module_xchat_get_info(PyObject *self, PyObject *args)
 
 /* My god this sucks */
 static PyObject *
-Module_xchat_get_prefs(PyObject *self, PyObject *args)
+Module_rage_get_prefs(PyObject *self, PyObject *args)
 {
 	PyObject *res;
 	const void *info;
@@ -1355,9 +1357,9 @@ Module_xchat_get_prefs(PyObject *self, PyObject *args)
 	int type;
 	if (!PyArg_ParseTuple(args, "s:get_prefs", &name))
 		return NULL;
-	BEGIN_XCHAT_CALLS(NONE);
-	type = xchat_get_prefs(ph, name, (const char **)&info, (int*)&info);
-	END_XCHAT_CALLS();
+	BEGIN_RAGE_CALLS(NONE);
+	type = rage_get_prefs(ph, name, (const char **)&info, (int*)&info);
+	END_RAGE_CALLS();
 	switch (type) {
 		case 0:
 			Py_INCREF(Py_None);
@@ -1381,7 +1383,7 @@ Module_xchat_get_prefs(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-Module_xchat_get_context(PyObject *self, PyObject *args)
+Module_rage_get_context(PyObject *self, PyObject *args)
 {
 	PyObject *plugin;
 	PyObject *ctxobj;
@@ -1397,7 +1399,7 @@ Module_xchat_get_context(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-Module_xchat_find_context(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_find_context(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	char *server = NULL;
 	char *channel = NULL;
@@ -1415,12 +1417,12 @@ Module_xchat_find_context(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-Module_xchat_hook_command(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_hook_command(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	char *name;
 	PyObject *callback;
 	PyObject *userdata = Py_None;
-	int priority = XCHAT_PRI_NORM;
+	int priority = RAGE_PRI_NORM;
 	char *help = NULL;
 	PyObject *plugin;
 	Hook *hook;
@@ -1440,25 +1442,25 @@ Module_xchat_hook_command(PyObject *self, PyObject *args, PyObject *kwargs)
 		return NULL;
 	}
 
-	hook = Plugin_AddHook(HOOK_XCHAT, plugin, callback, userdata, NULL);
+	hook = Plugin_AddHook(HOOK_RAGE, plugin, callback, userdata, NULL);
 	if (hook == NULL)
 		return NULL;
 
-	BEGIN_XCHAT_CALLS(NONE);
-	hook->data = (void*)xchat_hook_command(ph, name, priority,
+	BEGIN_RAGE_CALLS(NONE);
+	hook->data = (void*)rage_hook_command(ph, name, priority,
 					       Callback_Command, help, hook);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 
 	return PyInt_FromLong((long)hook);
 }
 
 static PyObject *
-Module_xchat_hook_server(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_hook_server(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	char *name;
 	PyObject *callback;
 	PyObject *userdata = Py_None;
-	int priority = XCHAT_PRI_NORM;
+	int priority = RAGE_PRI_NORM;
 	PyObject *plugin;
 	Hook *hook;
 	char *kwlist[] = {"name", "callback", "userdata", "priority", 0};
@@ -1476,25 +1478,25 @@ Module_xchat_hook_server(PyObject *self, PyObject *args, PyObject *kwargs)
 		return NULL;
 	}
 
-	hook = Plugin_AddHook(HOOK_XCHAT, plugin, callback, userdata, NULL);
+	hook = Plugin_AddHook(HOOK_RAGE, plugin, callback, userdata, NULL);
 	if (hook == NULL)
 		return NULL;
 
-	BEGIN_XCHAT_CALLS(NONE);
-	hook->data = (void*)xchat_hook_server(ph, name, priority,
+	BEGIN_RAGE_CALLS(NONE);
+	hook->data = (void*)rage_hook_server(ph, name, priority,
 					      Callback_Command, hook);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 
 	return PyInt_FromLong((long)hook);
 }
 
 static PyObject *
-Module_xchat_hook_print(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_hook_print(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	char *name;
 	PyObject *callback;
 	PyObject *userdata = Py_None;
-	int priority = XCHAT_PRI_NORM;
+	int priority = RAGE_PRI_NORM;
 	PyObject *plugin;
 	Hook *hook;
 	char *kwlist[] = {"name", "callback", "userdata", "priority", 0};
@@ -1512,21 +1514,21 @@ Module_xchat_hook_print(PyObject *self, PyObject *args, PyObject *kwargs)
 		return NULL;
 	}
 
-	hook = Plugin_AddHook(HOOK_XCHAT, plugin, callback, userdata, NULL);
+	hook = Plugin_AddHook(HOOK_RAGE, plugin, callback, userdata, NULL);
 	if (hook == NULL)
 		return NULL;
 
-	BEGIN_XCHAT_CALLS(NONE);
-	hook->data = (void*)xchat_hook_print(ph, name, priority,
+	BEGIN_RAGE_CALLS(NONE);
+	hook->data = (void*)rage_hook_print(ph, name, priority,
 					     Callback_Print, hook);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 
 	return PyInt_FromLong((long)hook);
 }
 
 
 static PyObject *
-Module_xchat_hook_timer(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_hook_timer(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	int timeout;
 	PyObject *callback;
@@ -1548,20 +1550,20 @@ Module_xchat_hook_timer(PyObject *self, PyObject *args, PyObject *kwargs)
 		return NULL;
 	}
 
-	hook = Plugin_AddHook(HOOK_XCHAT, plugin, callback, userdata, NULL);
+	hook = Plugin_AddHook(HOOK_RAGE, plugin, callback, userdata, NULL);
 	if (hook == NULL)
 		return NULL;
 
-	BEGIN_XCHAT_CALLS(NONE);
-	hook->data = (void*)xchat_hook_timer(ph, timeout,
+	BEGIN_RAGE_CALLS(NONE);
+	hook->data = (void*)rage_hook_timer(ph, timeout,
 					     Callback_Timer, hook);
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 
 	return PyInt_FromLong((long)hook);
 }
 
 static PyObject *
-Module_xchat_hook_unload(PyObject *self, PyObject *args, PyObject *kwargs)
+Module_rage_hook_unload(PyObject *self, PyObject *args, PyObject *kwargs)
 {
 	PyObject *callback;
 	PyObject *userdata = Py_None;
@@ -1589,7 +1591,7 @@ Module_xchat_hook_unload(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-Module_xchat_unhook(PyObject *self, PyObject *args)
+Module_rage_unhook(PyObject *self, PyObject *args)
 {
 	PyObject *plugin;
 	Hook *hook;
@@ -1604,9 +1606,9 @@ Module_xchat_unhook(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-Module_xchat_get_list(PyObject *self, PyObject *args)
+Module_rage_get_list(PyObject *self, PyObject *args)
 {
-	xchat_list *list;
+	rage_list *list;
 	PyObject *l;
 	const char *name;
 	const char **fields;
@@ -1616,7 +1618,7 @@ Module_xchat_get_list(PyObject *self, PyObject *args)
 		return NULL;
 	/* This function is thread safe, and returns statically
 	 * allocated data. */
-	fields = xchat_list_fields(ph, "lists");
+	fields = rage_list_fields(ph, "lists");
 	for (i = 0; fields[i]; i++) {
 		if (strcmp(fields[i], name) == 0) {
 			/* Use the static allocated one. */
@@ -1631,12 +1633,12 @@ Module_xchat_get_list(PyObject *self, PyObject *args)
 	l = PyList_New(0);
 	if (l == NULL)
 		return NULL;
-	BEGIN_XCHAT_CALLS(RESTORE_CONTEXT);
-	list = xchat_list_get(ph, (char*)name);
+	BEGIN_RAGE_CALLS(RESTORE_CONTEXT);
+	list = rage_list_get(ph, (char*)name);
 	if (list == NULL)
 		goto error;
-	fields = xchat_list_fields(ph, (char*)name);
-	while (xchat_list_next(ph, list)) {
+	fields = rage_list_fields(ph, (char*)name);
+	while (rage_list_next(ph, list)) {
 		PyObject *o = ListItem_New(name);
 		if (o == NULL || PyList_Append(l, o) == -1) {
 			Py_XDECREF(o);
@@ -1650,18 +1652,18 @@ Module_xchat_get_list(PyObject *self, PyObject *args)
 			int iattr;
 			switch(fields[i][0]) {
 			case 's':
-				sattr = xchat_list_str(ph, list, (char*)fld);
+				sattr = rage_list_str(ph, list, (char*)fld);
 				attr = PyString_FromString(sattr?sattr:"");
 				break;
 			case 'i':
-				iattr = xchat_list_int(ph, list, (char*)fld);
+				iattr = rage_list_int(ph, list, (char*)fld);
 				attr = PyInt_FromLong((long)iattr);
 				break;
 			case 'p':
-				sattr = xchat_list_str(ph, list, (char*)fld);
+				sattr = rage_list_str(ph, list, (char*)fld);
 				if (strcmp(fld, "context") == 0) {
 					attr = Context_FromContext(
-						(xchat_context*)sattr);
+						(rage_context*)sattr);
 					break;
 				}
 				continue;
@@ -1671,28 +1673,28 @@ Module_xchat_get_list(PyObject *self, PyObject *args)
 			PyObject_SetAttrString(o, (char*)fld, attr);
 		}
 	}
-	xchat_list_free(ph, list);
+	rage_list_free(ph, list);
 	goto exit;
 error:
 	if (list)
-		xchat_list_free(ph, list);
+		rage_list_free(ph, list);
 	Py_DECREF(l);
 	l = NULL;
 
 exit:
-	END_XCHAT_CALLS();
+	END_RAGE_CALLS();
 	return l;
 }
 
 static PyObject *
-Module_xchat_get_lists(PyObject *self, PyObject *args)
+Module_rage_get_lists(PyObject *self, PyObject *args)
 {
 	PyObject *l, *o;
 	const char **fields;
 	int i;
 	/* This function is thread safe, and returns statically
 	 * allocated data. */
-	fields = xchat_list_fields(ph, "lists");
+	fields = rage_list_fields(ph, "lists");
 	l = PyList_New(0);
 	if (l == NULL)
 		return NULL;
@@ -1709,46 +1711,46 @@ Module_xchat_get_lists(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-Module_xchat_nickcmp(PyObject *self, PyObject *args)
+Module_rage_nickcmp(PyObject *self, PyObject *args)
 {
 	char *s1, *s2;
 	if (!PyArg_ParseTuple(args, "ss:nickcmp", &s1, &s2))
 		return NULL;
-	return PyInt_FromLong((long) xchat_nickcmp(ph, s1, s2));
+	return PyInt_FromLong((long) rage_nickcmp(ph, s1, s2));
 }
 
-static PyMethodDef Module_xchat_methods[] = {
-	{"command",		Module_xchat_command,
+static PyMethodDef Module_rage_methods[] = {
+	{"command",		Module_rage_command,
 		METH_VARARGS},
-	{"prnt",		Module_xchat_prnt,
+	{"prnt",		Module_rage_prnt,
 		METH_VARARGS},
-	{"emit_print",		Module_xchat_emit_print,
+	{"emit_print",		Module_rage_emit_print,
 		METH_VARARGS},
-	{"get_info",		Module_xchat_get_info,
+	{"get_info",		Module_rage_get_info,
 		METH_VARARGS},
-	{"get_prefs",		Module_xchat_get_prefs,
+	{"get_prefs",		Module_rage_get_prefs,
 		METH_VARARGS},
-	{"get_context",		Module_xchat_get_context,
+	{"get_context",		Module_rage_get_context,
 		METH_NOARGS},
-	{"find_context",	(PyCFunction)Module_xchat_find_context,
+	{"find_context",	(PyCFunction)Module_rage_find_context,
 		METH_VARARGS|METH_KEYWORDS},
-	{"hook_command",	(PyCFunction)Module_xchat_hook_command,
+	{"hook_command",	(PyCFunction)Module_rage_hook_command,
 		METH_VARARGS|METH_KEYWORDS},
-	{"hook_server",		(PyCFunction)Module_xchat_hook_server,
+	{"hook_server",		(PyCFunction)Module_rage_hook_server,
 		METH_VARARGS|METH_KEYWORDS},
-	{"hook_print",		(PyCFunction)Module_xchat_hook_print,
+	{"hook_print",		(PyCFunction)Module_rage_hook_print,
 		METH_VARARGS|METH_KEYWORDS},
-	{"hook_timer",		(PyCFunction)Module_xchat_hook_timer,
+	{"hook_timer",		(PyCFunction)Module_rage_hook_timer,
 		METH_VARARGS|METH_KEYWORDS},
-	{"hook_unload",		(PyCFunction)Module_xchat_hook_unload,
+	{"hook_unload",		(PyCFunction)Module_rage_hook_unload,
 		METH_VARARGS|METH_KEYWORDS},
-	{"unhook",		Module_xchat_unhook,
+	{"unhook",		Module_rage_unhook,
 		METH_VARARGS},
-	{"get_list",		Module_xchat_get_list,
+	{"get_list",		Module_rage_get_list,
 		METH_VARARGS},
-	{"get_lists",		Module_xchat_get_lists,
+	{"get_lists",		Module_rage_get_lists,
 		METH_NOARGS},
-	{"nickcmp",		Module_xchat_nickcmp,
+	{"nickcmp",		Module_rage_nickcmp,
 		METH_VARARGS},
 	{NULL, NULL}
 };
@@ -1768,14 +1770,14 @@ IInterp_Exec(char *command)
 
         m = PyImport_AddModule("__main__");
         if (m == NULL) {
-		xchat_print(ph, "Can't get __main__ module");
+		rage_print(ph, "Can't get __main__ module");
 		goto fail;
 	}
         d = PyModule_GetDict(m);
 	len = strlen(command);
 	buffer = (char *) g_malloc(len+2);
 	if (buffer == NULL) {
-		xchat_print(ph, "Not enough memory for command buffer");
+		rage_print(ph, "Not enough memory for command buffer");
 		goto fail;
 	}
 	memcpy(buffer, command, len);
@@ -1800,10 +1802,10 @@ fail:
 static int
 IInterp_Cmd(int parc, char *parv[], void *userdata)
 {
-	char *channel = (char *) xchat_get_info(ph, "channel");
+	char *channel = (char *) rage_get_info(ph, "channel");
 	g_return_val_if_fail(channel != NULL, 0);
 	if (channel[0] == '>' && strcmp(channel, ">>python<<") == 0) {
-		xchat_printf(ph, ">>> %s\n", parv[1]);
+		rage_printf(ph, ">>> %s\n", parv[1]);
 		IInterp_Exec(parv[1]);
 		return 1;
 	}
@@ -1820,15 +1822,15 @@ Command_PyList(void)
 	GSList *list;
 	list = plugin_list;
 	if (list == NULL) {
-		xchat_print(ph, "No python modules loaded");
+		rage_print(ph, "No python modules loaded");
 	} else {
-		xchat_print(ph,
+		rage_print(ph,
 		   "Name         Version  Filename             Description\n"
 		   "----         -------  --------             -----------\n");
 		while (list != NULL) {
 			PluginObject *plg = (PluginObject *) list->data;
 			char *basename = g_path_get_basename(plg->filename);
-			xchat_printf(ph, "%-12s %-8s %-20s %-10s\n",
+			rage_printf(ph, "%-12s %-8s %-20s %-10s\n",
 				     plg->name,
 				     *plg->version ? plg->version
 				     		  : "<none>",
@@ -1838,7 +1840,7 @@ Command_PyList(void)
 			g_free(basename);
 			list = list->next;
 		}
-		xchat_print(ph, "\n");
+		rage_print(ph, "\n");
 	}
 }
 
@@ -1846,9 +1848,9 @@ static void
 Command_PyLoad(char *filename)
 {
 	PyObject *plugin;
-	RELEASE_XCHAT_LOCK();
-	plugin = Plugin_New(filename, Module_xchat_methods, xchatout);
-	ACQUIRE_XCHAT_LOCK();
+	RELEASE_RAGE_LOCK();
+	plugin = Plugin_New(filename, Module_rage_methods, rageout);
+	ACQUIRE_RAGE_LOCK();
 	if (plugin)
 		plugin_list = g_slist_append(plugin_list, plugin);
 }
@@ -1858,7 +1860,7 @@ Command_PyUnload(char *name)
 {
 	PluginObject *plugin = Plugin_ByString(name);
 	if (!plugin) {
-		xchat_print(ph, "Can't find a python plugin with that name");
+		rage_print(ph, "Can't find a python plugin with that name");
 	} else {
 		BEGIN_PLUGIN(plugin);
 		Plugin_Delete((PyObject*)plugin);
@@ -1872,7 +1874,7 @@ Command_PyReload(char *name)
 {
 	PluginObject *plugin = Plugin_ByString(name);
 	if (!plugin) {
-		xchat_print(ph, "Can't find a python plugin with that name");
+		rage_print(ph, "Can't find a python plugin with that name");
 	} else {
 		char *filename = strdup(plugin->filename);
 		Command_PyUnload(filename);
@@ -1884,7 +1886,7 @@ Command_PyReload(char *name)
 static void
 Command_PyAbout(void)
 {
-	xchat_print(ph, about);
+	rage_print(ph, about);
 }
 
 static int
@@ -1931,14 +1933,14 @@ Command_Py(int parc, char *word[], void *userdata)
 		}
 	} else if (strcasecmp(cmd, "CONSOLE") == 0) {
 		ok = 1;
-		xchat_command(ph, "QUERY >>python<<");
+		rage_command(ph, "QUERY >>python<<");
 	} else if (strcasecmp(cmd, "ABOUT") == 0) {
 		ok = 1;
 		Command_PyAbout();
 	}
 	if (!ok)
-		xchat_print(ph, usage);
-	return XCHAT_EAT_ALL;
+		rage_print(ph, usage);
+	return RAGE_EAT_ALL;
 }
 
 static int
@@ -1947,9 +1949,9 @@ Command_Load(int parc, char *word[], void *userdata)
 	int len = strlen(word[2]);
 	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {
 		Command_PyLoad(word[2]);
-		return XCHAT_EAT_XCHAT;
+		return RAGE_EAT_RAGE;
 	}
-	return XCHAT_EAT_NONE;
+	return RAGE_EAT_NONE;
 }
 
 static int
@@ -1958,9 +1960,9 @@ Command_Unload(int parc, char *word[], void *userdata)
 	int len = strlen(word[2]);
 	if (len > 3 && strcasecmp(".py", word[2]+len-3) == 0) {
 		Command_PyUnload(word[2]);
-		return XCHAT_EAT_XCHAT;
+		return RAGE_EAT_RAGE;
 	}
-	return XCHAT_EAT_NONE;
+	return RAGE_EAT_NONE;
 }
 
 /* ===================================================================== */
@@ -1973,19 +1975,19 @@ static int initialized = 0;
 static int reinit_tried = 0;
 
 int
-xchat_plugin_init(xchat_plugin *plugin_handle,
+rage_plugin_init(rage_plugin *plugin_handle,
 		  char **plugin_name,
 		  char **plugin_desc,
 		  char **plugin_version,
 		  char *arg)
 {
-	char *argv[] = {"<xchat>", 0};
+	char *argv[] = {"<rage>", 0};
 
 	ph = plugin_handle;
 
 	/* Block double initalization. */
 	if (initialized != 0) {
-		xchat_print(ph, "Python interface already loaded");
+		rage_print(ph, "Python interface already loaded");
 		/* deinit is called even when init fails, so keep track
 		 * of a reinit failure. */
 		reinit_tried++;
@@ -2004,55 +2006,55 @@ xchat_plugin_init(xchat_plugin *plugin_handle,
 
 	Plugin_Type.ob_type = &PyType_Type;
 	Context_Type.ob_type = &PyType_Type;
-	XChatOut_Type.ob_type = &PyType_Type;
+	RageOut_Type.ob_type = &PyType_Type;
 
-	xchatout = XChatOut_New();
-	if (xchatout == NULL) {
-		xchat_print(ph, "Can't allocate xchatout object");
+	rageout = RageOut_New();
+	if (rageout == NULL) {
+		rage_print(ph, "Can't allocate rageout object");
 		return 0;
 	}
 
 #ifdef WITH_THREAD
 	PyEval_InitThreads();
-	xchat_lock = PyThread_allocate_lock();
-	if (xchat_lock == NULL) {
-		xchat_print(ph, "Can't allocate xchat lock");
-		Py_DECREF(xchatout);
-		xchatout = NULL;
+	rage_lock = PyThread_allocate_lock();
+	if (rage_lock == NULL) {
+		rage_print(ph, "Can't allocate rage lock");
+		Py_DECREF(rageout);
+		rageout = NULL;
 		return 0;
 	}
 #endif
 
 	main_tstate = PyEval_SaveThread();
 
-	interp_plugin = Plugin_New(NULL, Module_xchat_methods, xchatout);
+	interp_plugin = Plugin_New(NULL, Module_rage_methods, rageout);
 	if (interp_plugin == NULL) {
-		xchat_print(ph, "Plugin_New() failed.\n");
+		rage_print(ph, "Plugin_New() failed.\n");
 #ifdef WITH_THREAD
-		PyThread_free_lock(xchat_lock);
+		PyThread_free_lock(rage_lock);
 #endif
-		Py_DECREF(xchatout);
-		xchatout = NULL;
+		Py_DECREF(rageout);
+		rageout = NULL;
 		return 0;
 	}
 
 
-	xchat_hook_command(ph, "", XCHAT_PRI_NORM, IInterp_Cmd, 0, 0);
-	xchat_hook_command(ph, "PY", XCHAT_PRI_NORM, Command_Py, usage, 0);
-	xchat_hook_command(ph, "LOAD", XCHAT_PRI_NORM, Command_Load, 0, 0);
-	xchat_hook_command(ph, "UNLOAD", XCHAT_PRI_NORM, Command_Unload, 0, 0);
+	rage_hook_command(ph, "", RAGE_PRI_NORM, IInterp_Cmd, 0, 0);
+	rage_hook_command(ph, "PY", RAGE_PRI_NORM, Command_Py, usage, 0);
+	rage_hook_command(ph, "LOAD", RAGE_PRI_NORM, Command_Load, 0, 0);
+	rage_hook_command(ph, "UNLOAD", RAGE_PRI_NORM, Command_Unload, 0, 0);
 #ifdef WITH_THREAD
-	thread_timer = xchat_hook_timer(ph, 300, Callback_ThreadTimer, NULL);
+	thread_timer = rage_hook_timer(ph, 300, Callback_ThreadTimer, NULL);
 #endif
 
-	xchat_print(ph, "Python interface loaded\n");
+	rage_print(ph, "Python interface loaded\n");
 
 	Util_Autoload();
 	return 1;
 }
 
 int
-xchat_plugin_deinit(void)
+rage_plugin_deinit(void)
 {
 	GSList *list;
 
@@ -2074,11 +2076,11 @@ xchat_plugin_deinit(void)
 	g_slist_free(plugin_list);
 	plugin_list = NULL;
 
-	/* Reset xchatout buffer. */
-	g_free(xchatout_buffer);
-	xchatout_buffer = NULL;
-	xchatout_buffer_size = 0;
-	xchatout_buffer_pos = 0;
+	/* Reset rageout buffer. */
+	g_free(rageout_buffer);
+	rageout_buffer = NULL;
+	rageout_buffer_size = 0;
+	rageout_buffer_pos = 0;
 
 	if (interp_plugin) {
 		Py_DECREF(interp_plugin);
@@ -2094,13 +2096,13 @@ xchat_plugin_deinit(void)
 
 #ifdef WITH_THREAD
 	if (thread_timer != NULL) {
-		xchat_unhook(ph, thread_timer);
+		rage_unhook(ph, thread_timer);
 		thread_timer = NULL;
 	}
-	PyThread_free_lock(xchat_lock);
+	PyThread_free_lock(rage_lock);
 #endif
 
-	xchat_print(ph, "Python interface unloaded\n");
+	rage_print(ph, "Python interface unloaded\n");
 	initialized = 0;
 
 	return 1;

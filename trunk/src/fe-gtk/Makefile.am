@@ -2,6 +2,8 @@ localedir = $(datadir)/locale
 
 CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
 
+LDFLAGS=--export-dynamic
+
 bin_PROGRAMS = rage
 
 INCLUDES = $(GUI_CFLAGS) -DG_DISABLE_CAST_CHECKS -DLOCALEDIR=\"$(localedir)\" \

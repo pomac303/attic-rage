@@ -8,7 +8,7 @@
 #define strcasecmp stricmp
 #endif
 
-static xchat_plugin *ph;	/* plugin handle */
+static rage_plugin *ph;	/* plugin handle */
 static GSList *timer_list = NULL;
 
 #define STATIC
@@ -18,8 +18,8 @@ static GSList *timer_list = NULL;
 
 typedef struct
 {
-	xchat_hook *hook;
-	xchat_context *context;
+	rage_hook *hook;
+	rage_context *context;
 	char *command;
 	int ref;
 	int timeout;
@@ -32,7 +32,7 @@ timer_del (timer *tim)
 {
 	timer_list = g_slist_remove (timer_list, tim);
 	free (tim->command);
-	xchat_unhook (ph, tim->hook);
+	rage_unhook (ph, tim->hook);
 	free (tim);
 }
 
@@ -50,21 +50,21 @@ timer_del_ref (int ref, int quiet)
 		{
 			timer_del (tim);
 			if (!quiet)
-				xchat_printf (ph, "Timer %d deleted.\n", ref);
+				rage_printf (ph, "Timer %d deleted.\n", ref);
 			return;
 		}
 		list = list->next;
 	}
 	if (!quiet)
-		xchat_print (ph, "No such ref number found.\n");
+		rage_print (ph, "No such ref number found.\n");
 }
 
 static int
 timeout_cb (timer *tim)
 {
-	if (xchat_set_context (ph, tim->context))
+	if (rage_set_context (ph, tim->context))
 	{
-		xchat_command (ph, tim->command);
+		rage_command (ph, tim->command);
 
 		if (tim->forever)
 			return 1;
@@ -102,13 +102,13 @@ timer_add (int ref, int timeout, int repeat, char *command)
 	tim->repeat = repeat;
 	tim->timeout = timeout;
 	tim->command = strdup (command);
-	tim->context = xchat_get_context (ph);
+	tim->context = rage_get_context (ph);
 	tim->forever = FALSE;
 
 	if (repeat == 0)
 		tim->forever = TRUE;
 
-	tim->hook = xchat_hook_timer (ph, timeout * 1000, (void *)timeout_cb, tim);
+	tim->hook = rage_hook_timer (ph, timeout * 1000, (void *)timeout_cb, tim);
 	timer_list = g_slist_append (timer_list, tim);
 }
 
@@ -120,16 +120,16 @@ timer_showlist (void)
 
 	if (timer_list == NULL)
 	{
-		xchat_print (ph, "No timers installed.\n");
+		rage_print (ph, "No timers installed.\n");
 		return;
 	}
 
-	xchat_print (ph, "Ref   T   R Command\n");
+	rage_print (ph, "Ref   T   R Command\n");
 	list = timer_list;
 	while (list)
 	{
 		tim = list->data;
-		xchat_printf (ph, "%3d %3d %3d %s\n", tim->ref, tim->timeout,
+		rage_printf (ph, "%3d %3d %3d %s\n", tim->ref, tim->timeout,
 						  tim->repeat, tim->command);
 		list = list->next;
 	}
@@ -148,7 +148,7 @@ timer_cb (int parc, char *parv[], void *userdata)
 	if (!parv[1][0])
 	{
 		timer_showlist ();
-		return XCHAT_EAT_XCHAT;
+		return RAGE_EAT_RAGE;
 	}
 
 	if (strcasecmp (parv[1], "-quiet") == 0)
@@ -160,7 +160,7 @@ timer_cb (int parc, char *parv[], void *userdata)
 	if (strcasecmp (parv[1 + offset], "-delete") == 0)
 	{
 		timer_del_ref (atoi (parv[2 + offset]), quiet);
-		return XCHAT_EAT_XCHAT;
+		return RAGE_EAT_RAGE;
 	}
 
 	if (strcasecmp (parv[1 + offset], "-refnum") == 0)
@@ -179,30 +179,30 @@ timer_cb (int parc, char *parv[], void *userdata)
 	command = parv[2 + offset];
 
 	if (timeout < 1 || !command[0])
-		xchat_print (ph, HELP);
+		rage_print (ph, HELP);
 	else
 		timer_add (ref, timeout, repeat, command);
 
-	return XCHAT_EAT_XCHAT;
+	return RAGE_EAT_RAGE;
 }
 
 int
 #ifdef STATIC
 timer_plugin_init
 #else
-xchat_plugin_init
+rage_plugin_init
 #endif
-				(xchat_plugin *plugin_handle, char **plugin_name,
+				(rage_plugin *plugin_handle, char **plugin_name,
 				char **plugin_desc, char **plugin_version, char *arg)
 {
-	/* we need to save this for use with any xchat_* functions */
+	/* we need to save this for use with any rage_* functions */
 	ph = plugin_handle;
 
 	*plugin_name = "Timer";
 	*plugin_desc = "IrcII style /TIMER command";
 	*plugin_version = "";
 
-	xchat_hook_command (ph, "TIMER", XCHAT_PRI_NORM, timer_cb, HELP, 0);
+	rage_hook_command (ph, "TIMER", RAGE_PRI_NORM, timer_cb, HELP, 0);
 
 	return 1;       /* return 1 for success */
 }
