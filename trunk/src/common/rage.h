@@ -72,6 +72,8 @@ void *DBUG_realloc (char *old, int len, char *file, int line);
 #include "inet.h"
 
 /* Include common includes */
+/* Bletch! */
+#include "xchat-plugin.h"
 #include "cfgfiles.h"
 #include "proto-irc.h"
 #include "util.h"

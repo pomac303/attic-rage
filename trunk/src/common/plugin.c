@@ -16,12 +16,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
  */
 
-#include "rage.h"
-
+#define PLUGIN_C
 /* Require plugin implementation header */
 typedef struct session xchat_context;
-#define PLUGIN_C
-#include "xchat-plugin.h"
+#include "rage.h"
+
 
 /* the USE_PLUGIN define only removes libdl stuff */
 
