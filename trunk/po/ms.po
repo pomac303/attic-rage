@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.2pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2003-04-20 19:51+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
@@ -3666,6 +3666,10 @@ msgstr "Had Pengguna"
 #, fuzzy
 msgid "Close this tab/window"
 msgstr "Tutup tetingkap ini"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 #, fuzzy

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-08-08 23:02-0400\n"
 "Last-Translator: Aleksandar Jelenak <jelenak@netlinkplus.net>\n"
 "Language-Team: Serbian <gnu@prevod.org>\n"
@@ -3717,6 +3717,10 @@ msgstr "Макс. људи"
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Затвори прозор/језичак"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"

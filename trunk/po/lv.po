@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2002-12-26 03:36+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -3702,6 +3702,10 @@ msgstr "Lietotāju Limits"
 msgid "Close this tab/window"
 msgstr "Aizvērt šo sadaļu/logu"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Pievienot/Atdalīt šo sadaļu"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Parādīt/Paslēpt lietotāju sarakstu"
@@ -5577,9 +5581,6 @@ msgstr ""
 
 #~ msgid "OK"
 #~ msgstr "Labi"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Pievienot/Atdalīt šo sadaļu"
 
 #~ msgid "(%s) Channel settings"
 #~ msgstr "(%s) Kanāla uzstādījumi"

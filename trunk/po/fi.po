@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-05-24 19:38+0300\n"
 "Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -3762,6 +3762,10 @@ msgstr "Käyttäjäraja"
 msgid "Close this tab/window"
 msgstr "Sulje tämä välilehti/ikkuna"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Liitä/irrota tämä välilehti"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Näytä/piilota käyttäjäluettelo"
@@ -5949,9 +5953,6 @@ msgstr "%d oppia, %d yhteensä"
 
 #~ msgid "Move to tab"
 #~ msgstr "Siirrä välilehteen"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Liitä/irrota tämä välilehti"
 
 #~ msgid "Hide join/parts"
 #~ msgstr "Piilota liittymiset/poistumiset"

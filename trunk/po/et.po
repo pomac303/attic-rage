@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xchat 1.9.x\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2002-11-19 15:07+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -3714,6 +3714,10 @@ msgstr "Kasutajate piirang"
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Sulge see sakk/aken"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"

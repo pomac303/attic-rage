@@ -1559,18 +1559,6 @@ mg_create_chanmodebuttons (session_gui *gui, GtkWidget *box)
 }
 
 static void
-mg_create_link_buttons (GtkWidget *box, gpointer userdata)
-{
-	gtkutil_button (box, GTK_STOCK_CLOSE, _("Close this tab/window"),
-						 mg_x_click_cb, userdata, 0);
-
-	/* XXX: Why is this uncommneted */
-	/*if (!userdata)
-	gtkutil_button (box, GTK_STOCK_REDO, _("Attach/Detach this tab"),
-						 mg_link_cb, userdata, 0);*/
-}
-
-static void
 mg_dialog_button_cb (GtkWidget *wid, char *cmd)
 {
 	/* the longest cmd is 12, and the longest nickname is 64 */
@@ -1621,46 +1609,6 @@ mg_create_dialogbuttons (GtkWidget *box)
 			mg_dialog_button (box, pop->name, pop->cmd);
 		list = list->next;
 	}
-}
-
-static void
-mg_create_topicbar (session *sess, GtkWidget *box, char *name)
-{
-	GtkWidget *hbox, *topic, *bbox;
-	session_gui *gui = sess->gui;
-
-	gui->topic_bar = hbox = gtk_hbox_new (FALSE, 1);
-	gtk_box_pack_start (GTK_BOX (box), hbox, 0, 0, 0);
-
-	mg_create_link_buttons (hbox, NULL);
-
-	if (!gui->is_tab)
-	{
-		sess->res->tab = gtk_toggle_button_new_with_label (name);
-		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (sess->res->tab), TRUE);
-		gtk_box_pack_start (GTK_BOX (hbox), sess->res->tab, 0, 0, 0);
-	}
-
-	gui->topic_entry = topic = gtk_entry_new ();
-	gtk_widget_set_name (topic, "xchat-inputbox");
-	gtk_container_add (GTK_CONTAINER (hbox), topic);
-	g_signal_connect (G_OBJECT (topic), "activate",
-							G_CALLBACK (mg_topic_cb), 0);
-
-	if (prefs.style_inputbox)
-		mg_apply_entry_style (topic);
-
-	gui->topicbutton_box = bbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), bbox, 0, 0, 0);
-	mg_create_chanmodebuttons (gui, bbox);
-
-	gui->dialogbutton_box = bbox = gtk_hbox_new (FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), bbox, 0, 0, 0);
-	mg_create_dialogbuttons (bbox);
-
-	if (!prefs.paned_userlist)
-		gtkutil_button (hbox, GTK_STOCK_GOTO_LAST, _("Show/Hide userlist"),
-							 mg_userlist_toggle_cb, 0, 0);
 }
 
 /* check if a word is clickable */
@@ -1904,7 +1852,7 @@ mg_create_userlist (session_gui *gui, GtkWidget *box, int pack)
 static void
 mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
 {
-	GtkWidget *vbox, *hbox, *paned;
+	GtkWidget *vbox, *hbox, *paned = NULL;
 
 	hbox = gtk_hbox_new (FALSE, 3);
 
@@ -1912,42 +1860,87 @@ mg_create_center (session *sess, session_gui *gui, GtkWidget *box)
 	{
 		gui->pane = paned = gtk_hpaned_new ();
 		gtk_paned_pack1 (GTK_PANED (paned), hbox, TRUE, TRUE);
+	}
+	else
+		gtk_container_add (GTK_CONTAINER (box), hbox);
 
-		vbox = gtk_vbox_new (FALSE, 1);
-		gtk_container_add (GTK_CONTAINER (hbox), vbox);
-		mg_create_topicbar (sess, vbox, NULL);
+	vbox = gtk_vbox_new (FALSE, 1);
+	gtk_container_add (GTK_CONTAINER (hbox), vbox);
+	
+	/* create the basic topic part */
+	gui->topic_bar = gtk_hbox_new (FALSE, 1);
+	gtk_box_pack_start (GTK_BOX (vbox), gui->topic_bar, 0, 0, 0);
 
+	if (!gui->is_tab)
+	{
+#if 0
+		/* XXX: where should this be? */
+		if ((sess->type == SESS_SERVER && prefs.tabchannels) ||
+				(sess->type == SESS_CHANNEL && prefs.tabchannels) ||
+				(sess->type == SESS_DIALOG && prefs.privmsgtab) ||
+				(sess->type == SESS_NOTICES && prefs.notices_tab) ||
+				(sess->type == SESS_SNOTICES && prefs.snotices_tab))
+		{
+			/* if it should be a tab, it is in a detached state */
+			gtkutil_button (box, GTK_STOCK_REDO, _("Attach/Detach this tab"),
+					mg_link_cb, NULL, 0);
+		}
+#endif
+		sess->res->tab = gtk_toggle_button_new_with_label (NULL);
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (sess->res->tab), TRUE);
+		gtk_box_pack_start (GTK_BOX (gui->topic_bar), sess->res->tab, 0, 0, 0);
+	}
+	else
+	{
+		//mg_create_link_buttons (gui->topic_bar, NULL);
+		gtkutil_button (gui->topic_bar, GTK_STOCK_CLOSE, _("Close this tab/window"),
+				mg_x_click_cb, NULL, 0);
+		gtkutil_button (gui->topic_bar, GTK_STOCK_REDO, _("Attach/Detach this tab"),
+				mg_link_cb, NULL, 0);
+	}
+
+	/* add the entry field */
+	gui->topic_entry = gtk_entry_new ();
+	gtk_widget_set_name (gui->topic_entry, "xchat-inputbox");
+	gtk_container_add (GTK_CONTAINER (gui->topic_bar), gui->topic_entry);
+	g_signal_connect (G_OBJECT (gui->topic_entry), "activate",
+			G_CALLBACK (mg_topic_cb), 0);
+
+	if (prefs.style_inputbox)
+		mg_apply_entry_style (gui->topic_entry);
+
+	gui->topicbutton_box  = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gui->topic_bar), gui->topicbutton_box, 0, 0, 0);
+	mg_create_chanmodebuttons (gui, gui->topicbutton_box);
+
+	gui->dialogbutton_box = gtk_hbox_new (FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gui->topic_bar), gui->dialogbutton_box, 0, 0, 0);
+	mg_create_dialogbuttons (gui->dialogbutton_box);
+
+	if (gui->pane)
 		gtk_container_add (GTK_CONTAINER (box), paned);
+	else
+		gtkutil_button (gui->topic_bar, GTK_STOCK_GOTO_LAST, _("Show/Hide userlist"),
+				mg_userlist_toggle_cb, 0, 0);
 
-		mg_create_textarea (gui, vbox);
-		mg_create_entry (sess, vbox);
+	mg_create_textarea (gui, vbox);
+	mg_create_entry (sess, vbox);
 
+	if (gui->pane)
+	{
 		hbox = gtk_hbox_new (FALSE, 1);
 		gtk_paned_pack2 (GTK_PANED (paned), hbox, FALSE, TRUE);
 
 		mg_create_userlist (gui, hbox, FALSE);
-
-		if (gui->pane)
-		{
-			if (gui->pane_pos == 0)
-				gui->pane_pos = prefs.paned_pos;
-			if (gui->pane_pos == 0)
-				gui->pane_pos = prefs.mainwindow_width - 140;
-			gtk_paned_set_position (GTK_PANED (gui->pane), gui->pane_pos);
-		}
-
-	} else
-	{
-		gtk_container_add (GTK_CONTAINER (box), hbox);
-
-		vbox = gtk_vbox_new (FALSE, 1);
-		gtk_container_add (GTK_CONTAINER (hbox), vbox);
-		mg_create_topicbar (sess, vbox, NULL);
-
-		mg_create_textarea (gui, vbox);
-		mg_create_userlist (gui, hbox, TRUE);
-		mg_create_entry (sess, vbox);
+		
+		if (gui->pane_pos == 0)
+			gui->pane_pos = prefs.paned_pos;
+		if (gui->pane_pos == 0)
+			gui->pane_pos = prefs.mainwindow_width - 140;
+		gtk_paned_set_position (GTK_PANED (gui->pane), gui->pane_pos);
 	}
+	else
+		mg_create_userlist (gui, hbox, TRUE);
 }
 
 static void
@@ -2452,7 +2445,8 @@ fe_clear_channel (session *sess)
 	}
 	else
 		strcpy (tbuf, _("<none>"));
-	tab_rename (sess->res->tab, tbuf, prefs.truncchans);
+	if (sess->gui->is_tab)
+		tab_rename (sess->res->tab, tbuf, prefs.truncchans);
 
 	if (!sess->gui->is_tab || sess == current_tab)
 	{
@@ -2669,7 +2663,11 @@ mg_create_generic_tab (char *name, char *title, int force_toplevel,
 	{
 		hbox = gtk_hbox_new (FALSE, 0);
 		gtk_box_pack_start (GTK_BOX (vbox), hbox, 0, 0, 0);
-		mg_create_link_buttons (hbox, tab);
+		gtkutil_button (hbox, GTK_STOCK_CLOSE, _("Close this tab/window"),
+				mg_x_click_cb, userdata, 0);
+		gtkutil_button (hbox, GTK_STOCK_REDO, _("Attach/Detach this tab"),
+				mg_link_cb, userdata, 0);
+		//mg_create_link_buttons (hbox, tab);
 		gtk_widget_show (hbox);
 	}
 

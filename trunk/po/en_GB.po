@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-04-20 12:14-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: English (British) <en_gb@li.org>\n"
@@ -3738,6 +3738,10 @@ msgstr "User Limit"
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Close this tab/window"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"

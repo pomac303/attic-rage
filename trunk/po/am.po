@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat \n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2003-01-30 10:06+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
@@ -3550,6 +3550,10 @@ msgstr ""
 
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
 msgstr ""
 
 #: src/fe-gtk/maingui.c:1662

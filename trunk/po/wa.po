@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.7pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-04-05 18:55+0200\n"
 "Last-Translator: Pablo Saratxaga <pablo@walon.org>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -3534,6 +3534,10 @@ msgstr ""
 
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
 msgstr ""
 
 #: src/fe-gtk/maingui.c:1662

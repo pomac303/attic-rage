@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.0\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2003-02-18 20:14+0\n"
 "Last-Translator: Vitor Hugo <vhda@mega.ist.utl.pt>\n"
 "Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
@@ -3675,6 +3675,10 @@ msgstr "Limite de Utilizadores"
 msgid "Close this tab/window"
 msgstr "Fechar esta aba/janela"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Juntar/Separar esta aba"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Mostrar/Esconder lista de utilizadores"
@@ -5518,9 +5522,6 @@ msgstr ""
 
 #~ msgid "new!new@new.com"
 #~ msgstr "novo!novo@novo.pt"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Juntar/Separar esta aba"
 
 #~ msgid "(%s) Channel settings"
 #~ msgstr "(%s) Configurações do canal"

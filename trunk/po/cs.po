@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-cs\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-03-28 19:13+0200\n"
 "Last-Translator: Eva Mikulcikova <evmi@seznam.cz>\n"
 "Language-Team: czech <cs@li.org>\n"
@@ -3749,6 +3749,10 @@ msgstr "Limit uživatelů"
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Zavřít toto okno nebo záložku"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"

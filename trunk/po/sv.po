@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-03-18 23:41+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -3780,6 +3780,10 @@ msgstr "Användargräns"
 msgid "Close this tab/window"
 msgstr "Stäng denna flik/detta fönster"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Fäst/Lösgör denna flik"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Visa/Dölj användarlista"
@@ -6023,9 +6027,6 @@ msgstr "%d oppar, %d totalt"
 
 #~ msgid "OK"
 #~ msgstr "OK"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Fäst/Lösgör denna flik"
 
 #~ msgid "(%s) Channel settings"
 #~ msgstr "(%s) Kanalinställningar"

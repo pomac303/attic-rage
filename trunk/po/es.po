@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-03-19 02:18+0100\n"
 "Last-Translator: Ramón Rey Vicente <ramon.rey@hispalinux.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -3794,6 +3794,10 @@ msgstr "Límite de usuarios"
 msgid "Close this tab/window"
 msgstr "Cerrar esta pestaña/ventana"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Añadir/separar esta pestaña"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Mostrar/Ocultar la lista de usuarios"
@@ -5984,9 +5988,6 @@ msgstr "%d ops, %d total"
 
 #~ msgid "OK"
 #~ msgstr "Aceptar"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Añadir/separar esta pestaña"
 
 #~ msgid "(%s) Channel settings"
 #~ msgstr "Configuración del canal (%s)"

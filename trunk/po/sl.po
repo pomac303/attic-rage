@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.8pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2004-03-14 18:28+0100\n"
 "Last-Translator: Jure Cuhalev <gandalf@owca.info>\n"
 "Language-Team: Slovenian <translation-team-sl@lists.sourceforge.net>\n"
@@ -3753,6 +3753,10 @@ msgstr "Omejitev uporabnikov"
 #: src/fe-gtk/maingui.c:1564
 msgid "Close this tab/window"
 msgstr "Zapri to okno/zavihek"
+
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr ""
 
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"

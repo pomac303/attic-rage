@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: X-Chat 1.9.8\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2004-10-11 15:01+0200\n"
+"POT-Creation-Date: 2004-10-11 22:13+0200\n"
 "PO-Revision-Date: 2003-01-14 03:00GMT+2\n"
 "Last-Translator: Dokianakis Theofanis <madf@hellug.gr>\n"
 "Language-Team: Greek <EL@li.org>\n"
@@ -3697,6 +3697,10 @@ msgstr "Όριο Χρηστών"
 msgid "Close this tab/window"
 msgstr "Κλεισιμο αυτής της σελίδας/παραθύρου"
 
+#: src/fe-gtk/maingui.c:1569
+msgid "Attach/Detach this tab"
+msgstr "Προσάρτηση/Αποκοπή αυτής της σελίδας"
+
 #: src/fe-gtk/maingui.c:1662
 msgid "Show/Hide userlist"
 msgstr "Εμφάνιση/Απόκρυψη λίστας χρηστών"
@@ -5567,9 +5571,6 @@ msgstr ""
 
 #~ msgid "OK"
 #~ msgstr "Εντάξει"
-
-#~ msgid "Attach/Detach this tab"
-#~ msgstr "Προσάρτηση/Αποκοπή αυτής της σελίδας"
 
 #~ msgid "(%s) Channel settings"
 #~ msgstr "(%s) Ρυθμίσεις καναλιού"
