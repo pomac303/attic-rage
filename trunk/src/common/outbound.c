@@ -2484,9 +2484,7 @@ cmd_part (struct session *sess, char *cmd, char *buf)
 	char *chan;
 	char *reason;
 
-	/* temporary fix: remove "part" from buf */
-	/* XXX: someone with a $clue, check */
-	chan = split_cmd(&buf);
+	split_cmd(&buf);
 
 	chan = split_cmd(&buf);
 	skip_white(&buf);
