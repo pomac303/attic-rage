@@ -65,7 +65,7 @@ static int cmd_server (session *sess, char *cmd, char *buf);
 static void help (session *sess, char *helpcmd, int quiet);
 static void handle_say (session *sess, char *text, int check_spch);
 
-static dict_t rage_cmd_list;
+dict_t rage_cmd_list = NULL;
 
 static void
 notj_msg (struct session *sess)

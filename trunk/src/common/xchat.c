@@ -858,6 +858,7 @@ xchat_init (void)
 	if (g_get_charset (&cs))
 		prefs.utf8_locale = TRUE;
 
+	setup_plugin_commands();
 	setup_commands();
 	load_text_events ();
 	sound_load ();

@@ -34,6 +34,7 @@
 typedef struct session xchat_context;
 #include "xchat-plugin.h"
 #include "plugin.h"
+#include "dict.h"
 
 
 #include "xchatc.h"
@@ -92,11 +93,16 @@ enum
 	HOOK_DELETED	/* marked for deletion */
 };
 
-GSList *plugin_list = NULL;	/* export for plugingui.c */
+dict_t plugin_list = NULL;	/* export for plugingui.c */
 static GSList *hook_list = NULL;
 
 extern const struct prefs vars[];	/* cfgfiles.c */
 
+void
+setup_plugin_commands(void)
+{
+	plugin_list = dict_new();
+}
 
 /* 31 bit string hash function */
 
@@ -159,7 +165,7 @@ xit:
 		free ((char *)pl->filename);
 	free (pl);
 
-	plugin_list = g_slist_remove (plugin_list, pl);
+	dict_remove(plugin_list, pl->name);
 
 #ifdef USE_PLUGIN
 	fe_pluginlist_update ();
@@ -185,7 +191,7 @@ plugin_list_add (xchat_context *ctx, char *filename, const char *name,
 	pl->deinit_callback = deinit_func;
 	pl->fake = fake;
 
-	plugin_list = g_slist_prepend (plugin_list, pl);
+	dict_insert(plugin_list, pl->name, pl);
 
 	return pl;
 }
@@ -283,17 +289,16 @@ plugin_add (session *sess, char *filename, void *handle, void *init_func,
 int
 plugin_kill (char *name, int by_filename)
 {
-	GSList *list;
 	xchat_plugin *pl;
+	dict_iterator_t it;
 
-	list = plugin_list;
-	while (list)
+	for (it=dict_first(plugin_list); it; it=iter_next(it))
 	{
-		pl = list->data;
+		pl = iter_data(it);
 		/* static-plugins (plugin-timer.c) have a NULL filename */
 		if ((by_filename && pl->filename && strcasecmp (name, pl->filename) == 0) ||
-			 (by_filename && pl->filename && strcasecmp (name, file_part (pl->filename)) == 0) ||
-			(!by_filename && strcasecmp (name, pl->name) == 0))
+				(by_filename && pl->filename && strcasecmp (name, file_part (pl->filename)) == 0) ||
+				(!by_filename && strcasecmp (name, pl->name) == 0))
 		{
 			/* statically linked plugins have a NULL filename */
 			if (pl->filename != NULL && !pl->fake)
@@ -303,9 +308,8 @@ plugin_kill (char *name, int by_filename)
 				return 2;
 			}
 		}
-		list = list->next;
 	}
-
+	
 	return 0;
 }
 
@@ -314,17 +318,14 @@ plugin_kill (char *name, int by_filename)
 void
 plugin_kill_all (void)
 {
-	GSList *list, *next;
 	xchat_plugin *pl;
+	dict_iterator_t it;
 
-	list = plugin_list;
-	while (list)
+	for (it=dict_first(plugin_list); it; it=iter_next(it))
 	{
-		pl = list->data;
-		next = list->next;
+		pl = iter_data(it);
 		if (!pl->fake)
-			plugin_free (list->data, TRUE, FALSE);
-		list = next;
+			plugin_free (pl, TRUE, FALSE);
 	}
 }
 
