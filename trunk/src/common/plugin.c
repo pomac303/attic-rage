@@ -227,7 +227,7 @@ plugin_add (session *sess, char *filename, void *handle, void *init_func,
 		pl->xchat_command = xchat_command;
 		pl->xchat_commandf = xchat_commandf;
 		pl->xchat_nickcmp = xchat_nickcmp;
-#if 0 // ifdef PLUGIN_C
+#if 0 // #ifdef PLUGIN_C /* FIXME: why? */
 		pl->xchat_set_context = xchat_set_context;
 		pl->xchat_find_context = xchat_find_context;
 		pl->xchat_get_context = xchat_get_context;

@@ -1455,7 +1455,7 @@ lamejump:
 		}
 
 		xtext->jump_out_offset = end;
-		xtext->jump_in_offset = 0; // start;
+		xtext->jump_in_offset = start;
 		gtk_xtext_render_ents (xtext, ent, NULL);
 		xtext->jump_out_offset = 0;
 		xtext->jump_in_offset = 0;

@@ -22,10 +22,13 @@ static void
 ctcp_reply (session *sess, char *tbuf, char *nick, int parc, char *parv[],
 				char *conf)
 {
+	char buf[200]; /* FIXME: is this enough? */
 	conf = strdup (conf);
 	/* process %C %B etc */
 	check_special_chars (conf, TRUE);
-	auto_insert (tbuf, 2048, conf, parc, parv, "", "", parv[4],"" ,"", nick);
+	auto_insert (tbuf, 2048, conf, parc, parv, "", "", 
+			paste_parv(buf, sizeof(buf), 4, parc, parv),
+					"" ,"", nick);
 	free (conf);
 	handle_command (sess, tbuf, FALSE);
 }

@@ -62,13 +62,13 @@ static const char *pages[]=
 
 static void
 servlist_select_and_show (GtkTreeView *treeview, GtkTreeIter *iter,
-								  GtkListStore *store)
+		GtkListStore *store)
 {
 	GtkTreePath *path;
 	GtkTreeSelection *sel;
-
+	
 	sel = gtk_tree_view_get_selection (treeview);
-
+	
 	/* select this network */
 	gtk_tree_selection_select_iter (sel, iter);
 	/* and make sure it's visible */
@@ -76,10 +76,7 @@ servlist_select_and_show (GtkTreeView *treeview, GtkTreeIter *iter,
 	if (path)
 	{
 		gtk_tree_view_scroll_to_cell (treeview, path, NULL, TRUE, 0.5, 0.5);
-		gtk_tree_view_set_cursor (treeview, path, 
-		    gtk_tree_view_get_column (treeview, 0), FALSE);
-		gtk_tree_view_row_activated(treeview,path,
-		    gtk_tree_view_get_column (treeview, 0) );
+		//gtk_tree_view_set_cursor (treeview, path, NULL, FALSE);
 		gtk_tree_path_free (path);
 	}
 }
@@ -135,7 +132,7 @@ servlist_networks_populate (GtkWidget *treeview, GSList *netlist)
 		net = netlist->data;
 		gtk_list_store_append (store, &iter);
 		gtk_list_store_set (store, &iter, 0, net->name, 1, 1, -1);
-		if (i == prefs.slist_select)
+		if (i == prefs.slist_select) /* FIXME: check up on */
 		{
 			/* select this network */
 			servlist_select_and_show (GTK_TREE_VIEW (treeview), &iter, store);
@@ -264,57 +261,15 @@ servlist_deletenetwork (ircnet *net)
 static void
 servlist_netup_cb (GtkWidget *item, ircnet *net)
 {
-  GtkTreeIter iter;
-  GtkTreeModel *model = NULL;
-
-  if (!servlist_has_selection (GTK_TREE_VIEW (networks_tree)))
-    return;
-
-  net = selected_net;
-
-  servlist_move_network(net, -1);
-
-  servlist_select_and_show( GTK_TREE_VIEW (networks_tree), &iter, GTK_LIST_STORE (model) );
+	if (selected_net)
+		servlist_move_network(net, -1);
 }
 
 static void
 servlist_netdown_cb (GtkWidget *item, ircnet *net)
 {
-  GtkTreeIter iter;
-  GtkTreeModel *model;
-  GtkTreeSelection *sel;
-  GtkTreePath *path;
-  GtkTreeView *treeview = GTK_TREE_VIEW (networks_tree);
-  ircnet *nett;
-
-  if (!selected_net)
-    return;
-
-  net = selected_net;
-
-  sel = gtk_tree_view_get_selection (treeview);
-  
-  nett = servlist_find_selected_net(sel);
-  printf("selected net: %s\n", nett->name);
-  if (!gtk_tree_selection_get_selected (sel , &model, &iter))
-    return;
-  
-  path = gtk_tree_model_get_path( GTK_TREE_MODEL(model), &iter);
-  nett = servlist_find_selected_net(sel);
-  printf("selected net: %s\n", nett->name);
-
-  servlist_move_network(net, 1);
-  nett = servlist_find_selected_net(sel);
-  printf("selected net: %s\n", nett->name);
-
-  // gtk_tree_model_get_iter_first (model, &iter);
-  gtk_tree_view_scroll_to_cell (treeview, path, NULL, TRUE, 0.5, 0.5);
-  gtk_tree_selection_select_iter (sel, &iter);
-  nett = servlist_find_selected_net(sel);
-  printf("selected net: %s\n", nett->name);
-  gtk_tree_view_set_cursor (treeview, path, gtk_tree_view_get_column (treeview, 0), FALSE);
-  nett = servlist_find_selected_net(sel);
-  printf("selected net: %s\n", nett->name);
+	if (selected_net)
+		servlist_move_network(net, +1);
 }
 
 static void
@@ -328,17 +283,51 @@ servlist_deletenetdialog_cb (GtkDialog *dialog, gint arg1, ircnet *net)
 static void
 servlist_move_server (ircserver *serv, int delta)
 {
+	GtkTreeModel *edit_tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (edit_tree));
+	GtkTreeSelection *sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (edit_tree));
+	GtkTreeIter iter_pos, iter_newpos;
+	GtkTreePath *path = NULL, *tmp_path = NULL;
 	int pos;
-
-	pos = g_slist_index (selected_net->servlist, serv);
-	if (pos >= 0)
+	
+	if (gtk_tree_selection_get_selected (sel, &edit_tree_model, &iter_pos))
 	{
-		pos += delta;
+		path = gtk_tree_path_new_from_string(gtk_tree_model_get_string_from_iter(edit_tree_model, &iter_pos));
+		if (delta > 0)
+		{
+			/* Move down */
+			iter_newpos = iter_pos;
+			if(gtk_tree_model_iter_next(edit_tree_model, &iter_newpos))
+				gtk_list_store_move_after (GTK_LIST_STORE(edit_tree_model), &iter_pos, &iter_newpos);
+		}
+		else
+		{
+			/* Move up */
+			tmp_path = path;
+			if (gtk_tree_path_prev(tmp_path))
+			{
+				gtk_tree_model_get_iter (edit_tree_model, &iter_newpos, tmp_path);
+				if (gtk_tree_path_prev(tmp_path))
+					gtk_list_store_move_before (GTK_LIST_STORE(edit_tree_model), &iter_pos, &iter_newpos);
+				else
+					gtk_list_store_move_after (GTK_LIST_STORE(edit_tree_model), &iter_pos, NULL);
+			}
+		}
+		if (path)
+		{
+			gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (edit_tree), path, NULL, TRUE, 0.5, 0.5);
+			gtk_tree_path_free (path);
+		}
+		
+		/* And change it so that it gets saved */
+		pos = g_slist_index (selected_net->servlist, serv);
 		if (pos >= 0)
 		{
-			selected_net->servlist = g_slist_remove (selected_net->servlist, serv);
-			selected_net->servlist = g_slist_insert (selected_net->servlist, serv, pos);
-			servlist_servers_populate (selected_net, edit_tree);
+			pos += delta;
+			if (pos >= 0)
+			{
+				selected_net->servlist = g_slist_remove (selected_net->servlist, serv);
+				selected_net->servlist = g_slist_insert (selected_net->servlist, serv, pos);
+			}
 		}
 	}
 }
@@ -346,18 +335,51 @@ servlist_move_server (ircserver *serv, int delta)
 static void
 servlist_move_network (ircnet *net, int delta)
 {
+	GtkTreeModel *networks_tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (networks_tree));
+	GtkTreeSelection *sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (networks_tree));
+	GtkTreeIter iter_pos, iter_newpos;
+	GtkTreePath *path = NULL, *tmp_path = NULL;
 	int pos;
 
-	pos = g_slist_index (network_list, net);
-	if (pos >= 0)
+	if (gtk_tree_selection_get_selected (sel, &networks_tree_model, &iter_pos))
 	{
-		pos += delta;
+		path = gtk_tree_path_new_from_string(gtk_tree_model_get_string_from_iter(networks_tree_model, &iter_pos));
+		if (delta > 0)
+		{
+			/* Move down */
+			iter_newpos = iter_pos;
+			if(gtk_tree_model_iter_next(networks_tree_model, &iter_newpos))
+				gtk_list_store_move_after (GTK_LIST_STORE(networks_tree_model), &iter_pos, &iter_newpos);
+		}
+		else
+		{
+			/* Move up */
+			tmp_path = path;
+			if (gtk_tree_path_prev(tmp_path))
+			{
+				gtk_tree_model_get_iter (networks_tree_model, &iter_newpos, tmp_path);
+				if (gtk_tree_path_prev(tmp_path))
+					gtk_list_store_move_before (GTK_LIST_STORE(networks_tree_model), &iter_pos, &iter_newpos);
+				else
+					gtk_list_store_move_after (GTK_LIST_STORE(networks_tree_model), &iter_pos, NULL);
+			}
+		}
+		if (path)
+		{
+			gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (networks_tree), path, NULL, TRUE, 0.5, 0.5);
+			gtk_tree_path_free (path);
+		}
+
+		/* And change it so that it gets saved */
+		pos = g_slist_index (network_list, net);
 		if (pos >= 0)
 		{
-			/* prefs.slist_select += delta; */ /* FIXME: should this be removed? */
-			network_list = g_slist_remove (network_list, net);
-			network_list = g_slist_insert (network_list, net, pos);
-			servlist_networks_populate (networks_tree, network_list);
+			pos += delta;
+			if (pos >= 0)
+			{
+				 network_list = g_slist_remove (network_list, net);
+				 network_list = g_slist_insert (network_list, net, pos);
+			}
 		}
 	}
 }
