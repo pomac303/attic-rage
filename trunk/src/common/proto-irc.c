@@ -170,13 +170,15 @@ irc_user_whois (server *serv, char *nicks)
 static void
 irc_message (server *serv, char *channel, char *text)
 {
+	/* XXX: For Isomer
 	session *sess = NULL;
 	
 	if (is_channel(serv, channel))
 			sess = find_channel(serv, channel);
 	if (sess && sess->me->op && isupport(serv, "CPRIVMSG"))
-		tcp_sendf (serv, "CPRIVMSG %s :%s\r\n", channel, text);
+		tcp_sendf (serv, "CPRIVMSG %s %s :%s\r\n", channel, channel, text);
 	else
+	*/
 		tcp_sendf (serv, "PRIVMSG %s :%s\r\n", channel, text);
 }
 
@@ -189,13 +191,15 @@ irc_action (server *serv, char *channel, char *act)
 static void
 irc_notice (server *serv, char *channel, char *text)
 {
+	/* XXX: For Isomer
 	session *sess = NULL;
 
 	if (is_channel(serv, channel))
 		sess = find_channel(serv, channel);
 	if (sess && sess->me->op && isupport(serv, "CNOTICE"))
-		tcp_sendf (serv, "CNOTICE %s :%s\r\n", channel, text);
-	else	
+		tcp_sendf (serv, "CNOTICE %s %s :%s\r\n", channel, channel, text);
+	else
+	*/
 		tcp_sendf (serv, "NOTICE %s :%s\r\n", channel, text);
 }
 
