@@ -713,7 +713,7 @@ static char defaultconf_commands[] =
 	"NAME WII\n"			"CMD quote WHOIS %1 %1\n\n";
 
 static char defaultconf_urlhandlers[] =
-	"NAME Open URL\n"							"CMD !sensible-browser '%s'\n\n"\
+	"NAME Open in web browser\n"							"CMD !sensible-browser '%s'\n\n"\
 	"NAME SUB\n"								"CMD Epiphany...\n\n"\
 		"NAME Open\n"							"CMD !epiphany '%s'\n\n"\
 		"NAME Open in new tab\n"			"CMD !epiphany -n '%s'\n\n"\
