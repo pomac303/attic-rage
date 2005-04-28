@@ -50,3 +50,14 @@ to be sent.
 #18 - Add formating to the SIGNAL text system.
 
 #19 - Propper flood detection system, ffs. =)
+
+#20 - Replace all strncpy() calls by some custom stccpy()
+
+#21 - strtok() shouldn't be used
+
+#22 - there are various strlen() performed on the same string, eg:
+1114691888.928020 strtok("zapek", ",")                                                         = "zapek"
+1114691888.928133 strlen("zapek")                                                              = 5
+1114691888.928213 strlen("zapek")                                                              = 5
+
+#23 - strcasecmp("ISO-8859-15", "UTF8") performed on every refresh, that's unecessary
