@@ -65,8 +65,7 @@
 #define PDIWORDS		32		/* Going away */
 #define MAX_TOKENS	64
 
-#define safe_strcpy(dest,src,len)	{strncpy(dest,src,len); \
-	dest[len-1] = 0;}
+#define safe_strcpy(dest,src,len)	{stccpy(dest,src,len);}
 
 #if defined(ENABLE_NLS) && !defined(_)
 #  include <libintl.h>

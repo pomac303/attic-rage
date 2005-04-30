@@ -1382,7 +1382,7 @@ traverse_socks (int sok, char *serverAddr, int port)
 	sc.type = 1;
 	sc.port = htons (port);
 	sc.address = inet_addr (serverAddr);
-	strncpy (sc.username, prefs.username, 9);
+	stccpy (sc.username, prefs.username, 9);
 
 	send (sok, (char *) &sc, 8 + strlen (sc.username) + 1, 0);
 	buf[1] = 0;

@@ -1747,7 +1747,7 @@ sound_play (const char *file)
 	if (strlen (file) > 3 &&
 		 file[1] == ':' && (file[2] == '\\' || file[2] == '/') )
 	{
-		strncpy (wavfile, file, sizeof (wavfile));
+		stccpy (wavfile, file, sizeof (wavfile));
 	} else
 #endif
 	if (file[0] != '/')
@@ -1755,7 +1755,7 @@ sound_play (const char *file)
 		snprintf (wavfile, sizeof (wavfile), "%s/%s", prefs.sounddir, file);
 	} else
 	{
-		strncpy (wavfile, file, sizeof (wavfile));
+		stccpy (wavfile, (char *)file, sizeof (wavfile));
 	}
 
 	file_fs = g_filename_from_utf8 (wavfile, -1, 0, 0, 0);

@@ -1012,8 +1012,7 @@ cmd_set (rage_session *sess, char *cmd, char *buf)
 			case TYPE_STR:
 				if (erase || *val)
 				{
-					strncpy ((char *) &prefs + vars[i].offset, val, vars[i].len);
-					((char *) &prefs)[vars[i].offset + vars[i].len - 1] = 0;
+					stccpy((char *)&prefs + vars[i].offset, val, vars[i].len);
 					if (!quiet)
 						PrintTextf (sess, "%s set to: %s\n", var, (char *) &prefs + vars[i].offset);
 				} else

@@ -1146,8 +1146,7 @@ download_move_to_completed_dir (char *dcc_dir, char *dcc_completed_dir,
 		return;			/* Already in "completed dir" */
 
 	/* mgl: since output_name is a full path, we just copy it */
-	strncpy (dl_src, output_name, sizeof(dl_src));
-	dl_src[sizeof(dl_src)-1] = '\0';
+	stccpy (dl_src, output_name, sizeof(dl_src));
 
 	/* mgl: output_name being a full path, we need to extract the filename */
 	/* off the end of it before continuing */
@@ -1644,3 +1643,14 @@ capacity_format_size(char *s, unsigned long size, guint64 n)
 				((guint64)1024 * 1024 * 1024 * 1024));
 }
 
+
+int stccpy(char *p, char *q, int n)
+{
+	char *t = p;
+
+	while ((*p++ = *q++) && --n > 0);
+
+	p[-1] = '\0';
+
+	return (p - t);
+}

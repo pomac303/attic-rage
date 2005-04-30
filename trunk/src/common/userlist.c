@@ -216,7 +216,7 @@ find_ctarget (struct server *serv, char *channel, char *name)
 		{
 			if (find_name(sess, name))
 			{
-				strncpy(channel, sess->channel, CHANLEN);
+				stccpy(channel, sess->channel, CHANLEN);
 				return 1;
 			}
 		}
