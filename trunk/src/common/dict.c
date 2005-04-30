@@ -11,7 +11,8 @@
 #include <stdlib.h>
 #include <glib.h>
 #include <string.h>
-#include "set.h"
+//#include "set.h"
+#include "rage.h"
 
 struct rage_dict_data {
 	char *key;
@@ -49,7 +50,7 @@ dict_numeric_new(void)
 /* dict_005_insert, 005 data, the data is written directly
  * to the node, no free is needed */
 void
-dict_005_insert(struct set *set, char *key, char *value)
+dict_005_insert(struct set *set, const char *key, void *value)
 {
 	struct rage_dict_data *data;
 	struct set_node *node;
@@ -77,7 +78,7 @@ dict_005_insert(struct set *set, char *key, char *value)
 /* dict_capab_insert, insert capab data. The data is
  * written directly to the node, no free is needed. */
 void
-dict_capab_insert(struct set *set, char *key)
+dict_capab_insert(struct set *set, const char *key)
 {
 	struct rage_dict_data *data;
 	struct set_node *node;
@@ -87,7 +88,7 @@ dict_capab_insert(struct set *set, char *key)
 		return;
 
 	strcpy(tmp, "CAPAB-");
-	strncpy(tmp + 6, key, sizeof(tmp) - 6);
+	stccpy(tmp + 6, key, sizeof(tmp) - 6);
 
 	/* important, set_find needs (char **) */
 	ptmp = tmp;
@@ -108,7 +109,7 @@ dict_capab_insert(struct set *set, char *key)
 /* dict_cmd_insert, insert data with 2 pointers since
  * we don't need to free it or not. */
 void
-dict_cmd_insert(struct set *set, char *key, char *value)
+dict_cmd_insert(struct set *set, const char *key, void *value)
 {
 	struct rage_dict_data *data = NULL;
 	struct set_node *node;
@@ -130,7 +131,7 @@ dict_cmd_insert(struct set *set, char *key, char *value)
 		/* create a new node */
 		node = set_node_alloc(sizeof(*data));
 		data = set_node_data(node);
-		data->key = key;
+		data->key = (char *)key;
 		data->value = value;
 
 		set_insert(set, node);
@@ -140,7 +141,7 @@ dict_cmd_insert(struct set *set, char *key, char *value)
 /* dict_numeric_insert, insert data with two pointers,
  * noting needs to be freed */
 void
-dict_numeric_insert(struct set *set, int *numeric, char *value)
+dict_numeric_insert(struct set *set, const int *numeric, void *value)
 {
 	struct rage_numeric_data *data;
 	struct set_node *node;
@@ -157,7 +158,7 @@ dict_numeric_insert(struct set *set, int *numeric, char *value)
 	/* create a new node */
 	node = set_node_alloc(sizeof(*data));
 	data = set_node_data(node);
-	data->numeric = numeric;
+	data->numeric = (int*)numeric;
 	data->value = value;
 	
 	set_insert(set, node);
@@ -166,7 +167,7 @@ dict_numeric_insert(struct set *set, int *numeric, char *value)
 /* dict_find, find the data, return the value and
  * set found according to state */
 void *
-dict_find(struct set *set, char *key, int *found)
+dict_find(struct set *set, const char *key, int *found)
 {
 	struct rage_dict_data *data = set_find(set, &key);
 	
@@ -184,7 +185,7 @@ dict_find(struct set *set, char *key, int *found)
 }
 
 void *
-dict_numeric_find(struct set *set, int *numeric, int *found)
+dict_numeric_find(struct set *set, const int *numeric, int *found)
 {
 	struct rage_numeric_data *data = set_find(set, &numeric);
 

@@ -53,6 +53,6 @@ int tab_comp(rage_session *sess, const char *text, char *buf, size_t buf_size, i
 void tab_clean(void);
 
 void capacity_format_size(char *s, unsigned long size, guint64 n);
-int stccpy(char *p, char *q, int n);
+int stccpy(char *p, const char *q, int n);
 
 #endif

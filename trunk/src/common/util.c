@@ -1194,7 +1194,7 @@ download_move_to_completed_dir (char *dcc_dir, char *dcc_completed_dir,
 			return;
 		}
 
-		strncpy (dl_tmp, dl_dest, destlen);
+		stccpy (dl_tmp, dl_dest, destlen);
 
 		for (i = 1; i < 100; i++)
 		{
@@ -1644,7 +1644,7 @@ capacity_format_size(char *s, unsigned long size, guint64 n)
 }
 
 
-int stccpy(char *p, char *q, int n)
+int stccpy(char *p, const char *q, int n)
 {
 	char *t = p;
 

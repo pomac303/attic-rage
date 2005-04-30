@@ -24,14 +24,14 @@ char * iter_key(struct set_node *node);
 dict_t dict_new(void);
 dict_t dict_numeric_new(void);
 
-void dict_005_insert(dict_t dict, const char *key, void *data);
-void dict_cmd_insert(dict_t dict, const char *key, void *data);
-void dict_capab_insert(dict_t dict, const char *key);
-void dict_numeric_insert(dict_t dict, const int *numeric, void *data);
+void dict_005_insert(struct set *set, const char *key, void *value);
+void dict_cmd_insert(struct set *set, const char *key, void *value);
+void dict_capab_insert(struct set *set, const char *key);
+void dict_numeric_insert(struct set *set, const int *numeric, void *value);
 #define dict_size(DICT) ((SET)->count)
-void* dict_find(dict_t dict, const char *key, int *present);
-void* dict_numeric_find(dict_t dict, const int *numeric, int *present);
-void dict_remove(dict_t dict, char *key);
+void* dict_find(struct set *set, const char *key, int *found);
+void* dict_numeric_find(struct set *set, const int *numeric, int *found);
+void dict_remove(struct set *set, char *key);
 #define dict_delete(SET) (set_clear(SET))
 
 #endif /* !defined(DICT_H) */
