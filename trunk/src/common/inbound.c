@@ -237,7 +237,6 @@ SearchNick (char *text, char *nicks)
 		tmp = utf8_case_strchr(text, nstart);
 		while (tmp && *tmp) /* seems like glib never returns NULL */
 		{
-			printf("tmp: %s, nstart: %s\n", tmp, nstart);
 			/* We need a color stripped strncasecmp and it will work just fine */
 			if (utf8_strncasecmp(tmp, nstart, nend ? nend - nstart : strlen(nstart)) == 0)
 				return 1;
