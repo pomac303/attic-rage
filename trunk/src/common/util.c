@@ -1713,8 +1713,10 @@ utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n)
 	{
 		ch1 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s1)));
 		ch2 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s2)));
+		s1 = g_utf8_find_next_char(s1, NULL);
+		s2 = g_utf8_find_next_char(s2, NULL);
 	}
-	while(((retval = ch1 - ch2) == 0) && (--n > 0));
+	while(((retval = (ch1 - ch2)) == 0) && (--n > 0));
 	return retval;
 }
 
