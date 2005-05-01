@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <glib.h>
 #include <string.h>
-//#include "set.h"
 #include "rage.h"
 
 struct rage_dict_data {

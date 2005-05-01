@@ -201,44 +201,51 @@ inbound_privmsg (server *serv, char *from, char *ip, char *text, int id)
 		EMIT_SIGNAL (XP_TE_PRIVMSG, sess, from, text, idtext, NULL, 0);
 }
 
+/* strncasecmp for utf8 strings, same syntax */
+inline int
+utf8_strncasecmp(const char *s1, const char *s2, size_t n)
+{
+	int retval = -1;
+	while (((retval = g_unichar_tolower(g_utf8_get_char(s1)) - 
+			g_unichar_tolower(g_utf8_get_char(s2))) == 0) && (--n > 0))
+	{
+			s1 = g_utf8_find_next_char(s1, NULL);
+			s2 = g_utf8_find_next_char(s2, NULL);
+	}
+	return retval;
+}
+
+/* case_strchr for utf8 strings, works like strchr */
+inline char *
+utf8_case_strchr(char *buf, const char *s)
+{
+	gunichar c = g_unichar_tolower(g_utf8_get_char(s));
+	while (buf && *buf && g_unichar_tolower(g_utf8_get_char(buf)) != c)
+		buf = g_utf8_find_next_char(buf, NULL);
+	return buf;
+}
+
 static int
 SearchNick (char *text, char *nicks)
 {
-	char S[300];	/* size of bluestring in xchatprefs */
-	char *n;
-	char *p;
-	char *t;
-	size_t ns;
+	char *nstart, *nend, *tmp;
 
-	if (nicks == NULL)
-		return 0;
-
-	text = strip_color (text);
-
-	safe_strcpy (S, nicks, sizeof (S));
-	n = strtok (S, ",");
-	while (n != NULL)
+	nstart = nicks;
+	while (nstart)
 	{
-		t = text;
-		ns = strlen (n);
-		while ((p = nocasestrstr (t, n)))
+		nend = strchr (nstart, ',');
+		tmp = utf8_case_strchr(text, nstart);
+		while (tmp && *tmp) /* seems like glib never returns NULL */
 		{
-			char *prev_char = (p == text) ? NULL : g_utf8_prev_char (p);
-			char *next_char = p + ns;
-			if ((!prev_char ||
-			     !g_unichar_isalnum (g_utf8_get_char(prev_char))) &&
-			    !g_unichar_isalnum (g_utf8_get_char(next_char)))
-			{
-				free (text);
+			printf("tmp: %s, nstart: %s\n", tmp, nstart);
+			/* We need a color stripped strncasecmp and it will work just fine */
+			if (utf8_strncasecmp(tmp, nstart, nend ? nend - nstart : strlen(nstart)) == 0)
 				return 1;
-			}
-
-			t = p + 1;
+			tmp = g_utf8_find_next_char(tmp, NULL);
+			tmp = tmp ? utf8_case_strchr(tmp, nstart) : NULL;
 		}
-
-		n = strtok (NULL, ",");
+		nstart = nend ? g_utf8_find_next_char(nend, NULL) : NULL;
 	}
-	free (text);
 	return 0;
 }
 
@@ -348,9 +355,7 @@ inbound_chanmsg (server *serv, rage_session *sess, char *chan, char *from, char 
 			if (!sess && !is_channel (serv, chan))
 				sess = find_dialog (serv, chan);
 		} else
-		{
 			sess = find_dialog (serv, from);
-		}
 		if (!sess)
 			return;
 	}
@@ -379,7 +384,8 @@ inbound_chanmsg (server *serv, rage_session *sess, char *chan, char *from, char 
 	if (id)
 	{
 		safe_strcpy (idtext, prefs.irc_id_ytext, sizeof (idtext));
-	} else
+	}
+	else
 	{
 		safe_strcpy (idtext, prefs.irc_id_ntext, sizeof (idtext));
 	}
