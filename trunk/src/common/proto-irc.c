@@ -701,7 +701,7 @@ PARSE_FUNC(numeric_whoreply)
 		parv[9] = tmp;
 	}
 
-	parv[9] = strip_color(parv[9]);
+	parv[9] = dstr_strip_color(parv[9]);
 
 	inbound_user_info(sess,parv[3],parv[4], parv[5], 
 			parv[6], parv[7], parv[9], away);

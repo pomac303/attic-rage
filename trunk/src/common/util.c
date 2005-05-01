@@ -1643,14 +1643,126 @@ capacity_format_size(char *s, unsigned long size, guint64 n)
 				((guint64)1024 * 1024 * 1024 * 1024));
 }
 
-
-int stccpy(char *p, const char *q, int n)
+int
+stccpy(char *p, const char *q, int n)
 {
 	char *t = p;
 
 	while ((*p++ = *q++) && --n > 0);
 
 	p[-1] = '\0';
-
 	return (p - t);
 }
+
+/* strncasecmp for utf8 strings, same syntax */
+int
+utf8_strncasecmp(const char *s1, const char *s2, size_t n)
+{
+	int retval = -1;
+	while (((retval = g_unichar_tolower(g_utf8_get_char(s1)) -
+			g_unichar_tolower(g_utf8_get_char(s2))) == 0) &&
+			(--n > 0))
+	{
+		s1 = g_utf8_find_next_char(s1, NULL);
+		s2 = g_utf8_find_next_char(s2, NULL);
+	}
+	return retval;
+}
+
+inline char *
+utf8_cmdch_skip(const char *str)
+{
+	switch(*str)
+	{
+		case '\003':	/* COLOR	*/
+		{
+			char *tmp = NULL;
+			str = g_utf8_find_next_char(str, NULL);
+
+			if (isdigit(*str))
+			{
+				str = g_utf8_find_next_char(str, NULL);
+				if (isdigit(*str))
+					str = g_utf8_find_next_char(str, NULL);
+				tmp = g_utf8_find_next_char(str, NULL);
+				if ((*str == ',') && isdigit(*tmp))
+				{
+					str = g_utf8_find_next_char(tmp, NULL);
+					if (isdigit(*str))
+						str = g_utf8_find_next_char(str, NULL);
+				}
+			}
+			break;
+		}
+		case '\007':    /* BEEP         */
+		case '\017':    /* RESET        */
+		case '\026':    /* REVERSE      */
+		case '\002':    /* BOLD         */
+		case '\037':    /* UNDERLINE    */
+			str = g_utf8_find_next_char(str, NULL);
+	}
+	return (char *)str;
+}			
+
+int
+utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n)
+{
+	int retval = -1;
+	gunichar ch1, ch2;
+	do
+	{
+		ch1 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s1)));
+		ch2 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s2)));
+	}
+	while(((retval = ch1 - ch2) == 0) && (--n > 0));
+	return retval;
+}
+
+char *
+dstr_strip_color(char *str)
+{
+	char *tmp, *ptr = str;
+	int offset;
+	
+	while(*str)
+	{
+		tmp = utf8_cmdch_skip(str);
+		if (tmp != str)
+		{
+			while (*tmp)
+			{
+				offset = g_unichar_to_utf8(g_utf8_get_char(tmp), str);
+				str += offset;
+				tmp = utf8_cmdch_skip(g_utf8_find_next_char(tmp, NULL));
+			}
+			str[0] = 0;
+			break;
+		}
+		else 
+			str = g_utf8_find_next_char(str, NULL);
+	}
+	return ptr;
+}
+	
+/* utf8_strchr does strchr for utf8 strings */
+char *
+uft8_strchr(char *buf, const char *s)
+{
+	gunichar c = g_utf8_get_char(s);
+	while (buf && *buf && g_utf8_get_char(buf) != c)
+		buf = g_utf8_find_next_char(buf, NULL);
+	return buf;
+}
+
+/* same thing but case insensitive */
+char *
+utf8_case_strchr(char *buf, const char *s)
+{
+	gunichar c = g_unichar_tolower(g_utf8_get_char(s));
+	while (buf && *buf && g_unichar_tolower(g_utf8_get_char(buf)) != c)
+		buf = g_utf8_find_next_char(buf, NULL);
+	return buf;
+}
+
+
+

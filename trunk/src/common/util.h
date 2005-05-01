@@ -54,5 +54,10 @@ void tab_clean(void);
 
 void capacity_format_size(char *s, unsigned long size, guint64 n);
 int stccpy(char *p, const char *q, int n);
+int utf8_strncasecmp(const char *s1, const char *s2, size_t n);
+int utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n);
+char *dstr_strip_color(char *str);
+char *uft8_strchr(char *buf, const char *s);
+char *utf8_case_strchr(char *buf, const char *s);
 
 #endif
