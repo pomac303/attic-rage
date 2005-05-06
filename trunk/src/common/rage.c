@@ -900,7 +900,7 @@ xchat_init (void)
 		"NAME %s\n"				"CMD !"XTERM"telnet %%h\n\n"\
 	"NAME ENDSUB\n"			"CMD \n\n"\
 	"NAME %s\n"					"CMD query %%s\n\n",
-		_("Direct client-to-client"),
+		_("DCC"),
 		_("Send File"),
 		_("Offer Chat"),
 		_("Abort Chat"),
