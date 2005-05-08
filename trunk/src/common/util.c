@@ -203,52 +203,6 @@ expand_homedir (char *file)
 	return strdup (file);
 }
 
-char *
-strip_color (char *text)
-{
-	int nc = 0;
-	int i = 0;
-	int col = 0;
-	size_t len = strlen (text);
-	char *new_str = malloc (len + 2);
-
-	while (len > 0)
-	{
-		if ((col && isdigit (*text) && nc < 2) ||
-			 (col && *text == ',' && isdigit (*(text+1)) && nc < 3))
-		{
-			nc++;
-			if (*text == ',')
-				nc = 0;
-		} else
-		{
-			col = 0;
-			switch (*text)
-			{
-			case '\003':			  /*ATTR_COLOR: */
-				col = 1;
-				nc = 0;
-				break;
-			case '\007':			  /*ATTR_BEEP: */
-			case '\017':			  /*ATTR_RESET: */
-			case '\026':			  /*ATTR_REVERSE: */
-			case '\002':			  /*ATTR_BOLD: */
-			case '\037':			  /*ATTR_UNDERLINE: */
-				break;
-			default:
-				new_str[i] = *text;
-				i++;
-			}
-		}
-		text++;
-		len--;
-	}
-
-	new_str[i] = 0;
-
-	return new_str;
-}
-
 #if defined (USING_LINUX) || defined (USING_FREEBSD) || defined (__APPLE__)
 
 static void
@@ -1670,37 +1624,37 @@ utf8_strncasecmp(const char *s1, const char *s2, size_t n)
 }
 
 inline char *
-utf8_cmdch_skip(const char *str)
+attrchar_skip(const char *str, int *len)
 {
+	const char *ptr = str;
 	switch(*str)
 	{
-		case '\003':	/* COLOR	*/
+		case ATTR_COLOR:
 		{
-			char *tmp = NULL;
-			str = g_utf8_find_next_char(str, NULL);
-
+			str++;
 			if (isdigit(*str))
 			{
-				str = g_utf8_find_next_char(str, NULL);
+				str++;
 				if (isdigit(*str))
-					str = g_utf8_find_next_char(str, NULL);
-				tmp = g_utf8_find_next_char(str, NULL);
-				if ((*str == ',') && isdigit(*tmp))
+					str++;
+				if ((*str == ',') && isdigit(str[1]))
 				{
-					str = g_utf8_find_next_char(tmp, NULL);
+					str += 2;
 					if (isdigit(*str))
-						str = g_utf8_find_next_char(str, NULL);
+						str++;
 				}
 			}
 			break;
 		}
-		case '\007':    /* BEEP         */
-		case '\017':    /* RESET        */
-		case '\026':    /* REVERSE      */
-		case '\002':    /* BOLD         */
-		case '\037':    /* UNDERLINE    */
-			str = g_utf8_find_next_char(str, NULL);
+		case ATTR_BEEP:
+		case ATTR_RESET:
+		case ATTR_REVERSE:
+		case ATTR_BOLD:
+		case ATTR_UNDERLINE:
+			str++;
 	}
+	if (len)
+		*len = (str - ptr);
 	return (char *)str;
 }			
 
@@ -1711,13 +1665,34 @@ utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n)
 	gunichar ch1, ch2;
 	do
 	{
-		ch1 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s1)));
-		ch2 = g_unichar_tolower(g_utf8_get_char(utf8_cmdch_skip(s2)));
+		ch1 = g_unichar_tolower(g_utf8_get_char(attrchar_skip(s1, NULL)));
+		ch2 = g_unichar_tolower(g_utf8_get_char(attrchar_skip(s2, NULL)));
 		s1 = g_utf8_find_next_char(s1, NULL);
 		s2 = g_utf8_find_next_char(s2, NULL);
 	}
 	while(((retval = (ch1 - ch2)) == 0) && (--n > 0));
 	return retval;
+}
+
+char *
+strip_color (char *text)
+{
+	char *tmp, *str, *ptr = NULL;
+	int offset;
+
+	ptr = str = malloc(strlen(text) +1);
+
+	tmp = attrchar_skip(text, NULL);
+	while (*tmp)
+	{
+		offset = g_unichar_to_utf8(g_utf8_get_char(tmp), str);
+		str += offset;
+		tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
+	}
+
+	str[0] = 0;
+
+	return ptr;
 }
 
 char *
@@ -1728,14 +1703,14 @@ dstr_strip_color(char *str)
 	
 	while(*str)
 	{
-		tmp = utf8_cmdch_skip(str);
+		tmp = attrchar_skip(str, NULL);
 		if (tmp != str)
 		{
 			while (*tmp)
 			{
 				offset = g_unichar_to_utf8(g_utf8_get_char(tmp), str);
 				str += offset;
-				tmp = utf8_cmdch_skip(g_utf8_find_next_char(tmp, NULL));
+				tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
 			}
 			str[0] = 0;
 			break;

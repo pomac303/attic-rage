@@ -106,7 +106,7 @@ static void gtk_xtext_fix_indent (xtext_buffer *buf);
 static int gtk_xtext_find_subline (GtkXText *xtext, textentry *ent, int line);
 /* static char *gtk_xtext_conv_color (unsigned char *text, int len, int *newlen); */
 static unsigned char *
-gtk_xtext_strip_color (unsigned char *text, int len, unsigned char *outbuf,
+gtk_xtext_strip_color (char *text, int len, unsigned char *outbuf,
 		int *newlen, int *mb_ret);
 
 /* some utility functions first */
@@ -1043,51 +1043,50 @@ gtk_xtext_selection_clear (xtext_buffer *buf)
 }
 
 static int
-find_x (GtkXText *xtext, textentry *ent, unsigned char *text, int x, int indent)
+find_x (GtkXText *xtext, textentry *ent, unsigned char *text, int x, int in_indent)
 {
-	int xx = indent;
-	int i = 0;
-	int col = FALSE;
-	int nc = 0;
+	int indent = in_indent, mbl, len = 0;
 	unsigned char *orig = text;
-	int mbl;
 
 	while (*text)
 	{
 		mbl = 1;
-		if ((col && isdigit (*text) && nc < 2) ||
-			 (col && *text == ',' && isdigit (*(text+1)) && nc < 3))
+		switch (*text)
 		{
-			nc++;
-			if (*text == ',')
-				nc = 0;
-			text++;
-		} else
-		{
-			col = FALSE;
-			switch (*text)
-			{
 			case ATTR_COLOR:
-				col = TRUE;
-				nc = 0;
+			{
+				text++;
+				if (isdigit(*text))
+				{
+					text++;
+					if (isdigit(*text))
+						text++;
+					if ((*text == ',') && isdigit(text[1]))
+					{
+						text += 2;
+						if (isdigit(*text))
+							text++;
+					}
+				}
+				break;
+			}
 			case ATTR_BEEP:
 			case ATTR_RESET:
 			case ATTR_REVERSE:
 			case ATTR_BOLD:
 			case ATTR_UNDERLINE:
+			{
 				text++;
 				break;
+			}
 			default:
-				xx += backend_get_char_width (xtext, text, &mbl);
+			{
+				indent += backend_get_char_width (xtext, text, &mbl);
 				text += mbl;
-				if (xx >= x)
-					return i + (orig - ent->str);
+				if (indent >= x)
+					return (len + (int)(orig - ent->str));
 			}
 		}
-
-		i += mbl;
-		if (text - orig >= ent->str_len)
-			return ent->str_len;
 	}
 
 	return ent->str_len;
@@ -2323,81 +2322,87 @@ gtk_xtext_get_type (void)
 /* strip MIRC colors and other attribs. */
 
 static unsigned char *
-gtk_xtext_strip_color (unsigned char *text, int len, unsigned char *outbuf,
+gtk_xtext_strip_color (char *text, int len, unsigned char *outbuf,
 		int *newlen, int *mb_ret)
 {
-	int nc = 0;
-	int i = 0;
-	int col = FALSE;
-	unsigned char *new_str;
-	int mbl;
-	int mb = FALSE;
+	char *new_str, *ptr;
+	int mbl, mb = FALSE;
 
-	if (outbuf == NULL)
-		new_str = malloc (len + 2);
+	if (!outbuf)
+		ptr = new_str = malloc (len + 2);
 	else
-		new_str = outbuf;
+		ptr = new_str = outbuf;
 
 	while (len > 0)
 	{
-		if (*text >= 128)
-			mb = TRUE;
-
-		if ((col && isdigit (*text) && nc < 2) ||
-			 (col && *text == ',' && isdigit (*(text+1)) && nc < 3))
+		switch (*text)
 		{
-			nc++;
-			if (*text == ',')
-				nc = 0;
-		} else
-		{
-			col = FALSE;
-			switch (*text)
-			{
 			case ATTR_COLOR:
-				col = TRUE;
-				nc = 0;
+			{
+				char *tmp = text++;
+				if (isdigit(*text))
+				{
+					text++;
+					if (isdigit(*text))
+						text++;
+					if ((*text == ',') && isdigit(text[1]))
+					{
+						text += 2;
+						if (isdigit(*text))
+							text++;
+					}
+				}
+				len -= (int)(text - tmp);
 				break;
+			}
 			case ATTR_BEEP:
 			case ATTR_RESET:
 			case ATTR_REVERSE:
 			case ATTR_BOLD:
 			case ATTR_UNDERLINE:
+			{
+				text++;
+				len--;
 				break;
+			}
 			default:
+			{
+				mbl = g_unichar_to_utf8(g_utf8_get_char(text), ptr);
+				text += mbl;
+				ptr += mbl;
+				len -= mbl;
+				if (mbl > 1)
+					mb = TRUE;
+/*				
 				mbl = charlen (text);
 				if (mbl == 1)
 				{
-					new_str[i] = *text;
-					i++;
-					text++;
+					*ptr++ = *text++;
 					len--;
-				} else
+				}
+				else
 				{
 					mb = TRUE;
-
 					len -= mbl;
-					/* safe-guard against invalid utf8 */
-					if (len < 0)
-						/* avoid memcpy beyond buffer */
+					// safe-guard against invalid utf8
+					if (len < 0) // avoid memcpy beyond buffer
 						mbl += len;
-					memcpy (&new_str[i], text, mbl);
-					i += mbl;
+					memcpy (ptr, text, mbl);
 					text += mbl;
+					ptr += mbl;
 				}
-				continue;
+*/
+				break;
 			}
 		}
-		text++;
-		len--;
 	}
 
-	new_str[i] = 0;
+	*ptr = '\0';
 
-	if (newlen != NULL)
-		*newlen = i;
+	if (newlen)
+		*newlen = (int)(ptr - new_str);
 
-	if (mb_ret != NULL)
+	if (mb_ret)
 		*mb_ret = mb;
 
 	return new_str;

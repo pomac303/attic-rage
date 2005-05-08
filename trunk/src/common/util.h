@@ -16,6 +16,13 @@
 
 #define rfc_tolower(c) (rfc_tolowertab[(unsigned char)(c)])
 
+#define ATTR_BOLD '\002'
+#define ATTR_COLOR '\003'
+#define ATTR_BEEP '\007'
+#define ATTR_RESET '\017'
+#define ATTR_REVERSE '\026'
+#define ATTR_UNDERLINE '\037'
+
 extern const unsigned char rfc_tolowertab[];
 
 struct throttle_data {
@@ -42,6 +49,7 @@ char *country (char *);
 char *get_cpu_str (void);
 int util_exec (char *cmd);
 char *strip_color (char *text);
+char *strip_color_buf (char *text, int len, char *outbuf, int *newlen, int *mb_ret);
 char *errorstring (int err);
 int waitline (int sok, char *buf, int bufsize, int use_recv);
 unsigned long make_ping_time (void);
@@ -54,6 +62,7 @@ void tab_clean(void);
 
 void capacity_format_size(char *s, unsigned long size, guint64 n);
 int stccpy(char *p, const char *q, int n);
+inline char *attrchar_skip(const char *str, int *len);
 int utf8_strncasecmp(const char *s1, const char *s2, size_t n);
 int utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n);
 char *dstr_strip_color(char *str);
