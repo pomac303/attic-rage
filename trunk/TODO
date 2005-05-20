@@ -64,3 +64,6 @@ to be sent.
 
 #24 - add ispell/aspell support in the input string with settable language depending on the channel
 (or an heuristic to find out which language to use)
+
+#25 - add a way to avoid utf-8 as much as possible, for example try to use an ISO codechar when
+sending out. not sure what to do with actual display though..
