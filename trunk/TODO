@@ -70,3 +70,5 @@ sending out. not sure what to do with actual display though..
 
 #26 - when overing over a nick in the irc text output on the left column and if the time isn't
 displayed there already, open an help bubble with the time on it
+
+#27 - drag & drop a file over a query window -> DCC
