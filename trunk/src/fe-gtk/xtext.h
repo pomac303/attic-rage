@@ -153,7 +153,7 @@ struct _GtkXText
 	int stamp_width;				  /* width of "[88:88:88]" */
 	int max_auto_indent;
 
-	unsigned char scratch_buffer[4096];
+	char scratch_buffer[4096];
 
 	void (*error_function) (int type);
 	int (*urlcheck_function) (GtkWidget * xtext, char *word);
@@ -209,10 +209,10 @@ struct _GtkXTextClass
 };
 
 GtkWidget *gtk_xtext_new (GdkColor palette[], int separator);
-void gtk_xtext_append (xtext_buffer *buf, unsigned char *text, int len);
+void gtk_xtext_append (xtext_buffer *buf, char *text, int len);
 void gtk_xtext_append_indent (xtext_buffer *buf,
-										unsigned char *left_text, int left_len,
-										unsigned char *right_text, int right_len);
+		char *left_text, int left_len,
+		 char *right_text, int right_len);
 int gtk_xtext_set_font (GtkXText *xtext, char *name);
 void gtk_xtext_set_background (GtkXText * xtext, GdkPixmap * pixmap,
 			       int trans, int shaded);
@@ -220,12 +220,12 @@ void gtk_xtext_set_palette (GtkXText * xtext, GdkColor palette[]);
 void gtk_xtext_clear (xtext_buffer *buf);
 void gtk_xtext_save (GtkXText * xtext, int fh);
 void gtk_xtext_refresh (GtkXText * xtext, int do_trans);
-void *gtk_xtext_search (GtkXText * xtext, const unsigned char *text, void *start);
+void *gtk_xtext_search (GtkXText * xtext, const char *text, void *start);
 void gtk_xtext_reset_marker_pos (GtkXText *xtext);
 void gtk_xtext_check_marker_visibility(GtkXText *xtext);
 
 gboolean gtk_xtext_is_empty (xtext_buffer *buf);
-typedef void (*GtkXTextForeach) (GtkXText *xtext, unsigned char *text, void *data);
+typedef void (*GtkXTextForeach) (GtkXText *xtext, char *text, void *data);
 void gtk_xtext_foreach (xtext_buffer *buf, GtkXTextForeach func, void *data);
 
 void gtk_xtext_set_error_function (GtkXText *xtext, void (*error_function) (int));

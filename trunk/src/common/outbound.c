@@ -1460,7 +1460,7 @@ cmd_exec (rage_session *sess, char *cmd, char *buf)
 		dup2 (fds[1], 0);
 		/* Now we call /bin/sh to run our cmd ; made it more friendly -DC1 */
 		if (shell)
-			execl ("/bin/sh", "sh", "-c", buf, 0);
+			execl ("/bin/sh", "sh", "-c", buf, NULL);
 		else
 		{
 			char **argv;
@@ -3312,7 +3312,7 @@ help (rage_session *sess, char *helpcmd, int quiet)
  */
 
 int
-auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[],
+auto_insert (char *dest, int destlen, char *src, int parc, char *parv[],
 				 char *a, char *c, char *d, char *h, char *n,
 				 char *s)
 {
@@ -3443,7 +3443,7 @@ auto_insert (char *dest, int destlen, unsigned char *src, int parc, char *parv[]
 		} 
 		else
 		{
-			utf_len = g_utf8_skip[src[0]];
+			utf_len = g_utf8_skip[(int)src[0]];
 
 			if ((dest - orig) + utf_len >= (unsigned)destlen)
 				return 2;

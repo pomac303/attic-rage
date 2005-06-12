@@ -348,7 +348,7 @@ userlist_dnd_drop (GtkTreeView *widget, GdkDragContext *context,
 		return;
 	gtk_tree_model_get (model, &iter, 3, &user, -1);
 
-	p = data = strdup (selection_data->data);
+	p = data = strdup ((char *)selection_data->data);
 	while (*p)
 	{
 		next = strchr (p, '\r');

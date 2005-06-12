@@ -332,8 +332,9 @@ flood_check (char *nick, char *host, server *serv, rage_session *sess, int what)
 	else
 	{
 		value = 1;
-		if (prefs.msg_number_limit > 0 && gen_parm_throttle (&serv->msg_counter, &value, &value, 
-					&prefs.msg_number_limit, &serv->msg_last_time))
+		/* FIXME: (signed int *) -- Is this the best way to fix this? */
+		if (prefs.msg_number_limit > 0 && gen_parm_throttle ((signed int *)&(serv->msg_counter), &value, &value, 
+					(signed int *)&(prefs.msg_number_limit), &serv->msg_last_time))
 		{
 			serv->msg_counter = 0;
 

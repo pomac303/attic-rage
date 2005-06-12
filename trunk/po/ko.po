@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-03-02 21:58+0100\n"
+"POT-Creation-Date: 2005-05-07 22:31+0200\n"
 "PO-Revision-Date: 2004-08-10 07:37 +0900\n"
 "Last-Translator: Michael Kim <lavnrose@e.sarang.net>\n"
 "Language-Team: Korean <translation-team-ko@lists.sourceforge.net>\n"
@@ -35,36 +35,36 @@ msgstr ""
 "* IRC를 루트계정으로 실행했습니다!!\n"
 "  새로운 사용자 어카운트를 생성하고 그것을 이용하십시오.\n"
 
-#: src/common/dcc.c:30
+#: src/common/dcc.c:31
 msgid "Waiting"
 msgstr "잠시만 기다려주십시오"
 
-#: src/common/dcc.c:31
+#: src/common/dcc.c:32
 msgid "Active"
 msgstr "활성"
 
-#: src/common/dcc.c:32
+#: src/common/dcc.c:33
 msgid "Failed"
 msgstr "실패"
 
-#: src/common/dcc.c:33
+#: src/common/dcc.c:34
 msgid "Done"
 msgstr "확인"
 
-#: src/common/dcc.c:34
+#: src/common/dcc.c:35
 msgid "Connect"
 msgstr "접속"
 
-#: src/common/dcc.c:35
+#: src/common/dcc.c:36
 msgid "Aborted"
 msgstr "취소됨"
 
-#: src/common/dcc.c:1227
+#: src/common/dcc.c:1226
 #, c-format
 msgid "Cannot access %s\n"
 msgstr "%s에 접근할 수 없습니다\n"
 
-#: src/common/dcc.c:1935
+#: src/common/dcc.c:1933
 msgid "No active DCCs\n"
 msgstr "DCC가 활성화되지 않았습니다\n"
 
@@ -1649,7 +1649,7 @@ msgstr "대화명 다시 시도"
 
 #: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
 #: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
-#: src/common/text.c:1024 src/common/util.c:133
+#: src/common/text.c:1024 src/common/util.c:134
 msgid "Error"
 msgstr "오류"
 
@@ -1701,11 +1701,11 @@ msgstr ""
 msgid "Pathname"
 msgstr "경로"
 
-#: src/common/text.c:951 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
+#: src/common/text.c:951 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
 msgid "Position"
 msgstr "위치"
 
-#: src/common/text.c:957 src/fe-gtk/dccgui.c:447 src/fe-gtk/dccgui.c:620
+#: src/common/text.c:957 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
 msgid "Size"
 msgstr "크기"
 
@@ -1813,1276 +1813,1276 @@ msgstr ""
 "소리 화일을 읽지 못함:\n"
 "%s"
 
-#: src/common/util.c:77
+#: src/common/util.c:78
 msgid "Remote host closed socket"
 msgstr "원격 호스트에서 소켓이 닫힘"
 
-#: src/common/util.c:82
+#: src/common/util.c:83
 msgid "Connection refused"
 msgstr "접속이 거부됨"
 
-#: src/common/util.c:85
+#: src/common/util.c:86
 msgid "No route to host"
 msgstr "호스트로갈 경로가 없음"
 
-#: src/common/util.c:87
+#: src/common/util.c:88
 msgid "Connection timed out"
 msgstr "접속 시간 제한"
 
-#: src/common/util.c:89
+#: src/common/util.c:90
 msgid "Cannot assign that address"
 msgstr "해당 주소로 접근 할 수 없음"
 
-#: src/common/util.c:91
+#: src/common/util.c:92
 msgid "Connection reset by peer"
 msgstr "접속이 초기화됨"
 
-#: src/common/util.c:592
+#: src/common/util.c:547
 msgid "Andorra"
 msgstr "안도라"
 
-#: src/common/util.c:593
+#: src/common/util.c:548
 msgid "United Arab Emirates"
 msgstr "아랍 국가 연합"
 
-#: src/common/util.c:594
+#: src/common/util.c:549
 msgid "Afghanistan"
 msgstr "아프카니스탄"
 
-#: src/common/util.c:595
+#: src/common/util.c:550
 msgid "Antigua and Barbuda"
 msgstr "안티과와 바부다"
 
-#: src/common/util.c:596
+#: src/common/util.c:551
 msgid "Anguilla"
 msgstr "앙귈라"
 
-#: src/common/util.c:597
+#: src/common/util.c:552
 msgid "Albania"
 msgstr "알바니아"
 
-#: src/common/util.c:598
+#: src/common/util.c:553
 msgid "Armenia"
 msgstr "아르메니아"
 
-#: src/common/util.c:599
+#: src/common/util.c:554
 msgid "Netherlands Antilles"
 msgstr "네덜란드"
 
-#: src/common/util.c:600
+#: src/common/util.c:555
 msgid "Angola"
 msgstr "앙골라"
 
-#: src/common/util.c:601
+#: src/common/util.c:556
 msgid "Antarctica"
 msgstr "안타티카"
 
-#: src/common/util.c:602
+#: src/common/util.c:557
 msgid "Argentina"
 msgstr "아르헨티나"
 
-#: src/common/util.c:603
+#: src/common/util.c:558
 msgid "Reverse DNS"
 msgstr "DNS 역추적"
 
-#: src/common/util.c:604
+#: src/common/util.c:559
 msgid "American Samoa"
 msgstr "아메리칸 사모아"
 
-#: src/common/util.c:605
+#: src/common/util.c:560
 msgid "Austria"
 msgstr "오스트리아"
 
-#: src/common/util.c:606
+#: src/common/util.c:561
 msgid "Nato Fiel"
 msgstr "북대서양 조약기구"
 
-#: src/common/util.c:607
+#: src/common/util.c:562
 msgid "Australia"
 msgstr "오스트레일리아"
 
-#: src/common/util.c:608
+#: src/common/util.c:563
 msgid "Aruba"
 msgstr "아루바"
 
-#: src/common/util.c:609
+#: src/common/util.c:564
 msgid "Azerbaijan"
 msgstr "아케르바이젠"
 
-#: src/common/util.c:610
+#: src/common/util.c:565
 msgid "Bosnia and Herzegovina"
 msgstr "보스니아와 헬제고비나"
 
-#: src/common/util.c:611
+#: src/common/util.c:566
 msgid "Barbados"
 msgstr "발바도스"
 
-#: src/common/util.c:612
+#: src/common/util.c:567
 msgid "Bangladesh"
 msgstr "방글라데쉬"
 
-#: src/common/util.c:613
+#: src/common/util.c:568
 msgid "Belgium"
 msgstr "벨기에"
 
-#: src/common/util.c:614
+#: src/common/util.c:569
 msgid "Burkina Faso"
 msgstr "버키나 패소"
 
-#: src/common/util.c:615
+#: src/common/util.c:570
 msgid "Bulgaria"
 msgstr "불가리아"
 
-#: src/common/util.c:616
+#: src/common/util.c:571
 msgid "Bahrain"
 msgstr "바레인"
 
-#: src/common/util.c:617
+#: src/common/util.c:572
 msgid "Burundi"
 msgstr "버런디"
 
-#: src/common/util.c:618
+#: src/common/util.c:573
 msgid "Businesses"
 msgstr "비지니스"
 
-#: src/common/util.c:619
+#: src/common/util.c:574
 msgid "Benin"
 msgstr "베닌"
 
-#: src/common/util.c:620
+#: src/common/util.c:575
 msgid "Bermuda"
 msgstr "버뮤다"
 
-#: src/common/util.c:621
+#: src/common/util.c:576
 msgid "Brunei Darussalam"
 msgstr "브루나이 달루살람"
 
-#: src/common/util.c:622
+#: src/common/util.c:577
 msgid "Bolivia"
 msgstr "볼리비아"
 
-#: src/common/util.c:623
+#: src/common/util.c:578
 msgid "Brazil"
 msgstr "브라질"
 
-#: src/common/util.c:624
+#: src/common/util.c:579
 msgid "Bahamas"
 msgstr "바하마"
 
-#: src/common/util.c:625
+#: src/common/util.c:580
 msgid "Bhutan"
 msgstr "부탄"
 
-#: src/common/util.c:626
+#: src/common/util.c:581
 msgid "Bouvet Island"
 msgstr "부벳섬"
 
-#: src/common/util.c:627
+#: src/common/util.c:582
 msgid "Botswana"
 msgstr "보스와나"
 
-#: src/common/util.c:628
+#: src/common/util.c:583
 msgid "Belarus"
 msgstr "베라루스"
 
-#: src/common/util.c:629
+#: src/common/util.c:584
 msgid "Belize"
 msgstr "베리제"
 
-#: src/common/util.c:630
+#: src/common/util.c:585
 msgid "Canada"
 msgstr "카나다"
 
-#: src/common/util.c:631
+#: src/common/util.c:586
 msgid "Cocos Islands"
 msgstr "코코스 섬"
 
-#: src/common/util.c:632
+#: src/common/util.c:587
 msgid "Central African Republic"
 msgstr "중앙 아프리카 공화국"
 
-#: src/common/util.c:633
+#: src/common/util.c:588
 msgid "Congo"
 msgstr "콩고"
 
-#: src/common/util.c:634
+#: src/common/util.c:589
 msgid "Switzerland"
 msgstr "스위스"
 
-#: src/common/util.c:635
+#: src/common/util.c:590
 msgid "Cote d'Ivoire"
 msgstr "코테  드이보르"
 
-#: src/common/util.c:636
+#: src/common/util.c:591
 msgid "Cook Islands"
 msgstr "쿡 섬"
 
-#: src/common/util.c:637
+#: src/common/util.c:592
 msgid "Chile"
 msgstr "칠레"
 
-#: src/common/util.c:638
+#: src/common/util.c:593
 msgid "Cameroon"
 msgstr "카메룬"
 
-#: src/common/util.c:639
+#: src/common/util.c:594
 msgid "China"
 msgstr "중국"
 
-#: src/common/util.c:640
+#: src/common/util.c:595
 msgid "Colombia"
 msgstr "콜롬비아"
 
-#: src/common/util.c:641
+#: src/common/util.c:596
 msgid "Internic Commercial"
 msgstr "상업용 인터닉"
 
-#: src/common/util.c:642
+#: src/common/util.c:597
 msgid "Costa Rica"
 msgstr "코스타리카"
 
-#: src/common/util.c:643
+#: src/common/util.c:598
 msgid "Former Czechoslovakia"
 msgstr "체코슬로바키아"
 
-#: src/common/util.c:644
+#: src/common/util.c:599
 msgid "Cuba"
 msgstr "쿠바"
 
-#: src/common/util.c:645
+#: src/common/util.c:600
 msgid "Cape Verde"
 msgstr ""
 
-#: src/common/util.c:646
+#: src/common/util.c:601
 msgid "Christmas Island"
 msgstr "크리스마스 섬"
 
-#: src/common/util.c:647
+#: src/common/util.c:602
 msgid "Cyprus"
 msgstr ""
 
-#: src/common/util.c:648
+#: src/common/util.c:603
 msgid "Czech Republic"
 msgstr "체코 공화국"
 
-#: src/common/util.c:649
+#: src/common/util.c:604
 msgid "Germany"
 msgstr "독일"
 
-#: src/common/util.c:650
+#: src/common/util.c:605
 msgid "Djibouti"
 msgstr ""
 
-#: src/common/util.c:651
+#: src/common/util.c:606
 msgid "Denmark"
 msgstr "덴마크"
 
-#: src/common/util.c:652
+#: src/common/util.c:607
 msgid "Dominica"
 msgstr "도미니카"
 
-#: src/common/util.c:653
+#: src/common/util.c:608
 msgid "Dominican Republic"
 msgstr "도미니카 공확국"
 
-#: src/common/util.c:654
+#: src/common/util.c:609
 msgid "Algeria"
 msgstr "알제리아"
 
-#: src/common/util.c:655
+#: src/common/util.c:610
 msgid "Ecuador"
 msgstr "에콰도르"
 
-#: src/common/util.c:656
+#: src/common/util.c:611
 msgid "Educational Institution"
 msgstr "교육 재단"
 
-#: src/common/util.c:657
+#: src/common/util.c:612
 msgid "Estonia"
 msgstr "에스토니아"
 
-#: src/common/util.c:658
+#: src/common/util.c:613
 msgid "Egypt"
 msgstr "이집트"
 
-#: src/common/util.c:659
+#: src/common/util.c:614
 msgid "Western Sahara"
 msgstr "서 사하라"
 
-#: src/common/util.c:660
+#: src/common/util.c:615
 msgid "Eritrea"
 msgstr "에리트리아"
 
-#: src/common/util.c:661
+#: src/common/util.c:616
 msgid "Spain"
 msgstr "스페인"
 
-#: src/common/util.c:662
+#: src/common/util.c:617
 msgid "Ethiopia"
 msgstr "에디오피아"
 
-#: src/common/util.c:663
+#: src/common/util.c:618
 msgid "Finland"
 msgstr "핀란드"
 
-#: src/common/util.c:664
+#: src/common/util.c:619
 msgid "Fiji"
 msgstr "피지"
 
-#: src/common/util.c:665
+#: src/common/util.c:620
 msgid "Falkland Islands"
 msgstr ""
 
-#: src/common/util.c:666
+#: src/common/util.c:621
 msgid "Micronesia"
 msgstr "마이크로네시아"
 
-#: src/common/util.c:667
+#: src/common/util.c:622
 msgid "Faroe Islands"
 msgstr ""
 
-#: src/common/util.c:668
+#: src/common/util.c:623
 msgid "France"
 msgstr "프랑스"
 
-#: src/common/util.c:669
+#: src/common/util.c:624
 msgid "France, Metropolitan"
 msgstr ""
 
-#: src/common/util.c:670
+#: src/common/util.c:625
 msgid "Gabon"
 msgstr "가봉"
 
-#: src/common/util.c:671
+#: src/common/util.c:626
 msgid "Great Britain"
 msgstr ""
 
-#: src/common/util.c:672
+#: src/common/util.c:627
 msgid "Grenada"
 msgstr ""
 
-#: src/common/util.c:673
+#: src/common/util.c:628
 msgid "Georgia"
 msgstr "죠지아"
 
-#: src/common/util.c:674
+#: src/common/util.c:629
 msgid "French Guiana"
 msgstr "프랑스령 귀아나"
 
-#: src/common/util.c:675
+#: src/common/util.c:630
 msgid "British Channel Isles"
 msgstr ""
 
-#: src/common/util.c:676
+#: src/common/util.c:631
 msgid "Ghana"
 msgstr "가나"
 
-#: src/common/util.c:677
+#: src/common/util.c:632
 msgid "Gibraltar"
 msgstr "지브랄터"
 
-#: src/common/util.c:678
+#: src/common/util.c:633
 msgid "Greenland"
 msgstr "그린랜드"
 
-#: src/common/util.c:679
+#: src/common/util.c:634
 msgid "Gambia"
 msgstr "잠비아"
 
-#: src/common/util.c:680
+#: src/common/util.c:635
 msgid "Guinea"
 msgstr "귀니아"
 
-#: src/common/util.c:681
+#: src/common/util.c:636
 msgid "Government"
 msgstr "정부"
 
-#: src/common/util.c:682
+#: src/common/util.c:637
 msgid "Guadeloupe"
 msgstr ""
 
-#: src/common/util.c:683
+#: src/common/util.c:638
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: src/common/util.c:684
+#: src/common/util.c:639
 msgid "Greece"
 msgstr "그리스"
 
-#: src/common/util.c:685
+#: src/common/util.c:640
 msgid "S. Georgia and S. Sandwich Isles"
 msgstr "성 죠지아와 성 샌드위치 섬"
 
-#: src/common/util.c:686
+#: src/common/util.c:641
 msgid "Guatemala"
 msgstr "과테말라"
 
-#: src/common/util.c:687
+#: src/common/util.c:642
 msgid "Guam"
 msgstr "괌"
 
-#: src/common/util.c:688
+#: src/common/util.c:643
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: src/common/util.c:689
+#: src/common/util.c:644
 msgid "Guyana"
 msgstr ""
 
-#: src/common/util.c:690
+#: src/common/util.c:645
 msgid "Hong Kong"
 msgstr "홍콩"
 
-#: src/common/util.c:691
+#: src/common/util.c:646
 msgid "Heard and McDonald Islands"
 msgstr "맥도날드 섬과 허드"
 
-#: src/common/util.c:692
+#: src/common/util.c:647
 msgid "Honduras"
 msgstr ""
 
-#: src/common/util.c:693
+#: src/common/util.c:648
 msgid "Croatia"
 msgstr "크로아티아"
 
-#: src/common/util.c:694
+#: src/common/util.c:649
 msgid "Haiti"
 msgstr "하이티"
 
-#: src/common/util.c:695
+#: src/common/util.c:650
 msgid "Hungary"
 msgstr "헝가리"
 
-#: src/common/util.c:696
+#: src/common/util.c:651
 msgid "Indonesia"
 msgstr "인도네시아"
 
-#: src/common/util.c:697
+#: src/common/util.c:652
 msgid "Ireland"
 msgstr "아일랜드"
 
-#: src/common/util.c:698
+#: src/common/util.c:653
 msgid "Israel"
 msgstr "이스라엘"
 
-#: src/common/util.c:699
+#: src/common/util.c:654
 msgid "India"
 msgstr "인도"
 
-#: src/common/util.c:700
+#: src/common/util.c:655
 msgid "Informational"
 msgstr "정보"
 
-#: src/common/util.c:701
+#: src/common/util.c:656
 msgid "International"
 msgstr "국제"
 
-#: src/common/util.c:702
+#: src/common/util.c:657
 msgid "British Indian Ocean Territory"
 msgstr "인도양"
 
-#: src/common/util.c:703
+#: src/common/util.c:658
 msgid "Iraq"
 msgstr "이라크"
 
-#: src/common/util.c:704
+#: src/common/util.c:659
 msgid "Iran"
 msgstr "이란"
 
-#: src/common/util.c:705
+#: src/common/util.c:660
 msgid "Iceland"
 msgstr "아이스랜드"
 
-#: src/common/util.c:706
+#: src/common/util.c:661
 msgid "Italy"
 msgstr "이탈리아"
 
-#: src/common/util.c:707
+#: src/common/util.c:662
 msgid "Jamaica"
 msgstr "자메이카"
 
-#: src/common/util.c:708
+#: src/common/util.c:663
 msgid "Jordan"
 msgstr "죠단"
 
-#: src/common/util.c:709
+#: src/common/util.c:664
 msgid "Japan"
 msgstr "일본"
 
-#: src/common/util.c:710
+#: src/common/util.c:665
 msgid "Kenya"
 msgstr "케냐"
 
-#: src/common/util.c:711
+#: src/common/util.c:666
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: src/common/util.c:712
+#: src/common/util.c:667
 msgid "Cambodia"
 msgstr "캄보디아"
 
-#: src/common/util.c:713
+#: src/common/util.c:668
 msgid "Kiribati"
 msgstr "키리바티"
 
-#: src/common/util.c:714
+#: src/common/util.c:669
 msgid "Comoros"
 msgstr "코모로스"
 
-#: src/common/util.c:715
+#: src/common/util.c:670
 msgid "St. Kitts and Nevis"
 msgstr "성 키티와 네비스"
 
-#: src/common/util.c:716
+#: src/common/util.c:671
 msgid "North Korea"
 msgstr "조선 민주주의 인민 공화국"
 
-#: src/common/util.c:717
+#: src/common/util.c:672
 msgid "South Korea"
 msgstr "대한민국"
 
-#: src/common/util.c:718
+#: src/common/util.c:673
 msgid "Kuwait"
 msgstr "쿠웨이트"
 
-#: src/common/util.c:719
+#: src/common/util.c:674
 msgid "Cayman Islands"
 msgstr ""
 
-#: src/common/util.c:720
+#: src/common/util.c:675
 msgid "Kazakhstan"
 msgstr "카자흐스탄"
 
-#: src/common/util.c:721
+#: src/common/util.c:676
 msgid "Laos"
 msgstr "라오스"
 
-#: src/common/util.c:722
+#: src/common/util.c:677
 msgid "Lebanon"
 msgstr "레바논"
 
-#: src/common/util.c:723
+#: src/common/util.c:678
 msgid "Saint Lucia"
 msgstr "성 루시아"
 
-#: src/common/util.c:724
+#: src/common/util.c:679
 msgid "Liechtenstein"
 msgstr ""
 
-#: src/common/util.c:725
+#: src/common/util.c:680
 msgid "Sri Lanka"
 msgstr "스리랑카"
 
-#: src/common/util.c:726
+#: src/common/util.c:681
 msgid "Liberia"
 msgstr "리베리아"
 
-#: src/common/util.c:727
+#: src/common/util.c:682
 msgid "Lesotho"
 msgstr "레소토"
 
-#: src/common/util.c:728
+#: src/common/util.c:683
 msgid "Lithuania"
 msgstr "리투아니아"
 
-#: src/common/util.c:729
+#: src/common/util.c:684
 msgid "Luxembourg"
 msgstr "룩셈부르크"
 
-#: src/common/util.c:730
+#: src/common/util.c:685
 msgid "Latvia"
 msgstr "라비타"
 
-#: src/common/util.c:731
+#: src/common/util.c:686
 msgid "Libya"
 msgstr "리비아"
 
-#: src/common/util.c:732
+#: src/common/util.c:687
 msgid "Morocco"
 msgstr "모로코"
 
-#: src/common/util.c:733
+#: src/common/util.c:688
 msgid "Monaco"
 msgstr "모나코"
 
-#: src/common/util.c:734
+#: src/common/util.c:689
 msgid "Moldova"
 msgstr ""
 
-#: src/common/util.c:735
+#: src/common/util.c:690
 msgid "United States Medical"
 msgstr "미국 의료"
 
-#: src/common/util.c:736
+#: src/common/util.c:691
 msgid "Madagascar"
 msgstr ""
 
-#: src/common/util.c:737
+#: src/common/util.c:692
 msgid "Marshall Islands"
 msgstr "마샬 섬"
 
-#: src/common/util.c:738
+#: src/common/util.c:693
 msgid "Military"
 msgstr "국방"
 
-#: src/common/util.c:739
+#: src/common/util.c:694
 msgid "Macedonia"
 msgstr "마케도니아"
 
-#: src/common/util.c:740
+#: src/common/util.c:695
 msgid "Mali"
 msgstr "말리"
 
-#: src/common/util.c:741
+#: src/common/util.c:696
 msgid "Myanmar"
 msgstr ""
 
-#: src/common/util.c:742
+#: src/common/util.c:697
 msgid "Mongolia"
 msgstr "몽고"
 
-#: src/common/util.c:743
+#: src/common/util.c:698
 msgid "Macau"
 msgstr ""
 
-#: src/common/util.c:744
+#: src/common/util.c:699
 msgid "Northern Mariana Islands"
 msgstr "노턴 마리아나 섬"
 
-#: src/common/util.c:745
+#: src/common/util.c:700
 msgid "Martinique"
 msgstr ""
 
-#: src/common/util.c:746
+#: src/common/util.c:701
 msgid "Mauritania"
 msgstr ""
 
-#: src/common/util.c:747
+#: src/common/util.c:702
 msgid "Montserrat"
 msgstr ""
 
-#: src/common/util.c:748
+#: src/common/util.c:703
 msgid "Malta"
 msgstr "말타"
 
-#: src/common/util.c:749
+#: src/common/util.c:704
 msgid "Mauritius"
 msgstr ""
 
-#: src/common/util.c:750
+#: src/common/util.c:705
 msgid "Maldives"
 msgstr "말디브"
 
-#: src/common/util.c:751
+#: src/common/util.c:706
 msgid "Malawi"
 msgstr ""
 
-#: src/common/util.c:752
+#: src/common/util.c:707
 msgid "Mexico"
 msgstr "멕시코"
 
-#: src/common/util.c:753
+#: src/common/util.c:708
 msgid "Malaysia"
 msgstr "말레이지아"
 
-#: src/common/util.c:754
+#: src/common/util.c:709
 msgid "Mozambique"
 msgstr "모잠비크"
 
-#: src/common/util.c:755
+#: src/common/util.c:710
 msgid "Namibia"
 msgstr "나미비아"
 
-#: src/common/util.c:756
+#: src/common/util.c:711
 msgid "New Caledonia"
 msgstr "뉴 칼레도니아"
 
-#: src/common/util.c:757
+#: src/common/util.c:712
 msgid "Niger"
 msgstr "나이제르"
 
-#: src/common/util.c:758
+#: src/common/util.c:713
 msgid "Internic Network"
 msgstr "인터닉 네트워크"
 
-#: src/common/util.c:759
+#: src/common/util.c:714
 msgid "Norfolk Island"
 msgstr ""
 
-#: src/common/util.c:760
+#: src/common/util.c:715
 msgid "Nigeria"
 msgstr "나이지리아"
 
-#: src/common/util.c:761
+#: src/common/util.c:716
 msgid "Nicaragua"
 msgstr "니카르과"
 
-#: src/common/util.c:762
+#: src/common/util.c:717
 msgid "Netherlands"
 msgstr ""
 
-#: src/common/util.c:763
+#: src/common/util.c:718
 msgid "Norway"
 msgstr "노르웨이"
 
-#: src/common/util.c:764
+#: src/common/util.c:719
 msgid "Nepal"
 msgstr "네팔"
 
-#: src/common/util.c:765
+#: src/common/util.c:720
 msgid "Nauru"
 msgstr ""
 
-#: src/common/util.c:766
+#: src/common/util.c:721
 msgid "Neutral Zone"
 msgstr "뉴트랄 존"
 
-#: src/common/util.c:767
+#: src/common/util.c:722
 msgid "Niue"
 msgstr ""
 
-#: src/common/util.c:768
+#: src/common/util.c:723
 msgid "New Zealand"
 msgstr "뉴질랜드"
 
-#: src/common/util.c:769
+#: src/common/util.c:724
 msgid "Oman"
 msgstr "오만"
 
-#: src/common/util.c:770
+#: src/common/util.c:725
 msgid "Internic Non-Profit Organization"
 msgstr "인터닉 공공기관"
 
-#: src/common/util.c:771
+#: src/common/util.c:726
 msgid "Panama"
 msgstr "파나마"
 
-#: src/common/util.c:772
+#: src/common/util.c:727
 msgid "Peru"
 msgstr "페루"
 
-#: src/common/util.c:773
+#: src/common/util.c:728
 msgid "French Polynesia"
 msgstr "프랑스령 폴리네시아"
 
-#: src/common/util.c:774
+#: src/common/util.c:729
 msgid "Papua New Guinea"
 msgstr "파푸아 뉴기니"
 
-#: src/common/util.c:775
+#: src/common/util.c:730
 msgid "Philippines"
 msgstr "필리핀"
 
-#: src/common/util.c:776
+#: src/common/util.c:731
 msgid "Pakistan"
 msgstr "파키스탄"
 
-#: src/common/util.c:777
+#: src/common/util.c:732
 msgid "Poland"
 msgstr "폴란드"
 
-#: src/common/util.c:778
+#: src/common/util.c:733
 msgid "St. Pierre and Miquelon"
 msgstr "성 피에르와 미퀘론"
 
-#: src/common/util.c:779
+#: src/common/util.c:734
 msgid "Pitcairn"
 msgstr ""
 
-#: src/common/util.c:780
+#: src/common/util.c:735
 msgid "Puerto Rico"
 msgstr ""
 
-#: src/common/util.c:781
+#: src/common/util.c:736
 msgid "Portugal"
 msgstr "포르투칼"
 
-#: src/common/util.c:782
+#: src/common/util.c:737
 msgid "Palau"
 msgstr "팔라우"
 
-#: src/common/util.c:783
+#: src/common/util.c:738
 msgid "Paraguay"
 msgstr "파라과이"
 
-#: src/common/util.c:784
+#: src/common/util.c:739
 msgid "Qatar"
 msgstr ""
 
-#: src/common/util.c:785
+#: src/common/util.c:740
 msgid "Reunion"
 msgstr ""
 
-#: src/common/util.c:786
+#: src/common/util.c:741
 msgid "Romania"
 msgstr "로마니아"
 
-#: src/common/util.c:787
+#: src/common/util.c:742
 msgid "Old School ARPAnet"
 msgstr "옛 ARPAnet"
 
-#: src/common/util.c:788
+#: src/common/util.c:743
 msgid "Russian Federation"
 msgstr "러시아 연합"
 
-#: src/common/util.c:789
+#: src/common/util.c:744
 msgid "Rwanda"
 msgstr ""
 
-#: src/common/util.c:790
+#: src/common/util.c:745
 msgid "Saudi Arabia"
 msgstr "사우디 아라비아"
 
-#: src/common/util.c:791
+#: src/common/util.c:746
 msgid "Solomon Islands"
 msgstr "솔로몬 섬"
 
-#: src/common/util.c:792
+#: src/common/util.c:747
 msgid "Seychelles"
 msgstr ""
 
-#: src/common/util.c:793
+#: src/common/util.c:748
 msgid "Sudan"
 msgstr "수단"
 
-#: src/common/util.c:794
+#: src/common/util.c:749
 msgid "Sweden"
 msgstr "스웨덴"
 
-#: src/common/util.c:795
+#: src/common/util.c:750
 msgid "Singapore"
 msgstr "싱가폴"
 
-#: src/common/util.c:796
+#: src/common/util.c:751
 msgid "St. Helena"
 msgstr "성 헬레네"
 
-#: src/common/util.c:797
+#: src/common/util.c:752
 msgid "Slovenia"
 msgstr "슬로베니아"
 
-#: src/common/util.c:798
+#: src/common/util.c:753
 msgid "Svalbard and Jan Mayen Islands"
 msgstr ""
 
-#: src/common/util.c:799
+#: src/common/util.c:754
 msgid "Slovak Republic"
 msgstr "슬로바키아 공화국"
 
-#: src/common/util.c:800
+#: src/common/util.c:755
 msgid "Sierra Leone"
 msgstr ""
 
-#: src/common/util.c:801
+#: src/common/util.c:756
 msgid "San Marino"
 msgstr "산마리노"
 
-#: src/common/util.c:802
+#: src/common/util.c:757
 msgid "Senegal"
 msgstr "세네갈"
 
-#: src/common/util.c:803
+#: src/common/util.c:758
 msgid "Somalia"
 msgstr "소말리아"
 
-#: src/common/util.c:804
+#: src/common/util.c:759
 msgid "Suriname"
 msgstr "수리남"
 
-#: src/common/util.c:805
+#: src/common/util.c:760
 msgid "Sao Tome and Principe"
 msgstr ""
 
-#: src/common/util.c:806
+#: src/common/util.c:761
 msgid "Former USSR"
 msgstr ""
 
-#: src/common/util.c:807
+#: src/common/util.c:762
 msgid "El Salvador"
 msgstr "엘살바도르"
 
-#: src/common/util.c:808
+#: src/common/util.c:763
 msgid "Syria"
 msgstr "시리아"
 
-#: src/common/util.c:809
+#: src/common/util.c:764
 msgid "Swaziland"
 msgstr ""
 
-#: src/common/util.c:810
+#: src/common/util.c:765
 msgid "Turks and Caicos Islands"
 msgstr ""
 
-#: src/common/util.c:811
+#: src/common/util.c:766
 msgid "Chad"
 msgstr ""
 
-#: src/common/util.c:812
+#: src/common/util.c:767
 msgid "French Southern Territories"
 msgstr ""
 
-#: src/common/util.c:813
+#: src/common/util.c:768
 msgid "Togo"
 msgstr ""
 
-#: src/common/util.c:814
+#: src/common/util.c:769
 msgid "Thailand"
 msgstr ""
 
-#: src/common/util.c:815
+#: src/common/util.c:770
 msgid "Tajikistan"
 msgstr ""
 
-#: src/common/util.c:816
+#: src/common/util.c:771
 msgid "Tokelau"
 msgstr ""
 
-#: src/common/util.c:817
+#: src/common/util.c:772
 msgid "Turkmenistan"
 msgstr ""
 
-#: src/common/util.c:818
+#: src/common/util.c:773
 msgid "Tunisia"
 msgstr ""
 
-#: src/common/util.c:819
+#: src/common/util.c:774
 msgid "Tonga"
 msgstr ""
 
-#: src/common/util.c:820
+#: src/common/util.c:775
 msgid "East Timor"
 msgstr ""
 
-#: src/common/util.c:821
+#: src/common/util.c:776
 msgid "Turkey"
 msgstr ""
 
-#: src/common/util.c:822
+#: src/common/util.c:777
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: src/common/util.c:823
+#: src/common/util.c:778
 msgid "Tuvalu"
 msgstr ""
 
-#: src/common/util.c:824
+#: src/common/util.c:779
 msgid "Taiwan"
 msgstr "대만"
 
-#: src/common/util.c:825
+#: src/common/util.c:780
 msgid "Tanzania"
 msgstr "탄자니아"
 
-#: src/common/util.c:826
+#: src/common/util.c:781
 msgid "Ukraine"
 msgstr "우크라이나"
 
-#: src/common/util.c:827
+#: src/common/util.c:782
 msgid "Uganda"
 msgstr ""
 
-#: src/common/util.c:828
+#: src/common/util.c:783
 msgid "United Kingdom"
 msgstr "영국"
 
-#: src/common/util.c:829
+#: src/common/util.c:784
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: src/common/util.c:830
+#: src/common/util.c:785
 msgid "United States of America"
 msgstr "미국"
 
-#: src/common/util.c:831
+#: src/common/util.c:786
 msgid "Uruguay"
 msgstr "우르과이"
 
-#: src/common/util.c:832
+#: src/common/util.c:787
 msgid "Uzbekistan"
 msgstr "우즈베키스탄"
 
-#: src/common/util.c:833
+#: src/common/util.c:788
 msgid "Vatican City State"
 msgstr "바티칸 시국"
 
-#: src/common/util.c:834
+#: src/common/util.c:789
 msgid "St. Vincent and the Grenadines"
 msgstr ""
 
-#: src/common/util.c:835
+#: src/common/util.c:790
 msgid "Venezuela"
 msgstr "베네주엘라"
 
-#: src/common/util.c:836
+#: src/common/util.c:791
 msgid "British Virgin Islands"
 msgstr "영국령 버진 섬"
 
-#: src/common/util.c:837
+#: src/common/util.c:792
 msgid "US Virgin Islands"
 msgstr "미국 버진 섬"
 
-#: src/common/util.c:838
+#: src/common/util.c:793
 msgid "Vietnam"
 msgstr "베트남"
 
-#: src/common/util.c:839
+#: src/common/util.c:794
 msgid "Vanuatu"
 msgstr ""
 
-#: src/common/util.c:840
+#: src/common/util.c:795
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: src/common/util.c:841
+#: src/common/util.c:796
 msgid "Samoa"
 msgstr "시모아"
 
-#: src/common/util.c:842
+#: src/common/util.c:797
 msgid "Yemen"
 msgstr "예멘"
 
-#: src/common/util.c:843
+#: src/common/util.c:798
 msgid "Mayotte"
 msgstr ""
 
-#: src/common/util.c:844
+#: src/common/util.c:799
 msgid "Yugoslavia"
 msgstr "유고슬라비아"
 
-#: src/common/util.c:845
+#: src/common/util.c:800
 msgid "South Africa"
 msgstr "남아프리카 공화국"
 
-#: src/common/util.c:846
+#: src/common/util.c:801
 msgid "Zambia"
 msgstr "잠비아"
 
-#: src/common/util.c:847
+#: src/common/util.c:802
 msgid "Zaire"
 msgstr "자이르"
 
-#: src/common/util.c:848
+#: src/common/util.c:803
 msgid "Zimbabwe"
 msgstr ""
 
-#: src/common/util.c:854 src/common/util.c:864 src/fe-gtk/menu.c:482
+#: src/common/util.c:809 src/common/util.c:819 src/fe-gtk/menu.c:482
 #: src/fe-gtk/menu.c:486 src/fe-gtk/menu.c:490 src/fe-gtk/menu.c:494
 #: src/fe-gtk/menu.c:498
 msgid "Unknown"
 msgstr "알수없음"
 
-#: src/common/rage.c:902
-msgid "Direct client-to-client"
-msgstr "직접 연결"
+#: src/common/rage.c:903 src/fe-gtk/ignoregui.c:150
+msgid "DCC"
+msgstr ""
 
-#: src/common/rage.c:903
+#: src/common/rage.c:904
 msgid "Send File"
 msgstr "화일 전송"
 
-#: src/common/rage.c:904
+#: src/common/rage.c:905
 msgid "Offer Chat"
 msgstr "대화"
 
-#: src/common/rage.c:905
+#: src/common/rage.c:906
 msgid "Abort Chat"
 msgstr "대화 취소"
 
-#: src/common/rage.c:906 src/fe-gtk/plugingui.c:50
+#: src/common/rage.c:907 src/fe-gtk/plugingui.c:50
 msgid "Version"
 msgstr "판번호"
 
-#: src/common/rage.c:907
+#: src/common/rage.c:908
 msgid "Userinfo"
 msgstr "사용자 정보"
 
-#: src/common/rage.c:908
+#: src/common/rage.c:909
 msgid "Clientinfo"
 msgstr "클라이언트 정보"
 
-#: src/common/rage.c:909 src/common/rage.c:943 src/common/rage.c:994
+#: src/common/rage.c:910 src/common/rage.c:944 src/common/rage.c:995
 msgid "Ping"
 msgstr ""
 
-#: src/common/rage.c:910
+#: src/common/rage.c:911
 msgid "Time"
 msgstr "시간"
 
-#: src/common/rage.c:911
+#: src/common/rage.c:912
 msgid "Finger"
 msgstr ""
 
-#: src/common/rage.c:912
+#: src/common/rage.c:913
 msgid "Oper"
 msgstr "서버관리자"
 
-#: src/common/rage.c:913
+#: src/common/rage.c:914
 msgid "Kill this user"
 msgstr "이 사용자 죽이기"
 
-#: src/common/rage.c:914
+#: src/common/rage.c:915
 msgid "Mode"
 msgstr "상태"
 
-#: src/common/rage.c:915
+#: src/common/rage.c:916
 msgid "Give Ops"
 msgstr "관리권한 주기"
 
-#: src/common/rage.c:916
+#: src/common/rage.c:917
 msgid "Take Ops"
 msgstr "관리권한 박탈"
 
-#: src/common/rage.c:917
+#: src/common/rage.c:918
 msgid "Give Half-Ops"
 msgstr "관리권한 주기"
 
-#: src/common/rage.c:918
+#: src/common/rage.c:919
 msgid "Take Half-Ops"
 msgstr "관리권한 박탈"
 
-#: src/common/rage.c:919
+#: src/common/rage.c:920
 msgid "Give Voice"
 msgstr "발언권 주기"
 
-#: src/common/rage.c:920
+#: src/common/rage.c:921
 msgid "Take Voice"
 msgstr "발언권 뺏기"
 
-#: src/common/rage.c:921
+#: src/common/rage.c:922
 msgid "Ignore"
 msgstr "무시"
 
-#: src/common/rage.c:922
+#: src/common/rage.c:923
 msgid "Ignore User"
 msgstr "사용자 무시"
 
-#: src/common/rage.c:923
+#: src/common/rage.c:924
 msgid "UnIgnore User"
 msgstr "무시 해제"
 
-#: src/common/rage.c:924
+#: src/common/rage.c:925
 msgid "Kick/Ban"
 msgstr "퇴장/추방"
 
-#: src/common/rage.c:925 src/common/rage.c:977
+#: src/common/rage.c:926 src/common/rage.c:978
 msgid "Kick"
 msgstr "강제퇴장"
 
-#: src/common/rage.c:926 src/common/rage.c:927 src/common/rage.c:928
-#: src/common/rage.c:929 src/common/rage.c:930 src/common/rage.c:976
+#: src/common/rage.c:927 src/common/rage.c:928 src/common/rage.c:929
+#: src/common/rage.c:930 src/common/rage.c:931 src/common/rage.c:977
 msgid "Ban"
 msgstr "추방"
 
-#: src/common/rage.c:931 src/common/rage.c:932 src/common/rage.c:933
-#: src/common/rage.c:934
+#: src/common/rage.c:932 src/common/rage.c:933 src/common/rage.c:934
+#: src/common/rage.c:935
 msgid "KickBan"
 msgstr "지금추방"
 
-#: src/common/rage.c:935 src/fe-gtk/dccgui.c:490 src/fe-gtk/dccgui.c:658
+#: src/common/rage.c:936 src/fe-gtk/dccgui.c:491 src/fe-gtk/dccgui.c:659
 msgid "Info"
 msgstr "정보"
 
-#: src/common/rage.c:936
+#: src/common/rage.c:937
 msgid "Who"
 msgstr ""
 
-#: src/common/rage.c:937 src/common/rage.c:990
+#: src/common/rage.c:938 src/common/rage.c:991
 msgid "WhoIs"
 msgstr ""
 
-#: src/common/rage.c:938
+#: src/common/rage.c:939
 msgid "DNS Lookup"
 msgstr "DNS 보기"
 
-#: src/common/rage.c:939
+#: src/common/rage.c:940
 msgid "Trace"
 msgstr "추적"
 
-#: src/common/rage.c:940
+#: src/common/rage.c:941
 msgid "UserHost"
 msgstr "호스트"
 
-#: src/common/rage.c:941
+#: src/common/rage.c:942
 msgid "External"
 msgstr "외부도구"
 
-#: src/common/rage.c:942
+#: src/common/rage.c:943
 msgid "Traceroute"
 msgstr "경로추적"
 
-#: src/common/rage.c:944
+#: src/common/rage.c:945
 msgid "Telnet"
 msgstr ""
 
-#: src/common/rage.c:945
+#: src/common/rage.c:946
 msgid "Open Dialog Window"
 msgstr "대화창 열기"
 
-#: src/common/rage.c:957
+#: src/common/rage.c:958
 msgid "Disconnect"
 msgstr "접속해제"
 
-#: src/common/rage.c:958
+#: src/common/rage.c:959
 msgid "Reconnect"
 msgstr "재접속"
 
-#: src/common/rage.c:959
+#: src/common/rage.c:960
 msgid "Leave Channel"
 msgstr "대화방 나가기"
 
-#: src/common/rage.c:960
+#: src/common/rage.c:961
 msgid "Join Channel..."
 msgstr "대화 참여..."
 
-#: src/common/rage.c:961
+#: src/common/rage.c:962
 msgid "Enter Channel to Join:"
 msgstr "참여할 대화방을 입력하세요:"
 
-#: src/common/rage.c:962
+#: src/common/rage.c:963
 msgid "Server Links"
 msgstr "서버 연결"
 
-#: src/common/rage.c:963
+#: src/common/rage.c:964
 msgid "Ping Server"
 msgstr "서버에 핑"
 
-#: src/common/rage.c:964
+#: src/common/rage.c:965
 msgid "Hide Version"
 msgstr "판번호 숨김"
 
-#: src/common/rage.c:974
+#: src/common/rage.c:975
 msgid "Op"
 msgstr "관리권한"
 
-#: src/common/rage.c:975
+#: src/common/rage.c:976
 msgid "DeOp"
 msgstr "관리권 뺐기"
 
-#: src/common/rage.c:978
+#: src/common/rage.c:979
 msgid "bye"
 msgstr "안녕"
 
-#: src/common/rage.c:979
+#: src/common/rage.c:980
 #, c-format
 msgid "Enter reason to kick %s:"
 msgstr "%s님을 추방하는 이유:"
 
-#: src/common/rage.c:980
+#: src/common/rage.c:981
 msgid "Sendfile"
 msgstr "화일보내기"
 
-#: src/common/rage.c:981
+#: src/common/rage.c:982
 msgid "Dialog"
 msgstr "귓속말"
 
-#: src/common/rage.c:991
+#: src/common/rage.c:992
 msgid "Send"
 msgstr "보내기"
 
-#: src/common/rage.c:992
+#: src/common/rage.c:993
 msgid "Chat"
 msgstr "대화"
 
-#: src/common/rage.c:993 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/common/rage.c:994 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
 #: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
 msgid "Clear"
 msgstr "삭제"
@@ -3108,7 +3108,7 @@ msgstr "먼저 추방된 목록에서 선택 하십시오."
 msgid "Mask"
 msgstr ""
 
-#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:450
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:451
 msgid "From"
 msgstr "보낸이"
 
@@ -3187,17 +3187,17 @@ msgstr "목록 저장"
 msgid "Join Channel"
 msgstr "대화 참여"
 
-#: src/fe-gtk/dccgui.c:78
+#: src/fe-gtk/dccgui.c:79
 #, c-format
 msgid "Send file to %s"
 msgstr "%s 님에게 화일 보내기"
 
-#: src/fe-gtk/dccgui.c:303
+#: src/fe-gtk/dccgui.c:304
 #, fuzzy, c-format
 msgid ""
 "      File: %s\n"
 "   To/From: %s\n"
-"      Size: %llu\n"
+"      Size: %<PRIu64>\n"
 "      Port: %d\n"
 " IP Number: %s\n"
 "Start Time: %s   Max CPS: %d\n"
@@ -3209,11 +3209,11 @@ msgstr ""
 "    IP 주소: %s\n"
 "   시작시간: %s   최대속도: %d CPS\n"
 
-#: src/fe-gtk/dccgui.c:337
+#: src/fe-gtk/dccgui.c:338
 msgid "That file is not resumable."
 msgstr "그 화일은 이어 받을 수 없습니다."
 
-#: src/fe-gtk/dccgui.c:341
+#: src/fe-gtk/dccgui.c:342
 #, c-format
 msgid ""
 "Cannot access file: %s\n"
@@ -3224,90 +3224,90 @@ msgstr ""
 "%s.\n"
 "이어받기가 불가능 합니다."
 
-#: src/fe-gtk/dccgui.c:348
+#: src/fe-gtk/dccgui.c:349
 msgid ""
 "File in download directory is larger than file offered. Resuming not "
 "possible."
 msgstr ""
 "받을 디렉토리의 화일이 전송 받을 화일 보다 큽니다. 이어 받기는 불가능 합니다."
 
-#: src/fe-gtk/dccgui.c:352
+#: src/fe-gtk/dccgui.c:353
 msgid "Cannot resume the same file from two people."
 msgstr "두사람에게서 같은 화일을 받을경우 이어 받을 수 없습니다."
 
-#: src/fe-gtk/dccgui.c:439
+#: src/fe-gtk/dccgui.c:440
 msgid "MIME Type"
 msgstr "MIME 형태"
 
-#: src/fe-gtk/dccgui.c:445 src/fe-gtk/dccgui.c:618 src/fe-gtk/dccgui.c:742
+#: src/fe-gtk/dccgui.c:446 src/fe-gtk/dccgui.c:619 src/fe-gtk/dccgui.c:743
 #: src/fe-gtk/notifygui.c:81
 msgid "Status"
 msgstr "상태"
 
-#: src/fe-gtk/dccgui.c:446 src/fe-gtk/dccgui.c:619 src/fe-gtk/plugingui.c:51
+#: src/fe-gtk/dccgui.c:447 src/fe-gtk/dccgui.c:620 src/fe-gtk/plugingui.c:51
 msgid "File"
 msgstr "화일"
 
-#: src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:623
+#: src/fe-gtk/dccgui.c:450 src/fe-gtk/dccgui.c:624
 msgid "ETA"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:459
+#: src/fe-gtk/dccgui.c:460
 #, fuzzy
 msgid "Rage: File Receive List"
 msgstr "X-Chat: 화일 받기 목록"
 
-#: src/fe-gtk/dccgui.c:487 src/fe-gtk/dccgui.c:656 src/fe-gtk/dccgui.c:771
+#: src/fe-gtk/dccgui.c:488 src/fe-gtk/dccgui.c:657 src/fe-gtk/dccgui.c:772
 msgid "Abort"
 msgstr "취소"
 
-#: src/fe-gtk/dccgui.c:488 src/fe-gtk/dccgui.c:772
+#: src/fe-gtk/dccgui.c:489 src/fe-gtk/dccgui.c:773
 msgid "Accept"
 msgstr "허용"
 
-#: src/fe-gtk/dccgui.c:489
+#: src/fe-gtk/dccgui.c:490
 msgid "Resume"
 msgstr "이어받기"
 
-#: src/fe-gtk/dccgui.c:492
+#: src/fe-gtk/dccgui.c:493
 msgid "Open"
 msgstr "열기"
 
-#: src/fe-gtk/dccgui.c:622
+#: src/fe-gtk/dccgui.c:623
 msgid "Ack"
 msgstr ""
 
-#: src/fe-gtk/dccgui.c:624
+#: src/fe-gtk/dccgui.c:625
 msgid "To"
 msgstr "받는이"
 
-#: src/fe-gtk/dccgui.c:634
+#: src/fe-gtk/dccgui.c:635
 #, fuzzy
 msgid "Rage: File Send List"
 msgstr "X-Chat: 화일 전송 목록"
 
-#: src/fe-gtk/dccgui.c:657
+#: src/fe-gtk/dccgui.c:658
 #, fuzzy
 msgid "Reoffer"
 msgstr "제거"
 
-#: src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/dccgui.c:744
 msgid "To/From"
 msgstr "수신/송신"
 
-#: src/fe-gtk/dccgui.c:744
+#: src/fe-gtk/dccgui.c:745
 msgid "Recv"
 msgstr "받음"
 
-#: src/fe-gtk/dccgui.c:745
+#: src/fe-gtk/dccgui.c:746
 msgid "Sent"
 msgstr "보냄"
 
-#: src/fe-gtk/dccgui.c:746
+#: src/fe-gtk/dccgui.c:747
 msgid "StartTime"
 msgstr "시작시간"
 
-#: src/fe-gtk/dccgui.c:755
+#: src/fe-gtk/dccgui.c:756
 #, fuzzy
 msgid "Rage: DCC Chat List"
 msgstr "X-Chat: DCC 대화 목록"
@@ -3619,10 +3619,6 @@ msgstr "알림"
 
 #: src/fe-gtk/ignoregui.c:149
 msgid "CTCP"
-msgstr ""
-
-#: src/fe-gtk/ignoregui.c:150
-msgid "DCC"
 msgstr ""
 
 #: src/fe-gtk/ignoregui.c:151
@@ -5369,6 +5365,9 @@ msgstr "목록을 화일로 저장합니다"
 #, c-format
 msgid "%d ops, %d total"
 msgstr "%d 명의 관리자, 총 %d 명"
+
+#~ msgid "Direct client-to-client"
+#~ msgstr "직접 연결"
 
 #~ msgid "Delete All"
 #~ msgstr "모두 삭제"

@@ -490,7 +490,7 @@ fe_progressbar_end (server *serv)
 void
 fe_print_text (rage_session *sess, char *text)
 {
-	PrintTextRaw (sess->res->buffer, (unsigned char *)text, prefs.indent_nicks);
+	PrintTextRaw (sess->res->buffer, text, prefs.indent_nicks);
 
 	if (!sess->new_data && sess != current_tab &&
 		 sess->gui->is_tab && !sess->nick_said)
@@ -515,7 +515,7 @@ typedef struct {
 } fe_lastlog_info;
 
 static void
-fe_lastlog_foreach (GtkXText *xtext, unsigned char *text, void *data)
+fe_lastlog_foreach (GtkXText *xtext, char *text, void *data)
 {
 	fe_lastlog_info *info = data;
 
@@ -527,9 +527,7 @@ void
 fe_lastlog (rage_session *sess, rage_session *lastlog_sess, char *sstr)
 {
 	if (gtk_xtext_is_empty (sess->res->buffer))
-	{
 		PrintText (lastlog_sess, _("Search buffer is empty.\n"));
-	}
 	else
 	{
 		fe_lastlog_info info;
@@ -537,7 +535,7 @@ fe_lastlog (rage_session *sess, rage_session *lastlog_sess, char *sstr)
 		info.sess = lastlog_sess;
 		info.sstr = sstr;
 
-		gtk_xtext_foreach (sess->res->buffer, fe_lastlog_foreach, &info);
+		gtk_xtext_foreach (sess->res->buffer, (GtkXTextForeach)fe_lastlog_foreach, &info);
 	}
 }
 
