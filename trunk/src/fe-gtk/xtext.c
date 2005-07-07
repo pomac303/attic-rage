@@ -2325,7 +2325,7 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 		int *newlen, int *mb_ret)
 {
 	char *new_str, *ptr;
-	int mbl, mb = FALSE;
+	int mbl, mb = 0;
 
 	if (!outbuf)
 		ptr = new_str = malloc (len + 2);
@@ -2366,37 +2366,25 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 			}
 			default:
 			{
-				mbl = g_unichar_to_utf8(g_utf8_get_char(text), ptr);
-				text += mbl;
-				ptr += mbl;
+				mbl = charlen(text);
 				len -= mbl;
-				if (mbl > 1)
-					mb = TRUE;
-/*				
-				mbl = charlen (text);
 				if (mbl == 1)
-				{
 					*ptr++ = *text++;
-					len--;
-				}
 				else
 				{
 					mb = TRUE;
-					len -= mbl;
-					// safe-guard against invalid utf8
-					if (len < 0) // avoid memcpy beyond buffer
+					if (len < 0) /* Avoid memcpy problems on invalid utf8 chars */
 						mbl += len;
 					memcpy (ptr, text, mbl);
 					text += mbl;
 					ptr += mbl;
 				}
-*/
 				break;
 			}
 		}
 	}
 
-	*ptr = '\0';
+	*ptr = 0;
 
 	if (newlen)
 		*newlen = (int)(ptr - new_str);
