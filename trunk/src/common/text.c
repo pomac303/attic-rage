@@ -26,66 +26,40 @@ struct pevt_stage1
 };
 
 
-/* Make ip:port urls clikable (127.0.0.1:80 etc)
-*  patch by Alex <alex@cosinus.org> & dobler <dobler@barrysworld.com>
-*/
-
-static int
-q3link (char *word)
-{
-	char *s;
-	int i;
-	int d = 0;
-
-	if ((s = strchr (word,':')) != NULL)
-	{
-		for (i = 0; i < s - word; i++)
-		{
-			if (word[i] == '.')
-				d++;
-			else if (!isdigit (word[i]))
-			{
-				d = 0;
-				break;
-			}
-		}
-
-		if (d == 3)
-		{
-			s++;
-			d = 0;
-
-			while (*s != 0)
-			{
-				if (!isdigit (*s++))
-					return (0);
-				d++;
-			}
-			if (d > 0)
-				return (1);
-		}
-	}
-	return (0);
-}
-
 /* check if a word is clickable */
 
 int
-text_word_check (char *word)
+text_word_check (struct server *serv, char *word)
 {
 	rage_session *sess = current_sess;
-	char *at, *dot;
-	int i, dots;
+	char *at, *dot, *ct;
+	int i, dots = 0;
 	size_t len = strlen (word);
 
-	if(q3link(word))
-		return WORD_URL;
+	/* Handle urls with ports in em, not that specific. */
+	if ((ct = strchr(word, ':')))
+	{
+		*ct = 0;
+		if (strchr(word, '.'))
+			dots = 1;
+		*ct = ':';
+		if (dots)
+			return WORD_HOST;
+	}
 
-	if ((word[0] == '@' || word[0] == '+' || word[0] == '^' || word[0] == '%' || word[0] == '*' ) && word[1] == '#')
+	/* First check known user prefixes, treated as channels */
+	ct = get_isupport(serv, "PREFIX");
+	if ((ct = strchr(ct, ')')))
+	{
+		ct++;
+		if (strchr(ct, word[0]))
+			return WORD_CHANNEL;
+	}
+	/* Second check known channel prefixes */
+	ct = get_isupport(serv, "CHANTYPES");
+	if (strchr(ct, word[0]))
 		return WORD_CHANNEL;
-	if ((word[0] == '#' || word[0] == '&') && word[1] != '#' && word[1] != 0)
-		return WORD_CHANNEL;
-
+		
 	switch(word[0])
 	{
 		case 'f':

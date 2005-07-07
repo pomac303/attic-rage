@@ -1624,8 +1624,8 @@ mg_create_dialogbuttons (GtkWidget *box)
 static int
 mg_word_check (GtkWidget * xtext, char *word)
 {
-	return text_word_check (word);	/* common/text.c */
-}
+	return text_word_check (current_sess->server, word);  /* common/text.c */
+}		
 
 /* mouse click inside text area */
 
@@ -1647,9 +1647,9 @@ mg_word_clicked (GtkWidget *xtext, char *word, GdkEventButton *even,
 		{
 			switch (mg_word_check (xtext, word))
 			{
-			case WORD_URL:
-			case WORD_HOST:
-				goto_url (word);
+				case WORD_URL:
+				case WORD_HOST:
+					goto_url (word);
 			}
 		}
 		return;
@@ -1666,23 +1666,23 @@ mg_word_clicked (GtkWidget *xtext, char *word, GdkEventButton *even,
 
 	switch (mg_word_check (xtext, word))
 	{
-	case 0:
-		menu_middlemenu (sess, even);
-		break;
-	case WORD_URL:
-	case WORD_HOST:
-		menu_urlmenu (even, word);
-		break;
-	case WORD_NICK:
-		menu_nickmenu (sess, even, (word[0]=='@' || word[0]=='+') ?
-			word+1 : word, FALSE);
-		break;
-	case WORD_CHANNEL:
-		if (*word == '@' || *word == '+' || *word=='^' || *word=='%' || *word=='*')
-			word++;
-		menu_chanmenu (sess, even, word);
-		break;
-	case WORD_EMAIL:
+		case 0:
+			menu_middlemenu (sess, even);
+			break;
+		case WORD_URL:
+		case WORD_HOST:
+			menu_urlmenu (even, word);
+			break;
+		case WORD_NICK:
+			menu_nickmenu (sess, even, (word[0]=='@' || word[0]=='+') ?
+				word+1 : word, FALSE);
+			break;
+		case WORD_CHANNEL:
+			if (*word == '@' || *word == '+' || *word=='^' || *word=='%' || *word=='*')
+				word++;
+			menu_chanmenu (sess, even, word);
+			break;
+		case WORD_EMAIL:
 		{
 			char *newword = malloc (strlen (word) + 10);
 			if (*word == '~')
@@ -1690,11 +1690,11 @@ mg_word_clicked (GtkWidget *xtext, char *word, GdkEventButton *even,
 			sprintf (newword, "mailto:%s", word);
 			menu_urlmenu (even, newword);
 			free (newword);
+			break;
 		}
-		break;
-	case WORD_DIALOG:
-		menu_nickmenu (sess, even, sess->channel, FALSE);
-		break;
+		case WORD_DIALOG:
+			menu_nickmenu (sess, even, sess->channel, FALSE);
+			break;
 	}
 }
 

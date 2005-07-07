@@ -1087,6 +1087,10 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 					return (len + (int)(orig - ent->str));
 			}
 		}
+
+		len += mbl;
+		if (text - orig >= ent->str_len)
+			break;
 	}
 
 	return ent->str_len;
@@ -2164,7 +2168,8 @@ gtk_xtext_selection_get_text (GtkXText *xtext, int *len_ret)
 		/*stripped = gtk_xtext_conv_color (txt, strlen (txt), &len);*/
 		stripped = txt;
 		len = strlen (txt);
-	} else
+	}
+	else
 	{
 		stripped = gtk_xtext_strip_color (txt, strlen (txt), NULL, &len, 0);
 		free (txt);
@@ -2205,13 +2210,14 @@ gtk_xtext_selection_get (GtkWidget * widget,
 			gint new_length;
 
 #if (GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION == 0)
-			gdk_string_to_compound_text (
+			gdk_string_to_compound_text (stripped, &encoding, &format, 
+					&new_text, &new_length);
 #else
 			gdk_string_to_compound_text_for_display (
 				gdk_drawable_get_display (widget->window),
-#endif
 				stripped, &encoding, &format, &new_text,
 				&new_length);
+#endif
 			gtk_selection_data_set (selection_data_ptr, encoding, format,
 				new_text, new_length);
 			gdk_free_compound_text (new_text);
@@ -2334,6 +2340,9 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 
 	while (len > 0)
 	{
+		if (*text < 0)
+			mb = TRUE;
+
 		switch (*text)
 		{
 			case ATTR_COLOR:

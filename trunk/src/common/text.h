@@ -19,7 +19,7 @@ struct text_event
 	char *def;
 };
 
-int text_word_check (char *word);
+int text_word_check (struct server *serv, char *word);
 void PrintText (rage_session *sess, char *text);
 void PrintTextf (rage_session *sess, char *format, ...);
 void log_close (rage_session *sess);

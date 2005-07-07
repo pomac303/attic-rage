@@ -1654,7 +1654,7 @@ attrchar_skip(const char *str, int *len)
 			str++;
 	}
 	if (len)
-		*len = (str - ptr);
+		*len = (int)(str - ptr);
 	return (char *)str;
 }			
 
@@ -1678,15 +1678,13 @@ char *
 strip_color (char *text)
 {
 	char *tmp, *str, *ptr = NULL;
-	int offset;
 
 	ptr = str = malloc(strlen(text) +1);
-
 	tmp = attrchar_skip(text, NULL);
+
 	while (*tmp)
 	{
-		offset = g_unichar_to_utf8(g_utf8_get_char(tmp), str);
-		str += offset;
+		str += g_unichar_to_utf8(g_utf8_get_char(tmp), str);
 		tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
 	}
 
@@ -1699,7 +1697,6 @@ char *
 dstr_strip_color(char *str)
 {
 	char *tmp, *ptr = str;
-	int offset;
 	
 	while(*str)
 	{
@@ -1708,8 +1705,7 @@ dstr_strip_color(char *str)
 		{
 			while (*tmp)
 			{
-				offset = g_unichar_to_utf8(g_utf8_get_char(tmp), str);
-				str += offset;
+				str += g_unichar_to_utf8(g_utf8_get_char(tmp), str);
 				tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
 			}
 			str[0] = 0;
@@ -1720,7 +1716,7 @@ dstr_strip_color(char *str)
 	}
 	return ptr;
 }
-	
+
 /* utf8_strchr does strchr for utf8 strings */
 char *
 uft8_strchr(char *buf, const char *s)
