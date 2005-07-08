@@ -2416,6 +2416,14 @@ cmd_query (rage_session *sess, char *cmd, char *buf)
 	skip_white(&buf);
 	nick = buf;
 
+	/* Remove any trailing data. */
+	while(*buf)
+	{
+		if (*buf == ' ')
+			*buf = 0;
+		buf++;
+	}
+		
 	if (*nick && !is_channel (sess->server, nick))
 	{
 		if (!find_dialog (sess->server, nick))
