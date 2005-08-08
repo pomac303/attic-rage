@@ -1050,12 +1050,11 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 
 	while (*text)
 	{
-		mbl = 1;
 		switch (*text)
 		{
 			case ATTR_COLOR:
 			{
-				text++;
+				char *tmp = ++text;
 				if (isdigit(*text))
 				{
 					text++;
@@ -1068,6 +1067,7 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 							text++;
 					}
 				}
+				len += (int)(text - tmp);
 				break;
 			}
 			case ATTR_BEEP:
@@ -1081,6 +1081,7 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 			}
 			default:
 			{
+				mbl = charlen(text);
 				indent += backend_get_char_width (xtext, text, &mbl);
 				text += mbl;
 				if (indent >= x)
@@ -1088,7 +1089,7 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 			}
 		}
 
-		len += mbl;
+		len++;
 		if (text - orig >= ent->str_len)
 			break;
 	}
@@ -2340,7 +2341,7 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 
 	while (len > 0)
 	{
-		if (*text < 0)
+		if ((unsigned char)*text > 128)
 			mb = TRUE;
 
 		switch (*text)
