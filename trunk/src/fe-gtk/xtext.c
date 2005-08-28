@@ -2341,14 +2341,12 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 
 	while (len > 0)
 	{
-		if ((unsigned char)*text > 128)
-			mb = TRUE;
-
+		register char *tmp = text;
 		switch (*text)
 		{
 			case ATTR_COLOR:
 			{
-				char *tmp = text++;
+				text++;
 				if (isdigit(*text))
 				{
 					text++;
@@ -2361,7 +2359,6 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 							text++;
 					}
 				}
-				len -= (int)(text - tmp);
 				break;
 			}
 			case ATTR_BEEP:
@@ -2371,27 +2368,22 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 			case ATTR_UNDERLINE:
 			{
 				text++;
-				len--;
 				break;
 			}
 			default:
 			{
 				mbl = charlen(text);
-				len -= mbl;
-				if (mbl == 1)
-					*ptr++ = *text++;
-				else
-				{
+
+				if (mbl > 1)
 					mb = TRUE;
-					if (len < 0) /* Avoid memcpy problems on invalid utf8 chars */
-						mbl += len;
-					memcpy (ptr, text, mbl);
-					text += mbl;
-					ptr += mbl;
-				}
+
+				while(mbl--)
+					*ptr++ = *text++;
+				
 				break;
 			}
 		}
+		len -= (int)(text - tmp);
 	}
 
 	*ptr = 0;

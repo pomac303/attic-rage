@@ -36,6 +36,9 @@ text_word_check (struct server *serv, char *word)
 	int i, dots = 0;
 	size_t len = strlen (word);
 
+	if (word[0] == 0)
+		return 0;
+
 	/* Handle urls with ports in em, not that specific. */
 	if ((ct = strchr(word, ':')))
 	{
