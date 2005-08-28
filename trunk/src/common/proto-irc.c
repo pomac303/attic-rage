@@ -1213,7 +1213,7 @@ irc_inline (server *serv, char *buf, int len)
 	 * parv[1] = numeric
 	 * parv[2] = destination
 	 * parv[3...] = args */
-	if(parc>1 && (parv[1][0]>='0' && parv[1][0]<='9'))
+	if(parc>1 && isdigit(*parv[1]))
 	{
 		int numeric;
 		ircparser_numeric *parse;

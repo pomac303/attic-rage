@@ -269,7 +269,7 @@ backend_get_char_width (GtkXText *xtext, char *str, int *mbl_ret)
 {
 	XGlyphInfo ext;
 
-	if (*str < 128)
+	if ((unsigned char)*str < 128)
 	{
 		*mbl_ret = 1;
 		return xtext->fontwidth[*str];
@@ -1043,10 +1043,10 @@ gtk_xtext_selection_clear (xtext_buffer *buf)
 }
 
 static int
-find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
+find_x (GtkXText *xtext, textentry *ent, char *text, int x, int indent)
 {
-	int indent = in_indent, mbl, len = 0;
-	char *orig = text;
+	char * text_origin = text ;
+	int separator_size = (int) (text - ent->str) ;
 
 	while (*text)
 	{
@@ -1054,8 +1054,9 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 		{
 			case ATTR_COLOR:
 			{
-				char *tmp = ++text;
-				if (isdigit(*text))
+				text++ ;
+
+				if (isdigit(*(text)))
 				{
 					text++;
 					if (isdigit(*text))
@@ -1067,9 +1068,9 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 							text++;
 					}
 				}
-				len += (int)(text - tmp);
 				break;
 			}
+
 			case ATTR_BEEP:
 			case ATTR_RESET:
 			case ATTR_REVERSE:
@@ -1079,19 +1080,19 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int in_indent)
 				text++;
 				break;
 			}
+			
 			default:
 			{
-				mbl = charlen(text);
+				register int mbl = 1 ;
+
 				indent += backend_get_char_width (xtext, text, &mbl);
-				text += mbl;
+				
 				if (indent >= x)
-					return (len + (int)(orig - ent->str));
+					return (separator_size + (int)(text - text_origin));
+				
+				text += mbl ;
 			}
 		}
-
-		len++;
-		if (text - orig >= ent->str_len)
-			break;
 	}
 
 	return ent->str_len;
