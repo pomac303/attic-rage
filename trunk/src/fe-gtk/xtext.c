@@ -1045,8 +1045,9 @@ gtk_xtext_selection_clear (xtext_buffer *buf)
 static int
 find_x (GtkXText *xtext, textentry *ent, char *text, int x, int indent)
 {
-	char * text_origin = text ;
-	int separator_size = (int) (text - ent->str) ;
+	char * text_origin = text;
+	int separator_size = (int) (text - ent->str);
+	int mbl = 1;
 
 	while (*text)
 	{
@@ -1083,8 +1084,6 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int indent)
 			
 			default:
 			{
-				register int mbl = 1 ;
-
 				indent += backend_get_char_width (xtext, text, &mbl);
 				
 				if (indent >= x)
