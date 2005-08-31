@@ -1623,39 +1623,44 @@ utf8_strncasecmp(const char *s1, const char *s2, size_t n)
 	return retval;
 }
 
-inline char *
-attrchar_skip(const char *str, int *len)
+inline const char *
+skip_attributes(const char *str)
 {
-	const char *ptr = str;
-	switch(*str)
+	while (*str)
 	{
-		case ATTR_COLOR:
+		switch(*str)
 		{
-			str++;
-			if (isdigit(*str))
+			case ATTR_COLOR:
 			{
 				str++;
 				if (isdigit(*str))
-					str++;
-				if ((*str == ',') && isdigit(str[1]))
 				{
-					str += 2;
+					str++;
 					if (isdigit(*str))
 						str++;
+					if ((*str == ',') && isdigit(str[1]))
+					{
+						str += 2;
+						if (isdigit(*str))
+							str++;
+					}
 				}
+				continue;
 			}
-			break;
+			case ATTR_BEEP:
+			case ATTR_RESET:
+			case ATTR_REVERSE:
+			case ATTR_BOLD:
+			case ATTR_UNDERLINE:
+			{
+				str++;
+				continue;
+			}
+			default:
+				return str;
 		}
-		case ATTR_BEEP:
-		case ATTR_RESET:
-		case ATTR_REVERSE:
-		case ATTR_BOLD:
-		case ATTR_UNDERLINE:
-			str++;
 	}
-	if (len)
-		*len = (int)(str - ptr);
-	return (char *)str;
+	return str;
 }			
 
 int
@@ -1665,8 +1670,8 @@ utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n)
 	gunichar ch1, ch2;
 	do
 	{
-		ch1 = g_unichar_tolower(g_utf8_get_char(attrchar_skip(s1, NULL)));
-		ch2 = g_unichar_tolower(g_utf8_get_char(attrchar_skip(s2, NULL)));
+		ch1 = g_unichar_tolower(g_utf8_get_char((char *)skip_attributes(s1)));
+		ch2 = g_unichar_tolower(g_utf8_get_char((char *)skip_attributes(s2)));
 		s1 = g_utf8_find_next_char(s1, NULL);
 		s2 = g_utf8_find_next_char(s2, NULL);
 	}
@@ -1680,12 +1685,12 @@ strip_color (char *text)
 	char *tmp, *str, *ptr = NULL;
 
 	ptr = str = malloc(strlen(text) +1);
-	tmp = attrchar_skip(text, NULL);
+	tmp = (char *)skip_attributes(text);
 
 	while (*tmp)
 	{
 		str += g_unichar_to_utf8(g_utf8_get_char(tmp), str);
-		tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
+		tmp = (char *)skip_attributes(g_utf8_find_next_char(tmp, NULL));
 	}
 
 	str[0] = 0;
@@ -1700,13 +1705,13 @@ dstr_strip_color(char *str)
 	
 	while(*str)
 	{
-		tmp = attrchar_skip(str, NULL);
+		tmp = (char *)skip_attributes(str);
 		if (tmp != str)
 		{
 			while (*tmp)
 			{
 				str += g_unichar_to_utf8(g_utf8_get_char(tmp), str);
-				tmp = attrchar_skip(g_utf8_find_next_char(tmp, NULL), NULL);
+				tmp = (char *)skip_attributes(g_utf8_find_next_char(tmp, NULL));
 			}
 			str[0] = 0;
 			break;

@@ -1051,46 +1051,15 @@ find_x (GtkXText *xtext, textentry *ent, char *text, int x, int indent)
 
 	while (*text)
 	{
-		switch (*text)
+		text = (char *)skip_attributes(text);
+
+		if (*text)
 		{
-			case ATTR_COLOR:
-			{
-				text++ ;
-
-				if (isdigit(*(text)))
-				{
-					text++;
-					if (isdigit(*text))
-						text++;
-					if ((*text == ',') && isdigit(text[1]))
-					{
-						text += 2;
-						if (isdigit(*text))
-							text++;
-					}
-				}
-				break;
-			}
-
-			case ATTR_BEEP:
-			case ATTR_RESET:
-			case ATTR_REVERSE:
-			case ATTR_BOLD:
-			case ATTR_UNDERLINE:
-			{
-				text++;
-				break;
-			}
-			
-			default:
-			{
-				indent += backend_get_char_width (xtext, text, &mbl);
-				
-				if (indent >= x)
-					return (separator_size + (int)(text - text_origin));
-				
-				text += mbl ;
-			}
+			indent += backend_get_char_width (xtext, text, &mbl);
+		
+			if (indent >= x)
+				return (separator_size + (int)(text - text_origin));
+			text += mbl;
 		}
 	}
 
@@ -2331,7 +2300,7 @@ static char *
 gtk_xtext_strip_color (char *text, int len, char *outbuf,
 		int *newlen, int *mb_ret)
 {
-	char *new_str, *ptr;
+	char *new_str, *ptr, *tmp;
 	int mbl, mb = 0;
 
 	if (!outbuf)
@@ -2341,49 +2310,22 @@ gtk_xtext_strip_color (char *text, int len, char *outbuf,
 
 	while (len > 0)
 	{
-		register char *tmp = text;
-		switch (*text)
-		{
-			case ATTR_COLOR:
-			{
-				text++;
-				if (isdigit(*text))
-				{
-					text++;
-					if (isdigit(*text))
-						text++;
-					if ((*text == ',') && isdigit(text[1]))
-					{
-						text += 2;
-						if (isdigit(*text))
-							text++;
-					}
-				}
-				break;
-			}
-			case ATTR_BEEP:
-			case ATTR_RESET:
-			case ATTR_REVERSE:
-			case ATTR_BOLD:
-			case ATTR_UNDERLINE:
-			{
-				text++;
-				break;
-			}
-			default:
-			{
-				mbl = charlen(text);
-
-				if (mbl > 1)
-					mb = TRUE;
-
-				while(mbl--)
-					*ptr++ = *text++;
-				
-				break;
-			}
-		}
+		tmp = text;
+		
+		text = (char *)skip_attributes(text);
 		len -= (int)(text - tmp);
+
+		if (len > 0)
+		{
+			mbl = charlen(text);
+			len -= mbl;
+			
+			if (mbl > 1)
+				mb = TRUE;
+
+			while(mbl--)
+				*ptr++ = *text++;
+		}
 	}
 
 	*ptr = 0;

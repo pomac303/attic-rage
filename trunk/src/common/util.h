@@ -62,7 +62,7 @@ void tab_clean(void);
 
 void capacity_format_size(char *s, unsigned long size, guint64 n);
 int stccpy(char *p, const char *q, int n);
-inline char *attrchar_skip(const char *str, int *len);
+inline const char *skip_attributes(const char *str);
 int utf8_strncasecmp(const char *s1, const char *s2, size_t n);
 int utf8_strncasecmp_strip(const char *s1, const char *s2, size_t n);
 char *dstr_strip_color(char *str);
