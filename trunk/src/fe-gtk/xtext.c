@@ -1660,45 +1660,21 @@ gtk_xtext_get_word (GtkXText * xtext, int x, int y, textentry ** ret_ent,
 						  int *ret_off, int *ret_len)
 {
 	textentry *ent;
-	int offset;
 	char *str, *word;
-	int len;
-	int out_of_bounds = 0;
+	int offset, len, out_of_bounds = 0;
 
 	ent = gtk_xtext_find_char (xtext, x, y, &offset, &out_of_bounds);
-	if (!ent)
+	
+	if ((!ent) || out_of_bounds || offset == ent->str_len || offset < 1)
 		return 0;
 
-	if (out_of_bounds)
-		return 0;
+	for (str = ent->str + offset; !is_del(*str) && str != ent->str; str--);
+	word = ++str;
 
-	if (offset == ent->str_len)
-		return 0;
-
-	if (offset < 1)
-		return 0;
-
-	/*offset--;*/	/* FIXME: not all chars are 1 byte */
-
-	str = ent->str + offset;
-
-	while (!is_del (*str) && str != ent->str)
+	for (len = 0, str = word; *str && !is_del(*str); str++);
+	while (*(str -1) == '.')
 		str--;
-	word = str + 1;
-
-	len = 0;
-	str = word;
-	while (!is_del (*str) && len != ent->str_len)
-	{
-		str++;
-		len++;
-	}
-
-	if (len > 0 && word[len-1]=='.')
-	{
-		len--;
-		str--;
-	}
+	len = str - word;
 
 	if (ret_ent)
 		*ret_ent = ent;
