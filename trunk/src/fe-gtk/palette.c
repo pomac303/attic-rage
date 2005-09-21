@@ -37,7 +37,7 @@ GdkColor colors[] = {
 	{0, 0x4c4c, 0x4c4c, 0x4c4c}, /* 30 grey */
 	{0, 0x9595, 0x9595, 0x9595}, /* 31 light grey */
 
-	{0, 0xcccc, 0xcccc, 0xcccc}, /* 16 white */
+	{0, 0x0000, 0xffff, 0xffff}, /* 16 highlight color. */
 	{0, 0x0000, 0x0000, 0x0000}, /* 17 black */
 	{0, 0x35c2, 0x35c2, 0xb332}, /* 18 blue */
 	{0, 0x2a3d, 0x8ccc, 0x2a3d}, /* 19 green */
@@ -58,7 +58,7 @@ GdkColor colors[] = {
 	{0, 0x3535, 0x6e6e, 0xc1c1}, /* 33 marktext Back (blue) */
 	{0, 0xf0f0, 0xf0f0, 0xf0f0}, /* 34 foreground (white) */
 	{0, 0x0000, 0x0000, 0x0000}, /* 35 background (black) */
-	{0, 0xcccc, 0x1010, 0x1010}, /* 36 marker line (red) */
+	{0, 0x4444, 0x4444, 0x4444}, /* 36 marker line (darkgrey) */
 
 	/* colors for GUI */
 	{0, 0x9999, 0x0000, 0x0000}, /* 37 tab New Data (dark red) */
