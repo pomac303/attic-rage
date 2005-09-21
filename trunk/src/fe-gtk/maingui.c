@@ -2210,6 +2210,14 @@ mg_create_topwindow (rage_session *sess)
 
 	gtk_widget_show_all (win);
 
+	/* Seems like gtk_widget_show_all resizes winddows. imho this is broken!
+	 * Lets do a temporary workaround. */
+	if (sess->type == SESS_DIALOG)
+		gtk_window_resize(GTK_WINDOW(win), prefs.dialog_width, prefs.dialog_height);
+	else
+		gtk_window_resize(GTK_WINDOW(win), prefs.mainwindow_width,
+				prefs.mainwindow_height);
+
 	if (prefs.hidemenu)
 		gtk_widget_hide (sess->gui->menu);
 
