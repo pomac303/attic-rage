@@ -1,0 +1,25 @@
+This package was debianized by David N. Welton davidw@cks.com on
+Sun, 27 Sep 1998 14:15:53 -0700.
+Sean C. Perry <shaleh@debian.org> then maintained this package
+from Oct 1998 to March 1999.
+Edward C. Lang <edlang@debian.org> maintained this package
+from March 1999 to November 2000.
+Davide Puricelli (evo) <evo@debian.org> is the actual maintainer.
+
+It was downloaded from <http://xchat.org/>
+
+Upstream Author: 	The Rage team, based on work by
+			Peter Zelezny <zed@xchat.org>
+			and others.
+
+Copyright:
+
+Rage Copyright (c) 1998-2002 By The Rage team.
+
+This program is released under the GPL with the additional exemption
+that compiling, linking, and/or using OpenSSL is allowed. You may
+provide binary packages linked to the OpenSSL libraries, provided that
+all other requirements of the GPL are met. 
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License may be found in `/usr/share/common-licenses/GPL'.

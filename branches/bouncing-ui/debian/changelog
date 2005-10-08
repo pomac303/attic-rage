@@ -1,0 +1,9 @@
+rage (1.0.232_pre1) unstable; urgency=low
+
+  * Testpackage.
+
+ -- Ian Kumlien <pomac@vapor.com>  Sun, 15 Aug 2004 23:40:40 +0200
+
+Local variables:
+mode: debian-changelog
+End:

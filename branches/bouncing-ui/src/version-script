@@ -1,0 +1,32 @@
+EXPORTED {
+	global:
+		rage_hook_command;
+		rage_hook_server;
+		rage_hook_print;
+		rage_hook_timer;
+		rage_hook_fd;
+		rage_unhook;
+		rage_print;
+		rage_printf;
+		rage_command;
+		rage_commandf;
+		rage_nickcmp;
+		rage_set_context;
+		rage_find_context;
+		rage_get_context;
+		rage_get_info;
+		rage_get_prefs;
+		rage_list_get;
+		rage_list_free;
+		rage_list_fields;
+		rage_list_next;
+		rage_list_str;
+		rage_list_int;
+		rage_plugingui_add;
+		rage_plugingui_remove;
+		rage_emit_print;
+		rage_list_time;
+		rage_gettext;
+		rage_send_modes;
+	local: *;
+};

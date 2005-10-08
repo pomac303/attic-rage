@@ -1,0 +1,76 @@
+#1 - Move more of the fe-* code to common.
+
+#2 - Generalized fe-api, make the fe-* codesize minimal.
+  (add ncurses, win32 ui)
+
+#3 - Ability to connect to a existing session.
+
+#4 - General cleanups.
+
+#5 - Fix the plugin api to meet the new internal API
+  Add ruby support?
+  (Isomer)
+
+#6 - Add ui in xchat to modify scripts on the fly.
+
+#7 - Write some useful plugins using the API demonstrating it's features,
+  and flexibility to be distributed with Rage
+
+  Maybe a fully fledged !find "client"
+  Maybe move some hardcoded things into plugins (eg, /mop,/mdeop etc)
+
+#8 -  Move the hook code to a map<hook_name,list<hooks>>
+  Made into a array of linked lists. (pomac)
+
+#9 - Look at the http://xchat-gnome.navi.cx/ people, perhaps get them onboard?
+
+#10 - UTF8 BOM support?
+  (Isomer)
+ 
+#11 - Profile code and look for obvious bottlenecks.
+
+#12 - 005 needs to be a map<005name,value>
+  005 is now a splay db. (pomac)
+
+#13 - once 005 update is done, add support for WALLCHOPS, WALLVOICES, CPRIVMSG,
+  CNOTICE.
+  Fixed. (pomac)
+
+#14 - Event theming
+  (Isomer)
+
+#15 - DCC queue, Set max simultaneus dccs to one user. Also allows us to add dirs
+to be sent.
+
+#16 - CTCP/DCC Throtteling.
+  (pomac)
+
+#17 - New channel/user db structure.
+
+#18 - Add formating to the SIGNAL text system.
+
+#19 - Propper flood detection system, ffs. =)
+
+#20 - Replace all strncpy() calls by some custom stccpy()
+
+#21 - strtok() shouldn't be used
+
+#22 - there are various strlen() performed on the same string, eg:
+1114691888.928020 strtok("zapek", ",")                                                         = "zapek"
+1114691888.928133 strlen("zapek")                                                              = 5
+1114691888.928213 strlen("zapek")                                                              = 5
+
+#23 - strcasecmp("ISO-8859-15", "UTF8") performed on every refresh, that's unecessary
+
+#24 - add ispell/aspell support in the input string with settable language depending on the channel
+(or an heuristic to find out which language to use)
+
+#25 - add a way to avoid utf-8 as much as possible, for example try to use an ISO codechar when
+sending out. not sure what to do with actual display though..
+
+#26 - when overing over a nick in the irc text output on the left column and if the time isn't
+displayed there already, open an help bubble with the time on it
+
+#27 - drag & drop a file over a query window -> DCC
+
+#28 - add support for resume/suspend support :)

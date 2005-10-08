@@ -1,0 +1,3 @@
+?package(rage):needs=X11 section=Apps/Net\
+  title="rage" command="/usr/bin/rage" hints="IRC"\
+  icon="/usr/share/icons/rage_mini.xpm"

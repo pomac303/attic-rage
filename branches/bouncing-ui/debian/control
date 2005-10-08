@@ -1,0 +1,23 @@
+Source: rage
+Section: net
+Priority: optional
+Maintainer: Unkown  <someone@debian.org>
+Standards-Version: 3.6.1
+Build-Depends: debhelper (>> 4), bison, libssl-dev, libglib2.0-dev, libgtk2.0-dev (>= 2.0.6-1), libperl-dev, gettext (>= 0.10.37-1), libtool, zlib1g-dev, perl (>= 5.8), python2.3-dev, tcl8.4-dev
+
+Package: rage
+Architecture: any
+Depends: ${shlibs:Depends}, rage-common (= ${Source-Version})
+Suggests: libnet-google-perl
+Description: IRC client for X based on X-Chat
+ Rage was based on XChat which is a graphical IRC Client with a GTK+ GUI. It has a look and feel
+ similar to AmIRC for the Amiga. Special features include the mIRC extension
+ DCC RESUME and mIRC color, multiple server/channel windows, dialog
+ windows, and a plugin API.
+
+Package: rage-common
+Architecture: all
+Recommends: rage
+Description: Common files for Rage
+ This package includes documentation, examples, and locale files for
+ the Debian Rage packages.  It is useless without rage.

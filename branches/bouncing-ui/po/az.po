@@ -1,0 +1,5414 @@
+# translation of xchat-2.0.7pre1.po to Azerbaijani Turkish
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# This file is put in the public domain.
+# Metin Amiroff <metin@karegen.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xchat-2.0.7pre1\n"
+"Report-Msgid-Bugs-To: www.xchat.org\n"
+"POT-Creation-Date: 2005-05-07 22:31+0200\n"
+"PO-Revision-Date: 2004-03-12 22:22+0200\n"
+"Last-Translator: Metin Amiroff <metin@karegen.com>\n"
+"Language-Team: Azerbaijani <translation-team-az@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/common/cfgfiles.c:433
+#, fuzzy
+msgid "Cannot create ~/.rage"
+msgstr "~/.xchat2 yaradıla bilmir"
+
+#: src/common/cfgfiles.c:757
+msgid "I'm busy"
+msgstr "Məşğulam"
+
+#: src/common/cfgfiles.c:758
+msgid "Leaving"
+msgstr "Gedirəm"
+
+#: src/common/cfgfiles.c:804
+msgid ""
+"* Running IRC as root is stupid! You should\n"
+"  create a User Account and use that to login.\n"
+msgstr ""
+"IRC-ni Ali İstifadəçi olaraq işlətmək dəlilikdir.\n"
+"  Xahiş edirik istifadəçi hesabı yaradın.\n"
+
+#: src/common/dcc.c:31
+msgid "Waiting"
+msgstr "Gözləyir"
+
+#: src/common/dcc.c:32
+msgid "Active"
+msgstr "Fəal"
+
+#: src/common/dcc.c:33
+msgid "Failed"
+msgstr "Bacarılmadı"
+
+#: src/common/dcc.c:34
+msgid "Done"
+msgstr "Oldu"
+
+#: src/common/dcc.c:35
+msgid "Connect"
+msgstr "Bağlan"
+
+#: src/common/dcc.c:36
+msgid "Aborted"
+msgstr "Ləğv Edildi"
+
+#: src/common/dcc.c:1226
+#, c-format
+msgid "Cannot access %s\n"
+msgstr "%s ünvanına yetişilə bilmir\n"
+
+#: src/common/dcc.c:1933
+msgid "No active DCCs\n"
+msgstr "Fəal DCC-lər yoxdur\n"
+
+#: src/common/ignore.c:105 src/common/ignore.c:109 src/common/ignore.c:113
+#: src/common/ignore.c:117 src/common/ignore.c:121 src/common/ignore.c:125
+#: src/common/ignore.c:129
+msgid "YES  "
+msgstr "BƏLİ  "
+
+#: src/common/ignore.c:107 src/common/ignore.c:111 src/common/ignore.c:115
+#: src/common/ignore.c:119 src/common/ignore.c:123 src/common/ignore.c:127
+#: src/common/ignore.c:131
+msgid "NO   "
+msgstr "XEYİR "
+
+#: src/common/ignore.c:327
+#, c-format
+msgid "You are being CTCP flooded from %s, ignoring %s\n"
+msgstr ""
+
+#: src/common/ignore.c:341
+#, c-format
+msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
+msgstr ""
+
+#: src/common/notify.c:375
+#, c-format
+msgid "  %-20s online\n"
+msgstr "  %-20s xətdədir\n"
+
+#: src/common/notify.c:377
+#, c-format
+msgid "  %-20s offline\n"
+msgstr "  %-20s xətdə deyil\n"
+
+#: src/common/outbound.c:31
+msgid "No channel joined. Try /join #<channel>\n"
+msgstr "Heç bir kanalda deyilsiniz. /join #<kanal> əmrini verin\n"
+
+#: src/common/outbound.c:37
+msgid "Not connected. Try /server <host> [<port>]\n"
+msgstr "Bağlı deyilsiniz. /server <qovşaq> [<port>] əmrini verin\n"
+
+#: src/common/outbound.c:1420
+msgid "I need /bin/sh to run!\n"
+msgstr "/bin/sh əmrini icra etməliyəm!\n"
+
+#: src/common/outbound.c:1688
+msgid ""
+"\n"
+"Commands Available:\n"
+"\n"
+"  "
+msgstr ""
+"\n"
+"Mövcud Əmrlər:\n"
+"\n"
+"  "
+
+#: src/common/outbound.c:1723
+msgid ""
+"\n"
+"\n"
+"Type /HELP <command> for more information, or /HELP -l\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Daha çox mə'lumat üçün  /HELP <əmr> ya da or /HELP -l yazın\n"
+"\n"
+
+#: src/common/outbound.c:1724
+msgid ""
+"User defined commands:\n"
+"\n"
+"  "
+msgstr ""
+"İstifadəçi tə'yinli əmrlər:\n"
+"\n"
+"  "
+
+#: src/common/outbound.c:1832
+#, c-format
+msgid "Unknown arg '%s' ignored."
+msgstr ""
+
+#: src/common/outbound.c:2818
+msgid "No such plugin found.\n"
+msgstr ""
+
+#: src/common/outbound.c:2823 src/fe-gtk/plugingui.c:160
+msgid "That plugin is refusing to unload.\n"
+msgstr ""
+
+#: src/common/outbound.c:3066
+msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
+msgstr ""
+
+#: src/common/outbound.c:3068
+msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
+msgstr ""
+
+#: src/common/outbound.c:3070
+msgid "ALLSERV <cmd>, sends a command to all servers you're in"
+msgstr ""
+
+#: src/common/outbound.c:3071
+msgid "AWAY [<reason>], sets you away"
+msgstr ""
+
+#: src/common/outbound.c:3073
+msgid ""
+"BAN <mask> [<masktype>], bans everyone matching the mask from the current "
+"channel. If they are already on the channel this doesn't kick them (needs "
+"chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3075
+msgid "CLEAR, Clears the current text window"
+msgstr ""
+
+#: src/common/outbound.c:3076
+msgid "CLOSE, Closes the current window/tab"
+msgstr ""
+
+#: src/common/outbound.c:3078
+msgid "COUNTRY <code>, finds a country code, eg: au = australia"
+msgstr ""
+
+#: src/common/outbound.c:3080
+msgid ""
+"CTCP <nick> <message>, send the CTCP message to nick, common messages are "
+"VERSION and USERINFO"
+msgstr ""
+
+#: src/common/outbound.c:3082
+msgid "CYCLE, parts current channel and immediately rejoins"
+msgstr ""
+
+#: src/common/outbound.c:3083
+msgid ""
+"\n"
+"DCC GET <nick>                     - accept an offered file\n"
+"DCC SEND [-maxcps=#] <nick> [file] - send a file to someone\n"
+"DCC LIST                           - show DCC list\n"
+"DCC CHAT <nick>                    - offer DCC CHAT to someone\n"
+"DCC CLOSE <type> <nick> <file>         example:\n"
+"         /dcc close send johnsmith file.tar.gz"
+msgstr ""
+
+#: src/common/outbound.c:3092
+msgid ""
+"DEHOP <nick>, removes chanhalf-op status from the nick on the current "
+"channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3094
+msgid "DELBUTTON <name>, deletes a button from under the user-list"
+msgstr ""
+
+#: src/common/outbound.c:3096
+msgid ""
+"DEOP <nick>, removes chanop status from the nick on the current channel "
+"(needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3098
+msgid ""
+"DEVOICE <nick>, removes voice status from the nick on the current channel "
+"(needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3099
+msgid "DISCON, Disconnects from server"
+msgstr ""
+
+#: src/common/outbound.c:3100
+msgid "DNS <nick|host|ip>, Finds a users IP number"
+msgstr ""
+
+#: src/common/outbound.c:3101
+msgid "ECHO <text>, Prints text locally"
+msgstr ""
+
+#: src/common/outbound.c:3104
+msgid ""
+"EXEC [-o] <command>, runs the command. If -o flag is used then output is "
+"sent to current channel, else is printed to current text box"
+msgstr ""
+
+#: src/common/outbound.c:3106
+msgid "EXECCONT, sends the process SIGCONT"
+msgstr ""
+
+#: src/common/outbound.c:3109
+msgid ""
+"EXECKILL [-9], kills a running exec in the current session. If -9 is given "
+"the process is SIGKILL'ed"
+msgstr ""
+
+#: src/common/outbound.c:3111
+msgid "EXECSTOP, sends the process SIGSTOP"
+msgstr ""
+
+#: src/common/outbound.c:3112
+msgid "EXECWRITE, sends data to the processes stdin"
+msgstr ""
+
+#: src/common/outbound.c:3115
+msgid "EXEMPT <mask> [masktype], sets a exempt"
+msgstr ""
+
+#: src/common/outbound.c:3117
+msgid "FLUSHQ, flushes the current server's send queue"
+msgstr ""
+
+#: src/common/outbound.c:3119
+msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
+msgstr ""
+
+#: src/common/outbound.c:3125
+msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3127
+msgid ""
+"IGNORE <mask> <types..> <options..>\n"
+"    mask - host mask to ignore, eg: *!*@*.aol.com\n"
+"    types - types of data to ignore, one or all of:\n"
+"            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
+"    options - NOSAVE, QUIET"
+msgstr ""
+
+#: src/common/outbound.c:3133
+msgid ""
+"INVITE <nick> [<channel>], invites someone to a channel, by default the "
+"current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3134
+msgid "JOIN <channel>, joins the channel"
+msgstr ""
+
+#: src/common/outbound.c:3136
+msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3138
+msgid ""
+"KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
+"chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3140
+msgid "LAGCHECK, forces a new lag check"
+msgstr ""
+
+#: src/common/outbound.c:3142
+msgid "LASTLOG <string>, searches for a string in the buffer"
+msgstr ""
+
+#: src/common/outbound.c:3144
+msgid "LOAD <file>, loads a plugin or script"
+msgstr ""
+
+#: src/common/outbound.c:3146
+msgid ""
+"MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3148
+msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3150
+msgid ""
+"ME <action>, sends the action to the current channel (actions are written in "
+"the 3rd person, like /me jumps)"
+msgstr ""
+
+#: src/common/outbound.c:3152
+msgid ""
+"MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3155
+msgid "MOP, Mass op's all users in the current channel (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3156
+msgid "MSG <nick> <message>, sends a private message"
+msgstr ""
+
+#: src/common/outbound.c:3157
+msgid "NAMES, Lists the nicks on the current channel"
+msgstr ""
+
+#: src/common/outbound.c:3158
+msgid "NCTCP <nick> <message>, Sends a CTCP notice"
+msgstr ""
+
+#: src/common/outbound.c:3159
+msgid "NEWSERVER <hostname> [<port>]"
+msgstr ""
+
+#: src/common/outbound.c:3160
+msgid "NICK <nickname>, sets your nick"
+msgstr ""
+
+#: src/common/outbound.c:3162
+msgid ""
+"NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
+"message that should be auto reacted to"
+msgstr ""
+
+#: src/common/outbound.c:3163
+msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
+msgstr ""
+
+#: src/common/outbound.c:3164
+msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3166
+msgid ""
+"PART [<channel>] [<reason>], leaves the channel, by default the current one"
+msgstr ""
+
+#: src/common/outbound.c:3167
+msgid "PING <nick | channel>, CTCP pings nick or channel"
+msgstr ""
+
+#: src/common/outbound.c:3168
+msgid "QUERY <nick>, opens up a new privmsg window to someone"
+msgstr ""
+
+#: src/common/outbound.c:3169
+msgid "QUIT [<reason>], disconnects from the current server"
+msgstr ""
+
+#: src/common/outbound.c:3170
+msgid "QUOTE <text>, sends the text in raw form to the server"
+msgstr ""
+
+#: src/common/outbound.c:3173
+msgid ""
+"RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
+"RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
+"reconnect to all the open servers"
+msgstr ""
+
+#: src/common/outbound.c:3176
+msgid ""
+"RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
+"to reconnect to the current server or with /RECONNECT ALL to reconnect to "
+"all the open servers"
+msgstr ""
+
+#: src/common/outbound.c:3179
+msgid ""
+"RECV <text>, send raw data to xchat, as if it was received from the irc "
+"server"
+msgstr ""
+
+#: src/common/outbound.c:3180
+msgid "RPING <server> [server], ping between servers"
+msgstr ""
+
+#: src/common/outbound.c:3181
+msgid "SAY <text>, sends the text to the object in the current window"
+msgstr ""
+
+#: src/common/outbound.c:3184
+msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
+msgstr ""
+
+#: src/common/outbound.c:3187
+msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
+msgstr ""
+
+#: src/common/outbound.c:3192
+msgid ""
+"SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
+"default port is 6667 for normal connections, and 9999 for ssl connections"
+msgstr ""
+
+#: src/common/outbound.c:3195
+msgid ""
+"SERVER <host> [<port>] [<password>], connects to a server, the default port "
+"is 6667"
+msgstr ""
+
+#: src/common/outbound.c:3197
+msgid "SET [-quiet] <variable> [<value>]"
+msgstr ""
+
+#: src/common/outbound.c:3198
+msgid "SETCURSOR [-|+]<position>"
+msgstr ""
+
+#: src/common/outbound.c:3202
+msgid ""
+"TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
+msgstr ""
+
+#: src/common/outbound.c:3203
+msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
+msgstr ""
+
+#: src/common/outbound.c:3205
+msgid "UNEXEMPT <mask> [<mask>...], unexempts the specified masks."
+msgstr ""
+
+#: src/common/outbound.c:3206
+msgid "UNIGNORE <mask> [QUIET]"
+msgstr ""
+
+#: src/common/outbound.c:3207
+msgid "UNLOAD <name>, unloads a plugin or script"
+msgstr ""
+
+#: src/common/outbound.c:3209
+msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
+msgstr ""
+
+#: src/common/outbound.c:3210
+msgid "WALLCHAN <message>, writes the message to all channels"
+msgstr ""
+
+#: src/common/outbound.c:3212
+msgid ""
+"WALLCHOPS <message>, sends the message to all chanops on the current channel"
+msgstr ""
+
+#: src/common/outbound.c:3214
+msgid ""
+"WALLVOICES <message>, sends the message to all voiced users on the current "
+"channel"
+msgstr ""
+
+#: src/common/outbound.c:3260
+#, c-format
+msgid "Usage: %s\n"
+msgstr "İstifadə Qaydası: %s\n"
+
+#: src/common/outbound.c:3265
+msgid ""
+"\n"
+"No help available on that command.\n"
+msgstr ""
+"\n"
+"Bu əmrlə əlaqəli yardım mövcud deyil.\n"
+
+#: src/common/outbound.c:3271
+msgid "No such command.\n"
+msgstr "Belə əmr yoxdur.\n"
+
+#: src/common/outbound.c:3642
+msgid "Bad arguments for user command.\n"
+msgstr ""
+
+#: src/common/outbound.c:3804
+msgid "Too many recursive usercommands, aborting."
+msgstr ""
+
+#: src/common/outbound.c:3859
+msgid "Unknown Command. Try /help\n"
+msgstr "Namə'lum Əmr. Yardım üçün /help əmrini verin\n"
+
+#: src/common/plugin.c:336 src/common/plugin.c:376
+msgid "No rage_plugin_init symbol; is this really an rage plugin?"
+msgstr ""
+
+#: src/common/server.c:892
+msgid "Are you sure this is a SSL capable server and port?\n"
+msgstr ""
+
+#: src/common/server.c:1244
+#, c-format
+msgid ""
+"Cannot resolve hostname %s\n"
+"Check your IP Settings!\n"
+msgstr ""
+"%s qovşaq adı tapıla bilmir\n"
+"IP qurğularınızı yoxlayın!\n"
+
+#: src/common/server.c:1249
+msgid "Proxy traversal failed.\n"
+msgstr "Vəkil traversalı bacarılmadı.\n"
+
+#: src/common/servlist.c:626
+#, c-format
+msgid "Cycling to next server in %s...\n"
+msgstr "%s üstündəki növbəti vericiyə keçilir...\n"
+
+#: src/common/servlist.c:1039
+#, c-format
+msgid ""
+"Warning: \"%s\" character set is unknown. No conversion will be applied for "
+"network %s."
+msgstr ""
+
+#: src/common/textevents.h:6
+msgid "%C0%B%171Notify%187%B$tNow watching nick $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:9
+msgid "%C0%B%171Ban List%187%B$tBan for channel $1: $2 $3 $4"
+msgstr ""
+
+#: src/common/textevents.h:12
+msgid "%C5%B%171Error%187%B%O$tYou are banned from channel $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:18
+msgid "%C0%B%171Nick%187%B$t$1 is now known as $2%O"
+msgstr ""
+
+#: src/common/textevents.h:21
+#, fuzzy
+msgid "%C11*%O$t$1 $2%O"
+msgstr "-%C10-%C11-%O$t$1%O"
+
+#: src/common/textevents.h:24
+msgid "%C16*$t$1 $2%O"
+msgstr ""
+
+#: src/common/textevents.h:27
+msgid "%C0%B%171Ban%187%B$t$1 sets ban on \"$2\".%O"
+msgstr ""
+
+#: src/common/textevents.h:30
+msgid "%C0%B%171Mode%187%B$tChannel $1 was created on $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:33
+msgid ""
+"%C0%B%171DEHalf-OP%187%B$t$1 removes channel half-operator status from $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:36
+msgid "%C0%B%171DEOP%187%B$t$1 removes channel operator status from $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:39
+msgid "%C0%B%171Voice%187%B$t$1 removes voice from $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:42
+msgid "%C0%B%171Exempt%187%B$t$1 sets exempt on $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:45
+msgid "%C0%B%171Half-OP%187%B$t$1 gives channel half-operator status to $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:48
+msgid "%C0%B%171Invite%187%B$t$1 sets invite on $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:51
+msgid "%UChannel          Users   Topic%O"
+msgstr "%UKanalı          İstifadəçi   Mövzu%O"
+
+#: src/common/textevents.h:54 src/common/textevents.h:402
+#, fuzzy
+msgid "<$1>$t$2%O"
+msgstr "$1$t$2"
+
+#: src/common/textevents.h:57
+msgid "%C0%B%171Mode%187%B$t$1 sets mode $2$3 on $4.%O"
+msgstr ""
+
+#: src/common/textevents.h:60
+msgid "%C0%B%171Mode%187%B$tChannel modes for $1: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:63
+#, fuzzy
+msgid "%C16<$1>$t$2%O"
+msgstr "%C6<%O$1%C6>%O$t$2%O"
+
+#: src/common/textevents.h:66
+#, fuzzy
+msgid "%C16-$1-%O$t[to $2]%O $3%O"
+msgstr "%C12-%C13$1%C12-%O$t$2%O"
+
+#: src/common/textevents.h:69
+msgid "%C0%B%171OP%187%B$t$1 gives channel operator status to $2%O"
+msgstr ""
+
+#: src/common/textevents.h:72
+msgid "%C0%B%171Exempt%187%B$t$1 removes exempt on $2%O"
+msgstr ""
+
+#: src/common/textevents.h:75
+msgid "%C0%B%171Invite%187%B$t$1 removes invite on $2%O"
+msgstr ""
+
+#: src/common/textevents.h:78
+msgid "%C0%B%171Mode%187%B$t$1 chages channel modes to no keyword.%O"
+msgstr ""
+
+#: src/common/textevents.h:81
+msgid "%C0%B%171Mode%187%B$t$1 changes channel mode to no user limit.%O"
+msgstr ""
+
+#: src/common/textevents.h:84
+msgid "%C0%B%171Mode%187%B$t$1 sets channel keyword to \"$2\".%O"
+msgstr ""
+
+#: src/common/textevents.h:87
+msgid "%C0%B%171Mode%187%B$t$1 changes channel modes limited to $2 user(s).%O"
+msgstr ""
+
+#: src/common/textevents.h:90
+msgid "%C0%B%171UnBan%187%B$t$1 removes ban on \"$2\"%O"
+msgstr ""
+
+#: src/common/textevents.h:93
+msgid "%C0%B%171Voice%187%B$t$1 gives voice to $2%O"
+msgstr ""
+
+#: src/common/textevents.h:96 src/common/textevents.h:321
+msgid "%C0%B%171Connect%187%B$tConnected. Now doing login...%O"
+msgstr ""
+
+#: src/common/textevents.h:99
+msgid ""
+"%C0%B%171Connect%187%B$tAttempting connection to host to $1 ($2) on port "
+"$3...%O"
+msgstr ""
+
+#: src/common/textevents.h:102
+msgid "%C5%B%171Net-Error%187%B%O$tConnection failed. Error: $1%O"
+msgstr ""
+
+#: src/common/textevents.h:105
+msgid "%C4%B%171CTCP%187%B$tReceived CTCP \"$1\" from $2%O"
+msgstr ""
+
+#: src/common/textevents.h:108
+msgid "%C4%B%171CTCP%187%B$tReceived CTCP \"$1\" from $2 (to $3)"
+msgstr ""
+
+#: src/common/textevents.h:111
+msgid "%C4%B%171CTCP%187%B$tSending CTCP \"$2\" to $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:114
+msgid "%C4%B%171Sound%187%B$t$2 [playing $1]%O"
+msgstr ""
+
+#: src/common/textevents.h:117
+msgid "%C8%B%171DCC%187%B$tAborted DCC CHAT to $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:120
+msgid "%C8%B%171DCC%187%B$tEstablished DCC CHAT connection to $1%O"
+msgstr ""
+
+#: src/common/textevents.h:123
+msgid "%C8%B%171DCC%187%B$tChat failed. Connection to $1 ($2:$3) lost.%O"
+msgstr ""
+
+#: src/common/textevents.h:126
+msgid "%C8%B%171DCC%187%B$tGot DCC CHAT request from $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:129
+msgid "%C8%B%171DCC%187%B$tSending DCC CHAT offer to $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:132
+msgid "%C8%B%171DCC%187%B$tAlready offering CHAT to $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:135
+msgid "%C8%B%171DCC%187%B$tDCC $1 connection attempt to $2 failed (err=$3).%O"
+msgstr ""
+
+#: src/common/textevents.h:138
+msgid "%C8%B%171DCC%187%B$tReceived \"$1\" from $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:141
+msgid "%C8,2 Type  To/From    Status  Size    Pos     File         %O"
+msgstr ""
+
+#: src/common/textevents.h:144
+msgid ""
+"%C8%B%171DCC%187%B$tGot malformed DCC request from $1.%O%010%C8%B%171DCC%187%"
+"B$tContents of packet: \"$2\".%O"
+msgstr ""
+
+#: src/common/textevents.h:147
+msgid "%C8%B%171DCC%187%B$tOffering $1 to $2%O"
+msgstr ""
+
+#: src/common/textevents.h:150
+msgid "%C8%B%171DCC%187%B$tNo such DCC offer.%O"
+msgstr ""
+
+#: src/common/textevents.h:153
+msgid "%C8%B%171DCC%187%B$tAborted DCC RECV $2 from $1%O"
+msgstr ""
+
+#: src/common/textevents.h:156
+msgid "%C8%B%171DCC%187%B$tReceive of file $1 from $3 completed, $4 cps.%O"
+msgstr ""
+
+#: src/common/textevents.h:159
+msgid ""
+"%C8%B%171DCC%187%B$tEstablished DCC RECV connection for $3 from $1 ($2)%O"
+msgstr ""
+
+#: src/common/textevents.h:162
+msgid "%C8%B%171DCC%187%B$tReceive $1 failed. Connection to $3 lost.%O"
+msgstr ""
+
+#: src/common/textevents.h:165
+msgid "%C8%B%171DCC%187%B$tReceive Write error ($1).%O"
+msgstr ""
+
+#: src/common/textevents.h:168
+msgid ""
+"%C8%B%171DCC%187%B$t A file named $1 already exists, saving it as $2 instead."
+"%O"
+msgstr ""
+
+#: src/common/textevents.h:171
+msgid ""
+"%C8%B%171DCC%187%B$tGot DCC RESUME request for SEND of file $2, position $3, "
+"from $1.%O"
+msgstr ""
+
+#: src/common/textevents.h:174
+msgid "%C8%B%171DCC%187%B$tDCC SEND of file $2 to $1 aborted.%O"
+msgstr ""
+
+#: src/common/textevents.h:177
+msgid "%C8%B%171DCC%187%B$tDCC SEND of file $1 to $2 complete, $3 cps.%O"
+msgstr ""
+
+#: src/common/textevents.h:180
+msgid "%C8%B%171DCC%187%B$tEstablished DCC SEND connection for $3 to $1 ($2)%O"
+msgstr ""
+
+#: src/common/textevents.h:183
+msgid "%C8%B%171DCC%187%B$tSending $1 to $2 failed. Connection lost.%O"
+msgstr ""
+
+#: src/common/textevents.h:186
+msgid ""
+"%C8%B%171DCC%187%B$tGot DCC SEND request from $1: filename \"$2\", $3 bytes.%"
+"O"
+msgstr ""
+
+#: src/common/textevents.h:189
+msgid "%C8%B%171DCC%187%B$tDCC $1 $2 to $3 is stalled - aborting.%O"
+msgstr ""
+
+#: src/common/textevents.h:192
+msgid "%C8%B%171DCC%187%B$tDCC $1 $2 to $3 timed out - aborting.%O"
+msgstr ""
+
+#: src/common/textevents.h:195
+msgid "%C0%B%171Notify%187%B$tNick $1 is no longer watched.%O"
+msgstr ""
+
+#: src/common/textevents.h:198
+#, fuzzy
+msgid "%C0%B%171Connect%187%B$tDisconnected.%O"
+msgstr "-%C10-%C11-%O$tBağlantı kəsildi ($1)."
+
+#: src/common/textevents.h:201
+msgid "%C0%B%171IP%187%B$tFound your IP: $1%O"
+msgstr ""
+
+#: src/common/textevents.h:204
+msgid "$1$t$2"
+msgstr "$1$t$2"
+
+#: src/common/textevents.h:207
+msgid "%C0%B%171Ignore%187%B$tNow ignoring \"$1\".%O"
+msgstr ""
+
+#: src/common/textevents.h:210
+msgid "%C0%B%171Ignore%187%B$tIgnore on \"$1\" changed.%O"
+msgstr ""
+
+#: src/common/textevents.h:213
+msgid "%C0%B%171Ignore%187%B$tEnd of /ignore list.%O"
+msgstr ""
+
+#: src/common/textevents.h:216
+#, fuzzy
+msgid ""
+"%C0%B%171Ignore%187%B%O$t%C08,02 Hostmask                  PRIV NOTI CHAN "
+"CTCP INVI UNIG %O"
+msgstr ""
+"%C08,02 Hostmask                  PRIV NOTI CHAN CTCP DCC  INVI UNIG %O"
+
+#: src/common/textevents.h:219
+msgid "%C0%B%171Ignore%187%B$tIgnore entry \"$1\" removed.%O"
+msgstr ""
+
+#: src/common/textevents.h:222
+#, fuzzy
+msgid "%C0%B%171Ignore%187%B$tIgnore list is empty.%O"
+msgstr "  Rədd siyahısı boşdur."
+
+#: src/common/textevents.h:225
+msgid ""
+"%C5%B%171Error%187%B%O$tYou can't join $1; this channel is invite Only.%O"
+msgstr ""
+
+#: src/common/textevents.h:228
+msgid "%C0%B%171Invite%187%B$tYou have been invited to channel $1 by $2 ($3)%O"
+msgstr ""
+
+#: src/common/textevents.h:231
+msgid "%C0%B-->%B$t$1 ($3) has joined channel $2%O"
+msgstr ""
+
+#: src/common/textevents.h:234
+msgid ""
+"%C5%B%171Error%187%B%O$tChannel $1 is keyword protected; you must specify "
+"the correct keyword.%O"
+msgstr ""
+
+#: src/common/textevents.h:237
+msgid "%C0%B%171Kick%187%B$t$2 has been kicked out of channel $3 by $1: $4%O"
+msgstr ""
+
+#: src/common/textevents.h:240
+msgid "%C0%B%171KILL%187%B$tYou have been killed by $1: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:243
+#, fuzzy
+msgid "%B>$1<%B$t$2%O"
+msgstr "%C3>%O$1%C3<%O$t$2%O"
+
+#: src/common/textevents.h:246
+msgid "%C0%B%171MOTD%187%B$t$1%O"
+msgstr ""
+
+#: src/common/textevents.h:249
+msgid "%C0%B%171MOTD%187%B$t(MOTD Skipped)%O"
+msgstr ""
+
+#: src/common/textevents.h:252
+msgid ""
+"%C0%B%171Nick%187%B$tNickname $1 is already in use; retrying with $2...%O"
+msgstr ""
+
+#: src/common/textevents.h:255
+msgid "%C0%B%171Nick%187%B$tNickname is already in use.%O"
+msgstr ""
+
+#: src/common/textevents.h:258
+msgid "%C8%B%171DCC%187%B$tNo such DCC.%O"
+msgstr ""
+
+#: src/common/textevents.h:261
+msgid "%C0%B%171Process%187%B$tNo process is currently running.%O"
+msgstr ""
+
+#: src/common/textevents.h:264
+#, fuzzy
+msgid "-%B$1%B-$t$2%O"
+msgstr "%C12-%C13$1%C12-%O$t$2%O"
+
+#: src/common/textevents.h:267
+#, fuzzy
+msgid "}$1{$t$2"
+msgstr "$1$t$2"
+
+#: src/common/textevents.h:270
+msgid "%C0%B%171Notify%187%B$tNotify list is empty.%O"
+msgstr ""
+
+#: src/common/textevents.h:273
+msgid "%C08,02 -- Notify List --------------- %O"
+msgstr ""
+
+#: src/common/textevents.h:276
+msgid "%C0%B%171Notify%187%B$t$1 users on notify list.%O"
+msgstr ""
+
+#: src/common/textevents.h:279
+msgid "%C0%B%171Notify%187%B$tNick $1 ($2) is gone.%O"
+msgstr ""
+
+#: src/common/textevents.h:282
+msgid "%C0%B%171Notify%187%B$tDetected Nick $1 ($2).%O"
+msgstr ""
+
+#: src/common/textevents.h:288
+msgid "%C0%B<--%B$t$1 ($2) has left channel $3%O"
+msgstr ""
+
+#: src/common/textevents.h:291
+msgid "%C0%B<--%B$t$1 ($2) has left channel $3 ($4).%O"
+msgstr ""
+
+#: src/common/textevents.h:294
+msgid "%C4%B%171Pong%187%B$tGot PING response from $1: $2s%O"
+msgstr ""
+
+#: src/common/textevents.h:297
+msgid "%C5%B%171Error%187%B%O$tNo ping reply for $1 seconds, disconnecting."
+msgstr ""
+
+#: src/common/textevents.h:300
+#, fuzzy
+msgid "%B*$1*%B$t$2%O"
+msgstr "%C2<%C8%B$1%B%C2>%O$t$2%O"
+
+#: src/common/textevents.h:303
+#, fuzzy
+msgid "%C16*$1*$t$2%O"
+msgstr "%C12*%C13$1%C12*$t%O$2%O"
+
+#: src/common/textevents.h:306
+msgid "%C0%B%171Notify%187%B$tA process is already running.%O"
+msgstr ""
+
+#: src/common/textevents.h:309
+msgid "%C0%B%171Quit%187%B$t$1 has signed off ($2)%O"
+msgstr ""
+
+#: src/common/textevents.h:312
+msgid "%C0%B%171Mode%187%B$t$1 sets mode(s): $2%O"
+msgstr ""
+
+#: src/common/textevents.h:315
+msgid "%C0%B%171Wallops%187%B$t[$1] $2%O"
+msgstr ""
+
+#: src/common/textevents.h:318
+msgid "%C0%B%171DNS%187%B$tLooking up IP number for $1 ($2)...%O"
+msgstr ""
+
+#: src/common/textevents.h:324
+msgid "%C5%B%171Error%187%B%O$t$1%O"
+msgstr ""
+
+#: src/common/textevents.h:327
+msgid "%C0%B%171Connect%187%B$tLooking up host \"$1\"...%O"
+msgstr ""
+
+#: src/common/textevents.h:330
+msgid "%C0%B%171Server%187%B$t[$2] $1%O"
+msgstr ""
+
+#: src/common/textevents.h:333
+msgid "%C0%B%171Server%187%B$t$1%O"
+msgstr ""
+
+#: src/common/textevents.h:336
+msgid "%C0%B%171Connect%187%B$tStopped previous connection attempt (pid=$1)%O"
+msgstr ""
+
+#: src/common/textevents.h:339
+msgid "%C0%B%171Topic%187%B$tTopic for $1 is $2%O"
+msgstr ""
+
+#: src/common/textevents.h:342
+msgid "%C0%B%171Topic%187%B$tTopic for channel $1 has been set by $2 on $3%O"
+msgstr ""
+
+#: src/common/textevents.h:345
+msgid "%C0%B%171Topic%187%B$t$1 sets topic to \"$2\"%O"
+msgstr ""
+
+#: src/common/textevents.h:348
+#, fuzzy
+msgid "%C5%B%171Error%187%B%O$tUnknown host. Maybe you misspelled it?%O"
+msgstr "-%C10-%C11-%O$tNamə'lum qovşaq. Bəlkə onu səhv yazmışsınız?"
+
+#: src/common/textevents.h:351
+msgid "%C5%B%171Error%187%B%O$tYou can't join $1; user limit reached.%O"
+msgstr ""
+
+#: src/common/textevents.h:354
+msgid "%C0%B%171Names%187%B$tUsers on $1: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:357
+msgid "%C0%B%171Whois%187%B$t$1 is away: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:360
+msgid "%C0%B%171Whois%187%B$t$1 $2%O"
+msgstr ""
+
+#: src/common/textevents.h:363
+msgid "%C0%B%171Whois%187%B$tEnd of WHOIS list.%O"
+msgstr ""
+
+#: src/common/textevents.h:366
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B $2"
+msgstr ""
+
+#: src/common/textevents.h:369
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B $2 $3"
+msgstr ""
+
+#: src/common/textevents.h:372
+msgid "%C0%B%171Whois%187%B$t%B[%B$1%B]%B real user@host $2, real IP $3"
+msgstr ""
+
+#: src/common/textevents.h:375
+msgid "%C0%B%171Whois%187%B$tIdle: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:378
+msgid "%C0%B%171Whois%187%B$tIdle: $2, Connected since: $3%O"
+msgstr ""
+
+#: src/common/textevents.h:381
+msgid "%C0%B%171Whois%187%B$tUser: $1 ($2@$3): $4%O"
+msgstr ""
+
+#: src/common/textevents.h:384
+msgid "%C0%B%171Whois%187%B$tServer: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:387
+msgid "%C0%B-->%B$tYou have joined channel $2%O"
+msgstr ""
+
+#: src/common/textevents.h:390
+msgid "%C0%B<--%B$tYou have left channel $3."
+msgstr ""
+
+#: src/common/textevents.h:393
+msgid "%C0%B<--%B$tYou have left channel $3 ($4).%O"
+msgstr ""
+
+#: src/common/textevents.h:396
+msgid "%C0%B%171Kick%187%B$t$1 has been kicked out of channel $2 by $3: $4%O"
+msgstr ""
+
+#: src/common/textevents.h:399
+msgid "%C0%B%171Invite%187%B$tInviting $1 to channel $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:405
+msgid "%C0%B%171Nick%187%B$tYou are now known as $2%O"
+msgstr ""
+
+#: src/common/textevents.h:408
+msgid "%C0%B%171RPong%187%B$t[$1] <-> [$2] $3ms ($4s)%O"
+msgstr ""
+
+#: src/common/textevents.h:411
+msgid "%C0%B%171List%187%B$t$(-16)1   $(-7)2 $3%O"
+msgstr ""
+
+#: src/common/textevents.h:414
+#, fuzzy
+msgid "%C0%B%171Who%187%B$t$1%O"
+msgstr "-%C10-%C11-%O$t$1%O"
+
+#: src/common/textevents.h:417
+#, fuzzy
+msgid "%C0%B%171Garbage%187%B$t$1%O"
+msgstr "-%C10-%C11-%O$t$1%O"
+
+#: src/common/textevents.h:420
+#, fuzzy
+msgid "%C0%B%171Silence%187%B$t$1%O"
+msgstr "-%C10-%C11-%O$t$1%O"
+
+#: src/common/textevents.h:423
+msgid "%C0%B%171Netsplit%187%B$tNetsplit detected between servers $1 and $2.%O"
+msgstr ""
+
+#: src/common/textevents.h:426
+msgid "%C0%B%171Netsplit%187%B$tUsers gone due to netsplit: $1%O"
+msgstr ""
+
+#: src/common/textevents.h:429
+msgid "%C0%B%171Netsplit%187%B$tNo users gone due to netsplit.%O"
+msgstr ""
+
+#: src/common/textevents.h:432
+msgid "%C0%B%171Netsplit%187%B$tNetsplit join, new users on $1 is: $2%O"
+msgstr ""
+
+#: src/common/textevents.h:435
+msgid "%B-->%B$tStacked join, new users on $1 is: $2%O"
+msgstr ""
+
+#: src/common/text.c:195
+#, c-format
+msgid "**** ENDING LOGGING AT %s\n"
+msgstr ""
+
+#: src/common/text.c:309
+#, c-format
+msgid "**** BEGIN LOGGING AT %s\n"
+msgstr ""
+
+#: src/common/text.c:328
+#, c-format
+msgid ""
+"* Can't open log file(s) for writing. Check the\n"
+"  permissions on %s/logs"
+msgstr ""
+
+#: src/common/text.c:545
+msgid "Left message"
+msgstr "Sol ismarış"
+
+#: src/common/text.c:546
+msgid "Right message"
+msgstr "Sağ ismarış"
+
+#: src/common/text.c:550
+msgid "The nick of the joining person"
+msgstr "Daxil olan şəxsin ləqəbi"
+
+#: src/common/text.c:551
+msgid "The channel being joined"
+msgstr "Daxil olunan kanal"
+
+#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
+msgid "The host of the person"
+msgstr "Şəxsin qovşağı"
+
+#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
+#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
+#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
+#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
+#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
+#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
+#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
+#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
+#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
+#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
+#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
+#: src/common/text.c:1002
+msgid "Nickname"
+msgstr "Ləqəb"
+
+#: src/common/text.c:557
+msgid "The action"
+msgstr "Gedişat"
+
+#: src/common/text.c:562
+msgid "The text"
+msgstr "Mətn"
+
+#: src/common/text.c:563
+msgid "Mode char"
+msgstr "Mod hərfi"
+
+#: src/common/text.c:564 src/common/text.c:637
+#, fuzzy
+msgid "Identified text"
+msgstr "Mə'lumat mətni"
+
+#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
+#: src/common/text.c:636
+msgid "The message"
+msgstr "İsmarış"
+
+#: src/common/text.c:573 src/common/text.c:641
+msgid "Old nickname"
+msgstr "Köhnə ləqəb"
+
+#: src/common/text.c:574 src/common/text.c:642
+msgid "New nickname"
+msgstr "Yeni ləqəb"
+
+#: src/common/text.c:578
+msgid "Nick of person who changed the topic"
+msgstr "Mövzunu dəyişdirən şəxsin ləqəbi"
+
+#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
+#: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
+msgid "Topic"
+msgstr "Mövzu"
+
+#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
+#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/fe-gtk/ignoregui.c:146
+msgid "Channel"
+msgstr "Kanal"
+
+#: src/common/text.c:589 src/common/text.c:648
+msgid "The nickname of the kicker"
+msgstr "Atanın ləqəbi"
+
+#: src/common/text.c:590 src/common/text.c:646
+msgid "The person being kicked"
+msgstr "Atılanın ləqəbi"
+
+#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
+#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
+msgid "The channel"
+msgstr "Kanal"
+
+#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
+msgid "The reason"
+msgstr "Səbəb"
+
+#: src/common/text.c:596 src/common/text.c:653
+msgid "The nick of the person leaving"
+msgstr "Ayrılan şəxsin ləqəbi"
+
+#: src/common/text.c:603 src/common/text.c:609
+msgid "The time"
+msgstr "Vaxt"
+
+#: src/common/text.c:608
+msgid "The creator"
+msgstr "Yaradıcı"
+
+#: src/common/text.c:613
+msgid "Nick"
+msgstr "Ləqəb"
+
+#: src/common/text.c:614 src/common/text.c:869
+msgid "Reason"
+msgstr "Səbəb"
+
+#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
+msgid "Host"
+msgstr "Qovşaq"
+
+#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
+msgid "Who it's from"
+msgstr "Mənşəyi"
+
+#: src/common/text.c:620
+msgid "The time in x.x format (see below)"
+msgstr "x.x şəklində vaxt (alta baxın)"
+
+#: src/common/text.c:630 src/common/text.c:672
+msgid "The Channel it's going to"
+msgstr "Getdiyi kanal"
+
+#: src/common/text.c:660
+msgid "The sound"
+msgstr "Səs"
+
+#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
+msgid "The nick of the person"
+msgstr "Şəxsin ləqəbi"
+
+#: src/common/text.c:665 src/common/text.c:670
+msgid "The CTCP event"
+msgstr "CTCP hadisəsi"
+
+#: src/common/text.c:676
+msgid "The nick of the person who set the key"
+msgstr "Üçarı seçən şəxsin ləqəbi"
+
+#: src/common/text.c:677
+msgid "The key"
+msgstr "Açar"
+
+#: src/common/text.c:681
+msgid "The nick of the person who set the limit"
+msgstr "Hüdudu seçən şəxsin ləqəbi"
+
+#: src/common/text.c:682
+msgid "The limit"
+msgstr "Hüdud"
+
+#: src/common/text.c:686
+msgid "The nick of the person who did the op'ing"
+msgstr "Oplayan şəxsin ləqəbi"
+
+#: src/common/text.c:687
+msgid "The nick of the person who has been op'ed"
+msgstr "Oplanan şəxsin ləqəbi"
+
+#: src/common/text.c:691
+msgid "The nick of the person who has been halfop'ed"
+msgstr "Yarı oplanan şəxsin ləqəbi"
+
+#: src/common/text.c:692
+msgid "The nick of the person who did the halfop'ing"
+msgstr "Yarı oplayan şəxsin ləqəbi"
+
+#: src/common/text.c:696
+msgid "The nick of the person who did the voice'ing"
+msgstr "Voice-layan şəxsin ləqəbi"
+
+#: src/common/text.c:697
+msgid "The nick of the person who has been voice'ed"
+msgstr "Voice-lanan şəxsin ləqəbi"
+
+#: src/common/text.c:701
+msgid "The nick of the person who did the banning"
+msgstr "Banlayan şəxsin ləqəbi"
+
+#: src/common/text.c:702 src/common/text.c:729
+msgid "The ban mask"
+msgstr "Ban maskası"
+
+#: src/common/text.c:706
+msgid "The nick who removed the key"
+msgstr "Açarı ləğv edənin ləqəbi"
+
+#: src/common/text.c:710
+msgid "The nick who removed the limit"
+msgstr "Hüdüdu ləğv edənin ləqəbi"
+
+#: src/common/text.c:714
+msgid "The nick of the person of did the deop'ing"
+msgstr ""
+
+#: src/common/text.c:715
+msgid "The nick of the person who has been deop'ed"
+msgstr ""
+
+#: src/common/text.c:718
+msgid "The nick of the person of did the dehalfop'ing"
+msgstr "/"
+
+#: src/common/text.c:719
+msgid "The nick of the person who has been dehalfop'ed"
+msgstr ""
+
+#: src/common/text.c:723
+msgid "The nick of the person of did the devoice'ing"
+msgstr "/"
+
+#: src/common/text.c:724
+msgid "The nick of the person who has been devoice'ed"
+msgstr ""
+
+#: src/common/text.c:728
+msgid "The nick of the person of did the unban'ing"
+msgstr ""
+
+#: src/common/text.c:733
+msgid "The nick of the person who did the exempt"
+msgstr ""
+
+#: src/common/text.c:734 src/common/text.c:739
+msgid "The exempt mask"
+msgstr "Exempt maskası"
+
+#: src/common/text.c:738
+msgid "The nick of the person removed the exempt"
+msgstr ""
+
+#: src/common/text.c:743
+msgid "The nick of the person who did the invite"
+msgstr ""
+
+#: src/common/text.c:744 src/common/text.c:749
+msgid "The invite mask"
+msgstr "Dəvət maskası"
+
+#: src/common/text.c:748
+msgid "The nick of the person removed the invite"
+msgstr ""
+
+#: src/common/text.c:753
+msgid "The nick of the person setting the mode"
+msgstr ""
+
+#: src/common/text.c:754
+msgid "The mode's sign (+/-)"
+msgstr "Modun işarəsi (+/-)"
+
+#: src/common/text.c:755
+msgid "The mode letter"
+msgstr "Mod hərfi"
+
+#: src/common/text.c:756
+msgid "The channel it's being set on"
+msgstr ""
+
+#: src/common/text.c:761
+msgid "Username"
+msgstr "İstifadəçi adı"
+
+#: src/common/text.c:763
+msgid "Full name"
+msgstr "Tam ad"
+
+#: src/common/text.c:768
+msgid "Channel Membership/\"is an IRC operator\""
+msgstr ""
+
+#: src/common/text.c:773
+msgid "Server Information"
+msgstr "Verici Haqqında"
+
+#: src/common/text.c:778 src/common/text.c:783
+msgid "Idle time"
+msgstr "Passiv olma vaxtı"
+
+#: src/common/text.c:784
+msgid "Signon time"
+msgstr "Giriş vaxtı"
+
+#: src/common/text.c:789
+msgid "Away reason"
+msgstr "Uzaqlaşma səbəbi"
+
+#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
+#: src/common/text.c:989
+msgid "Message"
+msgstr "İsmarış"
+
+#: src/common/text.c:804
+msgid "Account"
+msgstr "Hesab"
+
+#: src/common/text.c:809
+msgid "Real user@host"
+msgstr "Həqiqi istifadəçi@qovşaq"
+
+#: src/common/text.c:810
+msgid "Real IP"
+msgstr "Həqiqi IP"
+
+#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
+#: src/common/text.c:1012
+msgid "Channel Name"
+msgstr "Kanal Adı"
+
+#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
+msgid "Text"
+msgstr "Mətn"
+
+#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
+msgid "Server Name"
+msgstr "Verici Adı"
+
+#: src/common/text.c:825
+msgid "Nick of person who invited you"
+msgstr "Sizi dəvət edən şəxsin ləqəbi"
+
+#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
+msgid "Users"
+msgstr "İstifadəçilər"
+
+#: src/common/text.c:835
+msgid "Nickname in use"
+msgstr "Ləqəb istifadədədir"
+
+#: src/common/text.c:836
+msgid "Nick being tried"
+msgstr "Ləqəb sınanır"
+
+#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
+#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
+#: src/common/text.c:1024 src/common/util.c:134
+msgid "Error"
+msgstr "Xəta"
+
+#: src/common/text.c:845 src/common/text.c:979
+msgid "IP"
+msgstr "IP"
+
+#: src/common/text.c:846 src/common/text.c:875
+msgid "Port"
+msgstr "Port"
+
+#: src/common/text.c:850
+msgid "PID"
+msgstr "PID"
+
+#: src/common/text.c:858
+msgid "Channel name"
+msgstr "Kanal adı"
+
+#: src/common/text.c:859 src/common/text.c:864
+msgid "Modes string"
+msgstr "Mod qatarı"
+
+#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
+#: src/common/text.c:958
+msgid "IP address"
+msgstr "IP ünvanı"
+
+#: src/common/text.c:880 src/common/text.c:905
+msgid "DCC Type"
+msgstr "DCC Növü"
+
+#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
+#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
+#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
+#: src/common/text.c:950 src/common/text.c:956
+msgid "Filename"
+msgstr "Fayl adı"
+
+#: src/common/text.c:892 src/common/text.c:899
+msgid "Destination filename"
+msgstr "Hədəf fayl adı"
+
+#: src/common/text.c:901 src/common/text.c:930
+msgid "CPS"
+msgstr "CPS"
+
+#: src/common/text.c:936
+msgid "Pathname"
+msgstr "Cığır adı"
+
+#: src/common/text.c:951 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
+msgid "Position"
+msgstr "Mövqe"
+
+#: src/common/text.c:957 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
+msgid "Size"
+msgstr "Böyüklük"
+
+#: src/common/text.c:962
+msgid "DCC String"
+msgstr "DCC Qatarı"
+
+#: src/common/text.c:967
+msgid "Number of notify items"
+msgstr "Bildiriş üzvləri ədədi"
+
+#: src/common/text.c:971
+msgid "Servername"
+msgstr "Verici adı"
+
+#: src/common/text.c:983
+msgid "Old Filename"
+msgstr "Köhnə Fayl Adı"
+
+#: src/common/text.c:984
+msgid "New Filename"
+msgstr "Yeni Fayl Adı"
+
+#: src/common/text.c:988
+msgid "Receiver"
+msgstr "Alıcı"
+
+#: src/common/text.c:993
+msgid "Hostmask"
+msgstr "Qovşaq Maskası"
+
+#: src/common/text.c:998
+msgid "Hostname"
+msgstr "Qovşaq Adı"
+
+#: src/common/text.c:1003
+msgid "The Packet"
+msgstr "Paket"
+
+#: src/common/text.c:1007
+msgid "Seconds"
+msgstr "Saniyə"
+
+#: src/common/text.c:1011
+msgid "Nick of person who have been invited"
+msgstr "Dəvət edilən şəxsin ləqəbi"
+
+#: src/common/text.c:1018
+msgid "Banmask"
+msgstr "Ban Maskası"
+
+#: src/common/text.c:1019
+msgid "Who set the ban"
+msgstr "Banı qoyan"
+
+#: src/common/text.c:1020
+msgid "Ban time"
+msgstr "Ban vaxtı"
+
+#: src/common/text.c:1028
+#, fuzzy
+msgid "Source Server"
+msgstr "Verici"
+
+#: src/common/text.c:1029
+#, fuzzy
+msgid "Destination Server"
+msgstr "Hədəf fayl adı"
+
+#: src/common/text.c:1030
+#, fuzzy
+msgid "Ping time"
+msgstr "Ban vaxtı"
+
+#: src/common/text.c:1031
+#, fuzzy
+msgid "Client time diff"
+msgstr "Alıcı mə'lumatı"
+
+#: src/common/text.c:1041
+#, fuzzy
+msgid "the message"
+msgstr "İsmarış"
+
+#: src/common/text.c:1045
+#, fuzzy
+msgid "the hostmask"
+msgstr "Qovşaq Maskası"
+
+#: src/common/text.c:1082
+#, c-format
+msgid ""
+"Error parsing event %s.\n"
+"Loading default."
+msgstr ""
+
+#: src/common/text.c:1793
+#, c-format
+msgid ""
+"Cannot read sound file:\n"
+"%s"
+msgstr ""
+
+#: src/common/util.c:78
+msgid "Remote host closed socket"
+msgstr "Uzaq qovşaq soketi bağladı"
+
+#: src/common/util.c:83
+msgid "Connection refused"
+msgstr "Bağlantı rədd edildi"
+
+#: src/common/util.c:86
+msgid "No route to host"
+msgstr "Uzaq qovşaq yoxdur"
+
+#: src/common/util.c:88
+msgid "Connection timed out"
+msgstr "Bağlantı vaxtı doldu"
+
+#: src/common/util.c:90
+msgid "Cannot assign that address"
+msgstr "Bu ünvan verilə bilməz"
+
+#: src/common/util.c:92
+msgid "Connection reset by peer"
+msgstr "Bağlantı düyün tərəfindən sıfırlandı"
+
+#: src/common/util.c:547
+msgid "Andorra"
+msgstr "Andorra"
+
+#: src/common/util.c:548
+msgid "United Arab Emirates"
+msgstr "Birləşmiş Ərəb Əmirlikləri"
+
+#: src/common/util.c:549
+msgid "Afghanistan"
+msgstr "Əfqanıstan"
+
+#: src/common/util.c:550
+msgid "Antigua and Barbuda"
+msgstr "Antiqua və Barbuda"
+
+#: src/common/util.c:551
+msgid "Anguilla"
+msgstr "Anquilla"
+
+#: src/common/util.c:552
+msgid "Albania"
+msgstr "Albaniya"
+
+#: src/common/util.c:553
+msgid "Armenia"
+msgstr "Ermənistan"
+
+#: src/common/util.c:554
+msgid "Netherlands Antilles"
+msgstr "Holland Antilləri"
+
+#: src/common/util.c:555
+msgid "Angola"
+msgstr "Anqola"
+
+#: src/common/util.c:556
+msgid "Antarctica"
+msgstr "Antarktika"
+
+#: src/common/util.c:557
+msgid "Argentina"
+msgstr "Argentina"
+
+#: src/common/util.c:558
+msgid "Reverse DNS"
+msgstr "Reverse DNS"
+
+#: src/common/util.c:559
+msgid "American Samoa"
+msgstr "Amerikan Samoa"
+
+#: src/common/util.c:560
+msgid "Austria"
+msgstr "Avstriya"
+
+#: src/common/util.c:561
+msgid "Nato Fiel"
+msgstr "Nato Fiel"
+
+#: src/common/util.c:562
+msgid "Australia"
+msgstr "Avstraliya"
+
+#: src/common/util.c:563
+msgid "Aruba"
+msgstr "Aruba"
+
+#: src/common/util.c:564
+msgid "Azerbaijan"
+msgstr "Azərbaycan"
+
+#: src/common/util.c:565
+msgid "Bosnia and Herzegovina"
+msgstr "Bosniya və Herzoqovina"
+
+#: src/common/util.c:566
+msgid "Barbados"
+msgstr "Barbados"
+
+#: src/common/util.c:567
+msgid "Bangladesh"
+msgstr "Banqladeş"
+
+#: src/common/util.c:568
+msgid "Belgium"
+msgstr "Belçika"
+
+#: src/common/util.c:569
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+#: src/common/util.c:570
+msgid "Bulgaria"
+msgstr "Bolqarıstan"
+
+#: src/common/util.c:571
+msgid "Bahrain"
+msgstr "Bahreyn"
+
+#: src/common/util.c:572
+msgid "Burundi"
+msgstr "Burundi"
+
+#: src/common/util.c:573
+msgid "Businesses"
+msgstr "Təşkilatlar"
+
+#: src/common/util.c:574
+msgid "Benin"
+msgstr "Benin"
+
+#: src/common/util.c:575
+msgid "Bermuda"
+msgstr "Bermuda"
+
+#: src/common/util.c:576
+msgid "Brunei Darussalam"
+msgstr "Bruney Darüssəlim"
+
+#: src/common/util.c:577
+msgid "Bolivia"
+msgstr "Boliviya"
+
+#: src/common/util.c:578
+msgid "Brazil"
+msgstr "Braziliya"
+
+#: src/common/util.c:579
+msgid "Bahamas"
+msgstr "Bahamalar"
+
+#: src/common/util.c:580
+msgid "Bhutan"
+msgstr "Butan"
+
+#: src/common/util.c:581
+msgid "Bouvet Island"
+msgstr "Buvet Adası"
+
+#: src/common/util.c:582
+msgid "Botswana"
+msgstr "Botsvana"
+
+#: src/common/util.c:583
+msgid "Belarus"
+msgstr "Belarusiya"
+
+#: src/common/util.c:584
+msgid "Belize"
+msgstr "Beliz"
+
+#: src/common/util.c:585
+msgid "Canada"
+msgstr "Kanada"
+
+#: src/common/util.c:586
+msgid "Cocos Islands"
+msgstr "Kakos Adaları"
+
+#: src/common/util.c:587
+msgid "Central African Republic"
+msgstr "Mərkəzi Afrika Respublikası"
+
+#: src/common/util.c:588
+msgid "Congo"
+msgstr "Konqo"
+
+#: src/common/util.c:589
+msgid "Switzerland"
+msgstr "İsveçrə"
+
+#: src/common/util.c:590
+#, fuzzy
+msgid "Cote d'Ivoire"
+msgstr "Kot Divuar"
+
+#: src/common/util.c:591
+msgid "Cook Islands"
+msgstr "Kuku Adaları"
+
+#: src/common/util.c:592
+msgid "Chile"
+msgstr "Çili"
+
+#: src/common/util.c:593
+msgid "Cameroon"
+msgstr "Kamerun"
+
+#: src/common/util.c:594
+msgid "China"
+msgstr "Çin"
+
+#: src/common/util.c:595
+msgid "Colombia"
+msgstr "Kolumbiya"
+
+#: src/common/util.c:596
+msgid "Internic Commercial"
+msgstr "Internic Təşkilatı"
+
+#: src/common/util.c:597
+msgid "Costa Rica"
+msgstr "Kosta Rika"
+
+#: src/common/util.c:598
+msgid "Former Czechoslovakia"
+msgstr "Köhnə Çexoslovakiya"
+
+#: src/common/util.c:599
+msgid "Cuba"
+msgstr "Kuba"
+
+#: src/common/util.c:600
+msgid "Cape Verde"
+msgstr "Keyp Verde"
+
+#: src/common/util.c:601
+msgid "Christmas Island"
+msgstr "Kristmas Adası"
+
+#: src/common/util.c:602
+msgid "Cyprus"
+msgstr "Kipr"
+
+#: src/common/util.c:603
+msgid "Czech Republic"
+msgstr "Çex Respublikası"
+
+#: src/common/util.c:604
+msgid "Germany"
+msgstr "Almaniya"
+
+#: src/common/util.c:605
+msgid "Djibouti"
+msgstr "Cibuti"
+
+#: src/common/util.c:606
+msgid "Denmark"
+msgstr "Danimarka"
+
+#: src/common/util.c:607
+msgid "Dominica"
+msgstr "Dominik"
+
+#: src/common/util.c:608
+msgid "Dominican Republic"
+msgstr "Dominikan Respublikası"
+
+#: src/common/util.c:609
+msgid "Algeria"
+msgstr "Əlcəzair"
+
+#: src/common/util.c:610
+msgid "Ecuador"
+msgstr "Ekvador"
+
+#: src/common/util.c:611
+msgid "Educational Institution"
+msgstr "Tədris Təşkilatı"
+
+#: src/common/util.c:612
+msgid "Estonia"
+msgstr "Estoniya"
+
+#: src/common/util.c:613
+msgid "Egypt"
+msgstr "Misir"
+
+#: src/common/util.c:614
+msgid "Western Sahara"
+msgstr "Qərbi Saxara"
+
+#: src/common/util.c:615
+msgid "Eritrea"
+msgstr "Eritre"
+
+#: src/common/util.c:616
+msgid "Spain"
+msgstr "İspaniya"
+
+#: src/common/util.c:617
+msgid "Ethiopia"
+msgstr "Efiopiya"
+
+#: src/common/util.c:618
+msgid "Finland"
+msgstr "Finlandiya"
+
+#: src/common/util.c:619
+msgid "Fiji"
+msgstr "Fici"
+
+#: src/common/util.c:620
+msgid "Falkland Islands"
+msgstr "Falkland Adaları"
+
+#: src/common/util.c:621
+msgid "Micronesia"
+msgstr "Mikroneziya"
+
+#: src/common/util.c:622
+msgid "Faroe Islands"
+msgstr "Faro Adaları"
+
+#: src/common/util.c:623
+msgid "France"
+msgstr "Fransa"
+
+#: src/common/util.c:624
+msgid "France, Metropolitan"
+msgstr "Fransa, Metropolitan"
+
+#: src/common/util.c:625
+msgid "Gabon"
+msgstr "Qabon"
+
+#: src/common/util.c:626
+msgid "Great Britain"
+msgstr "Böyük Britaniya"
+
+#: src/common/util.c:627
+msgid "Grenada"
+msgstr "Qrenada"
+
+#: src/common/util.c:628
+msgid "Georgia"
+msgstr "Gürcüstan"
+
+#: src/common/util.c:629
+msgid "French Guiana"
+msgstr "Fransız Gvineyası"
+
+#: src/common/util.c:630
+msgid "British Channel Isles"
+msgstr "Britaniya Kanal Adaları"
+
+#: src/common/util.c:631
+msgid "Ghana"
+msgstr "Qana"
+
+#: src/common/util.c:632
+msgid "Gibraltar"
+msgstr "Gibraltar"
+
+#: src/common/util.c:633
+msgid "Greenland"
+msgstr "Qrinland"
+
+#: src/common/util.c:634
+msgid "Gambia"
+msgstr "Qambiya"
+
+#: src/common/util.c:635
+msgid "Guinea"
+msgstr "Qvineya"
+
+#: src/common/util.c:636
+msgid "Government"
+msgstr "Hökümət"
+
+#: src/common/util.c:637
+msgid "Guadeloupe"
+msgstr "Quadelup"
+
+#: src/common/util.c:638
+msgid "Equatorial Guinea"
+msgstr "Ekvatorial Qvineya"
+
+#: src/common/util.c:639
+msgid "Greece"
+msgstr "Yunanıstan"
+
+#: src/common/util.c:640
+#, fuzzy
+msgid "S. Georgia and S. Sandwich Isles"
+msgstr "S. Georgia və S. Sandwich Adaları."
+
+#: src/common/util.c:641
+msgid "Guatemala"
+msgstr "Quatemala"
+
+#: src/common/util.c:642
+msgid "Guam"
+msgstr "Quam"
+
+#: src/common/util.c:643
+msgid "Guinea-Bissau"
+msgstr "Qvineya Bissau"
+
+#: src/common/util.c:644
+msgid "Guyana"
+msgstr "Quyana"
+
+#: src/common/util.c:645
+msgid "Hong Kong"
+msgstr "Honq Konq"
+
+#: src/common/util.c:646
+msgid "Heard and McDonald Islands"
+msgstr "Hird Adası və Mkdonald Adaları"
+
+#: src/common/util.c:647
+msgid "Honduras"
+msgstr "Honduras"
+
+#: src/common/util.c:648
+msgid "Croatia"
+msgstr "Xırvatıstan"
+
+#: src/common/util.c:649
+msgid "Haiti"
+msgstr "Haiti"
+
+#: src/common/util.c:650
+msgid "Hungary"
+msgstr "Macarıstan"
+
+#: src/common/util.c:651
+msgid "Indonesia"
+msgstr "İndoneziya"
+
+#: src/common/util.c:652
+msgid "Ireland"
+msgstr "İrlandiya"
+
+#: src/common/util.c:653
+msgid "Israel"
+msgstr "İsrail"
+
+#: src/common/util.c:654
+msgid "India"
+msgstr "Hindistan"
+
+#: src/common/util.c:655
+msgid "Informational"
+msgstr "Məlumat verici"
+
+#: src/common/util.c:656
+msgid "International"
+msgstr "Beynəlmilləl"
+
+#: src/common/util.c:657
+msgid "British Indian Ocean Territory"
+msgstr "Britaniya Hind Okeanı Sahəsi"
+
+#: src/common/util.c:658
+msgid "Iraq"
+msgstr "İraq"
+
+#: src/common/util.c:659
+msgid "Iran"
+msgstr "İran"
+
+#: src/common/util.c:660
+msgid "Iceland"
+msgstr "İslandiya"
+
+#: src/common/util.c:661
+msgid "Italy"
+msgstr "İtaliya"
+
+#: src/common/util.c:662
+msgid "Jamaica"
+msgstr "Yamayka"
+
+#: src/common/util.c:663
+msgid "Jordan"
+msgstr "İordaniya"
+
+#: src/common/util.c:664
+msgid "Japan"
+msgstr "Yaponiya"
+
+#: src/common/util.c:665
+msgid "Kenya"
+msgstr "Kenya"
+
+#: src/common/util.c:666
+msgid "Kyrgyzstan"
+msgstr "Qırğızıstan"
+
+#: src/common/util.c:667
+msgid "Cambodia"
+msgstr "Kambodiya"
+
+#: src/common/util.c:668
+msgid "Kiribati"
+msgstr "Kiribati"
+
+#: src/common/util.c:669
+msgid "Comoros"
+msgstr "Komor"
+
+#: src/common/util.c:670
+msgid "St. Kitts and Nevis"
+msgstr "St. Kitts və Nevis"
+
+#: src/common/util.c:671
+msgid "North Korea"
+msgstr "Şimali Koreya"
+
+#: src/common/util.c:672
+msgid "South Korea"
+msgstr "Cənubi Koreya"
+
+#: src/common/util.c:673
+msgid "Kuwait"
+msgstr "Küveyt"
+
+#: src/common/util.c:674
+msgid "Cayman Islands"
+msgstr "Kayman Adaları"
+
+#: src/common/util.c:675
+msgid "Kazakhstan"
+msgstr "Qazaxstan"
+
+#: src/common/util.c:676
+msgid "Laos"
+msgstr "Laos"
+
+#: src/common/util.c:677
+msgid "Lebanon"
+msgstr "Livan"
+
+#: src/common/util.c:678
+msgid "Saint Lucia"
+msgstr "Müqəddəs Lusiya"
+
+#: src/common/util.c:679
+msgid "Liechtenstein"
+msgstr "Lixtenşteyn"
+
+#: src/common/util.c:680
+msgid "Sri Lanka"
+msgstr "Şri Lanka"
+
+#: src/common/util.c:681
+msgid "Liberia"
+msgstr "Liberiya"
+
+#: src/common/util.c:682
+msgid "Lesotho"
+msgstr "Lesoto"
+
+#: src/common/util.c:683
+msgid "Lithuania"
+msgstr "Litva"
+
+#: src/common/util.c:684
+msgid "Luxembourg"
+msgstr "Lüksemburq"
+
+#: src/common/util.c:685
+msgid "Latvia"
+msgstr "Latviya"
+
+#: src/common/util.c:686
+msgid "Libya"
+msgstr "Liviya"
+
+#: src/common/util.c:687
+msgid "Morocco"
+msgstr "Mərakeş"
+
+#: src/common/util.c:688
+msgid "Monaco"
+msgstr "Monako"
+
+#: src/common/util.c:689
+msgid "Moldova"
+msgstr "Moldova"
+
+#: src/common/util.c:690
+msgid "United States Medical"
+msgstr "ABŞ Medikalı"
+
+#: src/common/util.c:691
+msgid "Madagascar"
+msgstr "Madaqaskar"
+
+#: src/common/util.c:692
+msgid "Marshall Islands"
+msgstr "Marşal Adaları"
+
+#: src/common/util.c:693
+msgid "Military"
+msgstr "Silahlı Qüvvələr"
+
+#: src/common/util.c:694
+msgid "Macedonia"
+msgstr "Makedoniya"
+
+#: src/common/util.c:695
+msgid "Mali"
+msgstr "Mali"
+
+#: src/common/util.c:696
+msgid "Myanmar"
+msgstr "Myanmar"
+
+#: src/common/util.c:697
+msgid "Mongolia"
+msgstr "Monqolustan"
+
+#: src/common/util.c:698
+msgid "Macau"
+msgstr "Makau"
+
+#: src/common/util.c:699
+msgid "Northern Mariana Islands"
+msgstr "Şimali Marian Adaları"
+
+#: src/common/util.c:700
+msgid "Martinique"
+msgstr "Martiniq"
+
+#: src/common/util.c:701
+msgid "Mauritania"
+msgstr "Mavritaniya"
+
+#: src/common/util.c:702
+msgid "Montserrat"
+msgstr "Montserrat"
+
+#: src/common/util.c:703
+msgid "Malta"
+msgstr "Malta"
+
+#: src/common/util.c:704
+msgid "Mauritius"
+msgstr "Maurit"
+
+#: src/common/util.c:705
+msgid "Maldives"
+msgstr "Maldiv"
+
+#: src/common/util.c:706
+msgid "Malawi"
+msgstr "Malavi"
+
+#: src/common/util.c:707
+msgid "Mexico"
+msgstr "Meksika"
+
+#: src/common/util.c:708
+msgid "Malaysia"
+msgstr "Malayziya"
+
+#: src/common/util.c:709
+msgid "Mozambique"
+msgstr "Mozambiq"
+
+#: src/common/util.c:710
+msgid "Namibia"
+msgstr "Namibiya"
+
+#: src/common/util.c:711
+msgid "New Caledonia"
+msgstr "Yeni Kaledoniya"
+
+#: src/common/util.c:712
+msgid "Niger"
+msgstr "Niger"
+
+#: src/common/util.c:713
+msgid "Internic Network"
+msgstr "Internic Şəbəkəsi"
+
+#: src/common/util.c:714
+msgid "Norfolk Island"
+msgstr "Norfolk Adaları"
+
+#: src/common/util.c:715
+msgid "Nigeria"
+msgstr "Nigeriya"
+
+#: src/common/util.c:716
+msgid "Nicaragua"
+msgstr "Nikaraqua"
+
+#: src/common/util.c:717
+msgid "Netherlands"
+msgstr "Hollandiya"
+
+#: src/common/util.c:718
+msgid "Norway"
+msgstr "Norveç"
+
+#: src/common/util.c:719
+msgid "Nepal"
+msgstr "Nepal"
+
+#: src/common/util.c:720
+msgid "Nauru"
+msgstr "Nauru"
+
+#: src/common/util.c:721
+msgid "Neutral Zone"
+msgstr "Neytral Zona"
+
+#: src/common/util.c:722
+msgid "Niue"
+msgstr "Niu"
+
+#: src/common/util.c:723
+msgid "New Zealand"
+msgstr "Yeni Zellandiya"
+
+#: src/common/util.c:724
+msgid "Oman"
+msgstr "Oman"
+
+#: src/common/util.c:725
+msgid "Internic Non-Profit Organization"
+msgstr "Internic Təşkilatı"
+
+#: src/common/util.c:726
+msgid "Panama"
+msgstr "Panama"
+
+#: src/common/util.c:727
+msgid "Peru"
+msgstr "Peru"
+
+#: src/common/util.c:728
+msgid "French Polynesia"
+msgstr "Fransız Poloneziyası"
+
+#: src/common/util.c:729
+msgid "Papua New Guinea"
+msgstr "Papua Yeni Qvineya"
+
+#: src/common/util.c:730
+msgid "Philippines"
+msgstr "Filippinlər"
+
+#: src/common/util.c:731
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: src/common/util.c:732
+msgid "Poland"
+msgstr "Polşa"
+
+#: src/common/util.c:733
+msgid "St. Pierre and Miquelon"
+msgstr "St. Pierre və Miquelon"
+
+#: src/common/util.c:734
+msgid "Pitcairn"
+msgstr "Pitkairn"
+
+#: src/common/util.c:735
+msgid "Puerto Rico"
+msgstr "Puerto Riko"
+
+#: src/common/util.c:736
+msgid "Portugal"
+msgstr "Portuqaliya"
+
+#: src/common/util.c:737
+msgid "Palau"
+msgstr "Palau"
+
+#: src/common/util.c:738
+msgid "Paraguay"
+msgstr "Paraqvay"
+
+#: src/common/util.c:739
+msgid "Qatar"
+msgstr "Katar"
+
+#: src/common/util.c:740
+msgid "Reunion"
+msgstr "Reyunion"
+
+#: src/common/util.c:741
+msgid "Romania"
+msgstr "Rumıniya"
+
+#: src/common/util.c:742
+msgid "Old School ARPAnet"
+msgstr "Old School ARPAnet"
+
+#: src/common/util.c:743
+msgid "Russian Federation"
+msgstr "Rusiya Federasiyası"
+
+#: src/common/util.c:744
+msgid "Rwanda"
+msgstr "Ruanda"
+
+#: src/common/util.c:745
+msgid "Saudi Arabia"
+msgstr "Səudiyyə Ərəbistan"
+
+#: src/common/util.c:746
+msgid "Solomon Islands"
+msgstr "Solomon Adaları"
+
+#: src/common/util.c:747
+msgid "Seychelles"
+msgstr "Seyşel"
+
+#: src/common/util.c:748
+msgid "Sudan"
+msgstr "Sudan"
+
+#: src/common/util.c:749
+msgid "Sweden"
+msgstr "İsveç"
+
+#: src/common/util.c:750
+msgid "Singapore"
+msgstr "Sinqapur"
+
+#: src/common/util.c:751
+msgid "St. Helena"
+msgstr "St. Helena"
+
+#: src/common/util.c:752
+msgid "Slovenia"
+msgstr "Sloveniya"
+
+#: src/common/util.c:753
+msgid "Svalbard and Jan Mayen Islands"
+msgstr "Svalbard və Jan Mayen Adaları"
+
+#: src/common/util.c:754
+msgid "Slovak Republic"
+msgstr "Slovakiya Respublikası"
+
+#: src/common/util.c:755
+msgid "Sierra Leone"
+msgstr "Siera Lione"
+
+#: src/common/util.c:756
+msgid "San Marino"
+msgstr "San Marino"
+
+#: src/common/util.c:757
+msgid "Senegal"
+msgstr "Seneqal"
+
+#: src/common/util.c:758
+msgid "Somalia"
+msgstr "Somali"
+
+#: src/common/util.c:759
+msgid "Suriname"
+msgstr "Surinam"
+
+#: src/common/util.c:760
+msgid "Sao Tome and Principe"
+msgstr "Sao Tome və Prinsip"
+
+#: src/common/util.c:761
+msgid "Former USSR"
+msgstr "Köhnə SSSR"
+
+#: src/common/util.c:762
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: src/common/util.c:763
+msgid "Syria"
+msgstr "Siriya"
+
+#: src/common/util.c:764
+msgid "Swaziland"
+msgstr "Svaziland"
+
+#: src/common/util.c:765
+msgid "Turks and Caicos Islands"
+msgstr "Türk və Kaykos Adaları"
+
+#: src/common/util.c:766
+msgid "Chad"
+msgstr "Çad"
+
+#: src/common/util.c:767
+msgid "French Southern Territories"
+msgstr "Cənubi Fransız Sahələri"
+
+#: src/common/util.c:768
+msgid "Togo"
+msgstr "Toqo"
+
+#: src/common/util.c:769
+msgid "Thailand"
+msgstr "Tayland"
+
+#: src/common/util.c:770
+msgid "Tajikistan"
+msgstr "Tacikistan"
+
+#: src/common/util.c:771
+msgid "Tokelau"
+msgstr "Tokelo"
+
+#: src/common/util.c:772
+msgid "Turkmenistan"
+msgstr "Türkmənistan"
+
+#: src/common/util.c:773
+msgid "Tunisia"
+msgstr "Tunis"
+
+#: src/common/util.c:774
+msgid "Tonga"
+msgstr "Tonqa"
+
+#: src/common/util.c:775
+msgid "East Timor"
+msgstr "Şərqi Timor"
+
+#: src/common/util.c:776
+msgid "Turkey"
+msgstr "Türkiyə"
+
+#: src/common/util.c:777
+msgid "Trinidad and Tobago"
+msgstr "Trinidad və Tobaqo"
+
+#: src/common/util.c:778
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: src/common/util.c:779
+msgid "Taiwan"
+msgstr "Tayvan"
+
+#: src/common/util.c:780
+msgid "Tanzania"
+msgstr "Tanzaniya"
+
+#: src/common/util.c:781
+msgid "Ukraine"
+msgstr "Ukrayna"
+
+#: src/common/util.c:782
+msgid "Uganda"
+msgstr "Uqanda"
+
+#: src/common/util.c:783
+msgid "United Kingdom"
+msgstr "Birləşmiş Krallıq"
+
+#: src/common/util.c:784
+msgid "US Minor Outlying Islands"
+msgstr "ABŞ Yaxını Adalar"
+
+#: src/common/util.c:785
+msgid "United States of America"
+msgstr "Amerika Birləşmiş Ştatları"
+
+#: src/common/util.c:786
+msgid "Uruguay"
+msgstr "Uruqvay"
+
+#: src/common/util.c:787
+msgid "Uzbekistan"
+msgstr "Özbəkistan"
+
+#: src/common/util.c:788
+msgid "Vatican City State"
+msgstr "Vatikan Şəhər Höküməti"
+
+#: src/common/util.c:789
+#, fuzzy
+msgid "St. Vincent and the Grenadines"
+msgstr "St. Vincent və qrenadinlər"
+
+#: src/common/util.c:790
+msgid "Venezuela"
+msgstr "Venezuela"
+
+#: src/common/util.c:791
+msgid "British Virgin Islands"
+msgstr "Britaniya Virgin Adaları"
+
+#: src/common/util.c:792
+msgid "US Virgin Islands"
+msgstr "ABŞ Virgin Adaları"
+
+#: src/common/util.c:793
+msgid "Vietnam"
+msgstr "Vyetnam"
+
+#: src/common/util.c:794
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: src/common/util.c:795
+msgid "Wallis and Futuna Islands"
+msgstr "Vallis və Futuna Adaları"
+
+#: src/common/util.c:796
+msgid "Samoa"
+msgstr "Samoa"
+
+#: src/common/util.c:797
+msgid "Yemen"
+msgstr "Yəmən"
+
+#: src/common/util.c:798
+msgid "Mayotte"
+msgstr "Mayot"
+
+#: src/common/util.c:799
+msgid "Yugoslavia"
+msgstr "Yuqoslaviya"
+
+#: src/common/util.c:800
+msgid "South Africa"
+msgstr "Cənubi Afrika"
+
+#: src/common/util.c:801
+msgid "Zambia"
+msgstr "Zambiya"
+
+#: src/common/util.c:802
+msgid "Zaire"
+msgstr "Zair"
+
+#: src/common/util.c:803
+msgid "Zimbabwe"
+msgstr "Zimbabve"
+
+#: src/common/util.c:809 src/common/util.c:819 src/fe-gtk/menu.c:482
+#: src/fe-gtk/menu.c:486 src/fe-gtk/menu.c:490 src/fe-gtk/menu.c:494
+#: src/fe-gtk/menu.c:498
+msgid "Unknown"
+msgstr "Namə'lum"
+
+#: src/common/rage.c:903 src/fe-gtk/ignoregui.c:150
+msgid "DCC"
+msgstr "DCC"
+
+#: src/common/rage.c:904
+msgid "Send File"
+msgstr "Fayl Yolla"
+
+#: src/common/rage.c:905
+msgid "Offer Chat"
+msgstr "Söhbət Təklif Et"
+
+#: src/common/rage.c:906
+msgid "Abort Chat"
+msgstr "Söhbəti Sonlandır"
+
+#: src/common/rage.c:907 src/fe-gtk/plugingui.c:50
+msgid "Version"
+msgstr "Buraxılış"
+
+#: src/common/rage.c:908
+msgid "Userinfo"
+msgstr "İstifadəçi mə'lumatı"
+
+#: src/common/rage.c:909
+msgid "Clientinfo"
+msgstr "Alıcı mə'lumatı"
+
+#: src/common/rage.c:910 src/common/rage.c:944 src/common/rage.c:995
+msgid "Ping"
+msgstr "Ping"
+
+#: src/common/rage.c:911
+msgid "Time"
+msgstr "Saat"
+
+#: src/common/rage.c:912
+msgid "Finger"
+msgstr "Finger"
+
+#: src/common/rage.c:913
+msgid "Oper"
+msgstr "Oper"
+
+#: src/common/rage.c:914
+msgid "Kill this user"
+msgstr "Bu istifadəçini kill et"
+
+#: src/common/rage.c:915
+msgid "Mode"
+msgstr "Mod"
+
+#: src/common/rage.c:916
+msgid "Give Ops"
+msgstr "Op Ver"
+
+#: src/common/rage.c:917
+msgid "Take Ops"
+msgstr "Op Al"
+
+#: src/common/rage.c:918
+#, fuzzy
+msgid "Give Half-Ops"
+msgstr "Op Ver"
+
+#: src/common/rage.c:919
+#, fuzzy
+msgid "Take Half-Ops"
+msgstr "Op Al"
+
+#: src/common/rage.c:920
+msgid "Give Voice"
+msgstr "Voice Ver"
+
+#: src/common/rage.c:921
+msgid "Take Voice"
+msgstr "Voice Al"
+
+#: src/common/rage.c:922
+msgid "Ignore"
+msgstr "Rədd Et"
+
+#: src/common/rage.c:923
+msgid "Ignore User"
+msgstr "İstifadəçini Rədd Et"
+
+#: src/common/rage.c:924
+msgid "UnIgnore User"
+msgstr "İstifadəçidən Rəddi Sil"
+
+#: src/common/rage.c:925
+msgid "Kick/Ban"
+msgstr "Kick/Ban"
+
+#: src/common/rage.c:926 src/common/rage.c:978
+msgid "Kick"
+msgstr "Kick-lə"
+
+#: src/common/rage.c:927 src/common/rage.c:928 src/common/rage.c:929
+#: src/common/rage.c:930 src/common/rage.c:931 src/common/rage.c:977
+msgid "Ban"
+msgstr "Ban-la"
+
+#: src/common/rage.c:932 src/common/rage.c:933 src/common/rage.c:934
+#: src/common/rage.c:935
+msgid "KickBan"
+msgstr "KickBan-la"
+
+#: src/common/rage.c:936 src/fe-gtk/dccgui.c:491 src/fe-gtk/dccgui.c:659
+msgid "Info"
+msgstr "Mə'lumat"
+
+#: src/common/rage.c:937
+msgid "Who"
+msgstr "Who"
+
+#: src/common/rage.c:938 src/common/rage.c:991
+msgid "WhoIs"
+msgstr "WhoIs"
+
+#: src/common/rage.c:939
+msgid "DNS Lookup"
+msgstr "DNS Lookup"
+
+#: src/common/rage.c:940
+msgid "Trace"
+msgstr "Trace"
+
+#: src/common/rage.c:941
+msgid "UserHost"
+msgstr "İstifadəçi Qovşağı"
+
+#: src/common/rage.c:942
+msgid "External"
+msgstr "Xarici"
+
+#: src/common/rage.c:943
+msgid "Traceroute"
+msgstr "Traceroute"
+
+#: src/common/rage.c:945
+msgid "Telnet"
+msgstr "Telnet"
+
+#: src/common/rage.c:946
+msgid "Open Dialog Window"
+msgstr "Dialoq Pəncərəsini Aç"
+
+#: src/common/rage.c:958
+msgid "Disconnect"
+msgstr "Bağlantını Kəs"
+
+#: src/common/rage.c:959
+msgid "Reconnect"
+msgstr "Yenidən Bağlan"
+
+#: src/common/rage.c:960
+msgid "Leave Channel"
+msgstr "Kanaldan Çıx"
+
+#: src/common/rage.c:961
+msgid "Join Channel..."
+msgstr "Kanala Daxil Ol..."
+
+#: src/common/rage.c:962
+msgid "Enter Channel to Join:"
+msgstr "Daxil Olunacaq Kanalı Bildir:"
+
+#: src/common/rage.c:963
+msgid "Server Links"
+msgstr "Verici Körpüləri"
+
+#: src/common/rage.c:964
+msgid "Ping Server"
+msgstr "Vericini Pinglə"
+
+#: src/common/rage.c:965
+msgid "Hide Version"
+msgstr "Buraxılışı Gizlət"
+
+#: src/common/rage.c:975
+msgid "Op"
+msgstr "Op"
+
+#: src/common/rage.c:976
+msgid "DeOp"
+msgstr "DeOp"
+
+#: src/common/rage.c:979
+msgid "bye"
+msgstr "Di ha!"
+
+#: src/common/rage.c:980
+#, c-format
+msgid "Enter reason to kick %s:"
+msgstr "Kickləmə səbəbi %s:"
+
+#: src/common/rage.c:981
+msgid "Sendfile"
+msgstr "Fayl yolla"
+
+#: src/common/rage.c:982
+msgid "Dialog"
+msgstr "Dialoq"
+
+#: src/common/rage.c:992
+msgid "Send"
+msgstr "Yolla"
+
+#: src/common/rage.c:993
+msgid "Chat"
+msgstr "Söhbət"
+
+#: src/common/rage.c:994 src/fe-gtk/banlist.c:288 src/fe-gtk/ignoregui.c:355
+#: src/fe-gtk/search.c:99 src/fe-gtk/urlgrab.c:175
+msgid "Clear"
+msgstr "Təmizlə"
+
+#: src/fe-gtk/about.c:74
+#, fuzzy
+msgid "About Rage"
+msgstr "X-Chat Haqqında"
+
+#: src/fe-gtk/about.c:98
+msgid "A multiplatform IRC Client"
+msgstr "Çox Platformlu IRC Alıcısı"
+
+#: src/fe-gtk/ascii.c:113
+msgid "Character Chart"
+msgstr "Hərf Cədvəli"
+
+#: src/fe-gtk/banlist.c:122 src/fe-gtk/banlist.c:206
+msgid "You must select some bans."
+msgstr "Bir iki ban seçməlisiniz."
+
+#: src/fe-gtk/banlist.c:222 src/fe-gtk/ignoregui.c:145
+msgid "Mask"
+msgstr "Maska"
+
+#: src/fe-gtk/banlist.c:223 src/fe-gtk/dccgui.c:451
+msgid "From"
+msgstr "Göndərən"
+
+#: src/fe-gtk/banlist.c:224
+msgid "Date"
+msgstr "Tarix"
+
+#: src/fe-gtk/banlist.c:268
+#, fuzzy, c-format
+msgid "Rage: Ban List (%s)"
+msgstr "X-Chat: Ban Siyahısı (%s)"
+
+#: src/fe-gtk/banlist.c:284
+msgid "Unban"
+msgstr "Unban"
+
+#: src/fe-gtk/banlist.c:286
+msgid "Crop"
+msgstr "Kəs"
+
+#: src/fe-gtk/banlist.c:290
+msgid "Refresh"
+msgstr "Yenilə"
+
+#: src/fe-gtk/chanlist.c:92
+#, c-format
+msgid "User and Channel Statistics: %d/%d Users on %d/%d Channels"
+msgstr ""
+"İstifadəçi və Kanal Statistikaları: %d/%d istifadəçi toplam %d/%d kanalda"
+
+#: src/fe-gtk/chanlist.c:508
+msgid "I can't save an empty list!"
+msgstr "Boş siyahını qeyd etmək olmaz axı!"
+
+#: src/fe-gtk/chanlist.c:511 src/fe-gtk/menu.c:928
+msgid "Select an output filename"
+msgstr "Çıxış fay adını seç"
+
+#: src/fe-gtk/chanlist.c:579
+#, fuzzy, c-format
+msgid "Rage: Channel List (%s)"
+msgstr "X-Chat: Kanal Siyahısı (%s)"
+
+#: src/fe-gtk/chanlist.c:594
+msgid "List display options:"
+msgstr "Görünüş seçimlərini göstər:"
+
+#: src/fe-gtk/chanlist.c:606
+msgid "Minimum Users:"
+msgstr "Ən Az İstifadəçi:"
+
+#: src/fe-gtk/chanlist.c:621
+msgid "Maximum Users:"
+msgstr "Ən Çox İstifadəçi:"
+
+#: src/fe-gtk/chanlist.c:636
+msgid "Regex Match:"
+msgstr "Regex Axtarışı:"
+
+#: src/fe-gtk/chanlist.c:657
+msgid "Apply Match to:"
+msgstr "Axtarışı Buna Tətbiq Et:"
+
+#: src/fe-gtk/chanlist.c:681
+msgid "Apply"
+msgstr "Tətbiq Et"
+
+#: src/fe-gtk/chanlist.c:723
+msgid "Refresh the list"
+msgstr "Siyahını yenilə"
+
+#: src/fe-gtk/chanlist.c:725
+msgid "Save the list"
+msgstr "Siyahını qeyd qt"
+
+#: src/fe-gtk/chanlist.c:727 src/fe-gtk/menu.c:725
+msgid "Join Channel"
+msgstr "Kanala Daxil Ol"
+
+#: src/fe-gtk/dccgui.c:79
+#, c-format
+msgid "Send file to %s"
+msgstr "Faylı %s-a yolla"
+
+#: src/fe-gtk/dccgui.c:304
+#, fuzzy, c-format
+msgid ""
+"      File: %s\n"
+"   To/From: %s\n"
+"      Size: %<PRIu64>\n"
+"      Port: %d\n"
+" IP Number: %s\n"
+"Start Time: %s   Max CPS: %d\n"
+msgstr ""
+"      Fayl: %s\n"
+"   Alıcı/Göndərən: %s\n"
+"      Böyüklük: %u\n"
+"      Port: %d\n"
+" IP Nömrəsi: %s\n"
+"Başlanğıc Vaxtı: %s   Maksimal CPS: %d\n"
+
+#: src/fe-gtk/dccgui.c:338
+msgid "That file is not resumable."
+msgstr "Bu fayl davam etdirilə bilən deyil."
+
+#: src/fe-gtk/dccgui.c:342
+#, c-format
+msgid ""
+"Cannot access file: %s\n"
+"%s.\n"
+"Resuming not possible."
+msgstr ""
+"Fayla yetişilə bilmir: %s\n"
+"%s.\n"
+"Davam etdirmə mümkün olmayacaqdır."
+
+#: src/fe-gtk/dccgui.c:349
+msgid ""
+"File in download directory is larger than file offered. Resuming not "
+"possible."
+msgstr ""
+"Endirilən fayl təklif olunandan daha böyükdür. Davam etdirmə mümkün deyil."
+
+#: src/fe-gtk/dccgui.c:353
+msgid "Cannot resume the same file from two people."
+msgstr "Eyni fayl iki nəfərdən davam etdirilə bilməz."
+
+#: src/fe-gtk/dccgui.c:440
+msgid "MIME Type"
+msgstr "MIME Növü"
+
+#: src/fe-gtk/dccgui.c:446 src/fe-gtk/dccgui.c:619 src/fe-gtk/dccgui.c:743
+#: src/fe-gtk/notifygui.c:81
+msgid "Status"
+msgstr "Vəziyyət"
+
+#: src/fe-gtk/dccgui.c:447 src/fe-gtk/dccgui.c:620 src/fe-gtk/plugingui.c:51
+msgid "File"
+msgstr "Fayl"
+
+#: src/fe-gtk/dccgui.c:450 src/fe-gtk/dccgui.c:624
+msgid "ETA"
+msgstr "ETA"
+
+#: src/fe-gtk/dccgui.c:460
+#, fuzzy
+msgid "Rage: File Receive List"
+msgstr "X-Chat: Fayl Alış Sıyahısı"
+
+#: src/fe-gtk/dccgui.c:488 src/fe-gtk/dccgui.c:657 src/fe-gtk/dccgui.c:772
+msgid "Abort"
+msgstr "Ləğv Et"
+
+#: src/fe-gtk/dccgui.c:489 src/fe-gtk/dccgui.c:773
+msgid "Accept"
+msgstr "Qəbul Et"
+
+#: src/fe-gtk/dccgui.c:490
+msgid "Resume"
+msgstr "Davam Et"
+
+#: src/fe-gtk/dccgui.c:493
+msgid "Open"
+msgstr "Aç"
+
+#: src/fe-gtk/dccgui.c:623
+msgid "Ack"
+msgstr "Ack"
+
+#: src/fe-gtk/dccgui.c:625
+msgid "To"
+msgstr "Alıcı"
+
+#: src/fe-gtk/dccgui.c:635
+#, fuzzy
+msgid "Rage: File Send List"
+msgstr "X-Chat: Fayl Göndəriş Siyahısı"
+
+#: src/fe-gtk/dccgui.c:658
+#, fuzzy
+msgid "Reoffer"
+msgstr "Sil"
+
+#: src/fe-gtk/dccgui.c:744
+msgid "To/From"
+msgstr "ALıcı/Göndərən"
+
+#: src/fe-gtk/dccgui.c:745
+msgid "Recv"
+msgstr "Alc"
+
+#: src/fe-gtk/dccgui.c:746
+msgid "Sent"
+msgstr "Gnd"
+
+#: src/fe-gtk/dccgui.c:747
+msgid "StartTime"
+msgstr "Başlanğıc Vaxtı"
+
+#: src/fe-gtk/dccgui.c:756
+#, fuzzy
+msgid "Rage: DCC Chat List"
+msgstr "X-Chat: DCC Söhbət Siyahısı"
+
+#: src/fe-gtk/editlist.c:116
+msgid "*NEW*"
+msgstr "*YENİ*"
+
+#: src/fe-gtk/editlist.c:117
+msgid "EDIT ME"
+msgstr "MƏNİ DÜZƏLT"
+
+#: src/fe-gtk/editlist.c:281 src/fe-gtk/plugingui.c:49
+msgid "Name"
+msgstr "Ad"
+
+#: src/fe-gtk/editlist.c:282
+msgid "Command"
+msgstr "Əmr"
+
+#: src/fe-gtk/editlist.c:318
+msgid "Move Up"
+msgstr "Yuxarı Daşı"
+
+#: src/fe-gtk/editlist.c:322
+msgid "Move Dn"
+msgstr "Aşağı Daşı"
+
+#: src/fe-gtk/editlist.c:330
+msgid "Cancel"
+msgstr "Ləğv Et"
+
+#: src/fe-gtk/editlist.c:334 src/fe-gtk/textgui.c:382 src/fe-gtk/urlgrab.c:179
+msgid "Save"
+msgstr "Qeyd Et"
+
+#: src/fe-gtk/editlist.c:342
+msgid "Add New"
+msgstr "Yenisini Əlavə Et"
+
+#: src/fe-gtk/editlist.c:346 src/fe-gtk/fkeys.c:704 src/fe-gtk/ignoregui.c:354
+msgid "Delete"
+msgstr "Sil"
+
+#: src/fe-gtk/editlist.c:354
+msgid "Sort"
+msgstr "Nizamla"
+
+#: src/fe-gtk/editlist.c:358
+msgid "Help"
+msgstr "Yardım"
+
+#: src/fe-gtk/fe-gtk.c:130
+msgid "Options"
+msgstr "Seçimlər"
+
+#: src/fe-gtk/fe-gtk.c:131
+msgid "don't auto connect"
+msgstr "qətiyyən avtomatik bağlanma"
+
+#: src/fe-gtk/fe-gtk.c:132
+msgid "DIRECTORY"
+msgstr "CƏRGƏ"
+
+#: src/fe-gtk/fe-gtk.c:133
+msgid "use a different config dir"
+msgstr "başqa quraşdırma cərgəsi işlət"
+
+#: src/fe-gtk/fe-gtk.c:134
+msgid "don't auto load any plugins"
+msgstr "heç bir əlavəni avtomatik yükləmə"
+
+#: src/fe-gtk/fe-gtk.c:135
+msgid "show plugin auto-load dir"
+msgstr ""
+
+#: src/fe-gtk/fe-gtk.c:136
+#, fuzzy
+msgid "show user config dir"
+msgstr "başqa quraşdırma cərgəsi işlət"
+
+#: src/fe-gtk/fe-gtk.c:137
+msgid "show version information"
+msgstr "buraxılış mə'lumatını göstər"
+
+#: src/fe-gtk/fe-gtk.c:222
+#, c-format
+msgid ""
+"Failed to open font:\n"
+"\n"
+"%s"
+msgstr ""
+"Yazə növü açıla bilmədi:\n"
+"\n"
+"%s"
+
+#: src/fe-gtk/fe-gtk.c:531
+msgid "Search buffer is empty.\n"
+msgstr "Axtarış bufferi boşdur.\n"
+
+#: src/fe-gtk/fe-gtk.c:608
+#, fuzzy, c-format
+msgid "%d lines"
+msgstr "%d bayt"
+
+#: src/fe-gtk/fkeys.c:114
+msgid ""
+"The Run Command action runs the data in Data 1 as if it has been typed into "
+"the entry box where you pressed the key sequence. Thus it can contain text "
+"(which will be sent to the channel/person), commands or user commands. When "
+"run all \\n characters in Data 1 are used to deliminate seperate commands so "
+"it is possible to run more than one command. If you want a \\ in the actual "
+"text run then enter \\\\"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:116
+msgid ""
+"The Change Page command switches between pages in the notebook. Set Data 1 "
+"to the page you want to switch to. If Data 2 is set to anything then the "
+"switch will be relative to the current position"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:118
+msgid ""
+"The Insert in Buffer command will insert the contents of Data 1 into the "
+"entry where the key sequence was pressed at the current cursor position"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:120
+msgid ""
+"The Scroll Page command scrolls the text widget up or down one page or one "
+"line. Set Data 1 to either Up, Down, +1 or -1."
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:122
+msgid ""
+"The Set Buffer command sets the entry where the key sequence was entered to "
+"the contents of Data 1"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:124
+msgid ""
+"The Last Command command sets the entry to contain the last command entered "
+"- the same as pressing up in a shell"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:126
+msgid ""
+"The Next Command command sets the entry to contain the next command entered "
+"- the same as pressing down in a shell"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:128
+msgid ""
+"This command changes the text in the entry to finish an incomplete nickname "
+"or command. If Data 1 is set then double-tabbing in a string will select the "
+"last nick, not the next"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:130
+msgid ""
+"This command scrolls up and down through the list of nicks. If Data 1 is set "
+"to anything it will scroll up, else it scrolls down"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:132
+msgid ""
+"This command checks the last word entered in the entry against the replace "
+"list and replaces it if it finds a match"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:134
+msgid "This command moves the front tab left by one"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:136
+msgid "This command moves the front tab right by one"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:138
+msgid "This command moves the current tab family to the left"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:140
+msgid "This command moves the current tab family to the right"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:142
+msgid "Push input line into history but doesn't send to server"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:154
+msgid "There was an error loading key bindings configuration"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:392 src/fe-gtk/fkeys.c:393 src/fe-gtk/fkeys.c:394
+#: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
+#: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
+#: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
+#: src/fe-gtk/maingui.c:2459
+msgid "<none>"
+msgstr "<boş>"
+
+#: src/fe-gtk/fkeys.c:641
+msgid "Mod"
+msgstr "Mod"
+
+#: src/fe-gtk/fkeys.c:642 src/fe-gtk/fkeys.c:737
+msgid "Key"
+msgstr "Düymə"
+
+#: src/fe-gtk/fkeys.c:643
+msgid "Action"
+msgstr "Gedişat"
+
+#: src/fe-gtk/fkeys.c:652
+msgid "Rage: Keyboard Shortcuts"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:699
+msgid "Add new"
+msgstr "Yenisini əlavə et"
+
+#: src/fe-gtk/fkeys.c:730
+msgid "Shift"
+msgstr "Shift"
+
+#: src/fe-gtk/fkeys.c:732
+msgid "Alt"
+msgstr "Alt"
+
+#: src/fe-gtk/fkeys.c:734
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: src/fe-gtk/fkeys.c:741
+msgid "Data 1"
+msgstr "Verilən 1"
+
+#: src/fe-gtk/fkeys.c:744
+msgid "Data 2"
+msgstr "Verilən 2"
+
+#: src/fe-gtk/fkeys.c:787
+msgid "Error opening keys config file\n"
+msgstr "Düymə quraşdırma faylı açıla bilmədi\n"
+
+#: src/fe-gtk/fkeys.c:958
+#, c-format
+msgid ""
+"Unknown keyname %s in key bindings config file\n"
+"Load aborted, please fix %s/keybindings.conf\n"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:996
+#, c-format
+msgid ""
+"Unknown action %s in key bindings config file\n"
+"Load aborted, Please fix %s/keybindings\n"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:1017
+#, c-format
+msgid ""
+"Expecting Data line (beginning Dx{:|!}) but got:\n"
+"%s\n"
+"\n"
+"Load aborted, Please fix %s/keybindings\n"
+msgstr ""
+
+#: src/fe-gtk/fkeys.c:1086
+#, c-format
+msgid ""
+"Key bindings config file is corrupt, load aborted\n"
+"Please fix %s/keybindings.conf\n"
+msgstr ""
+
+#: src/fe-gtk/gtkutil.c:118
+msgid "Cannot write to that file."
+msgstr "Bu fayla yazıla bilmir."
+
+#: src/fe-gtk/gtkutil.c:120
+msgid "Cannot read that file."
+msgstr "Bu fayl oxuna bilmir."
+
+#: src/fe-gtk/ignoregui.c:87 src/fe-gtk/ignoregui.c:233
+msgid "That mask already exists."
+msgstr "Bu maska onsuz da mövcuddur."
+
+#: src/fe-gtk/ignoregui.c:147 src/fe-gtk/maingui.c:1540
+msgid "Private"
+msgstr "Şəxsi"
+
+#: src/fe-gtk/ignoregui.c:148
+msgid "Notice"
+msgstr "Bildiriş"
+
+#: src/fe-gtk/ignoregui.c:149
+msgid "CTCP"
+msgstr "CTCP"
+
+#: src/fe-gtk/ignoregui.c:151
+msgid "Invite"
+msgstr "Dəvət Et"
+
+#: src/fe-gtk/ignoregui.c:152
+msgid "Unignore"
+msgstr "Qəbul Et"
+
+#: src/fe-gtk/ignoregui.c:277
+msgid "Enter mask to ignore:"
+msgstr "Rədd ediləcək maskanı bildir:"
+
+#: src/fe-gtk/ignoregui.c:324
+#, fuzzy
+msgid "Rage: Ignore list"
+msgstr "X-Chat: Rədd siyahısı"
+
+#: src/fe-gtk/ignoregui.c:331
+msgid "Ignore Stats:"
+msgstr "Rədd Statistikaları:"
+
+#: src/fe-gtk/ignoregui.c:339
+msgid "Channel:"
+msgstr "Kanal:"
+
+#: src/fe-gtk/ignoregui.c:340
+msgid "Private:"
+msgstr "Şəxsi:"
+
+#: src/fe-gtk/ignoregui.c:341
+msgid "Notice:"
+msgstr "Bildiriş:"
+
+#: src/fe-gtk/ignoregui.c:342
+msgid "CTCP:"
+msgstr "CTCP:"
+
+#: src/fe-gtk/ignoregui.c:343
+msgid "Invite:"
+msgstr "Dəvət:"
+
+#: src/fe-gtk/ignoregui.c:353 src/fe-gtk/notifygui.c:277
+msgid "Add"
+msgstr "Əlavə Et"
+
+#: src/fe-gtk/maingui.c:275
+#, fuzzy
+msgid "Dialog with"
+msgstr "Dialoq"
+
+#: src/fe-gtk/maingui.c:531
+#, c-format
+msgid "Topic for %s is: %s"
+msgstr "%s mövzusu: %s"
+
+#: src/fe-gtk/maingui.c:536
+msgid "No topic is set"
+msgstr "Mövzu seçilməyib"
+
+#: src/fe-gtk/maingui.c:934
+msgid "No other tabs open, quit xchat?"
+msgstr "Açıq səkmə qalmadı, xchat sonlandırılsın?"
+
+#: src/fe-gtk/maingui.c:980
+msgid "Insert color code"
+msgstr "Rəng kodu daxil et"
+
+#: src/fe-gtk/maingui.c:1029
+msgid "Beep on message"
+msgstr "İsmarış gələndə səs çal"
+
+#: src/fe-gtk/maingui.c:1032
+msgid "Show join/part messages"
+msgstr "join/part ismarışlarını göstər"
+
+#: src/fe-gtk/maingui.c:1034
+msgid "Color paste"
+msgstr "Rəngli yapışdır"
+
+#: src/fe-gtk/maingui.c:1044
+msgid "Go to"
+msgstr "Get"
+
+#: src/fe-gtk/maingui.c:1057 src/fe-gtk/menu.c:1255
+msgid "Close Tab"
+msgstr "Səkməni Bağla"
+
+#: src/fe-gtk/maingui.c:1060 src/fe-gtk/menu.c:1408
+msgid "Detach Tab"
+msgstr "Səkməni Ayır"
+
+#: src/fe-gtk/maingui.c:1253
+msgid "Some file transfers still active, quit xchat?"
+msgstr "Bə'zi fayl transferləri hələ də fəaldır, xchat sonlandırılsın?"
+
+#: src/fe-gtk/maingui.c:1406 src/fe-gtk/maingui.c:1513
+msgid "User limit must be a number!\n"
+msgstr "İstifadəçi hüdüdu nömrə olmalıdır!\n"
+
+#: src/fe-gtk/maingui.c:1536
+msgid "Topic Protection"
+msgstr "Mövzu Qoruması"
+
+#: src/fe-gtk/maingui.c:1537
+msgid "No outside messages"
+msgstr "Xarici ismarışlar göstərilməsin"
+
+#: src/fe-gtk/maingui.c:1538
+msgid "Secret"
+msgstr "Gizli"
+
+#: src/fe-gtk/maingui.c:1539
+msgid "Invite Only"
+msgstr "Ancaq Dəvət Et"
+
+#: src/fe-gtk/maingui.c:1541
+msgid "Moderated"
+msgstr "Modereytlənmiş"
+
+#: src/fe-gtk/maingui.c:1542
+msgid "Ban List"
+msgstr "Ban Siyahısı"
+
+#: src/fe-gtk/maingui.c:1544
+msgid "Keyword"
+msgstr "Açar Kəlmə"
+
+#: src/fe-gtk/maingui.c:1556
+msgid "User Limit"
+msgstr "İstifadəçi Hüdüdu"
+
+#: src/fe-gtk/maingui.c:1731
+msgid ""
+"Unable to set transparent background!\n"
+"\n"
+"You may be using a non-compliant window\n"
+"manager that is not currently supported.\n"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
+#: src/fe-gtk/maingui.c:2681
+msgid "Attach/Detach this tab"
+msgstr ""
+
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
+msgid "Close this tab/window"
+msgstr "Bu səkmə/pəncərəni bağla"
+
+#: src/fe-gtk/maingui.c:1927
+msgid "Show/Hide userlist"
+msgstr "İstifadəçi siyahısını göstər/gizlət"
+
+#: src/fe-gtk/maingui.c:1965
+msgid "Enter new nickname:"
+msgstr "Yeni ləqəb bildir:"
+
+#: src/fe-gtk/menu.c:120
+msgid "Host unknown"
+msgstr "Namə'lum qovşaq"
+
+#: src/fe-gtk/menu.c:481
+#, c-format
+msgid "User: %s"
+msgstr "İstifadəçi: %s"
+
+#: src/fe-gtk/menu.c:485
+#, c-format
+msgid "Country: %s"
+msgstr "Ölkə: %s"
+
+#: src/fe-gtk/menu.c:489
+#, c-format
+msgid "Realname: %s"
+msgstr "Həqiqi ad: %s"
+
+#: src/fe-gtk/menu.c:493
+#, c-format
+msgid "Server: %s"
+msgstr "Verici: %s"
+
+#: src/fe-gtk/menu.c:497
+#, c-format
+msgid "Last Msg: %s"
+msgstr "Son ismarış: %s"
+
+#: src/fe-gtk/menu.c:582
+msgid "Menu Bar"
+msgstr "Menyu Çubuğu"
+
+#: src/fe-gtk/menu.c:583
+msgid "Topic Bar"
+msgstr "Mövzu Çubuğu"
+
+#: src/fe-gtk/menu.c:587 src/fe-gtk/setup.c:111
+msgid "User List"
+msgstr "İstifadəçi Siyahısı"
+
+#: src/fe-gtk/menu.c:590
+msgid "Mode Buttons"
+msgstr "Mod Düymələri"
+
+#: src/fe-gtk/menu.c:596
+msgid "User List Buttons"
+msgstr "İstifadəçi Siyahısı Düymələri"
+
+#: src/fe-gtk/menu.c:666 src/fe-gtk/urlgrab.c:177
+msgid "Copy selected URL"
+msgstr "Seçili URL-ni Köçür"
+
+#: src/fe-gtk/menu.c:729
+msgid "Part Channel"
+msgstr "Part Kanalı"
+
+#: src/fe-gtk/menu.c:731
+msgid "Cycle Channel"
+msgstr "Cycle Kanalı"
+
+#: src/fe-gtk/menu.c:754
+#, fuzzy
+msgid "Rage: User menu"
+msgstr "X-Chat: İstifadəçi menyusu"
+
+#: src/fe-gtk/menu.c:763
+msgid "Edit This Menu..."
+msgstr "Bu Menyunu Dəyişdir..."
+
+#: src/fe-gtk/menu.c:870
+msgid ""
+"*WARNING*\n"
+"Auto accepting DCC to your home directory\n"
+"can be dangerous and is exploitable. Eg:\n"
+"Someone could send you a .bash_profile"
+msgstr ""
+
+#: src/fe-gtk/menu.c:998
+msgid "Settings saved."
+msgstr "Qurğular qeyd edildi."
+
+#: src/fe-gtk/menu.c:1035
+msgid ""
+"User Commands - Special codes:\n"
+"\n"
+"%c  =  current channel\n"
+"%m  =  machine info\n"
+"%n  =  your nick\n"
+"%t  =  time/date\n"
+"%v  =  xchat version\n"
+"%2  =  word 2\n"
+"%3  =  word 3\n"
+"&2  =  word 2 to the end of line\n"
+"&3  =  word 3 to the end of line\n"
+"\n"
+"eg:\n"
+"/cmd john hello\n"
+"\n"
+"%2 would be \"john\"\n"
+"&2 would be \"john hello\"."
+msgstr ""
+
+#: src/fe-gtk/menu.c:1050
+msgid ""
+"Userlist Buttons - Special codes:\n"
+"\n"
+"%a  =  all selected nicks\n"
+"%c  =  current channel\n"
+"%h  =  selected nick's hostname\n"
+"%m  =  machine info\n"
+"%n  =  your nick\n"
+"%s  =  selected nick\n"
+"%t  =  time/date\n"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1059
+msgid ""
+"Dialog Buttons - Special codes:\n"
+"\n"
+"%a  =  all selected nicks\n"
+"%c  =  current channel\n"
+"%h  =  selected nick's hostname\n"
+"%m  =  machine info\n"
+"%n  =  your nick\n"
+"%s  =  selected nick\n"
+"%t  =  time/date\n"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1068
+msgid ""
+"CTCP Replies - Special codes:\n"
+"\n"
+"%d  =  data (the whole ctcp)\n"
+"%m  =  machine info\n"
+"%s  =  nick who sent the ctcp\n"
+"%t  =  time/date\n"
+"%2  =  word 2\n"
+"%3  =  word 3\n"
+"&2  =  word 2 to the end of line\n"
+"&3  =  word 3 to the end of line\n"
+"\n"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1078
+#, c-format
+msgid ""
+"URL Handlers - Special codes:\n"
+"\n"
+"%s  =  the URL string\n"
+"\n"
+"Putting a ! infront of the command\n"
+"indicates it should be sent to a\n"
+"shell instead of Rage"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1087
+#, fuzzy
+msgid "Rage: User Defined Commands"
+msgstr "X-Chat: İstifadəçi Tə'yinli Əmrlər"
+
+#: src/fe-gtk/menu.c:1094
+#, fuzzy
+msgid "Rage: Userlist Popup menu"
+msgstr "X-Chat: İstifadəçi siyahısı popup menyusu"
+
+#: src/fe-gtk/menu.c:1101
+#, fuzzy
+msgid "Rage: Replace"
+msgstr "X-Chat: Əvəz Et"
+
+#: src/fe-gtk/menu.c:1108
+#, fuzzy
+msgid "Rage: URL Handlers"
+msgstr "X-Chat: URL Açıcıları"
+
+#: src/fe-gtk/menu.c:1127
+#, fuzzy
+msgid "Rage: Userlist buttons"
+msgstr "X-Chat: İstifadəçi siyahısı düymələri"
+
+#: src/fe-gtk/menu.c:1134
+#, fuzzy
+msgid "Rage: Dialog buttons"
+msgstr "X-Chat: Dialoq düymələri"
+
+#: src/fe-gtk/menu.c:1141
+#, fuzzy
+msgid "Rage: CTCP Replies"
+msgstr "X-Chat: CTCP Cavabları"
+
+#: src/fe-gtk/menu.c:1229
+msgid "_Rage"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1230
+msgid "Server List..."
+msgstr "Verici Siyahısı..."
+
+#: src/fe-gtk/menu.c:1233
+msgid "New"
+msgstr "Yeni"
+
+#: src/fe-gtk/menu.c:1234
+msgid "Server Tab..."
+msgstr "Verici Səkməsi..."
+
+#: src/fe-gtk/menu.c:1235
+msgid "Channel Tab..."
+msgstr "Kanal Səkməsi..."
+
+#: src/fe-gtk/menu.c:1236
+msgid "Server Window..."
+msgstr "Verici Pəncərəsi..."
+
+#: src/fe-gtk/menu.c:1237
+msgid "Channel Window..."
+msgstr "Kanal Pəncərəsi..."
+
+#: src/fe-gtk/menu.c:1242 src/fe-gtk/menu.c:1244
+msgid "Load Plugin or Script..."
+msgstr "Əlavə ya da skript yüklə..."
+
+#: src/fe-gtk/menu.c:1248
+msgid "New Shell Tab..."
+msgstr "Yeni Qabıq Səkməsi..."
+
+#: src/fe-gtk/menu.c:1257
+msgid "Quit"
+msgstr "Çıx"
+
+#: src/fe-gtk/menu.c:1259
+msgid "_IRC"
+msgstr "_IRC"
+
+#: src/fe-gtk/menu.c:1260
+msgid "Invisible"
+msgstr "Gizli"
+
+#: src/fe-gtk/menu.c:1261
+msgid "Receive Wallops"
+msgstr "Wallopları al"
+
+#: src/fe-gtk/menu.c:1262
+msgid "Receive Server Notices"
+msgstr "Verici bildirişlərini al"
+
+#: src/fe-gtk/menu.c:1264
+msgid "Marked Away"
+msgstr "Uzaqda"
+
+#: src/fe-gtk/menu.c:1266
+msgid "Auto Rejoin when Kicked"
+msgstr "Kick-lənəndə avtomatik olaraq yenidən daxil ol"
+
+#: src/fe-gtk/menu.c:1267
+msgid "Auto Reconnect to Server"
+msgstr "Vericiyə avtomatik olaraq yenidən bağlan"
+
+#: src/fe-gtk/menu.c:1268
+msgid "Never-give-up ReConnect"
+msgstr "Qətiyyən yenidən bağlanmağı sonlandırma"
+
+#: src/fe-gtk/menu.c:1270
+msgid "Auto Open Dialog Windows"
+msgstr "Dialoq pəncərələrini avtomatik aç"
+
+#: src/fe-gtk/menu.c:1271
+msgid "Auto Accept Direct Chat"
+msgstr "Birbaşa söhbəti avtomatik qəbul et"
+
+#: src/fe-gtk/menu.c:1272
+msgid "Auto Accept Files"
+msgstr "Faylları avtomatik qəbul et "
+
+#: src/fe-gtk/menu.c:1274
+msgid "_Server"
+msgstr "_Verici"
+
+#: src/fe-gtk/menu.c:1276
+msgid "S_ettings"
+msgstr "_Qurğular"
+
+#: src/fe-gtk/menu.c:1277
+msgid "Preferences..."
+msgstr "Seçimlər..."
+
+#: src/fe-gtk/menu.c:1279
+msgid "Advanced"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1280
+msgid "Auto Replace..."
+msgstr "Avtomatik Əvəz Et..."
+
+#: src/fe-gtk/menu.c:1281
+msgid "CTCP Replies..."
+msgstr "CTCP Cavabları..."
+
+#: src/fe-gtk/menu.c:1282
+msgid "Dialog Buttons..."
+msgstr "Dialoq Düymələri..."
+
+#: src/fe-gtk/menu.c:1283
+msgid "Keyboard Shortcuts..."
+msgstr ""
+
+#: src/fe-gtk/menu.c:1284
+msgid "Text Events..."
+msgstr "Mətn Hadisələri..."
+
+#: src/fe-gtk/menu.c:1285
+msgid "URL Handlers..."
+msgstr "URL Açıcıları..."
+
+#: src/fe-gtk/menu.c:1286
+msgid "User Commands..."
+msgstr "İstifadəçi Əmrləri..."
+
+#: src/fe-gtk/menu.c:1287
+msgid "Userlist Buttons..."
+msgstr "İstifadəçi Siyahısı Düymələri..."
+
+#: src/fe-gtk/menu.c:1288
+msgid "Userlist Popup..."
+msgstr "İstifadəçi Siyahısı Popup-ı..."
+
+#: src/fe-gtk/menu.c:1293
+msgid "Reload Settings"
+msgstr "Qurğuları Yenilə"
+
+#: src/fe-gtk/menu.c:1295
+msgid "Save Settings now"
+msgstr "Qurğuları indi qeyd et"
+
+#: src/fe-gtk/menu.c:1296
+msgid "Save Settings on exit"
+msgstr "Qurğuları çıxışda qeyd et"
+
+#: src/fe-gtk/menu.c:1299
+msgid "_Window"
+msgstr "_Pəncərə"
+
+#: src/fe-gtk/menu.c:1300
+msgid "Ban List..."
+msgstr "Ban Siyahısı..."
+
+#: src/fe-gtk/menu.c:1301
+msgid "Channel List..."
+msgstr "Kanal Siyahısı..."
+
+#: src/fe-gtk/menu.c:1302
+msgid "Character Chart..."
+msgstr "Hərf Cədvəli..."
+
+#: src/fe-gtk/menu.c:1303
+msgid "Direct Chat..."
+msgstr "Birbaşa Söhbət..."
+
+#: src/fe-gtk/menu.c:1304
+msgid "File Receive..."
+msgstr "Fayl Alışı..."
+
+#: src/fe-gtk/menu.c:1305
+msgid "File Send..."
+msgstr "Fayl Göndərilməsi..."
+
+#: src/fe-gtk/menu.c:1306
+msgid "Ignore List..."
+msgstr "Rədd Siyahısı..."
+
+#: src/fe-gtk/menu.c:1307
+msgid "Notify List..."
+msgstr "Bildiriş Siyahısı..."
+
+#: src/fe-gtk/menu.c:1308
+msgid "Plugins and Scripts..."
+msgstr "Əlavələr və Skriptlər..."
+
+#: src/fe-gtk/menu.c:1309
+msgid "Raw Log..."
+msgstr "Xam Qeyd..."
+
+#: src/fe-gtk/menu.c:1310
+msgid "URL Grabber..."
+msgstr "URL Alıcısı..."
+
+#: src/fe-gtk/menu.c:1312
+msgid "Reset Marker Line"
+msgstr ""
+
+#: src/fe-gtk/menu.c:1313
+msgid "C_lear Text"
+msgstr "Mətni _Təmizlə"
+
+#: src/fe-gtk/menu.c:1314
+msgid "Search Text..."
+msgstr "Mətni Axtar..."
+
+#: src/fe-gtk/menu.c:1315
+msgid "Save Text..."
+msgstr "Mətni Qeyd Et..."
+
+#: src/fe-gtk/menu.c:1317
+msgid "_Help"
+msgstr "_Yardım"
+
+#: src/fe-gtk/menu.c:1318
+msgid "_Contents"
+msgstr "_Məzmun"
+
+#: src/fe-gtk/menu.c:1320 src/fe-gtk/menu.c:1322
+msgid "_About"
+msgstr "_Haqqında"
+
+#: src/fe-gtk/menu.c:1410
+msgid "Attach Tab"
+msgstr "Səkməni İlişdir"
+
+#: src/fe-gtk/notifygui.c:80
+msgid "User"
+msgstr "İstifadəçi"
+
+#: src/fe-gtk/notifygui.c:82
+msgid "Server"
+msgstr "Verici"
+
+#: src/fe-gtk/notifygui.c:83
+msgid "Last Seen"
+msgstr "Son Görülmüşdür"
+
+#: src/fe-gtk/notifygui.c:120
+msgid "Offline"
+msgstr "Xətdən Xaric"
+
+#: src/fe-gtk/notifygui.c:140 src/fe-gtk/setup.c:151
+msgid "Never"
+msgstr "Qətiyyən"
+
+#: src/fe-gtk/notifygui.c:158
+msgid "Online"
+msgstr "Xətdə"
+
+#: src/fe-gtk/notifygui.c:248
+msgid "Enter nickname to add:"
+msgstr "Əlavə ediləcək ləqəbi yazın:"
+
+#: src/fe-gtk/notifygui.c:264
+#, fuzzy
+msgid "Rage: Notify List"
+msgstr "X-Chat: Bildiriş Siyahısı"
+
+#: src/fe-gtk/notifygui.c:279
+msgid "Remove"
+msgstr "Sil"
+
+#: src/fe-gtk/plugingui.c:52 src/fe-gtk/textgui.c:315
+msgid "Description"
+msgstr "İzahat"
+
+#: src/fe-gtk/plugingui.c:125
+msgid "Select a Plugin or Script to load"
+msgstr "Yüklənəcək Əlavə ya da Skripti Seç"
+
+#: src/fe-gtk/plugingui.c:197
+#, fuzzy
+msgid "Rage: Plugins and Scripts"
+msgstr "X-Chat: Əlavələr və Skriptlər"
+
+#: src/fe-gtk/plugingui.c:203
+msgid "_Load..."
+msgstr "_Yüklə..."
+
+#: src/fe-gtk/plugingui.c:206
+msgid "_UnLoad"
+msgstr "Çı_xart"
+
+#: src/fe-gtk/plugingui.c:210
+msgid "_Close"
+msgstr "_Bağla"
+
+#: src/fe-gtk/rawlog.c:55
+msgid "Save rawlog"
+msgstr "Xam qeydi qeyd et"
+
+#: src/fe-gtk/rawlog.c:71
+#, fuzzy, c-format
+msgid "Rage: Rawlog (%s)"
+msgstr "X-Chat: Xam qeyd (%s)"
+
+#: src/fe-gtk/rawlog.c:100
+msgid "Clear rawlog"
+msgstr "Xam qeydi təmizlə"
+
+#: src/fe-gtk/rawlog.c:103
+msgid "Save rawlog..."
+msgstr "Xam qeydi qeyd et..."
+
+#: src/fe-gtk/search.c:29
+msgid "The window you opened this Search for doesn't exist anymore."
+msgstr "Bu axtarışı açtığınız pəncərə artıq mövcud deyil."
+
+#: src/fe-gtk/search.c:73
+#, fuzzy
+msgid "Rage: Search"
+msgstr "X-Chat: Axtarış"
+
+#: src/fe-gtk/search.c:82
+msgid "Find:"
+msgstr "Axtar:"
+
+#: src/fe-gtk/search.c:96
+msgid "Find"
+msgstr "Axtar"
+
+#: src/fe-gtk/search.c:101
+msgid "Close"
+msgstr "Bağla"
+
+#: src/fe-gtk/servlistgui.c:122 src/fe-gtk/servlistgui.c:221
+msgid "New Network"
+msgstr "Yeni Şəbəkə"
+
+#: src/fe-gtk/servlistgui.c:525
+#, c-format
+msgid "Really remove network \"%s\" and all its servers?"
+msgstr "Həqiqətən də \"%s\" şəbəkəsi və bütün onun vericiləri silinsin?"
+
+#: src/fe-gtk/servlistgui.c:1012
+#, fuzzy, c-format
+msgid "Rage: Edit %s"
+msgstr "İstifadə Qaydası: %s\n"
+
+#: src/fe-gtk/servlistgui.c:1031
+#, fuzzy, c-format
+msgid "Servers for %s"
+msgstr "Verici: %s"
+
+#: src/fe-gtk/servlistgui.c:1042
+msgid "Connect to selected server only"
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1043
+msgid "Don't cycle through all the servers when the connection fails."
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1045
+msgid "Your Details"
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1051
+#, fuzzy
+msgid "Use global user information"
+msgstr "Ümumi istifadəçi mə'lumatını işlət"
+
+#: src/fe-gtk/servlistgui.c:1054 src/fe-gtk/servlistgui.c:1302
+#, fuzzy
+msgid "_Nick name:"
+msgstr "Ləqəb:"
+
+#: src/fe-gtk/servlistgui.c:1058 src/fe-gtk/servlistgui.c:1323
+#, fuzzy
+msgid "_User name:"
+msgstr "İstifadəçi adı:"
+
+#: src/fe-gtk/servlistgui.c:1062
+#, fuzzy
+msgid "Real na_me:"
+msgstr "Həqiqi Adınız:"
+
+#: src/fe-gtk/servlistgui.c:1065
+#, fuzzy
+msgid "Connecting"
+msgstr "Bağlan"
+
+#: src/fe-gtk/servlistgui.c:1071
+#, fuzzy
+msgid "Auto connect to this network at startup"
+msgstr "Avtomatik bağlan"
+
+#: src/fe-gtk/servlistgui.c:1073
+msgid "Use a proxy server"
+msgstr "Vəkil vericisi işlət"
+
+#: src/fe-gtk/servlistgui.c:1075
+msgid "Use SSL for all the servers on this network"
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1080
+#, fuzzy
+msgid "Accept invalid SSL certificate"
+msgstr "Hökmsüz vəs. qəbulu"
+
+#: src/fe-gtk/servlistgui.c:1086
+#, fuzzy
+msgid "C_hannels to join:"
+msgstr "Daxil Olunacaq Kanalı Bildir:"
+
+#: src/fe-gtk/servlistgui.c:1088
+msgid "Channels to join, separated by commas, but not spaces!"
+msgstr "Daxil olunacaq kanallar (vegüllə ayırın)"
+
+#: src/fe-gtk/servlistgui.c:1091
+#, fuzzy
+msgid "Connect command:"
+msgstr "Bağlanma Əmri:"
+
+#: src/fe-gtk/servlistgui.c:1093
+msgid ""
+"Extra command to execute after connecting. If you need more than one, set "
+"this to LOAD -e <filename>, where <filename> is a text-file full of commands "
+"to execute."
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1096
+#, fuzzy
+msgid "Nickserv password:"
+msgstr "Verici Şifrəsi:"
+
+#: src/fe-gtk/servlistgui.c:1101
+#, fuzzy
+msgid "Server password:"
+msgstr "Verici Şifrəsi:"
+
+#: src/fe-gtk/servlistgui.c:1103
+msgid "Password for the server, if in doubt, leave blank."
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1106
+#, fuzzy
+msgid "Character set:"
+msgstr "Hərf Dəstəsi:"
+
+#: src/fe-gtk/servlistgui.c:1193
+msgid "_Edit"
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1276
+#, fuzzy
+msgid "Rage: Server List"
+msgstr "X-Chat: Verici Siyahı"
+
+#: src/fe-gtk/servlistgui.c:1292
+#, fuzzy
+msgid "User Information"
+msgstr "Verici Haqqında"
+
+#: src/fe-gtk/servlistgui.c:1309
+#, fuzzy
+msgid "Second choice:"
+msgstr "Səs faylı: "
+
+#: src/fe-gtk/servlistgui.c:1316
+msgid "Third choice:"
+msgstr ""
+
+#: src/fe-gtk/servlistgui.c:1330
+#, fuzzy
+msgid "Rea_l name:"
+msgstr "Həqiqi Adınız:"
+
+#: src/fe-gtk/servlistgui.c:1376
+msgid "Networks"
+msgstr "Şəbəkələr"
+
+#: src/fe-gtk/servlistgui.c:1417
+#, fuzzy
+msgid "Skip server list on startup"
+msgstr "Başlanğıcda verici siyahısını göstərmə"
+
+#: src/fe-gtk/servlistgui.c:1462
+#, fuzzy
+msgid "_Edit..."
+msgstr "_Yüklə..."
+
+#: src/fe-gtk/servlistgui.c:1469
+#, fuzzy
+msgid "_Sort"
+msgstr "Nizamla"
+
+#: src/fe-gtk/servlistgui.c:1485
+msgid "C_onnect"
+msgstr "_Bağlan"
+
+#: src/fe-gtk/servlistgui.c:1494
+#, fuzzy
+msgid "Connect in new tab"
+msgstr "Yeni səkmədə _bağlan"
+
+#: src/fe-gtk/setup.c:47
+msgid "Text Box Appearance"
+msgstr ""
+
+#: src/fe-gtk/setup.c:48
+msgid "Font:"
+msgstr "Yazı növü:"
+
+#: src/fe-gtk/setup.c:49
+msgid "Background image:"
+msgstr "Arxa plan rəsmi:"
+
+#: src/fe-gtk/setup.c:50
+msgid "Scrollback lines:"
+msgstr "Geri dönüş sətiri miqdarı:"
+
+#: src/fe-gtk/setup.c:51
+msgid "Transparent background"
+msgstr "Şəffaf arxa plan"
+
+#: src/fe-gtk/setup.c:52
+#, fuzzy
+msgid "Indent nick names"
+msgstr "Ləqəbləri çərtmələ"
+
+#: src/fe-gtk/setup.c:53
+msgid "Make nick names right-justified"
+msgstr ""
+
+#: src/fe-gtk/setup.c:54
+#, fuzzy
+msgid "Tint (shade) transparency"
+msgstr "Rəngli şəffaflıq"
+
+#: src/fe-gtk/setup.c:55
+#, fuzzy
+msgid "Colored nick names"
+msgstr "Rəngli ləqəblər"
+
+#: src/fe-gtk/setup.c:56
+msgid "Give each person on IRC a different color"
+msgstr ""
+
+#: src/fe-gtk/setup.c:57
+#, fuzzy
+msgid "Strip mIRC colors"
+msgstr "mIRC rənglərini göstərmə"
+
+#: src/fe-gtk/setup.c:58
+#, fuzzy
+msgid "Show marker line"
+msgstr "Uzaqda cəziyyətini bir dəfə göstər"
+
+#: src/fe-gtk/setup.c:59
+msgid "Insert a red line after the last read text."
+msgstr ""
+
+#: src/fe-gtk/setup.c:60
+#, fuzzy
+msgid "Tint Settings"
+msgstr "_Qurğular"
+
+#: src/fe-gtk/setup.c:61
+msgid "Red:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:62
+#, fuzzy
+msgid "Green:"
+msgstr "Yunanıstan"
+
+#: src/fe-gtk/setup.c:63
+msgid "Blue:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:65 src/fe-gtk/setup.c:265
+#, fuzzy
+msgid "Time Stamps"
+msgstr "Tarix mühürü mətni"
+
+#: src/fe-gtk/setup.c:66
+msgid "Time stamp format:"
+msgstr "Tarix mühürü şəkli:"
+
+#: src/fe-gtk/setup.c:67
+msgid "See strftime manpage for details."
+msgstr "Təfərruatlar üçün strftime man səhifəsinə baxın"
+
+#: src/fe-gtk/setup.c:68
+#, fuzzy
+msgid "Enable time stamps"
+msgstr "Qeydlərə tarix mühürünü daxil et"
+
+#: src/fe-gtk/setup.c:75
+#, fuzzy
+msgid "Nick Completion"
+msgstr "Avtomatik ləqəb tamamlaması"
+
+#: src/fe-gtk/setup.c:76
+msgid "Automatic nick completion"
+msgstr "Avtomatik ləqəb tamamlaması"
+
+#: src/fe-gtk/setup.c:77
+msgid "Completes nick names without using the TAB key"
+msgstr ""
+
+#: src/fe-gtk/setup.c:78
+msgid "Nick completion suffix:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:80
+#, fuzzy
+msgid "Input Box Codes"
+msgstr "Giriş qutusu"
+
+#: src/fe-gtk/setup.c:81
+#, c-format
+msgid "Interpret %nnn as an ASCII value"
+msgstr "%nnn-ı ASCII qiyməti olaraq qəbul et"
+
+#: src/fe-gtk/setup.c:82
+msgid "Interpret %C, %B as Color, Bold etc"
+msgstr ""
+
+#: src/fe-gtk/setup.c:84
+msgid "Input Box Appearance"
+msgstr ""
+
+#: src/fe-gtk/setup.c:85 src/fe-gtk/setup.c:115
+msgid "Use the Text box font and colors"
+msgstr "Söhbət pəncərəsi yazı növü və rənglərini işlət"
+
+#: src/fe-gtk/setup.c:92
+msgid "Off"
+msgstr "Bağlı"
+
+#: src/fe-gtk/setup.c:93
+msgid "Graph"
+msgstr "Qrafika"
+
+#: src/fe-gtk/setup.c:94
+msgid "Info text"
+msgstr "Mə'lumat mətni"
+
+#: src/fe-gtk/setup.c:95
+msgid "Both"
+msgstr "Hər ikisi də"
+
+#: src/fe-gtk/setup.c:101
+msgid "A-Z, Ops first"
+msgstr "A-Z, Əvvəlcə Oplar"
+
+#: src/fe-gtk/setup.c:102
+msgid "A-Z"
+msgstr "A-Z"
+
+#: src/fe-gtk/setup.c:103
+msgid "Z-A, Ops last"
+msgstr "Z-A, Oplar Sonda"
+
+#: src/fe-gtk/setup.c:104
+msgid "Z-A"
+msgstr "Z-A"
+
+#: src/fe-gtk/setup.c:105
+msgid "Unsorted"
+msgstr "Nizamsız"
+
+#: src/fe-gtk/setup.c:112
+#, fuzzy
+msgid "User list sorted by:"
+msgstr "İstifadəçi siyahısının nizamlanma şəkli:"
+
+#: src/fe-gtk/setup.c:113
+#, fuzzy
+msgid "Show hostnames in user list"
+msgstr "İstifadəçi siyahısında qovşaq adlarını göstər"
+
+#: src/fe-gtk/setup.c:114
+#, fuzzy
+msgid "User list buttons enabled"
+msgstr "İstifadəçi siyahısı düymələrini göstər"
+
+#: src/fe-gtk/setup.c:116
+#, fuzzy
+msgid "Resizable user list"
+msgstr "Böyüklüyü dəyişdirilə bilən istifadəçi siyahısı"
+
+#: src/fe-gtk/setup.c:118
+#, fuzzy
+msgid "Away tracking"
+msgstr "Uzaqlaşma səbəbi"
+
+#: src/fe-gtk/setup.c:119
+msgid "Enable away tracking"
+msgstr ""
+
+#: src/fe-gtk/setup.c:120
+#, fuzzy
+msgid "On channels smaller than:"
+msgstr "Kanalların açılma şəkli:"
+
+#: src/fe-gtk/setup.c:122
+msgid "Action Upon Double Click"
+msgstr ""
+
+#: src/fe-gtk/setup.c:123
+#, fuzzy
+msgid "Execute command:"
+msgstr "Bağlanma Əmri:"
+
+#: src/fe-gtk/setup.c:125
+msgid "Extra Gadgets"
+msgstr ""
+
+#: src/fe-gtk/setup.c:126
+msgid "Lag meter:"
+msgstr "Lag ölçəni:"
+
+#: src/fe-gtk/setup.c:127
+msgid "Throttle meter:"
+msgstr "Throttle ölçəni:"
+
+#: src/fe-gtk/setup.c:134
+msgid "Windows"
+msgstr "Pəncərələrdə"
+
+#: src/fe-gtk/setup.c:135 src/fe-gtk/setup.c:159 src/fe-gtk/setup.c:1410
+msgid "Tabs"
+msgstr "Səkmələrdə"
+
+#: src/fe-gtk/setup.c:141
+msgid "Bottom"
+msgstr "Altda"
+
+#: src/fe-gtk/setup.c:142
+msgid "Top"
+msgstr "Üstdə"
+
+#: src/fe-gtk/setup.c:143
+msgid "Left"
+msgstr "Solda"
+
+#: src/fe-gtk/setup.c:144
+msgid "Right"
+msgstr "Sağda"
+
+#: src/fe-gtk/setup.c:145
+msgid "Hidden"
+msgstr "Göstərmə"
+
+#: src/fe-gtk/setup.c:152
+#, fuzzy
+msgid "Always"
+msgstr "Uzaq İstifadəçi:"
+
+#: src/fe-gtk/setup.c:153
+msgid "Only requested tabs"
+msgstr ""
+
+#: src/fe-gtk/setup.c:160
+#, fuzzy
+msgid "Open an extra tab for server messages"
+msgstr "Verici ismarışları üçün səkmə aç"
+
+#: src/fe-gtk/setup.c:161
+#, fuzzy
+msgid "Open an extra tab for common notices"
+msgstr "Verici bildirişləri üçün səkmə aç"
+
+#: src/fe-gtk/setup.c:162
+#, fuzzy
+msgid "Open an extra tab for server notices"
+msgstr "Verici bildirişləri üçün səkmə aç"
+
+#: src/fe-gtk/setup.c:163
+msgid "Small tabs"
+msgstr ""
+
+#: src/fe-gtk/setup.c:164
+msgid "Sort tabs in alphabetical order"
+msgstr ""
+
+#: src/fe-gtk/setup.c:165
+msgid "Focus new tabs:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:166
+#, fuzzy
+msgid "Shorten tab labels to:"
+msgstr "Tabların böyüklüyü:"
+
+#: src/fe-gtk/setup.c:166
+msgid "letters."
+msgstr "hərf."
+
+#: src/fe-gtk/setup.c:168
+#, fuzzy
+msgid "Tabs Location"
+msgstr "Gedişat"
+
+#: src/fe-gtk/setup.c:169
+msgid "Show tabs at:"
+msgstr "Səkmələrin göstərilmə şəkli:"
+
+#: src/fe-gtk/setup.c:171
+#, fuzzy
+msgid "Tabs or Windows"
+msgstr "Pəncərələrdə"
+
+#: src/fe-gtk/setup.c:172
+msgid "Open channels in:"
+msgstr "Kanalların açılma şəkli:"
+
+#: src/fe-gtk/setup.c:173
+msgid "Open dialogs in:"
+msgstr "Dialoqların açılma şəkli:"
+
+#: src/fe-gtk/setup.c:174
+msgid "Open utilities in:"
+msgstr "Vasitələrin açılma şəkli:"
+
+#: src/fe-gtk/setup.c:174
+msgid "Open DCC, Ignore, Notify etc, in tabs or windows?"
+msgstr ""
+"DCC Açılması, Rədd Etmə, Bildirişlər səkmələrdəmi yoxsa pəncərələrdəmi "
+"açılsın?"
+
+#: src/fe-gtk/setup.c:181
+msgid "Files and Directories"
+msgstr ""
+
+#: src/fe-gtk/setup.c:182
+msgid "Download files to:"
+msgstr "Faylları buraya endir:"
+
+#: src/fe-gtk/setup.c:183
+msgid "Move completed files to:"
+msgstr "Tamamlanan faylları buraya daşı:"
+
+#: src/fe-gtk/setup.c:184
+#, fuzzy
+msgid "Save nick name in filenames"
+msgstr "Fayl adlarına ləqəbi qeyd et"
+
+#: src/fe-gtk/setup.c:185
+#, fuzzy
+msgid "Convert spaces to underscore before sending"
+msgstr "Boşluqları alt cızıqlara dönüşdür"
+
+#: src/fe-gtk/setup.c:187
+#, fuzzy
+msgid "Network Settings"
+msgstr "Qurğuları Yenilə"
+
+#: src/fe-gtk/setup.c:188
+msgid "DCC IP address:"
+msgstr "DCC IP ünvanı:"
+
+#: src/fe-gtk/setup.c:189
+msgid "Claim you are at this address when offering files."
+msgstr "Fayl təklif edəndə bu ünvanda olduğunu bildir."
+
+#: src/fe-gtk/setup.c:190
+msgid "First DCC send port:"
+msgstr "Birinci DCC göndərmə portu:"
+
+#: src/fe-gtk/setup.c:191
+msgid "Last DCC send port:"
+msgstr "Sonuncu DCC göndərmə portu:"
+
+#: src/fe-gtk/setup.c:192
+msgid "(Leave ports at zero for full range)."
+msgstr "(Tam aralıq üçün portları boş buraxın)"
+
+#: src/fe-gtk/setup.c:193
+#, fuzzy
+msgid "Get my address from the IRC server"
+msgstr "IP-mi IRC vericisindən al"
+
+#: src/fe-gtk/setup.c:194
+#, fuzzy
+msgid ""
+"Asks the IRC server for your real address. Use this if you have a 192.168.*."
+"* address!"
+msgstr ""
+"Həqiqi ünvanınızı bilmək üçün özünüzü /WHOIS-ləyin. Əgər 192.168.*.* bənzəri "
+"ünvanınız varsa bunu işlədin."
+
+#: src/fe-gtk/setup.c:196
+msgid "Maximum File Transfer Speeds (bytes per second)"
+msgstr ""
+
+#: src/fe-gtk/setup.c:197
+msgid "One upload:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:198 src/fe-gtk/setup.c:200
+#, fuzzy
+msgid "Maximum speed for one transfer"
+msgstr "Bir transfer üçün maksimal sür'ət"
+
+#: src/fe-gtk/setup.c:199
+msgid "One download:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:201
+msgid "All uploads combined:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:202 src/fe-gtk/setup.c:204
+#, fuzzy
+msgid "Maximum speed for all files"
+msgstr "Bütün alış verişlər üçün maksimal sür'ət"
+
+#: src/fe-gtk/setup.c:203
+msgid "All downloads combined:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:211
+#, fuzzy
+msgid "Default Messages"
+msgstr "Ön qurğulu çıxış ismarışı:"
+
+#: src/fe-gtk/setup.c:212
+#, fuzzy
+msgid "Quit:"
+msgstr "Çıx"
+
+#: src/fe-gtk/setup.c:213
+#, fuzzy
+msgid "Leave channel:"
+msgstr "Kanaldan Çıx"
+
+#: src/fe-gtk/setup.c:214
+#, fuzzy
+msgid "Away:"
+msgstr "Uzaq İstifadəçi:"
+
+#: src/fe-gtk/setup.c:216
+#, fuzzy
+msgid "Away"
+msgstr "Norveç"
+
+#: src/fe-gtk/setup.c:217
+msgid "Announce away messages"
+msgstr ""
+
+#: src/fe-gtk/setup.c:218
+msgid "Announce your away messages to all channels"
+msgstr ""
+
+#: src/fe-gtk/setup.c:219
+msgid "Show away once"
+msgstr "Uzaqda cəziyyətini bir dəfə göstər"
+
+#: src/fe-gtk/setup.c:219
+#, fuzzy
+msgid "Show identical away messages only once"
+msgstr "Göstər"
+
+#: src/fe-gtk/setup.c:220
+msgid "Automatically unmark away"
+msgstr ""
+
+#: src/fe-gtk/setup.c:220
+#, fuzzy
+msgid "Unmark yourself as away before sending messages"
+msgstr "əvvəl"
+
+#: src/fe-gtk/setup.c:223
+msgid "(Can be a text file relative to ~/.xchat2/)."
+msgstr ""
+
+#: src/fe-gtk/setup.c:225
+msgid "(Can be a text file relative to config dir)."
+msgstr ""
+
+#: src/fe-gtk/setup.c:229
+#, fuzzy
+msgid "Alerts"
+msgstr "Alt"
+
+#: src/fe-gtk/setup.c:231
+#, fuzzy
+msgid "Flash taskbar on highlighted messages"
+msgstr "açık"
+
+#: src/fe-gtk/setup.c:233
+#, fuzzy
+msgid "Beep on highlighted messages"
+msgstr "açık"
+
+#: src/fe-gtk/setup.c:234
+msgid "Extra words to highlight on:"
+msgstr "İşıqlandırılacaq əlavə kəlmələr:"
+
+#: src/fe-gtk/setup.c:235
+msgid "(Separate multiple words with commas)."
+msgstr ""
+
+#: src/fe-gtk/setup.c:236
+#, fuzzy
+msgid "Beep on private messages"
+msgstr "açık xüsusi"
+
+#: src/fe-gtk/setup.c:237
+#, fuzzy
+msgid "Beep on channel messages"
+msgstr "açık"
+
+#: src/fe-gtk/setup.c:244
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "Qurğuları Yenilə"
+
+#: src/fe-gtk/setup.c:245
+#, fuzzy
+msgid "Auto reconnect delay:"
+msgstr "Avtomatik:"
+
+#: src/fe-gtk/setup.c:246
+#, fuzzy
+msgid "Display MODEs in raw form"
+msgstr "Göstər in"
+
+#: src/fe-gtk/setup.c:247
+#, fuzzy
+msgid "Whois on notify"
+msgstr "açık"
+
+#: src/fe-gtk/setup.c:247
+#, fuzzy
+msgid "Sends a /WHOIS when a user comes online in your notify list"
+msgstr "a a in"
+
+#: src/fe-gtk/setup.c:248
+#, fuzzy
+msgid "Hide join and part messages"
+msgstr "Gizlət"
+
+#: src/fe-gtk/setup.c:248
+#, fuzzy
+msgid "Hide channel join/part messages by default"
+msgstr "Gizlət ön qurğulu"
+
+#: src/fe-gtk/setup.c:249
+#, fuzzy
+msgid "Auto Open DCC Windows"
+msgstr "Dialoq pəncərələrini avtomatik aç"
+
+#: src/fe-gtk/setup.c:250
+#, fuzzy
+msgid "Send window"
+msgstr "Fayl Yolla"
+
+#: src/fe-gtk/setup.c:251
+#, fuzzy
+msgid "Receive window"
+msgstr "Alıcı"
+
+#: src/fe-gtk/setup.c:252
+#, fuzzy
+msgid "Chat window"
+msgstr "Kanal Pəncərəsi..."
+
+#: src/fe-gtk/setup.c:260 src/fe-gtk/setup.c:1415
+msgid "Logging"
+msgstr "Qeyd"
+
+#: src/fe-gtk/setup.c:261
+#, fuzzy
+msgid "Enable logging of conversations"
+msgstr "Fəallaşdır /"
+
+#: src/fe-gtk/setup.c:262
+msgid "Log filename mask:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:263
+#, c-format
+msgid "(%s=Server %c=Channel %n=Network)."
+msgstr "(%s=Verici %c=Kanal %n=Şəbəkə)"
+
+#: src/fe-gtk/setup.c:266
+msgid "Insert timestamps in logs"
+msgstr "Qeydlərə tarix mühürünü daxil et"
+
+#: src/fe-gtk/setup.c:267
+msgid "Log timestamp format:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:268
+#, fuzzy
+msgid "(See strftime manpage for details)."
+msgstr "Baxın."
+
+#: src/fe-gtk/setup.c:275
+msgid "(Disabled)"
+msgstr "(Qeyri fəaldır)"
+
+#: src/fe-gtk/setup.c:276
+msgid "Wingate"
+msgstr "Wingate"
+
+#: src/fe-gtk/setup.c:277
+msgid "Socks4"
+msgstr "Socks4"
+
+#: src/fe-gtk/setup.c:278
+msgid "Socks5"
+msgstr "Socks5"
+
+#: src/fe-gtk/setup.c:279
+msgid "HTTP"
+msgstr "HTTP"
+
+#: src/fe-gtk/setup.c:285
+#, fuzzy
+msgid "Your Address"
+msgstr "IP ünvanı"
+
+#: src/fe-gtk/setup.c:286
+#, fuzzy
+msgid "Bind to:"
+msgstr "Axtar:"
+
+#: src/fe-gtk/setup.c:287
+msgid "(Only useful for computers with multiple addresses)."
+msgstr ""
+
+#: src/fe-gtk/setup.c:289
+#, fuzzy
+msgid "Proxy Server"
+msgstr "Vəkil vericisi"
+
+#: src/fe-gtk/setup.c:290
+msgid "Hostname:"
+msgstr "Qovşaq adı:"
+
+#: src/fe-gtk/setup.c:291
+msgid "Username:"
+msgstr "İstifadəçi adı:"
+
+#: src/fe-gtk/setup.c:292
+msgid "Password:"
+msgstr "Şifrə:"
+
+#: src/fe-gtk/setup.c:293
+msgid "Port:"
+msgstr "Qapı:"
+
+#: src/fe-gtk/setup.c:294
+msgid "Type:"
+msgstr "Növ:"
+
+#: src/fe-gtk/setup.c:296
+#, fuzzy
+msgid "Authenticate to the proxy server (HTTP and Socks5)"
+msgstr "Vəkil vericisinə tanıt (Ancaq HTTP)"
+
+#: src/fe-gtk/setup.c:519
+#, fuzzy
+msgid "(disabled)"
+msgstr "(Qeyri fəaldır)"
+
+#: src/fe-gtk/setup.c:520
+msgid "A star (*)"
+msgstr ""
+
+#: src/fe-gtk/setup.c:521
+msgid "A red star (*)"
+msgstr ""
+
+#: src/fe-gtk/setup.c:522
+#, fuzzy
+msgid "Underlined"
+msgstr "Xətdə"
+
+#: src/fe-gtk/setup.c:619
+msgid "Select an Image File"
+msgstr "Rəsm faylı seç"
+
+#: src/fe-gtk/setup.c:666
+msgid "Select font"
+msgstr "Yazı növü seç"
+
+#: src/fe-gtk/setup.c:740
+msgid "Browse..."
+msgstr "Gəz..."
+
+#: src/fe-gtk/setup.c:857
+msgid "Mark identified users with:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:859
+msgid "Mark not-identified users with:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:922
+msgid "Select color"
+msgstr "Rəng seç"
+
+#: src/fe-gtk/setup.c:1002
+#, fuzzy
+msgid "Text Colors"
+msgstr "Rənglər"
+
+#: src/fe-gtk/setup.c:1004
+msgid "mIRC colors:"
+msgstr "mIRC rəngləri:"
+
+#: src/fe-gtk/setup.c:1012
+#, fuzzy
+msgid "Extra colors:"
+msgstr "mIRC rəngləri:"
+
+#: src/fe-gtk/setup.c:1020 src/fe-gtk/setup.c:1025
+msgid "Foreground:"
+msgstr "Ön plan:"
+
+#: src/fe-gtk/setup.c:1021 src/fe-gtk/setup.c:1026
+msgid "Background:"
+msgstr "Arxa plan:"
+
+#: src/fe-gtk/setup.c:1023
+#, fuzzy
+msgid "Marking Text"
+msgstr "Mətni _Təmizlə"
+
+#: src/fe-gtk/setup.c:1028
+#, fuzzy
+msgid "Interface Colors"
+msgstr "Ara üz"
+
+#: src/fe-gtk/setup.c:1030
+#, fuzzy
+msgid "New data:"
+msgstr "Yeni Mə'lumat:"
+
+#: src/fe-gtk/setup.c:1031
+#, fuzzy
+msgid "Marker line:"
+msgstr "Ön işarə:"
+
+#: src/fe-gtk/setup.c:1032
+#, fuzzy
+msgid "New message:"
+msgstr "Yeni İsmarış:"
+
+#: src/fe-gtk/setup.c:1033
+#, fuzzy
+msgid "Away user:"
+msgstr "Uzaq İstifadəçi:"
+
+#: src/fe-gtk/setup.c:1034
+msgid "Highlight:"
+msgstr "İşıqlandırma:"
+
+#: src/fe-gtk/setup.c:1130 src/fe-gtk/textgui.c:311
+msgid "Event"
+msgstr "Hadisə"
+
+#: src/fe-gtk/setup.c:1136
+#, fuzzy
+msgid "Sound file"
+msgstr "Səs faylı: "
+
+#: src/fe-gtk/setup.c:1171
+#, fuzzy
+msgid "Select a sound file"
+msgstr "Çıxış fay adını seç"
+
+#: src/fe-gtk/setup.c:1243
+msgid "Sound playing method:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:1251
+msgid "External sound playing _program:"
+msgstr ""
+
+#: src/fe-gtk/setup.c:1269
+#, fuzzy
+msgid "_External program"
+msgstr "Xarici"
+
+#: src/fe-gtk/setup.c:1279
+#, fuzzy
+msgid "_Automatic"
+msgstr "Antarktika"
+
+#: src/fe-gtk/setup.c:1292
+#, fuzzy
+msgid "Sound files _directory:"
+msgstr "Faylları buraya endir:"
+
+#: src/fe-gtk/setup.c:1331
+#, fuzzy
+msgid "Sound file:"
+msgstr "Səs faylı: "
+
+#: src/fe-gtk/setup.c:1346
+#, fuzzy
+msgid "_Browse..."
+msgstr "Gəz..."
+
+#: src/fe-gtk/setup.c:1357
+#, fuzzy
+msgid "_Play"
+msgstr "Palau"
+
+#: src/fe-gtk/setup.c:1406
+msgid "Interface"
+msgstr "Ara üz"
+
+#: src/fe-gtk/setup.c:1407
+msgid "Text box"
+msgstr "Söhbət pəncərəsi"
+
+#: src/fe-gtk/setup.c:1408
+msgid "Input box"
+msgstr "Giriş qutusu"
+
+#: src/fe-gtk/setup.c:1409
+msgid "User list"
+msgstr "İstifadəçi siyahısı"
+
+#: src/fe-gtk/setup.c:1411
+msgid "Colors"
+msgstr "Rənglər"
+
+#: src/fe-gtk/setup.c:1413
+msgid "Chatting"
+msgstr "Söhbət"
+
+#: src/fe-gtk/setup.c:1414
+msgid "General"
+msgstr "Ümumi"
+
+#: src/fe-gtk/setup.c:1416
+msgid "Sound"
+msgstr "Səs"
+
+#: src/fe-gtk/setup.c:1419
+msgid "Network"
+msgstr "Şəbəkə"
+
+#: src/fe-gtk/setup.c:1420
+msgid "Network setup"
+msgstr "Şəbəkə qurğusu"
+
+#: src/fe-gtk/setup.c:1421
+msgid "File transfers"
+msgstr "Fayl transferləri"
+
+#: src/fe-gtk/setup.c:1528
+msgid "Categories"
+msgstr "Kateqoriyalar"
+
+#: src/fe-gtk/setup.c:1658
+msgid "Some settings were changed that require a restart to take full effect."
+msgstr ""
+"Bə'zi seçimlərin tətbiq edilməsi üçün proqramı yenidən başlatmalısınız."
+
+#: src/fe-gtk/setup.c:1686
+#, fuzzy
+msgid "Rage: Preferences"
+msgstr "X-Chat: Seçimlər"
+
+#: src/fe-gtk/textgui.c:134
+msgid "There was an error parsing the string"
+msgstr "Qatar oxunanda xəta yarandı"
+
+#: src/fe-gtk/textgui.c:142
+#, c-format
+msgid "This signal is only passed %d args, $%d is invalid"
+msgstr ""
+
+#: src/fe-gtk/textgui.c:250 src/fe-gtk/textgui.c:273
+msgid "Print Texts File"
+msgstr "Mətn Faylını Çap Et"
+
+#: src/fe-gtk/textgui.c:314
+msgid "$ Number"
+msgstr "$ Nömrəsi"
+
+#: src/fe-gtk/textgui.c:323
+msgid "Edit Events"
+msgstr "Hadisələri Dəyişdir"
+
+#: src/fe-gtk/textgui.c:387
+msgid "Save As"
+msgstr "Fərqli Qeyd Et"
+
+#: src/fe-gtk/textgui.c:392
+msgid "Load From"
+msgstr "Buradan Yüklə"
+
+#: src/fe-gtk/textgui.c:397
+msgid "Test All"
+msgstr "Hamısı Sına"
+
+#: src/fe-gtk/urlgrab.c:72
+msgid "URL"
+msgstr "URL"
+
+#: src/fe-gtk/urlgrab.c:122
+msgid "Select a file to save to"
+msgstr "Qeyd ediləcək fayl seç"
+
+#: src/fe-gtk/urlgrab.c:162
+#, fuzzy
+msgid "Rage: URL Grabber"
+msgstr "X-Chat: URL Alıcısı"
+
+#: src/fe-gtk/urlgrab.c:175
+msgid "Clear list"
+msgstr "Siyahını təmizlə"
+
+#: src/fe-gtk/urlgrab.c:177
+msgid "Copy"
+msgstr "Köçür"
+
+#: src/fe-gtk/urlgrab.c:179
+msgid "Save list to a file"
+msgstr "Siyahını fayla qeyd et"
+
+#: src/fe-gtk/userlistgui.c:80
+#, c-format
+msgid "%d ops, %d total"
+msgstr "%d op, %d toplam"
+
+#~ msgid "Direct client-to-client"
+#~ msgstr "Birbaşa client-to-client"
+
+#~ msgid "Delete All"
+#~ msgstr "Hamısı Sil"
+
+#~ msgid "%C2<%O$1%C2>%O$t$2%O"
+#~ msgstr "%C2<%O$1%C2>%O$t$2%O"
+
+#~ msgid "%C12-%C13$1/$2%C12-%O$t$3%O"
+#~ msgstr "%C12-%C13$1/$2%C12-%O$t$3%O"
+
+#~ msgid "%C3>%O$1%C3<%O$tCTCP $2%O"
+#~ msgstr "%C3>%O$1%C3<%O$tCTCP $2%O"
+
+#~ msgid ""
+#~ "%C08,02                                                              %O"
+#~ msgstr ""
+#~ "%C08,02                                                              %O"
+
+#~ msgid "%O%C11$1%O removed from ignore list."
+#~ msgstr "%O%C11$1%O rədd siyahısından silindi."
+
+#~ msgid "X-Chat: Edit Key Bindings"
+#~ msgstr "X-Chat: Qısa Yolları Dəyişdir"
+
+#~ msgid "_X-Chat"
+#~ msgstr "_X-Chat"
+
+#~ msgid "Lists"
+#~ msgstr "Siyahılar"
+
+#~ msgid "Key Bindings..."
+#~ msgstr "Qısa Yollar..."
+
+#~ msgid "Settings for %s"
+#~ msgstr "%s qurğuları"
+
+#~ msgid "_Remove \"%s\""
+#~ msgstr "\"%s\" şəbəkəsini _sil"
+
+#~ msgid "_Add new server"
+#~ msgstr "_Yeni verici əlavə et"
+
+#~ msgid "Move \"%s\" _down"
+#~ msgstr "\"%s\" şəbəkəsini _aşağı daşı"
+
+#~ msgid "Move \"%s\" _up"
+#~ msgstr "\"%s\" şəbəkəsini _yuxarı daşı"
+
+#~ msgid "_Add new network"
+#~ msgstr "Yeni şəbəkə əla_və et"
+
+#~ msgid "Global User Info"
+#~ msgstr "Ümumi İstifadəçi Mə'lumatları"
+
+#~ msgid "Nick Names:"
+#~ msgstr "Ləqəblər:"
+
+#~ msgid "User Name:"
+#~ msgstr "İstifadəçi Adı:"
+
+#~ msgid "Servers"
+#~ msgstr "Vericilər"
+
+#~ msgid "Join Channels:"
+#~ msgstr "Bağlanacaq Kanallar:"
+
+#~ msgid ""
+#~ "Command to execute after connecting. Can be used to authenticate to "
+#~ "NickServ"
+#~ msgstr ""
+#~ "Bağlandıqdan sonra icra ediləcək əmr. Məsələn NickServ-ə qeyd olmaq üçün"
+
+#~ msgid "Cycle until connected"
+#~ msgstr "Bağlanana qədər sına"
+
+#~ msgid "Use secure SSL"
+#~ msgstr "E'tibarlı SSL işlət"
+
+#~ msgid "Settings for Selected Network"
+#~ msgstr "Seçili Şəbəkənin Qurğuları"
+
+#~ msgid "Edit mode"
+#~ msgstr "Təfərruatlar"
+
+#~ msgid "Tint red:"
+#~ msgstr "Qırmızı:"
+
+#~ msgid "Tint green:"
+#~ msgstr "Yaşıl:"
+
+#~ msgid "Tint blue:"
+#~ msgstr "Mavi:"
+
+#~ msgid "Double-click command:"
+#~ msgstr "Cüt təqlama əmri:"
+
+#~ msgid "Pop new tabs to front"
+#~ msgstr "Yeni səkmələri qabağa gətir"
+
+#~ msgid "Auto open DCC send list"
+#~ msgstr "DCC göndərmə siyahısını avtomatik aç"
+
+#~ msgid "In filenames, before sending"
+#~ msgstr "Fayl adlarında, göndərmədən əvvəl"
+
+#~ msgid "Auto open DCC chat list"
+#~ msgstr "DCC söhbət siyahısını avtomatik aç"
+
+#~ msgid "Auto open DCC receive list"
+#~ msgstr "DCC alış siyahısını avtomatik aç"
+
+#~ msgid "Max. send CPS:"
+#~ msgstr "Maks. göndərmə CPS-i:"
+
+#~ msgid "Max. receive CPS:"
+#~ msgstr "Maks. alış CPS-i:"
+
+#~ msgid "Max. global send CPS:"
+#~ msgstr "Maks. qlobal göndərmə CPS-i:"
+
+#~ msgid "Max. global receive CPS:"
+#~ msgstr "Maks. qlobal alış CPS-i:"
+
+#~ msgid "(Leave at zero for full speed file transfers)."
+#~ msgstr "(Tam sür'ətli transferlər üçün boş buraxın)"
+
+#~ msgid "Default part message:"
+#~ msgstr "Ön qurğulu part ismarışı:"
+
+#~ msgid "Default away message:"
+#~ msgstr "Ön qurğulu uzaqda ismarışı:"
+
+#~ msgid "Address to bind to:"
+#~ msgstr "Yapışdırılacaq ünvan:"
+
+#~ msgid "Mark back:"
+#~ msgstr "Arxa işarə:"
+
+#~ msgid "Error String"
+#~ msgstr "Xətalı Qatar"
+
+#~ msgid "Error name"
+#~ msgstr "Xəta adı"
+
+#~ msgid "Error string"
+#~ msgstr "Xəta qatarı"

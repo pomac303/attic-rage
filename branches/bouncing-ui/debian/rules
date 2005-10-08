@@ -1,0 +1,114 @@
+#!/usr/bin/make -f
+# -*- Makefile -*-
+
+export pythonpath=/usr/bin/python2.3
+export DH_COMPAT=4
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+CFLAGS += -O0
+else
+CFLAGS += -O2
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+INSTALL_PROGRAM += -s
+endif
+
+# all patches
+PATCHES:=$(shell cd debian/patches && ls *.patch)
+REVPATCHES:=$(shell cd debian/patches && ls -r *.patch)
+
+patch: patch-stamp
+patch-stamp:
+	# apply patches
+	#
+	for PATCH in $(PATCHES); do \
+	echo \# Applying patch $$PATCH; \
+	 patch -p1 < debian/patches/$$PATCH; \
+	done
+
+	touch patch-stamp
+
+configure: configure-stamp
+configure-stamp:
+		CFLAGS="$(CFLAGS)" ./configure --prefix=/usr --sysconfdir=/etc --enable-ipv6  \
+		--enable-japanese-conv --disable-mmx --enable-openssl --enable-zvt
+		 touch configure-stamp
+# Disabled: --enable-python --enable-tcl=/usr/lib/tcl8.4 --enable-textfe
+build: configure-stamp patch-stamp build-stamp
+build-stamp: 
+	dh_testdir
+	$(MAKE)
+	mv src/fe-gtk/rage rage
+#	mv src/fe-text/xchat-text xchat-text
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f rage
+	# xchat-gnome xchat-text
+	rm -f po/*.gmo
+	rm -f build-stamp install-stamp configure-stamp po/stamp-cat-id \
+	      src/fe-text/Makefile stamp-h.in po/rage.pot po/cat-id-tbl.c
+	rm -rf debian/tmp debian/rage debian/rage-common
+#		debian/xchat-text
+	dh_clean
+	
+	[ -e "patch-stamp" ] && \
+	for PATCH in $(REVPATCHES); do \
+	echo \# Unapplying patch $$PATCH; \
+	patch -R -p1 < debian/patches/$$PATCH; \
+	done || true
+	rm -f patch-stamp
+
+install: install-stamp
+install-stamp: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+	$(MAKE) install prefix=$(CURDIR)/debian/tmp/usr sysconfdir=$(CURDIR)/debian/tmp/etc
+	dh_install
+	install -o root -g root -m 755 rage $(CURDIR)/debian/rage/usr/bin
+#	install -o root -g root -m 755 xchat-text $(CURDIR)/debian/xchat-text/usr/bin
+	install -o root -g root -m 644 plugins/perl/*.pl $(CURDIR)/debian/rage-common/usr/share/doc/rage-common/scripts-perl/
+	install -o root -g root -m 644 src/common/rage-plugin.h $(CURDIR)/debian/rage-common/usr/include/rage/
+	install -o root -g root -m 644 debian/rage_mini.xpm $(CURDIR)/debian/rage-common/usr/share/icons/
+	ln -s xchat-common $(CURDIR)/debian/rage/usr/share/doc/rage
+#	ln -s xchat-common $(CURDIR)/debian/xchat-text/usr/share/doc/xchat-text
+
+binary-indep: build install
+	dh_testdir -prage-common
+	dh_testroot -prage-common
+	dh_installdocs -prage-common
+	dh_installmenu -prage-common
+	dh_installchangelogs ChangeLog -prage-common
+	dh_installman -prage-common
+	dh_compress -X.pl -prage-common
+	dh_fixperms -prage-common
+	dh_installdeb -prage-common
+	dh_gencontrol -prage-common
+	dh_md5sums -prage-common
+	dh_builddeb -prage-common
+
+binary-arch: build install
+	dh_testdir -prage
+	dh_testroot -prage
+	dh_installmenu -prage
+#	dh_installman -prage
+	dh_link -prage
+ifeq "$(findstring nostrip,$(DEB_BUILD_OPTIONS))" ""
+	dh_strip -prage
+endif	
+	dh_compress -prage
+	dh_fixperms -prage
+	dh_installdeb -prage
+	dh_shlibdeps -prage
+	dh_gencontrol -prage
+	dh_md5sums -prage
+	dh_builddeb -prage
+	# removed -pxchat-text from all above
+binary: binary-indep binary-arch clean
+	
+.PHONY: build clean binary-indep binary-arch binary install
