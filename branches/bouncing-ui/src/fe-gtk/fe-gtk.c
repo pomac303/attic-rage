@@ -17,7 +17,7 @@
  */
 
 #include "fe-gtk.h"
-
+#include <glade/glade.h>
 
 GdkPixmap *channelwin_pix;
 
@@ -254,8 +254,12 @@ fe_init (void)
 void
 fe_main (void)
 {
-	gtk_main ();
+  // Breaking in
+  GladeXML *xml = glade_xml_new("./src/ui-gtk/ui-gtk.glade", NULL, NULL);  
+  glade_xml_signal_autoconnect(xml);
 
+	gtk_main ();
+	
 	/* sleep for 3 seconds so any QUIT messages are not lost. The  */
 	/* GUI is closed at this point, so the user doesn't even know! */
 	if (prefs.wait_on_exit)
