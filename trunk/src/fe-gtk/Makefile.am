@@ -1,6 +1,6 @@
 localedir = $(datadir)/locale
 
-CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+CFLAGS+= -Wimplicit -Wstrict-prototypes 
 
 bin_PROGRAMS = rage
 

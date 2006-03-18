@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat-2.0.9pre1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-05-07 22:31+0200\n"
+"POT-Creation-Date: 2006-03-18 20:10+0100\n"
 "PO-Revision-Date: 2004-06-14 12:21+0400\n"
 "Last-Translator: Peter Astakhov <astakhovp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -93,7 +93,7 @@ msgstr "НЕТ  "
 msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr "Вас забрасывают CTCP запросами от %s, %s игнорируется.\n"
 
-#: src/common/ignore.c:341
+#: src/common/ignore.c:342
 #, fuzzy, c-format
 msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr "Вас забрасывают сообщениями от %s, выключаем автодиалог.\n"
@@ -159,32 +159,32 @@ msgstr ""
 msgid "Unknown arg '%s' ignored."
 msgstr "Игнорируется неизвестный аргумент \"%s\"."
 
-#: src/common/outbound.c:2818
+#: src/common/outbound.c:2826
 msgid "No such plugin found.\n"
 msgstr "Плагин не найден\n"
 
-#: src/common/outbound.c:2823 src/fe-gtk/plugingui.c:160
+#: src/common/outbound.c:2831 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Плагин невозможно выгрузить.\n"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3074
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr ""
 "ADDBUTTON <название> <действие> добавляет кнопку под списком пользователей"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3076
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr "ALLCHAN <команда>, посылает команду во всех каналах где вы есть "
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3078
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr "ALLSERV <cmd>, посылает команду на всех серверах где вы есть "
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3079
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<причина>], устанавливает флаг отсутствия"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3081
 #, fuzzy
 msgid ""
 "BAN <mask> [<masktype>], bans everyone matching the mask from the current "
@@ -195,19 +195,19 @@ msgstr ""
 "совпадающего с маской. Если они уже на канале, то они не будут скинуты (для "
 "этого нужно быть оператором канала)"
 
-#: src/common/outbound.c:3075
+#: src/common/outbound.c:3083
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, очищает текущее окно"
 
-#: src/common/outbound.c:3076
+#: src/common/outbound.c:3084
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, закрывает текущее окно или вкладку"
 
-#: src/common/outbound.c:3078
+#: src/common/outbound.c:3086
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <код>, находит код страны, например: au = Австралия"
 
-#: src/common/outbound.c:3080
+#: src/common/outbound.c:3088
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -215,11 +215,11 @@ msgstr ""
 "CTCP <ник> <сообщение>, посылает пользователю с указанным ником CCTP-"
 "сообщение, обычные сообщения -- VERSION и USERINFO"
 
-#: src/common/outbound.c:3082
+#: src/common/outbound.c:3090
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, выйти с текущего канала и немедленно зайти"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3091
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -237,7 +237,7 @@ msgstr ""
 "DCC CLOSE <тип> <имя> <файл>         пример:\n"
 "         /dcc close send johnsmith file.tar.gz"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3100
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -245,11 +245,11 @@ msgstr ""
 "DEHOP <имя>, удаляет chanhalf-op статус у имени на текущем канале\n"
 "(нужны права администратора канала)"
 
-#: src/common/outbound.c:3094
+#: src/common/outbound.c:3102
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <имя>, удаляет кнопку из-под списка пользователей"
 
-#: src/common/outbound.c:3096
+#: src/common/outbound.c:3104
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -257,7 +257,7 @@ msgstr ""
 "DEOP <nick>, убирает права администратора канала у пользователя на текущем "
 "канале (требует права администратора)."
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3106
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -266,19 +266,19 @@ msgstr ""
 "текущем\n"
 "канале. Для использования нужны права администратора канала"
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3107
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, отсоединиться от сервера"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3108
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <имя,адрес,IP> - поиск IP адреса пользователя"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3109
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <текст>, вывести текст на локальной машине"
 
-#: src/common/outbound.c:3104
+#: src/common/outbound.c:3112
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -287,11 +287,11 @@ msgstr ""
 "команды перенаправляется в текущий канал. Иначе вывод печатается в текущем "
 "окне"
 
-#: src/common/outbound.c:3106
+#: src/common/outbound.c:3114
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, sends the process SIGCONT"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3117
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -299,33 +299,33 @@ msgstr ""
 "EXECKILL [-9], уничтожает выполняющийся процесс в текущей сессии. Если -9 "
 "процессу перадается сигнал SIGKILL"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3119
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, посылает процессу сигнал SIGSTOP"
 
-#: src/common/outbound.c:3112
+#: src/common/outbound.c:3120
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, посылает процессу данные на stdin"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3123
 msgid "EXEMPT <mask> [masktype], sets a exempt"
 msgstr ""
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3125
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, сбрасывает текущую очередь отправки сервера"
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3127
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr "GATE <адрес> [<порт>], прокси через хост, порт по умолчанию - 23"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3133
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <Ник>, дает статус полуоператора канала пользователю (требуются права "
 "оператора)"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3135
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -339,7 +339,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    параметры - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3141
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -347,15 +347,15 @@ msgstr ""
 "INVITE <Ник> [<канал>], приглашает кого-либо на канал, по умолчанию, на "
 "текущий (требует права оператора)"
 
-#: src/common/outbound.c:3134
+#: src/common/outbound.c:3142
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <канал>, зайти на канал"
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3144
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr "KICK <Ник>, удаляет человека с текущего канала (нужны права оператора)"
 
-#: src/common/outbound.c:3138
+#: src/common/outbound.c:3146
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -363,32 +363,32 @@ msgstr ""
 "KICKBAN <Ник>, удаляет и ставит бан с данного канала (требуются права "
 "оператора)"
 
-#: src/common/outbound.c:3140
+#: src/common/outbound.c:3148
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, инициирует новую проверку канала"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3150
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <Строка>, ищет строку в буфере"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3152
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <ИмяФайла>, загружает скрипт или плагин"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3154
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, убирает у всех на текущем канале права полуоператора (требуются "
 "права оператора)"
 
-#: src/common/outbound.c:3148
+#: src/common/outbound.c:3156
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, убирает у всех права оператора на текущем канале (требуются права "
 "оператора)"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3158
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -396,38 +396,38 @@ msgstr ""
 "ME <action>, посылает действие на текущий канал (действие пишется от "
 "третьего лица, например, /me прыгает)"
 
-#: src/common/outbound.c:3152
+#: src/common/outbound.c:3160
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, удаляет всех, кроме себя, с канала (требуются права оператора)"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3163
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, Устанавливает всем пользователям текущего канала права оператора "
 "(требуются права оператора канала)"
 
-#: src/common/outbound.c:3156
+#: src/common/outbound.c:3164
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <Ник> <сообщение>, отправляет приватное сообщение"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3165
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, показывает список посетителей текущего канала"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3166
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <Ник> <сообщение>, отправляет CTCP сообщение"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3167
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <ИмяСервера> [<порт>]"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3168
 msgid "NICK <nickname>, sets your nick"
 msgstr "/NICK <Ник>, меняет ваш ник"
 
-#: src/common/outbound.c:3162
+#: src/common/outbound.c:3170
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -435,40 +435,40 @@ msgstr ""
 "NOTICE <Ник/канал> <сообщение>, посылает уведомление. Уведомление - тип "
 "сообщений that should be auto reacted to"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3171
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<Ник>], показывает список ваших уведомлений или добавляет что-либо к "
 "ним"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3172
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <Ник>, дает пользователю статус оператора канала (требуются права "
 "администратора)"
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3174
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr "PART [<Канал>] [<Причина>], выйти с канала, по умолчанию - с текущего"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3175
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <Ник | канал>, CTCP-пинг пользователя или канала"
 
-#: src/common/outbound.c:3168
+#: src/common/outbound.c:3176
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <Ник>, открыть новое окно приватных сообщений"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3177
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<причина>] - отсоединение от текущего сервера"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3178
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <Текст>, отсылает текст в чистом виде на сервер"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3181
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -478,7 +478,7 @@ msgstr ""
 "как /RECONNECT для переподключения к текущему серверу или с /RECONNECT ALL "
 "для переподключения ко всем серверам"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3184
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -488,7 +488,7 @@ msgstr ""
 "как /RECONNECT для переподключения к текущему серверу или с /RECONNECT ALL "
 "для переподключения ко всем серверам"
 
-#: src/common/outbound.c:3179
+#: src/common/outbound.c:3187
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -496,27 +496,27 @@ msgstr ""
 "RECV <Текст>, посылает данные в xchat, как если бы они были получены от "
 "сервера"
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3188
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3189
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <Текст>, посылает текст объекту в текущем окне"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3192
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <Сервер> <порт> <канал>, подключиться к серверу, а затем к "
 "каналу"
 
-#: src/common/outbound.c:3187
+#: src/common/outbound.c:3195
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <Сервер> <порт> <канал>, подключиться к серверу, а затем к "
 "каналу"
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3200
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -524,7 +524,7 @@ msgstr ""
 "SERVER [-ssl] <адрес> [<порт>] [<пароль>] соединяет с сервером. Порт по "
 "умолчанию 6667 для нормальных соединений и 9999 для соединений через SSL"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3203
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -532,56 +532,56 @@ msgstr ""
 "SERVER <адрес> [<порт>] [<пароль>] соединяет с сервером. Порт по умолчанию "
 "6667"
 
-#: src/common/outbound.c:3197
+#: src/common/outbound.c:3205
 #, fuzzy
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET <Переменная> [<Значение>]  Установить значение переменной"
 
-#: src/common/outbound.c:3198
+#: src/common/outbound.c:3206
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3210
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<тема>], устанавливает тему, если она указана. Иначе отображает "
 "текущую тему"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3211
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr "UNBAN <маска> [<маска>...], снять запрет для специфической маски"
 
-#: src/common/outbound.c:3205
+#: src/common/outbound.c:3213
 #, fuzzy
 msgid "UNEXEMPT <mask> [<mask>...], unexempts the specified masks."
 msgstr "UNBAN <маска> [<маска>...], снять запрет для специфической маски"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3214
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr ""
 "UNIGNORE <маска> [QUIET] - снять игнорирование сообщений с определенной маски"
 
-#: src/common/outbound.c:3207
+#: src/common/outbound.c:3215
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <имя>, выгрузить плагин или скрипт"
 
-#: src/common/outbound.c:3209
+#: src/common/outbound.c:3217
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <Ник>, дает право голоса кому-либо (требуются права оператора)"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3218
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <Сообщение>, посылает сообщение на все каналы"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3220
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <Сообщение>, посылает сообщение всемl операторам текущего канала"
 
-#: src/common/outbound.c:3214
+#: src/common/outbound.c:3222
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -589,12 +589,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <Сообщение>, посылает сообщение всемl операторам текущего канала"
 
-#: src/common/outbound.c:3260
+#: src/common/outbound.c:3268
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Использование: %s\n"
 
-#: src/common/outbound.c:3265
+#: src/common/outbound.c:3273
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -602,19 +602,19 @@ msgstr ""
 "\n"
 "По этой команде нет помощи.\n"
 
-#: src/common/outbound.c:3271
+#: src/common/outbound.c:3279
 msgid "No such command.\n"
 msgstr "Команда не существует\n"
 
-#: src/common/outbound.c:3642
+#: src/common/outbound.c:3650
 msgid "Bad arguments for user command.\n"
 msgstr "Недопустимые аргументы команды пользователя.\n"
 
-#: src/common/outbound.c:3804
+#: src/common/outbound.c:3812
 msgid "Too many recursive usercommands, aborting."
 msgstr "Очень много рекурсивных команд пользователя, прерывание."
 
-#: src/common/outbound.c:3859
+#: src/common/outbound.c:3867
 msgid "Unknown Command. Try /help\n"
 msgstr "Неизвестная команда. Попробуйте /help\n"
 
@@ -1319,17 +1319,17 @@ msgstr "-%C10-%C11-%O$t$1 пользователей в списке уведо�
 msgid "%B-->%B$tStacked join, new users on $1 is: $2%O"
 msgstr ""
 
-#: src/common/text.c:195
+#: src/common/text.c:172
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** ЗАКАНЧИВАЕТСЯ ВХОЖДЕНИЕ НА %s\n"
 
-#: src/common/text.c:309
+#: src/common/text.c:286
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** НАЧАЛО ВХОЖДЕНИЯ НА %s\n"
 
-#: src/common/text.c:328
+#: src/common/text.c:305
 #, fuzzy, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
@@ -1338,498 +1338,498 @@ msgstr ""
 "* Не могу открыть лог-файл(ы) для записи. Проверьте\n"
 "  Права доступа на %s/xchatlogs"
 
-#: src/common/text.c:545
+#: src/common/text.c:522
 msgid "Left message"
 msgstr "Сообщение слева"
 
-#: src/common/text.c:546
+#: src/common/text.c:523
 msgid "Right message"
 msgstr "Сообщение справа"
 
-#: src/common/text.c:550
+#: src/common/text.c:527
 msgid "The nick of the joining person"
 msgstr "Имя зашедшей персоны"
 
-#: src/common/text.c:551
+#: src/common/text.c:528
 msgid "The channel being joined"
 msgstr "Вы уже на канале"
 
-#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
+#: src/common/text.c:529 src/common/text.c:574 src/common/text.c:631
 msgid "The host of the person"
 msgstr "Адрес компьютера персоны"
 
-#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
-#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
-#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
-#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
-#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
-#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
-#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
-#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
-#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
-#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
-#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
-#: src/common/text.c:1002
+#: src/common/text.c:533 src/common/text.c:538 src/common/text.c:545
+#: src/common/text.c:612 src/common/text.c:737 src/common/text.c:744
+#: src/common/text.c:749 src/common/text.c:754 src/common/text.c:759
+#: src/common/text.c:765 src/common/text.c:770 src/common/text.c:774
+#: src/common/text.c:779 src/common/text.c:785 src/common/text.c:831
+#: src/common/text.c:840 src/common/text.c:845 src/common/text.c:850
+#: src/common/text.c:859 src/common/text.c:870 src/common/text.c:877
+#: src/common/text.c:883 src/common/text.c:888 src/common/text.c:893
+#: src/common/text.c:900 src/common/text.c:906 src/common/text.c:912
+#: src/common/text.c:917 src/common/text.c:922 src/common/text.c:926
+#: src/common/text.c:932 src/common/text.c:940 src/common/text.c:974
+#: src/common/text.c:979
 msgid "Nickname"
 msgstr "Ник"
 
-#: src/common/text.c:557
+#: src/common/text.c:534
 msgid "The action"
 msgstr "Действие"
 
-#: src/common/text.c:562
+#: src/common/text.c:539
 msgid "The text"
 msgstr "Текст"
 
-#: src/common/text.c:563
+#: src/common/text.c:540
 msgid "Mode char"
 msgstr "Символ режима"
 
-#: src/common/text.c:564 src/common/text.c:637
+#: src/common/text.c:541 src/common/text.c:614
 #, fuzzy
 msgid "Identified text"
 msgstr "Информация"
 
-#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
-#: src/common/text.c:636
+#: src/common/text.c:546 src/common/text.c:602 src/common/text.c:608
+#: src/common/text.c:613
 msgid "The message"
 msgstr "Сообщение"
 
-#: src/common/text.c:573 src/common/text.c:641
+#: src/common/text.c:550 src/common/text.c:618
 msgid "Old nickname"
 msgstr "Старый ник"
 
-#: src/common/text.c:574 src/common/text.c:642
+#: src/common/text.c:551 src/common/text.c:619
 msgid "New nickname"
 msgstr "Новый ник"
 
-#: src/common/text.c:578
+#: src/common/text.c:555
 msgid "Nick of person who changed the topic"
 msgstr "Ник человека, который поменял Топик"
 
-#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
+#: src/common/text.c:556 src/common/text.c:562 src/common/text.c:1014
 #: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Топик"
 
-#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
-#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/common/text.c:557 src/common/text.c:561 src/common/text.c:994
+#: src/common/text.c:1012 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
 #: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Канал"
 
-#: src/common/text.c:589 src/common/text.c:648
+#: src/common/text.c:566 src/common/text.c:625
 msgid "The nickname of the kicker"
 msgstr "Ник выкинувшего"
 
-#: src/common/text.c:590 src/common/text.c:646
+#: src/common/text.c:567 src/common/text.c:623
 msgid "The person being kicked"
 msgstr "Персона выкинута"
 
-#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
-#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
+#: src/common/text.c:568 src/common/text.c:575 src/common/text.c:579
+#: src/common/text.c:584 src/common/text.c:624 src/common/text.c:632
 msgid "The channel"
 msgstr "Канал"
 
-#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
+#: src/common/text.c:569 src/common/text.c:626 src/common/text.c:633
 msgid "The reason"
 msgstr "Причина"
 
-#: src/common/text.c:596 src/common/text.c:653
+#: src/common/text.c:573 src/common/text.c:630
 msgid "The nick of the person leaving"
 msgstr "Ник вышедшего"
 
-#: src/common/text.c:603 src/common/text.c:609
+#: src/common/text.c:580 src/common/text.c:586
 msgid "The time"
 msgstr "Время"
 
-#: src/common/text.c:608
+#: src/common/text.c:585
 msgid "The creator"
 msgstr "Создатель"
 
-#: src/common/text.c:613
+#: src/common/text.c:590
 msgid "Nick"
 msgstr "Ник"
 
-#: src/common/text.c:614 src/common/text.c:869
+#: src/common/text.c:591 src/common/text.c:846
 msgid "Reason"
 msgstr "Причина"
 
-#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
+#: src/common/text.c:592 src/common/text.c:739 src/common/text.c:821
 msgid "Host"
 msgstr "Адрес машины"
 
-#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
+#: src/common/text.c:596 src/common/text.c:601 src/common/text.c:606
 msgid "Who it's from"
 msgstr "Откуда этот"
 
-#: src/common/text.c:620
+#: src/common/text.c:597
 msgid "The time in x.x format (see below)"
 msgstr "Время в формате x.x (см. ниже)"
 
-#: src/common/text.c:630 src/common/text.c:672
+#: src/common/text.c:607 src/common/text.c:649
 msgid "The Channel it's going to"
 msgstr "Список каналов..."
 
-#: src/common/text.c:660
+#: src/common/text.c:637
 msgid "The sound"
 msgstr "Звук"
 
-#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
+#: src/common/text.c:638 src/common/text.c:643 src/common/text.c:648
 msgid "The nick of the person"
 msgstr "Ник персоны"
 
-#: src/common/text.c:665 src/common/text.c:670
+#: src/common/text.c:642 src/common/text.c:647
 msgid "The CTCP event"
 msgstr "CTCP событие"
 
-#: src/common/text.c:676
+#: src/common/text.c:653
 msgid "The nick of the person who set the key"
 msgstr "Ник персоны, установившей ключ"
 
-#: src/common/text.c:677
+#: src/common/text.c:654
 msgid "The key"
 msgstr "Ключ"
 
-#: src/common/text.c:681
+#: src/common/text.c:658
 msgid "The nick of the person who set the limit"
 msgstr "Ник персоны, установившей лимит"
 
-#: src/common/text.c:682
+#: src/common/text.c:659
 msgid "The limit"
 msgstr "Ограничение"
 
-#: src/common/text.c:686
+#: src/common/text.c:663
 msgid "The nick of the person who did the op'ing"
 msgstr "Ник человека, установившего оператора"
 
-#: src/common/text.c:687
+#: src/common/text.c:664
 msgid "The nick of the person who has been op'ed"
 msgstr "Ник персоны, кому дали права оператора"
 
-#: src/common/text.c:691
+#: src/common/text.c:668
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Ник персоны, кому дали права полуоператора"
 
-#: src/common/text.c:692
+#: src/common/text.c:669
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Ник человека, который дал права полуоператора"
 
-#: src/common/text.c:696
+#: src/common/text.c:673
 msgid "The nick of the person who did the voice'ing"
 msgstr "Ник человека, который дал право голоса"
 
-#: src/common/text.c:697
+#: src/common/text.c:674
 msgid "The nick of the person who has been voice'ed"
 msgstr "Ник человека, которому дали право голоса"
 
-#: src/common/text.c:701
+#: src/common/text.c:678
 msgid "The nick of the person who did the banning"
 msgstr "Ник забанившего"
 
-#: src/common/text.c:702 src/common/text.c:729
+#: src/common/text.c:679 src/common/text.c:706
 msgid "The ban mask"
 msgstr "Маска бана"
 
-#: src/common/text.c:706
+#: src/common/text.c:683
 msgid "The nick who removed the key"
 msgstr "Ник удалившего ключ"
 
-#: src/common/text.c:710
+#: src/common/text.c:687
 msgid "The nick who removed the limit"
 msgstr "Ник удалившего ограничение"
 
-#: src/common/text.c:714
+#: src/common/text.c:691
 msgid "The nick of the person of did the deop'ing"
 msgstr "Ник персоны, который де-опнул"
 
-#: src/common/text.c:715
+#: src/common/text.c:692
 msgid "The nick of the person who has been deop'ed"
 msgstr "Ник персоны, которого де-опили."
 
-#: src/common/text.c:718
+#: src/common/text.c:695
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Ник персоны, который снял статус полуоператора"
 
-#: src/common/text.c:719
+#: src/common/text.c:696
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Ник персоны, с которой сняли статус полуоператора"
 
-#: src/common/text.c:723
+#: src/common/text.c:700
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Ник персоны, который снял право голоса"
 
-#: src/common/text.c:724
+#: src/common/text.c:701
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Ник персоны, с которой сняли право голоса"
 
-#: src/common/text.c:728
+#: src/common/text.c:705
 msgid "The nick of the person of did the unban'ing"
 msgstr "Ник персоны, снявшей бан."
 
-#: src/common/text.c:733
+#: src/common/text.c:710
 msgid "The nick of the person who did the exempt"
 msgstr "Ник персоны, вызвавшей исключение"
 
-#: src/common/text.c:734 src/common/text.c:739
+#: src/common/text.c:711 src/common/text.c:716
 msgid "The exempt mask"
 msgstr "Маска исключения"
 
-#: src/common/text.c:738
+#: src/common/text.c:715
 msgid "The nick of the person removed the exempt"
 msgstr "Ник персоны, убравшей исключение"
 
-#: src/common/text.c:743
+#: src/common/text.c:720
 msgid "The nick of the person who did the invite"
 msgstr "Ник персоны, сделавшей приглашение"
 
-#: src/common/text.c:744 src/common/text.c:749
+#: src/common/text.c:721 src/common/text.c:726
 msgid "The invite mask"
 msgstr "Маска приглашения"
 
-#: src/common/text.c:748
+#: src/common/text.c:725
 msgid "The nick of the person removed the invite"
 msgstr "Ник персоны, удалившей приглашение"
 
-#: src/common/text.c:753
+#: src/common/text.c:730
 msgid "The nick of the person setting the mode"
 msgstr "Ник персоны, установившего режим"
 
-#: src/common/text.c:754
+#: src/common/text.c:731
 msgid "The mode's sign (+/-)"
 msgstr "Знаки режима (+/-)"
 
-#: src/common/text.c:755
+#: src/common/text.c:732
 msgid "The mode letter"
 msgstr "Буквы режима"
 
-#: src/common/text.c:756
+#: src/common/text.c:733
 msgid "The channel it's being set on"
 msgstr "Канал установлен"
 
-#: src/common/text.c:761
+#: src/common/text.c:738
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: src/common/text.c:763
+#: src/common/text.c:740
 msgid "Full name"
 msgstr "Полное имя"
 
-#: src/common/text.c:768
+#: src/common/text.c:745
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr "Член канала/\"IRC - оператор\""
 
-#: src/common/text.c:773
+#: src/common/text.c:750
 msgid "Server Information"
 msgstr "Информация о сервере"
 
-#: src/common/text.c:778 src/common/text.c:783
+#: src/common/text.c:755 src/common/text.c:760
 msgid "Idle time"
 msgstr "Время простоя"
 
-#: src/common/text.c:784
+#: src/common/text.c:761
 msgid "Signon time"
 msgstr "Время ввода пароля"
 
-#: src/common/text.c:789
+#: src/common/text.c:766
 msgid "Away reason"
 msgstr "Причина ухода:"
 
-#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
-#: src/common/text.c:989
+#: src/common/text.c:775 src/common/text.c:780 src/common/text.c:788
+#: src/common/text.c:966
 msgid "Message"
 msgstr "Сообщение"
 
-#: src/common/text.c:804
+#: src/common/text.c:781
 msgid "Account"
 msgstr "Учетная запись"
 
-#: src/common/text.c:809
+#: src/common/text.c:786
 msgid "Real user@host"
 msgstr "Фактический пользователь@компьютер"
 
-#: src/common/text.c:810
+#: src/common/text.c:787
 msgid "Real IP"
 msgstr "Фактический IP"
 
-#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
-#: src/common/text.c:1012
+#: src/common/text.c:792 src/common/text.c:801 src/common/text.c:807
+#: src/common/text.c:989
 msgid "Channel Name"
 msgstr "Имя канала"
 
-#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
+#: src/common/text.c:796 src/common/text.c:952 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Текст"
 
-#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
+#: src/common/text.c:797 src/common/text.c:803 src/common/text.c:990
 msgid "Server Name"
 msgstr "Имя сервера"
 
-#: src/common/text.c:825
+#: src/common/text.c:802
 msgid "Nick of person who invited you"
 msgstr "Ник персоны, пригласившей вас"
 
-#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
+#: src/common/text.c:808 src/common/text.c:1013 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Пользователи"
 
-#: src/common/text.c:835
+#: src/common/text.c:812
 msgid "Nickname in use"
 msgstr "Ник используется"
 
-#: src/common/text.c:836
+#: src/common/text.c:813
 msgid "Nick being tried"
 msgstr "Пробуем ник"
 
-#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
-#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
-#: src/common/text.c:1024 src/common/util.c:134
+#: src/common/text.c:817 src/common/text.c:853 src/common/text.c:864
+#: src/common/text.c:871 src/common/text.c:884 src/common/text.c:901
+#: src/common/text.c:1001 src/common/util.c:134
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/common/text.c:845 src/common/text.c:979
+#: src/common/text.c:822 src/common/text.c:956
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:846 src/common/text.c:875
+#: src/common/text.c:823 src/common/text.c:852
 msgid "Port"
 msgstr "Порт"
 
-#: src/common/text.c:850
+#: src/common/text.c:827
 msgid "PID"
 msgstr "PID"
 
-#: src/common/text.c:858
+#: src/common/text.c:835
 msgid "Channel name"
 msgstr "Имя канала"
 
-#: src/common/text.c:859 src/common/text.c:864
+#: src/common/text.c:836 src/common/text.c:841
 msgid "Modes string"
 msgstr "Строка режимов"
 
-#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
-#: src/common/text.c:958
+#: src/common/text.c:851 src/common/text.c:889 src/common/text.c:894
+#: src/common/text.c:935
 msgid "IP address"
 msgstr "IP Адрес"
 
-#: src/common/text.c:880 src/common/text.c:905
+#: src/common/text.c:857 src/common/text.c:882
 msgid "DCC Type"
 msgstr "Тип DCC"
 
-#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
-#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
-#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
-#: src/common/text.c:950 src/common/text.c:956
+#: src/common/text.c:858 src/common/text.c:863 src/common/text.c:868
+#: src/common/text.c:875 src/common/text.c:895 src/common/text.c:899
+#: src/common/text.c:905 src/common/text.c:911 src/common/text.c:918
+#: src/common/text.c:927 src/common/text.c:933
 msgid "Filename"
 msgstr "Имя файла"
 
-#: src/common/text.c:892 src/common/text.c:899
+#: src/common/text.c:869 src/common/text.c:876
 msgid "Destination filename"
 msgstr "Имя файла у получателя"
 
-#: src/common/text.c:901 src/common/text.c:930
+#: src/common/text.c:878 src/common/text.c:907
 msgid "CPS"
 msgstr "CPS"
 
-#: src/common/text.c:936
+#: src/common/text.c:913
 msgid "Pathname"
 msgstr "Путь"
 
-#: src/common/text.c:951 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
+#: src/common/text.c:928 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
 msgid "Position"
 msgstr "Положение"
 
-#: src/common/text.c:957 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
+#: src/common/text.c:934 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
 msgid "Size"
 msgstr "Размер"
 
-#: src/common/text.c:962
+#: src/common/text.c:939
 msgid "DCC String"
 msgstr "Строка DCC"
 
-#: src/common/text.c:967
+#: src/common/text.c:944
 msgid "Number of notify items"
 msgstr "Количество уведомлений"
 
-#: src/common/text.c:971
+#: src/common/text.c:948
 msgid "Servername"
 msgstr "Имя сервера"
 
-#: src/common/text.c:983
+#: src/common/text.c:960
 msgid "Old Filename"
 msgstr "Старое имя файла"
 
-#: src/common/text.c:984
+#: src/common/text.c:961
 msgid "New Filename"
 msgstr "Новое имя файла"
 
-#: src/common/text.c:988
+#: src/common/text.c:965
 msgid "Receiver"
 msgstr "Получатель"
 
-#: src/common/text.c:993
+#: src/common/text.c:970
 msgid "Hostmask"
 msgstr "Маска компьютера"
 
-#: src/common/text.c:998
+#: src/common/text.c:975
 msgid "Hostname"
 msgstr "Имя машины"
 
-#: src/common/text.c:1003
+#: src/common/text.c:980
 msgid "The Packet"
 msgstr "Пакет"
 
-#: src/common/text.c:1007
+#: src/common/text.c:984
 msgid "Seconds"
 msgstr "Секунд."
 
-#: src/common/text.c:1011
+#: src/common/text.c:988
 msgid "Nick of person who have been invited"
 msgstr "Ник приглашенного"
 
-#: src/common/text.c:1018
+#: src/common/text.c:995
 msgid "Banmask"
 msgstr "Маска бана"
 
-#: src/common/text.c:1019
+#: src/common/text.c:996
 msgid "Who set the ban"
 msgstr "Кто установил бан"
 
-#: src/common/text.c:1020
+#: src/common/text.c:997
 msgid "Ban time"
 msgstr "Продолжительность бана"
 
-#: src/common/text.c:1028
+#: src/common/text.c:1005
 #, fuzzy
 msgid "Source Server"
 msgstr "Прокси сервер"
 
-#: src/common/text.c:1029
+#: src/common/text.c:1006
 #, fuzzy
 msgid "Destination Server"
 msgstr "Имя файла у получателя"
 
-#: src/common/text.c:1030
+#: src/common/text.c:1007
 #, fuzzy
 msgid "Ping time"
 msgstr "Продолжительность бана"
 
-#: src/common/text.c:1031
+#: src/common/text.c:1008
 #, fuzzy
 msgid "Client time diff"
 msgstr "Информация о клиенте"
 
-#: src/common/text.c:1041
+#: src/common/text.c:1018
 #, fuzzy
 msgid "the message"
 msgstr "Сообщение"
 
-#: src/common/text.c:1045
+#: src/common/text.c:1022
 #, fuzzy
 msgid "the hostmask"
 msgstr "Маска компьютера"
 
-#: src/common/text.c:1082
+#: src/common/text.c:1059
 #, fuzzy, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1838,7 +1838,7 @@ msgstr ""
 "Ошибка разбора события %s.\n"
 "Загружаем по-умолчанию"
 
-#: src/common/text.c:1793
+#: src/common/text.c:1770
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -3443,11 +3443,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:531
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Буфер поиска пуст.\n"
 
-#: src/fe-gtk/fe-gtk.c:608
+#: src/fe-gtk/fe-gtk.c:606
 #, fuzzy, c-format
 msgid "%d lines"
 msgstr "%d байт"
@@ -3572,7 +3572,7 @@ msgstr "Ошибка загрузки конфигурации клавиш"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
 #: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
-#: src/fe-gtk/maingui.c:2459
+#: src/fe-gtk/maingui.c:2467
 msgid "<none>"
 msgstr "<none>"
 
@@ -3828,11 +3828,11 @@ msgstr ""
 "менеджер, который не поддерживает такую возможность.\n"
 
 #: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
-#: src/fe-gtk/maingui.c:2681
+#: src/fe-gtk/maingui.c:2689
 msgid "Attach/Detach this tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2687
 msgid "Close this tab/window"
 msgstr "Закрыть вкладку/окно"
 

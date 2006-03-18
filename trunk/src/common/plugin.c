@@ -1177,7 +1177,7 @@ rage_list_str (rage_plugin *ph, rage_list *xlist, const char *name)
 					char *str = strchr(get_isupport(ph->context->server, 
 								"PREFIX"), ')');
 					if(str)
-						*str++;
+						++str;
 					return str ? str : "";
 				}
 				case 0xca022f43: /* server */

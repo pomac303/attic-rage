@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-CFLAGS+= -Wimplicit -Wstrict-prototypes -Werror
+CFLAGS+= -Wimplicit -Wstrict-prototypes
 
 noinst_LIBRARIES = libragecommon.a
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.4.0pre2\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-05-07 22:31+0200\n"
+"POT-Creation-Date: 2006-03-18 20:10+0100\n"
 "PO-Revision-Date: 2004-08-07 12:54+0100\n"
 "Last-Translator: Hauke Hagenhoff <Hauke.Hagenhoff@gmx.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "NEIN "
 msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr "CTCP-Flut von %s, ignoriere %s\n"
 
-#: src/common/ignore.c:341
+#: src/common/ignore.c:342
 #, fuzzy, c-format
 msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr "MSG-Flut von %s, deaktiviere automatische Dialoge.\n"
@@ -156,34 +156,34 @@ msgstr ""
 msgid "Unknown arg '%s' ignored."
 msgstr "Unbekanntes Argument '%s' ignoriert."
 
-#: src/common/outbound.c:2818
+#: src/common/outbound.c:2826
 msgid "No such plugin found.\n"
 msgstr "Kein solches Plugin gefunden.\n"
 
-#: src/common/outbound.c:2823 src/fe-gtk/plugingui.c:160
+#: src/common/outbound.c:2831 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Dieses Plugin kann nicht entladen werden.\n"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3074
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr ""
 "ADDBUTTON <Name> <Aktion>, fügt einen Knopf unter der Benutzerliste hinzu"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3076
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr ""
 "ALLCHAN <Kommando>, sendet ein Kommando an alle Channels in denen Sie sind"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3078
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr ""
 "ALLSERV <Kommando>, sendet ein Kommando an alle Server auf denen Sie sind"
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3079
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<Grund>], setzt Sie auf abwesend"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3081
 #, fuzzy
 msgid ""
 "BAN <mask> [<masktype>], bans everyone matching the mask from the current "
@@ -194,21 +194,21 @@ msgstr ""
 "aktuellen Channel. Wenn diese bereits im Channel sind, werden sie nicht "
 "gekickt (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3075
+#: src/common/outbound.c:3083
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR, Löscht das aktuelle Textfenster"
 
-#: src/common/outbound.c:3076
+#: src/common/outbound.c:3084
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE, Schließt das aktuelle Textfenster/Reiter"
 
-#: src/common/outbound.c:3078
+#: src/common/outbound.c:3086
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr ""
 "COUNTRY <Kode>, findet einen Länderkode, z.B.: de = Bundesrepublik "
 "Deutschland"
 
-#: src/common/outbound.c:3080
+#: src/common/outbound.c:3088
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -216,11 +216,11 @@ msgstr ""
 "CTCP <Nick> <Nachricht>, sendet die CTCP-Nachricht an den Nick, übliche "
 "Nachrichten sind VERSION und USERINFO"
 
-#: src/common/outbound.c:3082
+#: src/common/outbound.c:3090
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE, verläßt den aktuellen Channel und betritt ihn direkt wieder"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3091
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -239,7 +239,7 @@ msgstr ""
 "     DCC CLOSE <Typ> <Nick> <Datei>      - Schließt einen DCC-Transfer\n"
 "         Beispiel: /dcc close send markus datei.zip"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3100
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -247,11 +247,11 @@ msgstr ""
 "DEHOP <Nick>, entfernt den HalbOp-Status bei Nick im aktuellen Channel "
 "(Erfordert Op-Status)"
 
-#: src/common/outbound.c:3094
+#: src/common/outbound.c:3102
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <Name>, entfernt einen Knopf unter der Benutzerliste"
 
-#: src/common/outbound.c:3096
+#: src/common/outbound.c:3104
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -259,7 +259,7 @@ msgstr ""
 "DEOP <Nick>, entfernt den Op-Status bei Nick im aktuellen Channel (Erfordert "
 "Op-Status)"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3106
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -267,19 +267,19 @@ msgstr ""
 "DEVOICE <Nick>, entfernt den Voice-Status bei Nick im aktuellen Channel "
 "(Erfordert Op-Status)"
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3107
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON, Trennt die Server-Verbindung"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3108
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr "DNS <Nick|Host|IP>, Findet die IP-Adresse eines Nutzers"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3109
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <Text>, Zeigt Text lokal an"
 
-#: src/common/outbound.c:3104
+#: src/common/outbound.c:3112
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -288,11 +288,11 @@ msgstr ""
 "die Ausgabe in das aktuelle Fenster gesendet, ansonsten wird sie lokal "
 "gezeigt"
 
-#: src/common/outbound.c:3106
+#: src/common/outbound.c:3114
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT, sendet das Signal SIGCONT"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3117
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -300,31 +300,31 @@ msgstr ""
 "EXECKILL [-9], killt einen laufenden exec in der aktuellen Sitzung. Wenn -9 "
 "angegeben wurde, wird der Prozess SIGKILLed"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3119
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP, sendet dem Prozess das Signal SIGSTOP"
 
-#: src/common/outbound.c:3112
+#: src/common/outbound.c:3120
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE, sendet Daten an den stdin des Prozesses"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3123
 msgid "EXEMPT <mask> [masktype], sets a exempt"
 msgstr ""
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3125
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ, löscht die Sendewarteschlange des aktuellen Servers"
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3127
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr "GATE <Host> [<Port>], verbindet durch einen Proxy, Standardport ist 23"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3133
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr "HOP <Nick>, gibt Nick HalbOp-Status (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3135
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -338,7 +338,7 @@ msgstr ""
 "               PRIV, CHAN, NOTI, CTCP, DCC, INVI, ALL\n"
 "    Optionen - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3141
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -346,16 +346,16 @@ msgstr ""
 "INVITE <Nick> [<Channel>], lädt jemanden in einen Channel ein, standardmäßig "
 "den aktuellen (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3134
+#: src/common/outbound.c:3142
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <Channel>, betritt einen Channel"
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3144
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <Nick>, kickt den Nick aus dem aktuellen Channel (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3138
+#: src/common/outbound.c:3146
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -363,32 +363,32 @@ msgstr ""
 "KICKBAN <Nick>, bannt den Nick und kickt dann den Nick aus dem aktuellen "
 "Channel (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3140
+#: src/common/outbound.c:3148
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK, erzwingt eine neue Lag-Prüfung"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3150
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <Zeichenkette>, sucht im Puffer nach einer Zeichenkette"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3152
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <Datei>, lädt ein Plugin oder ein Skript"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3154
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP, Nimmt allen HalbOps im aktuellen Channel den HalbOp-Status "
 "(Erfordert Op-Status)"
 
-#: src/common/outbound.c:3148
+#: src/common/outbound.c:3156
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP, Nimmt allen Ops im aktuellen Channel den Op-Status (Erfordert Op-"
 "Status)"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3158
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -396,39 +396,39 @@ msgstr ""
 "ME <Aktion>, sendet die Aktion in den aktuellen Channel (Aktionen werden in "
 "der 3. Person geschrieben, wie /me springt)"
 
-#: src/common/outbound.c:3152
+#: src/common/outbound.c:3160
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr "MKICK, Kickt alle außer Sie im aktuellen Channel (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3163
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP, gibt allen Benutzern im aktuellen Channel Op (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3156
+#: src/common/outbound.c:3164
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <Nick> <Nachricht>, sendet eine private Nachricht"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3165
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES, Listet die Nicks im aktuellen Channel auf"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3166
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <Nick> <Nachricht>, Sendet eine CTCP-Notiz"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3167
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr ""
 "NEWSERVER <Hostname> [<Port>], verbindet mit einem Server in einem neuen "
 "Reiter"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3168
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <Nickname>, setzt Ihren Nick"
 
-#: src/common/outbound.c:3162
+#: src/common/outbound.c:3170
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -436,38 +436,38 @@ msgstr ""
 "NOTICE <Nick/Channel> <Nachricht>, sendet eine Notiz. Notizen sind "
 "Nachrichten, auf die automatisch reagiert werden sollte"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3171
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<nick>], zeigt Ihre Benachrichtigungsliste oder fügt jemanden hinzu"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3172
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr "OP <Nick>, gibt Nick Op-Status (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3174
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 "PART [<Channel>] [<Grund>], verläßt den Channel, standardmäßig den aktuellen"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3175
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr "PING <Nick | Channel>, pingt den Nick oder Channel per CTCP an"
 
-#: src/common/outbound.c:3168
+#: src/common/outbound.c:3176
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <Nick>, öffnet ein neues Dialogfenster mit jemandem"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3177
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<Grund>], trennt XChat vom aktuellen Server"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3178
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <Text>, sendet den Text im Rohformat an den Server"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3181
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -477,7 +477,7 @@ msgstr ""
 "aufgerufen werden um sich mit dem aktuellen Server wiederzuverbinden, oder "
 "als /RECONNECT ALL um sich mit allen aktiven Servern wiederzuverbinden"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3184
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -487,7 +487,7 @@ msgstr ""
 "aufgerufen werden um sich mit dem aktuellen Server wiederzuverbinden, oder "
 "als /RECONNECT ALL um sich mit allen aktiven Servern wiederzuverbinden"
 
-#: src/common/outbound.c:3179
+#: src/common/outbound.c:3187
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -495,24 +495,24 @@ msgstr ""
 "RECV <Text>, sendet Rohdaten an XChat, als ob sie vom IRC-Server empfangen "
 "wurden"
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3188
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3189
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <Text>, sendet den Text ans Ziel im aktuellen Fenster"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3192
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <Host> <Port> <Channel>, verbindet und betritt einen Channel"
 
-#: src/common/outbound.c:3187
+#: src/common/outbound.c:3195
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr "SERVCHAN <Host> <Port> <Channel>, verbindet und betritt einen Channel"
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3200
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -520,7 +520,7 @@ msgstr ""
 "SERVER [-ssl] <Host> [<Port>] [<Passwort>], verbindet mit einem Server, der "
 "Standard-Port ist 6667 für normale Verbindungen und 9999 für SSL-Verbindungen"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3203
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -528,58 +528,58 @@ msgstr ""
 "SERVER <Host> [<Port>] [<Passwort>], verbindet mit einem Server, der "
 "Standard-Port ist 6667"
 
-#: src/common/outbound.c:3197
+#: src/common/outbound.c:3205
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr ""
 "SET [-quiet] <Variable> [<Wert>], setzt eine Variable oder zeigt ihren Wert"
 
-#: src/common/outbound.c:3198
+#: src/common/outbound.c:3206
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3210
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<Thema>], setzt das Thema, wenn eins angegeben wurde, oder zeigt das "
 "aktuelle"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3211
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 "UNBAN <Maske> [<Maske>...], entfernt den Bann für eine spezielle Hostmaske"
 
-#: src/common/outbound.c:3205
+#: src/common/outbound.c:3213
 #, fuzzy
 msgid "UNEXEMPT <mask> [<mask>...], unexempts the specified masks."
 msgstr ""
 "UNBAN <Maske> [<Maske>...], entfernt den Bann für eine spezielle Hostmaske"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3214
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr ""
 "UNIGNORE <Maske> [QUIET], hört auf, die angegebene Hostmaske zu ignorieren"
 
-#: src/common/outbound.c:3207
+#: src/common/outbound.c:3215
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <Name>, entfernt ein Plugin oder Skript"
 
-#: src/common/outbound.c:3209
+#: src/common/outbound.c:3217
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr "VOICE <Nick>, gibt jemandem Voice-Status (Erfordert Op-Status)"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3218
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <Nachricht>, schreibt eine Nachricht in alle Channels"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3220
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr ""
 "WALLCHOP <Nachricht>, sendet eine Nachricht an alle Ops im aktuellen Channel"
 
-#: src/common/outbound.c:3214
+#: src/common/outbound.c:3222
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
@@ -587,12 +587,12 @@ msgid ""
 msgstr ""
 "WALLCHOP <Nachricht>, sendet eine Nachricht an alle Ops im aktuellen Channel"
 
-#: src/common/outbound.c:3260
+#: src/common/outbound.c:3268
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Benutzung: %s\n"
 
-#: src/common/outbound.c:3265
+#: src/common/outbound.c:3273
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -600,19 +600,19 @@ msgstr ""
 "\n"
 "Keine Hilfe für dieses Kommando verfügbar.\n"
 
-#: src/common/outbound.c:3271
+#: src/common/outbound.c:3279
 msgid "No such command.\n"
 msgstr "Kein solches Kommando.\n"
 
-#: src/common/outbound.c:3642
+#: src/common/outbound.c:3650
 msgid "Bad arguments for user command.\n"
 msgstr "Ungültige Argumente für das Benutzerkommando.\n"
 
-#: src/common/outbound.c:3804
+#: src/common/outbound.c:3812
 msgid "Too many recursive usercommands, aborting."
 msgstr "Zu viele rekursive Benutzerkommandos - Abbruch."
 
-#: src/common/outbound.c:3859
+#: src/common/outbound.c:3867
 msgid "Unknown Command. Try /help\n"
 msgstr "Unbekanntes Kommando. Versuchen Sie /help\n"
 
@@ -1311,17 +1311,17 @@ msgstr "%C22*%O$t$1 Nutzer in der Benachrichtigungsliste."
 msgid "%B-->%B$tStacked join, new users on $1 is: $2%O"
 msgstr ""
 
-#: src/common/text.c:195
+#: src/common/text.c:172
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** BEENDE LOGBUCH UM %s\n"
 
-#: src/common/text.c:309
+#: src/common/text.c:286
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** BEGINNE LOGBUCH UM %s\n"
 
-#: src/common/text.c:328
+#: src/common/text.c:305
 #, fuzzy, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
@@ -1330,497 +1330,497 @@ msgstr ""
 "* Kann Logbuchdatei(en) nicht zum Schreiben öffnen. Prüfen Sie\n"
 "  die Berechtigungen von %s/xchatlogs"
 
-#: src/common/text.c:545
+#: src/common/text.c:522
 msgid "Left message"
 msgstr "Linke Nachricht"
 
-#: src/common/text.c:546
+#: src/common/text.c:523
 msgid "Right message"
 msgstr "Rechte Nachricht"
 
-#: src/common/text.c:550
+#: src/common/text.c:527
 msgid "The nick of the joining person"
 msgstr "Der Nick der Person, die den Channel betritt"
 
-#: src/common/text.c:551
+#: src/common/text.c:528
 msgid "The channel being joined"
 msgstr "Der Channel, der betreten wird"
 
-#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
+#: src/common/text.c:529 src/common/text.c:574 src/common/text.c:631
 msgid "The host of the person"
 msgstr "Die Hostmask der Person"
 
-#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
-#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
-#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
-#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
-#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
-#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
-#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
-#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
-#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
-#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
-#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
-#: src/common/text.c:1002
+#: src/common/text.c:533 src/common/text.c:538 src/common/text.c:545
+#: src/common/text.c:612 src/common/text.c:737 src/common/text.c:744
+#: src/common/text.c:749 src/common/text.c:754 src/common/text.c:759
+#: src/common/text.c:765 src/common/text.c:770 src/common/text.c:774
+#: src/common/text.c:779 src/common/text.c:785 src/common/text.c:831
+#: src/common/text.c:840 src/common/text.c:845 src/common/text.c:850
+#: src/common/text.c:859 src/common/text.c:870 src/common/text.c:877
+#: src/common/text.c:883 src/common/text.c:888 src/common/text.c:893
+#: src/common/text.c:900 src/common/text.c:906 src/common/text.c:912
+#: src/common/text.c:917 src/common/text.c:922 src/common/text.c:926
+#: src/common/text.c:932 src/common/text.c:940 src/common/text.c:974
+#: src/common/text.c:979
 msgid "Nickname"
 msgstr "Nickname"
 
-#: src/common/text.c:557
+#: src/common/text.c:534
 msgid "The action"
 msgstr "Die Aktion"
 
-#: src/common/text.c:562
+#: src/common/text.c:539
 msgid "The text"
 msgstr "Der Text"
 
-#: src/common/text.c:563
+#: src/common/text.c:540
 msgid "Mode char"
 msgstr "Moduszeichen"
 
-#: src/common/text.c:564 src/common/text.c:637
+#: src/common/text.c:541 src/common/text.c:614
 msgid "Identified text"
 msgstr "Identifierter Text"
 
-#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
-#: src/common/text.c:636
+#: src/common/text.c:546 src/common/text.c:602 src/common/text.c:608
+#: src/common/text.c:613
 msgid "The message"
 msgstr "Die Nachricht"
 
-#: src/common/text.c:573 src/common/text.c:641
+#: src/common/text.c:550 src/common/text.c:618
 msgid "Old nickname"
 msgstr "Alter Nickname"
 
-#: src/common/text.c:574 src/common/text.c:642
+#: src/common/text.c:551 src/common/text.c:619
 msgid "New nickname"
 msgstr "Neuer Nickname"
 
-#: src/common/text.c:578
+#: src/common/text.c:555
 msgid "Nick of person who changed the topic"
 msgstr "Nick der Person, die das Thema geändert hat"
 
-#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
+#: src/common/text.c:556 src/common/text.c:562 src/common/text.c:1014
 #: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Thema"
 
-#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
-#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/common/text.c:557 src/common/text.c:561 src/common/text.c:994
+#: src/common/text.c:1012 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
 #: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Channel"
 
-#: src/common/text.c:589 src/common/text.c:648
+#: src/common/text.c:566 src/common/text.c:625
 msgid "The nickname of the kicker"
 msgstr "Der Nickname des Kickenden"
 
-#: src/common/text.c:590 src/common/text.c:646
+#: src/common/text.c:567 src/common/text.c:623
 msgid "The person being kicked"
 msgstr "Die Person, die gekickt wird"
 
-#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
-#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
+#: src/common/text.c:568 src/common/text.c:575 src/common/text.c:579
+#: src/common/text.c:584 src/common/text.c:624 src/common/text.c:632
 msgid "The channel"
 msgstr "Der Channel"
 
-#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
+#: src/common/text.c:569 src/common/text.c:626 src/common/text.c:633
 msgid "The reason"
 msgstr "Der Grund"
 
-#: src/common/text.c:596 src/common/text.c:653
+#: src/common/text.c:573 src/common/text.c:630
 msgid "The nick of the person leaving"
 msgstr "Der Nick der Person, die den Channel verläßt"
 
-#: src/common/text.c:603 src/common/text.c:609
+#: src/common/text.c:580 src/common/text.c:586
 msgid "The time"
 msgstr "Die Zeit"
 
-#: src/common/text.c:608
+#: src/common/text.c:585
 msgid "The creator"
 msgstr "Der Erzeuger"
 
-#: src/common/text.c:613
+#: src/common/text.c:590
 msgid "Nick"
 msgstr "Nick"
 
-#: src/common/text.c:614 src/common/text.c:869
+#: src/common/text.c:591 src/common/text.c:846
 msgid "Reason"
 msgstr "Grund"
 
-#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
+#: src/common/text.c:592 src/common/text.c:739 src/common/text.c:821
 msgid "Host"
 msgstr "Host"
 
-#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
+#: src/common/text.c:596 src/common/text.c:601 src/common/text.c:606
 msgid "Who it's from"
 msgstr "Von wem es ist"
 
-#: src/common/text.c:620
+#: src/common/text.c:597
 msgid "The time in x.x format (see below)"
 msgstr "Die Zeit im x.x-Format (siehe unten)"
 
-#: src/common/text.c:630 src/common/text.c:672
+#: src/common/text.c:607 src/common/text.c:649
 msgid "The Channel it's going to"
 msgstr "Der Channel an den es geht"
 
-#: src/common/text.c:660
+#: src/common/text.c:637
 msgid "The sound"
 msgstr "Der Klang"
 
-#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
+#: src/common/text.c:638 src/common/text.c:643 src/common/text.c:648
 msgid "The nick of the person"
 msgstr "Der Nick der Person"
 
-#: src/common/text.c:665 src/common/text.c:670
+#: src/common/text.c:642 src/common/text.c:647
 msgid "The CTCP event"
 msgstr "Das CTCP-Ereignis"
 
-#: src/common/text.c:676
+#: src/common/text.c:653
 msgid "The nick of the person who set the key"
 msgstr "Der Nick der Person, die den Schlüssel gesetzt hat"
 
-#: src/common/text.c:677
+#: src/common/text.c:654
 msgid "The key"
 msgstr "Der Schlüssel"
 
-#: src/common/text.c:681
+#: src/common/text.c:658
 msgid "The nick of the person who set the limit"
 msgstr "Der Nick der Person, die das Limit gesetzt hat"
 
-#: src/common/text.c:682
+#: src/common/text.c:659
 msgid "The limit"
 msgstr "Das Limit"
 
-#: src/common/text.c:686
+#: src/common/text.c:663
 msgid "The nick of the person who did the op'ing"
 msgstr "Der Nick der Person, die Op-Status erteilte"
 
-#: src/common/text.c:687
+#: src/common/text.c:664
 msgid "The nick of the person who has been op'ed"
 msgstr "Der Nick der Person, die Op-Status erhielt"
 
-#: src/common/text.c:691
+#: src/common/text.c:668
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Der Nick der Person, die HalfOp-Status erhielt"
 
-#: src/common/text.c:692
+#: src/common/text.c:669
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Der Nick der Person, die HalfOp-Status erteilte"
 
-#: src/common/text.c:696
+#: src/common/text.c:673
 msgid "The nick of the person who did the voice'ing"
 msgstr "Der Nick der Person, die Voice erteilte"
 
-#: src/common/text.c:697
+#: src/common/text.c:674
 msgid "The nick of the person who has been voice'ed"
 msgstr "Der Nick der Person, die Voice erhielt"
 
-#: src/common/text.c:701
+#: src/common/text.c:678
 msgid "The nick of the person who did the banning"
 msgstr "Der Nick der Person, die bannte"
 
-#: src/common/text.c:702 src/common/text.c:729
+#: src/common/text.c:679 src/common/text.c:706
 msgid "The ban mask"
 msgstr "Die Bannmaske"
 
-#: src/common/text.c:706
+#: src/common/text.c:683
 msgid "The nick who removed the key"
 msgstr "Der Nick, der den Schlüssel entfernte"
 
-#: src/common/text.c:710
+#: src/common/text.c:687
 msgid "The nick who removed the limit"
 msgstr "Der Nick, der das Limit entfernte"
 
-#: src/common/text.c:714
+#: src/common/text.c:691
 msgid "The nick of the person of did the deop'ing"
 msgstr "Der Nick der Person, die Op nahm"
 
-#: src/common/text.c:715
+#: src/common/text.c:692
 msgid "The nick of the person who has been deop'ed"
 msgstr "Der Nick der Person, die Op abgenommen bekam"
 
-#: src/common/text.c:718
+#: src/common/text.c:695
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Der Nick der Person, die HalfOp nahm"
 
-#: src/common/text.c:719
+#: src/common/text.c:696
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Der Nick der Person, die HalfOp abgenommen bekam"
 
-#: src/common/text.c:723
+#: src/common/text.c:700
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Der Nick der Person, die Voice nahm"
 
-#: src/common/text.c:724
+#: src/common/text.c:701
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Der Nick der Person, die Voice abgenommen bekam"
 
-#: src/common/text.c:728
+#: src/common/text.c:705
 msgid "The nick of the person of did the unban'ing"
 msgstr "Der Nick der Person, die den Bann entfernte"
 
-#: src/common/text.c:733
+#: src/common/text.c:710
 msgid "The nick of the person who did the exempt"
 msgstr "Der Nick der Person, die die Ausnahme setzte"
 
-#: src/common/text.c:734 src/common/text.c:739
+#: src/common/text.c:711 src/common/text.c:716
 msgid "The exempt mask"
 msgstr "Die Ausnahme-Maske"
 
-#: src/common/text.c:738
+#: src/common/text.c:715
 msgid "The nick of the person removed the exempt"
 msgstr "Der Nick der Person, die die Ausnahme entfernte"
 
-#: src/common/text.c:743
+#: src/common/text.c:720
 msgid "The nick of the person who did the invite"
 msgstr "Der Nick der Person, die die Einladung aussprach"
 
-#: src/common/text.c:744 src/common/text.c:749
+#: src/common/text.c:721 src/common/text.c:726
 msgid "The invite mask"
 msgstr "Die Einladungs-Maske"
 
-#: src/common/text.c:748
+#: src/common/text.c:725
 msgid "The nick of the person removed the invite"
 msgstr "Der Nick der Person, die die Einladung zurücknahm"
 
-#: src/common/text.c:753
+#: src/common/text.c:730
 msgid "The nick of the person setting the mode"
 msgstr "Der Nick der Person, die den Modus setzte"
 
-#: src/common/text.c:754
+#: src/common/text.c:731
 msgid "The mode's sign (+/-)"
 msgstr "Die Moduszeichen (+/-)"
 
-#: src/common/text.c:755
+#: src/common/text.c:732
 msgid "The mode letter"
 msgstr "Der Modusbuchstabe"
 
-#: src/common/text.c:756
+#: src/common/text.c:733
 msgid "The channel it's being set on"
 msgstr "Der Channel, der eingestellt wird"
 
-#: src/common/text.c:761
+#: src/common/text.c:738
 msgid "Username"
 msgstr "Benutzername"
 
-#: src/common/text.c:763
+#: src/common/text.c:740
 msgid "Full name"
 msgstr "Voller Name"
 
-#: src/common/text.c:768
+#: src/common/text.c:745
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr "Channelinformation/\"ist ein IRC-Operator\""
 
-#: src/common/text.c:773
+#: src/common/text.c:750
 msgid "Server Information"
 msgstr "Server-Information"
 
-#: src/common/text.c:778 src/common/text.c:783
+#: src/common/text.c:755 src/common/text.c:760
 msgid "Idle time"
 msgstr "Untätig"
 
-#: src/common/text.c:784
+#: src/common/text.c:761
 msgid "Signon time"
 msgstr "Zeitpunkt der Einwahl"
 
-#: src/common/text.c:789
+#: src/common/text.c:766
 msgid "Away reason"
 msgstr "Abwesenheitsgrund"
 
-#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
-#: src/common/text.c:989
+#: src/common/text.c:775 src/common/text.c:780 src/common/text.c:788
+#: src/common/text.c:966
 msgid "Message"
 msgstr "Nachricht"
 
-#: src/common/text.c:804
+#: src/common/text.c:781
 msgid "Account"
 msgstr "Konto"
 
-#: src/common/text.c:809
+#: src/common/text.c:786
 msgid "Real user@host"
 msgstr "Echter Benutzer@Host"
 
-#: src/common/text.c:810
+#: src/common/text.c:787
 msgid "Real IP"
 msgstr "Echte IP"
 
-#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
-#: src/common/text.c:1012
+#: src/common/text.c:792 src/common/text.c:801 src/common/text.c:807
+#: src/common/text.c:989
 msgid "Channel Name"
 msgstr "Channel-Name"
 
-#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
+#: src/common/text.c:796 src/common/text.c:952 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Text"
 
-#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
+#: src/common/text.c:797 src/common/text.c:803 src/common/text.c:990
 msgid "Server Name"
 msgstr "Server-Name"
 
-#: src/common/text.c:825
+#: src/common/text.c:802
 msgid "Nick of person who invited you"
 msgstr "Nick der Person, die Sie einlud"
 
-#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
+#: src/common/text.c:808 src/common/text.c:1013 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Benutzer"
 
-#: src/common/text.c:835
+#: src/common/text.c:812
 msgid "Nickname in use"
 msgstr "Nickname in Benutzung"
 
-#: src/common/text.c:836
+#: src/common/text.c:813
 msgid "Nick being tried"
 msgstr "Nick wird versucht"
 
-#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
-#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
-#: src/common/text.c:1024 src/common/util.c:134
+#: src/common/text.c:817 src/common/text.c:853 src/common/text.c:864
+#: src/common/text.c:871 src/common/text.c:884 src/common/text.c:901
+#: src/common/text.c:1001 src/common/util.c:134
 msgid "Error"
 msgstr "Fehler"
 
-#: src/common/text.c:845 src/common/text.c:979
+#: src/common/text.c:822 src/common/text.c:956
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:846 src/common/text.c:875
+#: src/common/text.c:823 src/common/text.c:852
 msgid "Port"
 msgstr "Port"
 
-#: src/common/text.c:850
+#: src/common/text.c:827
 msgid "PID"
 msgstr "Prozess ID"
 
-#: src/common/text.c:858
+#: src/common/text.c:835
 msgid "Channel name"
 msgstr "Channel-Name"
 
-#: src/common/text.c:859 src/common/text.c:864
+#: src/common/text.c:836 src/common/text.c:841
 msgid "Modes string"
 msgstr "Modusfolge"
 
-#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
-#: src/common/text.c:958
+#: src/common/text.c:851 src/common/text.c:889 src/common/text.c:894
+#: src/common/text.c:935
 msgid "IP address"
 msgstr "IP-Adresse"
 
-#: src/common/text.c:880 src/common/text.c:905
+#: src/common/text.c:857 src/common/text.c:882
 msgid "DCC Type"
 msgstr "DCC-Typ"
 
-#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
-#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
-#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
-#: src/common/text.c:950 src/common/text.c:956
+#: src/common/text.c:858 src/common/text.c:863 src/common/text.c:868
+#: src/common/text.c:875 src/common/text.c:895 src/common/text.c:899
+#: src/common/text.c:905 src/common/text.c:911 src/common/text.c:918
+#: src/common/text.c:927 src/common/text.c:933
 msgid "Filename"
 msgstr "Dateiname"
 
-#: src/common/text.c:892 src/common/text.c:899
+#: src/common/text.c:869 src/common/text.c:876
 msgid "Destination filename"
 msgstr "Zieldateiname"
 
-#: src/common/text.c:901 src/common/text.c:930
+#: src/common/text.c:878 src/common/text.c:907
 msgid "CPS"
 msgstr "CPS"
 
-#: src/common/text.c:936
+#: src/common/text.c:913
 msgid "Pathname"
 msgstr "Pfadname"
 
-#: src/common/text.c:951 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
+#: src/common/text.c:928 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
 msgid "Position"
 msgstr "Position"
 
-#: src/common/text.c:957 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
+#: src/common/text.c:934 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
 msgid "Size"
 msgstr "Größe"
 
-#: src/common/text.c:962
+#: src/common/text.c:939
 msgid "DCC String"
 msgstr "DCC Zeichenfolge"
 
-#: src/common/text.c:967
+#: src/common/text.c:944
 msgid "Number of notify items"
 msgstr "Anzahl der Notify-Einträge"
 
-#: src/common/text.c:971
+#: src/common/text.c:948
 msgid "Servername"
 msgstr "Servername"
 
-#: src/common/text.c:983
+#: src/common/text.c:960
 msgid "Old Filename"
 msgstr "Alter Dateiname"
 
-#: src/common/text.c:984
+#: src/common/text.c:961
 msgid "New Filename"
 msgstr "Neuer Dateiname"
 
-#: src/common/text.c:988
+#: src/common/text.c:965
 msgid "Receiver"
 msgstr "Empfänger"
 
-#: src/common/text.c:993
+#: src/common/text.c:970
 msgid "Hostmask"
 msgstr "Hostmaske"
 
-#: src/common/text.c:998
+#: src/common/text.c:975
 msgid "Hostname"
 msgstr "Hostname"
 
-#: src/common/text.c:1003
+#: src/common/text.c:980
 msgid "The Packet"
 msgstr "Das Paket"
 
-#: src/common/text.c:1007
+#: src/common/text.c:984
 msgid "Seconds"
 msgstr "Sekunden"
 
-#: src/common/text.c:1011
+#: src/common/text.c:988
 msgid "Nick of person who have been invited"
 msgstr "Nick der Person, die eingeladen wurde"
 
-#: src/common/text.c:1018
+#: src/common/text.c:995
 msgid "Banmask"
 msgstr "Bann-Maske"
 
-#: src/common/text.c:1019
+#: src/common/text.c:996
 msgid "Who set the ban"
 msgstr "Wer setzte den Bann"
 
-#: src/common/text.c:1020
+#: src/common/text.c:997
 msgid "Ban time"
 msgstr "Bannzeit"
 
-#: src/common/text.c:1028
+#: src/common/text.c:1005
 #, fuzzy
 msgid "Source Server"
 msgstr "Proxy-Server:"
 
-#: src/common/text.c:1029
+#: src/common/text.c:1006
 #, fuzzy
 msgid "Destination Server"
 msgstr "Zieldateiname"
 
-#: src/common/text.c:1030
+#: src/common/text.c:1007
 #, fuzzy
 msgid "Ping time"
 msgstr "Bannzeit"
 
-#: src/common/text.c:1031
+#: src/common/text.c:1008
 #, fuzzy
 msgid "Client time diff"
 msgstr "Clientinformation"
 
-#: src/common/text.c:1041
+#: src/common/text.c:1018
 #, fuzzy
 msgid "the message"
 msgstr "Die Nachricht"
 
-#: src/common/text.c:1045
+#: src/common/text.c:1022
 #, fuzzy
 msgid "the hostmask"
 msgstr "Hostmaske"
 
-#: src/common/text.c:1082
+#: src/common/text.c:1059
 #, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1829,7 +1829,7 @@ msgstr ""
 "Fehler beim Abarbeiten von Ereignis %s.\n"
 "Lade Standard"
 
-#: src/common/text.c:1793
+#: src/common/text.c:1770
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -3431,11 +3431,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:531
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Suchpuffer ist leer.\n"
 
-#: src/fe-gtk/fe-gtk.c:608
+#: src/fe-gtk/fe-gtk.c:606
 #, fuzzy, c-format
 msgid "%d lines"
 msgstr "%d Bytes"
@@ -3557,7 +3557,7 @@ msgstr "Fehler beim Laden der Tastaturkürzel-Konfiguration"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
 #: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
-#: src/fe-gtk/maingui.c:2459
+#: src/fe-gtk/maingui.c:2467
 msgid "<none>"
 msgstr "<leer>"
 
@@ -3815,11 +3815,11 @@ msgstr ""
 "unterstützten Windowmanager.\n"
 
 #: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
-#: src/fe-gtk/maingui.c:2681
+#: src/fe-gtk/maingui.c:2689
 msgid "Attach/Detach this tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2687
 msgid "Close this tab/window"
 msgstr "Dieses Fenster/Reiter schließen"
 

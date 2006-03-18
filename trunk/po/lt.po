@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xchat 2.1.1\n"
 "Report-Msgid-Bugs-To: www.xchat.org\n"
-"POT-Creation-Date: 2005-05-07 22:31+0200\n"
+"POT-Creation-Date: 2006-03-18 20:10+0100\n"
 "PO-Revision-Date: 2004-08-14 23:51+0200\n"
 "Last-Translator: Vaidrius Petrauskas <vaidrius@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -86,7 +86,7 @@ msgstr "NE   "
 msgid "You are being CTCP flooded from %s, ignoring %s\n"
 msgstr "Jums %s siunčia daugybę CTCP pranešimų, %s ignoruojamas\n"
 
-#: src/common/ignore.c:341
+#: src/common/ignore.c:342
 #, fuzzy, c-format
 msgid "You are being MSG flooded from %s, setting gui_auto_open_dialog OFF.\n"
 msgstr ""
@@ -154,34 +154,34 @@ msgstr ""
 msgid "Unknown arg '%s' ignored."
 msgstr "Nežinomas argumentas „%s“ ignoruojamas."
 
-#: src/common/outbound.c:2818
+#: src/common/outbound.c:2826
 msgid "No such plugin found.\n"
 msgstr "Tokio įskiepio nerasta.\n"
 
-#: src/common/outbound.c:2823 src/fe-gtk/plugingui.c:160
+#: src/common/outbound.c:2831 src/fe-gtk/plugingui.c:160
 msgid "That plugin is refusing to unload.\n"
 msgstr "Įskiepis atsisako būti iškeltas.\n"
 
-#: src/common/outbound.c:3066
+#: src/common/outbound.c:3074
 msgid "ADDBUTTON <name> <action>, adds a button under the user-list"
 msgstr "ADDBUTTON <vardas> <veiksmas> - prideda mygtuką po naudotojų sąrašu"
 
-#: src/common/outbound.c:3068
+#: src/common/outbound.c:3076
 msgid "ALLCHAN <cmd>, sends a command to all channels you're in"
 msgstr ""
 "ALLCHAN <komanda> - nusiunčia komandą į visus kanalus, kuriuose jūs esate"
 
-#: src/common/outbound.c:3070
+#: src/common/outbound.c:3078
 msgid "ALLSERV <cmd>, sends a command to all servers you're in"
 msgstr ""
 "ALLSERV <komanda> - nusiunčia komandą visiems serveriams, prie kurių esate "
 "prisijungęs"
 
-#: src/common/outbound.c:3071
+#: src/common/outbound.c:3079
 msgid "AWAY [<reason>], sets you away"
 msgstr "AWAY [<priežastis>] - įjungia būseną „Manęs nėra“"
 
-#: src/common/outbound.c:3073
+#: src/common/outbound.c:3081
 #, fuzzy
 msgid ""
 "BAN <mask> [<masktype>], bans everyone matching the mask from the current "
@@ -192,19 +192,19 @@ msgstr ""
 "formatas sutampa su nurodytu. Jei jie jau yra kanale, ši komanda neišmeta jų "
 "(reikia OP statuso kanale)"
 
-#: src/common/outbound.c:3075
+#: src/common/outbound.c:3083
 msgid "CLEAR, Clears the current text window"
 msgstr "CLEAR - išvalo esamą tekstinį langą"
 
-#: src/common/outbound.c:3076
+#: src/common/outbound.c:3084
 msgid "CLOSE, Closes the current window/tab"
 msgstr "CLOSE - uždaro esamą langą/kortelę"
 
-#: src/common/outbound.c:3078
+#: src/common/outbound.c:3086
 msgid "COUNTRY <code>, finds a country code, eg: au = australia"
 msgstr "COUNTRY <kodas> - randa šalį pagal kodą, pvz.: lt = Lietuva"
 
-#: src/common/outbound.c:3080
+#: src/common/outbound.c:3088
 msgid ""
 "CTCP <nick> <message>, send the CTCP message to nick, common messages are "
 "VERSION and USERINFO"
@@ -212,11 +212,11 @@ msgstr ""
 "CTCP <slapyvardis> <žinutė> - nusiunčia CTCP žinutę naudotojui. Dažniausios "
 "žinutės yra VERSION ir USERINFO"
 
-#: src/common/outbound.c:3082
+#: src/common/outbound.c:3090
 msgid "CYCLE, parts current channel and immediately rejoins"
 msgstr "CYCLE - palieka esamą kanalą ir iškarta į jį grįžta"
 
-#: src/common/outbound.c:3083
+#: src/common/outbound.c:3091
 msgid ""
 "\n"
 "DCC GET <nick>                     - accept an offered file\n"
@@ -234,7 +234,7 @@ msgstr ""
 "DCC CLOSE <tipas> <slapyvardis> <byla>     pavyzdys:\n"
 "                    /dcc close send jonas byla.tar.gz"
 
-#: src/common/outbound.c:3092
+#: src/common/outbound.c:3100
 msgid ""
 "DEHOP <nick>, removes chanhalf-op status from the nick on the current "
 "channel (needs chanop)"
@@ -242,11 +242,11 @@ msgstr ""
 "DEHOP <slapyvardis> - pašalina halfopo teisę nuo naudotojo esamame kanale "
 "(reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3094
+#: src/common/outbound.c:3102
 msgid "DELBUTTON <name>, deletes a button from under the user-list"
 msgstr "DELBUTTON <pavadinimas> - ištrina mygtuką iš po naudotojų sąrašo"
 
-#: src/common/outbound.c:3096
+#: src/common/outbound.c:3104
 msgid ""
 "DEOP <nick>, removes chanop status from the nick on the current channel "
 "(needs chanop)"
@@ -254,7 +254,7 @@ msgstr ""
 "DEOP <slapyvardis> - pašalina kanalo operatoriaus teises naudotojui esamame "
 "kanale (reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3098
+#: src/common/outbound.c:3106
 msgid ""
 "DEVOICE <nick>, removes voice status from the nick on the current channel "
 "(needs chanop)"
@@ -262,21 +262,21 @@ msgstr ""
 "DEVOICE <slapyvardis> - pašalina balso teisę iš naudotojo esamame kanale "
 "(reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3099
+#: src/common/outbound.c:3107
 msgid "DISCON, Disconnects from server"
 msgstr "DISCON - atjungia nuo serverio"
 
-#: src/common/outbound.c:3100
+#: src/common/outbound.c:3108
 msgid "DNS <nick|host|ip>, Finds a users IP number"
 msgstr ""
 "DEOP <slapyvardis> - panaikina kanalo operatoriaus teises naudotojui esamame "
 "kanale (reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3101
+#: src/common/outbound.c:3109
 msgid "ECHO <text>, Prints text locally"
 msgstr "ECHO <tekstas> - lokaliai atspausdina tekstą"
 
-#: src/common/outbound.c:3104
+#: src/common/outbound.c:3112
 msgid ""
 "EXEC [-o] <command>, runs the command. If -o flag is used then output is "
 "sent to current channel, else is printed to current text box"
@@ -285,11 +285,11 @@ msgstr ""
 "parametras, komandos grąžinamas tekstas bus nusiųstas į esamą kanalą, kitu "
 "atveju jis nusiunčiamas į aktyvų langą."
 
-#: src/common/outbound.c:3106
+#: src/common/outbound.c:3114
 msgid "EXECCONT, sends the process SIGCONT"
 msgstr "EXECCONT - nusiunčia procesui SIGCONT signalą"
 
-#: src/common/outbound.c:3109
+#: src/common/outbound.c:3117
 msgid ""
 "EXECKILL [-9], kills a running exec in the current session. If -9 is given "
 "the process is SIGKILL'ed"
@@ -297,35 +297,35 @@ msgstr ""
 "EXECKILL [-9] - nutraukia aktyvioje sesijoje vykdomą komandą. Jei nurodomas "
 "parametras -9, procesui bus nusiųstas SIGKILL signalas"
 
-#: src/common/outbound.c:3111
+#: src/common/outbound.c:3119
 msgid "EXECSTOP, sends the process SIGSTOP"
 msgstr "EXECSTOP - nusiunčia procesui SIGSTOP signalą"
 
-#: src/common/outbound.c:3112
+#: src/common/outbound.c:3120
 msgid "EXECWRITE, sends data to the processes stdin"
 msgstr "EXECWRITE - nusiunčia duomenis proceso stdin įrenginiui"
 
-#: src/common/outbound.c:3115
+#: src/common/outbound.c:3123
 msgid "EXEMPT <mask> [masktype], sets a exempt"
 msgstr ""
 
-#: src/common/outbound.c:3117
+#: src/common/outbound.c:3125
 msgid "FLUSHQ, flushes the current server's send queue"
 msgstr "FLUSHQ - panaikina aktyvaus serverio siuntimo laukiančių duomenų eilę"
 
-#: src/common/outbound.c:3119
+#: src/common/outbound.c:3127
 msgid "GATE <host> [<port>], proxies through a host, port defaults to 23"
 msgstr ""
 "GATE <adresas> [<prievadas>] - jungiasi per tarpinį serverį. Pradinis "
 "prievadas - 23"
 
-#: src/common/outbound.c:3125
+#: src/common/outbound.c:3133
 msgid "HOP <nick>, gives chanhalf-op status to the nick (needs chanop)"
 msgstr ""
 "HOP <slapyvardis> - suteikia naudotojui kanalo halfopo teises (reikia kanalo "
 "operatoriaus teisių)"
 
-#: src/common/outbound.c:3127
+#: src/common/outbound.c:3135
 msgid ""
 "IGNORE <mask> <types..> <options..>\n"
 "    mask - host mask to ignore, eg: *!*@*.aol.com\n"
@@ -339,7 +339,7 @@ msgstr ""
 "            PRIV, CHAN, NOTI, CTCP, INVI, ALL\n"
 "    nustatymai - NOSAVE, QUIET"
 
-#: src/common/outbound.c:3133
+#: src/common/outbound.c:3141
 msgid ""
 "INVITE <nick> [<channel>], invites someone to a channel, by default the "
 "current channel (needs chanop)"
@@ -347,17 +347,17 @@ msgstr ""
 "INVITE <slapyvardis> [<kanalas>] - pakviečia naudotoją į kanalą. Nutylimasis "
 "- aktyvus kanalas (reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3134
+#: src/common/outbound.c:3142
 msgid "JOIN <channel>, joins the channel"
 msgstr "JOIN <kanalas> - įeina į kanalą"
 
-#: src/common/outbound.c:3136
+#: src/common/outbound.c:3144
 msgid "KICK <nick>, kicks the nick from the current channel (needs chanop)"
 msgstr ""
 "KICK <slapyvardis> - išspiria naudotoją iš aktyvaus kanalo (reikia kanalo "
 "operatoriaus teisių)"
 
-#: src/common/outbound.c:3138
+#: src/common/outbound.c:3146
 msgid ""
 "KICKBAN <nick>, bans then kicks the nick from the current channel (needs "
 "chanop)"
@@ -365,32 +365,32 @@ msgstr ""
 "KICKBAN <slapyvardis> - uždraudžia ir išmeta naudotoją iš aktyvaus kanalo "
 "(reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3140
+#: src/common/outbound.c:3148
 msgid "LAGCHECK, forces a new lag check"
 msgstr "LAGCHECK - pradeda naują užlaikymo patikrinimą"
 
-#: src/common/outbound.c:3142
+#: src/common/outbound.c:3150
 msgid "LASTLOG <string>, searches for a string in the buffer"
 msgstr "LASTLOG <tekstas> - ieško duotojo teksto buferyje"
 
-#: src/common/outbound.c:3144
+#: src/common/outbound.c:3152
 msgid "LOAD <file>, loads a plugin or script"
 msgstr "LOAD <byla> - įkelia įskiepį ar skriptą"
 
-#: src/common/outbound.c:3146
+#: src/common/outbound.c:3154
 msgid ""
 "MDEHOP, Mass deop's all chanhalf-ops in the current channel (needs chanop)"
 msgstr ""
 "MDEHOP - pašalina halfopo teises iš visų jas turinčių esamame kanale   "
 "(reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3148
+#: src/common/outbound.c:3156
 msgid "MDEOP, Mass deop's all chanops in the current channel (needs chanop)"
 msgstr ""
 "MDEOP - pašalina kanalo operatoriaus teises iš visų jas turinčių esamame "
 "kanale (reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3150
+#: src/common/outbound.c:3158
 msgid ""
 "ME <action>, sends the action to the current channel (actions are written in "
 "the 3rd person, like /me jumps)"
@@ -398,40 +398,40 @@ msgstr ""
 "ME <veiksmas> - nusiunčia veiksmą į aktyvų kanalą (veiksmai rašomi trečiuoju "
 "asmeniu, pvz., /me pašoka)"
 
-#: src/common/outbound.c:3152
+#: src/common/outbound.c:3160
 msgid ""
 "MKICK, Mass kicks everyone except you in the current channel (needs chanop)"
 msgstr ""
 "MKICK - išspiria iš esamo kanalo visus išskyrus tave (reikia kanalo "
 "operatoriaus teisių)"
 
-#: src/common/outbound.c:3155
+#: src/common/outbound.c:3163
 msgid "MOP, Mass op's all users in the current channel (needs chanop)"
 msgstr ""
 "MOP - suteikia kanalo operatoriaus teises visiems jų neturintiems esamame "
 "kanale (reikia kanalo operatoriaus teisių)"
 
-#: src/common/outbound.c:3156
+#: src/common/outbound.c:3164
 msgid "MSG <nick> <message>, sends a private message"
 msgstr "MSG <slapyvardis> <žinutė> - nusiunčia privačią žinutę"
 
-#: src/common/outbound.c:3157
+#: src/common/outbound.c:3165
 msgid "NAMES, Lists the nicks on the current channel"
 msgstr "NAMES - išvardina visus naudotojus esamame kanale"
 
-#: src/common/outbound.c:3158
+#: src/common/outbound.c:3166
 msgid "NCTCP <nick> <message>, Sends a CTCP notice"
 msgstr "NCTCP <slapyvardis> <žinutė> - nuciunčia naudotojui CTCP pastabą"
 
-#: src/common/outbound.c:3159
+#: src/common/outbound.c:3167
 msgid "NEWSERVER <hostname> [<port>]"
 msgstr "NEWSERVER <serveris> [<prievadas>]"
 
-#: src/common/outbound.c:3160
+#: src/common/outbound.c:3168
 msgid "NICK <nickname>, sets your nick"
 msgstr "NICK <slapyvardis> - pakeičiamas slapyvardis"
 
-#: src/common/outbound.c:3162
+#: src/common/outbound.c:3170
 msgid ""
 "NOTICE <nick/channel> <message>, sends a notice. Notices are a type of "
 "message that should be auto reacted to"
@@ -439,43 +439,43 @@ msgstr ""
 "NOTICE <slapyvardis/kanalas> <žinutė> - nusiunčia pastabą. Pastabos - tai "
 "žinutės, į kurias turėtų būti reaguojama automatiškai"
 
-#: src/common/outbound.c:3163
+#: src/common/outbound.c:3171
 msgid "NOTIFY [<nick>], lists your notify list or adds someone to it"
 msgstr ""
 "NOTIFY [<slapyvardis>] - išvardina tavo stebimų slapyvardžių sąrašą arba "
 "prideda/išbraukia iš jo slapyvardį"
 
-#: src/common/outbound.c:3164
+#: src/common/outbound.c:3172
 msgid "OP <nick>, gives chanop status to the nick (needs chanop)"
 msgstr ""
 "OP <slapyvardis> - suteikia naudotojui kanalo operatoriaus teises (reikia "
 "jas turėti pačiam)"
 
-#: src/common/outbound.c:3166
+#: src/common/outbound.c:3174
 msgid ""
 "PART [<channel>] [<reason>], leaves the channel, by default the current one"
 msgstr ""
 "PART [<kanalas>] [<priežastis>] - palieka kanalą, pagal nutylėjimą - esamąjį"
 
-#: src/common/outbound.c:3167
+#: src/common/outbound.c:3175
 msgid "PING <nick | channel>, CTCP pings nick or channel"
 msgstr ""
 "PING <slapyvardis | kanalas> - nusiunčia naudotojui arba kanalui CTCP PING "
 "žinutę"
 
-#: src/common/outbound.c:3168
+#: src/common/outbound.c:3176
 msgid "QUERY <nick>, opens up a new privmsg window to someone"
 msgstr "QUERY <slapyvardis> - atidaro dialogo su naudotoju langą"
 
-#: src/common/outbound.c:3169
+#: src/common/outbound.c:3177
 msgid "QUIT [<reason>], disconnects from the current server"
 msgstr "QUIT [<priežastis>] - atsijungia nuo esamo serverio"
 
-#: src/common/outbound.c:3170
+#: src/common/outbound.c:3178
 msgid "QUOTE <text>, sends the text in raw form to the server"
 msgstr "QUOTE <tekstas> - nusiunčia neapdorotą tekstą serveriui"
 
-#: src/common/outbound.c:3173
+#: src/common/outbound.c:3181
 msgid ""
 "RECONNECT [-ssl] [<host>] [<port>] [<password>], Can be called just as /"
 "RECONNECT to reconnect to the current server or with /RECONNECT ALL to "
@@ -486,7 +486,7 @@ msgstr ""
 "prie esamo serverio arba /RECONNECT ALL, norint iš naujo prisijungti prie "
 "visų serverių, prie kurių prisijungta"
 
-#: src/common/outbound.c:3176
+#: src/common/outbound.c:3184
 msgid ""
 "RECONNECT [<host>] [<port>] [<password>], Can be called just as /RECONNECT "
 "to reconnect to the current server or with /RECONNECT ALL to reconnect to "
@@ -497,7 +497,7 @@ msgstr ""
 "prie esamo serverio arba /RECONNECT ALL, norint iš naujo prisijungti prie "
 "visų serverių, prie kurių prisijungta"
 
-#: src/common/outbound.c:3179
+#: src/common/outbound.c:3187
 msgid ""
 "RECV <text>, send raw data to xchat, as if it was received from the irc "
 "server"
@@ -505,26 +505,26 @@ msgstr ""
 "RECV <tekstas> - nusiunčia neapdorotą tekstą „X-Chat“ programai, lyg ji jį "
 "būtų gavusi iš IRC serverio"
 
-#: src/common/outbound.c:3180
+#: src/common/outbound.c:3188
 msgid "RPING <server> [server], ping between servers"
 msgstr ""
 
-#: src/common/outbound.c:3181
+#: src/common/outbound.c:3189
 msgid "SAY <text>, sends the text to the object in the current window"
 msgstr "SAY <tekstas> - nusiunčia tekstą objektui aktyviame lange"
 
-#: src/common/outbound.c:3184
+#: src/common/outbound.c:3192
 msgid "SERVCHAN [-ssl] <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN [-ssl] <serveris> <prievadas> <kanalas> - prisijungia ir įeina į "
 "kanalą"
 
-#: src/common/outbound.c:3187
+#: src/common/outbound.c:3195
 msgid "SERVCHAN <host> <port> <channel>, connects and joins a channel"
 msgstr ""
 "SERVCHAN <serveris> <prievadas> <kanalas> - prisijungia ir įeina į kanalą"
 
-#: src/common/outbound.c:3192
+#: src/common/outbound.c:3200
 msgid ""
 "SERVER [-ssl] <host> [<port>] [<password>], connects to a server, the "
 "default port is 6667 for normal connections, and 9999 for ssl connections"
@@ -533,7 +533,7 @@ msgstr ""
 "serverio, nutylimas prievadas yra 6667 paprastiems prisijungimams ir 9999 - "
 "šifruotiems prisijungimams su SSL"
 
-#: src/common/outbound.c:3195
+#: src/common/outbound.c:3203
 msgid ""
 "SERVER <host> [<port>] [<password>], connects to a server, the default port "
 "is 6667"
@@ -541,70 +541,70 @@ msgstr ""
 "SERVER <serveris> [<prievadas>] [<slaptažodis>] - prisijungia prie serverio, "
 "pradinis prievadas yra 6667"
 
-#: src/common/outbound.c:3197
+#: src/common/outbound.c:3205
 msgid "SET [-quiet] <variable> [<value>]"
 msgstr "SET [-quiet] <kintamasis> [<reikšmė>]"
 
-#: src/common/outbound.c:3198
+#: src/common/outbound.c:3206
 msgid "SETCURSOR [-|+]<position>"
 msgstr ""
 
-#: src/common/outbound.c:3202
+#: src/common/outbound.c:3210
 msgid ""
 "TOPIC [<topic>], sets the topic if one is given, else shows the current topic"
 msgstr ""
 "TOPIC [<tema>] - nustato kanalo temą, jei ji pateikta, arba parodo esamą temą"
 
-#: src/common/outbound.c:3203
+#: src/common/outbound.c:3211
 msgid "UNBAN <mask> [<mask>...], unbans the specified masks."
 msgstr ""
 "UNBAN <formatas> [<formatas>...] - pašalina draudimą visiems, atitinkantiems "
 "formatą"
 
-#: src/common/outbound.c:3205
+#: src/common/outbound.c:3213
 #, fuzzy
 msgid "UNEXEMPT <mask> [<mask>...], unexempts the specified masks."
 msgstr ""
 "UNBAN <formatas> [<formatas>...] - pašalina draudimą visiems, atitinkantiems "
 "formatą"
 
-#: src/common/outbound.c:3206
+#: src/common/outbound.c:3214
 msgid "UNIGNORE <mask> [QUIET]"
 msgstr "UNIGNORE <formatas> [QUIET]"
 
-#: src/common/outbound.c:3207
+#: src/common/outbound.c:3215
 msgid "UNLOAD <name>, unloads a plugin or script"
 msgstr "UNLOAD <pavadinimas> - iškelia įskiepį ar skriptą"
 
-#: src/common/outbound.c:3209
+#: src/common/outbound.c:3217
 msgid "VOICE <nick>, gives voice status to someone (needs chanop)"
 msgstr ""
 "VOICE <slapyvardis> - suteikia naudotojui balso teisę (reikia kanalo "
 "operatoriaus teisių)"
 
-#: src/common/outbound.c:3210
+#: src/common/outbound.c:3218
 msgid "WALLCHAN <message>, writes the message to all channels"
 msgstr "WALLCHAN <žinutė> - nusiunčia žinutę visiems kanalams"
 
-#: src/common/outbound.c:3212
+#: src/common/outbound.c:3220
 #, fuzzy
 msgid ""
 "WALLCHOPS <message>, sends the message to all chanops on the current channel"
 msgstr "WALLCHOP <žinutė> - nusiunčia žinutę visiems esamo kanalo operatoriams"
 
-#: src/common/outbound.c:3214
+#: src/common/outbound.c:3222
 #, fuzzy
 msgid ""
 "WALLVOICES <message>, sends the message to all voiced users on the current "
 "channel"
 msgstr "WALLCHOP <žinutė> - nusiunčia žinutę visiems esamo kanalo operatoriams"
 
-#: src/common/outbound.c:3260
+#: src/common/outbound.c:3268
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Naudojimas: %s\n"
 
-#: src/common/outbound.c:3265
+#: src/common/outbound.c:3273
 msgid ""
 "\n"
 "No help available on that command.\n"
@@ -612,19 +612,19 @@ msgstr ""
 "\n"
 "Ši komanda neturi pagalbos.\n"
 
-#: src/common/outbound.c:3271
+#: src/common/outbound.c:3279
 msgid "No such command.\n"
 msgstr "Nėra tokios komandos.\n"
 
-#: src/common/outbound.c:3642
+#: src/common/outbound.c:3650
 msgid "Bad arguments for user command.\n"
 msgstr "Blogi naudotojo komandos argumentai.\n"
 
-#: src/common/outbound.c:3804
+#: src/common/outbound.c:3812
 msgid "Too many recursive usercommands, aborting."
 msgstr "Per daug rekursyvių naudotojo komandų, nutraukiama."
 
-#: src/common/outbound.c:3859
+#: src/common/outbound.c:3867
 msgid "Unknown Command. Try /help\n"
 msgstr "Nežinoma komanda. Bandykite /help\n"
 
@@ -1321,17 +1321,17 @@ msgstr "%C22*%O$t$1 slapyvardžių stebyklėje."
 msgid "%B-->%B$tStacked join, new users on $1 is: $2%O"
 msgstr ""
 
-#: src/common/text.c:195
+#: src/common/text.c:172
 #, c-format
 msgid "**** ENDING LOGGING AT %s\n"
 msgstr "**** ŽURNALAS BAIGTAS %s\n"
 
-#: src/common/text.c:309
+#: src/common/text.c:286
 #, c-format
 msgid "**** BEGIN LOGGING AT %s\n"
 msgstr "**** ŽURNALAS PRADĖTAS %s\n"
 
-#: src/common/text.c:328
+#: src/common/text.c:305
 #, fuzzy, c-format
 msgid ""
 "* Can't open log file(s) for writing. Check the\n"
@@ -1340,497 +1340,497 @@ msgstr ""
 "* Nepavyko atverti žurnalo bylos (-ų). Patikrinkite\n"
 "  „%s/xchatlogs“ leidimus"
 
-#: src/common/text.c:545
+#: src/common/text.c:522
 msgid "Left message"
 msgstr "Kairioji žinutė"
 
-#: src/common/text.c:546
+#: src/common/text.c:523
 msgid "Right message"
 msgstr "Dešinioji žinutė "
 
-#: src/common/text.c:550
+#: src/common/text.c:527
 msgid "The nick of the joining person"
 msgstr "Įeinančio slapyvardis"
 
-#: src/common/text.c:551
+#: src/common/text.c:528
 msgid "The channel being joined"
 msgstr "Kanalas, į kurį įeinama"
 
-#: src/common/text.c:552 src/common/text.c:597 src/common/text.c:654
+#: src/common/text.c:529 src/common/text.c:574 src/common/text.c:631
 msgid "The host of the person"
 msgstr "Asmens adresas"
 
-#: src/common/text.c:556 src/common/text.c:561 src/common/text.c:568
-#: src/common/text.c:635 src/common/text.c:760 src/common/text.c:767
-#: src/common/text.c:772 src/common/text.c:777 src/common/text.c:782
-#: src/common/text.c:788 src/common/text.c:793 src/common/text.c:797
-#: src/common/text.c:802 src/common/text.c:808 src/common/text.c:854
-#: src/common/text.c:863 src/common/text.c:868 src/common/text.c:873
-#: src/common/text.c:882 src/common/text.c:893 src/common/text.c:900
-#: src/common/text.c:906 src/common/text.c:911 src/common/text.c:916
-#: src/common/text.c:923 src/common/text.c:929 src/common/text.c:935
-#: src/common/text.c:940 src/common/text.c:945 src/common/text.c:949
-#: src/common/text.c:955 src/common/text.c:963 src/common/text.c:997
-#: src/common/text.c:1002
+#: src/common/text.c:533 src/common/text.c:538 src/common/text.c:545
+#: src/common/text.c:612 src/common/text.c:737 src/common/text.c:744
+#: src/common/text.c:749 src/common/text.c:754 src/common/text.c:759
+#: src/common/text.c:765 src/common/text.c:770 src/common/text.c:774
+#: src/common/text.c:779 src/common/text.c:785 src/common/text.c:831
+#: src/common/text.c:840 src/common/text.c:845 src/common/text.c:850
+#: src/common/text.c:859 src/common/text.c:870 src/common/text.c:877
+#: src/common/text.c:883 src/common/text.c:888 src/common/text.c:893
+#: src/common/text.c:900 src/common/text.c:906 src/common/text.c:912
+#: src/common/text.c:917 src/common/text.c:922 src/common/text.c:926
+#: src/common/text.c:932 src/common/text.c:940 src/common/text.c:974
+#: src/common/text.c:979
 msgid "Nickname"
 msgstr "Slapyvardis"
 
-#: src/common/text.c:557
+#: src/common/text.c:534
 msgid "The action"
 msgstr "Veiksmas"
 
-#: src/common/text.c:562
+#: src/common/text.c:539
 msgid "The text"
 msgstr "Tekstas"
 
-#: src/common/text.c:563
+#: src/common/text.c:540
 msgid "Mode char"
 msgstr "Režimo simbolis"
 
-#: src/common/text.c:564 src/common/text.c:637
+#: src/common/text.c:541 src/common/text.c:614
 msgid "Identified text"
 msgstr "Nustatytas tekstas"
 
-#: src/common/text.c:569 src/common/text.c:625 src/common/text.c:631
-#: src/common/text.c:636
+#: src/common/text.c:546 src/common/text.c:602 src/common/text.c:608
+#: src/common/text.c:613
 msgid "The message"
 msgstr "Žinutė"
 
-#: src/common/text.c:573 src/common/text.c:641
+#: src/common/text.c:550 src/common/text.c:618
 msgid "Old nickname"
 msgstr "Ankstesnysis slapyvardis"
 
-#: src/common/text.c:574 src/common/text.c:642
+#: src/common/text.c:551 src/common/text.c:619
 msgid "New nickname"
 msgstr "Naujasis slapyvardis"
 
-#: src/common/text.c:578
+#: src/common/text.c:555
 msgid "Nick of person who changed the topic"
 msgstr "Pakeitusio temą slapyvardis"
 
-#: src/common/text.c:579 src/common/text.c:585 src/common/text.c:1037
+#: src/common/text.c:556 src/common/text.c:562 src/common/text.c:1014
 #: src/fe-gtk/chanlist.c:571 src/fe-gtk/chanlist.c:672
 msgid "Topic"
 msgstr "Tema"
 
-#: src/common/text.c:580 src/common/text.c:584 src/common/text.c:1017
-#: src/common/text.c:1035 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
+#: src/common/text.c:557 src/common/text.c:561 src/common/text.c:994
+#: src/common/text.c:1012 src/fe-gtk/chanlist.c:569 src/fe-gtk/chanlist.c:663
 #: src/fe-gtk/ignoregui.c:146
 msgid "Channel"
 msgstr "Kanalas"
 
-#: src/common/text.c:589 src/common/text.c:648
+#: src/common/text.c:566 src/common/text.c:625
 msgid "The nickname of the kicker"
 msgstr "Išspyrusiojo slapyvardis"
 
-#: src/common/text.c:590 src/common/text.c:646
+#: src/common/text.c:567 src/common/text.c:623
 msgid "The person being kicked"
 msgstr "Išspirtasis"
 
-#: src/common/text.c:591 src/common/text.c:598 src/common/text.c:602
-#: src/common/text.c:607 src/common/text.c:647 src/common/text.c:655
+#: src/common/text.c:568 src/common/text.c:575 src/common/text.c:579
+#: src/common/text.c:584 src/common/text.c:624 src/common/text.c:632
 msgid "The channel"
 msgstr "Kanalas"
 
-#: src/common/text.c:592 src/common/text.c:649 src/common/text.c:656
+#: src/common/text.c:569 src/common/text.c:626 src/common/text.c:633
 msgid "The reason"
 msgstr "Priežastis"
 
-#: src/common/text.c:596 src/common/text.c:653
+#: src/common/text.c:573 src/common/text.c:630
 msgid "The nick of the person leaving"
 msgstr "Išeinančio slapyvardis"
 
-#: src/common/text.c:603 src/common/text.c:609
+#: src/common/text.c:580 src/common/text.c:586
 msgid "The time"
 msgstr "Laikas"
 
-#: src/common/text.c:608
+#: src/common/text.c:585
 msgid "The creator"
 msgstr "Kūrėjas"
 
-#: src/common/text.c:613
+#: src/common/text.c:590
 msgid "Nick"
 msgstr "slapyvardis"
 
-#: src/common/text.c:614 src/common/text.c:869
+#: src/common/text.c:591 src/common/text.c:846
 msgid "Reason"
 msgstr "Priežastis"
 
-#: src/common/text.c:615 src/common/text.c:762 src/common/text.c:844
+#: src/common/text.c:592 src/common/text.c:739 src/common/text.c:821
 msgid "Host"
 msgstr "Adresas"
 
-#: src/common/text.c:619 src/common/text.c:624 src/common/text.c:629
+#: src/common/text.c:596 src/common/text.c:601 src/common/text.c:606
 msgid "Who it's from"
 msgstr "Nuo ko tai"
 
-#: src/common/text.c:620
+#: src/common/text.c:597
 msgid "The time in x.x format (see below)"
 msgstr "Laikas x.x formatu (žr. žemiau)"
 
-#: src/common/text.c:630 src/common/text.c:672
+#: src/common/text.c:607 src/common/text.c:649
 msgid "The Channel it's going to"
 msgstr "Kanalas, į kurį siunčiama"
 
-#: src/common/text.c:660
+#: src/common/text.c:637
 msgid "The sound"
 msgstr "Garsas"
 
-#: src/common/text.c:661 src/common/text.c:666 src/common/text.c:671
+#: src/common/text.c:638 src/common/text.c:643 src/common/text.c:648
 msgid "The nick of the person"
 msgstr "Slapyvardis"
 
-#: src/common/text.c:665 src/common/text.c:670
+#: src/common/text.c:642 src/common/text.c:647
 msgid "The CTCP event"
 msgstr "CTCP įvykis"
 
-#: src/common/text.c:676
+#: src/common/text.c:653
 msgid "The nick of the person who set the key"
 msgstr "Nustačiusio raktą slapyvardis"
 
-#: src/common/text.c:677
+#: src/common/text.c:654
 msgid "The key"
 msgstr "Raktas"
 
-#: src/common/text.c:681
+#: src/common/text.c:658
 msgid "The nick of the person who set the limit"
 msgstr "Nustačiusio limitą, slapyvardis"
 
-#: src/common/text.c:682
+#: src/common/text.c:659
 msgid "The limit"
 msgstr "Limitas"
 
-#: src/common/text.c:686
+#: src/common/text.c:663
 msgid "The nick of the person who did the op'ing"
 msgstr "Davusiojo opą slapyvardis"
 
-#: src/common/text.c:687
+#: src/common/text.c:664
 msgid "The nick of the person who has been op'ed"
 msgstr "Gavusiojo opą slapyvardis"
 
-#: src/common/text.c:691
+#: src/common/text.c:668
 msgid "The nick of the person who has been halfop'ed"
 msgstr "Gavusiojo halfopą slapyvardis"
 
-#: src/common/text.c:692
+#: src/common/text.c:669
 msgid "The nick of the person who did the halfop'ing"
 msgstr "Davusiojo halfopą slapyvardis"
 
-#: src/common/text.c:696
+#: src/common/text.c:673
 msgid "The nick of the person who did the voice'ing"
 msgstr "Davusiojo balsą slapyvardis"
 
-#: src/common/text.c:697
+#: src/common/text.c:674
 msgid "The nick of the person who has been voice'ed"
 msgstr "Gavusiojo balsą slapyvardis"
 
-#: src/common/text.c:701
+#: src/common/text.c:678
 msgid "The nick of the person who did the banning"
 msgstr "Uždraudusiojo slapyvardis"
 
-#: src/common/text.c:702 src/common/text.c:729
+#: src/common/text.c:679 src/common/text.c:706
 msgid "The ban mask"
 msgstr "Draudimo formatas"
 
-#: src/common/text.c:706
+#: src/common/text.c:683
 msgid "The nick who removed the key"
 msgstr "Nuėmusiojo raktą slapyvardis"
 
-#: src/common/text.c:710
+#: src/common/text.c:687
 msgid "The nick who removed the limit"
 msgstr "Nuėmusiojo limitą slapyvardis"
 
-#: src/common/text.c:714
+#: src/common/text.c:691
 msgid "The nick of the person of did the deop'ing"
 msgstr "Nuėmusiojo opą slapyvardis"
 
-#: src/common/text.c:715
+#: src/common/text.c:692
 msgid "The nick of the person who has been deop'ed"
 msgstr "Netekusiojo opo slapyvardis"
 
-#: src/common/text.c:718
+#: src/common/text.c:695
 msgid "The nick of the person of did the dehalfop'ing"
 msgstr "Nuėmusiojo halfopą slapyvardis"
 
-#: src/common/text.c:719
+#: src/common/text.c:696
 msgid "The nick of the person who has been dehalfop'ed"
 msgstr "Netekusiojo halfopo slapyvardis"
 
-#: src/common/text.c:723
+#: src/common/text.c:700
 msgid "The nick of the person of did the devoice'ing"
 msgstr "Nuėmusiojo balsą slapyvardis"
 
-#: src/common/text.c:724
+#: src/common/text.c:701
 msgid "The nick of the person who has been devoice'ed"
 msgstr "Netekusiojo balso slapyvardis"
 
-#: src/common/text.c:728
+#: src/common/text.c:705
 msgid "The nick of the person of did the unban'ing"
 msgstr "Pašalinusiojo draudimą slapyvardis"
 
-#: src/common/text.c:733
+#: src/common/text.c:710
 msgid "The nick of the person who did the exempt"
 msgstr "Padariusiojo išimtį draudimui slapyvardis"
 
-#: src/common/text.c:734 src/common/text.c:739
+#: src/common/text.c:711 src/common/text.c:716
 msgid "The exempt mask"
 msgstr "Išimties draudimui formatas"
 
-#: src/common/text.c:738
+#: src/common/text.c:715
 msgid "The nick of the person removed the exempt"
 msgstr "Pašalinusiojo išimtį draudimui slapyvardis"
 
-#: src/common/text.c:743
+#: src/common/text.c:720
 msgid "The nick of the person who did the invite"
 msgstr "Pakvietusiojo slapyvardis"
 
-#: src/common/text.c:744 src/common/text.c:749
+#: src/common/text.c:721 src/common/text.c:726
 msgid "The invite mask"
 msgstr "Kvietimo formatas"
 
-#: src/common/text.c:748
+#: src/common/text.c:725
 msgid "The nick of the person removed the invite"
 msgstr "Atšaukusiojo kvietimą slapyvardis"
 
-#: src/common/text.c:753
+#: src/common/text.c:730
 msgid "The nick of the person setting the mode"
 msgstr "Nustačiusiojo režimą slapyvardis"
 
-#: src/common/text.c:754
+#: src/common/text.c:731
 msgid "The mode's sign (+/-)"
 msgstr "Režimo ženklas (+/-)"
 
-#: src/common/text.c:755
+#: src/common/text.c:732
 msgid "The mode letter"
 msgstr "Režimo raidė"
 
-#: src/common/text.c:756
+#: src/common/text.c:733
 msgid "The channel it's being set on"
 msgstr "Kanalas, kuriame jis nustatomas"
 
-#: src/common/text.c:761
+#: src/common/text.c:738
 msgid "Username"
 msgstr "Naudotojo vardas"
 
-#: src/common/text.c:763
+#: src/common/text.c:740
 msgid "Full name"
 msgstr "Tikrasis vardas"
 
-#: src/common/text.c:768
+#: src/common/text.c:745
 msgid "Channel Membership/\"is an IRC operator\""
 msgstr "Kanalo narys/IRC operatorius"
 
-#: src/common/text.c:773
+#: src/common/text.c:750
 msgid "Server Information"
 msgstr "Serverio informacija"
 
-#: src/common/text.c:778 src/common/text.c:783
+#: src/common/text.c:755 src/common/text.c:760
 msgid "Idle time"
 msgstr "Neveiksnumo laikas"
 
-#: src/common/text.c:784
+#: src/common/text.c:761
 msgid "Signon time"
 msgstr "Prisijungimo laikas"
 
-#: src/common/text.c:789
+#: src/common/text.c:766
 msgid "Away reason"
 msgstr "Nebuvimo priežastis"
 
-#: src/common/text.c:798 src/common/text.c:803 src/common/text.c:811
-#: src/common/text.c:989
+#: src/common/text.c:775 src/common/text.c:780 src/common/text.c:788
+#: src/common/text.c:966
 msgid "Message"
 msgstr "Žinutė"
 
-#: src/common/text.c:804
+#: src/common/text.c:781
 msgid "Account"
 msgstr "Abonementas"
 
-#: src/common/text.c:809
+#: src/common/text.c:786
 msgid "Real user@host"
 msgstr "Tikras naudotojas@adresas"
 
-#: src/common/text.c:810
+#: src/common/text.c:787
 msgid "Real IP"
 msgstr "Tikras IP"
 
-#: src/common/text.c:815 src/common/text.c:824 src/common/text.c:830
-#: src/common/text.c:1012
+#: src/common/text.c:792 src/common/text.c:801 src/common/text.c:807
+#: src/common/text.c:989
 msgid "Channel Name"
 msgstr "Kanalo pavadinimas"
 
-#: src/common/text.c:819 src/common/text.c:975 src/fe-gtk/textgui.c:312
+#: src/common/text.c:796 src/common/text.c:952 src/fe-gtk/textgui.c:312
 msgid "Text"
 msgstr "Tekstas"
 
-#: src/common/text.c:820 src/common/text.c:826 src/common/text.c:1013
+#: src/common/text.c:797 src/common/text.c:803 src/common/text.c:990
 msgid "Server Name"
 msgstr "Serverio pavadinimas"
 
-#: src/common/text.c:825
+#: src/common/text.c:802
 msgid "Nick of person who invited you"
 msgstr "Pakvietusio Jus slapyvardis"
 
-#: src/common/text.c:831 src/common/text.c:1036 src/fe-gtk/chanlist.c:570
+#: src/common/text.c:808 src/common/text.c:1013 src/fe-gtk/chanlist.c:570
 msgid "Users"
 msgstr "Naudotojai"
 
-#: src/common/text.c:835
+#: src/common/text.c:812
 msgid "Nickname in use"
 msgstr "Slapyvardis užimtas"
 
-#: src/common/text.c:836
+#: src/common/text.c:813
 msgid "Nick being tried"
 msgstr "Bandomas slapyvardis"
 
-#: src/common/text.c:840 src/common/text.c:876 src/common/text.c:887
-#: src/common/text.c:894 src/common/text.c:907 src/common/text.c:924
-#: src/common/text.c:1024 src/common/util.c:134
+#: src/common/text.c:817 src/common/text.c:853 src/common/text.c:864
+#: src/common/text.c:871 src/common/text.c:884 src/common/text.c:901
+#: src/common/text.c:1001 src/common/util.c:134
 msgid "Error"
 msgstr "Klaida"
 
-#: src/common/text.c:845 src/common/text.c:979
+#: src/common/text.c:822 src/common/text.c:956
 msgid "IP"
 msgstr "IP"
 
-#: src/common/text.c:846 src/common/text.c:875
+#: src/common/text.c:823 src/common/text.c:852
 msgid "Port"
 msgstr "Prievadas"
 
-#: src/common/text.c:850
+#: src/common/text.c:827
 msgid "PID"
 msgstr "PID"
 
-#: src/common/text.c:858
+#: src/common/text.c:835
 msgid "Channel name"
 msgstr "Kanalo pavad."
 
-#: src/common/text.c:859 src/common/text.c:864
+#: src/common/text.c:836 src/common/text.c:841
 msgid "Modes string"
 msgstr "Režimų eilutė"
 
-#: src/common/text.c:874 src/common/text.c:912 src/common/text.c:917
-#: src/common/text.c:958
+#: src/common/text.c:851 src/common/text.c:889 src/common/text.c:894
+#: src/common/text.c:935
 msgid "IP address"
 msgstr "IP adresas"
 
-#: src/common/text.c:880 src/common/text.c:905
+#: src/common/text.c:857 src/common/text.c:882
 msgid "DCC Type"
 msgstr "DCC tipas"
 
-#: src/common/text.c:881 src/common/text.c:886 src/common/text.c:891
-#: src/common/text.c:898 src/common/text.c:918 src/common/text.c:922
-#: src/common/text.c:928 src/common/text.c:934 src/common/text.c:941
-#: src/common/text.c:950 src/common/text.c:956
+#: src/common/text.c:858 src/common/text.c:863 src/common/text.c:868
+#: src/common/text.c:875 src/common/text.c:895 src/common/text.c:899
+#: src/common/text.c:905 src/common/text.c:911 src/common/text.c:918
+#: src/common/text.c:927 src/common/text.c:933
 msgid "Filename"
 msgstr "Bylos vardas"
 
-#: src/common/text.c:892 src/common/text.c:899
+#: src/common/text.c:869 src/common/text.c:876
 msgid "Destination filename"
 msgstr "Paskirties bylos pavad."
 
-#: src/common/text.c:901 src/common/text.c:930
+#: src/common/text.c:878 src/common/text.c:907
 msgid "CPS"
 msgstr "greitis"
 
-#: src/common/text.c:936
+#: src/common/text.c:913
 msgid "Pathname"
 msgstr "Kelias"
 
-#: src/common/text.c:951 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
+#: src/common/text.c:928 src/fe-gtk/dccgui.c:449 src/fe-gtk/dccgui.c:622
 msgid "Position"
 msgstr "Vieta"
 
-#: src/common/text.c:957 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
+#: src/common/text.c:934 src/fe-gtk/dccgui.c:448 src/fe-gtk/dccgui.c:621
 msgid "Size"
 msgstr "Dydis"
 
-#: src/common/text.c:962
+#: src/common/text.c:939
 msgid "DCC String"
 msgstr "DCC eilutė"
 
-#: src/common/text.c:967
+#: src/common/text.c:944
 msgid "Number of notify items"
 msgstr "Stebimųjų skaičius"
 
-#: src/common/text.c:971
+#: src/common/text.c:948
 msgid "Servername"
 msgstr "Serverio pavad."
 
-#: src/common/text.c:983
+#: src/common/text.c:960
 msgid "Old Filename"
 msgstr "Ankstenysis bylos pavad."
 
-#: src/common/text.c:984
+#: src/common/text.c:961
 msgid "New Filename"
 msgstr "Naujasis bylos pavad."
 
-#: src/common/text.c:988
+#: src/common/text.c:965
 msgid "Receiver"
 msgstr "Gavėjas"
 
-#: src/common/text.c:993
+#: src/common/text.c:970
 msgid "Hostmask"
 msgstr "Adreso formatas"
 
-#: src/common/text.c:998
+#: src/common/text.c:975
 msgid "Hostname"
 msgstr "Adresas"
 
-#: src/common/text.c:1003
+#: src/common/text.c:980
 msgid "The Packet"
 msgstr "Paketas"
 
-#: src/common/text.c:1007
+#: src/common/text.c:984
 msgid "Seconds"
 msgstr "Sekundės"
 
-#: src/common/text.c:1011
+#: src/common/text.c:988
 msgid "Nick of person who have been invited"
 msgstr "Pakviestojo slapyvardis"
 
-#: src/common/text.c:1018
+#: src/common/text.c:995
 msgid "Banmask"
 msgstr "Draudimo formatas"
 
-#: src/common/text.c:1019
+#: src/common/text.c:996
 msgid "Who set the ban"
 msgstr "Uždraudė"
 
-#: src/common/text.c:1020
+#: src/common/text.c:997
 msgid "Ban time"
 msgstr "Draudimo laikas"
 
-#: src/common/text.c:1028
+#: src/common/text.c:1005
 #, fuzzy
 msgid "Source Server"
 msgstr "Tarpinis serveris"
 
-#: src/common/text.c:1029
+#: src/common/text.c:1006
 #, fuzzy
 msgid "Destination Server"
 msgstr "Paskirties bylos pavad."
 
-#: src/common/text.c:1030
+#: src/common/text.c:1007
 #, fuzzy
 msgid "Ping time"
 msgstr "Draudimo laikas"
 
-#: src/common/text.c:1031
+#: src/common/text.c:1008
 #, fuzzy
 msgid "Client time diff"
 msgstr "Apie klientą"
 
-#: src/common/text.c:1041
+#: src/common/text.c:1018
 #, fuzzy
 msgid "the message"
 msgstr "Žinutė"
 
-#: src/common/text.c:1045
+#: src/common/text.c:1022
 #, fuzzy
 msgid "the hostmask"
 msgstr "Adreso formatas"
 
-#: src/common/text.c:1082
+#: src/common/text.c:1059
 #, c-format
 msgid ""
 "Error parsing event %s.\n"
@@ -1839,7 +1839,7 @@ msgstr ""
 "Klaida apdorojant įvykį „%s“.\n"
 "Įkeliamas pagrindinis."
 
-#: src/common/text.c:1793
+#: src/common/text.c:1770
 #, c-format
 msgid ""
 "Cannot read sound file:\n"
@@ -3440,11 +3440,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: src/fe-gtk/fe-gtk.c:531
+#: src/fe-gtk/fe-gtk.c:530
 msgid "Search buffer is empty.\n"
 msgstr "Paieškos buferis tuščias.\n"
 
-#: src/fe-gtk/fe-gtk.c:608
+#: src/fe-gtk/fe-gtk.c:606
 #, fuzzy, c-format
 msgid "%d lines"
 msgstr "%d baitų"
@@ -3568,7 +3568,7 @@ msgstr "Įkeliant klavišų sąsajos nustatymus įvyko klaida"
 #: src/fe-gtk/fkeys.c:395 src/fe-gtk/fkeys.c:677 src/fe-gtk/fkeys.c:683
 #: src/fe-gtk/fkeys.c:688 src/fe-gtk/maingui.c:865 src/fe-gtk/maingui.c:881
 #: src/fe-gtk/maingui.c:1024 src/fe-gtk/maingui.c:1077
-#: src/fe-gtk/maingui.c:2459
+#: src/fe-gtk/maingui.c:2467
 msgid "<none>"
 msgstr "<joks>"
 
@@ -3824,11 +3824,11 @@ msgstr ""
 "tvarkyklę.\n"
 
 #: src/fe-gtk/maingui.c:1891 src/fe-gtk/maingui.c:1902
-#: src/fe-gtk/maingui.c:2681
+#: src/fe-gtk/maingui.c:2689
 msgid "Attach/Detach this tab"
 msgstr ""
 
-#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2679
+#: src/fe-gtk/maingui.c:1900 src/fe-gtk/maingui.c:2687
 msgid "Close this tab/window"
 msgstr "Užverti šį langą/kortelę"
 
